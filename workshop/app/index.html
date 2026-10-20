@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hands-on judge — ALTA 2026</title>
+  <meta name="description" content="Starter hands-on exercise: judge career-advice replies with an LLM, from the browser, using your own OpenRouter key.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect fill='%231d3b32' width='32' height='32' rx='4'/%3E%3Cpath d='M8 22 V10 h4.2 c2.4 0 3.8 1.2 3.8 3.1 0 2-1.5 3.1-3.8 3.1 H10.2 V22 H8 zm2.2-7.6 h1.7 c1.1 0 1.7-.5 1.7-1.4 s-.6-1.3-1.7-1.3 h-1.7 v2.7 z M18 22 l3.2-12 h2.4 l3.2 12 h-2.2 l-.5-2.1 h-3.4 L20.2 22 H18 zm3.2-3.8 h2.4 L22.4 14 l-1.2 4.2 z' fill='%23f4efe4'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,520..700,40&family=Schibsted+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip" href="#judge-prompt">Skip to the judge prompt</a>
+  <header class="site-header">
+    <div class="title-block">
+      <p class="eyebrow">ALTA 2026 · Tutorial 2</p>
+      <div class="title-row">
+        <h1>Hands-on judge</h1>
+        <p class="stamp">Starter exercise</p>
+      </div>
+      <p class="lede">Edit a judge prompt, run it over a few career-advice replies, and compare the scores. Calls go from this browser to OpenRouter with your own key.</p>
+    </div>
+    <div class="header-actions">
+      <a class="text-link" href="../index.html">Presentation site</a>
+      <button type="button" class="ghost header-button" id="open-settings">Settings</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="prompt-panel" aria-labelledby="prompt-heading">
+      <div class="section-head">
+        <h2 id="prompt-heading">Judge prompt</h2>
+        <button type="button" class="ghost" id="reset-prompt">Reset prompt</button>
+      </div>
+      <textarea id="judge-prompt" spellcheck="true"></textarea>
+      <p class="hint">Each run sends this text as the system message, then the case. The app asks for a JSON object with <code>sound</code>, <code>tone</code>, and <code>compliant</code> on a 1–5 scale so the table can read the scores.</p>
+    </section>
+
+    <section class="case-list" aria-labelledby="cases-heading">
+      <div class="section-head">
+        <h2 id="cases-heading">Cases</h2>
+        <p class="hint inline-hint">A job seeker’s question, and the agent’s reply.</p>
+      </div>
+      <div id="cases"></div>
+    </section>
+
+    <aside class="controls" aria-labelledby="run-heading">
+      <h2 id="run-heading">This run</h2>
+      <label>
+        <span class="field-label">Run ID</span>
+        <span class="id-row">
+          <input id="run-id" type="text" maxlength="48" autocomplete="off" spellcheck="false">
+          <button type="button" class="ghost tiny" id="shuffle-id">New name</button>
+        </span>
+      </label>
+      <label>
+        <span class="field-label">Judge model</span>
+        <input id="model" type="text" list="model-list" autocomplete="off" spellcheck="false">
+      </label>
+      <datalist id="model-list">
+        <option value="anthropic/claude-haiku-5.5">Claude Haiku 5.5</option>
+        <option value="google/gemini-3.8-flash">Gemini 3.8 Flash</option>
+        <option value="deepseek/deepseek-v4-flash">DeepSeek V4 Flash</option>
+        <option value="openai/gpt-6-luna">GPT-6 Luna</option>
+      </datalist>
+      <div class="split">
+        <label>
+          <span class="field-label">Temperature</span>
+          <input id="temperature" type="number" min="0" max="2" step="0.1" value="0">
+        </label>
+        <label>
+          <span class="field-label">Repeats (n)</span>
+          <input id="n" type="number" min="1" max="5" step="1" value="1">
+        </label>
+      </div>
+      <p id="call-count" class="call-count"></p>
+      <p id="panel-error" class="panel-error" role="alert" hidden></p>
+      <button type="button" id="run">Run evals</button>
+      <button type="button" class="ghost cancel" id="cancel" hidden>Cancel</button>
+      <button type="button" class="key-status" id="key-status"></button>
+    </aside>
+
+    <section id="results" class="results" hidden aria-labelledby="results-heading">
+      <div class="results-lockup">
+        <p class="eyebrow">Run</p>
+        <h2 id="results-heading" class="run-name"></h2>
+        <p id="results-meta" class="results-meta"></p>
+        <p id="progress-live" class="progress-live" aria-live="polite"></p>
+      </div>
+      <ol id="run-status" class="run-status"></ol>
+      <div class="results-grid">
+        <div>
+          <h3>Scores</h3>
+          <div id="summary-wrap"></div>
+        </div>
+        <div>
+          <h3>Chart</h3>
+          <div id="chart" class="chart"></div>
+          <ul class="legend" aria-hidden="true">
+            <li><i class="swatch sound"></i> Sound</li>
+            <li><i class="swatch tone"></i> Tone</li>
+            <li><i class="swatch compliant"></i> Compliant</li>
+          </ul>
+          <p class="hint">Bars are the mean of successful repeats. The scale is 1–5 and the axis starts at 0.</p>
+        </div>
+      </div>
+      <h3>Each call</h3>
+      <div id="detail-wrap"></div>
+    </section>
+  </main>
+
+  <dialog id="key-dialog" aria-labelledby="key-dialog-title">
+    <form id="key-form" class="dialog-card">
+      <h2 id="key-dialog-title">OpenRouter API key</h2>
+      <p>Paste a key to start this run. It stays in this browser and is sent only to OpenRouter.</p>
+      <label>
+        <span>API key</span>
+        <input id="key-input" type="password" autocomplete="off" spellcheck="false">
+      </label>
+      <p id="key-error" class="form-error" hidden></p>
+      <div class="dialog-actions">
+        <button type="button" class="ghost" id="key-cancel">Cancel</button>
+        <button type="submit" class="primary">Save and run</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="settings-dialog" aria-labelledby="settings-title">
+    <form id="settings-form" class="dialog-card">
+      <h2 id="settings-title">OpenRouter</h2>
+      <label>
+        <span>API key</span>
+        <input id="settings-key" type="password" autocomplete="off" spellcheck="false">
+      </label>
+      <label class="check">
+        <input id="settings-show-key" type="checkbox">
+        Show key
+      </label>
+      <label>
+        <span>API base URL</span>
+        <input id="settings-base" type="url" spellcheck="false" inputmode="url">
+      </label>
+      <p class="hint">A credit limit on the key is a good safeguard on a shared laptop. Remove the key before you leave this browser.</p>
+      <p id="settings-error" class="form-error" hidden></p>
+      <div class="dialog-actions">
+        <button type="button" class="ghost danger" id="forget-key">Remove key</button>
+        <span class="dialog-spacer"></span>
+        <button type="button" class="ghost" id="settings-close">Close</button>
+        <button type="submit" class="primary">Save</button>
+      </div>
+    </form>
+  </dialog>
+
+  <noscript>
+    <p class="noscript">This exercise needs JavaScript. The judge calls OpenRouter from your browser.</p>
+  </noscript>
+  <script src="app.js"></script>
+</body>
+</html>

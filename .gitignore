@@ -3,6 +3,8 @@
 **/_output/
 **/_site/
 presentations/_site/
+# Staging copy of workshop/app, created and deleted by scripts/render-slides.sh
+presentations/hands-on/
 **/.quarto/
 
 # Python

@@ -5,6 +5,9 @@
 project:
   type: website
   output-dir: _site
+  # Staged by scripts/render-slides.sh from workshop/app (not committed).
+  resources:
+    - hands-on
 
 website:
   title: "ALTA 2026 — Evaluating AI Agents with LLM-as-a-Judge"
@@ -23,6 +26,9 @@ website:
         href: 03-hands-on-exercise/index.qmd
       - text: Part 4
         href: 04-reliability-and-future/index.qmd
+    right:
+      - text: Hands-on
+        href: hands-on/index.html
 
 format:
   html:
