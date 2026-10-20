@@ -52,13 +52,17 @@ Prefer **`organisation/`** for living planning docs; keep **`knowledge/`** for s
 
 ### Presentations
 
-Each part under `presentations/` is a Quarto Reveal.js project. With [Quarto](https://quarto.org/) installed:
+`presentations/` is one Quarto website (landing page + four Reveal decks). With [Quarto](https://quarto.org/) installed:
 
 ```bash
-./scripts/render-slides.sh 01   # or 02, 03, 04, or "all"
+./scripts/render-slides.sh all   # or 01, 02, 03, 04
 ```
 
-See [`presentations/README.md`](presentations/README.md) and [`skills/quarto-reveal-slides/SKILL.md`](skills/quarto-reveal-slides/SKILL.md).
+Published from **`main`** via GitHub Actions → GitHub Pages:  
+<https://tdszyman.github.io/alta2026-evaluating-ai-agents/>  
+(see [`skills/quarto-reveal-slides/SKILL.md`](skills/quarto-reveal-slides/SKILL.md)).
+
+See [`presentations/README.md`](presentations/README.md).
 
 ### Workshop
 

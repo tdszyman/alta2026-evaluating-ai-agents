@@ -1,7 +1,8 @@
-# Quarto / Reveal.js build outputs
+# Quarto / Reveal.js build outputs (CI builds; do not commit)
 **/*_files/
 **/_output/
-**/index.html
+**/_site/
+presentations/_site/
 **/.quarto/
 
 # Python

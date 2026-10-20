@@ -1,8 +1,8 @@
 # Part 1 outline (WIP)
 
 **Part:** AI Agents and Evaluation Challenges  
-**Deck stub:** [`../../presentations/01-agents-and-eval-challenges/`](../../presentations/01-agents-and-eval-challenges/)  
-**Status:** Detailed outline WIP — not final slide content.
+**Deck (WIP):** [`../../presentations/01-agents-and-eval-challenges/index.qmd`](../../presentations/01-agents-and-eval-challenges/index.qmd)  
+**Status:** Detailed outline WIP — deck placeholders follow this outline; not final slide content.
 
 ## Detailed outline (WIP)
 

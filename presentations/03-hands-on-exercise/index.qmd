@@ -1,17 +1,14 @@
 ---
 title: "Part 3: Hands-on Agent Evaluation Exercise"
-subtitle: "ALTA 2026 Tutorial 2 — Afternoon"
-format:
-  revealjs:
-    slide-number: true
-    hash: true
+subtitle: "ALTA 2026 Tutorial 2 — Afternoon · WIP"
+format: revealjs
 ---
 
 ## Hands-on session
 
 Participants design a rubric, create an LLM-as-a-judge prompt, and apply it to a practical tool-using agent scenario.
 
-Workshop materials: [`../../workshop/`](../../workshop/)
+Workshop materials live in the repo under `workshop/`.
 
 <!-- TODO: section owner; concrete scenario TBD when agenda/assets land -->
 
@@ -42,4 +39,4 @@ Workshop materials: [`../../workshop/`](../../workshop/)
 
 ## Next
 
-**Part 4:** Reliability, Limitations, and Future Directions → `../04-reliability-and-future/`
+**Part 4:** Reliability, Limitations, and Future Directions → [Part 4](../04-reliability-and-future/)

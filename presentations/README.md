@@ -1,26 +1,30 @@
 # Presentations
 
-Quarto + Reveal.js decks for the four tutorial parts. Shared Reveal defaults live in [`_shared/_quarto.yml`](_shared/_quarto.yml).
+Quarto website: HTML landing page + four Reveal.js decks. Built locally and in CI the same way; published to **GitHub Pages** from `main` only.
 
-| Dir | Part | Title (ALTA program) |
-|-----|------|----------------------|
-| [`01-agents-and-eval-challenges/`](01-agents-and-eval-challenges/) | 1 | AI Agents and Evaluation Challenges |
-| [`02-llm-as-judge-methods/`](02-llm-as-judge-methods/) | 2 | LLM-as-a-Judge Methods |
-| [`03-hands-on-exercise/`](03-hands-on-exercise/) | 3 | Hands-on Agent Evaluation Exercise |
-| [`04-reliability-and-future/`](04-reliability-and-future/) | 4 | Reliability, Limitations, and Future Directions |
+**Live URL (after Pages enabled + merge to main):**  
+<https://tdszyman.github.io/alta2026-evaluating-ai-agents/>
+
+| Path | Role |
+|------|------|
+| [`index.qmd`](index.qmd) | Site home |
+| [`01-agents-and-eval-challenges/`](01-agents-and-eval-challenges/) | Part 1 (WIP deck from outline) |
+| [`02-llm-as-judge-methods/`](02-llm-as-judge-methods/) | Part 2 stub |
+| [`03-hands-on-exercise/`](03-hands-on-exercise/) | Part 3 stub |
+| [`04-reliability-and-future/`](04-reliability-and-future/) | Part 4 stub |
+| [`_quarto.yml`](_quarto.yml) | Project / site / Reveal defaults |
+| `_site/` | Build output (gitignored; CI artifact) |
 
 ## Render
 
 ```bash
-# from repo root
+# from repo root — same command CI uses
 ./scripts/render-slides.sh all
 ./scripts/render-slides.sh 01
 ```
 
-Requires [Quarto](https://quarto.org/docs/get-started/).
+Requires [Quarto](https://quarto.org/docs/get-started/). Agent skill: [`../skills/quarto-reveal-slides/SKILL.md`](../skills/quarto-reveal-slides/SKILL.md).
 
-## Authoring
+## Publish
 
-- Edit `index.qmd` in each part folder.
-- Prefer the agent skill [`skills/quarto-reveal-slides/SKILL.md`](../skills/quarto-reveal-slides/SKILL.md) when adding interactivity or changing Reveal options.
-- Keep slide content minimal until the detailed agenda and section owners are confirmed.
+Workflow: [`.github/workflows/pages.yml`](../.github/workflows/pages.yml) — push to `main` → render → deploy Pages. No per-branch sites.

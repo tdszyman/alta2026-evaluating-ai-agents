@@ -1,0 +1,26 @@
+---
+title: "Evaluating AI Agents with LLM-as-a-Judge"
+subtitle: "ALTA 2026 Tutorial 2 — Afternoon"
+format: html
+---
+
+Materials for **ALTA 2026** Tutorial Day (Monday 30 November 2026), afternoon tutorial.
+
+**Status:** WIP scaffolding. Decks are placeholders until section content is finalized.
+
+## Decks
+
+| Part | Title | Deck |
+|------|-------|------|
+| 1 | AI Agents and Evaluation Challenges | [Open Part 1](01-agents-and-eval-challenges/) |
+| 2 | LLM-as-a-Judge Methods | [Open Part 2](02-llm-as-judge-methods/) |
+| 3 | Hands-on Agent Evaluation Exercise | [Open Part 3](03-hands-on-exercise/) |
+| 4 | Reliability, Limitations, and Future Directions | [Open Part 4](04-reliability-and-future/) |
+
+## Source
+
+- Programme: [ALTA 2026 afternoon tutorial](https://alta2026.alta.asn.au/program#afternoon-tutorial)
+- Repo planning: `organisation/` · workshop assets: `workshop/`
+
+Published site (after merge to `main` + Pages enabled):  
+<https://tdszyman.github.io/alta2026-evaluating-ai-agents/>

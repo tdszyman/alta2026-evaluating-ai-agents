@@ -1,10 +1,7 @@
 ---
 title: "Part 2: LLM-as-a-Judge Methods"
-subtitle: "ALTA 2026 Tutorial 2 — Afternoon"
-format:
-  revealjs:
-    slide-number: true
-    hash: true
+subtitle: "ALTA 2026 Tutorial 2 — Afternoon · WIP"
+format: revealjs
 ---
 
 ## Part 2 overview
@@ -40,4 +37,4 @@ Deterministic vs non-deterministic evaluation, LLM-as-a-judge, and industry trad
 
 ## Next
 
-**Part 3:** Hands-on exercise → `../03-hands-on-exercise/` and `../../workshop/`
+**Part 3:** Hands-on exercise → [Part 3](../03-hands-on-exercise/) · workshop materials in repo `workshop/`

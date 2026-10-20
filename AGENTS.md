@@ -25,9 +25,10 @@ This repository holds materials for **Evaluating AI Agents with LLM-as-a-Judge**
 ## Skills
 
 - [`skills/meeting-cycle/`](skills/meeting-cycle/SKILL.md) — draft Friday agendas; process minutes into action-items/decisions
-- [`skills/quarto-reveal-slides/`](skills/quarto-reveal-slides/SKILL.md) — author and render interactive Reveal decks with Quarto
+- [`skills/quarto-reveal-slides/`](skills/quarto-reveal-slides/SKILL.md) — author Reveal decks; local render; publish to GitHub Pages from `main`
 
-Collaboration workflow (Markdown source of truth, Issues, PRs): [`organisation/README.md`](organisation/README.md).
+Collaboration workflow (Markdown source of truth, Issues, PRs): [`organisation/README.md`](organisation/README.md).  
+Slides publish target: `https://tdszyman.github.io/alta2026-evaluating-ai-agents/` (Actions on `main` only — see the Quarto skill).
 
 ## Conventions
 

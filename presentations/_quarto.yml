@@ -1,0 +1,41 @@
+# Quarto website: landing page + four Reveal.js decks.
+# Published via GitHub Actions from `main` → GitHub Pages.
+# Site URL: https://tdszyman.github.io/alta2026-evaluating-ai-agents/
+
+project:
+  type: website
+  output-dir: _site
+
+website:
+  title: "ALTA 2026 — Evaluating AI Agents with LLM-as-a-Judge"
+  site-url: https://tdszyman.github.io/alta2026-evaluating-ai-agents
+  description: "Afternoon Tutorial 2 materials (WIP)"
+  navbar:
+    background: light
+    left:
+      - text: Home
+        href: index.qmd
+      - text: Part 1
+        href: 01-agents-and-eval-challenges/index.qmd
+      - text: Part 2
+        href: 02-llm-as-judge-methods/index.qmd
+      - text: Part 3
+        href: 03-hands-on-exercise/index.qmd
+      - text: Part 4
+        href: 04-reliability-and-future/index.qmd
+
+format:
+  html:
+    theme: cosmo
+    toc: false
+  revealjs:
+    theme: default
+    slide-number: true
+    hash: true
+    transition: fade
+    navigation-mode: linear
+    controls: true
+    progress: true
+    chalkboard: false
+    code-line-numbers: true
+    # Multi-file HTML + assets (do not embed-resources unless a single file is confirmed reasonable)

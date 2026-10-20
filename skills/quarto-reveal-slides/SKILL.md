@@ -2,99 +2,69 @@
 name: quarto-reveal-slides
 description: >-
   Author and render interactive Reveal.js slide decks with Quarto for the ALTA
-  2026 tutorial presentations. Use when creating or editing presentations under
-  presentations/, changing Reveal options, adding speaker notes, code highlighting,
-  or incremental lists, or when running scripts/render-slides.sh.
+  2026 tutorial presentations, and publish them to GitHub Pages from main.
+  Use when editing presentations/, changing Reveal options, running
+  scripts/render-slides.sh, or changing .github/workflows/pages.yml.
 ---
 
-# Quarto + Reveal.js slides
+# Quarto + Reveal.js → GitHub Pages
 
 ## When to use
 
-- Editing any `presentations/*/index.qmd`
-- Adding shared theme or Reveal defaults in `presentations/_shared/`
-- Rendering decks locally via `scripts/render-slides.sh`
+- Editing `presentations/**/*.qmd`
+- Local preview via `scripts/render-slides.sh`
+- Changing how decks publish to GitHub Pages
 
-## Layout in this repo
+## Layout
 
 ```
 presentations/
-  _shared/_quarto.yml          # shared Reveal defaults
-  01-agents-and-eval-challenges/
-    _quarto.yml
-    index.qmd
+  _quarto.yml                 # website project (site-url, navbar, Reveal defaults)
+  index.qmd                   # landing page (HTML)
+  01-agents-and-eval-challenges/index.qmd   # Reveal deck
   02-… / 03-… / 04-…
+  _site/                      # build output (gitignored) — CI deploys this
 ```
 
-Each part is its own Quarto project. Prefer extending stubs over inventing long narratives without an agenda.
+One Quarto **website** project; each tutorial part is its **own Reveal deck**. Multi-file HTML + assets is fine. Use `embed-resources: true` only if a single-file build stays reasonable — default is **off**.
 
-## Authoring checklist
+## Publish target
 
-1. Put one idea per slide; use `---` horizontal rules between slides in `.qmd`.
-2. Use incremental reveals for lists:
+| | |
+|--|--|
+| Product | **GitHub Pages** (`*.github.io`) |
+| URL | `https://tdszyman.github.io/alta2026-evaluating-ai-agents/` |
+| Trigger | Push to **`main`** only (workflow_dispatch allowed) |
+| Workflow | [`.github/workflows/pages.yml`](../../.github/workflows/pages.yml) |
+| Build | `./scripts/render-slides.sh all` → `presentations/_site` → `actions/deploy-pages` |
 
-   ```markdown
-   ::: {.incremental}
-   - Point A
-   - Point B
-   :::
-   ```
+No automatic per-branch sites. Do not expect the feature-branch PR to publish live Pages.
 
-3. Speaker notes:
+### One-time Pages setting (repo owner)
 
-   ```markdown
-   ::: {.notes}
-   Talking points for the presenter…
-   :::
-   ```
+Settings → Pages → **Source: GitHub Actions**.  
+Or: `gh api repos/tdszyman/alta2026-evaluating-ai-agents/pages -X POST -f build_type=workflow`  
+If that fails (permissions), the owner must enable it in the UI.
 
-4. Code blocks: prefer short snippets; enable line highlighting with `{.python}` / Pandoc attributes as needed (`code-line-numbers` is on in shared config).
-5. Do **not** invent tutorial claims, timings, or results — leave `<!-- TODO: … -->` comments.
+## Authoring
 
-## Front matter pattern
+1. One idea per slide; `---` between slides.
+2. Incremental lists: `::: {.incremental}` … `:::`.
+3. Speaker notes: `::: {.notes}` … `:::`.
+4. Do **not** invent claims — leave `<!-- TODO: … -->` or mark **WIP**.
+5. Part outlines live under `organisation/outlines/`; keep decks aligned.
 
-Minimal Reveal deck:
-
-```yaml
----
-title: "Part N: Title"
-subtitle: "ALTA 2026 Tutorial 2 — Afternoon"
-format:
-  revealjs:
-    slide-number: true
-    hash: true
----
-```
-
-Shared options live in `presentations/_shared/_quarto.yml` (theme, transition, navigation). Override per-deck only when necessary.
-
-## Render
-
-From the repo root:
+## Render (local = CI)
 
 ```bash
-./scripts/render-slides.sh 01      # one part
-./scripts/render-slides.sh all     # all four parts
+./scripts/render-slides.sh all   # full site → presentations/_site
+./scripts/render-slides.sh 01    # one part (still under the presentations project)
 ```
 
-Requires Quarto on `PATH`. Output goes to each part’s `_output/` (gitignored via Quarto/`_files` patterns — keep HTML out of commits unless the team decides otherwise).
-
-## Interactive / “live” patterns
-
-Useful Reveal + Quarto features for this tutorial:
-
-| Need | Approach |
-|------|----------|
-| Step-through bullets | `{.incremental}` |
-| Live code highlight | Quarto code chunks + `code-line-numbers` |
-| Fragments | `::: {.fragment}` |
-| Two-column compare | Quarto columns (`::: {layout-ncol=2}`) |
-| Link to workshop | Relative links to `../../workshop/` |
-
-Avoid embedding secrets or API keys in slides. Point hands-on API work at `workshop/` materials.
+Requires Quarto on `PATH`. Do **not** commit `_site/` or `*_files/` (gitignored).
 
 ## References
 
 - [Quarto Revealjs](https://quarto.org/docs/presentations/revealjs/)
-- [Reveal.js presentations guide](https://quarto.org/docs/presentations/revealjs/presenting.html)
-- Repo overview: [`AGENTS.md`](../../AGENTS.md), [`presentations/README.md`](../../presentations/README.md)
+- [Quarto + GitHub Pages](https://quarto.org/docs/publishing/github-pages.html)
+- [`AGENTS.md`](../../AGENTS.md) · [`presentations/README.md`](../../presentations/README.md)
