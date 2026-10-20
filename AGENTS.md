@@ -24,7 +24,10 @@ This repository holds materials for **Evaluating AI Agents with LLM-as-a-Judge**
 
 ## Skills
 
+- [`skills/meeting-cycle/`](skills/meeting-cycle/SKILL.md) — draft Friday agendas; process minutes into action-items/decisions
 - [`skills/quarto-reveal-slides/`](skills/quarto-reveal-slides/SKILL.md) — author and render interactive Reveal decks with Quarto
+
+Collaboration workflow (Markdown source of truth, Issues, PRs): [`organisation/README.md`](organisation/README.md).
 
 ## Conventions
 
@@ -32,3 +35,4 @@ This repository holds materials for **Evaluating AI Agents with LLM-as-a-Judge**
 - Workshop code and prompts stay under `workshop/`; do not bury them inside slide folders.
 - Prefer editing existing stubs over creating parallel structures.
 - Mark unfinished material with `TODO:` or HTML/Markdown comments so humans can find gaps.
+- Meeting agendas/minutes commit on the planning branch; PRs only when tutorial content also changes.

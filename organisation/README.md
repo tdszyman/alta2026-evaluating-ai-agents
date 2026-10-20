@@ -8,7 +8,7 @@ Living planning docs for the four tutorial organisers (Terrence/Terry Szymanski,
 
 | Path | Purpose |
 |------|---------|
-| [`meetings/`](meetings/) | Dated meeting notes |
+| [`meetings/`](meetings/) | Dated `YYYY-MM-DD-agenda.md` / `YYYY-MM-DD-minutes.md` (plus legacy notes) |
 | [`action-items.md`](action-items.md) | Open actions and next-week commitments |
 | [`decisions.md`](decisions.md) | Working decisions and open questions |
 | [`literature/`](literature/) | References, reading checklist, platforms |
