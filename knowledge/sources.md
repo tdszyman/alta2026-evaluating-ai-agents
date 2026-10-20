@@ -17,3 +17,7 @@ Record what was used when scaffolding this repo so later contributors know what 
 | Notion alternate | https://www.notion.so/Detailed-Agenda-3fa77c413ea4801997a1d03093aefefb | **Inaccessible** — fetch returned HTTP 404 |
 
 Do **not** invent detailed agenda timings, section owners, or workshop specifics that only appear in Notion. Paste or export the agenda into this repo (e.g. `knowledge/detailed-agenda.md`) when access is available.
+
+## Living planning (not duplicated here)
+
+Organiser meetings, actions, decisions, literature, and WIP outlines live under [`../organisation/`](../organisation/README.md). Keep this `knowledge/` tree for stable tutorial facts only; cross-link rather than copying.
