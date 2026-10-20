@@ -6,17 +6,21 @@ This repository holds materials for **Evaluating AI Agents with LLM-as-a-Judge**
 
 1. Read [`knowledge/tutorial-overview.md`](knowledge/tutorial-overview.md) for title, speakers, and the four official parts.
 2. Read [`knowledge/sources.md`](knowledge/sources.md) for what is known vs unknown (e.g. detailed agenda).
-3. Do **not** invent agenda timings, slide narratives, rubrics, or workshop answers. Use placeholders when content is missing.
+3. For planning, decisions, lit review, and WIP outlines, use [`organisation/`](organisation/README.md) — living docs for organisers and agents.
+4. Do **not** invent agenda timings, slide narratives, rubrics, or workshop answers. Prefer checkboxes and open questions in `organisation/` over inventing resolutions.
 
 ## Layout
 
 | Area | Use |
 |------|-----|
+| `organisation/` | Living planning: meetings, actions, decisions, literature, notes, outlines |
 | `presentations/NN-*/` | Quarto Reveal.js decks — one directory per tutorial part |
 | `workshop/` | Hands-on prompts, sample data, dataset link list |
-| `knowledge/` | Facts and source notes (keep accurate; cite ALTA program) |
+| `knowledge/` | Stable tutorial facts and source notes (cite ALTA program) |
 | `skills/` | Follow the matching `SKILL.md` before building slides or tooling |
 | `scripts/` | Prefer these helpers over ad-hoc render commands |
+
+`organisation/` = living planning; `knowledge/` = stable facts. Cross-link; do not duplicate the same document in both.
 
 ## Skills
 

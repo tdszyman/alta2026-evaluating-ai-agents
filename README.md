@@ -28,9 +28,10 @@ Pre-requisite (program): basic familiarity with ML, NLP, and LLMs; laptop for ha
 ## Repository layout
 
 ```
+organisation/      Living planning (meetings, decisions, lit, outlines)
 presentations/     Quarto + Reveal.js decks (one folder per part)
 workshop/          Hands-on prompts, data, and dataset links
-knowledge/         Shared context for humans and coding agents
+knowledge/         Stable tutorial facts (ALTA program, sources)
 skills/            Agent skills (e.g. build/render Reveal slides)
 scripts/           Helper scripts (render decks, etc.)
 AGENTS.md          Entry point for coding agents working in this repo
@@ -38,11 +39,14 @@ AGENTS.md          Entry point for coding agents working in this repo
 
 | Path | Purpose |
 |------|---------|
+| [`organisation/`](organisation/) | Organiser planning: meetings, actions, decisions, literature, outlines |
 | [`presentations/`](presentations/) | Slide decks for Parts 1–4 |
 | [`workshop/`](workshop/) | Hands-on materials (prompts, data, dataset links) |
-| [`knowledge/`](knowledge/) | Tutorial overview and source links (agent/human reference) |
+| [`knowledge/`](knowledge/) | Stable tutorial overview and source links |
 | [`skills/`](skills/) | Reusable agent skills (Quarto Reveal slides, …) |
 | [`scripts/`](scripts/) | Shell helpers for rendering and checks |
+
+Prefer **`organisation/`** for living planning docs; keep **`knowledge/`** for stable tutorial knowledge. Cross-link — do not duplicate the same file in both places.
 
 ## Quick start
 
@@ -63,10 +67,11 @@ Hands-on assets live under [`workshop/`](workshop/). Dataset URLs and access not
 ## Status / next steps
 
 - [x] Repo scaffolding (structure, READMEs, Quarto stubs, agent skill)
-- [ ] Paste detailed agenda (Notion page was not accessible during scaffolding)
-- [ ] Confirm section owners for Parts 1–4
-- [ ] Fill presentation content and workshop prompts/data
-- [ ] Confirm LLM access plan for participants
+- [x] Organiser planning tree (`organisation/` — meetings, actions, lit, Part 1 outline)
+- [ ] Confirm whether collaboration moves fully from Notion → GitHub (see [`organisation/README.md`](organisation/README.md))
+- [ ] Confirm section owners for Parts 1–4 ([`organisation/decisions.md`](organisation/decisions.md))
+- [ ] Resolve hands-on open questions; fill workshop prompts/data
+- [ ] Confirm LLM / token budget for participants ([`organisation/action-items.md`](organisation/action-items.md))
 
 ## Contributing
 
