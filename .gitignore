@@ -1,0 +1,40 @@
+# Quarto / Reveal.js build outputs (CI builds; do not commit)
+**/*_files/
+**/_output/
+**/_site/
+presentations/_site/
+**/.quarto/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.env
+.Python
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# Node (if Reveal tooling added later)
+node_modules/
+npm-debug.log*
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*~
+
+# Secrets / local credentials
+*.pem
+.env.*
+!.env.example
+
+# Local agent scratch (keep repo knowledge/skills)
+.cursor/
+!.cursor/skills/
+!.cursor/skills/**

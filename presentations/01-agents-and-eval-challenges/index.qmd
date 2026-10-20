@@ -1,0 +1,235 @@
+---
+title: "Part 1: AI Agents and Evaluation Challenges"
+subtitle: "ALTA 2026 Tutorial 2 — Afternoon · WIP"
+format: revealjs
+---
+
+## Part 1 — WIP
+
+**AI Agents and Evaluation Challenges**
+
+Source outline: `organisation/outlines/part-01.md`  
+Placeholder slides only — not final narrative. Do not treat examples as complete case studies.
+
+---
+
+## Agenda (from outline)
+
+::: {.incremental}
+1. Intro and background
+2. Agent evals: motivation and problems
+3. Agent evals: solutions and frameworks
+:::
+
+---
+
+# 1. Intro and background
+
+---
+
+## Context
+
+::: {.incremental}
+- How did we get here?
+- “The year of the agent”
+- Timeline <!-- TODO: fill from outline research; no invented dates -->
+:::
+
+---
+
+## Definitions: What is an Agent?
+
+::: {.incremental}
+- What is an **Agent**? What is **Agentic**?
+- Theory vs practice
+- Practical definition: **LLM + Tools + ReAct loop**
+:::
+
+---
+
+## How are enterprises using agents?
+
+::: {.incremental}
+- **Products** vs **Productivity**
+- General vs specialist productivity
+:::
+
+---
+
+## Examples from SEEK (names from outline)
+
+**Products (listed in outline):**
+
+::: {.incremental}
+- Ask SEEK
+- SEEK Assist
+- AI Interview
+:::
+
+**Productivity (listed in outline):**
+
+::: {.incremental}
+- Cursor, Copilot, Claude Code
+- STELA, Glean
+- Low-code / no-code / pro-code agents
+:::
+
+<!-- WIP: no SEEK stories or claims beyond names in the outline -->
+
+---
+
+# 2. Agent evals: motivation and problems
+
+---
+
+## AI agent risks
+
+::: {.incremental}
+- Security risks
+- Financial risks (spend)
+- Reputation risks (bad advice)
+- Legal risks (illegal advice)
+- Examples of real agent failures that have made the news <!-- TODO: cite when chosen -->
+- Possible examples from SEEK <!-- TODO: only with organiser-approved content -->
+:::
+
+---
+
+## AI Agents are Complex Systems
+
+::: {.incremental}
+- Complex vs Complicated
+- System is more than the sum of its parts
+:::
+
+---
+
+## Evals vs training
+
+::: {.incremental}
+- Separate, but not 100% disjoint
+- An agent can improve its eval scores without retraining
+- LLMs are trained on things that look very similar to evals (RLHF, RLVR, RLAIF)
+- **We are ignoring training in this tutorial**
+:::
+
+---
+
+## Examples from SEEK (topics from outline)
+
+::: {.incremental}
+- Prompt injection attempts
+- Illegal job description advice
+- Employment as a high-risk, regulated category
+:::
+
+<!-- WIP: placeholders only — no invented incidents -->
+
+---
+
+# 3. Agent evals: solutions and frameworks
+
+---
+
+## Offline evals
+
+::: {.incremental}
+- Pre-production
+- Fixed datasets
+- Defined metrics
+:::
+
+---
+
+## Online evals
+
+::: {.incremental}
+- In production
+- Live data
+- Same defined metrics
+:::
+
+---
+
+## Multi-tier evals
+
+::: {.incremental}
+- System-level vs component-level
+- Complex systems → still always evaluate the system as a whole
+- Agent GPA
+- Tool evals
+- “Unit tests” vs “Integration tests”
+:::
+
+---
+
+## Data
+
+::: {.incremental}
+- Gold data, simulated data, live production data
+- Edge cases
+- Red-teaming
+- Data “feedback cycle”: observed issue → curated datasets
+:::
+
+---
+
+## Simulation
+
+::: {.incremental}
+- Agents are not input–output
+- Personas and trajectories
+:::
+
+---
+
+## Metrics
+
+::: {.incremental}
+- Deterministic vs non-deterministic (LLM as judge)
+- Verifiable tasks vs unverifiable tasks
+- Samples and significance
+:::
+
+---
+
+## Observability
+
+::: {.incremental}
+- Knowing what your agent is doing in production
+- Monitoring and alerting
+- Reporting
+- Kill switches
+:::
+
+---
+
+## Agent registries and gateways
+
+::: {.incremental}
+- Every version of an agent, subagent, tool, etc. should be versioned and linked to an eval result
+- Agent access to tools is restricted, versioned, governed, and observed
+:::
+
+---
+
+## Examples from SEEK (platform topics from outline)
+
+::: {.incremental}
+- Agent platform — runtime
+- Gateway
+- Observability
+- Offline evals
+- Online evals
+- Experimentation
+:::
+
+<!-- WIP: structure only -->
+
+---
+
+## End of Part 1 (WIP)
+
+**Next:** Part 2 — LLM-as-a-Judge Methods
+
+Outline source: [`organisation/outlines/part-01.md`](../../organisation/outlines/part-01.md)

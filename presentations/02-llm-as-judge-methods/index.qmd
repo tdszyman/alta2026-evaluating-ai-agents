@@ -1,0 +1,40 @@
+---
+title: "Part 2: LLM-as-a-Judge Methods"
+subtitle: "ALTA 2026 Tutorial 2 — Afternoon · WIP"
+format: revealjs
+---
+
+## Part 2 overview
+
+Deterministic vs non-deterministic evaluation, LLM-as-a-judge, and industry trade-offs.
+
+<!-- TODO: section owner, detailed timing from agenda -->
+
+---
+
+## Learning goals
+
+::: {.incremental}
+- Compare deterministic checks with model-based (judge) evaluation
+- Design criteria, rubrics, scales, and judge prompts for agent scenarios
+- Reason about quality, latency, reliability, and cost when choosing methods
+:::
+
+---
+
+## Outline (placeholder)
+
+::: {.incremental}
+1. Deterministic evaluation (tools, parameters, task completion)
+2. LLM-as-a-judge: idea and failure modes
+3. Rubrics, scales, and prompting patterns
+4. Domain-specific criteria and human review
+:::
+
+<!-- Content intentionally minimal until detailed agenda is available. -->
+
+---
+
+## Next
+
+**Part 3:** Hands-on exercise → [Part 3](../03-hands-on-exercise/) · workshop materials in repo `workshop/`
