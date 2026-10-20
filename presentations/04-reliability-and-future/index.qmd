@@ -1,0 +1,45 @@
+---
+title: "Part 4: Reliability, Limitations, and Future Directions"
+subtitle: "ALTA 2026 Tutorial 2 — Afternoon"
+format:
+  revealjs:
+    slide-number: true
+    hash: true
+---
+
+## Closing session
+
+Judge consistency, robustness, cost, common failure modes, industry lessons, and open research.
+
+<!-- TODO: section owner, detailed timing from agenda -->
+
+---
+
+## Learning goals
+
+::: {.incremental}
+- Recognise reliability and cost issues with LLM judges
+- Apply practical guidance from industry evaluation workflows
+- Identify open research directions for trustworthy agent evaluation
+:::
+
+---
+
+## Outline (placeholder)
+
+::: {.incremental}
+1. Consistency and robustness
+2. Cost and operational constraints
+3. Failure modes and mitigations
+4. Industry lessons and research outlook
+:::
+
+<!-- Content intentionally minimal until detailed agenda is available. -->
+
+---
+
+## Thank you
+
+Questions · discussion · links TBD
+
+ALTA 2026 · Evaluating AI Agents with LLM-as-a-Judge

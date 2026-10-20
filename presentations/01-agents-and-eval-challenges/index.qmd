@@ -1,0 +1,47 @@
+---
+title: "Part 1: AI Agents and Evaluation Challenges"
+subtitle: "ALTA 2026 Tutorial 2 — Afternoon"
+format:
+  revealjs:
+    slide-number: true
+    hash: true
+---
+
+## Tutorial context
+
+**Evaluating AI Agents with LLM-as-a-Judge**
+
+ALTA 2026 · Monday 30 November · Afternoon tutorial
+
+<!-- TODO: section owner, detailed timing from agenda -->
+
+---
+
+## Learning goals
+
+::: {.incremental}
+- Understand what makes AI agents harder to evaluate than conventional NLP systems
+- Distinguish outcome evaluation from behavioural / trajectory evaluation
+- Sketch the industry evaluation lifecycle (assets, versioning, offline vs online)
+:::
+
+<!-- TODO: refine goals with co-presenters -->
+
+---
+
+## Outline (placeholder)
+
+::: {.incremental}
+1. AI agents, tools, and application scenarios
+2. Why final-answer scoring is not enough
+3. Evaluation assets: prompts, cases, datasets, rubrics, code
+4. Lifecycle: develop → test → deploy → monitor
+:::
+
+<!-- Content intentionally minimal until detailed agenda is available. -->
+
+---
+
+## Next
+
+**Part 2:** LLM-as-a-Judge Methods → `../02-llm-as-judge-methods/`

@@ -1,0 +1,11 @@
+project:
+  type: website
+  output-dir: _output
+
+metadata-files:
+  - ../_shared/_quarto.yml
+
+format:
+  revealjs:
+    title: "Part 2: LLM-as-a-Judge Methods"
+    subtitle: "ALTA 2026 — Evaluating AI Agents with LLM-as-a-Judge"

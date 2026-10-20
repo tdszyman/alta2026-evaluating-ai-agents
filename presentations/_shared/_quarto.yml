@@ -1,0 +1,18 @@
+# Shared Reveal.js defaults for ALTA 2026 Tutorial 2 decks.
+# Individual presentations may override in their own _quarto.yml / front matter.
+
+project:
+  type: website
+
+format:
+  revealjs:
+    theme: default
+    slide-number: true
+    hash: true
+    transition: fade
+    navigation-mode: linear
+    controls: true
+    progress: true
+    chalkboard: false
+    code-line-numbers: true
+    # TODO: set brand fonts / colours when design is confirmed

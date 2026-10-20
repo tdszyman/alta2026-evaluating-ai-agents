@@ -1,0 +1,45 @@
+---
+title: "Part 3: Hands-on Agent Evaluation Exercise"
+subtitle: "ALTA 2026 Tutorial 2 — Afternoon"
+format:
+  revealjs:
+    slide-number: true
+    hash: true
+---
+
+## Hands-on session
+
+Participants design a rubric, create an LLM-as-a-judge prompt, and apply it to a practical tool-using agent scenario.
+
+Workshop materials: [`../../workshop/`](../../workshop/)
+
+<!-- TODO: section owner; concrete scenario TBD when agenda/assets land -->
+
+---
+
+## Expected flow (from ALTA program)
+
+::: {.incremental}
+1. Develop evaluation rubric for the scenario
+2. Write / adapt an LLM judge prompt
+3. Run the judge over test cases
+4. Analyse tool choice, parameters, and response quality
+:::
+
+---
+
+## Materials checklist
+
+| Asset | Location |
+|-------|----------|
+| Prompts | `workshop/prompts/` |
+| Sample / fixture data | `workshop/data/` |
+| Dataset links | `workshop/datasets.md` |
+
+<!-- Do not invent datasets or prompts here — add real assets under workshop/. -->
+
+---
+
+## Next
+
+**Part 4:** Reliability, Limitations, and Future Directions → `../04-reliability-and-future/`
