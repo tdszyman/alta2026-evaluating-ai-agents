@@ -35,6 +35,18 @@ Deterministic vs non-deterministic evaluation, LLM-as-a-judge, and industry trad
 
 ---
 
+## Sources
+
+Pointers only. The outline above is still a placeholder.
+
+::: {.incremental}
+- [Gu et al. 2024](../../bibliography/gu-2024-llm-as-judge-survey/)
+- [Zheng et al. 2023](../../bibliography/zheng-2023-mt-bench/)
+- [Liu et al. 2023](../../bibliography/liu-2023-geval/)
+:::
+
+---
+
 ## Next
 
 **Part 3:** Hands-on exercise → [Part 3](../03-hands-on-exercise/) · workshop materials in repo `workshop/`

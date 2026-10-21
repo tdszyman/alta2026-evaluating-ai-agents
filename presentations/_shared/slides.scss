@@ -1,0 +1,51 @@
+/* Scientific Modernist slides. See _shared/style-brief.md.
+   Decks stay light. The website appearance toggle does not restyle them. */
+/*-- scss:defaults --*/
+$font-family-sans-serif: Inter, "Source Sans 3", "Segoe UI", system-ui, sans-serif;
+$font-family-monospace: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+$presentation-heading-font: Inter, "Source Sans 3", "Segoe UI", system-ui, sans-serif;
+$presentation-heading-color: #14283b;
+$presentation-heading-font-weight: 600;
+$presentation-slide-text-align: left;
+$presentation-title-slide-text-align: left;
+$body-bg: #fbfcfb;
+$body-color: #14283b;
+$link-color: #245ba6;
+$link-color-hover: #1b467f;
+$selection-bg: #d6e4f5;
+$selection-color: #14283b;
+$code-block-bg: #eff3f5;
+
+/*-- scss:rules --*/
+.reveal {
+  font-size: 32px;
+}
+
+.reveal h1,
+.reveal h2,
+.reveal h3 {
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  text-transform: none;
+  color: #14283b;
+}
+
+.reveal a {
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.14em;
+}
+
+.reveal .progress {
+  height: 3px;
+}
+
+.reveal .progress span {
+  background-color: #245ba6;
+}
+
+.reveal .slide-number {
+  background: transparent;
+  color: #526476;
+  font-family: Inter, "Source Sans 3", "Segoe UI", system-ui, sans-serif;
+  font-size: 14px;
+}

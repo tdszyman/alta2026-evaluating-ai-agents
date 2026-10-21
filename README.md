@@ -29,22 +29,22 @@ Pre-requisite (program): basic familiarity with ML, NLP, and LLMs; laptop for ha
 
 ```
 organisation/      Living planning (meetings, decisions, lit, outlines)
-presentations/     Quarto + Reveal.js decks (one folder per part)
-workshop/          Hands-on prompts, data, and dataset links
-knowledge/         Stable tutorial facts (ALTA program, sources)
-skills/            Agent skills (e.g. build/render Reveal slides)
-scripts/           Helper scripts (render decks, etc.)
+presentations/     Quarto site: home, about, four decks, generated bibliography pages
+workshop/          Hands-on app, prompts, data, and dataset links
+knowledge/         Stable tutorial facts and bibliography.json
+skills/            Agent skills (slides, citations, meeting cycle)
+scripts/           Render the site, rebuild bibliography pages, stage the organiser mirror
 AGENTS.md          Entry point for coding agents working in this repo
 ```
 
 | Path | Purpose |
 |------|---------|
-| [`organisation/`](organisation/) | Organiser planning: meetings, actions, decisions, literature, outlines |
-| [`presentations/`](presentations/) | Slide decks for Parts 1–4 |
-| [`workshop/`](workshop/) | Hands-on materials (prompts, data, dataset links) |
-| [`knowledge/`](knowledge/) | Stable tutorial overview and source links |
-| [`skills/`](skills/) | Reusable agent skills (Quarto Reveal slides, …) |
-| [`scripts/`](scripts/) | Shell helpers for rendering and checks |
+| [`organisation/`](organisation/) | Organiser planning. Published at `/organisation/` until tutorial day, not linked from the public nav |
+| [`presentations/`](presentations/) | Public site source. Parts 1–4 live in `presentations/presentation/` |
+| [`workshop/`](workshop/) | Hands-on materials. The page is `/hands-on/`; the app is `/hands-on/app/` |
+| [`knowledge/`](knowledge/) | Tutorial facts and `bibliography.json`, which generates `/bibliography/` |
+| [`skills/`](skills/) | Reusable agent skills |
+| [`scripts/`](scripts/) | Render and citation helpers |
 
 Prefer **`organisation/`** for living planning docs; keep **`knowledge/`** for stable tutorial knowledge. Cross-link — do not duplicate the same file in both places.
 
@@ -52,21 +52,26 @@ Prefer **`organisation/`** for living planning docs; keep **`knowledge/`** for s
 
 ### Presentations
 
-`presentations/` is one Quarto website (landing page + four Reveal decks). With [Quarto](https://quarto.org/) installed:
+`presentations/` is the Quarto site: home, about, the presentation landing, four Reveal decks, and a bibliography. With [Quarto](https://quarto.org/) installed:
 
 ```bash
 ./scripts/render-slides.sh all   # or 01, 02, 03, 04
+./scripts/preview-site.sh        # http://127.0.0.1:8090/ — browse the build
 ```
+
+Quarto is only needed to rebuild. The preview command serves the files already in `presentations/_site/` (gitignored). Opening `index.html` as a file breaks links such as `presentation/`.
 
 Published from **`main`** via GitHub Actions → GitHub Pages:  
 <https://tdszyman.github.io/alta2026-evaluating-ai-agents/>  
 (see [`skills/quarto-reveal-slides/SKILL.md`](skills/quarto-reveal-slides/SKILL.md)).
 
+Public routes: `/` home, `/presentation/` and one URL per part, `/hands-on/`, `/bibliography/`, `/about/`. `/organisation/` is an unlisted organiser mirror and is left out of the build on tutorial day.
+
 See [`presentations/README.md`](presentations/README.md).
 
 ### Workshop
 
-Hands-on assets live under [`workshop/`](workshop/). A starter browser app is in [`workshop/app/`](workshop/app/) and is published at `hands-on/` on the same GitHub Pages site as the decks. Dataset URLs and access notes go in [`workshop/datasets.md`](workshop/datasets.md).
+Hands-on assets live under [`workshop/`](workshop/). The starter browser app is in [`workshop/app/`](workshop/app/). The site page is `/hands-on/`, and the app is published at `/hands-on/app/`. Dataset URLs and access notes go in [`workshop/datasets.md`](workshop/datasets.md).
 
 ## Status / next steps
 

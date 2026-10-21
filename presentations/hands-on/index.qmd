@@ -1,0 +1,10 @@
+---
+title: "Hands-on"
+format: html
+---
+
+Part 3 is a short exercise. You write a judge prompt and run it over a few career-advice replies from a tool-using agent.
+
+The app runs in the browser. You edit the prompt, pick a model, and score each reply for whether the advice is sound, whether the tone fits, and whether the reply follows the instruction. Each call goes to OpenRouter with your own API key, and the key stays in the browser.
+
+[Open the hands-on app](app/index.html){.app-launch target="_blank" rel="noopener"}

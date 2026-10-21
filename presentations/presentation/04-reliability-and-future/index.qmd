@@ -35,6 +35,18 @@ Judge consistency, robustness, cost, common failure modes, industry lessons, and
 
 ---
 
+## Sources
+
+Pointers for the reliability discussion. This deck is still a placeholder.
+
+::: {.incremental}
+- [Ye et al. 2024](../../bibliography/ye-2024-justice-or-prejudice/)
+- [Szymanski et al. 2025](../../bibliography/szymanski-2025-expert-tasks/)
+- [Zhuge et al. 2025](../../bibliography/zhuge-2025-agent-as-judge/)
+:::
+
+---
+
 ## Thank you
 
 Questions · discussion · links TBD

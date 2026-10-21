@@ -1,0 +1,136 @@
+/* "AI Agents are Complex Systems" slides. Colours match scripts/generate-complexity-figures.py. */
+
+.reveal .complexity-slide {
+  --cx-blue: #1F5FA8;
+  --cx-teal: #0F8F88;
+  --cx-teal-mid: #3FBFB3;
+  --cx-ink: #3A4356;
+}
+
+.reveal .complexity-slide .complicated { color: var(--cx-blue); }
+.reveal .complexity-slide .complex { color: var(--cx-teal); }
+
+.reveal .complexity-slide img {
+  margin: 0;
+  max-height: none;
+}
+
+/* Side-by-side figures */
+
+.reveal .complexity-slide .sys-label {
+  font-size: 0.7em;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin: 0.4em 0 0.1em;
+}
+
+.reveal .complexity-slide .column img { width: 100%; }
+
+.reveal .complexity-slide .sys-caption {
+  font-size: 0.55em;
+  line-height: 1.45;
+  color: var(--cx-ink);
+  margin-top: 0.3em;
+}
+
+/* Spectrum slide */
+
+.reveal .complexity-slide .spectrum-wrap {
+  display: grid;
+  grid-template-columns: 1fr 2.6fr 1fr;
+  gap: 0 0.8em;
+  align-items: center;
+  margin-top: 0.6em;
+}
+
+.reveal .complexity-slide .examples ul {
+  display: block;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 0.5em;
+  line-height: 1.75;
+  white-space: nowrap;
+}
+
+.reveal .complexity-slide .examples li { margin: 0; }
+
+.reveal .complexity-slide .examples.complex { text-align: right; }
+
+.reveal .complexity-slide .spectrum {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1em;
+}
+
+.reveal .complexity-slide .spec-row {
+  display: grid;
+  grid-template-columns: 1fr 0.8fr 1fr;
+  align-items: center;
+  font-size: 0.7em;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.reveal .complexity-slide .spec-heads {
+  font-size: 0.5em;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.reveal .complexity-slide .spec-arrow {
+  position: relative;
+  height: 8px;
+  margin: 0 16px;
+  border-radius: 4px;
+  background: linear-gradient(90deg, var(--cx-blue), var(--cx-teal-mid));
+}
+
+.reveal .complexity-slide .spec-arrow::before,
+.reveal .complexity-slide .spec-arrow::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 11px solid transparent;
+}
+
+.reveal .complexity-slide .spec-arrow::before {
+  left: -16px;
+  border-right: 16px solid var(--cx-blue);
+  border-left-width: 0;
+}
+
+.reveal .complexity-slide .spec-arrow::after {
+  right: -16px;
+  border-left: 16px solid var(--cx-teal-mid);
+  border-right-width: 0;
+}
+
+.reveal .complexity-slide .attribution {
+  margin-top: 1.6em;
+  font-size: 0.4em;
+  color: #8A94A6;
+  text-align: center;
+}
+
+/* Parts vs whole */
+
+.reveal .complexity-slide .sullivan-quote {
+  margin: 0.4em auto 0;
+  max-width: 85%;
+  font-size: 0.75em;
+  font-style: italic;
+  text-align: center;
+  color: var(--cx-ink);
+}
+
+.reveal .complexity-slide .sullivan-quote p { margin: 0.2em 0; }
+
+.reveal .complexity-slide .quote-source {
+  font-size: 0.8em;
+  font-style: normal;
+  color: var(--cx-teal);
+}

@@ -1,0 +1,317 @@
+<script>
+(function () {
+  var PARTS = {
+    "01-agents-and-eval-challenges": { label: "Part 1", anchor: "part-1" },
+    "02-llm-as-judge-methods": { label: "Part 2", anchor: "part-2" },
+    "03-hands-on-exercise": { label: "Part 3", anchor: "part-3" },
+    "04-reliability-and-future": { label: "Part 4", anchor: "part-4" }
+  };
+
+  function partInfo() {
+    var bits = location.pathname.split("/");
+    for (var i = 0; i < bits.length; i++) {
+      if (PARTS[bits[i]]) return PARTS[bits[i]];
+    }
+    return { label: "Presentation", anchor: "" };
+  }
+
+  function slideTitle(slide) {
+    var heading = slide.querySelector("h1, h2, h3");
+    if (!heading) return "Untitled slide";
+    return heading.textContent.replace(/\s+/g, " ").trim();
+  }
+
+  function slideText(slide) {
+    var clone = slide.cloneNode(true);
+    clone.querySelectorAll(".notes, aside.notes").forEach(function (n) { n.remove(); });
+    return clone.textContent.replace(/\s+/g, " ").trim();
+  }
+
+  function boot() {
+    if (!window.Reveal || typeof Reveal.on !== "function") {
+      setTimeout(boot, 40);
+      return;
+    }
+    if (Reveal.isReady && Reveal.isReady()) init();
+    else Reveal.on("ready", init);
+  }
+
+  function init() {
+    var part = partInfo();
+    var homeHref = "../../index.html";
+    var partHref = "../index.html" + (part.anchor ? "#" + part.anchor : "");
+
+    var bar = document.createElement("header");
+    bar.className = "deck-topbar";
+    bar.innerHTML =
+      '<button type="button" class="deck-icon-btn" data-deck-menu aria-expanded="false" aria-controls="deck-drawer" aria-label="Open slide list">' +
+      '<span aria-hidden="true">&#9776;</span></button>' +
+      '<nav class="deck-crumbs" aria-label="Breadcrumb"></nav>' +
+      '<div class="deck-pager" aria-label="Slide navigation">' +
+      '<button type="button" data-dir="-1" aria-label="Previous slide">&#8249;</button>' +
+      '<span class="deck-count" data-deck-count>1 / 1</span>' +
+      '<button type="button" data-dir="1" aria-label="Next slide">&#8250;</button>' +
+      "</div>" +
+      '<form class="deck-search" role="search">' +
+      '<label class="visually-hidden" for="deck-search-input" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Search this presentation</label>' +
+      '<input id="deck-search-input" type="search" placeholder="Search slides" autocomplete="off">' +
+      '<ul class="deck-results" hidden></ul>' +
+      "</form>";
+
+    var backdrop = document.createElement("div");
+    backdrop.className = "deck-backdrop";
+    backdrop.hidden = true;
+
+    var drawer = document.createElement("aside");
+    drawer.className = "deck-drawer";
+    drawer.id = "deck-drawer";
+    drawer.setAttribute("aria-label", "Slides");
+    drawer.innerHTML =
+      "<header><strong>" + part.label + "</strong>" +
+      '<button type="button" class="deck-icon-btn" data-deck-close aria-label="Close slide list">&times;</button></header>' +
+      "<ol></ol><footer>Left and right arrows move between slides. Escape closes this list, then returns home.</footer>";
+
+    var footerNum = document.createElement("div");
+    footerNum.className = "deck-footer-num";
+
+    document.body.append(bar, backdrop, drawer, footerNum);
+
+    var crumbs = bar.querySelector(".deck-crumbs");
+    var countEl = bar.querySelector("[data-deck-count]");
+    var results = bar.querySelector(".deck-results");
+    var search = bar.querySelector("input");
+    var list = drawer.querySelector("ol");
+    var menuBtn = bar.querySelector("[data-deck-menu]");
+    var catalog = [];
+    var activeResult = -1;
+
+    Reveal.getSlides().forEach(function (slide) {
+      var idx = Reveal.getIndices(slide);
+      catalog.push({
+        h: idx.h,
+        v: idx.v,
+        title: slideTitle(slide),
+        text: slideText(slide)
+      });
+    });
+
+    catalog.forEach(function (item, i) {
+      var li = document.createElement("li");
+      var btn = document.createElement("button");
+      btn.type = "button";
+      btn.dataset.index = String(i);
+      btn.innerHTML = '<span class="num">' + (i + 1) + '</span><span>' + escapeHtml(item.title) + "</span>";
+      btn.addEventListener("click", function () {
+        Reveal.slide(item.h, item.v);
+        closeDrawer();
+      });
+      li.append(btn);
+      list.append(li);
+    });
+
+    function escapeHtml(value) {
+      return value.replace(/[&<>"']/g, function (ch) {
+        return ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[ch];
+      });
+    }
+
+    function currentNumber() {
+      var past = typeof Reveal.getSlidePastCount === "function" ? Reveal.getSlidePastCount() : Reveal.getIndices().h;
+      return past + 1;
+    }
+
+    function stageText(slide) {
+      var title = slideTitle(slide);
+      var fragments = slide.querySelectorAll(".fragment");
+      if (!fragments.length) return title;
+      var f = Reveal.getIndices().f;
+      if (typeof f !== "number" || f < 0) return title;
+      return title + " · " + (f + 1) + "/" + fragments.length;
+    }
+
+    function renderCrumbs() {
+      var n = currentNumber();
+      var total = catalog.length || 1;
+      var slide = Reveal.getCurrentSlide();
+      var label = countLabel(n, total);
+      countEl.textContent = label;
+      footerNum.textContent = label;
+      crumbs.innerHTML = "";
+      addCrumb(homeHref, "Home");
+      addSep();
+      addCrumb(partHref, part.label);
+      addSep();
+      var num = document.createElement("span");
+      num.textContent = String(n);
+      crumbs.append(num);
+      addSep();
+      var here = document.createElement("span");
+      here.className = "deck-here";
+      here.textContent = slide ? stageText(slide) : "";
+      crumbs.append(here);
+      list.querySelectorAll("button").forEach(function (btn, i) {
+        btn.classList.toggle("is-current", i === n - 1);
+      });
+    }
+
+    function countLabel(n, total) {
+      return n + " / " + total;
+    }
+
+    function addCrumb(href, text) {
+      var a = document.createElement("a");
+      a.href = href;
+      a.textContent = text;
+      crumbs.append(a);
+    }
+
+    function addSep() {
+      var s = document.createElement("span");
+      s.setAttribute("aria-hidden", "true");
+      s.textContent = "/";
+      crumbs.append(s);
+    }
+
+    function openDrawer() {
+      drawer.classList.add("is-open");
+      backdrop.hidden = false;
+      menuBtn.setAttribute("aria-expanded", "true");
+      var current = list.querySelector(".is-current");
+      if (current) current.focus();
+    }
+
+    function closeDrawer() {
+      drawer.classList.remove("is-open");
+      backdrop.hidden = true;
+      menuBtn.setAttribute("aria-expanded", "false");
+    }
+
+    function drawerOpen() {
+      return drawer.classList.contains("is-open");
+    }
+
+    function closeSearch() {
+      results.hidden = true;
+      results.innerHTML = "";
+      activeResult = -1;
+    }
+
+    function goResult(index) {
+      var item = catalog[index];
+      if (!item) return;
+      Reveal.slide(item.h, item.v);
+      closeSearch();
+      search.blur();
+    }
+
+    function showResults(query) {
+      var q = query.trim().toLowerCase();
+      results.innerHTML = "";
+      activeResult = -1;
+      if (!q) {
+        results.hidden = true;
+        return;
+      }
+      var hits = [];
+      catalog.forEach(function (item, i) {
+        var hay = (item.title + " " + item.text).toLowerCase();
+        if (hay.indexOf(q) !== -1) hits.push(i);
+      });
+      hits.slice(0, 12).forEach(function (i) {
+        var li = document.createElement("li");
+        var btn = document.createElement("button");
+        btn.type = "button";
+        btn.innerHTML = escapeHtml(catalog[i].title) + "<small>Slide " + (i + 1) + "</small>";
+        btn.addEventListener("click", function () { goResult(i); });
+        li.append(btn);
+        results.append(li);
+      });
+      if (!hits.length) {
+        var empty = document.createElement("li");
+        empty.textContent = "No matching slides";
+        results.append(empty);
+      }
+      results.hidden = false;
+    }
+
+    menuBtn.addEventListener("click", function () {
+      if (drawerOpen()) closeDrawer();
+      else openDrawer();
+    });
+    drawer.querySelector("[data-deck-close]").addEventListener("click", closeDrawer);
+    backdrop.addEventListener("click", closeDrawer);
+
+    bar.querySelectorAll("[data-dir]").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        if (btn.dataset.dir === "1") Reveal.next();
+        else Reveal.prev();
+      });
+    });
+
+    search.addEventListener("input", function () { showResults(search.value); });
+    bar.querySelector("form").addEventListener("submit", function (event) {
+      event.preventDefault();
+      var buttons = results.querySelectorAll("button");
+      var pick = activeResult >= 0 ? buttons[activeResult] : buttons[0];
+      if (pick) pick.click();
+    });
+    search.addEventListener("keydown", function (event) {
+      var buttons = results.querySelectorAll("button");
+      if (event.key === "ArrowDown" || event.key === "ArrowUp") {
+        event.preventDefault();
+        event.stopPropagation();
+        if (!buttons.length) return;
+        activeResult += event.key === "ArrowDown" ? 1 : -1;
+        if (activeResult < 0) activeResult = buttons.length - 1;
+        if (activeResult >= buttons.length) activeResult = 0;
+        buttons.forEach(function (btn, i) {
+          btn.setAttribute("aria-selected", i === activeResult ? "true" : "false");
+        });
+        buttons[activeResult].scrollIntoView({ block: "nearest" });
+      }
+    });
+
+    window.addEventListener("keydown", function (event) {
+      if (event.key !== "Escape") return;
+      if (drawerOpen()) {
+        event.preventDefault();
+        event.stopPropagation();
+        closeDrawer();
+        return;
+      }
+      if (!results.hidden) {
+        event.preventDefault();
+        event.stopPropagation();
+        closeSearch();
+        return;
+      }
+      if (event.metaKey || event.ctrlKey || event.altKey) return;
+      event.preventDefault();
+      event.stopPropagation();
+      window.location.href = homeHref;
+    }, true);
+
+    var idleTimer;
+    function wake() {
+      document.documentElement.classList.remove("deck-idle");
+      clearTimeout(idleTimer);
+      idleTimer = setTimeout(function () {
+        document.documentElement.classList.add("deck-idle");
+      }, 1400);
+    }
+    document.addEventListener("mousemove", wake);
+    wake();
+
+    Reveal.on("slidechanged", renderCrumbs);
+    Reveal.on("fragmentshown", renderCrumbs);
+    Reveal.on("fragmenthidden", renderCrumbs);
+    renderCrumbs();
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", boot);
+  } else {
+    boot();
+  }
+})();
+</script>

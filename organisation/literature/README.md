@@ -8,4 +8,4 @@ Shared reading list and related tooling for preparing the tutorial. Living docs 
 | [`reading-checklist.md`](reading-checklist.md) | Numbered survey of topics with checkboxes |
 | [`platforms.md`](platforms.md) | Eval / observability platforms and products |
 
-Stable tutorial facts (title, speakers, official parts) stay in [`../../knowledge/`](../../knowledge/). Cross-link from slides/outlines to entries here rather than copying abstracts.
+Stable tutorial facts (title, speakers, official parts) stay in [`../../knowledge/`](../../knowledge/). The participant-facing bibliography is [`../../knowledge/bibliography.json`](../../knowledge/bibliography.json), rendered at `/bibliography/`. Cross-link from slides to those pages rather than copying abstracts into a deck.

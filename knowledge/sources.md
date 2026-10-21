@@ -21,3 +21,5 @@ Do **not** invent detailed agenda timings, section owners, or workshop specifics
 ## Living planning (not duplicated here)
 
 Organiser meetings, actions, decisions, literature, and WIP outlines live under [`../organisation/`](../organisation/README.md). Keep this `knowledge/` tree for stable tutorial facts only; cross-link rather than copying.
+
+The public reading list is [`bibliography.json`](bibliography.json). `scripts/build-knowledge.py` turns it into `/bibliography/` on the site. Abstracts in that file are copied from the sources; summaries are labelled AI-generated drafts.

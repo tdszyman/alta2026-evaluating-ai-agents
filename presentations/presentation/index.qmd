@@ -1,0 +1,47 @@
+---
+title: "Presentation"
+subtitle: "Four parts, four decks"
+format: html
+---
+
+Each part is its own slide deck and its own URL, so contributors can edit one section without rewriting the others. Decks inherit the same Reveal.js chrome from `presentations/_quarto.yml`. A part can override that in its own YAML when it needs a different theme or layout.
+
+Inside a deck: open the slide list from the menu at the top left, move with the arrows or the left and right keys, and search the text of that deck. Escape returns to this site’s home page. The edge arrows fade when the pointer is still.
+
+::: {.part-list}
+
+::: {#part-1 .part-card}
+<span class="index">Part 1 · Session 1</span>
+
+[AI Agents and Evaluation Challenges](01-agents-and-eval-challenges/){.card-title}
+
+Agents, tool use, and why scoring only the final answer falls short.
+:::
+
+::: {#part-2 .part-card}
+<span class="index">Part 2 · Session 1</span>
+
+[LLM-as-a-Judge Methods](02-llm-as-judge-methods/){.card-title}
+
+Deterministic checks, judge prompts, rubrics, and the cost of model-based evaluation.
+:::
+
+::: {#part-3 .part-card}
+<span class="index">Part 3 · Session 2</span>
+
+[Hands-on Agent Evaluation Exercise](03-hands-on-exercise/){.card-title}
+
+The exercise briefing. The app itself opens from [Hands-on](../hands-on/index.qmd).
+:::
+
+::: {#part-4 .part-card}
+<span class="index">Part 4 · Session 2</span>
+
+[Reliability, Limitations, and Future Directions](04-reliability-and-future/){.card-title}
+
+Consistency, robustness, cost, and what is still unsettled.
+:::
+
+:::
+
+<p class="note">Decks are drafts. Citations on the slides link to the <a href="../bibliography/">bibliography</a> pages for those sources.</p>

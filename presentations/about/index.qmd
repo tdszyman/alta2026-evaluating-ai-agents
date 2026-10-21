@@ -1,0 +1,57 @@
+---
+title: "About"
+subtitle: "The tutorial, the contributors, and how this site is made"
+format: html
+---
+
+This site is the public companion to **Evaluating AI Agents with LLM-as-a-Judge**, afternoon Tutorial 2 at [ALTA 2026](https://alta2026.alta.asn.au/program#afternoon-tutorial), on Monday 30 November 2026. It holds the slide decks, a hands-on judge, and a reading list. The program abstract is the scope: agent evaluation is harder than scoring a single NLP output, LLM-as-a-judge is one way to score open-ended behaviour, and the tutorial includes a practical exercise plus the reliability problems that come with it.
+
+## Contributors
+
+Roles below are the ones published on the ALTA program. Longer bios are still to be written by each person.
+
+<div class="person-grid">
+
+<article class="person">
+<h3>Parvin Zarei Eskikand</h3>
+<p>Senior Data Scientist, SEEK</p>
+<p class="note">Bio to be added by this contributor.</p>
+</article>
+
+<article class="person">
+<h3>Terrence Szymanski</h3>
+<p>Head of Generative AI, SEEK</p>
+<p class="note">Bio to be added by this contributor.</p>
+</article>
+
+<article class="person">
+<h3>Sara Mirabi</h3>
+<p>Deakin University</p>
+<p class="note">Bio to be added by this contributor.</p>
+</article>
+
+<article class="person">
+<h3>Yelaman Abdullin</h3>
+<p>Macquarie University</p>
+<p class="note">Bio to be added by this contributor.</p>
+</article>
+
+</div>
+
+## Built with coding agents
+
+The repository is the shared notebook for the organisers and for coding agents. `AGENTS.md` tells an agent what is fixed (the program title, the four parts, the date) and what must not be invented (agenda timings, slide claims, rubrics, workshop answers). Skills in `skills/` describe repeatable jobs: the Friday meeting cycle, rendering these decks, and checking that slide citations link to the bibliography pages.
+
+Agents drafted the summaries in the bibliography. Each of those pages says so. Organisers review them before the tutorial. Abstracts, when a page has one, are copied from the source rather than rewritten.
+
+## How the site runs
+
+The source of truth is Markdown and Quarto in this git repository.
+
+- **GitHub** stores the files. Tutorial content is reviewed in pull requests. Trackable work can be a GitHub Issue. Discussions are there for questions that are not a decision yet. A GitHub Actions workflow on `main` renders the site and deploys GitHub Pages.
+- **Quarto** builds the HTML pages (home, this page, the presentation landing, the hands-on page, and the bibliography).
+- **Reveal.js**, through Quarto, builds the four decks. Shared chrome (the top bar, slide list, search, and fading edge arrows) lives under `presentations/_shared/`. A part can replace that styling in its own file.
+- **The hands-on app** is separate static HTML, CSS, and JavaScript under `workshop/app/`, published at `/hands-on/app/`. The Hands-on page links to it and opens it in a new tab. The app calls the OpenRouter API from the browser. The API key stays in the participant’s browser.
+- **The bibliography** is generated from `knowledge/bibliography.json`. Slide links of the form `bibliography/<id>/` are collected back onto each source page.
+
+The published URL is <https://tdszyman.github.io/alta2026-evaluating-ai-agents/>.
