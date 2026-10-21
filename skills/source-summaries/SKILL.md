@@ -17,7 +17,7 @@ Audience: the tutorial prerequisites. Basic ML, NLP, and LLMs. No prior experien
 - The user asks to summarise references, process source pages, or continue this reading pass.
 - A source page still has only the one-sentence `summary`.
 
-Do not use this skill to invent slide claims, rubrics, or timings. Read [`knowledge/tutorial-overview.md`](../../knowledge/tutorial-overview.md) and the part outline the source belongs to before tying a finding to Part 1–4.
+Do not use this skill to invent slide claims, rubrics, or timings. Before tying a finding to Part 1–4, read only the stable scope in [`knowledge/tutorial-overview.md`](../../knowledge/tutorial-overview.md): the four official parts and the ALTA program abstract. Do not open the part outlines, the slide decks, or the bibliography groups in order to name a section, a slide, or a list position.
 
 ## Where the text lives
 
@@ -25,7 +25,7 @@ Do not use this skill to invent slide claims, rubrics, or timings. Read [`knowle
 
 | Field | Role |
 |-------|------|
-| `summary` | One or two sentences: why this source is on the list. Shown only when `summary_md` is absent. Keep it, and keep it true. |
+| `summary` | One or two sentences: why this source matters for the tutorial as a whole. Shown only when `summary_md` is absent. Keep it, and keep it true. The same naming rule as `summary_md` applies. |
 | `summary_md` | The reading note, markdown. The page shows this inside the existing **AI-generated summary** label. |
 | `summary_status` | `draft` after a successful pass. Organisers change it later. Do not set `reviewed`. |
 | `figures` | List of `{file, alt, caption, credit}`. |
@@ -42,7 +42,7 @@ The file name must match `figures[].file`. A listed figure with no placeholder i
 
 ## Order
 
-1. Sources with `featured_rank` set, lowest rank first (the organiser primary list).
+1. Sources with `featured_rank` set, lowest rank first. That field is only a processing order. Do not mention it, or any list position, in the note.
 2. Then the rest of `sources`, in file order.
 3. Skip a source whose `summary_status` is already `draft` unless the user asked to revise it.
 4. Papers, posts, and product pages all count. A batch is a number of **successful** sources, default 5. A blocked source does not count. Stop at the end of the batch.
@@ -70,13 +70,34 @@ Your own words. Do not paste the abstract, a long quotation, or a prompt from th
 
 About 500–850 words. A short post can be shorter. Go longer only when cutting would drop a number the tutorial needs. Use these headings:
 
-1. **Why it is here** — what the source is, and which tutorial part it serves. Use the record’s `groups`, `mentions`, and the part outlines. The survey papers have their own “Part 1” numbering. Say “the survey’s Part 1” so it is not read as this tutorial’s Part 1.
+1. **Why it is here** — what the source is, and why it matters for the tutorial as a whole. Name an official part only when the connection is that part’s stable scope, below. A paper’s own part numbering is not the tutorial’s. Say “the survey’s Part 1” when you mean the paper.
 2. **What they did** — setup, data, and method, with the terms defined. Name the judge model, scale, dataset, and split when the paper reports them.
-3. **What they found** — the results the tutorial needs, with the numbers the paper prints and what those numbers mean. Point at the figure or table the number comes from. Do not upgrade a qualitative claim into a count.
-4. **What to carry into the tutorial** — three to six bullets. Each bullet is a specific idea a presenter could use. If the paper does not support a stronger claim, say so in the bullet.
-5. **Limits** — what this source does not show, especially where Part 4 would over-read it.
+3. **What they found** — the results that bear on the tutorial, with the numbers the paper prints and what those numbers mean. Point at the figure or table the number comes from. Do not upgrade a qualitative claim into a count.
+4. **What to carry into the tutorial** — three to six bullets. Each bullet is a specific idea that follows from the paper and from the stable scope below. If the paper does not support a stronger claim, say so in the bullet.
+5. **Limits** — what this source does not show, especially where a claim about reliability, cost, or failure modes would over-read it.
 
 No `:::` fences in the markdown. Those close the summary block.
+
+### What the note may name
+
+The note should still say why the source matters for this tutorial. It should survive edits to the slides and to the bibliography.
+
+Name these, and only these, as tutorial structure. They are the four parts and the ALTA program abstract in `knowledge/tutorial-overview.md`:
+
+- **Part 1 — AI Agents and Evaluation Challenges.** Agents, tool use, and why final-answer scoring is insufficient. The industry lifecycle: prompts, test cases, datasets, rubrics, and code; versioning; offline evaluation versus production monitoring.
+- **Part 2 — LLM-as-a-Judge Methods.** Deterministic versus non-deterministic evaluation. Criteria, rubrics, scales, and prompting. When a team chooses rules, a judge, or a human. Quality, latency, reliability, and cost.
+- **Part 3 — Hands-on Agent Evaluation Exercise.** Participants build a rubric and an LLM judge for a tool-using agent, run it on test cases, and analyse tool choice, parameters, and response quality.
+- **Part 4 — Reliability, Limitations, and Future Directions.** Consistency, robustness, cost, and failure modes. Good practice, industry lessons, and open research.
+
+Do not mention any of the following. They change as the tutorial is revised:
+
+- Where the source sits in the bibliography, including “primary”, “secondary”, “featured”, a group name, or a rank.
+- An organiser list, a reading list, or “the outline”.
+- A slide number, a slide title, or what a particular slide currently says.
+- The current hands-on app: its scenario, its scale, or its output format. Part 3’s official wording (a rubric, an LLM judge, tool choice, parameters, response quality) is enough.
+- Another source as if it were fixed tutorial material. Name another paper only as another paper.
+
+“Part 1” is allowed. “The Part 1 outline” and “the first item on the list” are not. A sentence such as “It is the first item on the organiser primary list, and it is the wide frame for Part 1” keeps the second clause and drops the first.
 
 ## Capture figures
 
