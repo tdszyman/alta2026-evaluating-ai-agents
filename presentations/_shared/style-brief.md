@@ -79,4 +79,4 @@ Quarto supports a website theme and CSS in `_quarto.yml`, paired website light/d
 | Reveal transition | Fade stays. It marks a step between slides and has a static HTML equivalent. |
 | Removed | Ruled-paper background, display serif, copper/forest palette, glass blur, heavy shadows, pill controls, and the remote Google Fonts request. |
 | Bibliography figures | Paper figures sit inside the AI-generated summary. The summary measure is 46rem so a chart can stay readable; other long-form text stays 42rem. Images use a white surface and a hairline border so plots remain legible in Night Laboratory. Captions use the muted text colour. |
-| Summary provenance | Under the AI-generated label, one line in the muted text colour at about 0.78rem: when the note was written, the skill version, and the agent. It is not a heading and it does not use the accent colour. |
+| Summary provenance | Under the AI-generated label, one muted line at about 0.78rem. It reads “Generated at” plus the time, then “Skill version N” as an underlined link to the skill file on GitHub, then the agent. The link inherits the muted colour. It is not a heading and it does not use the accent colour. |

@@ -31,6 +31,16 @@ PARTS = {
     "04-reliability-and-future": "Part 4",
 }
 
+# Printed as "Skill version N". Version 2 notes were rewritten under a162f8f,
+# before this file had a version field. Version 3 is the commit that set
+# version: 3. Any other version opens the copy on main.
+SKILL_BLOB = "https://github.com/tdszyman/alta2026-evaluating-ai-agents/blob"
+SKILL_PATH = "skills/source-summaries/SKILL.md"
+SKILL_VERSION_REVS = {
+    "2": "a162f8fb27259441698f6da7adb0531762649ddc",
+    "3": "dc50277b260457a8b9c314943065aa2aa627b3a3",
+}
+
 GROUP_LABELS = [
     ("surveys", "Surveys"),
     ("agents", "Agents"),
@@ -343,6 +353,11 @@ def render_summary(src: dict, dest: Path, missing: list[str]) -> str:
     return body
 
 
+def skill_file_url(version: str) -> str:
+    rev = SKILL_VERSION_REVS.get(version, "main")
+    return f"{SKILL_BLOB}/{rev}/{SKILL_PATH}"
+
+
 def provenance_html(src: dict) -> str:
     """Quiet line: when the note was written, which skill version, and which agent."""
     when = str(src.get("summary_generated_at") or "").strip()
@@ -350,9 +365,12 @@ def provenance_html(src: dict) -> str:
     agent = str(src.get("summary_agent") or "").strip()
     parts = []
     if when:
-        parts.append(html.escape(when))
+        parts.append("Generated at " + html.escape(when))
     if version is not None and str(version).strip():
-        parts.append("Skill version " + html.escape(str(version).strip()))
+        version_s = str(version).strip()
+        label = "Skill version " + html.escape(version_s)
+        href = html.escape(skill_file_url(version_s), quote=True)
+        parts.append(f'<a href="{href}">{label}</a>')
     if agent:
         parts.append(html.escape(agent))
     if not parts:
