@@ -1,0 +1,2502 @@
+{
+  "sources": [
+    {
+      "id": "jia-2025-agent-gpa",
+      "type": "paper",
+      "authors": [
+        "Allison Sihan Jia",
+        "Daniel Huang",
+        "Nikhil Vytla",
+        "Seung Won Wilson Yoo",
+        "Nirvika Choudhury",
+        "Shayak Sen",
+        "John C. Mitchell",
+        "Anupam Datta"
+      ],
+      "year": "2025",
+      "title": "What Is Your Agent's GPA? A Framework for Evaluating Agent Goal-Plan-Action Alignment",
+      "venue": "arXiv preprint arXiv:2510.08847.",
+      "url": "https://arxiv.org/abs/2510.08847",
+      "links": [
+        {
+          "label": "arXiv",
+          "href": "https://arxiv.org/abs/2510.08847"
+        },
+        {
+          "label": "PDF",
+          "href": "https://arxiv.org/pdf/2510.08847"
+        }
+      ],
+      "abstract": "We introduce the Agent GPA (Goal-Plan-Action) framework, driven by the fundamental insight that critical agent failures emerge at the intersections of setting goals, devising plans, and executing actions. We operationalize the framework with a factorized suite of LLM judges designed to measure distinct elements of Goal-Plan-Act alignment. To make this methodology scalable and generalizable across diverse agent architectures and datasets, we use state-of-the-art automated prompt optimization techniques to systematically generate domain-specific evaluation criteria. We validate this approach across three benchmarks: a multi-agent research setting (TRAIL/GAIA), a single coding agent setting (TRAIL/SWE-bench), and a private, enterprise data-agent setting (Snowflake Intelligence). Extensive evaluation on TRAIL/GAIA demonstrates the core validity of the framework, which identifies a broad range of agent failures (95% of human-annotated errors), localizes errors to enable targeted debugging (86% of human-annotated errors), and exhibits strong agreement with human evaluators. Crucially, by applying our automated methodology to both public datasets, we demonstrate that our GPA judges generally achieve the highest error coverage (ranging from 76% to 86%) in comparison to manual prompting approaches. We also leverage an evolutionary coding agent to improve judge consistency by up to 38% through iterative refinement of evaluation rubrics. Overall, Agent GPA provides a rigorous and generalizable paradigm for targeted agent evaluation.",
+      "summary": "Primary reading. It treats an agent trace as a goal, a plan, and actions, and asks whether those three line up. That is the multi-tier idea in Part 1: do not score only the final answer.",
+      "groups": [
+        "featured",
+        "agents"
+      ],
+      "featured_rank": 2,
+      "mentions": [
+        "Agent GPA"
+      ],
+      "note": null
+    },
+    {
+      "id": "kwok-2026-llm-as-verifier",
+      "type": "paper",
+      "authors": [
+        "Jacky Kwok",
+        "Shulu Li",
+        "Pranav Atreya",
+        "Yuejiang Liu",
+        "Yixing Jiang",
+        "Chelsea Finn",
+        "Marco Pavone",
+        "Ion Stoica",
+        "Azalia Mirhoseini"
+      ],
+      "year": "2026",
+      "title": "LLM-as-a-Verifier: A General-Purpose Verification Framework",
+      "venue": "arXiv preprint arXiv:2607.05391.",
+      "url": "https://arxiv.org/abs/2607.05391",
+      "links": [
+        {
+          "label": "arXiv",
+          "href": "https://arxiv.org/abs/2607.05391"
+        },
+        {
+          "label": "PDF",
+          "href": "https://arxiv.org/pdf/2607.05391"
+        }
+      ],
+      "abstract": "Scaling pre-training, post-training, and test-time compute have become the central paradigms for improving the capabilities of LLMs. In this work, we identify verification, the ability to determine the correctness of a solution, as a new scaling axis. To unlock this and demonstrate its effectiveness, we introduce LLM-as-a-Verifier, a general-purpose verification framework that provides fine-grained feedback for agentic tasks without requiring additional training. Unlike standard LM judges that prompt LLMs to produce discrete scores for candidate solutions, LLM-as-a-Verifier computes the expectation over the distribution of scoring token logits to generate continuous scores. This probabilistic formulation enables verification to scale along multiple dimensions: (1) score granularity, (2) repeated evaluation, and (3) criteria decomposition. In particular, we show that scaling the scoring granularity leads to better separation between positive and negative solutions, resulting in more calibrated comparisons. Moreover, scaling repeated evaluation and criteria decomposition consistently lead to additional gains in verification accuracy through variance and complexity reduction. We further introduce a cost-efficient ranking algorithm for selecting the best solution among candidates using the verifier's continuous scores. LLM-as-a-Verifier achieves state-of-the-art performance on Terminal-Bench V2 (86.5%), SWE-Bench Verified (78.2%), RoboRewardBench (87.4%), and MedAgentBench (73.3%). Beyond verification, the fine-grained signals from LLM-as-a-Verifier can also serve as a proxy for estimating task progress. We build an extension for Claude Code, enabling developers to monitor and improve their own agentic systems. Finally, we show that LLM-as-a-Verifier can provide dense feedback for RL, improving the sample efficiency of SAC and GRPO on robotics and mathematical reasoning benchmarks.",
+      "summary": "Primary reading. It frames a general verification setup around LLM judges, which is the Part 2 question of when a model should check another model, and the Part 4 question of whether that check is reliable.",
+      "groups": [
+        "featured",
+        "judges"
+      ],
+      "featured_rank": 3,
+      "mentions": [
+        "LLM-as-a-Verifier"
+      ],
+      "note": null
+    },
+    {
+      "id": "upadhyay-2024-umbrela",
+      "type": "paper",
+      "authors": [
+        "Shivani Upadhyay",
+        "Ronak Pradeep",
+        "Nandan Thakur",
+        "Nick Craswell",
+        "Jimmy Lin"
+      ],
+      "year": "2024",
+      "title": "UMBRELA: UMbrela is the (Open-Source Reproduction of the) Bing RELevance Assessor",
+      "venue": "arXiv preprint arXiv:2406.06519.",
+      "url": "https://arxiv.org/abs/2406.06519",
+      "links": [
+        {
+          "label": "arXiv",
+          "href": "https://arxiv.org/abs/2406.06519"
+        },
+        {
+          "label": "PDF",
+          "href": "https://arxiv.org/pdf/2406.06519"
+        }
+      ],
+      "abstract": "Copious amounts of relevance judgments are necessary for the effective training and accurate evaluation of retrieval systems. Conventionally, these judgments are made by human assessors, rendering this process expensive and laborious. A recent study by Thomas et al. from Microsoft Bing suggested that large language models (LLMs) can accurately perform the relevance assessment task and provide human-quality judgments, but unfortunately their study did not yield any reusable software artifacts. Our work presents UMBRELA (a recursive acronym that stands for UMbrela is the Bing RELevance Assessor), an open-source toolkit that reproduces the results of Thomas et al. using OpenAI's GPT-4o model and adds more nuance to the original paper. Across Deep Learning Tracks from TREC 2019 to 2023, we find that LLM-derived relevance judgments correlate highly with rankings generated by effective multi-stage retrieval systems. Our toolkit is designed to be easily extensible and can be integrated into existing multi-stage retrieval and evaluation pipelines, offering researchers a valuable resource for studying retrieval evaluation methodologies. UMBRELA will be used in the TREC 2024 RAG Track to aid in relevance assessments, and we envision our toolkit becoming a foundation for further innovation in the field. UMBRELA is available at this https URL .",
+      "summary": "Primary reading. It is an open reproduction of a production relevance judge (Bing’s assessor). Useful in Part 2 as a concrete judge, not only a benchmark paper, and in Part 4 as a reminder that judge prompts get copied and drift.",
+      "groups": [
+        "featured",
+        "judges"
+      ],
+      "featured_rank": 4,
+      "mentions": [
+        "UMBRELA"
+      ],
+      "note": null
+    },
+    {
+      "id": "bai-2022-constitutional-ai",
+      "type": "paper",
+      "authors": [
+        "Yuntao Bai",
+        "Saurav Kadavath",
+        "Sandipan Kundu",
+        "Amanda Askell",
+        "Jackson Kernion",
+        "Andy Jones",
+        "Anna Chen",
+        "Anna Goldie",
+        "Azalia Mirhoseini",
+        "Cameron McKinnon",
+        "Carol Chen",
+        "Catherine Olsson",
+        "Christopher Olah",
+        "Danny Hernandez",
+        "Dawn Drain",
+        "Deep Ganguli",
+        "Dustin Li",
+        "Eli Tran-Johnson",
+        "Ethan Perez",
+        "Jamie Kerr",
+        "Jared Mueller",
+        "Jeffrey Ladish",
+        "Joshua Landau",
+        "Kamal Ndousse",
+        "Kamile Lukosuite",
+        "Liane Lovitt",
+        "Michael Sellitto",
+        "Nelson Elhage",
+        "Nicholas Schiefer",
+        "Noemi Mercado",
+        "Nova DasSarma",
+        "Robert Lasenby",
+        "Robin Larson",
+        "Sam Ringer",
+        "Scott Johnston",
+        "Shauna Kravec",
+        "Sheer El Showk",
+        "Stanislav Fort",
+        "Tamera Lanham",
+        "Timothy Telleen-Lawton",
+        "Tom Conerly",
+        "Tom Henighan",
+        "Tristan Hume",
+        "Samuel R. Bowman",
+        "Zac Hatfield-Dodds",
+        "Ben Mann",
+        "Dario Amodei",
+        "Nicholas Joseph",
+        "Sam McCandlish",
+        "Tom Brown",
+        "Jared Kaplan"
+      ],
+      "year": "2022",
+      "title": "Constitutional AI: Harmlessness from AI Feedback",
+      "venue": "arXiv preprint arXiv:2212.08073.",
+      "url": "https://arxiv.org/abs/2212.08073",
+      "links": [
+        {
+          "label": "arXiv",
+          "href": "https://arxiv.org/abs/2212.08073"
+        },
+        {
+          "label": "PDF",
+          "href": "https://arxiv.org/pdf/2212.08073"
+        }
+      ],
+      "abstract": "As AI systems become more capable, we would like to enlist their help to supervise other AIs. We experiment with methods for training a harmless AI assistant through self-improvement, without any human labels identifying harmful outputs. The only human oversight is provided through a list of rules or principles, and so we refer to the method as 'Constitutional AI'. The process involves both a supervised learning and a reinforcement learning phase. In the supervised phase we sample from an initial model, then generate self-critiques and revisions, and then finetune the original model on revised responses. In the RL phase, we sample from the finetuned model, use a model to evaluate which of the two samples is better, and then train a preference model from this dataset of AI preferences. We then train with RL using the preference model as the reward signal, i.e. we use 'RL from AI Feedback' (RLAIF). As a result we are able to train a harmless but non-evasive AI assistant that engages with harmful queries by explaining its objections to them. Both the SL and RL methods can leverage chain-of-thought style reasoning to improve the human-judged performance and transparency of AI decision making. These methods make it possible to control AI behavior more precisely and with far fewer human labels.",
+      "summary": "Primary reading, linked from the Part 1 training slide at RLAIF. The paper uses model feedback against a written set of principles. The tutorial sets training aside, but the same pattern — a rubric, then a model that applies it — is what an LLM judge is.",
+      "groups": [
+        "featured",
+        "judges"
+      ],
+      "featured_rank": 5,
+      "mentions": [
+        "RLAIF",
+        "Constitutional AI"
+      ],
+      "note": null
+    },
+    {
+      "id": "voss-2026-agent-as-judge",
+      "type": "blog",
+      "year": "2026",
+      "groups": [
+        "featured",
+        "industry"
+      ],
+      "featured_rank": 6,
+      "authors": [
+        "Voss"
+      ],
+      "title": "Where agent evals are going: Agent-as-a-Judge",
+      "venue": "Arize.",
+      "url": "https://arize.com/blog/agent-as-a-judge-agentic-evaluation/",
+      "links": [
+        {
+          "label": "Blog post",
+          "href": "https://arize.com/blog/agent-as-a-judge-agentic-evaluation/"
+        }
+      ],
+      "mentions": [
+        "Agent-as-a-Judge"
+      ],
+      "summary": "Primary reading, an industry post rather than a paper. The organiser list uses it for the claim that agent evaluation is moving from outcome scores toward judges that look at the agent’s steps. Review the post before treating any claim in it as tutorial content.",
+      "note": null,
+      "abstract": null
+    },
+    {
+      "id": "winston-2026-production-judges",
+      "type": "blog",
+      "year": "2026",
+      "groups": [
+        "featured",
+        "industry"
+      ],
+      "featured_rank": 7,
+      "authors": [
+        "Winston"
+      ],
+      "title": "How to build LLM-as-a-Judge evaluators that hold up in production",
+      "venue": "Arize.",
+      "url": "https://arize.com/blog/how-to-build-llm-as-a-judge-evaluators-that-hold-up-in-production/",
+      "links": [
+        {
+          "label": "Blog post",
+          "href": "https://arize.com/blog/how-to-build-llm-as-a-judge-evaluators-that-hold-up-in-production/"
+        }
+      ],
+      "summary": "Primary reading, an industry post on making judges survive contact with production: rubrics, disagreement, and monitoring. It sits with Part 2 (how to write the judge) and Part 4 (how it fails in operation). Review the post before using details from it on a slide.",
+      "mentions": [],
+      "note": null,
+      "abstract": null
+    },
+    {
+      "id": "le-2026-sage",
+      "type": "paper",
+      "authors": [
+        "Benjamin Le",
+        "Xueying Lu",
+        "Nick Stern",
+        "Wenqiong Liu",
+        "Igor Lapchuk",
+        "Xiang Li",
+        "Baofen Zheng",
+        "Kevin Rosenberg",
+        "Jiewen Huang",
+        "Zhe Zhang",
+        "Abraham Cabangbang",
+        "Satej Milind Wagle",
+        "Jianqiang Shen",
+        "Raghavan Muthuregunathan",
+        "Abhinav Gupta",
+        "Mathew Teoh",
+        "Andrew Kirk",
+        "Thomas Kwan",
+        "Jingwei Wu",
+        "Wenjing Zhang"
+      ],
+      "year": "2026",
+      "title": "SAGE: Scalable AI Governance & Evaluation",
+      "venue": "arXiv preprint arXiv:2602.07840.",
+      "url": "https://arxiv.org/abs/2602.07840",
+      "links": [
+        {
+          "label": "arXiv",
+          "href": "https://arxiv.org/abs/2602.07840"
+        },
+        {
+          "label": "PDF",
+          "href": "https://arxiv.org/pdf/2602.07840"
+        }
+      ],
+      "abstract": "Evaluating relevance in large-scale search systems is fundamentally constrained by the governance gap between nuanced, resource-constrained human oversight and the high-throughput requirements of production systems. While traditional approaches rely on engagement proxies or sparse manual review, these methods often fail to capture the full scope of high-impact relevance failures. We present \\textbf{SAGE} (Scalable AI Governance \\& Evaluation), a framework that operationalizes high-quality human product judgment as a scalable evaluation signal. At the core of SAGE is a bidirectional calibration loop where natural-language \\emph{Policy}, curated \\emph{Precedent}, and an \\emph{LLM Surrogate Judge} co-evolve. SAGE systematically resolves semantic ambiguities and misalignments, transforming subjective relevance judgment into an executable, multi-dimensional rubric with near human-level agreement. To bridge the gap between frontier model reasoning and industrial-scale inference, we apply teacher-student distillation to transfer high-fidelity judgments into compact student surrogates at \\textbf{92$\\times$} lower cost. Deployed within LinkedIn Search ecosystems, SAGE guided model iteration through simulation-driven development, distilling policy-aligned models for online serving and enabling rapid offline evaluation. In production, it powered policy oversight that measured ramped model variants and detected regressions invisible to engagement metrics. Collectively, these drove a \\textbf{0.25\\%} lift in LinkedIn daily active users.",
+      "summary": "Primary reading. A governance-and-evaluation framing for AI systems, relevant where Part 1 talks about versioning agents and linking them to eval results rather than treating a judge score as a one-off number.",
+      "groups": [
+        "featured",
+        "lifecycle"
+      ],
+      "featured_rank": 8,
+      "mentions": [
+        "SAGE"
+      ],
+      "note": null
+    },
+    {
+      "id": "sternbach-2026-swebench-scale",
+      "type": "blog",
+      "year": "2026",
+      "groups": [
+        "featured",
+        "industry"
+      ],
+      "featured_rank": 9,
+      "authors": [
+        "Sternbach"
+      ],
+      "title": "How to scale agentic evaluation: lessons from 200,000 SWE-bench runs",
+      "venue": "AI21.",
+      "url": "https://www.ai21.com/blog/scaling-agentic-evaluation-swe-bench/",
+      "links": [
+        {
+          "label": "Blog post",
+          "href": "https://www.ai21.com/blog/scaling-agentic-evaluation-swe-bench/"
+        }
+      ],
+      "mentions": [
+        "SWE-bench"
+      ],
+      "summary": "Primary reading, an industry post about what changes when agent evals are run at large scale on a coding benchmark. Relevant to Part 4 (cost, reliability) and to the hands-on discussion of judging more than a handful of cases. Review the post before citing a specific lesson from it.",
+      "note": null,
+      "abstract": null
+    },
+    {
+      "id": "chen-2026-emerging-trends",
+      "type": "paper",
+      "year": "2026",
+      "groups": [
+        "featured",
+        "surveys"
+      ],
+      "featured_rank": 1,
+      "authors": [],
+      "title": "Emerging Trends in AI Agent Evaluation",
+      "venue": "Preprint.",
+      "url": "https://sage.cs.princeton.edu/trends/emerging-trends-paper.pdf",
+      "links": [
+        {
+          "label": "PDF",
+          "href": "https://sage.cs.princeton.edu/trends/emerging-trends-paper.pdf"
+        }
+      ],
+      "note": "The organiser list credits Chen et al. Given names and the abstract were not copied from the PDF in this draft.",
+      "summary": "First item on the organiser primary list: a survey of emerging practice in agent evaluation. It is the wide frame for Part 1. This draft does not summarise findings, because the abstract was not extracted.",
+      "mentions": [],
+      "abstract": null,
+      "author_label": "Chen et al."
+    },
+    {
+      "id": "zhou-2024-mitigating-bias",
+      "type": "paper",
+      "year": "2024",
+      "groups": [
+        "featured",
+        "reliability"
+      ],
+      "featured_rank": 10,
+      "authors": [
+        "Hongli Zhou",
+        "Hui Huang",
+        "Yunfei Long",
+        "Bing Xu",
+        "Conghui Zhu",
+        "Hailong Cao",
+        "Muyun Yang",
+        "Tiejun Zhao"
+      ],
+      "title": "Mitigating the Bias of Large Language Model Evaluation",
+      "venue": "In Proceedings of the 23rd Chinese National Conference on Computational Linguistics (Volume 1: Main Conference), pages 1310–1319.",
+      "url": "https://aclanthology.org/2024.ccl-1.101/",
+      "links": [
+        {
+          "label": "Anthology",
+          "href": "https://aclanthology.org/2024.ccl-1.101/"
+        },
+        {
+          "label": "PDF",
+          "href": "https://aclanthology.org/2024.ccl-1.101.pdf"
+        }
+      ],
+      "abstract": "Recently, there has been a trend of evaluating the Large Language Model (LLM) quality in the flavor of LLM-as-a-Judge, namely leveraging another LLM to evaluate the current output quality. However, existing judges are proven to be biased, namely they would favor answers which present better superficial quality (such as verbosity, fluency) while ignoring the instruction following ability. In this work, we propose systematic research about the bias of LLM-as-a-Judge. Specifically, for closed-source judge models, we apply calibration to mitigate the significance of superficial quality, both on probability level and prompt level. For open-source judge models, we propose to mitigate the bias by contrastive training, with curated negative samples that deviate from instruction but present better superficial quality. We apply our methods on the bias evaluation benchmark, and experiment results show our methods mitigate the bias by a large margin while maintaining a satisfactory evaluation accuracy.",
+      "note": "The organiser reading list spells the first author Zhuo. The anthology record for this URL names Zhou.",
+      "summary": "Secondary reading on judge bias: models prefer fluent, verbose answers over answers that follow the instruction. Part 4 material, and a reason the hands-on rubric should separate surface tone from whether the advice is actually sound.",
+      "mentions": []
+    },
+    {
+      "id": "ye-2024-justice-or-prejudice",
+      "type": "paper",
+      "authors": [
+        "Jiayi Ye",
+        "Yanbo Wang",
+        "Yue Huang",
+        "Dongping Chen",
+        "Qihui Zhang",
+        "Nuno Moniz",
+        "Tian Gao",
+        "Werner Geyer",
+        "Chao Huang",
+        "Pin-Yu Chen",
+        "Nitesh V Chawla",
+        "Xiangliang Zhang"
+      ],
+      "year": "2024",
+      "title": "Justice or Prejudice? Quantifying Biases in LLM-as-a-Judge",
+      "venue": "arXiv preprint arXiv:2410.02736.",
+      "url": "https://arxiv.org/abs/2410.02736",
+      "links": [
+        {
+          "label": "arXiv",
+          "href": "https://arxiv.org/abs/2410.02736"
+        },
+        {
+          "label": "PDF",
+          "href": "https://arxiv.org/pdf/2410.02736"
+        }
+      ],
+      "abstract": "LLM-as-a-Judge has been widely utilized as an evaluation method in various benchmarks and served as supervised rewards in model training. However, despite their excellence in many domains, potential issues are under-explored, undermining their reliability and the scope of their utility. Therefore, we identify 12 key potential biases and propose a new automated bias quantification framework-CALM-which systematically quantifies and analyzes each type of bias in LLM-as-a-Judge by using automated and principle-guided modification. Our experiments cover multiple popular language models, and the results indicate that while advanced models have achieved commendable overall performance, significant biases persist in certain specific tasks. Empirical results suggest that there remains room for improvement in the reliability of LLM-as-a-Judge. Moreover, we also discuss the explicit and implicit influence of these biases and give some suggestions for the reliable application of LLM-as-a-Judge. Our work highlights the need for stakeholders to address these issues and remind users to exercise caution in LLM-as-a-Judge applications.",
+      "summary": "Secondary reading, and a Part 4 citation. It measures systematic biases in LLM-as-a-judge, which is the caveat on every score the hands-on exercise produces.",
+      "groups": [
+        "featured",
+        "reliability"
+      ],
+      "featured_rank": 11,
+      "mentions": [
+        "Justice or Prejudice"
+      ],
+      "note": "The reading checklist dates this 2025. The primary list and the arXiv record are 2024."
+    },
+    {
+      "id": "yehudai-2025-agent-eval-survey",
+      "type": "paper",
+      "authors": [
+        "Asaf Yehudai",
+        "Lilach Eden",
+        "Alan Li",
+        "Guy Uziel",
+        "Yilun Zhao",
+        "Roy Bar-Haim",
+        "Arman Cohan",
+        "Michal Shmueli-Scheuer"
+      ],
+      "year": "2025",
+      "title": "Survey on Evaluation of LLM-based Agents",
+      "venue": "arXiv preprint arXiv:2503.16416.",
+      "url": "https://arxiv.org/abs/2503.16416",
+      "links": [
+        {
+          "label": "arXiv",
+          "href": "https://arxiv.org/abs/2503.16416"
+        },
+        {
+          "label": "PDF",
+          "href": "https://arxiv.org/pdf/2503.16416"
+        }
+      ],
+      "abstract": "LLM-based agents represent a paradigm shift in AI, enabling autonomous systems to plan, reason, and use tools while interacting with dynamic environments. This paper provides the first comprehensive survey of evaluation methods for these increasingly capable agents. We analyze the field of agent evaluation across five perspectives: (1) Core LLM capabilities needed for agentic workflows, like planning, and tool use; (2) Application-specific benchmarks such as web and SWE agents; (3) Evaluation of generalist agents; (4) Analysis of agent benchmarks' core dimensions; and (5) Evaluation frameworks and tools for agent developers. Our analysis reveals current trends, including a shift toward more realistic, challenging evaluations with continuously updated benchmarks. We also identify critical gaps that future research must address, particularly in assessing cost-efficiency, safety, and robustness, and in developing fine-grained, scalable evaluation methods.",
+      "summary": "Survey of how LLM-based agents are evaluated. Use it in Part 1 when the question is what people measure today, before narrowing to judges.",
+      "groups": [
+        "surveys",
+        "agents"
+      ],
+      "featured_rank": null,
+      "mentions": [],
+      "note": null
+    },
+    {
+      "id": "mohammadi-2025-benchmark-survey",
+      "type": "paper",
+      "authors": [
+        "Mahmoud Mohammadi",
+        "Yipeng Li",
+        "Jane Lo",
+        "Wendy Yip"
+      ],
+      "year": "2025",
+      "title": "Evaluation and Benchmarking of LLM Agents: A Survey",
+      "venue": "arXiv preprint arXiv:2507.21504.",
+      "url": "https://arxiv.org/abs/2507.21504",
+      "links": [
+        {
+          "label": "arXiv",
+          "href": "https://arxiv.org/abs/2507.21504"
+        },
+        {
+          "label": "PDF",
+          "href": "https://arxiv.org/pdf/2507.21504"
+        }
+      ],
+      "abstract": "The rise of LLM-based agents has opened new frontiers in AI applications, yet evaluating these agents remains a complex and underdeveloped area. This survey provides an in-depth overview of the emerging field of LLM agent evaluation, introducing a two-dimensional taxonomy that organizes existing work along (1) evaluation objectives -- what to evaluate, such as agent behavior, capabilities, reliability, and safety -- and (2) evaluation process -- how to evaluate, including interaction modes, datasets and benchmarks, metric computation methods, and tooling. In addition to taxonomy, we highlight enterprise-specific challenges, such as role-based access to data, the need for reliability guarantees, dynamic and long-horizon interactions, and compliance, which are often overlooked in current research. We also identify future research directions, including holistic, more realistic, and scalable evaluation. This work aims to bring clarity to the fragmented landscape of agent evaluation and provide a framework for systematic assessment, enabling researchers and practitioners to evaluate LLM agents for real-world deployment.",
+      "summary": "Survey of agent benchmarks. Pair it with the agent-benchmark papers below when Part 1 distinguishes a leaderboard from an evaluation you would run on your own agent.",
+      "groups": [
+        "surveys",
+        "agents"
+      ],
+      "featured_rank": null,
+      "mentions": [],
+      "note": null
+    },
+    {
+      "id": "guan-2025-multiturn-survey",
+      "type": "paper",
+      "authors": [
+        "Shengyue Guan",
+        "Jindong Wang",
+        "Jiang Bian",
+        "Bin Zhu",
+        "Jian-guang Lou",
+        "Haoyi Xiong"
+      ],
+      "year": "2025",
+      "title": "Evaluating LLM-based Agents for Multi-Turn Conversations: A Survey",
+      "venue": "arXiv preprint arXiv:2503.22458.",
+      "url": "https://arxiv.org/abs/2503.22458",
+      "links": [
+        {
+          "label": "arXiv",
+          "href": "https://arxiv.org/abs/2503.22458"
+        },
+        {
+          "label": "PDF",
+          "href": "https://arxiv.org/pdf/2503.22458"
+        }
+      ],
+      "abstract": "This survey examines evaluation methods for large language model (LLM)-based agents in multi-turn conversational settings. Using a PRISMA-inspired framework, we systematically reviewed nearly 250 scholarly sources, capturing the state of the art from various venues of publication, and establishing a solid foundation for our analysis. Our study offers a structured approach by developing two interrelated taxonomy systems: one that defines \\emph{what to evaluate} and another that explains \\emph{how to evaluate}. The first taxonomy identifies key components of LLM-based agents for multi-turn conversations and their evaluation dimensions, including task completion, response quality, user experience, memory and context retention, as well as planning and tool integration. These components ensure that the performance of conversational agents is assessed in a holistic and meaningful manner. The second taxonomy system focuses on the evaluation methodologies. It categorizes approaches into annotation-based evaluations, automated metrics, hybrid strategies that combine human assessments with quantitative measures, and self-judging methods utilizing LLMs. This framework not only captures traditional metrics derived from language understanding, such as BLEU and ROUGE scores, but also incorporates advanced techniques that reflect the dynamic, interactive nature of multi-turn dialogues.",
+      "summary": "Survey of evaluating agents in multi-turn conversation. Relevant because the hands-on cases are short dialogues, and because a single-turn score misses later turns.",
+      "groups": [
+        "surveys",
+        "dialogue"
+      ],
+      "featured_rank": null,
+      "mentions": [],
+      "note": null
+    },
+    {
+      "id": "gu-2024-llm-as-judge-survey",
+      "type": "paper",
+      "authors": [
+        "Jiawei Gu",
+        "Xuhui Jiang",
+        "Zhichao Shi",
+        "Hexiang Tan",
+        "Xuehao Zhai",
+        "Chengjin Xu",
+        "Wei Li",
+        "Yinghan Shen",
+        "Shengjie Ma",
+        "Honghao Liu",
+        "Saizhuo Wang",
+        "Kun Zhang",
+        "Yuanzhuo Wang",
+        "Wen Gao",
+        "Lionel Ni",
+        "Jian Guo"
+      ],
+      "year": "2024",
+      "title": "A Survey on LLM-as-a-Judge",
+      "venue": "arXiv preprint arXiv:2411.15594.",
+      "url": "https://arxiv.org/abs/2411.15594",
+      "links": [
+        {
+          "label": "arXiv",
+          "href": "https://arxiv.org/abs/2411.15594"
+        },
+        {
+          "label": "PDF",
+          "href": "https://arxiv.org/pdf/2411.15594"
+        }
+      ],
+      "abstract": "Accurate and consistent evaluation is crucial for decision-making across numerous fields, yet it remains a challenging task due to inherent subjectivity, variability, and scale. Large Language Models (LLMs) have achieved remarkable success across diverse domains, leading to the emergence of \"LLM-as-a-Judge,\" where LLMs are employed as evaluators for complex tasks. With their ability to process diverse data types and provide scalable, cost-effective, and consistent assessments, LLMs present a compelling alternative to traditional expert-driven evaluations. However, ensuring the reliability of LLM-as-a-Judge systems remains a significant challenge that requires careful design and standardization. This paper provides a comprehensive survey of LLM-as-a-Judge, addressing the core question: How can reliable LLM-as-a-Judge systems be built? We explore strategies to enhance reliability, including improving consistency, mitigating biases, and adapting to diverse assessment scenarios. Additionally, we propose methodologies for evaluating the reliability of LLM-as-a-Judge systems, supported by a novel benchmark designed for this purpose. To advance the development and real-world deployment of LLM-as-a-Judge systems, we also discussed practical applications, challenges, and future directions. This survey serves as a foundational reference for researchers and practitioners in this rapidly evolving field.",
+      "summary": "Survey of the LLM-as-a-judge literature, cited from Part 2. It is the map of criteria, prompts, and known failure modes behind the tutorial’s judge section.",
+      "groups": [
+        "surveys",
+        "judges"
+      ],
+      "featured_rank": null,
+      "mentions": [],
+      "note": null
+    },
+    {
+      "id": "li-2024-generation-to-judgment",
+      "type": "paper",
+      "authors": [
+        "Dawei Li",
+        "Bohan Jiang",
+        "Liangjie Huang",
+        "Alimohammad Beigi",
+        "Chengshuai Zhao",
+        "Zhen Tan",
+        "Amrita Bhattacharjee",
+        "Yuxuan Jiang",
+        "Canyu Chen",
+        "Tianhao Wu",
+        "Kai Shu",
+        "Lu Cheng",
+        "Huan Liu"
+      ],
+      "year": "2024",
+      "title": "From Generation to Judgment: Opportunities and Challenges of LLM-as-a-judge",
+      "venue": "arXiv preprint arXiv:2411.16594.",
+      "url": "https://arxiv.org/abs/2411.16594",
+      "links": [
+        {
+          "label": "arXiv",
+          "href": "https://arxiv.org/abs/2411.16594"
+        },
+        {
+          "label": "PDF",
+          "href": "https://arxiv.org/pdf/2411.16594"
+        }
+      ],
+      "abstract": "Assessment and evaluation have long been critical challenges in artificial intelligence (AI) and natural language processing (NLP). Traditional methods, usually matching-based or small model-based, often fall short in open-ended and dynamic scenarios. Recent advancements in Large Language Models (LLMs) inspire the \"LLM-as-a-judge\" paradigm, where LLMs are leveraged to perform scoring, ranking, or selection for various machine learning evaluation scenarios. This paper presents a comprehensive survey of LLM-based judgment and assessment, offering an in-depth overview to review this evolving field. We first provide the definition from both input and output perspectives. Then we introduce a systematic taxonomy to explore LLM-as-a-judge along three dimensions: what to judge, how to judge, and how to benchmark. Finally, we also highlight key challenges and promising future directions for this emerging area. More resources on LLM-as-a-judge are on the website: this https URL and this https URL .",
+      "summary": "Survey of the shift from generating text to judging it. Background for Part 2: a judge is a model used as a measurement instrument, with its own errors.",
+      "groups": [
+        "surveys",
+        "judges"
+      ],
+      "featured_rank": null,
+      "mentions": [],
+      "note": null
+    },
+    {
+      "id": "when-ais-judge-ais-2025",
+      "type": "paper",
+      "year": "2025",
+      "groups": [
+        "surveys",
+        "trajectories"
+      ],
+      "title": "When AIs Judge AIs: The Rise of Agent-as-a-Judge Evaluation for LLMs",
+      "venue": "",
+      "note": "The reading checklist gives no authors and no URL. Do not treat this record as verified until a canonical source is added.",
+      "summary": "Checklist item on agent-as-a-judge. Included so the reading list is complete. No abstract or link was verified for this draft, so the summary is only the title’s topic: using agents to evaluate other models.",
+      "mentions": [],
+      "featured_rank": null,
+      "links": [],
+      "abstract": null,
+      "authors": []
+    },
+    {
+      "id": "yao-2023-react",
+      "type": "paper",
+      "authors": [
+        "Shunyu Yao",
+        "Jeffrey Zhao",
+        "Dian Yu",
+        "Nan Du",
+        "Izhak Shafran",
+        "Karthik Narasimhan",
+        "Yuan Cao"
+      ],
+      "year": "2023",
+      "title": "ReAct: Synergizing Reasoning and Acting in Language Models",
+      "venue": "In International Conference on Learning Representations. arXiv preprint arXiv:2210.03629.",
+      "url": "https://arxiv.org/abs/2210.03629",
+      "links": [
+        {
+          "label": "arXiv",
+          "href": "https://arxiv.org/abs/2210.03629"
+        },
+        {
+          "label": "PDF",
+          "href": "https://arxiv.org/pdf/2210.03629"
+        }
+      ],
+      "abstract": "While large language models (LLMs) have demonstrated impressive capabilities across tasks in language understanding and interactive decision making, their abilities for reasoning (e.g. chain-of-thought prompting) and acting (e.g. action plan generation) have primarily been studied as separate topics. In this paper, we explore the use of LLMs to generate both reasoning traces and task-specific actions in an interleaved manner, allowing for greater synergy between the two: reasoning traces help the model induce, track, and update action plans as well as handle exceptions, while actions allow it to interface with external sources, such as knowledge bases or environments, to gather additional information. We apply our approach, named ReAct, to a diverse set of language and decision making tasks and demonstrate its effectiveness over state-of-the-art baselines, as well as improved human interpretability and trustworthiness over methods without reasoning or acting components. Concretely, on question answering (HotpotQA) and fact verification (Fever), ReAct overcomes issues of hallucination and error propagation prevalent in chain-of-thought reasoning by interacting with a simple Wikipedia API, and generates human-like task-solving trajectories that are more interpretable than baselines without reasoning traces. On two interactive decision making benchmarks (ALFWorld and WebShop), ReAct outperforms imitation and reinforcement learning methods by an absolute success rate of 34% and 10% respectively, while being prompted with only one or two in-context examples. Project site with code: this https URL",
+      "summary": "The ReAct loop — reason, then act with a tool — is the practical agent definition on the Part 1 definitions slide. Evaluation has to look at those steps, not only the sentence at the end.",
+      "groups": [
+        "agents"
+      ],
+      "featured_rank": null,
+      "mentions": [
+        "ReAct"
+      ],
+      "note": null
+    },
+    {
+      "id": "schick-2023-toolformer",
+      "type": "paper",
+      "authors": [
+        "Timo Schick",
+        "Jane Dwivedi-Yu",
+        "Roberto Dessì",
+        "Roberta Raileanu",
+        "Maria Lomeli",
+        "Luke Zettlemoyer",
+        "Nicola Cancedda",
+        "Thomas Scialom"
+      ],
+      "year": "2023",
+      "title": "Toolformer: Language Models Can Teach Themselves to Use Tools",
+      "venue": "arXiv preprint arXiv:2302.04761.",
+      "url": "https://arxiv.org/abs/2302.04761",
+      "links": [
+        {
+          "label": "arXiv",
+          "href": "https://arxiv.org/abs/2302.04761"
+        },
+        {
+          "label": "PDF",
+          "href": "https://arxiv.org/pdf/2302.04761"
+        }
+      ],
+      "abstract": "Language models (LMs) exhibit remarkable abilities to solve new tasks from just a few examples or textual instructions, especially at scale. They also, paradoxically, struggle with basic functionality, such as arithmetic or factual lookup, where much simpler and smaller models excel. In this paper, we show that LMs can teach themselves to use external tools via simple APIs and achieve the best of both worlds. We introduce Toolformer, a model trained to decide which APIs to call, when to call them, what arguments to pass, and how to best incorporate the results into future token prediction. This is done in a self-supervised way, requiring nothing more than a handful of demonstrations for each API. We incorporate a range of tools, including a calculator, a Q\\&A system, two different search engines, a translation system, and a calendar. Toolformer achieves substantially improved zero-shot performance across a variety of downstream tasks, often competitive with much larger models, without sacrificing its core language modeling abilities.",
+      "summary": "Early tool-use paper: the model decides when to call a tool and with what arguments. That is the behaviour Part 3 asks participants to judge, separately from the prose of the reply.",
+      "groups": [
+        "agents"
+      ],
+      "featured_rank": null,
+      "mentions": [
+        "Toolformer"
+      ],
+      "note": null
+    },
+    {
+      "id": "yao-2024-tau-bench",
+      "type": "paper",
+      "authors": [
+        "Shunyu Yao",
+        "Noah Shinn",
+        "Pedram Razavi",
+        "Karthik Narasimhan"
+      ],
+      "year": "2024",
+      "title": "τ-bench: A Benchmark for Tool-Agent-User Interaction in Real-World Domains",
+      "venue": "arXiv preprint arXiv:2406.12045.",
+      "url": "https://arxiv.org/abs/2406.12045",
+      "links": [
+        {
+          "label": "arXiv",
+          "href": "https://arxiv.org/abs/2406.12045"
+        },
+        {
+          "label": "PDF",
+          "href": "https://arxiv.org/pdf/2406.12045"
+        }
+      ],
+      "abstract": "Existing benchmarks do not test language agents on their interaction with human users or ability to follow domain-specific rules, both of which are vital for deploying them in real world applications. We propose $\\tau$-bench, a benchmark emulating dynamic conversations between a user (simulated by language models) and a language agent provided with domain-specific API tools and policy guidelines. We employ an efficient and faithful evaluation process that compares the database state at the end of a conversation with the annotated goal state. We also propose a new metric (pass^k) to evaluate the reliability of agent behavior over multiple trials. Our experiments show that even state-of-the-art function calling agents (like gpt-4o) succeed on <50% of the tasks, and are quite inconsistent (pass^8 <25% in retail). Our findings point to the need for methods that can improve the ability of agents to act consistently and follow rules reliably.",
+      "summary": "A benchmark where a tool-using agent has to converse with a simulated user and follow a policy. It is a picture of the kind of scenario the hands-on exercise is a small version of.",
+      "groups": [
+        "agents",
+        "dialogue"
+      ],
+      "featured_rank": null,
+      "mentions": [
+        "τ-bench",
+        "tau-bench"
+      ],
+      "note": null
+    },
+    {
+      "id": "barres-2025-tau2-bench",
+      "type": "paper",
+      "authors": [
+        "Victor Barres",
+        "Honghua Dong",
+        "Soham Ray",
+        "Xujie Si",
+        "Karthik Narasimhan"
+      ],
+      "year": "2025",
+      "title": "τ^2-Bench: Evaluating Conversational Agents in a Dual-Control Environment",
+      "venue": "arXiv preprint arXiv:2506.07982.",
+      "url": "https://arxiv.org/abs/2506.07982",
+      "links": [
+        {
+          "label": "arXiv",
+          "href": "https://arxiv.org/abs/2506.07982"
+        },
+        {
+          "label": "PDF",
+          "href": "https://arxiv.org/pdf/2506.07982"
+        }
+      ],
+      "abstract": "Existing benchmarks for conversational AI agents simulate single-control environments, where only the AI agent can use tools to interact with the world, while the user remains a passive information provider. This differs from real-world scenarios like technical support, where users need to actively participate in modifying the state of the (shared) world. In order to address this gap, we introduce $\\tau^2$-bench, with four key contributions: 1) A novel Telecom dual-control domain modeled as a Dec-POMDP, where both agent and user make use of tools to act in a shared, dynamic environment that tests both agent coordination and communication, 2) A compositional task generator that programmatically creates diverse, verifiable tasks from atomic components, ensuring domain coverage and controlled complexity, 3) A reliable user simulator tightly coupled with the environment, whose behavior is constrained by tools and observable states, improving simulation fidelity, 4) Fine-grained analysis of agent performance through multiple ablations including separating errors arising from reasoning vs communication/coordination. In particular, our experiments show significant performance drops when agents shift from no-user to dual-control, highlighting the challenges of guiding users. Overall, $\\tau^2$-bench provides a controlled testbed for agents that must both reason effectively and guide user actions.",
+      "summary": "Follow-on to τ-bench in which both the agent and the user can act. Relevant when Part 1 says an agent trajectory is not a single input–output pair.",
+      "groups": [
+        "agents",
+        "dialogue"
+      ],
+      "featured_rank": null,
+      "mentions": [
+        "τ²-Bench",
+        "tau2"
+      ],
+      "note": null
+    },
+    {
+      "id": "patil-2025-bfcl",
+      "type": "paper",
+      "year": "2025",
+      "groups": [
+        "agents"
+      ],
+      "authors": [
+        "Shishir G. Patil",
+        "Huanzhi Mao",
+        "Fanjia Yan",
+        "Charlie Cheng-Jie Ji",
+        "Vishnu Suresh",
+        "Ion Stoica",
+        "Joseph E. Gonzalez"
+      ],
+      "title": "The Berkeley Function Calling Leaderboard (BFCL): From Tool Use to Agentic Evaluation of Large Language Models",
+      "venue": "In Proceedings of the 42nd International Conference on Machine Learning, volume 267 of Proceedings of Machine Learning Research, pages 48371–48392.",
+      "url": "https://proceedings.mlr.press/v267/patil25a.html",
+      "links": [
+        {
+          "label": "PMLR",
+          "href": "https://proceedings.mlr.press/v267/patil25a.html"
+        },
+        {
+          "label": "Leaderboard",
+          "href": "https://gorilla.cs.berkeley.edu/leaderboard.html"
+        }
+      ],
+      "abstract": "Function calling, also called tool use, refers to an LLM’s ability to invoke external functions, APIs, or user-defined tools in response to user queries—an essential capability for agentic LLM applications. Despite its prominence, there did not exist a standard benchmark to evaluate function calling abilities, due to two reasons – the challenging nature of evaluating when a function call is valid, and the challenge of acquiring diverse, real-world functions. We present the Berkeley Function Calling Leaderboard (BFCL), a comprehensive benchmark designed to evaluate function calling capabilities in a wide range of real-world settings. The BFCL benchmark evaluates serial and parallel function calls, across various programming languages using a novel Abstract Syntax Tree (AST) evaluation method that can easily scale to thousands of functions. We construct the benchmark using a combination of expert curated, and user-contributed functions and associated prompts. Finally, BFCL benchmark evaluates the ability of models to abstain and reason in stateful multi-step agentic setting. Evaluating a wide range of models, we observe that while state-of-the-art LLMs excel at singleturn calls, memory, dynamic decision-making, and long-horizon reasoning remain open challenges. Since its preview, BFCL has become the defacto standard for evaluating function-calls, and can be accessed at gorilla.cs.berkeley.edu/leaderboard.html.",
+      "mentions": [
+        "BFCL",
+        "Berkeley Function Calling"
+      ],
+      "summary": "A standard benchmark for whether a model emits a valid tool call, including multi-step calls. Part 1 and Part 3 both need this distinction: checking the call can be deterministic, while judging the advice often cannot.",
+      "note": null,
+      "featured_rank": null
+    },
+    {
+      "id": "lu-2025-toolsandbox",
+      "type": "paper",
+      "authors": [
+        "Jiarui Lu",
+        "Thomas Holleis",
+        "Yizhe Zhang",
+        "Bernhard Aumayer",
+        "Feng Nan",
+        "Felix Bai",
+        "Shuang Ma",
+        "Shen Ma",
+        "Mengyu Li",
+        "Guoli Yin",
+        "Zirui Wang",
+        "Ruoming Pang"
+      ],
+      "year": "2025",
+      "title": "ToolSandbox: A Stateful, Conversational, Interactive Evaluation Benchmark for LLM Tool Use Capabilities",
+      "venue": "arXiv preprint arXiv:2408.04682.",
+      "url": "https://arxiv.org/abs/2408.04682",
+      "links": [
+        {
+          "label": "arXiv",
+          "href": "https://arxiv.org/abs/2408.04682"
+        },
+        {
+          "label": "PDF",
+          "href": "https://arxiv.org/pdf/2408.04682"
+        }
+      ],
+      "abstract": "Recent large language models (LLMs) advancements sparked a growing research interest in tool assisted LLMs solving real-world challenges, which calls for comprehensive evaluation of tool-use capabilities. While previous works focused on either evaluating over stateless web services (RESTful API), based on a single turn user prompt, or an off-policy dialog trajectory, ToolSandbox includes stateful tool execution, implicit state dependencies between tools, a built-in user simulator supporting on-policy conversational evaluation and a dynamic evaluation strategy for intermediate and final milestones over an arbitrary trajectory. We show that open source and proprietary models have a significant performance gap, and complex tasks like State Dependency, Canonicalization and Insufficient Information defined in ToolSandbox are challenging even the most capable SOTA LLMs, providing brand-new insights into tool-use LLM capabilities. ToolSandbox evaluation framework is released at this https URL",
+      "summary": "A stateful, conversational benchmark for tool use. Relevant where the tutorial contrasts a single tool call with an interaction that depends on earlier state.",
+      "groups": [
+        "agents"
+      ],
+      "featured_rank": null,
+      "mentions": [
+        "ToolSandbox"
+      ],
+      "note": "arXiv id 2408.04682 is a 2024 submission. The reading checklist dates the paper 2025."
+    },
+    {
+      "id": "ruan-2024-toolemu",
+      "type": "paper",
+      "authors": [
+        "Yangjun Ruan",
+        "Honghua Dong",
+        "Andrew Wang",
+        "Silviu Pitis",
+        "Yongchao Zhou",
+        "Jimmy Ba",
+        "Yann Dubois",
+        "Chris J. Maddison",
+        "Tatsunori Hashimoto"
+      ],
+      "year": "2024",
+      "title": "Identifying the Risks of LM Agents with an LM-Emulated Sandbox",
+      "venue": "arXiv preprint arXiv:2309.15817.",
+      "url": "https://arxiv.org/abs/2309.15817",
+      "links": [
+        {
+          "label": "arXiv",
+          "href": "https://arxiv.org/abs/2309.15817"
+        },
+        {
+          "label": "PDF",
+          "href": "https://arxiv.org/pdf/2309.15817"
+        }
+      ],
+      "abstract": "Recent advances in Language Model (LM) agents and tool use, exemplified by applications like ChatGPT Plugins, enable a rich set of capabilities but also amplify potential risks - such as leaking private data or causing financial losses. Identifying these risks is labor-intensive, necessitating implementing the tools, setting up the environment for each test scenario manually, and finding risky cases. As tools and agents become more complex, the high cost of testing these agents will make it increasingly difficult to find high-stakes, long-tailed risks. To address these challenges, we introduce ToolEmu: a framework that uses an LM to emulate tool execution and enables the testing of LM agents against a diverse range of tools and scenarios, without manual instantiation. Alongside the emulator, we develop an LM-based automatic safety evaluator that examines agent failures and quantifies associated risks. We test both the tool emulator and evaluator through human evaluation and find that 68.8% of failures identified with ToolEmu would be valid real-world agent failures. Using our curated initial benchmark consisting of 36 high-stakes tools and 144 test cases, we provide a quantitative risk analysis of current LM agents and identify numerous failures with potentially severe outcomes. Notably, even the safest LM agent exhibits such failures 23.9% of the time according to our evaluator, underscoring the need to develop safer LM agents for real-world deployment.",
+      "summary": "Uses a language model to emulate tools so agent risks can be tested without live APIs. Connects Part 1 (risks, red-teaming) with the idea that the test harness is itself a model.",
+      "groups": [
+        "agents",
+        "reliability"
+      ],
+      "featured_rank": null,
+      "mentions": [
+        "ToolEmu"
+      ],
+      "note": "The arXiv submission is 2023 (2309.15817). The reading checklist dates it 2024."
+    },
+    {
+      "id": "liu-2024-agentbench",
+      "type": "paper",
+      "authors": [
+        "Xiao Liu",
+        "Hao Yu",
+        "Hanchen Zhang",
+        "Yifan Xu",
+        "Xuanyu Lei",
+        "Hanyu Lai",
+        "Yu Gu",
+        "Hangliang Ding",
+        "Kaiwen Men",
+        "Kejuan Yang",
+        "Shudan Zhang",
+        "Xiang Deng",
+        "Aohan Zeng",
+        "Zhengxiao Du",
+        "Chenhui Zhang",
+        "Sheng Shen",
+        "Tianjun Zhang",
+        "Yu Su",
+        "Huan Sun",
+        "Minlie Huang",
+        "Yuxiao Dong",
+        "Jie Tang"
+      ],
+      "year": "2024",
+      "title": "AgentBench: Evaluating LLMs as Agents",
+      "venue": "arXiv preprint arXiv:2308.03688.",
+      "url": "https://arxiv.org/abs/2308.03688",
+      "links": [
+        {
+          "label": "arXiv",
+          "href": "https://arxiv.org/abs/2308.03688"
+        },
+        {
+          "label": "PDF",
+          "href": "https://arxiv.org/pdf/2308.03688"
+        }
+      ],
+      "abstract": "The potential of Large Language Model (LLM) as agents has been widely acknowledged recently. Thus, there is an urgent need to quantitatively \\textit{evaluate LLMs as agents} on challenging tasks in interactive environments. We present AgentBench, a multi-dimensional benchmark that consists of 8 distinct environments to assess LLM-as-Agent's reasoning and decision-making abilities. Our extensive test over \\num API-based and open-sourced (OSS) LLMs shows that, while top commercial LLMs present a strong ability of acting as agents in complex environments, there is a significant disparity in performance between them and many OSS competitors that are no larger than 70B. We identify the typical reasons of failures in environments and LLMs, showing that poor long-term reasoning, decision-making, and instruction following abilities are the main obstacles for developing usable LLM agents. Improving instruction following and training on high quality multi-round alignment data could improve agent performance. And different from existing assumptions, training on code present ambivalent impacts on different agent tasks. Datasets, environments, and an integrated evaluation package for AgentBench are released at this https URL .",
+      "summary": "A multi-environment benchmark of LLMs as agents. Use it as an example of outcome-style agent eval, which Part 1 argues is not the whole measurement.",
+      "groups": [
+        "agents"
+      ],
+      "featured_rank": null,
+      "mentions": [
+        "AgentBench"
+      ],
+      "note": "arXiv id 2308.03688 is a 2023 submission. The reading checklist dates the paper 2024."
+    },
+    {
+      "id": "ma-2024-agentboard",
+      "type": "paper",
+      "authors": [
+        "Chang Ma",
+        "Junlei Zhang",
+        "Zhihao Zhu",
+        "Cheng Yang",
+        "Yujiu Yang",
+        "Yaohui Jin",
+        "Zhenzhong Lan",
+        "Lingpeng Kong",
+        "Junxian He"
+      ],
+      "year": "2024",
+      "title": "AgentBoard: An Analytical Evaluation Board of Multi-turn LLM Agents",
+      "venue": "arXiv preprint arXiv:2401.13178.",
+      "url": "https://arxiv.org/abs/2401.13178",
+      "links": [
+        {
+          "label": "arXiv",
+          "href": "https://arxiv.org/abs/2401.13178"
+        },
+        {
+          "label": "PDF",
+          "href": "https://arxiv.org/pdf/2401.13178"
+        }
+      ],
+      "abstract": "Evaluating Large Language Models (LLMs) as general-purpose agents is essential for understanding their capabilities and facilitating their integration into practical applications. However, the evaluation process presents substantial challenges. A primary obstacle is the benchmarking of agent performance across diverse scenarios within a unified framework, especially in maintaining partially-observable environments and ensuring multi-round interactions. Moreover, current evaluation frameworks mostly focus on the final success rate, revealing few insights during the process and failing to provide a deep understanding of the model abilities. To address these challenges, we introduce AgentBoard, a pioneering comprehensive benchmark and accompanied open-source evaluation framework tailored to analytical evaluation of LLM agents. AgentBoard offers a fine-grained progress rate metric that captures incremental advancements as well as a comprehensive evaluation toolkit that features easy assessment of agents for multi-faceted analysis. This not only sheds light on the capabilities and limitations of LLM agents but also propels the interpretability of their performance to the forefront. Ultimately, AgentBoard serves as a step towards demystifying agent behaviors and accelerating the development of stronger LLM agents.",
+      "summary": "An analysis board for multi-turn agents, not only a single score. Supports the Part 1 point that you want to see progress along a trajectory.",
+      "groups": [
+        "agents"
+      ],
+      "featured_rank": null,
+      "mentions": [
+        "AgentBoard"
+      ],
+      "note": null
+    },
+    {
+      "id": "mialon-2024-gaia",
+      "type": "paper",
+      "authors": [
+        "Grégoire Mialon",
+        "Clémentine Fourrier",
+        "Craig Swift",
+        "Thomas Wolf",
+        "Yann LeCun",
+        "Thomas Scialom"
+      ],
+      "year": "2024",
+      "title": "GAIA: a benchmark for General AI Assistants",
+      "venue": "arXiv preprint arXiv:2311.12983.",
+      "url": "https://arxiv.org/abs/2311.12983",
+      "links": [
+        {
+          "label": "arXiv",
+          "href": "https://arxiv.org/abs/2311.12983"
+        },
+        {
+          "label": "PDF",
+          "href": "https://arxiv.org/pdf/2311.12983"
+        }
+      ],
+      "abstract": "We introduce GAIA, a benchmark for General AI Assistants that, if solved, would represent a milestone in AI research. GAIA proposes real-world questions that require a set of fundamental abilities such as reasoning, multi-modality handling, web browsing, and generally tool-use proficiency. GAIA questions are conceptually simple for humans yet challenging for most advanced AIs: we show that human respondents obtain 92\\% vs. 15\\% for GPT-4 equipped with plugins. This notable performance disparity contrasts with the recent trend of LLMs outperforming humans on tasks requiring professional skills in e.g. law or chemistry. GAIA's philosophy departs from the current trend in AI benchmarks suggesting to target tasks that are ever more difficult for humans. We posit that the advent of Artificial General Intelligence (AGI) hinges on a system's capability to exhibit similar robustness as the average human does on such questions. Using GAIA's methodology, we devise 466 questions and their answer. We release our questions while retaining answers to 300 of them to power a leader-board available at this https URL .",
+      "summary": "A benchmark of questions that need tools and several steps, scored mostly on the final answer. A clear example of the outcome-only eval Part 1 says is not enough for agents.",
+      "groups": [
+        "agents"
+      ],
+      "featured_rank": null,
+      "mentions": [
+        "GAIA"
+      ],
+      "note": null
+    },
+    {
+      "id": "kapoor-2024-agents-that-matter",
+      "type": "paper",
+      "authors": [
+        "Sayash Kapoor",
+        "Benedikt Stroebl",
+        "Zachary S. Siegel",
+        "Nitya Nadgir",
+        "Arvind Narayanan"
+      ],
+      "year": "2024",
+      "title": "AI Agents That Matter",
+      "venue": "arXiv preprint arXiv:2407.01502.",
+      "url": "https://arxiv.org/abs/2407.01502",
+      "links": [
+        {
+          "label": "arXiv",
+          "href": "https://arxiv.org/abs/2407.01502"
+        },
+        {
+          "label": "PDF",
+          "href": "https://arxiv.org/pdf/2407.01502"
+        }
+      ],
+      "abstract": "AI agents are an exciting new research direction, and agent development is driven by benchmarks. Our analysis of current agent benchmarks and evaluation practices reveals several shortcomings that hinder their usefulness in real-world applications. First, there is a narrow focus on accuracy without attention to other metrics. As a result, SOTA agents are needlessly complex and costly, and the community has reached mistaken conclusions about the sources of accuracy gains. Our focus on cost in addition to accuracy motivates the new goal of jointly optimizing the two metrics. We design and implement one such optimization, showing its potential to greatly reduce cost while maintaining accuracy. Second, the benchmarking needs of model and downstream developers have been conflated, making it hard to identify which agent would be best suited for a particular application. Third, many agent benchmarks have inadequate holdout sets, and sometimes none at all. This has led to agents that are fragile because they take shortcuts and overfit to the benchmark in various ways. We prescribe a principled framework for avoiding overfitting. Finally, there is a lack of standardization in evaluation practices, leading to a pervasive lack of reproducibility. We hope that the steps we introduce for addressing these shortcomings will spur the development of agents that are useful in the real world and not just accurate on benchmarks.",
+      "summary": "Argues that many agent benchmarks overstate capability because of cost, shortcuts, and evaluation design. Directly useful in Part 1 and Part 4 when discussing whether a number on a leaderboard is a real eval.",
+      "groups": [
+        "agents",
+        "reliability"
+      ],
+      "featured_rank": null,
+      "mentions": [
+        "AI Agents That Matter"
+      ],
+      "note": null
+    },
+    {
+      "id": "xia-2025-eddops",
+      "type": "paper",
+      "authors": [
+        "Boming Xia",
+        "Qinghua Lu",
+        "Liming Zhu",
+        "Zhenchang Xing",
+        "Dehai Zhao",
+        "Hao Zhang"
+      ],
+      "year": "2025",
+      "title": "Evaluation-Driven Development and Operations of LLM Agents: A Process Model and Reference Architecture",
+      "venue": "arXiv preprint arXiv:2411.13768.",
+      "url": "https://arxiv.org/abs/2411.13768",
+      "links": [
+        {
+          "label": "arXiv",
+          "href": "https://arxiv.org/abs/2411.13768"
+        },
+        {
+          "label": "PDF",
+          "href": "https://arxiv.org/pdf/2411.13768"
+        }
+      ],
+      "abstract": "Large Language Models (LLMs) have enabled the emergence of LLM agents, systems capable of pursuing under-specified goals and adapting after deployment. Evaluating such agents is challenging because their behavior is open ended, probabilistic, and shaped by system-level interactions over time. Traditional evaluation methods, built around fixed benchmarks and static test suites, fail to capture emergent behaviors or support continuous adaptation across the lifecycle. To ground a more systematic approach, we conduct a multivocal literature review (MLR) synthesizing academic and industrial evaluation practices. The findings directly inform two empirically derived artifacts: a process model and a reference architecture that embed evaluation as a continuous, governing function rather than a terminal checkpoint. Together they constitute the evaluation-driven development and operations (EDDOps) approach, which unifies offline (development-time) and online (runtime) evaluation within a closed feedback loop. By making evaluation evidence drive both runtime adaptation and governed redevelopment, EDDOps supports safer, more traceable evolution of LLM agents aligned with changing objectives, user needs, and governance constraints.",
+      "summary": "Proposes a process and a reference architecture where offline and online evaluation drive how an agent is changed. This is the industry lifecycle on the Part 1 agenda: datasets, versioning, and monitoring, not a single test run.",
+      "groups": [
+        "lifecycle"
+      ],
+      "featured_rank": null,
+      "mentions": [
+        "Evaluation-Driven Development"
+      ],
+      "note": "arXiv submission 2024, revised through 2025. The checklist writes 2024–2025."
+    },
+    {
+      "id": "dong-2024-agentops",
+      "type": "paper",
+      "authors": [
+        "Liming Dong",
+        "Qinghua Lu",
+        "Liming Zhu"
+      ],
+      "year": "2024",
+      "title": "AgentOps: Enabling Observability of LLM Agents",
+      "venue": "arXiv preprint arXiv:2411.05285.",
+      "url": "https://arxiv.org/abs/2411.05285",
+      "links": [
+        {
+          "label": "arXiv",
+          "href": "https://arxiv.org/abs/2411.05285"
+        },
+        {
+          "label": "PDF",
+          "href": "https://arxiv.org/pdf/2411.05285"
+        }
+      ],
+      "abstract": "Large language model (LLM) agents have demonstrated remarkable capabilities across various domains, gaining extensive attention from academia and industry. However, these agents raise significant concerns on AI safety due to their autonomous and non-deterministic behavior, as well as continuous evolving nature . From a DevOps perspective, enabling observability in agents is necessary to ensuring AI safety, as stakeholders can gain insights into the agents' inner workings, allowing them to proactively understand the agents, detect anomalies, and prevent potential failures. Therefore, in this paper, we present a comprehensive taxonomy of AgentOps, identifying the artifacts and associated data that should be traced throughout the entire lifecycle of agents to achieve effective observability. The taxonomy is developed based on a systematic mapping study of existing AgentOps tools. Our taxonomy serves as a reference template for developers to design and implement AgentOps infrastructure that supports monitoring, logging, and analytics. thereby ensuring AI safety.",
+      "summary": "A taxonomy of what to trace across an agent’s life so someone can see what it did. Matches the Part 1 observability slide: monitoring, reporting, and kill switches need a trace.",
+      "groups": [
+        "lifecycle"
+      ],
+      "featured_rank": null,
+      "mentions": [
+        "AgentOps"
+      ],
+      "note": null
+    },
+    {
+      "id": "shankar-2024-validators",
+      "type": "paper",
+      "authors": [
+        "Shreya Shankar",
+        "J.D. Zamfirescu-Pereira",
+        "Björn Hartmann",
+        "Aditya G. Parameswaran",
+        "Ian Arawjo"
+      ],
+      "year": "2024",
+      "title": "Who Validates the Validators? Aligning LLM-Assisted Evaluation of LLM Outputs with Human Preferences",
+      "venue": "arXiv preprint arXiv:2404.12272.",
+      "url": "https://arxiv.org/abs/2404.12272",
+      "links": [
+        {
+          "label": "arXiv",
+          "href": "https://arxiv.org/abs/2404.12272"
+        },
+        {
+          "label": "PDF",
+          "href": "https://arxiv.org/pdf/2404.12272"
+        }
+      ],
+      "abstract": "Due to the cumbersome nature of human evaluation and limitations of code-based evaluation, Large Language Models (LLMs) are increasingly being used to assist humans in evaluating LLM outputs. Yet LLM-generated evaluators simply inherit all the problems of the LLMs they evaluate, requiring further human validation. We present a mixed-initiative approach to ``validate the validators'' -- aligning LLM-generated evaluation functions (be it prompts or code) with human requirements. Our interface, EvalGen, provides automated assistance to users in generating evaluation criteria and implementing assertions. While generating candidate implementations (Python functions, LLM grader prompts), EvalGen asks humans to grade a subset of LLM outputs; this feedback is used to select implementations that better align with user grades. A qualitative study finds overall support for EvalGen but underscores the subjectivity and iterative process of alignment. In particular, we identify a phenomenon we dub \\emph{criteria drift}: users need criteria to grade outputs, but grading outputs helps users define criteria. What is more, some criteria appears \\emph{dependent} on the specific LLM outputs observed (rather than independent criteria that can be defined \\emph{a priori}), raising serious questions for approaches that assume the independence of evaluation from observation of model outputs. We present our interface and implementation details, a comparison of our algorithm with a baseline approach, and implications for the design of future LLM evaluation assistants.",
+      "summary": "Studies how to align a model-based evaluator with human preferences, including who checks the checker. Core Part 2 and Part 4 material: a judge is not self-justifying.",
+      "groups": [
+        "lifecycle",
+        "judges"
+      ],
+      "featured_rank": null,
+      "mentions": [
+        "Who Validates the Validators"
+      ],
+      "note": null
+    },
+    {
+      "id": "parnin-2023-product-copilot",
+      "type": "paper",
+      "authors": [
+        "Chris Parnin",
+        "Gustavo Soares",
+        "Rahul Pandita",
+        "Sumit Gulwani",
+        "Jessica Rich",
+        "Austin Z. Henley"
+      ],
+      "year": "2023",
+      "title": "Building Your Own Product Copilot: Challenges, Opportunities, and Needs",
+      "venue": "arXiv preprint arXiv:2312.14231.",
+      "url": "https://arxiv.org/abs/2312.14231",
+      "links": [
+        {
+          "label": "arXiv",
+          "href": "https://arxiv.org/abs/2312.14231"
+        },
+        {
+          "label": "PDF",
+          "href": "https://arxiv.org/pdf/2312.14231"
+        }
+      ],
+      "abstract": "A race is underway to embed advanced AI capabilities into products. These product copilots enable users to ask questions in natural language and receive relevant responses that are specific to the user's context. In fact, virtually every large technology company is looking to add these capabilities to their software products. However, for most software engineers, this is often their first encounter with integrating AI-powered technology. Furthermore, software engineering processes and tools have not caught up with the challenges and scale involved with building AI-powered applications. In this work, we present the findings of an interview study with 26 professional software engineers responsible for building product copilots at various companies. From our interviews, we found pain points at every step of the engineering process and the challenges that strained existing development practices. We then conducted group brainstorming sessions to collaborative on opportunities and tool designs for the broader software engineering community.",
+      "summary": "Field study of teams building product copilots, including what evaluation support they lack. Grounds the Part 1 claim that evals are an engineering workflow, not only a paper benchmark.",
+      "groups": [
+        "lifecycle"
+      ],
+      "featured_rank": null,
+      "mentions": [],
+      "note": null
+    },
+    {
+      "id": "zheng-2023-mt-bench",
+      "type": "paper",
+      "authors": [
+        "Lianmin Zheng",
+        "Wei-Lin Chiang",
+        "Ying Sheng",
+        "Siyuan Zhuang",
+        "Zhanghao Wu",
+        "Yonghao Zhuang",
+        "Zi Lin",
+        "Zhuohan Li",
+        "Dacheng Li",
+        "Eric P. Xing",
+        "Hao Zhang",
+        "Joseph E. Gonzalez",
+        "Ion Stoica"
+      ],
+      "year": "2023",
+      "title": "Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena",
+      "venue": "arXiv preprint arXiv:2306.05685.",
+      "url": "https://arxiv.org/abs/2306.05685",
+      "links": [
+        {
+          "label": "arXiv",
+          "href": "https://arxiv.org/abs/2306.05685"
+        },
+        {
+          "label": "PDF",
+          "href": "https://arxiv.org/pdf/2306.05685"
+        }
+      ],
+      "abstract": "Evaluating large language model (LLM) based chat assistants is challenging due to their broad capabilities and the inadequacy of existing benchmarks in measuring human preferences. To address this, we explore using strong LLMs as judges to evaluate these models on more open-ended questions. We examine the usage and limitations of LLM-as-a-judge, including position, verbosity, and self-enhancement biases, as well as limited reasoning ability, and propose solutions to mitigate some of them. We then verify the agreement between LLM judges and human preferences by introducing two benchmarks: MT-bench, a multi-turn question set; and Chatbot Arena, a crowdsourced battle platform. Our results reveal that strong LLM judges like GPT-4 can match both controlled and crowdsourced human preferences well, achieving over 80% agreement, the same level of agreement between humans. Hence, LLM-as-a-judge is a scalable and explainable way to approximate human preferences, which are otherwise very expensive to obtain. Additionally, we show our benchmark and traditional benchmarks complement each other by evaluating several variants of LLaMA and Vicuna. The MT-bench questions, 3K expert votes, and 30K conversations with human preferences are publicly available at this https URL .",
+      "summary": "The paper that established LLM-as-a-judge against human preferences on MT-Bench and arena votes. Cited from the Part 1 metrics slide and the Part 2 source list as the basic method the tutorial then complicates.",
+      "groups": [
+        "judges"
+      ],
+      "featured_rank": null,
+      "mentions": [
+        "MT-Bench",
+        "Chatbot Arena"
+      ],
+      "note": null
+    },
+    {
+      "id": "liu-2023-geval",
+      "type": "paper",
+      "authors": [
+        "Yang Liu",
+        "Dan Iter",
+        "Yichong Xu",
+        "Shuohang Wang",
+        "Ruochen Xu",
+        "Chenguang Zhu"
+      ],
+      "year": "2023",
+      "title": "G-Eval: NLG Evaluation using GPT-4 with Better Human Alignment",
+      "venue": "arXiv preprint arXiv:2303.16634.",
+      "url": "https://arxiv.org/abs/2303.16634",
+      "links": [
+        {
+          "label": "arXiv",
+          "href": "https://arxiv.org/abs/2303.16634"
+        },
+        {
+          "label": "PDF",
+          "href": "https://arxiv.org/pdf/2303.16634"
+        }
+      ],
+      "abstract": "The quality of texts generated by natural language generation (NLG) systems is hard to measure automatically. Conventional reference-based metrics, such as BLEU and ROUGE, have been shown to have relatively low correlation with human judgments, especially for tasks that require creativity and diversity. Recent studies suggest using large language models (LLMs) as reference-free metrics for NLG evaluation, which have the benefit of being applicable to new tasks that lack human references. However, these LLM-based evaluators still have lower human correspondence than medium-size neural evaluators. In this work, we present G-Eval, a framework of using large language models with chain-of-thoughts (CoT) and a form-filling paradigm, to assess the quality of NLG outputs. We experiment with two generation tasks, text summarization and dialogue generation. We show that G-Eval with GPT-4 as the backbone model achieves a Spearman correlation of 0.514 with human on summarization task, outperforming all previous methods by a large margin. We also propose preliminary analysis on the behavior of LLM-based evaluators, and highlight the potential issue of LLM-based evaluators having a bias towards the LLM-generated texts. The code is at this https URL",
+      "summary": "A judge that applies a form-filling rubric with a chain of thought. A concrete Part 2 pattern for the hands-on prompt: criteria, steps, then a score.",
+      "groups": [
+        "judges"
+      ],
+      "featured_rank": null,
+      "mentions": [
+        "G-Eval"
+      ],
+      "note": null
+    },
+    {
+      "id": "kim-2024-prometheus",
+      "type": "paper",
+      "authors": [
+        "Seungone Kim",
+        "Jamin Shin",
+        "Yejin Cho",
+        "Joel Jang",
+        "Shayne Longpre",
+        "Hwaran Lee",
+        "Sangdoo Yun",
+        "Seongjin Shin",
+        "Sungdong Kim",
+        "James Thorne",
+        "Minjoon Seo"
+      ],
+      "year": "2024",
+      "title": "Prometheus: Inducing Fine-grained Evaluation Capability in Language Models",
+      "venue": "arXiv preprint arXiv:2310.08491.",
+      "url": "https://arxiv.org/abs/2310.08491",
+      "links": [
+        {
+          "label": "arXiv",
+          "href": "https://arxiv.org/abs/2310.08491"
+        },
+        {
+          "label": "PDF",
+          "href": "https://arxiv.org/pdf/2310.08491"
+        }
+      ],
+      "abstract": "Recently, using a powerful proprietary Large Language Model (LLM) (e.g., GPT-4) as an evaluator for long-form responses has become the de facto standard. However, for practitioners with large-scale evaluation tasks and custom criteria in consideration (e.g., child-readability), using proprietary LLMs as an evaluator is unreliable due to the closed-source nature, uncontrolled versioning, and prohibitive costs. In this work, we propose Prometheus, a fully open-source LLM that is on par with GPT-4's evaluation capabilities when the appropriate reference materials (reference answer, score rubric) are accompanied. We first construct the Feedback Collection, a new dataset that consists of 1K fine-grained score rubrics, 20K instructions, and 100K responses and language feedback generated by GPT-4. Using the Feedback Collection, we train Prometheus, a 13B evaluator LLM that can assess any given long-form text based on customized score rubric provided by the user. Experimental results show that Prometheus scores a Pearson correlation of 0.897 with human evaluators when evaluating with 45 customized score rubrics, which is on par with GPT-4 (0.882), and greatly outperforms ChatGPT (0.392). Furthermore, measuring correlation with GPT-4 with 1222 customized score rubrics across four benchmarks (MT Bench, Vicuna Bench, Feedback Bench, Flask Eval) shows similar trends, bolstering Prometheus's capability as an evaluator LLM. Lastly, Prometheus achieves the highest accuracy on two human preference benchmarks (HHH Alignment & MT Bench Human Judgment) compared to open-sourced reward models explicitly trained on human preference datasets, highlighting its potential as an universal reward model. We open-source our code, dataset, and model at this https URL .",
+      "summary": "Trains an open evaluator against a fine-grained rubric. Relevant in Part 2 when discussing whether the judge is a prompted general model or a model built to score.",
+      "groups": [
+        "judges"
+      ],
+      "featured_rank": null,
+      "mentions": [
+        "Prometheus"
+      ],
+      "note": "arXiv submission 2023 (2310.08491). The reading checklist dates Prometheus 2024."
+    },
+    {
+      "id": "kim-2024-prometheus-2",
+      "type": "paper",
+      "authors": [
+        "Seungone Kim",
+        "Juyoung Suk",
+        "Shayne Longpre",
+        "Bill Yuchen Lin",
+        "Jamin Shin",
+        "Sean Welleck",
+        "Graham Neubig",
+        "Moontae Lee",
+        "Kyungjae Lee",
+        "Minjoon Seo"
+      ],
+      "year": "2024",
+      "title": "Prometheus 2: An Open Source Language Model Specialized in Evaluating Other Language Models",
+      "venue": "arXiv preprint arXiv:2405.01535.",
+      "url": "https://arxiv.org/abs/2405.01535",
+      "links": [
+        {
+          "label": "arXiv",
+          "href": "https://arxiv.org/abs/2405.01535"
+        },
+        {
+          "label": "PDF",
+          "href": "https://arxiv.org/pdf/2405.01535"
+        }
+      ],
+      "abstract": "Proprietary LMs such as GPT-4 are often employed to assess the quality of responses from various LMs. However, concerns including transparency, controllability, and affordability strongly motivate the development of open-source LMs specialized in evaluations. On the other hand, existing open evaluator LMs exhibit critical shortcomings: 1) they issue scores that significantly diverge from those assigned by humans, and 2) they lack the flexibility to perform both direct assessment and pairwise ranking, the two most prevalent forms of assessment. Additionally, they do not possess the ability to evaluate based on custom evaluation criteria, focusing instead on general attributes like helpfulness and harmlessness. To address these issues, we introduce Prometheus 2, a more powerful evaluator LM than its predecessor that closely mirrors human and GPT-4 judgements. Moreover, it is capable of processing both direct assessment and pair-wise ranking formats grouped with a user-defined evaluation criteria. On four direct assessment benchmarks and four pairwise ranking benchmarks, Prometheus 2 scores the highest correlation and agreement with humans and proprietary LM judges among all tested open evaluator LMs. Our models, code, and data are all publicly available at this https URL .",
+      "summary": "A follow-on open evaluator aimed at finer, more transferable scores. Same Part 2 use as Prometheus: rubrics can be compiled into a model, not only pasted into a prompt.",
+      "groups": [
+        "judges"
+      ],
+      "featured_rank": null,
+      "mentions": [
+        "Prometheus 2"
+      ],
+      "note": null
+    },
+    {
+      "id": "arora-2025-healthbench",
+      "type": "paper",
+      "authors": [
+        "Rahul K. Arora",
+        "Jason Wei",
+        "Rebecca Soskin Hicks",
+        "Preston Bowman",
+        "Joaquin Quiñonero-Candela",
+        "Foivos Tsimpourlas",
+        "Michael Sharman",
+        "Meghan Shah",
+        "Andrea Vallone",
+        "Alex Beutel",
+        "Johannes Heidecke",
+        "Karan Singhal"
+      ],
+      "year": "2025",
+      "title": "HealthBench: Evaluating Large Language Models Towards Improved Human Health",
+      "venue": "arXiv preprint arXiv:2505.08775.",
+      "url": "https://arxiv.org/abs/2505.08775",
+      "links": [
+        {
+          "label": "arXiv",
+          "href": "https://arxiv.org/abs/2505.08775"
+        },
+        {
+          "label": "PDF",
+          "href": "https://arxiv.org/pdf/2505.08775"
+        }
+      ],
+      "abstract": "We present HealthBench, an open-source benchmark measuring the performance and safety of large language models in healthcare. HealthBench consists of 5,000 multi-turn conversations between a model and an individual user or healthcare professional. Responses are evaluated using conversation-specific rubrics created by 262 physicians. Unlike previous multiple-choice or short-answer benchmarks, HealthBench enables realistic, open-ended evaluation through 48,562 unique rubric criteria spanning several health contexts (e.g., emergencies, transforming clinical data, global health) and behavioral dimensions (e.g., accuracy, instruction following, communication). HealthBench performance over the last two years reflects steady initial progress (compare GPT-3.5 Turbo's 16% to GPT-4o's 32%) and more rapid recent improvements (o3 scores 60%). Smaller models have especially improved: GPT-4.1 nano outperforms GPT-4o and is 25 times cheaper. We additionally release two HealthBench variations: HealthBench Consensus, which includes 34 particularly important dimensions of model behavior validated via physician consensus, and HealthBench Hard, where the current top score is 32%. We hope that HealthBench grounds progress towards model development and applications that benefit human health.",
+      "summary": "A health benchmark that scores model behaviour with physician-written rubrics. A high-stakes example of the rubric-then-judge pattern Part 2 teaches, and of why Part 4 does not trust an ungrounded judge on expert tasks.",
+      "groups": [
+        "judges"
+      ],
+      "featured_rank": null,
+      "mentions": [
+        "HealthBench"
+      ],
+      "note": null
+    },
+    {
+      "id": "siro-2026-learning-to-judge",
+      "type": "paper",
+      "authors": [
+        "Clemencia Siro",
+        "Pourya Aliannejadi",
+        "Mohammad Aliannejadi"
+      ],
+      "year": "2026",
+      "title": "Learning to Judge: LLMs Designing and Applying Evaluation Rubrics",
+      "venue": "Findings of the Association for Computational Linguistics: EACL 2026. arXiv preprint arXiv:2602.08672.",
+      "url": "https://arxiv.org/abs/2602.08672",
+      "links": [
+        {
+          "label": "arXiv",
+          "href": "https://arxiv.org/abs/2602.08672"
+        },
+        {
+          "label": "PDF",
+          "href": "https://arxiv.org/pdf/2602.08672"
+        },
+        {
+          "label": "Code",
+          "href": "https://github.com/Clemenciah/llm-generated-rubrics"
+        }
+      ],
+      "abstract": "Large language models (LLMs) are increasingly used as evaluators for natural language generation, applying human-defined rubrics to assess system outputs. However, human rubrics are often static and misaligned with how models internally represent language quality. We introduce GER-Eval (Generating Evaluation Rubrics for Evaluation) to investigate whether LLMs can design and apply their own evaluation rubrics. We evaluate the semantic coherence and scoring reliability of LLM-defined criteria and their alignment with human criteria. LLMs reliably generate interpretable and task-aware evaluation dimensions and apply them consistently within models, but their scoring reliability degrades in factual and knowledge-intensive settings. Closed-source models such as GPT-4o achieve higher agreement and cross-model generalization than open-weight models such as Llama. Our findings position evaluation as a learned linguistic capability of LLMs, consistent within models but fragmented across them, and call for new methods that jointly model human and LLM evaluative language to improve reliability and interpretability.",
+      "summary": "Asks whether a model can write its own rubric and then apply it. Directly relevant to Part 2 and the hands-on: the rubric is part of the measurement, and a model-written rubric can look coherent while scoring facts badly.",
+      "groups": [
+        "judges"
+      ],
+      "featured_rank": null,
+      "mentions": [],
+      "note": null
+    },
+    {
+      "id": "hong-2026-rulers",
+      "type": "paper",
+      "authors": [
+        "Yihan Hong",
+        "Huaiyuan Yao",
+        "Bolin Shen",
+        "Wanpeng Xu",
+        "Hua Wei",
+        "Yushun Dong"
+      ],
+      "year": "2026",
+      "title": "From Rubrics to Reliable Scores: Evidence-Grounded Text Evaluation with LLM Judges",
+      "venue": "arXiv preprint arXiv:2601.08654.",
+      "url": "https://arxiv.org/abs/2601.08654",
+      "links": [
+        {
+          "label": "arXiv",
+          "href": "https://arxiv.org/abs/2601.08654"
+        },
+        {
+          "label": "PDF",
+          "href": "https://arxiv.org/pdf/2601.08654"
+        }
+      ],
+      "abstract": "Rubric-based text evaluation increasingly relies on large language models (LLMs) as scalable judges, yet frozen black-box models can interpret the same criteria inconsistently, produce score attributions that are difficult to audit, and map judgments poorly onto human scoring scales. We define this challenge as criteria transfer: translating human rubric intent into a stable, auditable inference-time scoring protocol. We introduce Rulers, which locks a task-level rubric specification, executes it through structured, evidence-grounded judgments, and calibrates the resulting signals to human score boundaries. Across four rubric-governed benchmarks and multiple frozen backbone models, Rulers achieves stronger agreement with human scores in most evaluated settings, while better matching empirical score distributions and remaining more stable under semantically equivalent rubric perturbations. Calibration controls and component ablations show that these gains cannot be attributed to post-hoc alignment alone, but depend on the combination of fixed criteria, traceable evidence, and calibrated score interpretation. These findings suggest that reliable LLM judging requires faithfully operationalizing human evaluation standards rather than relying on prompt-level scoring alone. Our code is available at this https URL .",
+      "summary": "Treats a rubric as something to lock and check against evidence, instead of re-interpreting it on every judge call. Part 2 and Part 4: a vague rubric is a different measurement every time the judge runs.",
+      "groups": [
+        "judges"
+      ],
+      "featured_rank": null,
+      "mentions": [
+        "RULERS",
+        "Rulers"
+      ],
+      "note": "The reading checklist titles this RULERS: Locked Rubrics and Evidence-Anchored Scoring for Robust LLM Evaluation. The current arXiv page uses the title stored here. Same authors (Hong et al.)."
+    },
+    {
+      "id": "roy-2026-premise",
+      "type": "paper",
+      "authors": [
+        "Swastik Roy",
+        "Rajkumar Pujari",
+        "Tharindu Kumarage",
+        "Charith Peris",
+        "Rahul Gupta",
+        "Anna Rumshisky",
+        "Pradeep Natarajan",
+        "Venkatesh Saligrama"
+      ],
+      "year": "2026",
+      "title": "PReMISE: Policy Rubrics as Measurement Specifications for LLM Judges",
+      "venue": "arXiv preprint arXiv:2605.30803.",
+      "url": "https://arxiv.org/abs/2605.30803",
+      "links": [
+        {
+          "label": "arXiv",
+          "href": "https://arxiv.org/abs/2605.30803"
+        },
+        {
+          "label": "PDF",
+          "href": "https://arxiv.org/pdf/2605.30803"
+        }
+      ],
+      "abstract": "LLM judges are increasingly used to evaluate open-ended responses, but their scores depend strongly on the rubrics that condition them. A vague rubric asking for a response to be ``helpful and factual'' can reward polished answers that invent facts or violate user intent. We treat reusable rubrics as measurement specifications: changing the rubric changes the response quality measurement induced by a fixed judge. We introduce PReMISE, a framework that, given pairwise human-preference data, (i) discovers a policy-level rubric set, and (ii) audits any rubric set under LLM-judge use along four axes: structural adequacy, reliability, preference fit, and adversarial robustness. Across rubric sources no raw source is simultaneously reliable, preference-predictive, and adversarially robust; and high inter-rater agreement does not imply low exploitability. PReMISE is the only rubric source to score non-trivially on applicability, specificity, and effective dimensionality simultaneously. We contribute two audit-targeted repair operations: preference-rank selection raises judge accuracy on paired responses from $65.0\\%$ to $68.6\\%$, competitive with the strongest rubric-discovery baselines and leading on two of three judges in our cross-judge sweep; reliability-constrained refinement reduces the rate at which exploit responses receive high scores from $46.4\\%$ to $36.0\\%$ with little change in inter-judge agreement ($\\alpha{=}.531\\to.519$).",
+      "summary": "Audits rubrics as measurement specifications: reliability, fit to preferences, and whether a judge can be gamed. This is the Part 4 warning that high agreement does not mean the rubric measures what you think.",
+      "groups": [
+        "judges"
+      ],
+      "featured_rank": null,
+      "mentions": [
+        "PReMISE"
+      ],
+      "note": null
+    },
+    {
+      "id": "zhuge-2025-agent-as-judge",
+      "type": "paper",
+      "authors": [
+        "Mingchen Zhuge",
+        "Changsheng Zhao",
+        "Dylan Ashley",
+        "Wenyi Wang",
+        "Dmitrii Khizbullin",
+        "Yunyang Xiong",
+        "Zechun Liu",
+        "Ernie Chang",
+        "Raghuraman Krishnamoorthi",
+        "Yuandong Tian",
+        "Yangyang Shi",
+        "Vikas Chandra",
+        "Jürgen Schmidhuber"
+      ],
+      "year": "2025",
+      "title": "Agent-as-a-Judge: Evaluate Agents with Agents",
+      "venue": "In Proceedings of the 42nd International Conference on Machine Learning. arXiv preprint arXiv:2410.10934.",
+      "url": "https://arxiv.org/abs/2410.10934",
+      "links": [
+        {
+          "label": "arXiv",
+          "href": "https://arxiv.org/abs/2410.10934"
+        },
+        {
+          "label": "PDF",
+          "href": "https://arxiv.org/pdf/2410.10934"
+        },
+        {
+          "label": "Code",
+          "href": "https://github.com/metauto-ai/agent-as-a-judge"
+        }
+      ],
+      "abstract": "Contemporary evaluation techniques are inadequate for agentic systems. These approaches either focus exclusively on final outcomes -- ignoring the step-by-step nature of agentic systems, or require excessive manual labour. To address this, we introduce the Agent-as-a-Judge framework, wherein agentic systems are used to evaluate agentic systems. This is an organic extension of the LLM-as-a-Judge framework, incorporating agentic features that enable intermediate feedback for the entire task-solving process. We apply the Agent-as-a-Judge to the task of code generation. To overcome issues with existing benchmarks and provide a proof-of-concept testbed for Agent-as-a-Judge, we present DevAI, a new benchmark of 55 realistic automated AI development tasks. It includes rich manual annotations, like a total of 365 hierarchical user requirements. We benchmark three of the popular agentic systems using Agent-as-a-Judge and find it dramatically outperforms LLM-as-a-Judge and is as reliable as our human evaluation baseline. Altogether, we believe that Agent-as-a-Judge marks a concrete step forward for modern agentic systems -- by providing rich and reliable reward signals necessary for dynamic and scalable self-improvement.",
+      "summary": "Uses an agent to judge another agent’s steps, not only the final artifact. Cited from Part 4. It is the research version of the industry posts on the primary list.",
+      "groups": [
+        "trajectories",
+        "judges"
+      ],
+      "featured_rank": null,
+      "mentions": [
+        "Agent-as-a-Judge"
+      ],
+      "note": null
+    },
+    {
+      "id": "lu-2025-agentrewardbench",
+      "type": "paper",
+      "authors": [
+        "Xing Han Lù",
+        "Amirhossein Kazemnejad",
+        "Nicholas Meade",
+        "Arkil Patel",
+        "Dongchan Shin",
+        "Alejandra Zambrano",
+        "Karolina Stańczak",
+        "Peter Shaw",
+        "Christopher J. Pal",
+        "Siva Reddy"
+      ],
+      "year": "2025",
+      "title": "AgentRewardBench: Evaluating Automatic Evaluations of Web Agent Trajectories",
+      "venue": "arXiv preprint arXiv:2504.08942.",
+      "url": "https://arxiv.org/abs/2504.08942",
+      "links": [
+        {
+          "label": "arXiv",
+          "href": "https://arxiv.org/abs/2504.08942"
+        },
+        {
+          "label": "PDF",
+          "href": "https://arxiv.org/pdf/2504.08942"
+        }
+      ],
+      "abstract": "Web agents enable users to perform tasks on web browsers through natural language interaction. Evaluating web agents trajectories is an important problem, since it helps us determine whether the agent successfully completed the tasks. Rule-based methods are widely used for this purpose, but they are challenging to extend to new tasks and may not always recognize successful trajectories. We may achieve higher accuracy through human evaluation, but the process would be substantially slower and more expensive. Automatic evaluations with LLMs may avoid the challenges of designing new rules and manually annotating trajectories, enabling faster and cost-effective evaluation. However, it is unclear how effective they are at evaluating web agents. To this end, we propose AgentRewardBench, the first benchmark to assess the effectiveness of LLM judges for evaluating web agents. AgentRewardBench contains 1302 trajectories across 5 benchmarks and 4 LLMs. Each trajectory in AgentRewardBench is reviewed by an expert, who answers questions pertaining to the success, side effects, and repetitiveness of the agent. Using our benchmark, we evaluate 12 LLM judges and find that no single LLM excels across all benchmarks. We also find that the rule-based evaluation used by common benchmarks tends to underreport the success rate of web agents, highlighting a key weakness of rule-based evaluation and the need to develop more flexible automatic evaluations. We release the benchmark at: this https URL",
+      "summary": "A benchmark of whether automatic judges agree with experts on web-agent trajectories, including side effects and repetition. Part 4: outcome rules and LLM judges miss different failures.",
+      "groups": [
+        "trajectories"
+      ],
+      "featured_rank": null,
+      "mentions": [
+        "AgentRewardBench"
+      ],
+      "note": null
+    },
+    {
+      "id": "verma-2026-agentjudgebench",
+      "type": "paper",
+      "year": "2026",
+      "groups": [
+        "trajectories"
+      ],
+      "title": "AgentJudgeBench: A Multi-Difficulty Benchmark for Evaluating LLM Judges on Agentic Tool-Calling",
+      "authors": [],
+      "note": "The reading checklist credits Verma et al. (2026). Given names, a URL, and an abstract were not verified for this draft.",
+      "summary": "Checklist item on judging tool calls at more than one difficulty. Relevant to Part 3, where tool choice and arguments are part of the grade. Confirm the citation before relying on it.",
+      "mentions": [],
+      "featured_rank": null,
+      "links": [],
+      "abstract": null,
+      "author_label": "Verma et al."
+    },
+    {
+      "id": "benchmarking-the-benchmarks-2026",
+      "type": "paper",
+      "year": "2026",
+      "groups": [
+        "trajectories",
+        "reliability"
+      ],
+      "title": "Benchmarking the Benchmarks: A Validity Audit of Tool-Calling Evaluation",
+      "note": "The reading checklist names no authors and no URL. Not verified beyond that line.",
+      "summary": "Checklist item: an audit of whether tool-calling benchmarks measure what they claim. Included for completeness. No abstract was retrieved.",
+      "mentions": [],
+      "featured_rank": null,
+      "links": [],
+      "abstract": null,
+      "authors": []
+    },
+    {
+      "id": "trajectory-judge-2026",
+      "type": "paper",
+      "year": "2026",
+      "groups": [
+        "trajectories"
+      ],
+      "title": "trajectory-judge: What Outcome-Only LLM Judges Miss on Agent Trajectories",
+      "note": "The reading checklist names no authors and no URL. Not verified beyond that line.",
+      "summary": "Checklist item whose title states the tutorial’s Part 1 claim: a judge that sees only the final answer misses trajectory errors. No abstract was retrieved.",
+      "mentions": [],
+      "featured_rank": null,
+      "links": [],
+      "abstract": null,
+      "authors": []
+    },
+    {
+      "id": "pisupati-2026-counsel",
+      "type": "paper",
+      "authors": [
+        "Sashank Pisupati",
+        "Henry Broomfield",
+        "Eujeong Choi",
+        "Antonia Calvi",
+        "Charlie Wang",
+        "Roman Engeler",
+        "Max Bartolo",
+        "Patrick Lewis"
+      ],
+      "year": "2026",
+      "title": "Counsel: A Meta-Evaluation Dataset for Agentic Tasks",
+      "venue": "arXiv preprint arXiv:2606.21627.",
+      "url": "https://arxiv.org/abs/2606.21627",
+      "links": [
+        {
+          "label": "arXiv",
+          "href": "https://arxiv.org/abs/2606.21627"
+        },
+        {
+          "label": "PDF",
+          "href": "https://arxiv.org/pdf/2606.21627"
+        },
+        {
+          "label": "Dataset",
+          "href": "https://huggingface.co/datasets/AtlaAI/counsel"
+        }
+      ],
+      "abstract": "As agentic systems tackle increasingly complex multi-step tasks, evaluating their trajectories presents a major bottleneck - human annotation of a single trajectory on popular agentic benchmarks can take hours, making it difficult to scale evaluations for measuring performance or curating training data. This has driven widespread reliance on automated approaches such as LLM-as-a-judge (LLMJ) to critique agents at the process and outcome-levels at scale, however, the soundness of LLMJ critiques often goes unmeasured. Here, we introduce Counsel, the first public dataset of meta-evaluations for agentic tasks. Counsel consists of process-level critiques from open-weight LLMJs on two agent benchmarks: tau-bench (customer support agents) and DA-Code (coding agents), and human meta-evaluations of these critiques. Human annotators label critiques on each flagged error as \"spot on\", \"correct location but poor reasoning\", or \"should not have flagged\", achieving reliable inter-annotator agreement (Krippendorff's alpha of 0.78). The resulting dataset stratifies LLMJ critiques by human alignment across both error location within a trajectory and reasoning quality, serving as valuable data to calibrate, improve, or train LLMJs for agents. Comparing open-weight judges, we find that more capable judge models and more reasoning effort both enabled improved human agreement, with the strongest judge reaching ~88% agreement on location and ~65% on reasoning. Counsel is generated using open-weight models and is permissively licensed for broad community use, which we hope will enable rigorous study and improved alignment of LLM-based evaluators for agentic systems.",
+      "summary": "Human ratings of whether a judge’s critique of an agent trajectory was right, not only whether the final score matched. Part 4: the explanation a judge gives can be wrong even when the score looks plausible.",
+      "groups": [
+        "trajectories",
+        "reliability"
+      ],
+      "featured_rank": null,
+      "mentions": [
+        "Counsel"
+      ],
+      "note": "The reading checklist credits Atla (2026). The arXiv byline is Pisupati, Broomfield, and colleagues."
+    },
+    {
+      "id": "mobilejudgebench-2026",
+      "type": "paper",
+      "year": "2026",
+      "groups": [
+        "trajectories"
+      ],
+      "title": "Benchmarking LLM Judges for Mobile Agent Evaluation (MobileJudgeBench)",
+      "note": "The reading checklist names no authors and no URL. Not verified beyond that line.",
+      "summary": "Checklist item on judging mobile-agent behaviour. Included so the trajectory section of the reading list is complete. No abstract was retrieved.",
+      "mentions": [],
+      "featured_rank": null,
+      "links": [],
+      "abstract": null,
+      "authors": []
+    },
+    {
+      "id": "peng-2026-ruverbench",
+      "type": "paper",
+      "authors": [
+        "Yangda Peng",
+        "Yunjia Qi",
+        "Haotian Xia",
+        "Guanzhong He",
+        "Xintong Shi",
+        "Richeng Xuan",
+        "Songyuanyi Lu",
+        "Yixian Liu",
+        "Zhichao Hu",
+        "Yuhong Liu",
+        "Hao Peng"
+      ],
+      "year": "2026",
+      "title": "Can LLM-as-a-Judge Reliably Verify Rubrics in Agentic Scenarios?",
+      "venue": "arXiv preprint arXiv:2606.29920.",
+      "url": "https://arxiv.org/abs/2606.29920",
+      "links": [
+        {
+          "label": "arXiv",
+          "href": "https://arxiv.org/abs/2606.29920"
+        },
+        {
+          "label": "PDF",
+          "href": "https://arxiv.org/pdf/2606.29920"
+        }
+      ],
+      "abstract": "Rubric-based scoring has become a widely used paradigm in model evaluation, typically with LLM-as-a-Judge (LaaJ) for rubric scoring. However, the reliability of LaaJ for rubric scoring remains underexplored. This concern is especially pronounced in agentic scenarios, where long, complex outputs further challenge reliable scoring. To address this, we conduct a systematic meta-evaluation of LaaJ reliability for rubric verification. We introduce RuVerBench, the first benchmark for assessing LaaJ reliability in rubric verification for agentic scenarios. RuVerBench covers two prevalent agentic domains, deep research and agentic coding, with 2,458 instances, each containing a model-generated output, a rubric, and a human-annotated label indicating whether the output satisfies the rubric. Using RuVerBench, we evaluate numerous frontier LLMs and find that even the most advanced models achieve strong performance but still exhibit substantial noise. We further analyze the impact of key LaaJ strategies, including prompt design, batching, and majority voting, on rubric verification. We find that weaker models are more sensitive to prompt variations, batched verification presents a trade-off between accuracy and efficiency, and majority voting yields effective but diminishing returns. We have released our dataset and code to facilitate future research: this https URL .",
+      "summary": "Tests whether a judge can reliably say that a long agent output satisfies a rubric. Hands-on and Part 4: rubric checks on long traces are noisy, and prompt details move the score.",
+      "groups": [
+        "trajectories",
+        "judges"
+      ],
+      "featured_rank": null,
+      "mentions": [
+        "RuVerBench"
+      ],
+      "note": null
+    },
+    {
+      "id": "wang-2024-not-fair",
+      "type": "paper",
+      "authors": [
+        "Peiyi Wang",
+        "Lei Li",
+        "Liang Chen",
+        "Zefan Cai",
+        "Dawei Zhu",
+        "Binghuai Lin",
+        "Yunbo Cao",
+        "Qi Liu",
+        "Tianyu Liu",
+        "Zhifang Sui"
+      ],
+      "year": "2024",
+      "title": "Large Language Models are not Fair Evaluators",
+      "venue": "arXiv preprint arXiv:2305.17926.",
+      "url": "https://arxiv.org/abs/2305.17926",
+      "links": [
+        {
+          "label": "arXiv",
+          "href": "https://arxiv.org/abs/2305.17926"
+        },
+        {
+          "label": "PDF",
+          "href": "https://arxiv.org/pdf/2305.17926"
+        }
+      ],
+      "abstract": "In this paper, we uncover a systematic bias in the evaluation paradigm of adopting large language models~(LLMs), e.g., GPT-4, as a referee to score and compare the quality of responses generated by candidate models. We find that the quality ranking of candidate responses can be easily hacked by simply altering their order of appearance in the context. This manipulation allows us to skew the evaluation result, making one model appear considerably superior to the other, e.g., Vicuna-13B could beat ChatGPT on 66 over 80 tested queries with ChatGPT as an evaluator. To address this issue, we propose a calibration framework with three simple yet effective strategies: 1) Multiple Evidence Calibration, which requires the evaluator model to generate multiple evaluation evidence before assigning ratings; 2) Balanced Position Calibration, which aggregates results across various orders to determine the final score; 3) Human-in-the-Loop Calibration, which introduces a balanced position diversity entropy to measure the difficulty of each example and seeks human assistance when needed. We also manually annotate the \"win/tie/lose\" outcomes of responses from ChatGPT and Vicuna-13B in the Vicuna Benchmark's question prompt, and extensive experiments demonstrate that our approach successfully mitigates evaluation bias, resulting in closer alignment with human judgments. We release our code and human annotation at \\url{ this https URL } to facilitate future research.",
+      "summary": "Shows position and other presentation biases in LLM evaluators. A short Part 4 example: swapping order can change the judgment, so a single hands-on score is not a measurement yet.",
+      "groups": [
+        "reliability"
+      ],
+      "featured_rank": null,
+      "mentions": [
+        "not Fair Evaluators"
+      ],
+      "note": "arXiv submission 2023 (2305.17926). The reading checklist dates it 2024."
+    },
+    {
+      "id": "panickssery-2024-self-preference",
+      "type": "paper",
+      "authors": [
+        "Arjun Panickssery",
+        "Samuel R. Bowman",
+        "Shi Feng"
+      ],
+      "year": "2024",
+      "title": "LLM Evaluators Recognize and Favor Their Own Generations",
+      "venue": "arXiv preprint arXiv:2404.13076.",
+      "url": "https://arxiv.org/abs/2404.13076",
+      "links": [
+        {
+          "label": "arXiv",
+          "href": "https://arxiv.org/abs/2404.13076"
+        },
+        {
+          "label": "PDF",
+          "href": "https://arxiv.org/pdf/2404.13076"
+        }
+      ],
+      "abstract": "Self-evaluation using large language models (LLMs) has proven valuable not only in benchmarking but also methods like reward modeling, constitutional AI, and self-refinement. But new biases are introduced due to the same LLM acting as both the evaluator and the evaluatee. One such bias is self-preference, where an LLM evaluator scores its own outputs higher than others' while human annotators consider them of equal quality. But do LLMs actually recognize their own outputs when they give those texts higher scores, or is it just a coincidence? In this paper, we investigate if self-recognition capability contributes to self-preference. We discover that, out of the box, LLMs such as GPT-4 and Llama 2 have non-trivial accuracy at distinguishing themselves from other LLMs and humans. By fine-tuning LLMs, we discover a linear correlation between self-recognition capability and the strength of self-preference bias; using controlled experiments, we show that the causal explanation resists straightforward confounders. We discuss how self-recognition can interfere with unbiased evaluations and AI safety more generally.",
+      "summary": "LLM judges prefer text from their own family of models. Part 4, and a reason not to treat the hands-on model as a neutral marker.",
+      "groups": [
+        "reliability"
+      ],
+      "featured_rank": null,
+      "mentions": [],
+      "note": null
+    },
+    {
+      "id": "thakur-2024-judging-the-judges",
+      "type": "paper",
+      "authors": [
+        "Aman Singh Thakur",
+        "Kartik Choudhary",
+        "Venkat Srinik Ramayapally",
+        "Sankaran Vaidyanathan",
+        "Dieuwke Hupkes"
+      ],
+      "year": "2024",
+      "title": "Judging the Judges: Evaluating Alignment and Vulnerabilities in LLMs-as-Judges",
+      "venue": "arXiv preprint arXiv:2406.12624.",
+      "url": "https://arxiv.org/abs/2406.12624",
+      "links": [
+        {
+          "label": "arXiv",
+          "href": "https://arxiv.org/abs/2406.12624"
+        },
+        {
+          "label": "PDF",
+          "href": "https://arxiv.org/pdf/2406.12624"
+        }
+      ],
+      "abstract": "Offering a promising solution to the scalability challenges associated with human evaluation, the LLM-as-a-judge paradigm is rapidly gaining traction as an approach to evaluating large language models (LLMs). However, there are still many open questions about the strengths and weaknesses of this paradigm, and what potential biases it may hold. In this paper, we present a comprehensive study of the performance of various LLMs acting as judges, focusing on a clean scenario in which inter-human agreement is high. Investigating thirteen judge models of different model sizes and families, judging answers of nine different 'examtaker models' - both base and instruction-tuned - we find that only the best (and largest) models achieve reasonable alignment with humans. However, they are still quite far behind inter-human agreement and their assigned scores may still differ with up to 5 points from human-assigned scores. In terms of their ranking of the nine exam-taker models, instead, also smaller models and even the lexical metric contains may provide a reasonable signal. Through error analysis and other studies, we identify vulnerabilities in judge models, such as their sensitivity to prompt complexity and length, and a tendency toward leniency. The fact that even the best judges differ from humans in this comparatively simple setup suggest that caution may be wise when using judges in more complex setups. Lastly, our research rediscovers the importance of using alignment metrics beyond simple percent alignment, showing that judges with high percent agreement can still assign vastly different scores.",
+      "summary": "Evaluates how well LLM judges align with humans and where they are vulnerable. Part 4 background on failure modes, next to the bias papers.",
+      "groups": [
+        "reliability"
+      ],
+      "featured_rank": null,
+      "mentions": [
+        "Judging the Judges"
+      ],
+      "note": null
+    },
+    {
+      "id": "bavaresco-2025-human-judges",
+      "type": "paper",
+      "authors": [
+        "Anna Bavaresco",
+        "Raffaella Bernardi",
+        "Leonardo Bertolazzi",
+        "Desmond Elliott",
+        "Raquel Fernández",
+        "Albert Gatt",
+        "Esam Ghaleb",
+        "Mario Giulianelli",
+        "Michael Hanna",
+        "Alexander Koller",
+        "André F. T. Martins",
+        "Philipp Mondorf",
+        "Vera Neplenbroek",
+        "Sandro Pezzelle",
+        "Barbara Plank",
+        "David Schlangen",
+        "Alessandro Suglia",
+        "Aditya K Surikuchi",
+        "Ece Takmaz",
+        "Alberto Testoni"
+      ],
+      "year": "2025",
+      "title": "LLMs instead of Human Judges? A Large Scale Empirical Study across 20 NLP Evaluation Tasks",
+      "venue": "arXiv preprint arXiv:2406.18403.",
+      "url": "https://arxiv.org/abs/2406.18403",
+      "links": [
+        {
+          "label": "arXiv",
+          "href": "https://arxiv.org/abs/2406.18403"
+        },
+        {
+          "label": "PDF",
+          "href": "https://arxiv.org/pdf/2406.18403"
+        }
+      ],
+      "abstract": "There is an increasing trend towards evaluating NLP models with LLMs instead of human judgments, raising questions about the validity of these evaluations, as well as their reproducibility in the case of proprietary models. We provide JUDGE-BENCH, an extensible collection of 20 NLP datasets with human annotations covering a broad range of evaluated properties and types of data, and comprehensively evaluate 11 current LLMs, covering both open-weight and proprietary models, for their ability to replicate the annotations. Our evaluations show substantial variance across models and datasets. Models are reliable evaluators on some tasks, but overall display substantial variability depending on the property being evaluated, the expertise level of the human judges, and whether the language is human or model-generated. We conclude that LLMs should be carefully validated against human judgments before being used as evaluators.",
+      "summary": "A large comparison of LLM judges and human judges across many NLP tasks. Use it in Part 4 for the claim that correlation on one task does not transfer to the next, including expert or agentic ones.",
+      "groups": [
+        "reliability"
+      ],
+      "featured_rank": null,
+      "mentions": [],
+      "note": null
+    },
+    {
+      "id": "verga-2024-juries",
+      "type": "paper",
+      "authors": [
+        "Pat Verga",
+        "Sebastian Hofstatter",
+        "Sophia Althammer",
+        "Yixuan Su",
+        "Aleksandra Piktus",
+        "Arkady Arkhangorodsky",
+        "Minjie Xu",
+        "Naomi White",
+        "Patrick Lewis"
+      ],
+      "year": "2024",
+      "title": "Replacing Judges with Juries: Evaluating LLM Generations with a Panel of Diverse Models",
+      "venue": "arXiv preprint arXiv:2404.18796.",
+      "url": "https://arxiv.org/abs/2404.18796",
+      "links": [
+        {
+          "label": "arXiv",
+          "href": "https://arxiv.org/abs/2404.18796"
+        },
+        {
+          "label": "PDF",
+          "href": "https://arxiv.org/pdf/2404.18796"
+        }
+      ],
+      "abstract": "As Large Language Models (LLMs) have become more advanced, they have outpaced our abilities to accurately evaluate their quality. Not only is finding data to adequately probe particular model properties difficult, but evaluating the correctness of a model's freeform generation alone is a challenge. To address this, many evaluations now rely on using LLMs themselves as judges to score the quality of outputs from other LLMs. Evaluations most commonly use a single large model like GPT4. While this method has grown in popularity, it is costly, has been shown to introduce intramodel bias, and in this work, we find that very large models are often unnecessary. We propose instead to evaluate models using a Panel of LLm evaluators (PoLL). Across three distinct judge settings and spanning six different datasets, we find that using a PoLL composed of a larger number of smaller models outperforms a single large judge, exhibits less intra-model bias due to its composition of disjoint model families, and does so while being over seven times less expensive.",
+      "summary": "Replaces one judge model with a panel of models. A Part 4 mitigation: if you cannot remove bias, you can at least avoid trusting a single model’s taste.",
+      "groups": [
+        "reliability",
+        "judges"
+      ],
+      "featured_rank": null,
+      "mentions": [
+        "Replacing Judges with Juries"
+      ],
+      "note": null
+    },
+    {
+      "id": "raina-2024-robust-judge",
+      "type": "paper",
+      "authors": [
+        "Vyas Raina",
+        "Adian Liusie",
+        "Mark Gales"
+      ],
+      "year": "2024",
+      "title": "Is LLM-as-a-Judge Robust? Investigating Universal Adversarial Attacks on Zero-shot LLM Assessment",
+      "venue": "arXiv preprint arXiv:2402.14016.",
+      "url": "https://arxiv.org/abs/2402.14016",
+      "links": [
+        {
+          "label": "arXiv",
+          "href": "https://arxiv.org/abs/2402.14016"
+        },
+        {
+          "label": "PDF",
+          "href": "https://arxiv.org/pdf/2402.14016"
+        }
+      ],
+      "abstract": "Large Language Models (LLMs) are powerful zero-shot assessors used in real-world situations such as assessing written exams and benchmarking systems. Despite these critical applications, no existing work has analyzed the vulnerability of judge-LLMs to adversarial manipulation. This work presents the first study on the adversarial robustness of assessment LLMs, where we demonstrate that short universal adversarial phrases can be concatenated to deceive judge LLMs to predict inflated scores. Since adversaries may not know or have access to the judge-LLMs, we propose a simple surrogate attack where a surrogate model is first attacked, and the learned attack phrase then transferred to unknown judge-LLMs. We propose a practical algorithm to determine the short universal attack phrases and demonstrate that when transferred to unseen models, scores can be drastically inflated such that irrespective of the assessed text, maximum scores are predicted. It is found that judge-LLMs are significantly more susceptible to these adversarial attacks when used for absolute scoring, as opposed to comparative assessment. Our findings raise concerns on the reliability of LLM-as-a-judge methods, and emphasize the importance of addressing vulnerabilities in LLM assessment methods before deployment in high-stakes real-world scenarios.",
+      "summary": "Shows universal adversarial prompts that fool a zero-shot LLM judge. Part 4, and a security angle on the Part 1 risk list: the judge is an attack surface.",
+      "groups": [
+        "reliability"
+      ],
+      "featured_rank": null,
+      "mentions": [],
+      "note": null
+    },
+    {
+      "id": "szymanski-2025-expert-tasks",
+      "type": "paper",
+      "authors": [
+        "Annalisa Szymanski",
+        "Noah Ziems",
+        "Heather A. Eicher-Miller",
+        "Toby Jia-Jun Li",
+        "Meng Jiang",
+        "Ronald A. Metoyer"
+      ],
+      "year": "2025",
+      "title": "Limitations of the LLM-as-a-Judge Approach for Evaluating LLM Outputs in Expert Knowledge Tasks",
+      "venue": "In Proceedings of the 30th International Conference on Intelligent User Interfaces. arXiv preprint arXiv:2410.20266.",
+      "url": "https://arxiv.org/abs/2410.20266",
+      "links": [
+        {
+          "label": "arXiv",
+          "href": "https://arxiv.org/abs/2410.20266"
+        },
+        {
+          "label": "PDF",
+          "href": "https://arxiv.org/pdf/2410.20266"
+        },
+        {
+          "label": "ACM DL",
+          "href": "https://dl.acm.org/doi/10.1145/3708359.3712091"
+        }
+      ],
+      "abstract": "The potential of using Large Language Models (LLMs) themselves to evaluate LLM outputs offers a promising method for assessing model performance across various contexts. Previous research indicates that LLM-as-a-judge exhibits a strong correlation with human judges in the context of general instruction following. However, for instructions that require specialized knowledge, the validity of using LLMs as judges remains uncertain. In our study, we applied a mixed-methods approach, conducting pairwise comparisons in which both subject matter experts (SMEs) and LLMs evaluated outputs from domain-specific tasks. We focused on two distinct fields: dietetics, with registered dietitian experts, and mental health, with clinical psychologist experts. Our results showed that SMEs agreed with LLM judges 68% of the time in the dietetics domain and 64% in mental health when evaluating overall preference. Additionally, the results indicated variations in SME-LLM agreement across domain-specific aspect questions. Our findings emphasize the importance of keeping human experts in the evaluation process, as LLMs alone may not provide the depth of understanding required for complex, knowledge specific tasks. We also explore the implications of LLM evaluations across different domains and discuss how these insights can inform the design of evaluation workflows that ensure better alignment between human experts and LLMs in interactive systems.",
+      "summary": "Cited from Part 4. Compares expert judges and LLM judges on dietetics and mental-health tasks and finds the model is a weak stand-in when the task needs professional knowledge. The same caution applies to regulated advice, which the Part 1 SEEK examples point at.",
+      "groups": [
+        "reliability"
+      ],
+      "featured_rank": null,
+      "mentions": [
+        "Expert Knowledge Tasks"
+      ],
+      "note": null
+    },
+    {
+      "id": "krumdick-2025-no-free-labels",
+      "type": "paper",
+      "authors": [
+        "Michael Krumdick",
+        "Charles Lovering",
+        "Varshini Reddy",
+        "Seth Ebner",
+        "Chris Tanner"
+      ],
+      "year": "2025",
+      "title": "No Free Labels: Limitations of LLM-as-a-Judge Without Human Grounding",
+      "venue": "arXiv preprint arXiv:2503.05061.",
+      "url": "https://arxiv.org/abs/2503.05061",
+      "links": [
+        {
+          "label": "arXiv",
+          "href": "https://arxiv.org/abs/2503.05061"
+        },
+        {
+          "label": "PDF",
+          "href": "https://arxiv.org/pdf/2503.05061"
+        }
+      ],
+      "abstract": "Reliable evaluation of large language models (LLMs) is critical as their deployment rapidly expands, particularly in high-stakes domains such as business and finance. The LLM-as-a-Judge framework, which uses prompted LLMs to evaluate response quality, is appealing due to its scalability, low cost, and strong correlations with human stylistic preferences. However, it remains unclear how accurately these methods can assess response quality in domains where correctness matters more than style. To address this gap, we introduce the Business and Finance Fundamentals Benchmark (BFF-Bench), a dataset of 160 challenging questions and long-form responses authored by financial professionals. These experts subsequently evaluated the correctness of 1,200 responses generated by a diverse set of LLMs on both BFF-Bench and a challenging subset of MT-Bench. With this expert-annotated dataset of judgments (VERDICTS), we analyze the agreement between a suite of automated grading methods and human experts. While we observe that LLM Judges are more reliable than other grading methods, our findings reveal a clear pattern in LLM Judge performance: when not provided with a correct reference, judges show high agreement with human experts only on questions the judges were able to correctly answer themselves. We demonstrate that providing the judges with expert-written references largely mitigates this issue, highlighting the limits of using LLM-as-a-Judge without any form of human verification.",
+      "summary": "Argues that a judge agrees with experts mainly on questions it can answer itself, unless it is given a correct reference. Part 2 and the hands-on: a rubric without grounding is not a free source of labels.",
+      "groups": [
+        "reliability",
+        "judges"
+      ],
+      "featured_rank": null,
+      "mentions": [
+        "No Free Labels"
+      ],
+      "note": null
+    },
+    {
+      "id": "finch-2023-abc",
+      "type": "paper",
+      "authors": [
+        "Sarah E. Finch",
+        "James D. Finch",
+        "Jinho D. Choi"
+      ],
+      "year": "2023",
+      "title": "Don't Forget Your ABC's: Evaluating the State-of-the-Art in Chat-Oriented Dialogue Systems",
+      "venue": "In Proceedings of the 61st Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers), pages 15044–15071, Toronto, Canada. Association for Computational Linguistics.",
+      "url": "https://arxiv.org/abs/2212.09180",
+      "links": [
+        {
+          "label": "arXiv",
+          "href": "https://arxiv.org/abs/2212.09180"
+        },
+        {
+          "label": "PDF",
+          "href": "https://arxiv.org/pdf/2212.09180"
+        },
+        {
+          "label": "Anthology",
+          "href": "https://aclanthology.org/2023.acl-long.839/"
+        }
+      ],
+      "abstract": "Despite tremendous advancements in dialogue systems, stable evaluation still requires human judgments producing notoriously high-variance metrics due to their inherent subjectivity. Moreover, methods and labels in dialogue evaluation are not fully standardized, especially for open-domain chats, with a lack of work to compare and assess the validity of those approaches. The use of inconsistent evaluation can misinform the performance of a dialogue system, which becomes a major hurdle to enhance it. Thus, a dimensional evaluation of chat-oriented open-domain dialogue systems that reliably measures several aspects of dialogue capabilities is desired. This paper presents a novel human evaluation method to estimate the rates of many dialogue system behaviors. Our method is used to evaluate four state-of-the-art open-domain dialogue systems and compared with existing approaches. The analysis demonstrates that our behavior method is more suitable than alternative Likert-style or comparative approaches for dimensional evaluation of these systems.",
+      "summary": "Compares ways of evaluating open chat systems and argues for counting specific behaviours rather than a single Likert score. A Part 2 illustration of why the hands-on rubric is several criteria, not one vibe.",
+      "groups": [
+        "dialogue"
+      ],
+      "featured_rank": null,
+      "mentions": [],
+      "note": null
+    },
+    {
+      "id": "wang-2024-mint",
+      "type": "paper",
+      "authors": [
+        "Xingyao Wang",
+        "Zihan Wang",
+        "Jiateng Liu",
+        "Yangyi Chen",
+        "Lifan Yuan",
+        "Hao Peng",
+        "Heng Ji"
+      ],
+      "year": "2024",
+      "title": "MINT: Evaluating LLMs in Multi-turn Interaction with Tools and Language Feedback",
+      "venue": "arXiv preprint arXiv:2309.10691.",
+      "url": "https://arxiv.org/abs/2309.10691",
+      "links": [
+        {
+          "label": "arXiv",
+          "href": "https://arxiv.org/abs/2309.10691"
+        },
+        {
+          "label": "PDF",
+          "href": "https://arxiv.org/pdf/2309.10691"
+        }
+      ],
+      "abstract": "To solve complex tasks, large language models (LLMs) often require multiple rounds of interactions with the user, sometimes assisted by external tools. However, current evaluation protocols often emphasize benchmark performance with single-turn exchanges, neglecting the nuanced interactions among the user, LLMs, and external tools, while also underestimating the importance of natural language feedback from users. These oversights contribute to discrepancies between research benchmark evaluations and real-world use cases. We introduce MINT, a benchmark that evaluates LLMs' ability to solve tasks with multi-turn interactions by (1) using tools and (2) leveraging natural language feedback. To ensure reproducibility, we provide an evaluation framework where LLMs can access tools by executing Python code and receive users' natural language feedback simulated by GPT-4. We repurpose a diverse set of established evaluation datasets focusing on reasoning, coding, and decision-making and carefully curate them into a compact subset for efficient evaluation. Our analysis of 20 open- and closed-source LLMs offers intriguing findings. (a) LLMs generally benefit from tools and language feedback, with performance gains (absolute, same below) of 1-8% for each turn of tool use and 2-17% with natural language feedback. (b) Better single-turn performance does not guarantee better multi-turn performance. (c) Surprisingly, on the LLMs evaluated, supervised instruction-finetuning (SIFT) and reinforcement learning from human feedback (RLHF) generally hurt multi-turn capabilities. We expect MINT can help measure progress and incentivize research in improving LLMs' capabilities in multi-turn interactions, especially for open-source communities where multi-turn human evaluation can be less accessible compared to commercial LLMs with a larger user base.",
+      "summary": "Evaluates models over multiple turns with tools and language feedback. Supports Part 1’s claim that agent eval is a trajectory, and Part 3’s interest in tool use plus the reply.",
+      "groups": [
+        "dialogue",
+        "agents"
+      ],
+      "featured_rank": null,
+      "mentions": [
+        "MINT"
+      ],
+      "note": "arXiv submission 2023 (2309.10691). The reading checklist dates it 2024."
+    },
+    {
+      "id": "chiang-2023-llm-human-eval",
+      "type": "paper",
+      "authors": [
+        "Cheng-Han Chiang",
+        "Hung-yi Lee"
+      ],
+      "year": "2023",
+      "title": "Can Large Language Models Be an Alternative to Human Evaluations?",
+      "venue": "arXiv preprint arXiv:2305.01937.",
+      "url": "https://arxiv.org/abs/2305.01937",
+      "links": [
+        {
+          "label": "arXiv",
+          "href": "https://arxiv.org/abs/2305.01937"
+        },
+        {
+          "label": "PDF",
+          "href": "https://arxiv.org/pdf/2305.01937"
+        }
+      ],
+      "abstract": "Human evaluation is indispensable and inevitable for assessing the quality of texts generated by machine learning models or written by humans. However, human evaluation is very difficult to reproduce and its quality is notoriously unstable, hindering fair comparisons among different natural language processing (NLP) models and algorithms. Recently, large language models (LLMs) have demonstrated exceptional performance on unseen tasks when only the task instructions are provided. In this paper, we explore if such an ability of the LLMs can be used as an alternative to human evaluation. We present the LLMs with the exact same instructions, samples to be evaluated, and questions used to conduct human evaluation, and then ask the LLMs to generate responses to those questions; we dub this LLM evaluation. We use human evaluation and LLM evaluation to evaluate the texts in two NLP tasks: open-ended story generation and adversarial attacks. We show that the result of LLM evaluation is consistent with the results obtained by expert human evaluation: the texts rated higher by human experts are also rated higher by the LLMs. We also find that the results of LLM evaluation are stable over different formatting of the task instructions and the sampling algorithm used to generate the answer. We are the first to show the potential of using LLMs to assess the quality of texts and discuss the limitations and ethical considerations of LLM evaluation.",
+      "summary": "An early study of LLM judgments as a substitute for human evaluation of text. Historical context for Part 2: the method started on generation quality, then was stretched to agents.",
+      "groups": [
+        "dialogue",
+        "judges"
+      ],
+      "featured_rank": null,
+      "mentions": [],
+      "note": null
+    },
+    {
+      "id": "finegood-complex-versus-complicated",
+      "type": "website",
+      "year": "n.d.",
+      "groups": [
+        "agents"
+      ],
+      "authors": [],
+      "title": "Complex versus complicated",
+      "venue": "Frameworks Collection.",
+      "url": "https://www.complexsystemsframeworks.ca/framework/complex-versus-complicated/",
+      "links": [
+        {
+          "label": "Website",
+          "href": "https://www.complexsystemsframeworks.ca/framework/complex-versus-complicated/"
+        }
+      ],
+      "mentions": [
+        "Complex versus complicated"
+      ],
+      "note": "The Part 1 slide credits finegood@sfu.ca, Frameworks Collection, CC BY-NC-ND. A personal byline was not copied beyond that credit.",
+      "summary": "The framework behind the Part 1 complicated-versus-complex slide. The tutorial uses it to say why an agent is not evaluated like a pipeline: the same input can lead to a spread of outputs, so you still have to evaluate the whole system.",
+      "featured_rank": null,
+      "abstract": null
+    },
+    {
+      "id": "deepeval",
+      "type": "website",
+      "year": "n.d.",
+      "groups": [
+        "platforms"
+      ],
+      "authors": [
+        "DeepEval"
+      ],
+      "title": "DeepEval",
+      "venue": "",
+      "url": "https://deepeval.com/",
+      "links": [
+        {
+          "label": "Website",
+          "href": "https://deepeval.com/"
+        }
+      ],
+      "summary": "An open-source library for writing LLM and agent evaluations in tests. Listed under platforms in the organiser notes. This draft does not describe features beyond that.",
+      "mentions": [],
+      "note": null,
+      "featured_rank": null,
+      "abstract": null
+    },
+    {
+      "id": "langfuse",
+      "type": "website",
+      "year": "n.d.",
+      "groups": [
+        "platforms"
+      ],
+      "authors": [
+        "Langfuse"
+      ],
+      "title": "Langfuse",
+      "venue": "",
+      "url": "https://langfuse.com/docs/evaluation/overview",
+      "links": [
+        {
+          "label": "Website",
+          "href": "https://langfuse.com/docs/evaluation/overview"
+        }
+      ],
+      "summary": "Tracing and evaluation for LLM applications, including judging production traces. Listed under platforms in the organiser notes. This draft does not describe features beyond that.",
+      "mentions": [],
+      "note": null,
+      "featured_rank": null,
+      "abstract": null
+    },
+    {
+      "id": "arize",
+      "type": "website",
+      "year": "n.d.",
+      "groups": [
+        "platforms"
+      ],
+      "authors": [
+        "Arize"
+      ],
+      "title": "Arize",
+      "venue": "",
+      "url": "https://arize.com/",
+      "links": [
+        {
+          "label": "Website",
+          "href": "https://arize.com/"
+        }
+      ],
+      "summary": "Observability and evaluation product. The primary-list posts by Voss and Winston are on this site. Listed under platforms in the organiser notes. This draft does not describe features beyond that.",
+      "mentions": [],
+      "note": null,
+      "featured_rank": null,
+      "abstract": null
+    },
+    {
+      "id": "ragas",
+      "type": "website",
+      "year": "n.d.",
+      "groups": [
+        "platforms"
+      ],
+      "authors": [
+        "Ragas"
+      ],
+      "title": "Ragas",
+      "venue": "",
+      "url": "https://www.ragas.io/",
+      "links": [
+        {
+          "label": "Website",
+          "href": "https://www.ragas.io/"
+        }
+      ],
+      "summary": "A library of metrics for RAG and, increasingly, agent pipelines. Listed under platforms in the organiser notes. This draft does not describe features beyond that.",
+      "mentions": [],
+      "note": null,
+      "featured_rank": null,
+      "abstract": null
+    },
+    {
+      "id": "mlflow",
+      "type": "website",
+      "year": "n.d.",
+      "groups": [
+        "platforms"
+      ],
+      "authors": [
+        "MLflow"
+      ],
+      "title": "MLflow",
+      "venue": "",
+      "url": "https://mlflow.org/docs/latest/genai/eval-monitor/",
+      "links": [
+        {
+          "label": "Website",
+          "href": "https://mlflow.org/docs/latest/genai/eval-monitor/"
+        }
+      ],
+      "summary": "Experiment tracking with a genAI evaluation and monitoring section. Listed under platforms in the organiser notes. This draft does not describe features beyond that.",
+      "mentions": [],
+      "note": null,
+      "featured_rank": null,
+      "abstract": null
+    },
+    {
+      "id": "gemini-agent-evals",
+      "type": "website",
+      "year": "n.d.",
+      "groups": [
+        "platforms"
+      ],
+      "authors": [
+        "Gemini Agent Evals"
+      ],
+      "title": "Gemini Agent Evals",
+      "venue": "",
+      "url": "https://docs.cloud.google.com/gemini-enterprise-agent-platform/optimize/evaluation/agent-evaluation",
+      "links": [
+        {
+          "label": "Website",
+          "href": "https://docs.cloud.google.com/gemini-enterprise-agent-platform/optimize/evaluation/agent-evaluation"
+        }
+      ],
+      "summary": "Google’s documentation for evaluating agents on their platform. Listed under platforms in the organiser notes. This draft does not describe features beyond that.",
+      "mentions": [],
+      "note": null,
+      "featured_rank": null,
+      "abstract": null
+    },
+    {
+      "id": "bedrock-evals",
+      "type": "website",
+      "year": "n.d.",
+      "groups": [
+        "platforms"
+      ],
+      "authors": [
+        "Amazon Bedrock Evaluations"
+      ],
+      "title": "Amazon Bedrock Evaluations",
+      "venue": "",
+      "url": "https://aws.amazon.com/bedrock/evaluations/",
+      "links": [
+        {
+          "label": "Website",
+          "href": "https://aws.amazon.com/bedrock/evaluations/"
+        }
+      ],
+      "summary": "Amazon’s product page for model and agent evaluation on Bedrock. Listed under platforms in the organiser notes. This draft does not describe features beyond that.",
+      "mentions": [],
+      "note": null,
+      "featured_rank": null,
+      "abstract": null
+    },
+    {
+      "id": "veris-ai",
+      "type": "website",
+      "year": "n.d.",
+      "groups": [
+        "platforms"
+      ],
+      "authors": [
+        "Veris AI"
+      ],
+      "title": "Veris AI",
+      "venue": "",
+      "url": "https://veris.ai/",
+      "links": [
+        {
+          "label": "Website",
+          "href": "https://veris.ai/"
+        }
+      ],
+      "summary": "The organiser note describes this as simulation-based agent evaluation. Listed under platforms in the organiser notes. This draft does not describe features beyond that.",
+      "mentions": [],
+      "note": null,
+      "featured_rank": null,
+      "abstract": null
+    },
+    {
+      "id": "artificial-analysis",
+      "type": "website",
+      "year": "n.d.",
+      "groups": [
+        "platforms"
+      ],
+      "authors": [
+        "Artificial Analysis"
+      ],
+      "title": "Artificial Analysis",
+      "venue": "",
+      "url": "https://artificialanalysis.ai/evaluations",
+      "links": [
+        {
+          "label": "Website",
+          "href": "https://artificialanalysis.ai/evaluations"
+        }
+      ],
+      "summary": "A public site that compares LLM evaluations. Listed under platforms in the organiser notes. This draft does not describe features beyond that.",
+      "mentions": [],
+      "note": null,
+      "featured_rank": null,
+      "abstract": null
+    },
+    {
+      "id": "roark",
+      "type": "website",
+      "year": "n.d.",
+      "groups": [
+        "platforms"
+      ],
+      "authors": [
+        "Roark"
+      ],
+      "title": "Roark",
+      "venue": "",
+      "url": "https://roark.ai/",
+      "links": [
+        {
+          "label": "Website",
+          "href": "https://roark.ai/"
+        }
+      ],
+      "summary": "The organiser note groups this with voice-agent evaluation tools. Listed under platforms in the organiser notes. This draft does not describe features beyond that.",
+      "mentions": [],
+      "note": null,
+      "featured_rank": null,
+      "abstract": null
+    },
+    {
+      "id": "coval",
+      "type": "website",
+      "year": "n.d.",
+      "groups": [
+        "platforms"
+      ],
+      "authors": [
+        "Coval"
+      ],
+      "title": "Coval",
+      "venue": "",
+      "url": "https://www.coval.ai/",
+      "links": [
+        {
+          "label": "Website",
+          "href": "https://www.coval.ai/"
+        }
+      ],
+      "summary": "The organiser note groups this with voice-agent evaluation tools. Listed under platforms in the organiser notes. This draft does not describe features beyond that.",
+      "mentions": [],
+      "note": null,
+      "featured_rank": null,
+      "abstract": null
+    },
+    {
+      "id": "cekura",
+      "type": "website",
+      "year": "n.d.",
+      "groups": [
+        "platforms"
+      ],
+      "authors": [
+        "Cekura"
+      ],
+      "title": "Cekura",
+      "venue": "",
+      "url": "https://www.cekura.ai/",
+      "links": [
+        {
+          "label": "Website",
+          "href": "https://www.cekura.ai/"
+        }
+      ],
+      "summary": "The organiser note groups this with voice-agent evaluation tools. Listed under platforms in the organiser notes. This draft does not describe features beyond that.",
+      "mentions": [],
+      "note": null,
+      "featured_rank": null,
+      "abstract": null
+    }
+  ]
+}

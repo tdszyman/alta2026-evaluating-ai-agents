@@ -1,0 +1,33 @@
+/* Night Laboratory. Tokens and decisions: _shared/style-brief.md */
+/*-- scss:defaults --*/
+$font-family-sans-serif: Inter, "Source Sans 3", "Segoe UI", system-ui, sans-serif;
+$font-family-monospace: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+$headings-font-family: Inter, "Source Sans 3", "Segoe UI", system-ui, sans-serif;
+$headings-font-weight: 600;
+$headings-color: #f4f1e9;
+$body-bg: #14243a;
+$body-color: #f4f1e9;
+$body-secondary-color: #a9bac9;
+$body-secondary-bg: #21354b;
+$primary: #b5d8e2;
+$link-color: #b5d8e2;
+$link-hover-color: #f4f1e9;
+$navbar-bg: #14243a;
+$border-color: #688094;
+$code-block-bg: #21354b;
+$code-color: #f4f1e9;
+$input-bg: #21354b;
+$input-color: #f4f1e9;
+$input-border-color: #688094;
+
+/*-- scss:rules --*/
+:root {
+  --bg: #14243a;
+  --text: #f4f1e9;
+  --accent: #b5d8e2;
+  --muted: #a9bac9;
+  --surface: #21354b;
+  --line: #688094;
+}
+
+@import "_shared/site-components";

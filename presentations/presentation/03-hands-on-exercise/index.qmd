@@ -10,7 +10,7 @@ Participants design a rubric, create an LLM-as-a-judge prompt, and apply it to a
 
 Workshop materials live in the repo under `workshop/`.
 
-[Open the hands-on judge](../hands-on/index.html)
+[Open the hands-on page](../../hands-on/index.qmd)
 
 Use your own OpenRouter API key. It stays in this browser, and judge calls go directly to OpenRouter.
 

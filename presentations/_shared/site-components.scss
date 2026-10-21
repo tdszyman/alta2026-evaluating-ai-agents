@@ -1,0 +1,289 @@
+/* Shared website components. Colours come from the theme file's custom properties.
+   See presentations/_shared/style-brief.md. */
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+#quarto-header {
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+}
+
+.navbar {
+  font-size: 0.95rem;
+}
+
+#title-block-header .title,
+.navbar-brand {
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--text);
+}
+
+.navbar-brand {
+  align-items: center;
+  padding-top: 0.4rem;
+  padding-bottom: 0.4rem;
+  overflow: visible;
+  white-space: normal;
+}
+
+.navbar-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1.05;
+  text-align: center;
+  white-space: normal;
+}
+
+.navbar-title .brand-sub {
+  display: block;
+  margin-top: 0.16rem;
+  font-size: 0.84em;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  line-height: 1;
+  text-align: center;
+  color: var(--muted);
+}
+
+#title-block-header .title {
+  line-height: 1.15;
+}
+
+#title-block-header .subtitle,
+.eyebrow,
+.note,
+.tag,
+.jump-card p,
+.part-card p,
+.person p {
+  color: var(--muted);
+}
+
+.navbar .nav-link.active {
+  color: var(--accent);
+  box-shadow: inset 0 -2px 0 var(--accent);
+}
+
+#quarto-document-content,
+.page-layout-article {
+  padding-bottom: 3rem;
+}
+
+.eyebrow {
+  margin: 0 0 0.4rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.lede,
+.acl-ref,
+.abstract,
+.ai-summary,
+.cited-by {
+  max-width: 42rem;
+}
+
+.lede { font-size: 1.12rem; }
+
+.jump-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.9rem;
+  margin: 1.5rem 0 2rem;
+}
+
+.jump-card,
+.part-card,
+.person,
+.ai-summary,
+.org-banner {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  color: inherit;
+}
+
+.jump-card,
+.part-card {
+  position: relative;
+  display: block;
+  padding: 1rem 1.05rem 1.1rem;
+  text-decoration: none;
+}
+
+.jump-card .card-title,
+.part-card .card-title {
+  display: block;
+  margin: 0.15rem 0 0.35rem;
+  font-size: 1.35rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.jump-card .card-title::after,
+.part-card .card-title::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+.part-card p a {
+  position: relative;
+  z-index: 1;
+}
+
+a.app-launch {
+  display: inline-block;
+  margin-top: 0.4rem;
+  padding: 0.55rem 0.9rem;
+  background: var(--accent);
+  color: var(--bg);
+  border-radius: 2px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+a.app-launch:hover {
+  color: var(--bg);
+  text-decoration: none;
+  filter: brightness(0.92);
+}
+
+.jump-card:hover,
+.part-card:hover {
+  border-color: var(--accent);
+  color: inherit;
+  text-decoration: none;
+}
+
+.jump-card p,
+.part-card p { margin: 0; }
+
+.jump-card .index,
+.part-card .index {
+  display: block;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+}
+
+.jump-card .index { text-transform: uppercase; }
+
+.part-list {
+  display: grid;
+  gap: 0.8rem;
+  margin: 1rem 0 2rem;
+}
+
+.person-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.8rem;
+}
+
+.person { padding: 0.9rem 1rem; }
+.person h3 { margin: 0 0 0.2rem; font-size: 1.2rem; color: var(--text); }
+.person p { margin: 0.2rem 0; }
+
+.note { font-size: 0.95rem; }
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0.8rem 0 1rem;
+}
+
+.filters button {
+  border: 1px solid var(--line);
+  background: var(--bg);
+  color: var(--text);
+  border-radius: 2px;
+  padding: 0.2rem 0.7rem;
+  font: inherit;
+  font-size: 0.88rem;
+  cursor: pointer;
+}
+
+.filters button[aria-pressed="true"] {
+  background: var(--surface);
+  color: var(--accent);
+  border-color: var(--accent);
+  border-width: 2px;
+}
+
+.bib-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.bib-list li {
+  margin: 0.7rem 0;
+  padding-left: 1.4rem;
+  text-indent: -1.4rem;
+}
+
+.bib-list a { font-style: italic; }
+
+.tag {
+  display: inline-block;
+  margin-left: 0.35rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-style: normal;
+  text-indent: 0;
+}
+
+.link-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem 1rem;
+  margin: 0.8rem 0 1.2rem;
+}
+
+.ai-summary {
+  margin-top: 1.4rem;
+  padding: 0.9rem 1rem 0.2rem;
+}
+
+.ai-label {
+  display: inline-block;
+  margin: 0 0 0.45rem;
+  padding: 0.1rem 0.45rem;
+  border: 1px solid var(--accent);
+  border-radius: 2px;
+  color: var(--accent);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.org-banner {
+  padding: 0.7rem 0.9rem;
+  margin-bottom: 1rem;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+summary:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+@media (max-width: 720px) {
+  .jump-grid,
+  .person-grid { grid-template-columns: 1fr; }
+}

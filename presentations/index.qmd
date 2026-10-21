@@ -1,32 +1,60 @@
 ---
 title: "Evaluating AI Agents with LLM-as-a-Judge"
-subtitle: "ALTA 2026 Tutorial 2 — Afternoon"
+subtitle: "ALTA 2026 Tutorial 2 · Monday 30 November 2026"
 format: html
 ---
 
-Materials for **ALTA 2026** Tutorial Day (Monday 30 November 2026), afternoon tutorial.
+<p class="eyebrow">Afternoon tutorial · materials in progress</p>
 
-**Status:** WIP scaffolding. Decks are placeholders until section content is finalized.
+<p class="lede">AI agents plan, use tools, and act over time, so a single final answer is a weak test. This tutorial covers why agent evaluation is hard, how LLM-as-a-judge methods work, a hands-on exercise, and the reliability limits of model-based judges.</p>
 
-## Hands-on
+The public site has four places to start. Slide decks are still drafts. The bibliography is a reading list with labelled AI-written summaries waiting for organiser review.
 
-Starter exercise for Part 3: edit a judge prompt, run it on four career-advice cases, and compare scores. Bring an OpenRouter API key. It stays in your browser.
+::: {.jump-grid}
 
-[Open the hands-on app](hands-on/index.html)
+::: {.jump-card}
+<span class="index">01</span>
 
-## Decks
+[Presentation](presentation/){.card-title}
 
-| Part | Title | Deck |
-|------|-------|------|
-| 1 | AI Agents and Evaluation Challenges | [Open Part 1](01-agents-and-eval-challenges/) |
-| 2 | LLM-as-a-Judge Methods | [Open Part 2](02-llm-as-judge-methods/) |
-| 3 | Hands-on Agent Evaluation Exercise | [Open Part 3](03-hands-on-exercise/) |
-| 4 | Reliability, Limitations, and Future Directions | [Open Part 4](04-reliability-and-future/) |
+Four slide sections. Each part has its own URL and the same default slide chrome.
+:::
 
-## Source
+::: {.jump-card}
+<span class="index">02</span>
 
-- Programme: [ALTA 2026 afternoon tutorial](https://alta2026.alta.asn.au/program#afternoon-tutorial)
-- Repo planning: `organisation/` · workshop assets: `workshop/`
+[Hands-on](hands-on/index.qmd){.card-title}
 
-Published site (after merge to `main` + Pages enabled):  
-<https://tdszyman.github.io/alta2026-evaluating-ai-agents/>
+A browser exercise: edit a judge prompt and score a few career-advice replies with your own OpenRouter key.
+:::
+
+::: {.jump-card}
+<span class="index">03</span>
+
+[Bibliography](bibliography/){.card-title}
+
+A concise bibliography. Open any source for its abstract, links, and a short note on why it is here.
+:::
+
+::: {.jump-card}
+<span class="index">04</span>
+
+[About](about/){.card-title}
+
+Presenters, how this site was built with coding agents, and the tools that publish it.
+:::
+
+:::
+
+## What the tutorial covers
+
+From the [ALTA 2026 program](https://alta2026.alta.asn.au/program#afternoon-tutorial):
+
+1. **AI Agents and Evaluation Challenges** — agents, tool use, and why final-answer scoring is not enough.
+2. **LLM-as-a-Judge Methods** — criteria, rubrics, scales, prompts, and the trade-offs with rules and human review.
+3. **Hands-on Agent Evaluation Exercise** — build a rubric and a judge, then look at tool choice, parameters, and response quality.
+4. **Reliability, Limitations, and Future Directions** — consistency, cost, failure modes, and open research.
+
+Presenters: Parvin Zarei Eskikand (SEEK), Terrence Szymanski (SEEK), Sara Mirabi (Deakin University), and Yelaman Abdullin (Macquarie University).
+
+Participants should bring a laptop. Basic familiarity with machine learning, NLP, and large language models is enough. LLM access for the exercise will be confirmed before the tutorial.

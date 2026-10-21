@@ -1,0 +1,30 @@
+/* Scientific Modernist. Tokens and decisions: _shared/style-brief.md */
+/*-- scss:defaults --*/
+$font-family-sans-serif: Inter, "Source Sans 3", "Segoe UI", system-ui, sans-serif;
+$font-family-monospace: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+$headings-font-family: Inter, "Source Sans 3", "Segoe UI", system-ui, sans-serif;
+$headings-font-weight: 600;
+$headings-color: #14283b;
+$body-bg: #fbfcfb;
+$body-color: #14283b;
+$body-secondary-color: #526476;
+$body-secondary-bg: #eff3f5;
+$primary: #245ba6;
+$link-color: #245ba6;
+$link-hover-color: #1b467f;
+$navbar-bg: #fbfcfb;
+$border-color: #b8c8d1;
+$code-block-bg: #eff3f5;
+$code-color: #14283b;
+
+/*-- scss:rules --*/
+:root {
+  --bg: #fbfcfb;
+  --text: #14283b;
+  --accent: #245ba6;
+  --muted: #526476;
+  --surface: #eff3f5;
+  --line: #b8c8d1;
+}
+
+@import "_shared/site-components";

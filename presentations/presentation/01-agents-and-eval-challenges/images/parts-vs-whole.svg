@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 330" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" role="img">
+<title>The whole is more than the sum of its parts</title>
+<desc>Left: the same parts in isolation, each individually fine. Right: the parts interacting, forming feedback loops that no single part contains.</desc>
+<rect x="20" y="8" width="380" height="290" rx="14" fill="#EEF4FC"/><rect x="500" y="8" width="380" height="290" rx="14" fill="#E3F6F4"/>
+<circle cx="90" cy="82" r="11" fill="#3FBFB3" stroke="white" stroke-width="1.5"/>
+<circle cx="100" cy="72" r="7" fill="white" stroke="#1F5FA8" stroke-width="1.3"/><path d="M96.5 72 l2.5 2.6 l4.4 -5" fill="none" stroke="#1F5FA8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="175" cy="50" r="11" fill="#3FBFB3" stroke="white" stroke-width="1.5"/>
+<circle cx="185" cy="40" r="7" fill="white" stroke="#1F5FA8" stroke-width="1.3"/><path d="M181.5 40 l2.5 2.6 l4.4 -5" fill="none" stroke="#1F5FA8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="265" cy="80" r="11" fill="#3FBFB3" stroke="white" stroke-width="1.5"/>
+<circle cx="275" cy="70" r="7" fill="white" stroke="#1F5FA8" stroke-width="1.3"/><path d="M271.5 70 l2.5 2.6 l4.4 -5" fill="none" stroke="#1F5FA8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="345" cy="60" r="11" fill="#3FBFB3" stroke="white" stroke-width="1.5"/>
+<circle cx="355" cy="50" r="7" fill="white" stroke="#1F5FA8" stroke-width="1.3"/><path d="M351.5 50 l2.5 2.6 l4.4 -5" fill="none" stroke="#1F5FA8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="120" cy="172" r="11" fill="#3FBFB3" stroke="white" stroke-width="1.5"/>
+<circle cx="130" cy="162" r="7" fill="white" stroke="#1F5FA8" stroke-width="1.3"/><path d="M126.5 162 l2.5 2.6 l4.4 -5" fill="none" stroke="#1F5FA8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="215" cy="150" r="11" fill="#3FBFB3" stroke="white" stroke-width="1.5"/>
+<circle cx="225" cy="140" r="7" fill="white" stroke="#1F5FA8" stroke-width="1.3"/><path d="M221.5 140 l2.5 2.6 l4.4 -5" fill="none" stroke="#1F5FA8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="308" cy="167" r="11" fill="#3FBFB3" stroke="white" stroke-width="1.5"/>
+<circle cx="318" cy="157" r="7" fill="white" stroke="#1F5FA8" stroke-width="1.3"/><path d="M314.5 157 l2.5 2.6 l4.4 -5" fill="none" stroke="#1F5FA8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="90" cy="267" r="11" fill="#3FBFB3" stroke="white" stroke-width="1.5"/>
+<circle cx="100" cy="257" r="7" fill="white" stroke="#1F5FA8" stroke-width="1.3"/><path d="M96.5 257 l2.5 2.6 l4.4 -5" fill="none" stroke="#1F5FA8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="178" cy="244" r="11" fill="#3FBFB3" stroke="white" stroke-width="1.5"/>
+<circle cx="188" cy="234" r="7" fill="white" stroke="#1F5FA8" stroke-width="1.3"/><path d="M184.5 234 l2.5 2.6 l4.4 -5" fill="none" stroke="#1F5FA8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="272" cy="262" r="11" fill="#3FBFB3" stroke="white" stroke-width="1.5"/>
+<circle cx="282" cy="252" r="7" fill="white" stroke="#1F5FA8" stroke-width="1.3"/><path d="M278.5 252 l2.5 2.6 l4.4 -5" fill="none" stroke="#1F5FA8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="350" cy="234" r="11" fill="#3FBFB3" stroke="white" stroke-width="1.5"/>
+<circle cx="360" cy="224" r="7" fill="white" stroke="#1F5FA8" stroke-width="1.3"/><path d="M356.5 224 l2.5 2.6 l4.4 -5" fill="none" stroke="#1F5FA8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="228" cy="207" r="11" fill="#3FBFB3" stroke="white" stroke-width="1.5"/>
+<circle cx="238" cy="197" r="7" fill="white" stroke="#1F5FA8" stroke-width="1.3"/><path d="M234.5 197 l2.5 2.6 l4.4 -5" fill="none" stroke="#1F5FA8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M406 150 H466" stroke="#8A94A6" stroke-width="2.5"/><path d="M460 142 L474 150 L460 158 Z" fill="#8A94A6"/><text x="440" y="130" font-size="17" fill="#8A94A6" text-anchor="middle">+ interactions</text>
+<path d="M570 82 Q609.5 57.9 655 50" fill="none" stroke="#0F8F88" stroke-width="1.6" opacity="0.5"/>
+<path d="M655 50 Q704.3 52.1 745 80" fill="none" stroke="#0F8F88" stroke-width="1.6" opacity="0.5"/>
+<path d="M745 80 Q784.3 67 825 60" fill="none" stroke="#0F8F88" stroke-width="1.6" opacity="0.5"/>
+<path d="M570 82 Q596.2 123.3 600 172" fill="none" stroke="#0F8F88" stroke-width="1.6" opacity="0.5"/>
+<path d="M655 50 Q690.6 93.8 695 150" fill="none" stroke="#0F8F88" stroke-width="1.6" opacity="0.5"/>
+<path d="M745 80 Q769.6 122 788 167" fill="none" stroke="#0F8F88" stroke-width="1.6" opacity="0.5"/>
+<path d="M825 60 Q790.4 107.9 788 167" fill="none" stroke="#0F8F88" stroke-width="1.6" opacity="0.5"/>
+<path d="M695 150 Q739.9 167.4 788 167" fill="none" stroke="#0F8F88" stroke-width="1.6" opacity="0.5"/>
+<path d="M658 244 Q707.6 239.7 752 262" fill="none" stroke="#0F8F88" stroke-width="1.6" opacity="0.5"/>
+<path d="M745 80 Q712.3 109.5 695 150" fill="none" stroke="#0F8F88" stroke-width="1.6" opacity="0.5"/>
+<path d="M825 60 Q846.7 146.4 830 234" fill="none" stroke="#0F8F88" stroke-width="1.6" opacity="0.5"/>
+<path d="M600 172 Q649.9 171.3 695 150 Q700.7 178.7 708 207 Q686 229.5 658 244 Q611.3 245.1 570 267 Q594.5 222.5 600 172" fill="none" stroke="#F29D38" stroke-width="2.6" opacity="0.6" stroke-linejoin="round"/>
+<circle r="5.5" fill="#F29D38" stroke="white" stroke-width="1.5"><animateMotion path="M600 172 Q649.9 171.3 695 150 Q700.7 178.7 708 207 Q686 229.5 658 244 Q611.3 245.1 570 267 Q594.5 222.5 600 172" dur="5.5s" begin="-1.70s" repeatCount="indefinite"/></circle>
+<path d="M788 167 Q798.7 207 830 234 Q788.1 240 752 262 Q723.5 239.7 708 207 Q743.7 178.3 788 167" fill="none" stroke="#F29D38" stroke-width="2.6" opacity="0.6" stroke-linejoin="round"/>
+<circle r="5.5" fill="#F29D38" stroke="white" stroke-width="1.5"><animateMotion path="M788 167 Q798.7 207 830 234 Q788.1 240 752 262 Q723.5 239.7 708 207 Q743.7 178.3 788 167" dur="3.8s" begin="-2.38s" repeatCount="indefinite"/></circle>
+<circle cx="570" cy="82" r="11" fill="#3FBFB3" stroke="white" stroke-width="1.5"><animate attributeName="r" values="11;13.0;11" dur="4.21s" begin="-3.60s" repeatCount="indefinite"/></circle>
+<circle cx="655" cy="50" r="11" fill="#3FBFB3" stroke="white" stroke-width="1.5"><animate attributeName="r" values="11;13.0;11" dur="4.54s" begin="-0.39s" repeatCount="indefinite"/></circle>
+<circle cx="745" cy="80" r="11" fill="#3FBFB3" stroke="white" stroke-width="1.5"><animate attributeName="r" values="11;13.0;11" dur="3.93s" begin="-2.64s" repeatCount="indefinite"/></circle>
+<circle cx="825" cy="60" r="11" fill="#3FBFB3" stroke="white" stroke-width="1.5"><animate attributeName="r" values="11;13.0;11" dur="3.71s" begin="-0.66s" repeatCount="indefinite"/></circle>
+<circle cx="600" cy="172" r="11" fill="#3FBFB3" stroke="white" stroke-width="1.5"><animate attributeName="r" values="11;13.0;11" dur="3.64s" begin="-0.33s" repeatCount="indefinite"/></circle>
+<circle cx="695" cy="150" r="11" fill="#3FBFB3" stroke="white" stroke-width="1.5"><animate attributeName="r" values="11;13.0;11" dur="4.66s" begin="-4.03s" repeatCount="indefinite"/></circle>
+<circle cx="788" cy="167" r="11" fill="#3FBFB3" stroke="white" stroke-width="1.5"><animate attributeName="r" values="11;13.0;11" dur="3.80s" begin="-1.14s" repeatCount="indefinite"/></circle>
+<circle cx="570" cy="267" r="11" fill="#3FBFB3" stroke="white" stroke-width="1.5"><animate attributeName="r" values="11;13.0;11" dur="4.60s" begin="-2.63s" repeatCount="indefinite"/></circle>
+<circle cx="658" cy="244" r="11" fill="#3FBFB3" stroke="white" stroke-width="1.5"><animate attributeName="r" values="11;13.0;11" dur="4.54s" begin="-3.85s" repeatCount="indefinite"/></circle>
+<circle cx="752" cy="262" r="11" fill="#3FBFB3" stroke="white" stroke-width="1.5"><animate attributeName="r" values="11;13.0;11" dur="3.72s" begin="-1.54s" repeatCount="indefinite"/></circle>
+<circle cx="830" cy="234" r="11" fill="#3FBFB3" stroke="white" stroke-width="1.5"><animate attributeName="r" values="11;13.0;11" dur="3.92s" begin="-1.69s" repeatCount="indefinite"/></circle>
+<circle cx="708" cy="207" r="11" fill="#3FBFB3" stroke="white" stroke-width="1.5"><animate attributeName="r" values="11;13.0;11" dur="2.95s" begin="-0.90s" repeatCount="indefinite"/></circle>
+<text x="210" y="324" font-size="20" fill="#1F5FA8" text-anchor="middle">the parts, in isolation</text><text x="690" y="324" font-size="20" fill="#0F8F88" text-anchor="middle">the parts, interacting</text>
+</svg>

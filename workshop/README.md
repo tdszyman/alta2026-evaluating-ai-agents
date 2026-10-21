@@ -21,7 +21,7 @@ Per the [ALTA program](https://alta2026.alta.asn.au/program#afternoon-tutorial),
 
 ## Starter app
 
-[`app/`](app/) is a static page. `scripts/render-slides.sh` copies it to `hands-on/` on the published site, next to the decks. Participants edit a judge prompt and run it over four career-advice replies. The browser calls OpenRouter with a key they paste locally.
+[`app/`](app/) is a static page. `scripts/render-slides.sh` copies it to `/hands-on/app/` on the published site. The site page at `/hands-on/` links to it and opens the app in a new tab. Participants edit a judge prompt and run it over four career-advice replies. The browser calls OpenRouter with a key they paste locally.
 
 The four replies are starter fixtures, written so soundness, tone, and compliance can come apart. They are not a confirmed Part 3 scenario.
 
