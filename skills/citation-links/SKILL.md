@@ -49,7 +49,7 @@ Edit `knowledge/bibliography.json`. Required fields: `id`, `type` (`paper`, `blo
 - `venue` is the rest of the ACL reference after the title (proceedings, “arXiv preprint arXiv:….”, site name).
 - `abstract` is verbatim from the source, or `null`. Do not write an abstract from memory.
 - `summary` is a one- or two-sentence note on why the source matters for the tutorial as a whole. The page uses it only when `summary_md` is absent. Do not present it as the authors’ abstract. Follow the naming rule in [`skills/source-summaries/SKILL.md`](../source-summaries/SKILL.md): the four official parts and the ALTA program abstract are stable; a list position, a bibliography group, an outline, and a slide number are not.
-- A fuller reading summary, its figures, and any access failure belong in `summary_md`, `figures`, `access_note`, and `summary_status`. Follow [`skills/source-summaries/SKILL.md`](../source-summaries/SKILL.md). Do not delete those fields when you are only fixing a citation link.
+- A fuller reading summary, its figures, and any access failure belong in `summary_md`, `figures`, `access_note`, and `summary_status`. Provenance for that note belongs in `summary_generated_at`, `summary_skill_version`, and `summary_agent`. Follow [`skills/source-summaries/SKILL.md`](../source-summaries/SKILL.md). Do not delete those fields when you are only fixing a citation link.
 - `links` is a list of `{label, href}` for the publication, PDF, code, dataset, site, or post.
 - `mentions` lists short phrases the checker should find in decks. Keep them specific.
 

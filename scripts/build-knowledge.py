@@ -343,6 +343,23 @@ def render_summary(src: dict, dest: Path, missing: list[str]) -> str:
     return body
 
 
+def provenance_html(src: dict) -> str:
+    """Quiet line: when the note was written, which skill version, and which agent."""
+    when = str(src.get("summary_generated_at") or "").strip()
+    version = src.get("summary_skill_version")
+    agent = str(src.get("summary_agent") or "").strip()
+    parts = []
+    if when:
+        parts.append(html.escape(when))
+    if version is not None and str(version).strip():
+        parts.append("Skill version " + html.escape(str(version).strip()))
+    if agent:
+        parts.append(html.escape(agent))
+    if not parts:
+        return ""
+    return '<p class="ai-provenance">' + " · ".join(parts) + "</p>\n"
+
+
 def write_source(src: dict, cites: list[dict], missing: list[str]) -> None:
     links = []
     seen = set()
@@ -405,7 +422,7 @@ toc: false
 {access_md}
 ::: {{.ai-summary}}
 <p class="ai-label">AI-generated summary</p>
-
+{provenance_html(src)}
 Draft for organiser review. A coding agent wrote this note. It is not a substitute for the abstract or the source.
 
 {summary_body}
@@ -437,6 +454,18 @@ def main() -> int:
     drafted = [s["id"] for s in sources if s.get("summary_status") == "draft"]
     print(f"Wrote {len(sources)} bibliography pages → {OUT.relative_to(ROOT)}")
     print(f"Draft reading summaries: {len(drafted)}")
+    unstamped = [
+        s["id"]
+        for s in sources
+        if (s.get("summary_md") or "").strip()
+        and not (
+            str(s.get("summary_generated_at") or "").strip()
+            and str(s.get("summary_skill_version") or "").strip()
+            and str(s.get("summary_agent") or "").strip()
+        )
+    ]
+    if unstamped:
+        print("Reading notes missing provenance:", ", ".join(unstamped))
     mentions = mention_report(sources)
     if broken:
         print("Broken citation links:")

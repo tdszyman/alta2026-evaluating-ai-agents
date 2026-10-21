@@ -1,5 +1,6 @@
 ---
 name: source-summaries
+version: 3
 description: >-
   Write a tutorial-focused reading summary and capture key figures for one
   ALTA 2026 bibliography source page. Use when asked to summarise references,
@@ -28,6 +29,9 @@ Do not use this skill to invent slide claims, rubrics, or timings. Before tying 
 | `summary` | One or two sentences: why this source matters for the tutorial as a whole. Shown only when `summary_md` is absent. Keep it, and keep it true. The same naming rule as `summary_md` applies. |
 | `summary_md` | The reading note, markdown. The page shows this inside the existing **AI-generated summary** label. |
 | `summary_status` | `draft` after a successful pass. Organisers change it later. Do not set `reviewed`. |
+| `summary_generated_at` | When this note was written, as a readable time with its zone. Example: `22 Oct 2026, 10:00 am AEDT`. |
+| `summary_skill_version` | Integer version of this skill used to write the note. Copy it from the `version` field above. |
+| `summary_agent` | Who wrote the note. Example: `Cursor running Grok 4.7 High Fast`. |
 | `figures` | List of `{file, alt, caption, credit}`. |
 | `access_note` | Plain sentence about what could not be opened or captured. `null` when nothing failed. The page prints it above the summary. |
 | `abstract` | Verbatim from the source, or `null`. Never paraphrase into this field. |
@@ -99,6 +103,20 @@ Do not mention any of the following. They change as the tutorial is revised:
 
 “Part 1” is allowed. “The Part 1 outline” and “the first item on the list” are not. A sentence such as “It is the first item on the organiser primary list, and it is the wide frame for Part 1” keeps the second clause and drops the first.
 
+## Version
+
+This skill is **version 3**. The reading notes written before the provenance line was required are version 2.
+
+Increase `version` in the frontmatter by one when the instructions change what a note should say, which tutorial facts it may name, or how it is labelled. A typo or a clarification that would not change an existing note does not increase the version. Record the version you actually used in `summary_skill_version`. Do not relabel an old note with a new version unless you rewrote the note under that version.
+
+## Provenance
+
+The page prints a quiet line under the **AI-generated summary** label: the time, the skill version, and the agent. Do not write that line into `summary_md`. Set the three fields instead.
+
+- `summary_generated_at` is when you finished the note. Use a readable time and name the zone, as in `22 Oct 2026, 10:00 am AEDT`. An approximate time is acceptable when the exact minute was not recorded. Update it when you rewrite the note. Leave it when you only fix a typo or a figure crop.
+- `summary_skill_version` is the integer `version` of this file at the time you write the note.
+- `summary_agent` names the agent and the model, in the form `Cursor running <model>`.
+
 ## Capture figures
 
 Pick 2–4 figures, charts, or tables that the note depends on. Prefer the framework diagram, the main result plot, and one table of the numbers you cite. Skip decorative art, the abstract, and a full page.
@@ -113,7 +131,7 @@ Pick 2–4 figures, charts, or tables that the note depends on. Prefer the frame
 
 ## Finish one source
 
-1. Set `summary_status` to `draft`. Keep `summary` as the short fallback, rewritten if it is no longer accurate.
+1. Set `summary_status` to `draft`. Set `summary_generated_at`, `summary_skill_version`, and `summary_agent` as in Provenance. Keep `summary` as the short fallback, rewritten if it is no longer accurate.
 2. If authors or a verbatim abstract were missing and you now have them from the file you opened, fill `authors` and `abstract`. Remove `author_label` once the byline is complete. Do not guess a name.
 3. Validate JSON:
 

@@ -60,7 +60,10 @@
           "caption": "Figure 3 from Jia et al. (2025). Share of errors the judge both caught and pinned to the right span in the trace.",
           "credit": "Reproduced from Jia et al. (2025)."
         }
-      ]
+      ],
+      "summary_generated_at": "22 Oct 2026, 10:00 am AEDT",
+      "summary_skill_version": 2,
+      "summary_agent": "Cursor running Grok 4.7 High Fast"
     },
     {
       "id": "kwok-2026-llm-as-verifier",
@@ -129,7 +132,10 @@
           "caption": "Figure 1 from Kwok et al. (2026). Headline accuracy when the verifier picks a trajectory from a pool of candidates. The pool and the harness differ by benchmark.",
           "credit": "Reproduced from Kwok et al. (2026)."
         }
-      ]
+      ],
+      "summary_generated_at": "22 Oct 2026, 10:00 am AEDT",
+      "summary_skill_version": 2,
+      "summary_agent": "Cursor running Grok 4.7 High Fast"
     },
     {
       "id": "upadhyay-2024-umbrela",
@@ -188,7 +194,10 @@
           "caption": "Table 2 from Upadhyay et al. (2024). Label agreement (kappa) stays modest while the ranking of systems by nDCG@10 stays highly correlated.",
           "credit": "Reproduced from Upadhyay et al. (2024)."
         }
-      ]
+      ],
+      "summary_generated_at": "22 Oct 2026, 10:00 am AEDT",
+      "summary_skill_version": 2,
+      "summary_agent": "Cursor running Grok 4.7 High Fast"
     },
     {
       "id": "bai-2022-constitutional-ai",
@@ -294,7 +303,10 @@
           "caption": "Figure 4 from Bai et al. (2022). Chain-of-thought is what lets a language model approach a human-feedback preference model at picking the better reply.",
           "credit": "Reproduced from Bai et al. (2022)."
         }
-      ]
+      ],
+      "summary_generated_at": "22 Oct 2026, 10:00 am AEDT",
+      "summary_skill_version": 2,
+      "summary_agent": "Cursor running Grok 4.7 High Fast"
     },
     {
       "id": "voss-2026-agent-as-judge",
@@ -339,7 +351,10 @@
           "caption": "Diagram from Voss (2026). A template judge sees only the fields chosen in advance. An agent judge can look through the trajectory. The output drawn for the agent judge is the product's claim, not the research chart.",
           "credit": "Reproduced from Voss (2026)."
         }
-      ]
+      ],
+      "summary_generated_at": "22 Oct 2026, 10:00 am AEDT",
+      "summary_skill_version": 2,
+      "summary_agent": "Cursor running Grok 4.7 High Fast"
     },
     {
       "id": "winston-2026-production-judges",
@@ -394,7 +409,10 @@
           "caption": "Diagram from Winston (2026). Each listed failure mode is paired with a design response. These are the post's recommendations, not measured effect sizes.",
           "credit": "Reproduced from Winston (2026)."
         }
-      ]
+      ],
+      "summary_generated_at": "22 Oct 2026, 10:00 am AEDT",
+      "summary_skill_version": 2,
+      "summary_agent": "Cursor running Grok 4.7 High Fast"
     },
     {
       "id": "le-2026-sage",
@@ -478,7 +496,10 @@
           "caption": "Figure 5 from Le et al. (2026). During a search-quality incident, the judge's poor-match rate moved and the engagement proxy did not.",
           "credit": "Reproduced from Le et al. (2026)."
         }
-      ]
+      ],
+      "summary_generated_at": "22 Oct 2026, 10:00 am AEDT",
+      "summary_skill_version": 2,
+      "summary_agent": "Cursor running Grok 4.7 High Fast"
     },
     {
       "id": "sternbach-2026-swebench-scale",
@@ -535,7 +556,10 @@
           "caption": "Table from Sternbach (2026). The campaign totals the post reports. These are infrastructure counts, not quality scores.",
           "credit": "Reproduced from Sternbach (2026)."
         }
-      ]
+      ],
+      "summary_generated_at": "22 Oct 2026, 10:00 am AEDT",
+      "summary_skill_version": 2,
+      "summary_agent": "Cursor running Grok 4.7 High Fast"
     },
     {
       "id": "chen-2026-emerging-trends",
@@ -595,7 +619,10 @@
           "caption": "Figure 11 from Chen et al. (2026). A fictional log the paper uses to show an outcome marked success while the trace shows the agent retrieved the benchmark answers.",
           "credit": "Reproduced from Chen et al. (2026)."
         }
-      ]
+      ],
+      "summary_generated_at": "22 Oct 2026, 10:00 am AEDT",
+      "summary_skill_version": 2,
+      "summary_agent": "Cursor running Grok 4.7 High Fast"
     },
     {
       "id": "zhou-2024-mitigating-bias",
@@ -661,7 +688,10 @@
           "caption": "Figure 4 from Zhou et al. (2024). Past a point, subtracting superficial quality hurts the ordinary set as well as the adversarial one.",
           "credit": "Reproduced from Zhou et al. (2024)."
         }
-      ]
+      ],
+      "summary_generated_at": "22 Oct 2026, 10:00 am AEDT",
+      "summary_skill_version": 2,
+      "summary_agent": "Cursor running Grok 4.7 High Fast"
     },
     {
       "id": "ye-2024-justice-or-prejudice",
