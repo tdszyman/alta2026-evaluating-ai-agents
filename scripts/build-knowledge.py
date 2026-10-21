@@ -14,11 +14,13 @@ from __future__ import annotations
 import html
 import json
 import re
+import shutil
 import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 BIB = ROOT / "knowledge" / "bibliography.json"
+FIGURES = ROOT / "knowledge" / "source-figures"
 DECKS = ROOT / "presentations" / "presentation"
 OUT = ROOT / "presentations" / "bibliography"
 
@@ -288,7 +290,77 @@ format: html
     (OUT / "index.qmd").write_text(page, encoding="utf-8")
 
 
-def write_source(src: dict, cites: list[dict]) -> None:
+def figure_html(fig: dict) -> str:
+    alt = html.escape(fig.get("alt") or "", quote=True)
+    caption = html.escape(fig.get("caption") or "")
+    credit = html.escape(fig.get("credit") or "")
+    credit_html = f'<span class="figure-credit">{credit}</span>' if credit else ""
+    file_name = html.escape(fig["file"], quote=True)
+    return (
+        '<figure class="paper-figure">'
+        f'<img src="{file_name}" alt="{alt}">'
+        f"<figcaption>{caption}{credit_html}</figcaption>"
+        "</figure>"
+    )
+
+
+def render_summary(src: dict, dest: Path, missing: list[str]) -> str:
+    """Markdown for the AI-generated summary, with figure placeholders expanded."""
+    md = (src.get("summary_md") or "").strip()
+    if not md:
+        return "```{=html}\n" + html_paragraph(src.get("summary") or "Summary not yet written.") + "\n```"
+    figures = {f["file"]: f for f in (src.get("figures") or []) if f.get("file")}
+    used: set[str] = set()
+
+    def repl(match: re.Match) -> str:
+        name = match.group(1).strip()
+        used.add(name)
+        fig = figures.get(name)
+        src_path = FIGURES / src["id"] / name
+        if fig is None or not src_path.is_file():
+            missing.append(f'{src["id"]}: {name}')
+            return (
+                "\n\n```{=html}\n"
+                f'<p class="figure-missing">Figure file missing: {html.escape(name)}</p>\n'
+                "```\n\n"
+            )
+        shutil.copy(src_path, dest / name)
+        return "\n\n```{=html}\n" + figure_html(fig) + "\n```\n\n"
+
+    body = re.sub(r"\{\{figure:\s*([^}]+?)\s*\}\}", repl, md)
+    leftovers = []
+    for name, fig in figures.items():
+        if name in used:
+            continue
+        src_path = FIGURES / src["id"] / name
+        if not src_path.is_file():
+            missing.append(f'{src["id"]}: {name}')
+            continue
+        shutil.copy(src_path, dest / name)
+        leftovers.append("```{=html}\n" + figure_html(fig) + "\n```")
+    if leftovers:
+        body = body.rstrip() + "\n\n" + "\n\n".join(leftovers) + "\n"
+    return body
+
+
+def provenance_html(src: dict) -> str:
+    """Quiet line: when the note was written, which skill version, and which agent."""
+    when = str(src.get("summary_generated_at") or "").strip()
+    version = src.get("summary_skill_version")
+    agent = str(src.get("summary_agent") or "").strip()
+    parts = []
+    if when:
+        parts.append(html.escape(when))
+    if version is not None and str(version).strip():
+        parts.append("Skill version " + html.escape(str(version).strip()))
+    if agent:
+        parts.append(html.escape(agent))
+    if not parts:
+        return ""
+    return '<p class="ai-provenance">' + " · ".join(parts) + "</p>\n"
+
+
+def write_source(src: dict, cites: list[dict], missing: list[str]) -> None:
     links = []
     seen = set()
     for link in src.get("links") or []:
@@ -318,8 +390,19 @@ def write_source(src: dict, cites: list[dict]) -> None:
         cite_md = "No slide currently links to this source."
     note = src.get("note")
     note_md = f"\n{note}\n" if note else ""
+    access = (src.get("access_note") or "").strip()
+    access_md = ""
+    if access:
+        access_md = (
+            "\n::: {.access-note}\n**Access note.** "
+            + access
+            + "\n:::\n"
+        )
     year = str(src.get("year") or "n.d.").rstrip(".")
     kind = {"paper": "Paper", "blog": "Blog post", "website": "Website"}.get(src.get("type"), "Source")
+    dest = OUT / src["id"]
+    dest.mkdir(parents=True, exist_ok=True)
+    summary_body = render_summary(src, dest, missing)
     page = f"""---
 title: {yaml_quote(src["title"])}
 subtitle: {yaml_quote(f"{kind} · {year}")}
@@ -336,23 +419,19 @@ toc: false
 ## Abstract
 
 {abstract_md}
-
+{access_md}
 ::: {{.ai-summary}}
 <p class="ai-label">AI-generated summary</p>
-
+{provenance_html(src)}
 Draft for organiser review. A coding agent wrote this note. It is not a substitute for the abstract or the source.
 
-```{{=html}}
-{html_paragraph(src.get("summary") or "Summary not yet written.")}
-```
+{summary_body}
 :::
 
 ## Cited in the presentation
 
 {cite_md}
 """
-    dest = OUT / src["id"]
-    dest.mkdir(parents=True, exist_ok=True)
     (dest / "index.qmd").write_text(page, encoding="utf-8")
 
 
@@ -365,18 +444,28 @@ def main() -> int:
         print("duplicate ids:", sorted(set(dupes)), file=sys.stderr)
         return 1
     if OUT.exists():
-        for child in OUT.iterdir():
-            if child.is_dir():
-                for f in child.glob("*"):
-                    f.unlink()
-                child.rmdir()
-            else:
-                child.unlink()
+        shutil.rmtree(OUT)
+    OUT.mkdir(parents=True)
     cited, broken = scan_decks(ids)
     write_index(sources)
+    missing: list[str] = []
     for src in sources:
-        write_source(src, cited.get(src["id"], []))
+        write_source(src, cited.get(src["id"], []), missing)
+    drafted = [s["id"] for s in sources if s.get("summary_status") == "draft"]
     print(f"Wrote {len(sources)} bibliography pages → {OUT.relative_to(ROOT)}")
+    print(f"Draft reading summaries: {len(drafted)}")
+    unstamped = [
+        s["id"]
+        for s in sources
+        if (s.get("summary_md") or "").strip()
+        and not (
+            str(s.get("summary_generated_at") or "").strip()
+            and str(s.get("summary_skill_version") or "").strip()
+            and str(s.get("summary_agent") or "").strip()
+        )
+    ]
+    if unstamped:
+        print("Reading notes missing provenance:", ", ".join(unstamped))
     mentions = mention_report(sources)
     if broken:
         print("Broken citation links:")
@@ -392,7 +481,11 @@ def main() -> int:
         print("Unlinked mentions: none")
     uncited = [s["id"] for s in sources if not cited.get(s["id"])]
     print(f"Sources not yet cited from a deck: {len(uncited)}")
-    return 1 if broken else 0
+    if missing:
+        print("Missing figures:")
+        for line in missing:
+            print(" ", line)
+    return 1 if broken or missing else 0
 
 
 if __name__ == "__main__":
