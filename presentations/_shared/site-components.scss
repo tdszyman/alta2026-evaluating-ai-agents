@@ -254,8 +254,58 @@ a.app-launch:hover {
 }
 
 .ai-summary {
+  max-width: 46rem;
   margin-top: 1.4rem;
   padding: 0.9rem 1rem 0.2rem;
+}
+
+.ai-summary h2 {
+  margin: 1.15rem 0 0.35rem;
+  font-size: 1.15rem;
+  color: var(--text);
+}
+
+.ai-summary h3 {
+  margin: 0.9rem 0 0.3rem;
+  font-size: 1.02rem;
+  color: var(--text);
+}
+
+.ai-summary ul { margin: 0.35rem 0 0.8rem; }
+.ai-summary li { margin: 0.25rem 0; }
+
+.access-note {
+  max-width: 46rem;
+  margin: 1rem 0;
+  padding: 0.7rem 0.9rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--accent);
+  border-radius: 2px;
+}
+
+.paper-figure { margin: 1rem 0 1.15rem; }
+
+.paper-figure img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  background: #fff;
+  border: 1px solid var(--line);
+}
+
+.paper-figure figcaption {
+  margin-top: 0.4rem;
+  font-size: 0.92rem;
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+.figure-credit { display: block; margin-top: 0.15rem; }
+
+.figure-missing {
+  margin: 0.6rem 0;
+  color: var(--muted);
 }
 
 .ai-label {

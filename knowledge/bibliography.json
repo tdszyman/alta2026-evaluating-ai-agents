@@ -28,7 +28,7 @@
         }
       ],
       "abstract": "We introduce the Agent GPA (Goal-Plan-Action) framework, driven by the fundamental insight that critical agent failures emerge at the intersections of setting goals, devising plans, and executing actions. We operationalize the framework with a factorized suite of LLM judges designed to measure distinct elements of Goal-Plan-Act alignment. To make this methodology scalable and generalizable across diverse agent architectures and datasets, we use state-of-the-art automated prompt optimization techniques to systematically generate domain-specific evaluation criteria. We validate this approach across three benchmarks: a multi-agent research setting (TRAIL/GAIA), a single coding agent setting (TRAIL/SWE-bench), and a private, enterprise data-agent setting (Snowflake Intelligence). Extensive evaluation on TRAIL/GAIA demonstrates the core validity of the framework, which identifies a broad range of agent failures (95% of human-annotated errors), localizes errors to enable targeted debugging (86% of human-annotated errors), and exhibits strong agreement with human evaluators. Crucially, by applying our automated methodology to both public datasets, we demonstrate that our GPA judges generally achieve the highest error coverage (ranging from 76% to 86%) in comparison to manual prompting approaches. We also leverage an evolutionary coding agent to improve judge consistency by up to 38% through iterative refinement of evaluation rubrics. Overall, Agent GPA provides a rigorous and generalizable paradigm for targeted agent evaluation.",
-      "summary": "Primary reading. It treats an agent trace as a goal, a plan, and actions, and asks whether those three line up. That is the multi-tier idea in Part 1: do not score only the final answer.",
+      "summary": "Primary reading for Part 1. It scores a trace as a goal, a plan, and actions, with a separate judge for each, instead of one score on the final answer.",
       "groups": [
         "featured",
         "agents"
@@ -37,7 +37,30 @@
       "mentions": [
         "Agent GPA"
       ],
-      "note": null
+      "note": null,
+      "summary_md": "## Why it is here\n\nJia and colleagues introduce Agent GPA, short for Goal, Plan, and Action. The Part 1 outline uses it for multi-tier evaluation: score the running system, and also score the pieces, rather than scoring only the final answer.\n\n## What they did\n\nAn agent sets a goal, makes a plan, and takes actions. The paper's claim is that serious failures sit inside those pieces and on the boundaries between them. One score cannot separate them. An agent can meet the user's goal by a wasteful path, or follow a plan that never addressed the goal.\n\nThey define seven metrics, and a separate LLM judge for each. A judge here is a prompted model that reads a trace and returns a score, with no reference answer. Goal Fulfillment asks whether the finished actions met the user's goal. Plan Quality and Tool Selection look at the plan: is it a workable decomposition, and is each tool, including the choice of no tool, the right one? Plan Adherence and Tool Calling look at execution: did the actions follow the stated plan, and were the arguments valid and the tool outputs read faithfully? Logical Consistency checks that each step is grounded in prior context and the system instructions. Execution Efficiency looks for redundant calls, and it still applies when the agent never wrote a plan.\n\n{{figure:fig1-gpa-framework.png}}\n\nEach judge prompt has two halves. The generic half defines the metric and stays fixed across datasets. The custom half describes the agent, adds one or two labelled examples from a development set, and sets the output format. The judge model is Claude 4 Sonnet. Scores run from 0 to 3.\n\nThey use three settings. TRAIL/GAIA is 117 traces from a manager agent and a search agent on GAIA questions, with expert-marked errors. TRAIL/SWE-bench is 31 traces from a coding agent that does not write a plan into the log, so they run only Logical Consistency, Execution Efficiency, and Tool Calling. Snowflake Intelligence is 17 production data-analysis traces, scored only on Logical Consistency and Execution Efficiency for the same reason.\n\n## What they found\n\nOn the TRAIL/GAIA test split (59 traces, 281 human-marked errors), the seven judges together caught 95.0% of the errors (267 of 281). A single judge asked to do the whole job caught about 54% (151 to 154 of 281). Giving that single judge a description of the agent's control flow added about one percentage point. The gain comes from splitting the questions.\n\n{{figure:fig2-error-coverage.png}}\n\nCatching an error is a different task from pointing at the span that contains it. The GPA judges localized 85.8% of test errors (241 of 281). The stronger single-judge baseline localized 49.1%, and the original baseline localized 30.9%. The gap is widest on low-impact errors, the subtle ones: GPA recall was 80.7%, against roughly 23% to 30% for the baselines.\n\n{{figure:fig3-error-localization.png}}\n\nEvery one of the 570 GAIA errors and all 239 SWE-bench errors fell under at least one GPA metric. On the GAIA test set the common ones were Logical Consistency (140), Tool Calling (128), and Execution Efficiency (119). Plan Quality was rare (14).\n\nAgreement with a human score was 73.1% on TRAIL/GAIA, after they collapsed the 0–3 scale into three buckets, and 82.3% on the 17 Snowflake traces. Repeats of the same judge were stable and still not identical. Average Krippendorff's alpha, a chance-corrected measure of agreement, was 0.77 on GAIA. Plan Quality was the noisiest, at 0.628. A search that rewrote the prompt to reduce score variance (OpenEvolve) raised that alpha to 0.814, mostly by making the rubric more specific.\n\nA prompt optimizer (GEPA) writing the custom half raised Plan Quality recall on GAIA from 52.4% to 76.2%. On SWE-bench traces the hand-written prompts had not seen, Tool Calling recall moved from 55.5% to 84.7%.\n\n## What to carry into the tutorial\n\n- Part 3 can split a grade the way GPA does. Tool choice, tool arguments, and the quality of the reply are different questions. One prompt that asks all of them at once is the single-judge baseline this paper beats.\n- If the trace contains no plan, do not score plan quality. They dropped the plan judges when the log had no plan.\n- A judge prompt has a stable definition and a domain-specific half. Changing the domain half changes the measurement. That is a Part 2 point about rubrics, and a Part 4 point about prompt drift.\n- Report agreement across repeats. An alpha of 0.77 still leaves disagreements a person should look at.\n- Catching a known error is not the same thing as a calibrated 1–5 score. They still needed human error spans to check the judges.\n\n## Limits\n\nThe GAIA traces were shortened to fit the context window, so the judge did not see the raw log. Snowflake is 17 traces from one product. The GEPA comparison on SWE-bench uses another LLM as a meta-judge to grade the judges. The middle scores, 1 and 2, were the fuzzy ones, which is why they also report a bucketed accuracy.\n",
+      "summary_status": "draft",
+      "access_note": null,
+      "figures": [
+        {
+          "file": "fig1-gpa-framework.png",
+          "alt": "A three-circle Venn diagram labelled Goal, Plan, and Act. Numbered regions point to a legend: 1 Goal Fulfillment, 2 Plan Quality, 2A Tool Selection, 3 Plan Adherence, 3A Tool Calling, and 4 and 5 Logical Consistency and Execution Efficiency in the centre where all three circles overlap.",
+          "caption": "Figure 1 from Jia et al. (2025). Failures are placed at the intersections of goal, plan, and action, and each region gets its own judge.",
+          "credit": "Reproduced from Jia et al. (2025)."
+        },
+        {
+          "file": "fig2-error-coverage.png",
+          "alt": "Bar charts of error coverage. On the test set, GPA judges reach 80.7 percent on low-impact errors, 96.8 percent on medium, 100 percent on high, and 95.0 percent overall. Two monolithic baselines sit near 23 to 30 percent on low-impact errors and about 54 percent overall.",
+          "caption": "Figure 2 from Jia et al. (2025). Share of human-marked errors the judges caught. Splitting the rubric beats one judge asked to find every error.",
+          "credit": "Reproduced from Jia et al. (2025)."
+        },
+        {
+          "file": "fig3-error-localization.png",
+          "alt": "Bar charts of error localization. On the test set, GPA judges localize 68.4 percent of low-impact errors and 85.8 percent overall. The original baseline localizes 30.9 percent overall, and the baseline given the agent's control flow localizes 49.1 percent.",
+          "caption": "Figure 3 from Jia et al. (2025). Share of errors the judge both caught and pinned to the right span in the trace.",
+          "credit": "Reproduced from Jia et al. (2025)."
+        }
+      ]
     },
     {
       "id": "kwok-2026-llm-as-verifier",
@@ -68,7 +91,7 @@
         }
       ],
       "abstract": "Scaling pre-training, post-training, and test-time compute have become the central paradigms for improving the capabilities of LLMs. In this work, we identify verification, the ability to determine the correctness of a solution, as a new scaling axis. To unlock this and demonstrate its effectiveness, we introduce LLM-as-a-Verifier, a general-purpose verification framework that provides fine-grained feedback for agentic tasks without requiring additional training. Unlike standard LM judges that prompt LLMs to produce discrete scores for candidate solutions, LLM-as-a-Verifier computes the expectation over the distribution of scoring token logits to generate continuous scores. This probabilistic formulation enables verification to scale along multiple dimensions: (1) score granularity, (2) repeated evaluation, and (3) criteria decomposition. In particular, we show that scaling the scoring granularity leads to better separation between positive and negative solutions, resulting in more calibrated comparisons. Moreover, scaling repeated evaluation and criteria decomposition consistently lead to additional gains in verification accuracy through variance and complexity reduction. We further introduce a cost-efficient ranking algorithm for selecting the best solution among candidates using the verifier's continuous scores. LLM-as-a-Verifier achieves state-of-the-art performance on Terminal-Bench V2 (86.5%), SWE-Bench Verified (78.2%), RoboRewardBench (87.4%), and MedAgentBench (73.3%). Beyond verification, the fine-grained signals from LLM-as-a-Verifier can also serve as a proxy for estimating task progress. We build an extension for Claude Code, enabling developers to monitor and improve their own agentic systems. Finally, we show that LLM-as-a-Verifier can provide dense feedback for RL, improving the sample efficiency of SAC and GRPO on robotics and mathematical reasoning benchmarks.",
-      "summary": "Primary reading. It frames a general verification setup around LLM judges, which is the Part 2 question of when a model should check another model, and the Part 4 question of whether that check is reliable.",
+      "summary": "Primary reading for Parts 2 and 4. A verifier that uses the score-token probabilities, instead of one discrete integer, separates good and bad trajectories more reliably and ties less often.",
       "groups": [
         "featured",
         "judges"
@@ -77,7 +100,36 @@
       "mentions": [
         "LLM-as-a-Verifier"
       ],
-      "note": null
+      "note": null,
+      "summary_md": "## Why it is here\n\nKwok and colleagues treat verification, the decision that a solution is correct, as something you can spend more compute on, separately from training a larger model. Part 2 asks when a model should check another model. Part 4 asks whether that check is reliable, and what the check costs.\n\n## What they did\n\nA usual LLM judge prompts a model to emit one score token, then keeps the single most likely token. That collapses the model's distribution into an integer, and close calls become ties. Their verifier reads the probabilities of the score tokens and takes the expected value. Averaged over criteria C, repeats K, and score tokens, the reward is the mean of p(v_g) times a number φ(v_g) for each token. Two continuous scores become a preference with a Bradley–Terry model, which turns a score gap into a probability that one trajectory beats the other.\n\nThe prompt asks for a score from 1 to 20. They use letter tokens rather than digits so the probability sits on one token. The experiments use Gemini 2.5 Flash, which returns up to 20 token probabilities. A trajectory is the full sequence of states and actions, including tool calls.\n\n{{figure:fig2-framework.png}}\n\nTo pick a winner among N candidate trajectories without scoring every pair, they use a Probabilistic Pivot Tournament. A ring of comparisons puts every candidate once on the left and once on the right, which cancels the judge's habit of preferring whichever side is shown first. The remaining budget is spent on a small set of leading candidates. Cost grows like N times k, not N squared.\n\n## What they found\n\nOn Terminal-Bench V2 they measure pairwise accuracy: how often the verifier scores a known-successful trajectory above a failed one for the same task. Three knobs each help, by a few points.\n\n{{figure:fig4-scaling.png}}\n\nFiner score tokens move accuracy from 73.1% at one token to 77.5% at 20. Repeating the evaluation moves it from 74.7% at one pass to 77.5% at 16. Splitting \"is this correct?\" into specification, errors, and output format scores 75.2%, 76.0%, and 76.4% alone, and 78.3% when the three are averaged.\n\nThe practical difference is ties. At one pass the discrete judge ties 26.7% of comparisons, and at 16 passes it still ties 5.5%. The continuous verifier ties none. One pass of the verifier matches 16 passes of the discrete judge, both at 74.7%.\n\n{{figure:fig7-judge-vs-verifier.png}}\n\nA single Terminal-Bench task makes the same point. Two agents rewrite a slow SQL query. The correct one waits for the original query and diffs the result. The incorrect one never checks equivalence on the real database. Over 100 repeats, a 1–5 discrete judge ties 88 times and ranks the correct trajectory higher only 12 times. Taking the expected value of that same 1–5 distribution removes the ties and ranks the correct one higher 69 times. A 20-point scale ranks it higher 77 times.\n\nUsed to select a trajectory, the verifier reaches 86.5% on Terminal-Bench V2 (the pool's pass@1 was 83.1%; an oracle that always picked the best of five would reach 92.1%), 78.2% on SWE-Bench Verified (pass@1 76.1%, oracle 84.4%), and 73.3% on MedAgentBench. On RoboRewardBench, preference accuracy is 87.4%, against 70.8% for a discrete LLM judge and 74.7% to 81.4% for trained robotics reward models. If an oracle could always pick the best trajectory from the whole Terminal-Bench leaderboard, 98.9% of tasks would be solved. The verifier is what stands between that ceiling and a single sample.\n\n{{figure:fig1-results.png}}\n\n## What to carry into the tutorial\n\n- A judge that must print one integer throws away the rest of the distribution, and it ties. The hands-on exercise asks for whole numbers on a 1–5 scale. This paper is the account of what that choice costs.\n- Repeating the judge and splitting the rubric do different jobs. Repeats shrink variance. Separate criteria stop one vague question from dominating. Part 2 can treat those as two knobs, with a latency budget attached.\n- Position bias is large enough that they cancel it by swapping sides. Part 4's bias discussion has a concrete fix here, at the price of extra calls.\n- Choosing the best of several agent runs is a different use of a judge from scoring one reply. The headline numbers are the first use. The hands-on exercise is the second.\n- The same score can track progress along a trajectory. The paper also feeds it to a reinforcement-learning update. The tutorial sets training aside. The piece to keep is that a fine score carries information a pass/fail label does not.\n\n## Limits\n\nThe scaling gains are a few percentage points, not a new capability. The headline scores depend on the candidate pool and the harness: Terminal-Bench uses five samples from GPT-5.5 under the Capy scaffold, with Gemini 2.5 Flash as the verifier. The main method needs token probabilities. The verifier is another model, with its own errors, and an oracle still sits several points above it.\n",
+      "summary_status": "draft",
+      "access_note": null,
+      "figures": [
+        {
+          "file": "fig2-framework.png",
+          "alt": "A diagram titled LLM-as-a-Verifier. Text, image, and video inputs enter a box with four knobs: uncertainty from token probabilities, score granularity, repetition, and decomposition into simpler factors. Outputs are test-time scaling, progress tracking, and reinforcement learning. A formula averages probabilities over criteria, repeats, and score tokens.",
+          "caption": "Figure 2 from Kwok et al. (2026). One verification setup, with three scaling knobs: finer scores, repeated passes, and a split rubric.",
+          "credit": "Reproduced from Kwok et al. (2026)."
+        },
+        {
+          "file": "fig4-scaling.png",
+          "alt": "Three plots of pairwise verification accuracy on Terminal-Bench V2. Accuracy rises from 73.1 percent to 77.5 percent as score-token granularity goes from 1 to 20, from 74.7 percent to 77.5 percent as repeated evaluations go from 1 to 16, and from about 75 to 76 percent for a single criterion to 78.3 percent when three criteria are combined.",
+          "caption": "Figure 4 from Kwok et al. (2026). Each knob adds a few points of pairwise accuracy. The gains are real and they are small.",
+          "credit": "Reproduced from Kwok et al. (2026)."
+        },
+        {
+          "file": "fig7-judge-vs-verifier.png",
+          "alt": "Two bar charts comparing a discrete judge and a continuous verifier. Accuracy is similar and a little higher for the verifier, from 74.7 percent at one pass to 77.5 percent at 16. The tie rate for the judge starts at 26.7 percent and falls to 5.5 percent. The verifier's tie rate is zero at every repeat count.",
+          "caption": "Figure 7 from Kwok et al. (2026). A continuous score removes ties that a discrete judge still has after many repeats.",
+          "credit": "Reproduced from Kwok et al. (2026)."
+        },
+        {
+          "file": "fig1-results.png",
+          "alt": "Four bar charts. LLM-as-a-Verifier is the tallest bar on each: 86.5 percent on Terminal-Bench 2.0, 78.2 percent on SWE-Bench Verified, 87.4 percent on RoboRewardBench, and 73.3 percent on MedAgentBench, ahead of the named baseline models on that benchmark.",
+          "caption": "Figure 1 from Kwok et al. (2026). Headline accuracy when the verifier picks a trajectory from a pool of candidates. The pool and the harness differ by benchmark.",
+          "credit": "Reproduced from Kwok et al. (2026)."
+        }
+      ]
     },
     {
       "id": "upadhyay-2024-umbrela",
@@ -104,7 +156,7 @@
         }
       ],
       "abstract": "Copious amounts of relevance judgments are necessary for the effective training and accurate evaluation of retrieval systems. Conventionally, these judgments are made by human assessors, rendering this process expensive and laborious. A recent study by Thomas et al. from Microsoft Bing suggested that large language models (LLMs) can accurately perform the relevance assessment task and provide human-quality judgments, but unfortunately their study did not yield any reusable software artifacts. Our work presents UMBRELA (a recursive acronym that stands for UMbrela is the Bing RELevance Assessor), an open-source toolkit that reproduces the results of Thomas et al. using OpenAI's GPT-4o model and adds more nuance to the original paper. Across Deep Learning Tracks from TREC 2019 to 2023, we find that LLM-derived relevance judgments correlate highly with rankings generated by effective multi-stage retrieval systems. Our toolkit is designed to be easily extensible and can be integrated into existing multi-stage retrieval and evaluation pipelines, offering researchers a valuable resource for studying retrieval evaluation methodologies. UMBRELA will be used in the TREC 2024 RAG Track to aid in relevance assessments, and we envision our toolkit becoming a foundation for further innovation in the field. UMBRELA is available at this https URL .",
-      "summary": "Primary reading. It is an open reproduction of a production relevance judge (Bing’s assessor). Useful in Part 2 as a concrete judge, not only a benchmark paper, and in Part 4 as a reminder that judge prompts get copied and drift.",
+      "summary": "Primary reading for Parts 2 and 4. An open reproduction of Bing's relevance judge: modest agreement with human labels, and much stronger agreement on how retrieval systems rank.",
       "groups": [
         "featured",
         "judges"
@@ -113,7 +165,30 @@
       "mentions": [
         "UMBRELA"
       ],
-      "note": null
+      "note": null,
+      "summary_md": "## Why it is here\n\nUpadhyay and colleagues release UMBRELA, an open-source reproduction of the LLM relevance judge described by Thomas et al. at Microsoft Bing. Part 2 needs a concrete judge, with a prompt and a scale, rather than only a benchmark paper. Part 4 needs the reminder that a copied judge can disagree with people on individual labels and still look fine when you rank whole systems.\n\n## What they did\n\nThe task is graded relevance for search. A judge sees a query and a passage and assigns an integer from 0 to 3, the scale NIST assessors used for the TREC Deep Learning track: irrelevant, related but not an answer, a partial or buried answer, or a passage dedicated to the exact answer.\n\nThey re-label the human judgments (qrels) from TREC Deep Learning 2019 through 2023 with GPT-4o. The prompt is zero-shot, meaning instructions and no worked examples. It follows a DNA pattern: a description of the job, the query and the passage, and aspects the model should weigh. Those aspects are the searcher's intent, how well the passage matches it, how trustworthy the passage is, and a final integer. The prompt tells the model not to show its reasoning. Temperature is 0, top-p is 1, and the frequency penalty is 0.5. For 2022 and 2023, near-duplicate passages had inherited a human label, so they keep only the canonical passage of each cluster.\n\n{{figure:fig1-prompt.png}}\n\n## What they found\n\nLabel agreement with the NIST assessors is modest. Cohen's kappa, a chance-corrected agreement score, runs from 0.31 to 0.37 on the four-point scale, and from 0.42 to 0.50 after the labels are collapsed to relevant versus not (0 and 1 versus 2 and 3). The authors call this fair agreement. The confusion matrices show where the misses sit. The model recovers the human's non-relevant label (0) about 75% of the time. Accuracy against the human falls to about 50% for \"related\", about 30% for \"highly relevant\", and about 45% for \"perfectly relevant\".\n\n{{figure:fig2-confusion.png}}\n\nRankings of retrieval systems tell a different story. They score each TREC submission with nDCG@10, a standard ranking metric that rewards relevant passages near the top of a list of ten, once with the human labels and once with the LLM labels. Kendall's tau between those two system rankings is 0.87 to 0.94, and Spearman's rho is 0.97 to 0.99. A judge can be a weak substitute for a human on a single passage and still preserve the order of systems.\n\n{{figure:table2-agreement.png}}\n\nTheir spot checks on TREC 2019 show one reason disagreements happen. A passage about the Thai flag had a human label of 3 for the query \"what is the daily life of thai people\", and a CPAP passage had a high human label for a query about mechanical ventilation. The authors' reading is that the query was vague and the human label was hard to defend. That is a handful of passages, not a counted error analysis.\n\n## What to carry into the tutorial\n\n- Agreement on labels and agreement on a leaderboard are different measurements. A high correlation of system ranks is not evidence that the judge matches people item by item. Part 4 should keep those two numbers apart.\n- The rubric is the scale plus the instructions that tell the model how to use the middle grades. This prompt states the 0–3 meanings twice, in slightly different words. Copying one wording and dropping the other is a way for a judge to drift.\n- This production-style judge is told to hide its reasoning and print only a score. G-Eval, and the hands-on exercise, ask for the reason. Both patterns exist. Hiding the reason makes the score easier to parse and harder to audit.\n- Temperature 0 did not make the labels match the humans. A deterministic decode is not a calibrated judge.\n- The artifact is a toolkit other people can run. The paper exists because the Bing study did not leave one. A judge that cannot be re-run cannot be checked when the prompt or the model changes.\n\n## Limits\n\nThe task is passage relevance, not an agent trajectory. One model is tested, GPT-4o, on one family of TREC collections. Kappa in the low 0.3s is fair agreement, which is a long way from interchangeable with a NIST assessor. The case studies are a handful of passages the authors found striking. UMBRELA was later used to help the TREC 2024 RAG track; this paper does not report that deployment's error rate.\n",
+      "summary_status": "draft",
+      "access_note": null,
+      "figures": [
+        {
+          "file": "fig1-prompt.png",
+          "alt": "The UMBRELA relevance prompt. It asks for an integer from 0 to 3, defines each grade, tells the model to consider search intent, match, and trustworthiness, and requires the answer as a final score with no reasoning.",
+          "caption": "Figure 1 from Upadhyay et al. (2024). The zero-shot prompt used to grade a query–passage pair. The scale is restated in the instructions.",
+          "credit": "Reproduced from Upadhyay et al. (2024)."
+        },
+        {
+          "file": "fig2-confusion.png",
+          "alt": "Five confusion matrices for TREC Deep Learning 2019 through 2023. Rows are the human label and columns are the LLM label, both from 0 to 3. The largest counts sit on the diagonal for label 0. Labels 2 and 3 spread into neighbouring columns.",
+          "caption": "Figure 2 from Upadhyay et al. (2024). Human label against GPT-4o label. Non-relevant passages match more often than the higher relevance grades.",
+          "credit": "Reproduced from Upadhyay et al. (2024)."
+        },
+        {
+          "file": "table2-agreement.png",
+          "alt": "A table of agreement for five TREC Deep Learning tracks. Four-scale Cohen's kappa is about 0.31 to 0.37. Binary kappa is about 0.42 to 0.50. Kendall correlation of system rankings is about 0.87 to 0.94, and Spearman correlation is about 0.97 to 0.99.",
+          "caption": "Table 2 from Upadhyay et al. (2024). Label agreement (kappa) stays modest while the ranking of systems by nDCG@10 stays highly correlated.",
+          "credit": "Reproduced from Upadhyay et al. (2024)."
+        }
+      ]
     },
     {
       "id": "bai-2022-constitutional-ai",
@@ -186,7 +261,7 @@
         }
       ],
       "abstract": "As AI systems become more capable, we would like to enlist their help to supervise other AIs. We experiment with methods for training a harmless AI assistant through self-improvement, without any human labels identifying harmful outputs. The only human oversight is provided through a list of rules or principles, and so we refer to the method as 'Constitutional AI'. The process involves both a supervised learning and a reinforcement learning phase. In the supervised phase we sample from an initial model, then generate self-critiques and revisions, and then finetune the original model on revised responses. In the RL phase, we sample from the finetuned model, use a model to evaluate which of the two samples is better, and then train a preference model from this dataset of AI preferences. We then train with RL using the preference model as the reward signal, i.e. we use 'RL from AI Feedback' (RLAIF). As a result we are able to train a harmless but non-evasive AI assistant that engages with harmful queries by explaining its objections to them. Both the SL and RL methods can leverage chain-of-thought style reasoning to improve the human-judged performance and transparency of AI decision making. These methods make it possible to control AI behavior more precisely and with far fewer human labels.",
-      "summary": "Primary reading, linked from the Part 1 training slide at RLAIF. The paper uses model feedback against a written set of principles. The tutorial sets training aside, but the same pattern — a rubric, then a model that applies it — is what an LLM judge is.",
+      "summary": "Primary reading for the Part 1 training slide, at RLAIF. A short list of principles steers a model that critiques and revises another model. The tutorial uses that pattern, and sets the training recipe aside.",
       "groups": [
         "featured",
         "judges"
@@ -196,7 +271,30 @@
         "RLAIF",
         "Constitutional AI"
       ],
-      "note": null
+      "note": null,
+      "summary_md": "## Why it is here\n\nBai and colleagues, at Anthropic, train a less harmful assistant using a written list of principles and model-written feedback. The Part 1 outline mentions RLAIF, reinforcement learning from AI feedback, on the slide that sets training aside. The tutorial does not teach this training recipe. The pattern it shares with an LLM judge is the useful part: a short rubric, then a model that applies the rubric and writes a critique.\n\n## What they did\n\nHuman oversight for harmlessness is a constitution: on the order of ten principles, plus a few examples used as a prompt. There are no human labels that say \"this output is harmful.\" The principles were chosen informally for the research, and the authors say a real deployment should have them rewritten by a wider set of stakeholders. Helpfulness labels from people are still used. Harmlessness labels come from the model.\n\nTraining has two stages. In the supervised stage they start from a helpful-only model, sample a response to a red-team prompt (a prompt written to provoke a harmful answer), and have the model critique that response against a randomly drawn principle, then rewrite it. They repeat the loop and finetune on the final rewrites, so reinforcement learning starts from less harmful text.\n\nIn the reinforcement-learning stage they sample two responses, ask a model which is better according to a principle, and train a preference model on those AI comparisons mixed with the human helpfulness comparisons. A preference model is a scorer distilled from pairwise judgments. They then reinforce the policy against that scorer. Replacing the human harmlessness comparisons with model comparisons is RLAIF.\n\n{{figure:fig1-process.png}}\n\nChain-of-thought, writing the reason before the decision, is used when the model compares two answers. Sampling several chains and averaging the probabilities gives a further small gain.\n\n## What they found\n\nEarlier helpful-and-harmless models had a tradeoff. Training for harmlessness made the assistant evasive: it refused, or it got stuck refusing, including on questions it could have answered by explaining the objection. Crowdworkers had been rewarding that evasiveness. In this paper the crowdworkers are told to prefer the less evasive reply when both replies are equally harmless.\n\nOn crowdworker Elo scores for 52-billion-parameter models, the constitutional RL models are less harmful at a given level of helpfulness than the human-feedback models. Elo here only supports comparisons. A higher number means crowdworkers preferred that model more often. The chain-of-thought constitutional run is the one they mark as a Pareto improvement: better on harmlessness without giving up the helpfulness of the human-feedback harmless model.\n\n{{figure:fig2-elo.png}}\n\nThey also test whether a model can pick the better of two replies on 438 binary questions written to probe helpfulness, honesty, and harmlessness, including cases where an evasive refusal is the wrong choice. A preference model trained on human feedback leads. A pretrained model asked the same question as multiple choice starts near chance at small sizes. With chain-of-thought, accuracy climbs with scale, and the authors read the curve as saying that models larger than 52 billion parameters would be competitive with the human-feedback preference model. Averaging five chains sits slightly above one chain.\n\n{{figure:fig4-cot.png}}\n\nAsking for a critique before the rewrite reduces harmfulness more than asking for a rewrite directly. That comparison is their Figure 7, which is not reproduced here.\n\n## What to carry into the tutorial\n\n- A rubric can be a short list of principles. The judge is the model asked to apply one principle, often by writing a critique before it commits to a revision or a preference.\n- The reason is part of the measurement. On their 438-question set, chain-of-thought is what moves the multiple-choice evaluator off chance as the model gets larger. Asking the hands-on judge for a reason changes the score, not only the explanation.\n- Substituting model labels for human labels does not remove the choice of principles. Someone still writes the constitution, and a small list is easy to inspect and easy to get wrong.\n- Evasiveness can look like safety. If the rubric rewards refusal, the judge will like refusals. Their crowdworker instructions had to say otherwise, or the harmlessness comparison was distorted.\n- The tutorial's line that training and evaluation are related shows up here in miniature. The same critique-against-a-principle step is used to build training data and would be recognisable as a judge.\n\n## Limits\n\nThis is a 2022 training paper on Anthropic's own models, up to 52 billion parameters. It is not a study of judging agent traces, tool calls, or a fixed rubric on a shared test set. The Elo scores come from crowdworkers comparing open-ended conversations. The principles are a research choice, not a settled harm policy. Use the constitution-then-critique pattern. Leave the reinforcement-learning procedure off the slides.\n",
+      "summary_status": "draft",
+      "access_note": null,
+      "figures": [
+        {
+          "file": "fig1-process.png",
+          "alt": "A flowchart of Constitutional AI. A helpful RLHF model generates responses to red-team prompts. A critique and a revision produce a finetuned supervised model. A second branch generates pairs of responses, collects constitutional feedback, trains a preference model, and runs RLAIF to produce the final model.",
+          "caption": "Figure 1 from Bai et al. (2022). The two stages: critique and revise, then preference labels from the model and reinforcement learning against those labels.",
+          "credit": "Reproduced from Bai et al. (2022)."
+        },
+        {
+          "file": "fig2-elo.png",
+          "alt": "A scatter plot of harmlessness Elo against helpfulness Elo. Helpful-only and standard RLHF curves trade one off against the other. Constitutional RL, including a chain-of-thought run, sits above that tradeoff and is marked as a Pareto improvement.",
+          "caption": "Figure 2 from Bai et al. (2022). Crowdworker Elo for 52B models. Only differences are meaningful. Constitutional RL is less harmful at a given helpfulness than the human-feedback models.",
+          "credit": "Reproduced from Bai et al. (2022)."
+        },
+        {
+          "file": "fig4-cot.png",
+          "alt": "A line chart of accuracy against model size on 438 helpful, honest, and harmless comparisons. A human-feedback preference model leads, near 0.79 at the largest size. Chain-of-thought and an ensemble of five chains climb from about 0.5 to about 0.74. A pretrained model without chain-of-thought stays near chance until the largest sizes.",
+          "caption": "Figure 4 from Bai et al. (2022). Chain-of-thought is what lets a language model approach a human-feedback preference model at picking the better reply.",
+          "credit": "Reproduced from Bai et al. (2022)."
+        }
+      ]
     },
     {
       "id": "voss-2026-agent-as-judge",
@@ -340,9 +438,22 @@
         "surveys"
       ],
       "featured_rank": 1,
-      "authors": [],
+      "authors": [
+        "Felix Chen",
+        "Stephan Rabanser",
+        "Peter Kirgis",
+        "Nitya Nadgir",
+        "Rishi Bommasani",
+        "Magda Dubois",
+        "Elham Tabassi",
+        "Cozmin Ududec",
+        "Anka Reuel",
+        "Sanmi Koyejo",
+        "Sayash Kapoor",
+        "Arvind Narayanan"
+      ],
       "title": "Emerging Trends in AI Agent Evaluation",
-      "venue": "Preprint.",
+      "venue": "Preprint, 19 October 2026.",
       "url": "https://sage.cs.princeton.edu/trends/emerging-trends-paper.pdf",
       "links": [
         {
@@ -350,11 +461,33 @@
           "href": "https://sage.cs.princeton.edu/trends/emerging-trends-paper.pdf"
         }
       ],
-      "note": "The organiser list credits Chen et al. Given names and the abstract were not copied from the PDF in this draft.",
-      "summary": "First item on the organiser primary list: a survey of emerging practice in agent evaluation. It is the wide frame for Part 1. This draft does not summarise findings, because the abstract was not extracted.",
+      "note": null,
+      "summary": "Primary reading for Part 1. A survey of 33 shifts in agent evaluation — how to measure, what to measure, and who measures — and the frame for why a final answer is a weak test of an agent.",
       "mentions": [],
-      "abstract": null,
-      "author_label": "Chen et al."
+      "abstract": "AI models are increasingly deployed as agents: rather than responding to a single prompt, they plan over many steps, call external tools, and act within software and real-world environments. This shift challenges the existing outcome-focused benchmarking paradigm for evaluating AI models. Evaluating these agent systems must now encompass an array of scaffolds, tools, and environments that present a far more complex challenge for evaluators today. First, this shift has necessitated many improvements to measurement methodology, scientific rigor, and evaluation infrastructure. Second, the deployment of agents in real settings has expanded the scope of evaluation from the lab to the field. Third, the accompanying changes within the broader evaluator ecosystem hold new implications for those interested in contributing to this work. We survey 33 shifts, practices, and questions driven by the AI agent paradigm across the above three dimensions—the “How,” “What,” and “Who” of AI agent evaluation. Our goal is to help consolidate the emerging discipline of agent evaluation, equipped with an evolving methodological toolkit (Part 1), an orienting research agenda (Part 2), and an updated portrait of the evaluation landscape (Part 3).",
+      "summary_md": "## Why it is here\n\nChen, Rabanser, Kapoor, Narayanan, and colleagues survey how evaluation changes once a model is used as an agent. It is the first item on the organiser primary list, and it is the wide frame for Part 1: agents, tool use, and why a single final answer is a weak test. The survey sorts 33 trends into its own three parts, How, What, and Who. Those are the survey's parts, not this tutorial's four parts.\n\n## What they did\n\nThey define an agent system as a large language model plus a scaffold (the harness that loops the model) and tools, planning and acting toward a goal without a person at every step. Evaluation, as they use the word, means any work that measures, characterises, or analyses a model or a system, before or after deployment.\n\nThe paper is a survey, not a new benchmark. They read public leaderboards, benchmarks, preprints, and essays, and followed citation chains. They describe the choice of 33 trends as opinionated, and the citations inside each trend as illustrative.\n\n{{figure:fig1-trends.png}}\n\n## What they found\n\nThe picture this tutorial keeps returning to is their Figure 2. A model evaluation sends a prompt, collects a response, and grades it against a reference answer. An agent evaluation watches a system of model, scaffold, and tools act in an environment. A person may step in at some points. The grader can look at the trajectory (every step), the final state, or both, and the grader itself can be a test, a rubric, or an LLM judge.\n\n{{figure:fig2-model-vs-agent.png}}\n\nTheir Table 1 says why the older habits fail. The same outcome can be reached by different trajectories, including shortcuts, so an outcome score does not say which behaviour was measured. Accuracy leaves out cost, latency, and reliability. Runs vary more, because a small difference early in a long trajectory can compound. When the score moves, the cause might be the model, the scaffold, the tools, or the environment, and the same scaffold need not interact with every model in the same way.\n\nTwo later sections are the bridge into Parts 2 and 4. In the survey's section 1h, long traces and open-ended outputs make LLM judges and monitors useful, and they also create a risk of trusting the judge too much. The practice they recommend is to check an autograder against human-labelled holdouts, and to review a sample of the cases the judge passed. In section 1i, Figure 11 is a fictional log. The outcome is marked as a success. The log shows the agent opened the benchmark's answers and reported those numbers. They call that search-time contamination. The outcome line cannot show it.\n\n{{figure:fig11-log-excerpt.png}}\n\n## What to carry into the tutorial\n\n- Part 1's working definition matches this picture: an agent is a model, a scaffold, and tools, and the record of the run is a trajectory.\n- A grader is one of three instruments: a test, a rubric, or an LLM judge. The hands-on exercise builds the third. A check that a tool call matches a schema is the first.\n- A leaderboard accuracy number is one measurement. The missing questions are cost, variance across runs, and what the log shows.\n- When a score changes, name which component changed. Their section on causal attribution is the warning against crediting the model for a gain that came with a new scaffold.\n- Judges appear in the survey because traces are too long to read by hand. The same section says to sample the judge's passes and failures, rather than treat the judge as self-checking.\n\n## Limits\n\nThis is a map of the literature, not a measurement of a judge. A trend being listed is not evidence that the practice works. Figure 11 is a constructed example, and the paper labels it as fictional. The best-practice bullets are the authors' recommendations. The survey does not report a percentage that belongs on a slide.\n",
+      "summary_status": "draft",
+      "access_note": null,
+      "figures": [
+        {
+          "file": "fig1-trends.png",
+          "alt": "Three columns listing the survey's 33 trends. Part 1, How, covers evaluation science from validity through human baselines. Part 2, What, covers an expanded agenda from simulated users through systemic evaluation. Part 3, Who, covers the evaluator ecosystem from who evaluates through disciplinary entry points.",
+          "caption": "Figure 1 from Chen et al. (2026). The survey's map of 33 trends. Its Part 1, Part 2, and Part 3 are the survey's own sections, not this tutorial's four parts.",
+          "credit": "Reproduced from Chen et al. (2026)."
+        },
+        {
+          "file": "fig2-model-vs-agent.png",
+          "alt": "Two flow diagrams. Model evaluation goes from prompt to model to response, graded against a reference answer. Agent evaluation puts a model, scaffold, and tools in an environment, records a trajectory and a final state, and grades them with tests, a rubric, or an LLM judge. A human may intervene at some steps.",
+          "caption": "Figure 2 from Chen et al. (2026). Model evaluation grades one response against a reference. Agent evaluation grades a trajectory, a final state, or both.",
+          "credit": "Reproduced from Chen et al. (2026)."
+        },
+        {
+          "file": "fig11-log-excerpt.png",
+          "alt": "A fictional seven-step agent log. After a training script fails because the dataset is missing, the agent searches for the benchmark's expected outputs, opens them, and submits results.json. The outcome line says scored as success. A note says the outcome alone records a success and only the log shows why it should not count.",
+          "caption": "Figure 11 from Chen et al. (2026). A fictional log the paper uses to show an outcome marked success while the trace shows the agent retrieved the benchmark answers.",
+          "credit": "Reproduced from Chen et al. (2026)."
+        }
+      ]
     },
     {
       "id": "zhou-2024-mitigating-bias",

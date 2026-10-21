@@ -48,7 +48,8 @@ Edit `knowledge/bibliography.json`. Required fields: `id`, `type` (`paper`, `blo
 - `authors` is a list of “Given Family” names. Use `author_label` (for example `Chen et al.`) only when the full byline is not known.
 - `venue` is the rest of the ACL reference after the title (proceedings, “arXiv preprint arXiv:….”, site name).
 - `abstract` is verbatim from the source, or `null`. Do not write an abstract from memory.
-- `summary` is a short note on why the source matters for this tutorial. The bibliography page labels it as AI-generated. Do not present it as the authors’ abstract.
+- `summary` is a one- or two-sentence note on why the source matters for this tutorial. The page uses it only when `summary_md` is absent. Do not present it as the authors’ abstract.
+- A fuller reading summary, its figures, and any access failure belong in `summary_md`, `figures`, `access_note`, and `summary_status`. Follow [`skills/source-summaries/SKILL.md`](../source-summaries/SKILL.md). Do not delete those fields when you are only fixing a citation link.
 - `links` is a list of `{label, href}` for the publication, PDF, code, dataset, site, or post.
 - `mentions` lists short phrases the checker should find in decks. Keep them specific.
 

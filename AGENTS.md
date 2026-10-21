@@ -73,6 +73,7 @@ Bibliography:
 - The list is a concise bibliography. Each title links to `/bibliography/<id>/`.
 - Detail pages include links, the verbatim abstract when one was recorded, and a summary. Do not invent an abstract. If you cannot copy one, leave `abstract` null.
 - Summaries are drafts for organisers. The page labels them **AI-generated summary**. Keep that label.
+- A processed source also has `summary_md` (the reading note), `figures`, and sometimes `access_note`. Follow [`skills/source-summaries/SKILL.md`](skills/source-summaries/SKILL.md). The short `summary` stays as the fallback when `summary_md` is absent.
 - A slide cites a source by linking to `bibliography/<id>/`. Run `python3 scripts/build-knowledge.py` so the source page lists every slide that links to it. Follow [`skills/citation-links/SKILL.md`](skills/citation-links/SKILL.md) when editing decks or the bibliography.
 
 Organisation:
@@ -86,6 +87,7 @@ Organisation:
 - [`skills/meeting-cycle/`](skills/meeting-cycle/SKILL.md) — draft Friday agendas; process minutes into action-items/decisions
 - [`skills/quarto-reveal-slides/`](skills/quarto-reveal-slides/SKILL.md) — author Reveal decks; local render; when asked to open or view the site, run `./scripts/preview-site.sh` and open the page; publish to GitHub Pages from `main`
 - [`skills/citation-links/`](skills/citation-links/SKILL.md) — keep slide citations and bibliography-page backlinks in sync
+- [`skills/source-summaries/`](skills/source-summaries/SKILL.md) — write the reading summary and figure captures on a bibliography source page
 
 Collaboration workflow (Markdown source of truth, Issues, PRs): [`organisation/README.md`](organisation/README.md).  
 Slides publish target: `https://tdszyman.github.io/alta2026-evaluating-ai-agents/` (Actions on `main` only — see the Quarto skill).
