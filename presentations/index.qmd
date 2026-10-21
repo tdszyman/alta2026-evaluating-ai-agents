@@ -8,6 +8,12 @@ Materials for **ALTA 2026** Tutorial Day (Monday 30 November 2026), afternoon tu
 
 **Status:** WIP scaffolding. Decks are placeholders until section content is finalized.
 
+## Hands-on
+
+Starter exercise for Part 3: edit a judge prompt, run it on four career-advice cases, and compare scores. Bring an OpenRouter API key. It stays in your browser.
+
+[Open the hands-on app](hands-on/index.html)
+
 ## Decks
 
 | Part | Title | Deck |

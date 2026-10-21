@@ -24,6 +24,7 @@ presentations/
   01-agents-and-eval-challenges/index.qmd   # Reveal deck
   02-… / 03-… / 04-…
   _site/                      # build output (gitignored) — CI deploys this
+  _site/hands-on/             # copy of workshop/app, added by scripts/render-slides.sh
 ```
 
 One Quarto **website** project; each tutorial part is its **own Reveal deck**. Multi-file HTML + assets is fine. Use `embed-resources: true` only if a single-file build stays reasonable — default is **off**.
@@ -62,6 +63,8 @@ If that fails (permissions), the owner must enable it in the UI.
 ```
 
 Requires Quarto on `PATH`. Do **not** commit `_site/` or `*_files/` (gitignored).
+
+The script stages `workshop/app/` at `presentations/hands-on/` so Quarto can resolve the Hands-on link, then copies those files into `presentations/_site/hands-on/` and deletes the stage. Run the script rather than a bare `quarto render` if the hands-on page should be in the output.
 
 ## References
 

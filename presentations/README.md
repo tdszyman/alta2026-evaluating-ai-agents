@@ -14,6 +14,7 @@ Quarto website: HTML landing page + four Reveal.js decks. Built locally and in C
 | [`04-reliability-and-future/`](04-reliability-and-future/) | Part 4 stub |
 | [`_quarto.yml`](_quarto.yml) | Project / site / Reveal defaults |
 | `_site/` | Build output (gitignored; CI artifact) |
+| `_site/hands-on/` | Starter judge app, copied from `workshop/app/` by the render script |
 
 ## Render
 

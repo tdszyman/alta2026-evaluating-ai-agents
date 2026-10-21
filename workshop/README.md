@@ -13,14 +13,21 @@ Per the [ALTA program](https://alta2026.alta.asn.au/program#afternoon-tutorial),
 
 | Path | Purpose |
 |------|---------|
+| [`app/`](app/) | Starter browser app (judge prompt, cases, OpenRouter calls) |
 | [`prompts/`](prompts/) | Judge prompts, rubric templates, agent system prompts |
 | [`data/`](data/) | Small fixtures / sample trajectories for local runs |
 | [`datasets.md`](datasets.md) | Links and access notes for larger or external datasets |
 | [`notebooks/`](notebooks/) | Optional interactive notebooks (placeholder) |
 
+## Starter app
+
+[`app/`](app/) is a static page. `scripts/render-slides.sh` copies it to `hands-on/` on the published site, next to the decks. Participants edit a judge prompt and run it over four career-advice replies. The browser calls OpenRouter with a key they paste locally.
+
+The four replies are starter fixtures, written so soundness, tone, and compliance can come apart. They are not a confirmed Part 3 scenario.
+
 ## Status
 
-Scaffold only. Concrete scenario, rubrics, and API wiring land after the detailed agenda and section owners are confirmed.
+Scaffold plus that starter app. Concrete scenario, rubrics, and how LLM access will be provided are still open.
 
 ```text
 TODO: confirm agent scenario (tool-using / conversational)

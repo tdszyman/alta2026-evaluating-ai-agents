@@ -66,7 +66,7 @@ See [`presentations/README.md`](presentations/README.md).
 
 ### Workshop
 
-Hands-on assets live under [`workshop/`](workshop/). Dataset URLs and access notes go in [`workshop/datasets.md`](workshop/datasets.md). Prompt and data placeholders are ready for content.
+Hands-on assets live under [`workshop/`](workshop/). A starter browser app is in [`workshop/app/`](workshop/app/) and is published at `hands-on/` on the same GitHub Pages site as the decks. Dataset URLs and access notes go in [`workshop/datasets.md`](workshop/datasets.md).
 
 ## Status / next steps
 
