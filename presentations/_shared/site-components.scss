@@ -56,6 +56,20 @@ body {
   line-height: 1.15;
 }
 
+#title-block-header .title:has(.title-sub) {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  column-gap: 0.35em;
+}
+
+#title-block-header .title .title-sub {
+  font-size: 0.5em;
+  font-weight: 400;
+  letter-spacing: 0;
+  color: var(--muted);
+}
+
 #title-block-header .subtitle,
 .eyebrow,
 .note,
