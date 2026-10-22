@@ -2062,6 +2062,71 @@
       "access_note": null
     },
     {
+      "id": "papineni-2002-bleu",
+      "type": "paper",
+      "authors": [
+        "Kishore Papineni",
+        "Salim Roukos",
+        "Todd Ward",
+        "Wei-Jing Zhu"
+      ],
+      "year": "2002",
+      "title": "Bleu: a Method for Automatic Evaluation of Machine Translation",
+      "venue": "In Proceedings of the 40th Annual Meeting of the Association for Computational Linguistics, pages 311–318, Philadelphia, Pennsylvania, USA. Association for Computational Linguistics.",
+      "url": "https://aclanthology.org/P02-1040/",
+      "links": [
+        {
+          "label": "Anthology",
+          "href": "https://aclanthology.org/P02-1040/"
+        },
+        {
+          "label": "PDF",
+          "href": "https://aclanthology.org/P02-1040.pdf"
+        }
+      ],
+      "abstract": "Human evaluations of machine translation are extensive but expensive. Human evaluations can take months to finish and involve human labor that can not be reused. We propose a method of automatic machine translation evaluation that is quick, inexpensive, and language-independent, that correlates highly with human evaluation, and that has little marginal cost per run. We present this method as an automated understudy to skilled human judges which substitutes for them when there is need for quick or frequent evaluations.",
+      "summary": "BLEU scores a generated translation by its n-gram overlap with human reference translations. It is the classic way NLP evaluated open-ended generation before LLM judges, and the baseline that judge papers compare against.",
+      "groups": [
+        "judges"
+      ],
+      "featured_rank": null,
+      "mentions": [
+        "BLEU"
+      ],
+      "note": null
+    },
+    {
+      "id": "lin-2004-rouge",
+      "type": "paper",
+      "authors": [
+        "Chin-Yew Lin"
+      ],
+      "year": "2004",
+      "title": "ROUGE: A Package for Automatic Evaluation of Summaries",
+      "venue": "In Text Summarization Branches Out, pages 74–81, Barcelona, Spain. Association for Computational Linguistics.",
+      "url": "https://aclanthology.org/W04-1013/",
+      "links": [
+        {
+          "label": "Anthology",
+          "href": "https://aclanthology.org/W04-1013/"
+        },
+        {
+          "label": "PDF",
+          "href": "https://aclanthology.org/W04-1013.pdf"
+        }
+      ],
+      "abstract": "ROUGE stands for Recall-Oriented Understudy for Gisting Evaluation. It includes measures to automatically determine the quality of a summary by comparing it to other (ideal) summaries created by humans. The measures count the number of overlapping units such as n-gram, word sequences, and word pairs between the computer-generated summary to be evaluated and the ideal summaries created by humans. This paper introduces four different ROUGE measures: ROUGE-N, ROUGE-L, ROUGE-W, and ROUGE-S included in the ROUGE summarization evaluation package and their evaluations. Three of them have been used in the Document Understanding Conference (DUC) 2004, a large-scale summarization evaluation sponsored by NIST.",
+      "summary": "ROUGE scores a generated summary by its overlap with human reference summaries. With BLEU, it is the reference-overlap approach to evaluating generation that LLM-as-a-judge has largely replaced.",
+      "groups": [
+        "judges"
+      ],
+      "featured_rank": null,
+      "mentions": [
+        "ROUGE"
+      ],
+      "note": null
+    },
+    {
       "id": "liu-2023-geval",
       "type": "paper",
       "authors": [

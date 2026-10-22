@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 150" font-family="Inter, 'Source Sans 3', 'Segoe UI', system-ui, sans-serif" role="img">
+<title>Regression output</title>
+<desc>A number line from 0 to 100. The prediction sits close to the label; the gap between them is the error.</desc>
+<line x1="20" y1="92" x2="220" y2="92" stroke="#14283B" stroke-width="2"/>
+<line x1="20" y1="87" x2="20" y2="97" stroke="#14283B" stroke-width="1.5"/>
+<line x1="70" y1="87" x2="70" y2="97" stroke="#14283B" stroke-width="1.5"/>
+<line x1="120" y1="87" x2="120" y2="97" stroke="#14283B" stroke-width="1.5"/>
+<line x1="170" y1="87" x2="170" y2="97" stroke="#14283B" stroke-width="1.5"/>
+<line x1="220" y1="87" x2="220" y2="97" stroke="#14283B" stroke-width="1.5"/>
+<text x="20" y="116" font-size="14" fill="#526476" text-anchor="middle">0</text>
+<text x="120" y="116" font-size="14" fill="#526476" text-anchor="middle">50</text>
+<text x="220" y="116" font-size="14" fill="#526476" text-anchor="middle">100</text>
+<line x1="144" y1="52" x2="164" y2="52" stroke="#1F5FA8" stroke-width="2"/>
+<line x1="144" y1="47" x2="144" y2="57" stroke="#1F5FA8" stroke-width="2"/>
+<line x1="164" y1="47" x2="164" y2="57" stroke="#1F5FA8" stroke-width="2"/>
+<text x="154" y="40" font-size="14" fill="#1F5FA8" text-anchor="middle">error</text>
+<circle cx="144" cy="92" r="8" fill="white" stroke="#14283B" stroke-width="2"/>
+<circle cx="164" cy="92" r="8" fill="#1F5FA8"/>
+<text x="132" y="78" font-size="13" fill="#526476" text-anchor="end">label</text>
+<text x="176" y="78" font-size="13" fill="#1F5FA8">prediction</text>
+</svg>
