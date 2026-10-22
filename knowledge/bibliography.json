@@ -1030,7 +1030,7 @@
       "summary_status": "draft",
       "summary_generated_at": "22 Oct 2026, 11:05 am AEDT",
       "summary_skill_version": 3,
-      "summary_agent": "Cursor running Grok 4.7 High Fast",
+      "summary_agent": "Cursor running Claude Opus 5.5 High",
       "figures": [
         {
           "file": "fig1-trajectories.png",
@@ -1100,7 +1100,7 @@
       "summary_status": "draft",
       "summary_generated_at": "22 Oct 2026, 11:05 am AEDT",
       "summary_skill_version": 3,
-      "summary_agent": "Cursor running Grok 4.7 High Fast",
+      "summary_agent": "Cursor running Claude Opus 5.5 High",
       "figures": [
         {
           "file": "fig1-api-calls.png",
@@ -1811,7 +1811,7 @@
       "summary_status": "draft",
       "summary_generated_at": "22 Oct 2026, 11:05 am AEDT",
       "summary_skill_version": 3,
-      "summary_agent": "Cursor running Grok 4.7 High Fast",
+      "summary_agent": "Cursor running Claude Opus 5.5 High",
       "figures": [
         {
           "file": "fig1-framework.png",
@@ -2865,7 +2865,7 @@
       "summary_status": "draft",
       "summary_generated_at": "22 Oct 2026, 11:05 am AEDT",
       "summary_skill_version": 3,
-      "summary_agent": "Cursor running Grok 4.7 High Fast",
+      "summary_agent": "Cursor running Claude Opus 5.5 High",
       "figures": [
         {
           "file": "table4-behaviours.png",
@@ -2986,7 +2986,7 @@
       "summary_status": "draft",
       "summary_generated_at": "22 Oct 2026, 11:05 am AEDT",
       "summary_skill_version": 3,
-      "summary_agent": "Cursor running Grok 4.7 High Fast",
+      "summary_agent": "Cursor running Claude Opus 5.5 High",
       "figures": [
         {
           "file": "fig1-setup.png",
