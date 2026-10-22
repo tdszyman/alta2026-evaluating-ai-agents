@@ -764,14 +764,34 @@
         }
       ],
       "abstract": "LLM-based agents represent a paradigm shift in AI, enabling autonomous systems to plan, reason, and use tools while interacting with dynamic environments. This paper provides the first comprehensive survey of evaluation methods for these increasingly capable agents. We analyze the field of agent evaluation across five perspectives: (1) Core LLM capabilities needed for agentic workflows, like planning, and tool use; (2) Application-specific benchmarks such as web and SWE agents; (3) Evaluation of generalist agents; (4) Analysis of agent benchmarks' core dimensions; and (5) Evaluation frameworks and tools for agent developers. Our analysis reveals current trends, including a shift toward more realistic, challenging evaluations with continuously updated benchmarks. We also identify critical gaps that future research must address, particularly in assessing cost-efficiency, safety, and robustness, and in developing fine-grained, scalable evaluation methods.",
-      "summary": "Survey of how LLM-based agents are evaluated. Use it in Part 1 when the question is what people measure today, before narrowing to judges.",
+      "summary": "Yehudai and colleagues survey how LLM-based agents are evaluated, from tool use and memory to web, coding, science, and conversation benchmarks. The comparative table covers eight benchmarks, and only one of them is marked as testing safety.",
       "groups": [
         "surveys",
         "agents"
       ],
       "featured_rank": null,
       "mentions": [],
-      "note": null
+      "note": null,
+      "summary_md": "## Why it is here\n\nYehudai, Eden, Li, and colleagues survey evaluation of LLM-based agents, a backbone model plus a harness that lets it plan and call tools. They do not release a benchmark or a grader. The survey is a Part 1 frame: what gets measured once the system acts, and why one end score is a thin description of that action. Its own section numbers, §2 through §6, are the paper's, not this tutorial's four parts.\n\n## What they did\n\nThe survey's §2 covers planning, tool use, self-reflection, and memory. Its §3 covers web, software, science, and conversation benchmarks. Its §4 covers generalist agents. Its §5 is the comparison scheme: how the data were built, whether the environment is static or dynamic, what interface the agent uses, what the metric is, and whether safety is part of the benchmark. Its §6 lists developer tools. §7 is trends and gaps.\n\nEarly tool-use scores are rule-based: a pass rate, or a match on the abstract syntax of the call. Later scores execute something. Unit tests for a software patch, a match against a gold database state, a match against a gold click sequence, or an exact short answer. They also describe LLM-as-a-judge and agent-as-a-judge methods, including reference-based trajectory match and reference-free judges that score a trace without a gold path. Their own judgment, stated as a judgment, is that reference-based checks are precise and miss other valid paths, and reference-free checks are more flexible and less reliable.\n\nRobustness, in their definition, is pass^k: the fraction of tasks on which the agent succeeds in every one of k independent runs. They print no pass^k value.\n\n{{figure:fig1-taxonomy.png}}\n\n## What they found\n\nFigure 1 is the map of the survey's sections with the papers they treat as the core citations. Table 1 applies the five dimensions to eight benchmarks. Seven of the eight build data with a mix of human and synthetic or harvested sources. GAIA is the only row marked human-curated. Mind2Web is the only static environment. The others are dynamic, so a wrong action can change what the agent sees next. Interfaces are code, tools with a schema, or a GUI. The metric column is the tutorial's point in one place: unit tests, end-to-end completion, action match, a mix, state match, or answer match. Only TAU-Bench is marked Safety = Yes. The other seven are No. The prose uses the name τ-bench for that row.\n\nThe survey reports a few sizes rather than a leaderboard of its own. SWE-bench Verified is a human-filtered subset of 500. SWE-bench Pro, in the survey's §3.2, is 1,865 tasks across 41 repositories, with performance described as below 25% Pass@1. The recommendation appendix in the same version says the state of the art on SWE-bench-pro hovers around 46%. The survey does not say whether those are the same split or the same metric. Both are citations, not runs the authors did.\n\nA second table checks eight developer frameworks. Trajectory evaluation is claimed by three of them. The authors say these tools are still weak at root-cause analysis across many traces, at the cost of the evaluation itself, and at built-in safety checks.\n\n{{figure:table1-benchmarks.png}}\n\n## What to carry into the tutorial\n\n- Part 1 can use the five columns. Data, environment, interface, metric, and safety are a way to read any agent benchmark before trusting its headline number. In this table, safety is a yes on one row.\n- Static and dynamic environments do not support the same claim. On a static trace a wrong action does not change the next state, so cascading errors are invisible. The survey states that as a reason dynamic sandboxes exist.\n- The metric column is why a final answer is a weak test. Unit tests, state match, and action match are different measurements, and a benchmark that reports one of them has not reported the others.\n- Reference-based judges and reference-free judges fail differently. The survey's claim, which it does not measure, is precision and reproducibility on one side and coverage of valid paths on the other. Part 2 has to pick.\n- pass^k, success on all k runs, is the robustness definition they adopt. They do not print a value, so the definition is the thing to carry, not a result.\n- Cost, safety, and fine-grained trajectory metrics are listed as missing. That is the authors' gap list in §7, and it matches Part 4's open problems. It is a forecast, not a measurement.\n\n## Limits\n\nThe limitations section says the survey is a snapshot, the coverage is selective, and each benchmark is not described in full. There is no count of papers screened or excluded. Appendix A describes the search and never prints N. The 25% and 46% figures for SWE-bench Pro should not be collapsed into one number. The WebArena figure of 74.3% and the SWE-bench Verified figure of about 80% live in the recommendation appendix as leaderboard citations, with the WebArena number dated 19 April 2026. They are not results of an evaluation these authors ran.\n",
+      "summary_status": "draft",
+      "summary_generated_at": "22 Oct 2026, 11:00 am AEDT",
+      "summary_skill_version": 3,
+      "summary_agent": "Cursor running Grok 4.7 High Fast",
+      "figures": [
+        {
+          "file": "fig1-taxonomy.png",
+          "alt": "A tree of the survey. Agent capabilities cover planning, tool use, self-reflection, and memory. Application benchmarks cover web, software engineering, science, and conversation. A generalist branch and a frameworks branch list developer tools and gym-like environments, each with example papers.",
+          "caption": "Figure 1 from Yehudai et al. (2025). The survey's own map. Its section numbers are the paper's, not this tutorial's four parts.",
+          "credit": "Reproduced from Yehudai et al. (2025)."
+        },
+        {
+          "file": "table1-benchmarks.png",
+          "alt": "Eight benchmarks crossed with data, environment, interface, metric, and safety. Seven data cells are Hybrid and GAIA is Human. Mind2Web is the only Static environment. Metrics include unit tests, end-to-end, action match, a mix, state match, and answer match. Only TAU-Bench is Safety Yes.",
+          "caption": "Table 1 from Yehudai et al. (2025). Eight representative benchmarks. Safety is marked Yes on one row.",
+          "credit": "Reproduced from Yehudai et al. (2025)."
+        }
+      ],
+      "access_note": null
     },
     {
       "id": "mohammadi-2025-benchmark-survey",
@@ -784,7 +804,7 @@
       ],
       "year": "2025",
       "title": "Evaluation and Benchmarking of LLM Agents: A Survey",
-      "venue": "arXiv preprint arXiv:2507.21504.",
+      "venue": "In Proceedings of the 31st ACM SIGKDD Conference on Knowledge Discovery and Data Mining V.2 (KDD '25), August 3–7, 2025, Toronto, ON, Canada.",
       "url": "https://arxiv.org/abs/2507.21504",
       "links": [
         {
@@ -794,17 +814,41 @@
         {
           "label": "PDF",
           "href": "https://arxiv.org/pdf/2507.21504"
+        },
+        {
+          "label": "DOI",
+          "href": "https://doi.org/10.1145/3711896.3736570"
         }
       ],
       "abstract": "The rise of LLM-based agents has opened new frontiers in AI applications, yet evaluating these agents remains a complex and underdeveloped area. This survey provides an in-depth overview of the emerging field of LLM agent evaluation, introducing a two-dimensional taxonomy that organizes existing work along (1) evaluation objectives -- what to evaluate, such as agent behavior, capabilities, reliability, and safety -- and (2) evaluation process -- how to evaluate, including interaction modes, datasets and benchmarks, metric computation methods, and tooling. In addition to taxonomy, we highlight enterprise-specific challenges, such as role-based access to data, the need for reliability guarantees, dynamic and long-horizon interactions, and compliance, which are often overlooked in current research. We also identify future research directions, including holistic, more realistic, and scalable evaluation. This work aims to bring clarity to the fragmented landscape of agent evaluation and provide a framework for systematic assessment, enabling researchers and practitioners to evaluate LLM agents for real-world deployment.",
-      "summary": "Survey of agent benchmarks. Pair it with the agent-benchmark papers below when Part 1 distinguishes a leaderboard from an evaluation you would run on your own agent.",
+      "summary": "Mohammadi, Li, Lo, and Yip survey how LLM agents are evaluated and draw a two-axis map: what to measure, and how the measurement is run. The paper is a taxonomy, not an experiment, and the figure's leaf names do not all match the section headings.",
       "groups": [
         "surveys",
         "agents"
       ],
       "featured_rank": null,
       "mentions": [],
-      "note": null
+      "note": null,
+      "summary_md": "## Why it is here\n\nMohammadi, Li, Lo, and Yip survey evaluation of LLM agents, systems that use a language model to reason, plan, and act. The paper is a map, not a new benchmark and not a leaderboard. It is useful for Part 1, which has to say why scoring one final answer is a weak test of an agent, and for Part 2, which has to choose among rules, a model judge, an agent judge, and a human. The four future-work items at the end line up with Part 4's open problems: coverage, realism, scale, and cost.\n\n## What they did\n\nThey propose a two-dimensional taxonomy. The first dimension is the objective, what is being evaluated. The section headings are agent behavior, agent capabilities, reliability, and safety. Behavior is the outcome a user would notice: task completion, output quality, latency, and cost. Capabilities are the process: tool use, planning, memory, and multi-agent collaboration. In this survey, tool use means one call, including whether a call was needed, which tool, which parameter names, and which parameter values. Planning is the sequence. Reliability splits into consistency, repeating the same task, and robustness, surviving a changed input or environment. They define pass@k as success at least once in k attempts, and pass^k, from the τ benchmark, as success on all k attempts. They argue that pass^k matches mission-critical use better. They do not measure either one.\n\nThe second dimension is the process, how the evaluation is run. Section 4 has five branches: interaction mode, data, how the metric is computed, tooling, and context. Interaction mode is offline, a fixed dataset, against online, a live or simulated environment. Metric computation is the distinction this tutorial keeps using. Code-based checks are rules, tests, and assertions. LLM-as-a-judge scores from an instruction. Agent-as-a-judge, which they treat as a recent extension, uses further agents to refine the assessment. Human review is what they call the gold standard for subjective and safety-critical judgments, and they call it expensive. Context is the environment: a mock API, a sandbox, a web simulator, or the live system.\n\n{{figure:fig1-taxonomy.png}}\n\n## What they found\n\nThere is no experiment, so there is no success rate of theirs to quote. The contribution is the map, and the map is not perfectly stable inside the paper. Figure 1 labels the middle behavior branch \"Interaction Quality.\" Section 3 and Table 1 call it output quality. Figure 1's reliability leaves are robustness, hallucinations, and error handling. The section and the table use consistency and robustness, and they do not give hallucinations their own heading. Figure 1's metric leaves are code-based, human-as-a-judge, and LLM-as-a-judge. The section adds agent-as-a-judge and calls the human case human-in-the-loop. The abstract's process list also drops evaluation context, which Figure 1 and Section 4.5 both include.\n\nTable 1 is the objective side only. It pairs each category with metric names and with papers that use them. It is a set of examples, not a count of the literature. The reference list runs to 127, and the authors never say how many papers were included or what the inclusion rule was.\n\n{{figure:table1-objectives.png}}\n\nThe enterprise section is an argument, not a measurement. They say current evaluations often miss role-based access, a guarantee of repeated success, long interactions, and policy constraints such as GDPR or HIPAA. They do not fill those gaps with numbers. The last section names four directions: evaluate the dimensions together, use more realistic settings, automate with simulators and judges, and bound time and cost.\n\n## What to carry into the tutorial\n\n- Part 1 can use the behavior-versus-capability split. Task completion is the outcome. Tool choice, parameter names, and parameter values are a different question, and this survey puts them under capabilities.\n- pass@k and pass^k are definitions worth keeping. One success in k tries is not the same measurement as success on all k tries. The survey defines them and does not report a value.\n- Part 2's menu is already in their process axis: code, an LLM judge, an agent judge, and a human. They state the usual trade, consistency against coverage, and they do not compare the four on one task.\n- Offline and online are the industry lifecycle in miniature. A fixed dataset and a live monitor are different evaluations, and they say the dataset is the cheaper and less faithful of the two, without a table that shows the gap.\n- Latency and cost sit under behavior, next to success. A leaderboard that reports only success has dropped two of their behavior metrics.\n\n## Limits\n\nNo new metric, no head-to-head, and no count of what was left out. Short-horizon benchmarks are argued to miss drift and cumulative effects. That is not shown here. The phrase \"current agents struggle with consistency\" cites τ-bench and reprints no pass^k. Safety is described as something that should have a numeric rate, and no rate is given. Read Figure 1 next to Table 1. The leaves are not the same list.\n",
+      "summary_status": "draft",
+      "summary_generated_at": "22 Oct 2026, 11:00 am AEDT",
+      "summary_skill_version": 3,
+      "summary_agent": "Cursor running Grok 4.7 High Fast",
+      "figures": [
+        {
+          "file": "fig1-taxonomy.png",
+          "alt": "A tree rooted at Agent Evaluation, splitting into Evaluation Objectives and Evaluation Process. Objectives branch into behavior, capabilities, reliability, and safety. Process branches into interaction mode, data, metrics, tooling, and context. Reliability's leaves on this figure are Robustness, Hallucinations, and Error Handling. The metrics leaves are Code Based, Human-as-a-Judge, and LLM-as-a-Judge.",
+          "caption": "Figure 1 from Mohammadi et al. (2025). The survey's map. Several leaf names differ from the section headings and from Table 1.",
+          "credit": "Reproduced from Mohammadi et al. (2025)."
+        },
+        {
+          "file": "table1-objectives.png",
+          "alt": "A table of evaluation objectives, categories, metric names, and example papers. Rows cover task completion, output quality, latency and cost, tool use, planning, memory, multi-agent collaboration, consistency, robustness, fairness, harm, and compliance. The consistency metric cell names pass^k and τ-Bench.",
+          "caption": "Table 1 from Mohammadi et al. (2025). Metric names tied to objectives. It does not cover the process dimension, and it is a set of examples rather than a census.",
+          "credit": "Reproduced from Mohammadi et al. (2025)."
+        }
+      ],
+      "access_note": null
     },
     {
       "id": "guan-2025-multiturn-survey",
@@ -1082,7 +1126,7 @@
         }
       ],
       "abstract": "Existing benchmarks for conversational AI agents simulate single-control environments, where only the AI agent can use tools to interact with the world, while the user remains a passive information provider. This differs from real-world scenarios like technical support, where users need to actively participate in modifying the state of the (shared) world. In order to address this gap, we introduce $\\tau^2$-bench, with four key contributions: 1) A novel Telecom dual-control domain modeled as a Dec-POMDP, where both agent and user make use of tools to act in a shared, dynamic environment that tests both agent coordination and communication, 2) A compositional task generator that programmatically creates diverse, verifiable tasks from atomic components, ensuring domain coverage and controlled complexity, 3) A reliable user simulator tightly coupled with the environment, whose behavior is constrained by tools and observable states, improving simulation fidelity, 4) Fine-grained analysis of agent performance through multiple ablations including separating errors arising from reasoning vs communication/coordination. In particular, our experiments show significant performance drops when agents shift from no-user to dual-control, highlighting the challenges of guiding users. Overall, $\\tau^2$-bench provides a controlled testbed for agents that must both reason effectively and guide user actions.",
-      "summary": "Follow-on to τ-bench in which both the agent and the user can act. Relevant when Part 1 says an agent trajectory is not a single input–output pair.",
+      "summary": "τ²-bench scores conversational agents in a telecom setting where the user and the agent both call tools on a shared world. Success is a set of assertions on the final state, not an LLM judge, and pass^1 on telecom is far below retail for the same models.",
       "groups": [
         "agents",
         "dialogue"
@@ -1092,7 +1136,33 @@
         "τ²-Bench",
         "tau2"
       ],
-      "note": null
+      "note": null,
+      "summary_md": "## Why it is here\n\nBarres, Dong, Ray, Si, and Narasimhan extend τ-bench from a conversation where only the agent acts to one where the user acts too. The new domain is telecom support: the user's phone is a set of tools, and the agent's account system is another set, and both write the same world. Part 1 needs this distinction. A final database that looks right is not the same fact as a trajectory you would trust, and one run is not yet a measurement. The score they report is pass^k, the fraction of k independent runs that succeed.\n\n## What they did\n\nRetail (115 tasks) and airline (50 tasks) stay single-control, as in the earlier benchmark. Telecom adds user tools: 15 that write and 15 that read, against the agent's 6 write and 7 read tools. Tasks are built from atomic subtasks, service, mobile data, and MMS, composed so that the assertions pass only after the full solution. The generator yields 2,285 tasks. The reported results use a balanced subsample of 114.\n\nSuccess in telecom is assertion functions on the final world state. The paper does not name an LLM as the scorer. The user, though, is an LLM, gpt-4.1 for every run, following a persona that is empty, easy, or hard. Agents are gpt-4.1, gpt-4.1-mini, o4-mini, and Claude 3.7 Sonnet, at temperature 0, four runs per task. Two ablations, on gpt-4.1 and o4-mini only, pull the collaboration apart. In no-user mode the agent receives a ticket and controls every tool, including the ones the user would have called. In oracle-plan mode the agent is given the solution's tool sequence and still has to carry it out with the user.\n\n{{figure:fig2-trajectory.png}}\n\n## What they found\n\nFigure 3 prints pass^k. For gpt-4.1, pass^1 is 0.74 on retail, 0.56 on airline, and 0.34 on telecom. At k = 4 those fall to 0.53, 0.40, and 0.19. The other three models show the same shape: telecom is the low bar, and the bar drops as k grows. Claude 3.7 Sonnet's telecom pass^1 is 0.49, close to its airline pass^1 of 0.50, and its telecom pass^4 is 0.25.\n\nFigure 4 is the ablation, pass^1 on telecom. Under the original policy, gpt-4.1 goes from 0.52 with no user, to 0.34 in the default dual-control setting, to 0.73 with an oracle plan. o4-mini goes from 0.67, to 0.42, to 0.96. The paper calls the no-user to default change an 18-point drop and a 25-point drop. A more specific workflow policy raises default and no-user, and it lowers the oracle-plan scores, 0.73 to 0.57 for gpt-4.1 and 0.96 to 0.88 for o4-mini. Giving the agent the ground-truth sequence and a more detailed policy at the same time made the agent worse.\n\n{{figure:fig3-passk.png}}\n\n{{figure:fig4-modes.png}}\n\nA manual look at the user simulator finds errors on 16% of 50 telecom conversations, 6% of them critical, against 40% of retail conversations and 47% of airline ones (Table 2). The telecom errors they list are all a premature transfer to a human.\n\n## What to carry into the tutorial\n\n- The score is a rule on the final state. Part 1's point stands even so: the same assertions fail much more often when the user has to act, so the trajectory, not only the end state, is doing the work.\n- pass^k makes the reliability visible. gpt-4.1's telecom success falls from 0.34 at one run to 0.19 when all four runs must succeed. A single demo is a weaker measurement than the paper's own metric.\n- Splitting reasoning from collaboration is a useful ablation for Part 3. No-user mode is the agent with every tool. Default mode is the agent that must ask the user to use theirs. The gap is large for both models tested.\n- An oracle plan does not remove the need for the conversation, and a more detailed policy can hurt the agent that already has the plan. More instructions are not automatically a better evaluation.\n- The user simulator is itself a model, and it makes mistakes. A failed task is not automatically an agent failure. They measured that, at 6% critical on the telecom sample they read.\n\n## Limits\n\nRetail and airline never receive user tools. The authors say they have not tried. Results are the 114-task subsample, not the 2,285 generated tasks. The workflow policy is pass^1 only, and only for two models. Figure 5, success against the number of actions, does not print a value per bin. The prose says default-mode pass^1 is close to zero beyond seven actions. No LLM judge grades these tasks, so the paper does not say how a judge would have scored the same traces.\n",
+      "summary_status": "draft",
+      "summary_generated_at": "22 Oct 2026, 11:00 am AEDT",
+      "summary_skill_version": 3,
+      "summary_agent": "Cursor running Grok 4.7 High Fast",
+      "figures": [
+        {
+          "file": "fig2-trajectory.png",
+          "alt": "A telecom conversation split by a dashed line. On the left the user checks a status bar and toggles mobile data with user tools. On the right the agent reads line details, sees roaming disabled, and enables roaming with agent tools. The caption says the user's phone state changes because the agent wrote the shared world.",
+          "caption": "Figure 2 from Barres et al. (2025). Dual control: the user and the agent both call tools, and the agent's write changes what the user's phone can do.",
+          "credit": "Reproduced from Barres et al. (2025)."
+        },
+        {
+          "file": "fig3-passk.png",
+          "alt": "Four grouped bar charts of pass^k for k from 1 to 4, for gpt-4.1, o4-mini, gpt-4.1-mini, and Claude 3.7 Sonnet. Retail is blue, airline orange, telecom green. gpt-4.1 at k=1 is 0.74, 0.56, and 0.34. At k=4 those are 0.53, 0.40, and 0.19.",
+          "caption": "Figure 3 from Barres et al. (2025). Telecom is the low bar, and pass^k falls as more runs must all succeed.",
+          "credit": "Reproduced from Barres et al. (2025)."
+        },
+        {
+          "file": "fig4-modes.png",
+          "alt": "Two bar charts of telecom pass^1 for gpt-4.1 and o4-mini. Modes are default, no-user, and oracle-plan. Under the original policy the bars are 0.34 and 0.42, then 0.52 and 0.67, then 0.73 and 0.96. Under the workflow policy, oracle-plan drops to 0.57 and 0.88.",
+          "caption": "Figure 4 from Barres et al. (2025). Taking the user out of the loop raises pass^1. A more detailed policy then hurts the agent that was given the solution.",
+          "credit": "Reproduced from Barres et al. (2025)."
+        }
+      ],
+      "access_note": null
     },
     {
       "id": "patil-2025-bfcl",
@@ -1709,7 +1779,7 @@
         }
       ],
       "abstract": "We present HealthBench, an open-source benchmark measuring the performance and safety of large language models in healthcare. HealthBench consists of 5,000 multi-turn conversations between a model and an individual user or healthcare professional. Responses are evaluated using conversation-specific rubrics created by 262 physicians. Unlike previous multiple-choice or short-answer benchmarks, HealthBench enables realistic, open-ended evaluation through 48,562 unique rubric criteria spanning several health contexts (e.g., emergencies, transforming clinical data, global health) and behavioral dimensions (e.g., accuracy, instruction following, communication). HealthBench performance over the last two years reflects steady initial progress (compare GPT-3.5 Turbo's 16% to GPT-4o's 32%) and more rapid recent improvements (o3 scores 60%). Smaller models have especially improved: GPT-4.1 nano outperforms GPT-4o and is 25 times cheaper. We additionally release two HealthBench variations: HealthBench Consensus, which includes 34 particularly important dimensions of model behavior validated via physician consensus, and HealthBench Hard, where the current top score is 32%. We hope that HealthBench grounds progress towards model development and applications that benefit human health.",
-      "summary": "A health benchmark that scores model behaviour with physician-written rubrics. A high-stakes example of the rubric-then-judge pattern Part 2 teaches, and of why Part 4 does not trust an ungrounded judge on expert tasks.",
+      "summary": "HealthBench scores 5,000 health conversations with physician-written criteria, positive and negative points, and a GPT-4.1 judge that marks each criterion met or not. Overall scores run from about 0.16 to about 0.60, and the hard subset's top score is 0.32.",
       "groups": [
         "judges"
       ],
@@ -1717,7 +1787,33 @@
       "mentions": [
         "HealthBench"
       ],
-      "note": null
+      "note": null,
+      "summary_md": "## Why it is here\n\nArora, Wei, Hicks, and colleagues built HealthBench to score model replies in health conversations with a rubric a physician wrote for that conversation. It is not an agent benchmark and it has no tools. It is still the clearest public example of the Part 2 pattern: conversation-specific criteria, a point scale that can penalize, and a model judge that returns met or not met. Part 4's question, whether that judge agrees with physicians, is a section of the paper rather than an afterthought.\n\n## What they did\n\nThe set is 5,000 conversations, single-turn or multi-turn, each ending on a user message. Most were synthesized from situation types physicians listed, some were red-team conversations, and some were rewritten from an existing health-search set. Each example has its own criteria. A criterion carries a nonzero point value from −10 to 10. Positive points reward something the reply should do. Negative points penalize a behavior when it is present. The grader is GPT-4.1. It scores each criterion independently as met or not met. Met awards the full point value, including a penalty. Not met awards zero.\n\nThe example score is the sum of awarded points divided by the sum of the positive point values only. A met penalty can pull an example below zero. The reported model score is the mean of example scores, clipped to the range 0 to 1. Table 3 counts 57,237 criterion instances: 49,184 written for that example and 8,053 occurrences of consensus criteria. The consensus criteria are a smaller shared set, attached when a majority of reviewers agreed the category applied. The paper says there are 34 unique consensus criteria. HealthBench Consensus scores 3,671 examples on the consensus criteria only. HealthBench Hard is 1,000 examples kept because several frontier models scored them poorly.\n\nThe physician cohort is 262 people, practicing in 60 countries, across 26 specialties. The model grader was chosen because, on the consensus criteria, it matched physician agreement without the cost of a reasoning model.\n\n{{figure:fig1-infographic.png}}\n\n## What they found\n\nSection 6.1 and the abstract put the overall score at 16% for GPT-3.5 Turbo, 32% for GPT-4o, and 60% for o3. Table 7, sixteen runs, prints the means as 0.1554, 0.3233, and 0.5990. Run-to-run standard deviations are about 0.002. On the Consensus subset the order changes: GPT-4.1 at 0.9398 is above o3 at 0.9282 (Table 8). On the Hard subset, o3 scores 0.32 against its 0.60 overall. Figure 10 breaks Hard out by axis. Communication quality is the tall bar. Completeness is low, and for several weaker models the dashed overall score sits at or near zero.\n\nFigure 1 is one worked example of the arithmetic. Criteria of +7, +5, and +10 are the positive pool, 22 points. The +5 criterion is missed. A −6 penalty is met. The displayed score is 11 out of 22, 50%. The denominator never includes the penalty, so a met penalty lowers the numerator only.\n\nThe grader study covers only consensus criteria: 60,896 physician grades of met or not met. Macro F1 treats \"met\" and \"not met\" equally. GPT-4.1's macro F1 is above the average physician in five of seven themes and below in health data tasks, 0.683 against 0.730, at the 37.5th percentile of physicians on that theme (Table 5). Across grader models, GPT-4.1 is the highest at 0.709 (Table 6). The authors note it was the model used while the prompt was tuned.\n\n{{figure:fig4-frontier.png}}\n\n{{figure:fig10-hard.png}}\n\n## What to carry into the tutorial\n\n- A rubric can be specific to the conversation, with points that reward and points that penalize. A met penalty lowers the score and is not added to the denominator.\n- The judge is binary per criterion, and the example score is a sum. That is a different design from asking the model for one holistic number.\n- Overall, Consensus, and Hard do not rank models the same way. o3 leads the full set and the hard slice. GPT-4.1 leads the consensus slice. Part 4 should not treat one headline number as the measurement.\n- Judge–physician agreement is itself a result, and it is uneven. The grader beats the average physician on five themes and loses on health data tasks. A judge chosen because it was cheap can still be the one that was tuned against.\n\n## Limits\n\nThese are single replies, not multi-step clinical work, and not tool use. The paper does not claim health outcomes. Meta-evaluation covers consensus criteria only. Example-specific criteria were written by individual physicians and not rechecked by others. The abstract's count of 48,562 unique criteria is not the same number as Table 3's 57,237 instances, and the paper does not show the arithmetic that connects them. The grading prompt is not printed. Physicians editing September 2024 references improved them more often than not, 56.2% against 39.8%. April 2025 references were a near tie, 46.8% improved against 47.7% worsened.\n",
+      "summary_status": "draft",
+      "summary_generated_at": "22 Oct 2026, 11:00 am AEDT",
+      "summary_skill_version": 3,
+      "summary_agent": "Cursor running Grok 4.7 High Fast",
+      "figures": [
+        {
+          "file": "fig1-infographic.png",
+          "alt": "Three panels: a health conversation, a candidate reply, and a rubric. Criteria are worth +7, +5, +10, and −6. Three are marked present, including the penalty. The score marker reads 11 out of a maximum of 22, labeled 50% actual score.",
+          "caption": "Figure 1 from Arora et al. (2025). One conversation, physician criteria with positive and negative points, and a score that uses only the positive points as the denominator.",
+          "credit": "Reproduced from Arora et al. (2025)."
+        },
+        {
+          "file": "fig4-frontier.png",
+          "alt": "A scatter of HealthBench score against model release date, from mid-2023 to mid-2025. A frontier path rises from GPT-4 near 0.2 through GPT-4 Turbo and o1 to o3 near 0.6. GPT-3.5 Turbo and GPT-4o (Aug 2024) sit below the path, GPT-4o near 0.3.",
+          "caption": "Figure 4 from Arora et al. (2025). Overall score by model and release date. The printed means behind 16%, 32%, and 60% are in Table 7.",
+          "credit": "Reproduced from Arora et al. (2025)."
+        },
+        {
+          "file": "fig10-hard.png",
+          "alt": "Grouped bars of HealthBench Hard scores by axis for nine models. Communication quality is the tallest bar. Completeness is much shorter. Dashed lines mark an overall Hard score, 0.32 for o3 and lower for the other models, including zeros for GPT-3.5 Turbo, GPT-4o, and Llama 4 Maverick.",
+          "caption": "Figure 10 from Arora et al. (2025). On the 1,000-example Hard subset, o3's overall score is 0.32, against 0.60 on the full set.",
+          "credit": "Reproduced from Arora et al. (2025)."
+        }
+      ],
+      "access_note": null
     },
     {
       "id": "siro-2026-learning-to-judge",
@@ -1746,13 +1842,39 @@
         }
       ],
       "abstract": "Large language models (LLMs) are increasingly used as evaluators for natural language generation, applying human-defined rubrics to assess system outputs. However, human rubrics are often static and misaligned with how models internally represent language quality. We introduce GER-Eval (Generating Evaluation Rubrics for Evaluation) to investigate whether LLMs can design and apply their own evaluation rubrics. We evaluate the semantic coherence and scoring reliability of LLM-defined criteria and their alignment with human criteria. LLMs reliably generate interpretable and task-aware evaluation dimensions and apply them consistently within models, but their scoring reliability degrades in factual and knowledge-intensive settings. Closed-source models such as GPT-4o achieve higher agreement and cross-model generalization than open-weight models such as Llama. Our findings position evaluation as a learned linguistic capability of LLMs, consistent within models but fragmented across them, and call for new methods that jointly model human and LLM evaluative language to improve reliability and interpretability.",
-      "summary": "Asks whether a model can write its own rubric and then apply it. Directly relevant to Part 2 and the hands-on: the rubric is part of the measurement, and a model-written rubric can look coherent while scoring facts badly.",
+      "summary": "Siro, Aliannejadi, and Aliannejadi test the assumption that a model-written rubric is a more reliable way to score text than a human rubric. Within one model the scores are often stable. Agreement with humans, and agreement across models, collapses on the factual biomedical summaries.",
       "groups": [
         "judges"
       ],
       "featured_rank": null,
       "mentions": [],
-      "note": null
+      "note": null,
+      "summary_md": "## Why it is here\n\nSiro, Aliannejadi, and Aliannejadi separate two jobs that Part 2 often runs together: who writes the rubric, and who applies it. GER-Eval is a diagnostic, not a new rubric generator. It asks whether a model-written rubric is more reliable than a human one, and whether a model applies either rubric the same way a person would. The datasets are summaries, dialogues, and instruction-following replies, not agent trajectories. The lesson still sits in Part 2 and Part 4. A rubric that sounds specific can score fluency and miss the facts.\n\n## What they did\n\nA criterion is a name, a description, and a scale, plus a short instruction for how to score it. Generation has three conditions: the task alone, the task plus example inputs, and the task plus a high-scoring and a low-scoring output. Application has two conditions, and the words mean something else there: rubric only, which they call zero-shot, and rubric plus demonstrations, which they call few-shot. Tables 3 and 4 compare those two application setups with each other. They are not agreement with humans. Table 5 is the table that correlates model scores with human scores, and it uses the human rubrics.\n\nThey take 50 items from each of four datasets: SummEval, HelpSteer2, USR, and SumPubMed. The judges are GPT-4o, GPT-4o-mini, Llama-3.3-70B, Mixtral-8x22B, and Qwen2.5-72B. Scoring is greedy. Rubric generation uses temperature 0.7. They also hand a rubric written by GPT-4o or by Llama to the other models, which is the transfer test.\n\n{{figure:fig2-task-specific.png}}\n\n## What they found\n\nModels produce about five to eight criteria per dataset. Figure 2 shows the share the authors counted as task-specific under three generation prompts. The paper does not print those bar heights. What it does print is alignment with the human criteria, which is high on some datasets and often below 60% on SumPubMed.\n\nThe number that matters for the tutorial is Table 5, Spearman correlation with human scores when the model applies the human rubric. On the dialogue set, USR, every model lands between 0.77 and 0.82. On HelpSteer2 the range is 0.31 to 0.65. On SummEval it is 0.24 to 0.58. On the biomedical summaries, SumPubMed, it is −0.09 to 0.30. Few-shot demonstrations raise HelpSteer2 for four of the five models and do not rescue SumPubMed.\n\nA high correlation between a model's own zero-shot and few-shot scores is a different fact. That within-model agreement can sit near 0.9 on USR in Table 4 while the correlation with humans in Table 5 is lower. On SumPubMed, GPT-4o's zero-shot and few-shot scores agree 92% of the time on its own rubrics (Table 3) with a correlation of only 0.53. Stable is not the same as valid.\n\n{{figure:table5-human-spearman.png}}\n\nFigure 4 is what happens when another model applies the rubric. On USR the Spearman values stay mostly positive and often high. On SumPubMed they sit near zero, with a few cells above 0.3 and some negative. Inter-rater reliability across models on the SumPubMed rubrics has every ICC below 0.2 (Tables 8 and 9).\n\n{{figure:fig4-transfer.png}}\n\n## What to carry into the tutorial\n\n- Who writes the rubric is part of the measurement. Part 2 should not treat \"let the model draft the criteria\" as a free improvement over a human rubric. This paper does not show that self-written rubrics agree better with humans. Table 5 is the human-rubric result.\n- A model can be consistent with itself and still disagree with people. Part 4's consistency check is not a validity check. The SumPubMed row is the example: high within-model agreement, correlation with humans at or below 0.30.\n- The failure is sharper where the rubric needs facts. Dialogue quality transfers. Biomedical summary quality does not. A rubric for a tool-using agent that checks \"did the tool argument match the request\" is closer to the factual case than to the dialogue case.\n- Few-shot scoring examples help on some datasets and not on others. They are not a general fix.\n- Rubrics do not travel cleanly across models. A criterion written by one model and scored by another can lose the correlation even when each model is internally coherent.\n\n## Limits\n\nEnglish text only, five models, 50 items per dataset, and no check of factual accuracy beyond the existing human scores. The study does not claim GER-Eval is a better rubric generator. One sentence in the results section describes human correlations of about 0.8 to 0.9 on HelpSteer2 and USR. Table 5, the human-score table, has USR at 0.77 to 0.82 and HelpSteer2 at 0.31 to 0.65. The higher band matches zero-shot versus few-shot agreement, not agreement with humans.\n",
+      "summary_status": "draft",
+      "summary_generated_at": "22 Oct 2026, 11:00 am AEDT",
+      "summary_skill_version": 3,
+      "summary_agent": "Cursor running Grok 4.7 High Fast",
+      "figures": [
+        {
+          "file": "fig2-task-specific.png",
+          "alt": "Grouped bars of the percent of generated rubrics counted as task-specific, for GPT-4o, GPT-4o-mini, Llama, Mixtral, and Qwen. Three bars per model: task only, task plus examples, and task plus good/bad pairs. The vertical axis runs from 0 to 100.",
+          "caption": "Figure 2 from Siro et al. (2026). How often generated criteria were counted as task-specific. The paper does not print the bar heights in the text.",
+          "credit": "Reproduced from Siro et al. (2026)."
+        },
+        {
+          "file": "table5-human-spearman.png",
+          "alt": "Spearman correlations of model scores with human scores, using human rubrics. Rows are GPT-4o, GPT-4o-mini, Llama, Mixtral, and Qwen. Columns are zero-shot and few-shot on HelpSteer2, SummEval, SumPubMed, and USR. USR cells are 0.77 to 0.82. SumPubMed cells run from −0.09 to 0.30.",
+          "caption": "Table 5 from Siro et al. (2026). Correlation with humans when the model applies the human rubric. This is the validity table, not the within-model stability table.",
+          "credit": "Reproduced from Siro et al. (2026)."
+        },
+        {
+          "file": "fig4-transfer.png",
+          "alt": "Four heatmaps of Spearman correlation when one model applies another model's rubric. USR panels are mostly warm, from about 0.20 to 0.90. SumPubMed panels are near zero and include negative cells, with a color scale from −1 to 1.",
+          "caption": "Figure 4 from Siro et al. (2026). A rubric written by GPT-4o or Llama still correlates on dialogue and falls apart on biomedical summaries.",
+          "credit": "Reproduced from Siro et al. (2026)."
+        }
+      ],
+      "access_note": null
     },
     {
       "id": "hong-2026-rulers",
@@ -1780,7 +1902,7 @@
         }
       ],
       "abstract": "Rubric-based text evaluation increasingly relies on large language models (LLMs) as scalable judges, yet frozen black-box models can interpret the same criteria inconsistently, produce score attributions that are difficult to audit, and map judgments poorly onto human scoring scales. We define this challenge as criteria transfer: translating human rubric intent into a stable, auditable inference-time scoring protocol. We introduce Rulers, which locks a task-level rubric specification, executes it through structured, evidence-grounded judgments, and calibrates the resulting signals to human score boundaries. Across four rubric-governed benchmarks and multiple frozen backbone models, Rulers achieves stronger agreement with human scores in most evaluated settings, while better matching empirical score distributions and remaining more stable under semantically equivalent rubric perturbations. Calibration controls and component ablations show that these gains cannot be attributed to post-hoc alignment alone, but depend on the combination of fixed criteria, traceable evidence, and calibrated score interpretation. These findings suggest that reliable LLM judging requires faithfully operationalizing human evaluation standards rather than relying on prompt-level scoring alone. Our code is available at this https URL .",
-      "summary": "Treats a rubric as something to lock and check against evidence, instead of re-interpreting it on every judge call. Part 2 and Part 4: a vague rubric is a different measurement every time the judge runs.",
+      "summary": "RULERS keeps the judge frozen, locks one rubric bundle for the whole task, and forces each checklist decision to cite evidence before a small calibration set maps the scores onto the human scale. The gain in quadratic weighted kappa is large on two essay sets and is not the best score on every row.",
       "groups": [
         "judges"
       ],
@@ -1789,7 +1911,33 @@
         "RULERS",
         "Rulers"
       ],
-      "note": "The reading checklist titles this RULERS: Locked Rubrics and Evidence-Anchored Scoring for Robust LLM Evaluation. The current arXiv page uses the title stored here. Same authors (Hong et al.)."
+      "note": "The reading checklist titles this RULERS: Locked Rubrics and Evidence-Anchored Scoring for Robust LLM Evaluation. The current arXiv page uses the title stored here. Same authors (Hong et al.).",
+      "summary_md": "## Why it is here\n\nHong, Yao, Shen, and colleagues name the problem as criteria transfer: a human rubric has to become a scoring procedure that lands on the human scale and can be audited. RULERS does that at inference time. It does not train the judge. The tasks are essays, summaries, and data-to-text, not agent trajectories. It belongs in Part 2, where a rubric and a scale are chosen, and in Part 4, where a score that moves because the prompt was reworded is a reliability failure.\n\n## What they did\n\nThree stages, drawn in Figure 1. Phase I compiles the human rubric once into a locked bundle: traits, a checklist, score anchors, evidence rules, and a hash. The same bundle is reused for every instance in the task. Phase II splits the input into sentences or paragraphs. The frozen judge marks each checklist item as absent, partial, or clearly present, coded 0, 1, or 2, and cites evidence. A trait score is the average of those decisions, scaled and clipped onto the trait's range. Phase III fits a ridge regression on structured signals, using N = 200 labeled calibration examples, then a monotone map onto the human score distribution. Both the regression and the map are frozen before the test split.\n\nThe metric is quadratic weighted kappa (QWK), mean plus or minus a bootstrap standard error. Baselines are direct holistic scoring, multi-trait scoring, AutoScore, and CheckEval, all at temperature 0, without the RULERS calibration layer in the main table. Backbones are GPT-4o-mini, GPT-4o, Llama-3.1-8B, and Llama-3.1-70B. Datasets are ASAP 2.0 (argument essays, scores 1–6, 7,421 test essays), SummHF (summaries, 1–7), DREsS (learner essays, 3–15), and WebNLG (data-to-text). WebNLG has no single human overall score, so the target is the sum of semantics, grammar, and fluency, which gives the range 3–9.\n\n{{figure:fig1-pipeline.png}}\n\n## What they found\n\nTable 2 is the comparison. RULERS is the highest QWK in every row except the two SummHF rows that use Llama. The highest cell is Llama-3.1-70B on ASAP 2.0, 0.7179 ± 0.0055, against 0.4804 ± 0.0079 for direct holistic scoring with the same backbone. On DREsS the RULERS scores sit near 0.53 to 0.56 while the baselines are mostly under 0.37. On SummHF with Llama-3.1-8B, CheckEval is 0.2594 ± 0.0276 and RULERS is 0.2060 ± 0.0318. With Llama-3.1-70B, CheckEval is 0.4606 ± 0.0256 and RULERS is 0.4454 ± 0.0315. A larger backbone is not always a higher QWK.\n\nFigure 2 compares score shapes with the human histogram. The paper does not print a distance between the curves. The claim in the text is that RULERS more often keeps the center and the spread of the human scores. Table 5 separates two gains on GPT-4o-mini at N = 200. Calibrating the direct holistic score helps on all four datasets. A further gap from that calibrated baseline to RULERS remains: +0.1664 on ASAP 2.0, +0.0329 on SummHF, +0.1844 on DREsS, and +0.0527 on WebNLG. At N = 100 on SummHF, the calibrated direct score beats RULERS. The \"calibration is not the whole story\" claim is the N = 200 table, not every cell.\n\n{{figure:table2-qwk.png}}\n\n{{figure:fig2-distributions.png}}\n\nDropping any phase lowers QWK on all four datasets for GPT-4o-mini (Table 4). Token counts, reported only for GPT-4o-mini, put RULERS above a single-pass judge and below the multi-trait baseline.\n\n## What to carry into the tutorial\n\n- Lock the rubric before scoring. Part 2's criteria become a different measurement if the judge reinterprets them on every call. The hash in the bundle is the version.\n- Evidence is a checklist decision plus a citation, on a three-point scale, not a holistic impression. That is a concrete alternative to \"score this from 1 to 6.\"\n- A couple of hundred labeled examples can map judge signals onto a human scale. Part 4's calibration step is doing real work here, and it is not free of labels.\n- The same calibration applied to a holistic score does not reproduce the full method. The checklist still matters, and on one dataset at the smaller calibration size it does not win.\n- Cost is visible. The evidence-grounded judge spends more tokens than a single pass. Part 2's quality, latency, and cost comparison applies to the judge, not only to the system being judged.\n\n## Limits\n\nThis is not an agent-trajectory paper. There is no tool use. Instability and audit coverage are defined and never given a number. Figure 3's robustness bars have no printed QWK. WebNLG is scored against a sum of trait ratings the authors built. A bad source rubric is preserved, not repaired. Each new task needs its own bundle and its own calibration map. The authors say the method is not a replacement for expert judgment in high-stakes use, and the calibration does not come with a fairness result across groups.\n",
+      "summary_status": "draft",
+      "summary_generated_at": "22 Oct 2026, 11:00 am AEDT",
+      "summary_skill_version": 3,
+      "summary_agent": "Cursor running Grok 4.7 High Fast",
+      "figures": [
+        {
+          "file": "fig1-pipeline.png",
+          "alt": "Three columns. Phase I locks a human rubric into traits, a checklist, evidence rules, and a hash. Phase II marks each checklist item 0, 1, or 2 and cites a sentence or span. Phase III fits a ridge model on a calibration set and maps the result onto the human score scale. The example ends at a final score of 4 out of 6.",
+          "caption": "Figure 1 from Hong et al. (2026). The rubric is locked once, then executed with evidence, then aligned to the human scale.",
+          "credit": "Reproduced from Hong et al. (2026)."
+        },
+        {
+          "file": "table2-qwk.png",
+          "alt": "Quadratic weighted kappa, mean plus or minus bootstrap standard error, for ASAP 2.0, SummHF, DREsS, and WebNLG. Columns are direct holistic scoring, multi-trait scoring, AutoScore, CheckEval, and RULERS, across four backbones. RULERS is highest in every row except the two SummHF rows that use Llama, where CheckEval is higher.",
+          "caption": "Table 2 from Hong et al. (2026). The highest cell is Llama-3.1-70B on ASAP 2.0, 0.7179 ± 0.0055. The two SummHF Llama rows are the exceptions.",
+          "credit": "Reproduced from Hong et al. (2026)."
+        },
+        {
+          "file": "fig2-distributions.png",
+          "alt": "A grid of score densities, four datasets by four backbones. Pink histograms are human scores. Curves are direct holistic scoring, multi-trait scoring, AutoScore, CheckEval, and RULERS. Axes differ by dataset, including 1–6, 1–7, 0–15, and 3–9.",
+          "caption": "Figure 2 from Hong et al. (2026). Human score histograms against each method's predicted distribution. The paper does not print a distance between the curves.",
+          "credit": "Reproduced from Hong et al. (2026)."
+        }
+      ],
+      "access_note": null
     },
     {
       "id": "roy-2026-premise",
@@ -1819,7 +1967,7 @@
         }
       ],
       "abstract": "LLM judges are increasingly used to evaluate open-ended responses, but their scores depend strongly on the rubrics that condition them. A vague rubric asking for a response to be ``helpful and factual'' can reward polished answers that invent facts or violate user intent. We treat reusable rubrics as measurement specifications: changing the rubric changes the response quality measurement induced by a fixed judge. We introduce PReMISE, a framework that, given pairwise human-preference data, (i) discovers a policy-level rubric set, and (ii) audits any rubric set under LLM-judge use along four axes: structural adequacy, reliability, preference fit, and adversarial robustness. Across rubric sources no raw source is simultaneously reliable, preference-predictive, and adversarially robust; and high inter-rater agreement does not imply low exploitability. PReMISE is the only rubric source to score non-trivially on applicability, specificity, and effective dimensionality simultaneously. We contribute two audit-targeted repair operations: preference-rank selection raises judge accuracy on paired responses from $65.0\\%$ to $68.6\\%$, competitive with the strongest rubric-discovery baselines and leading on two of three judges in our cross-judge sweep; reliability-constrained refinement reduces the rate at which exploit responses receive high scores from $46.4\\%$ to $36.0\\%$ with little change in inter-judge agreement ($\\alpha{=}.531\\to.519$).",
-      "summary": "Audits rubrics as measurement specifications: reliability, fit to preferences, and whether a judge can be gamed. This is the Part 4 warning that high agreement does not mean the rubric measures what you think.",
+      "summary": "PReMISE treats a reusable rubric as a measurement specification and audits it for structure, stability, preference fit, and how easily an attacker can satisfy it. No rubric source in the audit leads every column, and the repair that raises preference accuracy is not the repair that lowers exploitability.",
       "groups": [
         "judges"
       ],
@@ -1827,7 +1975,33 @@
       "mentions": [
         "PReMISE"
       ],
-      "note": null
+      "note": null,
+      "summary_md": "## Why it is here\n\nRoy, Pujari, Kumarage, and colleagues study the rubric that is reused across many prompts, the kind of policy sheet Part 2 asks a team to write, rather than an answer key for one item. PReMISE is a discover, audit, and repair pipeline for that sheet. The tutorial question is whether a rubric that judges agree on is the same thing as a rubric that measures what you meant, and whether it can be gamed. That is Part 4.\n\n## What they did\n\nA policy rubric is a set of criteria meant to apply across prompts. For a fixed judge and a rubric, each criterion returns a score. Here the scale used in the audit is 0 to 10. Discovery reads pairwise preferences, asks a model for candidate criteria, clusters near-duplicates, and keeps a compact set. The audit has four axes, kept separate rather than collapsed into one index. Structure is five design properties, scored by a majority of three models. Reliability is inter-judge agreement (Krippendorff's α), a flip rate under repeated sampling, and stability under paraphrase. Preference fit asks whether the criteria fire on the prompts they claim to cover, and whether a judge using them picks the human-preferred response. Adversarial robustness is a verified fool rate: an attacker tries to satisfy a criterion, the judge scores the attempt at least 7 out of 10, and a separate verifier, blind to the attack, calls it an exploit.\n\nTwo repairs do different jobs. Preference-rank selection keeps criteria that point the same way as the human preference and does not rewrite the text. The robustness repair edits the text, with a length budget, and is accepted when the fool rate falls without giving up too much agreement. The audit uses four preference corpora. The held-out accuracy test uses three judges, DeepSeek-V3, Qwen3-32B, and Kimi K2.5, each asked either for one A-or-B verdict or for a score on every criterion.\n\n{{figure:fig2-workflow.png}}\n\n## What they found\n\nTable 1 averages the audit across the four corpora. No source leads every column. Auto-Rubric has the highest preference accuracy in that table, 68.7, and the lowest verified fool rate, 0.272. AgentEval has the highest agreement, α = 0.582. Discovered PReMISE is strong on specificity and on how many distinct directions the scores actually use, and it is not the accuracy leader.\n\nFigure 4 is that anatomy on UltraFeedback. PReMISE criteria fire on 58% of in-domain prompts, the in-domain rate is 7.5 points above the out-of-domain rate, and the effective dimensionality is 15 out of 20. AgentEval and Inverse CAI fire widely and are slightly more applicable out of domain than in it. Auto-Rubric fires on 3% of prompts.\n\nPreference-rank selection moves the Table 1 preference accuracy from 65.0 to 68.6, a tenth of a point under Auto-Rubric's 68.7. On the per-judge table, that repaired rubric is below a no-rubric baseline for Qwen3-32B's direct verdict, 65.8 against 66.4. Discovered PReMISE, before that repair, is below the no-rubric baseline on every direct-verdict column. The robustness repair moves the other direction: verified fool rate from 0.464 to 0.360, with α from 0.531 to 0.519, and preference accuracy does not rise.\n\n{{figure:table1-audit.png}}\n\n{{figure:fig4-anatomy.png}}\n\n## What to carry into the tutorial\n\n- A rubric is a measurement specification. Agreement among judges, fit to preferences, and resistance to a written exploit are different columns. Part 4 should not treat one of them as a proxy for the others.\n- The repair that chases preference accuracy narrows which prompts the criteria apply to. The repair that chases exploits edits the wording and does not buy accuracy. A team in Part 2 has to say which axis it is optimizing.\n- A discovered rubric can lose to no rubric at all. Adding criteria is not automatically a better judge.\n- On one of the three judges, the preference repair itself loses to the no-rubric baseline. A rubric tuned on a large judge is not guaranteed on a smaller one.\n- High α is a stability check. The paper says it is not evidence that the rubric matches a human's idea of quality.\n\n## Limits\n\nThe pipeline is for rubrics that are supposed to track pairwise preferences. Safety floors and hard constraints that should override a preference are out of scope. The fool rate is a lower bound under this attacker, judge, and verifier; the verifier's precision against a three-annotator majority is 72.7%. Absolute numbers are judge-relative. The authors do not test the rubrics as a training reward, and they say consequential per-item decisions would still need human calibration.\n",
+      "summary_status": "draft",
+      "summary_generated_at": "22 Oct 2026, 11:00 am AEDT",
+      "summary_skill_version": 3,
+      "summary_agent": "Cursor running Grok 4.7 High Fast",
+      "figures": [
+        {
+          "file": "fig2-workflow.png",
+          "alt": "A three-stage diagram. Discovery extracts and consolidates criteria from pairwise preferences. A four-axis audit scores structural adequacy, reliability, preference fit, and adversarial robustness. Targeted repair either reselects criteria or edits text, then sends the rubric back for another audit.",
+          "caption": "Figure 2 from Roy et al. (2026). Discover, audit, and repair are separate stages, and the two repairs answer different audit failures.",
+          "credit": "Reproduced from Roy et al. (2026)."
+        },
+        {
+          "file": "table1-audit.png",
+          "alt": "A cross-source audit table. Columns cover structure, agreement, flip rate, paraphrase stability, verified fool rate, applicability, specificity, effective dimensionality, preference accuracy, and a Bradley-Terry diagnostic. No row is best in every column. Auto-Rubric's preference accuracy is 68.7. Preference-repaired PReMISE is 68.6. Discovered PReMISE is 65.0.",
+          "caption": "Table 1 from Roy et al. (2026). No rubric source leads every column. The preference repair and the robustness repair move different numbers.",
+          "credit": "Reproduced from Roy et al. (2026)."
+        },
+        {
+          "file": "fig4-anatomy.png",
+          "alt": "Three panels on UltraFeedback. An applicability scatterplot, a bar chart of in-domain versus out-of-domain firing with specificity labels from −5.9 to +7.5, and effective dimensionality from 3/4 up to 18/25, with PReMISE at 15/20.",
+          "caption": "Figure 4 from Roy et al. (2026). On UltraFeedback, discovered PReMISE fires on 58% of in-domain prompts, with +7.5 points of specificity and 15 effective dimensions out of 20.",
+          "credit": "Reproduced from Roy et al. (2026)."
+        }
+      ],
+      "access_note": null
     },
     {
       "id": "zhuge-2025-agent-as-judge",
@@ -1907,7 +2081,7 @@
         }
       ],
       "abstract": "Web agents enable users to perform tasks on web browsers through natural language interaction. Evaluating web agents trajectories is an important problem, since it helps us determine whether the agent successfully completed the tasks. Rule-based methods are widely used for this purpose, but they are challenging to extend to new tasks and may not always recognize successful trajectories. We may achieve higher accuracy through human evaluation, but the process would be substantially slower and more expensive. Automatic evaluations with LLMs may avoid the challenges of designing new rules and manually annotating trajectories, enabling faster and cost-effective evaluation. However, it is unclear how effective they are at evaluating web agents. To this end, we propose AgentRewardBench, the first benchmark to assess the effectiveness of LLM judges for evaluating web agents. AgentRewardBench contains 1302 trajectories across 5 benchmarks and 4 LLMs. Each trajectory in AgentRewardBench is reviewed by an expert, who answers questions pertaining to the success, side effects, and repetitiveness of the agent. Using our benchmark, we evaluate 12 LLM judges and find that no single LLM excels across all benchmarks. We also find that the rule-based evaluation used by common benchmarks tends to underreport the success rate of web agents, highlighting a key weakness of rule-based evaluation and the need to develop more flexible automatic evaluations. We release the benchmark at: this https URL",
-      "summary": "A benchmark of whether automatic judges agree with experts on web-agent trajectories, including side effects and repetition. Part 4: outcome rules and LLM judges miss different failures.",
+      "summary": "AgentRewardBench asks whether automatic judges agree with experts on web-agent trajectories. No LLM judge in the test reaches 70% precision on success. The benchmarks' own rules are more precise and miss many successes the experts accepted.",
       "groups": [
         "trajectories"
       ],
@@ -1915,7 +2089,33 @@
       "mentions": [
         "AgentRewardBench"
       ],
-      "note": null
+      "note": null,
+      "summary_md": "## Why it is here\n\nLù, Kazemnejad, Meade, and colleagues collected expert labels on web-agent trajectories and used them to score automatic evaluators. The paper does not train a reward model and does not introduce a new web agent. It asks the Part 1 question in a form you can count. Does a rule on the final page, or a language-model judge that sees the trace, match an expert on success, on side effects, and on repetition? Part 4 needs the answer, because a judge that calls failures successes will poison any later training signal.\n\n## What they did\n\nA trajectory is the sequence of browser observations, the agent's reason, and the action. They use 351 tasks across WebArena, VisualWebArena, AssistantBench, WorkArena, and WorkArena++, and four agents: GPT-4o, Claude 3.7 Sonnet, Qwen2.5-VL, and Llama-3.3-70B. Llama is text-only and was not run on VisualWebArena. The total is 1,302 trajectories, 196 for development and 1,106 for test.\n\nSix experts each answered three yes/no questions: did the actions achieve the goal, were there unnecessary actions that could have side effects, and did the agent loop without progress? That is 3,906 binary labels. Agreement is reported for one slice only. A second annotator on the GPT-4o agent's WebArena trajectories agreed on success 89.3% of the time.\n\nThe judges are existing methods, AER and NNetNav, plus a simplified judge that answers the same three questions in one completion. The simplified judge sees either the final accessibility tree or the final screenshot. The primary metric is precision on success, because a false \"success\" is the expensive error if the labels were used for training. Recall and F1 are reported beside it. The benchmarks' own functional checks are a reference row, not one of the twelve model judges.\n\n{{figure:fig1-framing.png}}\n\n## What they found\n\nTable 1 is the test-set comparison with expert success labels. The best model precision is GPT-4o with the final accessibility tree: precision 69.8, recall 83.1, F1 75.9. The authors' summary is that no model judge reaches 70% precision. The rule-based row is more precise, 83.8, and it recalls only 55.9, F1 67.1. Qwen2.5-VL with the accessibility tree has the highest recall, 89.8, at precision 64.3. The best model is not the same on every benchmark. Claude with the accessibility tree leads AssistantBench precision at 87.5. Rules lead VisualWebArena, WebArena, WorkArena, and WorkArena++.\n\nSide effects are a separate failure. In Table 7 the best side-effect F1 is 21.4, and precision stays in the single digits to the mid-teens. Repetition is easier: Claude with the accessibility tree reaches precision 82.8 and F1 88.4. A judge that can see a loop is not a judge that can see a harmful extra click.\n\nUsing the judge as if it were the expert changes the agent ranking. On WebArena, experts put GPT-4o at 42.3% success and the rules at 25.6%, a 16.7 point undercount. On VisualWebArena the same gap is 35.9 against 17.4. Rules rank Qwen above GPT-4o on WebArena. Experts do not. Figure 3 is one qualitative miss. The goal is to buy the cheapest cereal with a graphic character. Claude 3.7 Sonnet adds Cocoa Puffs to the cart and stops. The GPT-4o judge says the agent purchased it.\n\n{{figure:table1-judges.png}}\n\n{{figure:fig3-errors.png}}\n\n## What to carry into the tutorial\n\n- Outcome rules and a judge that reads the trajectory miss different things. Rules in this table are the precise, low-recall instrument. Model judges stay under 70% precision on success, so about three in ten of the trajectories they call successful are wrong. Part 1's objection to a single final check shows up as both of those errors.\n- Success, side effects, and repetition are three labels. A high score on one does not travel. Part 3's look at tool choice and at the response has to be more than one bit.\n- Precision is the metric they chose because a false success is costly. Part 4 should say which error is expensive before it picks a number to maximize.\n- The judge overestimates agent success on most of the reported cells, with exceptions on the harder WorkArena++ slice. A leaderboard that uses the judge will not match a leaderboard that uses the expert.\n- Annotator agreement is 89.3% on one agent and one benchmark. That is evidence the success label is stable there. It is not a reliability figure for the whole 1,302.\n\n## Limits\n\nNo reward model is trained, and agent-as-a-judge is discussed and not run. The 70% line is about the model judges. The rule-based precision is 83.8. AssistantBench is the public validation split, not the private test set. WorkArena++ Level 3 was left out as too hard. Llama has no VisualWebArena trajectories, and some tables still print 0.0 there. Side-effect detection is not usable at these precisions. The paper does not report Cohen's κ for the judges, only precision, recall, and F1.\n",
+      "summary_status": "draft",
+      "summary_generated_at": "22 Oct 2026, 11:00 am AEDT",
+      "summary_skill_version": 3,
+      "summary_agent": "Cursor running Grok 4.7 High Fast",
+      "figures": [
+        {
+          "file": "fig1-framing.png",
+          "alt": "A web agent is given a shopping task and produces a six-step trajectory of fills and clicks ending in Task Completed. A human marks the trajectory successful, with no side effect and no repetition. An LLM judge reads the trace and writes a thought that the listing matches the search.",
+          "caption": "Figure 1 from Lù et al. (2025). The benchmark compares an expert's three yes/no labels with an automatic judge on the same trajectory.",
+          "credit": "Reproduced from Lù et al. (2025)."
+        },
+        {
+          "file": "table1-judges.png",
+          "alt": "Precision, recall, and F1 for success prediction, plus precision on five benchmarks. The rule-based row is precision 83.8, recall 55.9, F1 67.1. The highest model F1 is GPT-4o with the accessibility tree, precision 69.8, recall 83.1, F1 75.9. No model precision cell in the overall column is above 70.",
+          "caption": "Table 1 from Lù et al. (2025). Model judges stay under 70% precision on success. The official rules are more precise and miss more of the successes experts accepted.",
+          "credit": "Reproduced from Lù et al. (2025)."
+        },
+        {
+          "file": "fig3-errors.png",
+          "alt": "A shopping page and a goal: buy the cheapest cereal with a graphic character. The agent replies that it found Cocoa Puffs and added it to the cart, marked with a red cross. The GPT-4o judge's thought says the agent successfully identified and purchased that cereal, marked with a thumbs down.",
+          "caption": "Figure 3 from Lù et al. (2025). The agent adds an item to the cart and stops. The judge describes that as a completed purchase.",
+          "credit": "Reproduced from Lù et al. (2025)."
+        }
+      ],
+      "access_note": null
     },
     {
       "id": "verma-2026-agentjudgebench",
@@ -1999,7 +2199,7 @@
         }
       ],
       "abstract": "As agentic systems tackle increasingly complex multi-step tasks, evaluating their trajectories presents a major bottleneck - human annotation of a single trajectory on popular agentic benchmarks can take hours, making it difficult to scale evaluations for measuring performance or curating training data. This has driven widespread reliance on automated approaches such as LLM-as-a-judge (LLMJ) to critique agents at the process and outcome-levels at scale, however, the soundness of LLMJ critiques often goes unmeasured. Here, we introduce Counsel, the first public dataset of meta-evaluations for agentic tasks. Counsel consists of process-level critiques from open-weight LLMJs on two agent benchmarks: tau-bench (customer support agents) and DA-Code (coding agents), and human meta-evaluations of these critiques. Human annotators label critiques on each flagged error as \"spot on\", \"correct location but poor reasoning\", or \"should not have flagged\", achieving reliable inter-annotator agreement (Krippendorff's alpha of 0.78). The resulting dataset stratifies LLMJ critiques by human alignment across both error location within a trajectory and reasoning quality, serving as valuable data to calibrate, improve, or train LLMJs for agents. Comparing open-weight judges, we find that more capable judge models and more reasoning effort both enabled improved human agreement, with the strongest judge reaching ~88% agreement on location and ~65% on reasoning. Counsel is generated using open-weight models and is permissively licensed for broad community use, which we hope will enable rigorous study and improved alignment of LLM-based evaluators for agentic systems.",
-      "summary": "Human ratings of whether a judge’s critique of an agent trajectory was right, not only whether the final score matched. Part 4: the explanation a judge gives can be wrong even when the score looks plausible.",
+      "summary": "Counsel grades the critique a judge writes about an agent step, not the agent's final success. On the flags humans reviewed, the best setting is Spot On a bit over half the time, and the design does not measure errors the judge never raised.",
       "groups": [
         "trajectories",
         "reliability"
@@ -2008,7 +2208,33 @@
       "mentions": [
         "Counsel"
       ],
-      "note": "The reading checklist credits Atla (2026). The arXiv byline is Pisupati, Broomfield, and colleagues."
+      "note": "The reading checklist credits Atla (2026). The arXiv byline is Pisupati, Broomfield, and colleagues.",
+      "summary_md": "## Why it is here\n\nPisupati, Broomfield, Choi, and colleagues built Counsel to grade the critique, not the agent. A judge can flag a step and explain why, and still be wrong about the place, the reason, or both. Part 4 treats a fluent explanation as something to check. Part 2 asks whether the prompt, including a few good examples, changes that check.\n\n## What they did\n\nCounsel is human labels on critiques from open-weight judges, on two existing agent benchmarks. It is not a new agent score. τ-bench retail contributes 115 tasks. DA-Code contributes 50 tasks, kept only when models already completed them often, so the slice is easier than the full coding benchmark. The agents are GPT-OSS-20B and Qwen3-235B. The judges are GPT-OSS-120B, run at high and low reasoning effort, and Qwen3-235B with reasoning turned off.\n\nEach model call is judged on its own. The judge sees the past trajectory and that step's output, not the future, and not earlier verdicts. Humans do not relabel every step. They label only spans some judge already flagged. The three labels are Spot On, meaning the right place and the right reason; Poor Reasoning but correct location; and Should Not Have Flagged. If the place is wrong, the reason is not scored as right. Three professional annotators triple-labeled 15 trajectories, with Krippendorff's α ≈ 0.78. The rest are single-labeled. Table 2 has 1,131 labels: 555 Spot On, 289 Poor Reasoning, and 287 Should Not Have Flagged.\n\nCritique precision, as Section 4.3 uses the phrase, is the share of flags marked Spot On.\n\n{{figure:fig1-examples.png}}\n\n## What they found\n\nFigure 3 draws the same labels as stacked bars. The rates the paper prints are Qwen3 at 43% Spot On on DA-Code and 63% on τ-bench retail, and GPT-OSS-120B at high effort at 60% and 58% on those two benchmarks. A flag is Spot On a bit more than half the time in the stronger setting, and less than half for Qwen3 on the coding tasks. These are not recall. The annotation never asks about a step no judge flagged.\n\nHigher reasoning effort cuts the Should Not Have Flagged column, 68 labels at high effort against 187 at low, summed across Table 2. It does not cut Poor Reasoning the same way: 112 against 109. Tests for a judge going easy on its own model family were not significant. A small follow-up inserts 20 Counsel examples into a prompt and reruns τ-bench retail ten times. The paper does not print the mean rewards. The only comparison it marks as significant is spot-on examples given to a guardrail judge that may request one retry, p = 0.0078.\n\n{{figure:fig3-critique-quality.png}}\n\n{{figure:table2-labels.png}}\n\n## What to carry into the tutorial\n\n- Grade the explanation, not only the yes or no. A confident critique can name the wrong step, or the right step for a bad reason. That is a Part 4 failure mode, distinct from a wrong final score.\n- Precision on flagged spans is a different question from \"did the judge find the failures.\" Counsel answers the first and says it does not answer the second.\n- The three-way label is a Part 2 prompt decision. Location and reasoning fail separately, and the authors refused a category for a wrong place with a good reason.\n- A handful of good critiques, used as examples, moved one guardrail judge in one environment. Most of the other in-context conditions did not. That is a prompt result on the same benchmark, not a training result.\n- α ≈ 0.78 is the agreement on 15 triple-labeled trajectories. The other labels in the 1,131 were written once.\n\n## Limits\n\nTwo environments and two model families. The DA-Code slice was biased toward easier tasks on purpose. The in-context probe stays inside τ-bench retail and does not print the reward means. A headline agreement rate in the abstract is not a number Section 4.3 reports; the Spot On rates above are the results-section figures. Counsel is a check on flags the judge did raise. It is not a substitute for looking at the steps the judge passed over.\n",
+      "summary_status": "draft",
+      "summary_generated_at": "22 Oct 2026, 11:00 am AEDT",
+      "summary_skill_version": 3,
+      "summary_agent": "Cursor running Grok 4.7 High Fast",
+      "figures": [
+        {
+          "file": "fig1-examples.png",
+          "alt": "Two trajectories. On the left, a retail agent collects order details before authenticating the user. The judge flags that step and a human marks the critique Spot On. On the right, a coding agent says it will inspect two files and then runs head on one. The judge flags the step and a human marks it Should Not Have Flagged.",
+          "caption": "Figure 1 from Pisupati et al. (2026). One critique is Spot On. The other flags a reasonable intermediate step.",
+          "credit": "Reproduced from Pisupati et al. (2026)."
+        },
+        {
+          "file": "fig3-critique-quality.png",
+          "alt": "Stacked bars of human labels on judge flags, for τ-bench retail and DA-Code. Each bar splits into Should Not Have Flagged, Poor Reasoning, and Spot On, by agent and by judge. Spot On is the largest slice on several τ-bench bars and a smaller slice on DA-Code.",
+          "caption": "Figure 3 from Pisupati et al. (2026). Human grades of the flags judges already raised. The paper's printed Spot On rates are 43% to 63%.",
+          "credit": "Reproduced from Pisupati et al. (2026)."
+        },
+        {
+          "file": "table2-labels.png",
+          "alt": "Counts of 1,131 human labels. Spot On totals 555, Poor Reasoning 289, and Should Not Have Flagged 287. Columns are DA-Code with the Qwen agent, τ-bench retail with GPT-OSS-20B, τ-bench retail with Qwen, and the total.",
+          "caption": "Table 2 from Pisupati et al. (2026). Every precision sentence in the results is a rounding of these counts.",
+          "credit": "Reproduced from Pisupati et al. (2026)."
+        }
+      ],
+      "access_note": null
     },
     {
       "id": "mobilejudgebench-2026",
@@ -2057,7 +2283,7 @@
         }
       ],
       "abstract": "Rubric-based scoring has become a widely used paradigm in model evaluation, typically with LLM-as-a-Judge (LaaJ) for rubric scoring. However, the reliability of LaaJ for rubric scoring remains underexplored. This concern is especially pronounced in agentic scenarios, where long, complex outputs further challenge reliable scoring. To address this, we conduct a systematic meta-evaluation of LaaJ reliability for rubric verification. We introduce RuVerBench, the first benchmark for assessing LaaJ reliability in rubric verification for agentic scenarios. RuVerBench covers two prevalent agentic domains, deep research and agentic coding, with 2,458 instances, each containing a model-generated output, a rubric, and a human-annotated label indicating whether the output satisfies the rubric. Using RuVerBench, we evaluate numerous frontier LLMs and find that even the most advanced models achieve strong performance but still exhibit substantial noise. We further analyze the impact of key LaaJ strategies, including prompt design, batching, and majority voting, on rubric verification. We find that weaker models are more sensitive to prompt variations, batched verification presents a trade-off between accuracy and efficiency, and majority voting yields effective but diminishing returns. We have released our dataset and code to facilitate future research: this https URL .",
-      "summary": "Tests whether a judge can reliably say that a long agent output satisfies a rubric. Hands-on and Part 4: rubric checks on long traces are noisy, and prompt details move the score.",
+      "summary": "Peng and colleagues test whether a model can say, yes or no, that one agent output meets one rubric item. On research reports the best judge sits next to the human reference; on long coding traces it does not, and batching the checks makes that gap worse.",
       "groups": [
         "trajectories",
         "judges"
@@ -2066,7 +2292,39 @@
       "mentions": [
         "RuVerBench"
       ],
-      "note": null
+      "note": null,
+      "summary_md": "## Why it is here\n\nPeng, Qi, Xia, and colleagues ask a question that Parts 2, 3, and 4 all run into. Once a rubric item is written, can a model be trusted to say whether one agent output satisfies it? RuVerBench is that check. Each item is yes or no. The outputs are not short answers. They are research reports and long coding trajectories, including tool calls.\n\n## What they did\n\nAn instance is one rubric against one fixed output. The benchmark has 2,458 instances: 1,615 in Deep Research and 843 in Agentic Coding, from 494 cases (Figure 2). Deep Research rubrics are Format, Numbers, Logic, or Facts. Agentic Coding rubrics are Task, Planning, Tools, or Rules. Tools covers the call, the schema, the parameters, and whether a later step uses the tool output. About 6% of source rubrics were removed as ambiguous or unverifiable, so the gold labels are ones two teams could settle.\n\nThe two labeling groups agreed on 90.4% of rubrics, Cohen's κ = 0.808, and disagreements were adjudicated. Because both \"met\" and \"not met\" matter, the score is balanced accuracy inside each category, then an unweighted average across the four categories in that domain. They call that average Avg BAcc, and they print it times 100. A random judge is 50.0. They test 18 models. The prompt, batching, and voting experiments use a fixed 20% subset and six of those models, not the whole leaderboard.\n\n{{figure:fig1-pipeline.png}}\n\n## What they found\n\nTable 2 is the leaderboard. In Deep Research, Gemini-3.1 Pro Preview reaches 94.7 Avg BAcc, beside the average human-reference score of 94.49. Nine models are above 90. In Agentic Coding the best score is GPT-5.4 at 89.4. That is 10.6 points short of a perfect verifier. The human-reference average on the same domain is 90.50, so the best model is close to the humans and still well short of never being wrong. The models also spread out. The same three frontier models do not miss the same items: their error sets overlap only 16.1% in Deep Research and 20.6% in Agentic Coding.\n\nThe failures they name, from reading wrong frontier predictions against the human reasons, are partial satisfaction and requirement expansion. A fragment is treated as a met rubric, or the judge adds a constraint the rubric never stated. In Agentic Coding, GPT-5.4 is the stricter of the three. Gemini-3.1 Pro Preview and Claude Opus 4.7 sometimes pass a missing step. Those profiles shift in Deep Research.\n\n{{figure:table2-leaderboard.png}}\n\nFigure 5 is batching, on the 20% subset. In Deep Research, several rubrics in one call move the score by only a few points. In Agentic Coding, once a call holds four or five rubrics, every tested model loses score, often by tens of points. Figure 6 is self-voting. A few extra votes pick up a point or two. More votes do not repair a mistake the same model makes every time. For GPT-OSS-120B in Agentic Coding, majority voting pushes the already-wrong items toward the wrong label (Table 15).\n\n{{figure:fig5-batching.png}}\n\n{{figure:fig6-voting.png}}\n\n## What to carry into the tutorial\n\n- A binary rubric check is its own measurement, separate from whether the agent finished the task. Part 2's choice among a rule, a judge, and a human includes this verifier.\n- On the research reports a strong model can sit next to the human reference. On the long tool-using traces the best model is still about ten points short of perfect, and Tools and Rules are part of the rubric. That is the Part 3 question, tool choice and parameters, asked of the judge as well as of the agent.\n- Batching rubric items to save calls is cheap on the research reports and expensive on the coding traces. Reliability and cost move together (Parts 2 and 4).\n- Similar overall scores do not mean interchangeable judges. The shared-error rate is low, and a vote can lock in a consistent mistake.\n- The human agreement, 90.4% and κ = 0.808, is the bar the table is measured against. It is high, and it is not perfect.\n\n## Limits\n\nLabels are binary, and rubrics that needed a preference or evidence the annotators did not have were removed. This is not the vague rubric a live system will hand the judge. The strategy results are six models on 20% of the items. The authors say the benchmark is not a safety certificate and not a sufficient basis for a deployed reward or monitor. Which model wrote the trajectory also moves the ranking, even where the rankings stay correlated.\n",
+      "summary_status": "draft",
+      "summary_generated_at": "22 Oct 2026, 11:00 am AEDT",
+      "summary_skill_version": 3,
+      "summary_agent": "Cursor running Grok 4.7 High Fast",
+      "figures": [
+        {
+          "file": "fig1-pipeline.png",
+          "alt": "A worked example. The trajectory includes a hidden system rule not to reveal secrets, and the assistant refuses to paste an API key while naming that rule. The rubric asks whether the assistant avoided quoting the system prompt. The model judge says yes. The gold judgment says no, because the refusal exposed the hidden instruction.",
+          "caption": "Figure 1 from Peng et al. (2026). A yes/no rubric check can accept a reply that obeyed the user and still leaked the hidden rule.",
+          "credit": "Reproduced from Peng et al. (2026)."
+        },
+        {
+          "file": "table2-leaderboard.png",
+          "alt": "Two leaderboards of balanced accuracy. In Deep Research, Gemini-3.1 Pro Preview leads at 94.7 overall. In Agentic Coding, GPT-5.4 leads at 89.4 overall. Llama-3.1-8B-Instruct is near the random baseline of 50 in Deep Research and at 61.7 in Agentic Coding.",
+          "caption": "Table 2 from Peng et al. (2026). Average balanced accuracy for 18 judges. The coding block tops out at 89.4, 10.6 points short of a perfect verifier.",
+          "credit": "Reproduced from Peng et al. (2026)."
+        },
+        {
+          "file": "fig5-batching.png",
+          "alt": "Line charts of the change in overall score as more rubrics are judged in one call. Deep Research stays within about plus or minus 7 points. Agentic Coding falls, and by four or five rubrics per call most lines are between about −20 and −35.",
+          "caption": "Figure 5 from Peng et al. (2026). Batching rubric checks is a small change on research reports and a large loss on coding trajectories.",
+          "credit": "Reproduced from Peng et al. (2026)."
+        },
+        {
+          "file": "fig6-voting.png",
+          "alt": "Line charts of the gain from extra votes over a single stochastic vote. Deep Research gains stay under about 1.2 points. In Agentic Coding most models gain 2 to 4 points by three to five votes, while GPT-OSS-120B falls to about −4 by nine votes.",
+          "caption": "Figure 6 from Peng et al. (2026). A few extra votes help a little. More votes do not repair a mistake the same model makes every time.",
+          "credit": "Reproduced from Peng et al. (2026)."
+        }
+      ],
+      "access_note": null
     },
     {
       "id": "wang-2024-not-fair",

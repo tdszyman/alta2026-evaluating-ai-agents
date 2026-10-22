@@ -327,6 +327,15 @@ a.app-launch:hover {
   color: var(--muted);
 }
 
+.ai-provenance a,
+.ai-provenance a:hover,
+.ai-provenance a:visited,
+.ai-provenance a:focus {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 0.12em;
+}
+
 .org-banner {
   padding: 0.7rem 0.9rem;
   margin-bottom: 1rem;

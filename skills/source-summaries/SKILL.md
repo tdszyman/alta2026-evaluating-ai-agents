@@ -111,7 +111,7 @@ Increase `version` in the frontmatter by one when the instructions change what a
 
 ## Provenance
 
-The page prints a quiet line under the **AI-generated summary** label: the time, the skill version, and the agent. Do not write that line into `summary_md`. Set the three fields instead.
+The page prints a quiet line under the **AI-generated summary** label. It starts with “Generated at” and the time, then the skill version, then the agent. “Skill version N” is a link to this file on GitHub. Version 2 opens commit `a162f8f` (the instruction set those notes were written under; that copy has no version field). Version 3 opens commit `dc50277` (the commit that set `version: 3`). Any other version opens the copy on `main`. The builder prints that line from the three fields below. Do not write it into `summary_md`. A change to the printed wording alone does not increase `version` and does not change `summary_skill_version` on an existing note.
 
 - `summary_generated_at` is when you finished the note. Use a readable time and name the zone, as in `22 Oct 2026, 10:00 am AEDT`. An approximate time is acceptable when the exact minute was not recorded. Update it when you rewrite the note. Leave it when you only fix a typo or a figure crop.
 - `summary_skill_version` is the integer `version` of this file at the time you write the note.
