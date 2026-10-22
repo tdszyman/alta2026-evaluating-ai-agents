@@ -6,6 +6,7 @@ format:
     css:
       - ../../_shared/chrome.css
       - complexity.css
+      - job-ad-judge.css
 ---
 
 ## Part 1 — WIP
@@ -232,6 +233,113 @@ Framework: [Complex versus complicated](../../bibliography/finegood-complex-vers
 :::
 
 <!-- WIP: placeholders only — no invented incidents -->
+
+---
+
+## An LLM judge can stop an unlawful job ad before it goes live {.job-ad-slide}
+
+```{=html}
+<div class="jad-figure">
+
+  <div class="jad-browser" aria-label="Mock-up of the SEEK employer site with an AI-generated job ad">
+    <div class="jad-chrome">
+      <span class="jad-dot"></span><span class="jad-dot"></span><span class="jad-dot"></span>
+      <span class="jad-url">talent.seek.com.au/jobs/create</span>
+    </div>
+    <div class="jad-header">
+      <span class="jad-wordmark">SEEK</span>
+      <span class="jad-header-sub">Employer</span>
+      <span class="jad-header-page">Create a job ad</span>
+    </div>
+    <div class="jad-body">
+      <div class="jad-form">
+        <div class="jad-field"><span>Job title</span><b>Retail Sales Consultant</b></div>
+        <div class="jad-field"><span>Location</span><b>Fitzroy, Melbourne VIC</b></div>
+        <div class="jad-field"><span>Work type</span><b>Part-time</b></div>
+        <div class="jad-field jad-notes"><span>Notes for the ad</span><b>Women’s fashion boutique. Our customers are mostly young women. Want someone who fits in with the team.</b></div>
+        <div class="jad-button">✦ Write my job ad for me</div>
+      </div>
+      <div class="jad-ad">
+        <div class="jad-nogo-space"></div>
+        <div class="jad-ad-tag">AI-generated draft</div>
+        <div class="jad-ad-title">Retail Sales Consultant</div>
+        <div class="jad-ad-meta">Lumi Boutique · Fitzroy VIC · Part-time</div>
+        <p>Love fashion? Join our friendly team on Gertrude Street, styling customers and keeping the floor looking its best.</p>
+        <p>This role <span class="jad-flag fragment custom" data-fragment-index="3">would suit a young woman aged 18–25</span> who reflects our customers.</p>
+        <p class="jad-ad-list">What you’ll do<br>• Style and advise customers<br>• Merchandise new arrivals<br>• Process sales and returns</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="jad-trace fragment" data-fragment-index="1">
+    <div class="jad-label">Agent reasoning trace (simplified)</div>
+    <ol class="jad-steps">
+      <li><span class="jad-kind">Input</span>Notes: “customers are mostly young women”, “fits in with the team”</li>
+      <li><span class="jad-kind">Thought</span>The best fit is someone like the customers.</li>
+      <li><span class="jad-kind">Thought</span>Say so in the ad, so the right people apply.</li>
+      <li><span class="jad-kind">Action</span><code>write_ad</code> adds “would suit a young woman aged 18–25”</li>
+    </ol>
+  </div>
+
+  <div class="jad-judge">
+    <div class="jad-label">LLM judge on the agent’s output</div>
+    <div class="jad-box jad-prompt fragment" data-fragment-index="2">
+      <div class="jad-box-head">Judge prompt</div>
+      <pre>You review job ads for Australian law.
+Fail any ad that states a preference
+by sex, age, race, disability,
+pregnancy, religion or other
+protected attribute.
+Return PASS or FAIL and quote the
+offending text.</pre>
+    </div>
+    <div class="jad-box jad-output fragment" data-fragment-index="3">
+      <div class="jad-box-head">Judge output</div>
+      <pre><span class="jad-fail">verdict: FAIL</span>
+quote:   "would suit a young
+          woman aged 18–25"
+grounds: sex, age
+action:  block; agent rewrites</pre>
+    </div>
+  </div>
+
+  <div class="jad-zoom fragment" data-fragment-index="3" aria-hidden="true">
+    <span class="jad-zoom-text">“would suit a <u>young woman</u> <u>aged 18–25</u>”</span>
+    <span class="jad-zoom-tags"><span>sex</span><span>age</span></span>
+  </div>
+
+  <div class="jad-nogo fragment" data-fragment-index="3">
+    <svg viewBox="0 0 100 100" aria-hidden="true">
+      <circle cx="50" cy="50" r="42" fill="#fff" stroke="#B42318" stroke-width="12"/>
+      <line x1="21" y1="79" x2="79" y2="21" stroke="#B42318" stroke-width="12"/>
+    </svg>
+    <div class="jad-nogo-text">ILLEGAL</div>
+    <div class="jad-nogo-sub">Blocked by LLM judge</div>
+  </div>
+
+  <svg class="jad-links fragment" data-fragment-index="3" viewBox="0 0 1200 600" aria-hidden="true">
+    <defs>
+      <marker id="jad-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+        <path d="M0,0 L10,5 L0,10 z" fill="#B42318"/>
+      </marker>
+    </defs>
+    <path class="jad-zoom-lead" d="M484,263 L484,296"/>
+    <path class="jad-verdict-link" d="M734,300 C700,292 696,180 674,140" marker-end="url(#jad-arrow)"/>
+  </svg>
+
+</div>
+
+<div class="jad-caption">Illustrative mock-up: not a real ad, hirer or incident.</div>
+```
+
+::: {.notes}
+- The feature: the hirer gives SEEK some basic facts about the role and clicks “Write my job ad for me”. An AI agent writes the ad.
+- Read the trace left to right. Each step looks reasonable to the agent: the hirer says the customers are young women and wants someone who fits in, so the agent writes that preference into the ad.
+- That preference is discrimination on sex and age. Publishing it is unlawful in Australia, and SEEK carries the legal risk. <!-- TODO: organisers to confirm the legal references before presenting, e.g. Sex Discrimination Act 1984 (Cth) and Age Discrimination Act 2004 (Cth) provisions on advertisements, plus state equal-opportunity Acts. -->
+- Mitigation: an LLM judge checks every generated ad against the relevant legislation and regulation. Here the judge quotes the offending text, names the grounds, and blocks the ad. The red “illegal” mark is the judge’s verdict, not a rule the agent applied to itself.
+- Bridge to Part 2: this is a non-deterministic check. The judge reads the ad in context, so it can catch a preference however the agent phrases it.
+- Builds: (1) agent trace, (2) judge prompt, (3) judge verdict, highlight, zoom and no-go mark.
+:::
 
 ---
 
