@@ -1030,7 +1030,7 @@
       "summary_status": "draft",
       "summary_generated_at": "22 Oct 2026, 11:05 am AEDT",
       "summary_skill_version": 3,
-      "summary_agent": "Cursor running Grok 4.7 High Fast",
+      "summary_agent": "Cursor running Claude Opus 5.5 High",
       "figures": [
         {
           "file": "fig1-trajectories.png",
@@ -1100,7 +1100,7 @@
       "summary_status": "draft",
       "summary_generated_at": "22 Oct 2026, 11:05 am AEDT",
       "summary_skill_version": 3,
-      "summary_agent": "Cursor running Grok 4.7 High Fast",
+      "summary_agent": "Cursor running Claude Opus 5.5 High",
       "figures": [
         {
           "file": "fig1-api-calls.png",
@@ -1390,7 +1390,7 @@
         }
       ],
       "abstract": "The potential of Large Language Model (LLM) as agents has been widely acknowledged recently. Thus, there is an urgent need to quantitatively \\textit{evaluate LLMs as agents} on challenging tasks in interactive environments. We present AgentBench, a multi-dimensional benchmark that consists of 8 distinct environments to assess LLM-as-Agent's reasoning and decision-making abilities. Our extensive test over \\num API-based and open-sourced (OSS) LLMs shows that, while top commercial LLMs present a strong ability of acting as agents in complex environments, there is a significant disparity in performance between them and many OSS competitors that are no larger than 70B. We identify the typical reasons of failures in environments and LLMs, showing that poor long-term reasoning, decision-making, and instruction following abilities are the main obstacles for developing usable LLM agents. Improving instruction following and training on high quality multi-round alignment data could improve agent performance. And different from existing assumptions, training on code present ambivalent impacts on different agent tasks. Datasets, environments, and an integrated evaluation package for AgentBench are released at this https URL .",
-      "summary": "A multi-environment benchmark of LLMs as agents. Use it as an example of outcome-style agent eval, which Part 1 argues is not the whole measurement.",
+      "summary": "A benchmark of eight interactive environments (shell, SQL, knowledge graph, games, household, web) on which 29 LLMs act as agents. It reports outcome scores and a breakdown of how runs end, and one environment uses an LLM as host and grader.",
       "groups": [
         "agents"
       ],
@@ -1398,7 +1398,33 @@
       "mentions": [
         "AgentBench"
       ],
-      "note": "arXiv id 2308.03688 is a 2023 submission. The reading checklist dates the paper 2024."
+      "note": "arXiv id 2308.03688 is a 2023 submission. The reading checklist dates the paper 2024.",
+      "summary_md": "## Why it is here\n\nAgentBench is one of the first broad benchmarks that treats an LLM as an agent: it acts in an environment over many turns, and the environment answers back. It is a reference point for Part 1's definition of agent evaluation and its argument that a final-answer score is not the whole story. The paper shows both sides. Its headline is an outcome score, but its most useful table classifies how each run ended. One environment also uses gpt-3.5-turbo to answer the agent's questions and grade its progress. That makes it an early agent benchmark with an LLM judge inside it, which matters for Parts 2 and 4.\n\n## What they did\n\nThere are eight environments, grouped by what grounds them (Figure 1):\n\n- **Code.** Operating system: real bash in an Ubuntu Docker container, scored by success rate. Database: SQL over real tables, success rate. Knowledge graph: answering questions through Freebase query tools, answer F1.\n- **Game.** Digital card game: a simplified turn-based battle against a scripted opponent. Lateral thinking puzzles: the agent asks yes/no questions to uncover a hidden story, scored by \"game progress\". House-holding: ALFWorld, a text simulation of household tasks, success rate.\n- **Web.** Web shopping (WebShop), scored by reward. Web browsing (Mind2Web), scored by step success rate.\n\n{{figure:fig1-overview.png}}\n\nEvery model gets the same prompt format: a \"Thought\" and an \"Action\" each turn, in the style of ReAct, at temperature 0 with no retries. The test set has 1,014 problems, about 11,000 model calls per model. Twenty-nine models were tested: API-only commercial models and open-weight models up to 70B parameters. Raw scores differ greatly between environments, so each environment's score is divided by the average of all tested models on it. These are averaged into an overall score, \"OA\", and the weights are frozen for later comparisons.\n\nEach run's ending is classified as Complete, Context Limit Exceeded, **Invalid Format** (the reply broke the output format), **Invalid Action** (well formed but not an allowed action), or **Task Limit Exceeded** (ran out of turns or kept repeating itself).\n\nIn the lateral thinking puzzles, the \"host\" is gpt-3.5-turbo. It answers the agent's questions and checks which key points of the hidden story the agent has reached. The key points were themselves summarised by gpt-3.5-turbo.\n\n## What they found\n\ngpt-4 scored highest, with OA 4.01, and was best on 6 of 8 environments, reaching 78% success on house-holding (Table 3). API models averaged 2.32 and open models 0.51. The best open model, codellama-34b, scored 0.96. Several open models scored zero on whole environments.\n\n{{figure:table3-results.png}}\n\nAveraged across models, the commonest non-completion was running out of turns. Task Limit Exceeded covers 82.5% of lateral-puzzle runs and 67.9% of knowledge-graph runs (Table 4). Other environments failed differently. Invalid Format was 53.3% on the database and 38.5% on the card game. Invalid Action was 64.1% on house-holding. The authors read the turn-limit failures as weak long-horizon reasoning, and the format failures as poor instruction following.\n\n{{figure:table4-outcomes.png}}\n\nThey also report that code fine-tuning helped some environments and hurt others. Alignment on GPT-generated conversations let vicuna-13b roughly match codellama-34b, and llama-2-13b and llama-2-70b scored about the same. These are comparisons between a few model pairs, not controlled ablations.\n\nHuman validation of the puzzle host found the automatic grader more lenient than people on two secondary metrics, especially for open models. The authors say the main game-progress metric matched human evaluation, but give no numbers for the comparison.\n\n## What to carry into the tutorial\n\n- A normalised, averaged outcome score ranks models but does not say what went wrong. The ending categories do, and they are cheap to log.\n- Environments fail in different ways. One \"agent reliability\" number would hide that format errors dominate one task and running out of turns dominates another.\n- Format and action validity can be checked by rules. Only some agent failures need a judge.\n- An LLM grader inside a benchmark is a measuring instrument. This one was checked against people and found lenient on some metrics, more so for weaker agents. Part 4's reliability concerns apply to it.\n- The overall score depends on the models used to set its weights. Compare OA only within that frame.\n\n## Limits\n\nThe scores are for 2023–2024 models with one fixed prompt style, greedy decoding, and history truncated to about 3,500 tokens. The overall score's weights come from this model set. Success is judged on outcomes and step matches; intermediate reasoning and tool parameters are not graded. The puzzle host's validation is described only in words. The model-family comparisons are observational.\n",
+      "summary_status": "draft",
+      "summary_generated_at": "22 Oct 2026, 12:00 pm AEDT",
+      "summary_skill_version": 3,
+      "summary_agent": "Cursor running Claude Opus 5.5 High",
+      "figures": [
+        {
+          "file": "fig1-overview.png",
+          "alt": "Left, a radar chart of six models' scores relative to the best model in each of the eight environments: operating system, database, knowledge graph, digital card game, lateral thinking puzzle, house-holding, web shopping, and web browsing. gpt-4 traces the outer ring. Right, horizontal bars of overall scores, from gpt-4 at 4.01 to oasst-12b at 0.03, with API models averaging 2.32 and open models 0.51.",
+          "caption": "Figure 1 from Liu et al. (2024). Eight environments, and a large gap between API and open models on the overall score.",
+          "credit": "Reproduced from Liu et al. (2024)."
+        },
+        {
+          "file": "table3-results.png",
+          "alt": "Test-set scores for 29 models across the eight environments, grouped into API models and small, medium, and large open models. gpt-4 leads overall at 4.01, with 42.4 on operating system, 58.8 on knowledge graph, 74.5 on the card game, and 78.0 on house-holding. Many small open models score 0.0 on several environments.",
+          "caption": "Table 3 from Liu et al. (2024). Per-environment scores and the weighted overall score.",
+          "credit": "Reproduced from Liu et al. (2024)."
+        },
+        {
+          "file": "table4-outcomes.png",
+          "alt": "Percent of runs by ending, averaged across models, for each environment. Completed ranges from 13.1 on house-holding to 75.0 on operating system. Invalid format is 53.3 on database and 38.5 on the card game. Invalid action is 64.1 on house-holding. Task limit exceeded is 82.5 on lateral thinking puzzles and 67.9 on knowledge graph.",
+          "caption": "Table 4 from Liu et al. (2024). How runs end differs by environment, which a single score would hide.",
+          "credit": "Reproduced from Liu et al. (2024)."
+        }
+      ],
+      "access_note": null
     },
     {
       "id": "ma-2024-agentboard",
@@ -1642,13 +1668,33 @@
         }
       ],
       "abstract": "A race is underway to embed advanced AI capabilities into products. These product copilots enable users to ask questions in natural language and receive relevant responses that are specific to the user's context. In fact, virtually every large technology company is looking to add these capabilities to their software products. However, for most software engineers, this is often their first encounter with integrating AI-powered technology. Furthermore, software engineering processes and tools have not caught up with the challenges and scale involved with building AI-powered applications. In this work, we present the findings of an interview study with 26 professional software engineers responsible for building product copilots at various companies. From our interviews, we found pain points at every step of the engineering process and the challenges that strained existing development practices. We then conducted group brainstorming sessions to collaborative on opportunities and tool designs for the broader software engineering community.",
-      "summary": "Field study of teams building product copilots, including what evaluation support they lack. Grounds the Part 1 claim that evals are an engineering workflow, not only a paper benchmark.",
+      "summary": "An interview study of 26 engineers building LLM product copilots. Testing and benchmarks were among the hardest parts: flaky outputs, home-made test sets, labelling and run costs, and no agreed idea of \"good enough\".",
       "groups": [
         "lifecycle"
       ],
       "featured_rank": null,
       "mentions": [],
-      "note": null
+      "note": null,
+      "summary_md": "## Why it is here\n\nParnin and colleagues, at Microsoft and GitHub, interviewed engineers shipping \"copilots\": product features that turn a user's request into prompts for an LLM and turn the output back into something the product can use. It is not an evaluation method. It is evidence of what evaluation looks like inside product teams new to LLMs. That makes it a source for Part 1's industry lifecycle (prompts, test cases, datasets, versioning, offline evaluation versus production monitoring), and for Part 2's question of when a team chooses rules, a judge, or a human.\n\n## What they did\n\nThey interviewed 26 professional software engineers for about 45 minutes each, with two researchers per session. Fourteen came from Microsoft teams on announced Copilot products, plus referrals. Twelve came from other companies through a recruiting platform. A screening survey excluded people who only used AI tools, people with extensive data-science or ML backgrounds, and anyone spending under 20 hours a week on AI features. Interviews covered prompt engineering, testing, tooling, learning, and concerns. Near the end, each participant reviewed a workflow diagram that was revised after every session (Figure 2). Two researchers coded the transcripts by *thematic analysis*, grouping quotes into recurring themes. Two brainstorming sessions, with 3 and 4 of the internal participants, proposed tools.\n\n{{figure:fig2-workflow.png}}\n\n## What they found\n\nThe paper reports themes and quotes, not counts. Table 1 summarises them.\n\n{{figure:table1-themes.png}}\n\n**Prompts were fragile and hard to manage.** Engineers iterated in playgrounds by trial and error. Getting output a program could parse was its own fight. One team gave the model a JSON schema and got invented objects. Another stopped forcing a format and parsed the ASCII file tree the model tended to produce. Prompts grew into libraries of templates, examples, and rules assembled at run time, which made the final prompt hard to inspect. Prompt files were in version control, but nothing tracked quality over time when a prompt or model changed.\n\n**Orchestration.** Many copilots first classified the user's intent and routed the request to a \"skill\". That design broke follow-up questions. Some teams tried agent-style loops, which participants found more powerful but \"really hard to manage and steer\". Agents got stuck in loops, went off track, and believed a task was finished when it was not. Participants wanted visibility into intermediate state.\n\n**Testing.** Participants began with unit tests and found that \"every test is a flaky test\". One ran each test 10 times and passed it if 7 succeeded. Others kept spreadsheets of hundreds of input–output examples and updated them by hand whenever the prompt or model changed. Some checked structure rather than content, such as whether code had been truncated. There were no ready-made benchmarks and no agreed measure of \"good enough\". One team paid to label about 10,000 responses. Running tests cost money too. One participant put it at 1–2 cents per test. Another was told to stop automated runs because of cost, and another paused tests that were slowing production endpoints. One team graded outputs A, B, and so on, averaging to dampen grader bias.\n\n**Safety and telemetry.** Teams added content filters, rule-based classifiers, and block lists. Privacy rules meant telemetry showed which skill ran but not what the user asked. One engineer's responsible-AI review took two weeks of work. Another's produced a requirement for an automated harmful-content benchmark before shipping.\n\nIn the brainstorming sessions, engineers asked for benchmarks built from thumbs-up and thumbs-down feedback, simple percentage scores, regression tests for prompt changes, and alerts on cost changes. Most were not interested in ML metrics such as BLEU. Two quoted views: \"Humans will always have to be in the loop\", and the ultimate metric is whether a user finds it useful.\n\n## What to carry into the tutorial\n\n- Nondeterminism turns a test case into a sample. Repeated runs with a pass threshold is the engineering response recorded here, and Part 4's consistency questions are the same problem.\n- Part 1's lifecycle is not hypothetical. Teams versioned prompts but had no record of how quality moved when a prompt or model changed.\n- Hand-maintained expected outputs break on every prompt change. That is one motivation for checking outputs against criteria rather than exact strings.\n- Cost and latency limit how often evaluation runs, whatever its accuracy. Part 2's cost trade-off shows up here as a team told to stop running tests.\n- Production monitoring can be blocked by privacy rules, leaving only coarse signals such as which skill ran.\n- The paper does not show that an LLM judge solves any of this. LLM judges are not discussed. The closest is one engineer using GPT-4 to check prompts for ambiguity.\n\n## Limits\n\nIt is self-report from 26 engineers in late 2023, more than half from one company, recruited to exclude ML specialists. Interviews capture what people recall and what they think they ought to do. There are no frequencies, so a quoted practice may belong to one team. The arXiv version is marked as a draft. Models and tooling have changed since.\n",
+      "summary_status": "draft",
+      "summary_generated_at": "22 Oct 2026, 12:00 pm AEDT",
+      "summary_skill_version": 3,
+      "summary_agent": "Cursor running Claude Opus 5.5 High",
+      "figures": [
+        {
+          "file": "fig2-workflow.png",
+          "alt": "Four rounded boxes joined by arrows in both directions: Exploration (business scenarios, company data, AI tooling and models, best practices, proofs of concept), Implementation (prompt crafting, processing input and output, orchestration, embedding management), Evaluation (model comparison, prompt testing, system testing, benchmarks, fine-tuning, custom models), and Productization (business model, guardrails, safety and compliance, user experience, user feedback, deployment and monitoring).",
+          "caption": "Figure 2 from Parnin et al. (2023). The workflow diagram the participants reviewed. Evaluation is a stage of its own, and monitoring and user feedback sit in productization.",
+          "credit": "Reproduced from Parnin et al. (2023)."
+        },
+        {
+          "file": "table1-themes.png",
+          "alt": "A three-column table of themes, descriptions, and quotes, grouped into challenges in interaction with LLMs (prompt engineering, orchestration), in testing and validation (testing and benchmarks; safety, privacy, and compliance), and in learning and developer experience (evolution of knowledge and best practices; developer experience).",
+          "caption": "Table 1 from Parnin et al. (2023). The six themes, each with a one-line description and representative quotes.",
+          "credit": "Reproduced from Parnin et al. (2023)."
+        }
+      ],
+      "access_note": null
     },
     {
       "id": "zheng-2023-mt-bench",
@@ -1683,7 +1729,7 @@
         }
       ],
       "abstract": "Evaluating large language model (LLM) based chat assistants is challenging due to their broad capabilities and the inadequacy of existing benchmarks in measuring human preferences. To address this, we explore using strong LLMs as judges to evaluate these models on more open-ended questions. We examine the usage and limitations of LLM-as-a-judge, including position, verbosity, and self-enhancement biases, as well as limited reasoning ability, and propose solutions to mitigate some of them. We then verify the agreement between LLM judges and human preferences by introducing two benchmarks: MT-bench, a multi-turn question set; and Chatbot Arena, a crowdsourced battle platform. Our results reveal that strong LLM judges like GPT-4 can match both controlled and crowdsourced human preferences well, achieving over 80% agreement, the same level of agreement between humans. Hence, LLM-as-a-judge is a scalable and explainable way to approximate human preferences, which are otherwise very expensive to obtain. Additionally, we show our benchmark and traditional benchmarks complement each other by evaluating several variants of LLaMA and Vicuna. The MT-bench questions, 3K expert votes, and 30K conversations with human preferences are publicly available at this https URL .",
-      "summary": "The paper that established LLM-as-a-judge against human preferences on MT-Bench and arena votes. Cited from the Part 1 metrics slide and the Part 2 source list as the basic method the tutorial then complicates.",
+      "summary": "The paper that named and systematically tested LLM-as-a-judge. It compares GPT-4's verdicts on open-ended chat answers with expert and crowd votes, and measures position, verbosity, and self-preference biases along the way.",
       "groups": [
         "judges"
       ],
@@ -1692,7 +1738,39 @@
         "MT-Bench",
         "Chatbot Arena"
       ],
-      "note": null
+      "note": null,
+      "summary_md": "## Why it is here\n\nZheng and colleagues gave \"LLM-as-a-judge\" its name and its first systematic test. They ask whether a strong model, shown a question and one or two chat answers, picks what people prefer, and how it goes wrong. For Part 2 it is the reference point for the basic judge formats and their trade-offs. For Part 4 it is an early, quantified list of judge failure modes with first fixes. It judges chat turns, not agents, so it is the baseline the rest of the tutorial extends.\n\n## What they did\n\nThey built two sources of human preference data.\n\n- **MT-Bench.** 80 hand-written two-turn questions, 10 in each of 8 categories: writing, roleplay, extraction, reasoning, math, coding, STEM knowledge, and humanities knowledge. The second turn is a follow-up such as \"now explain it like I'm five\". Six models answered every question, and 58 expert labellers, mostly graduate students, gave about 3,000 pairwise votes.\n- **Chatbot Arena.** A public site where a user chats with two anonymous models and votes for the better one. A month produced about 30,000 votes. The agreement study samples 3,000 single-turn votes from 2,114 IP addresses.\n\nThey define three judge formats. *Pairwise comparison* shows two answers and asks for the better one or a tie. *Single-answer grading* asks for a 1–10 score for one answer. *Reference-guided grading* adds a reference solution. Figure 1 shows a pairwise judgment with its written reason.\n\n{{figure:fig1-pairwise-judgment.png}}\n\n*Agreement* is the probability that a random judge of one type and a random judge of another give the same vote on a random question. Setup S1 counts ties, so chance is 33%. Setup S2 keeps only votes where both judges picked a winner, so chance is 50%.\n\n## What they found\n\n**Biases (Tables 2–4).** For position bias, GPT-3.5 wrote two answers to each first-turn question, and judges compared them in both orders. A judge is *consistent* when its verdict survives the swap. GPT-4 was consistent 65.0% of the time, GPT-3.5 46.2%, and Claude-v1 23.8%, with Claude-v1 favouring the first answer 75.0% of the time. The authors note these pairs were deliberately close. In an appendix, GPT-4 was 98.8% consistent on GPT-3.5 versus LLaMA-13B, a lopsided pair. For verbosity, they padded 23 list answers with a reworded copy of the same list. Claude-v1 and GPT-3.5 preferred the padded version 91.3% of the time, GPT-4 8.7%. On 10 maths questions judged in both orders, GPT-4 called a wrong answer right in 14 of 20 judgments by default, 6 with a chain-of-thought prompt, and 3 when its own separately generated answer was shown as a reference. Self-preference was suggested but not settled: GPT-4 gave itself about a 10% higher win rate than humans did, and Claude-v1 about 25%.\n\n{{figure:table2-4-judge-biases.png}}\n\n**Mitigations.** Run both orders and count a win only when both agree, otherwise a tie. Three few-shot examples raised GPT-4's consistency from 65.0% to 77.5% but made calls about four times as expensive. For two-turn questions, one prompt holding the whole conversation worked better than splitting the turns.\n\n**Agreement (Table 5).** On first-turn MT-Bench votes under S2, GPT-4 pairwise agreed with experts 85% of the time, and experts agreed with each other 81%. Under S1, with ties counted, the figures are 66% and 63%. GPT-4 single-answer grading also reached 85% with humans under S2. On Arena, GPT-4 and crowd voters agreed 87% under S2. When an expert disagreed with GPT-4 and was shown its reasoning, they called it reasonable 75% of the time and changed their own vote 34% of the time.\n\n{{figure:table5-agreement.png}}\n\nAgreement depends on how different the two models are. Across model pairs, it rose from about 70% for close pairs to nearly 100% for pairs with very different win rates (Figure 2).\n\n{{figure:fig2-agreement-vs-gap.png}}\n\n## What to carry into the tutorial\n\n- The three formats are a design choice with stated costs. The number of pairs grows with the square of the number of systems, and the authors expect absolute scores to shift more than pairwise verdicts when the judge model changes.\n- \"Over 80% agreement\" is on non-tied votes. With ties counted it is about 66%. Report the setup and the chance level.\n- Agreement is easiest when the answers differ a lot. A judge validated on clear cases may not separate two close versions of the same agent.\n- Swapping the order and requiring agreement is cheap, and these numbers show how often a single order misleads.\n- A judge can be talked into a wrong answer it could have solved alone. A reference answer cut that most, though on only 20 judgments.\n- Seeing the judge's reasoning changed a third of the experts' dissenting votes. That is a caution for any human review shown the judge's output first.\n\n## Limits\n\nThe study judges chat answers, not tool calls or multi-step trajectories. Helpfulness, accuracy, and creativity are folded into one verdict, and safety is not studied. The bias tests are small: 80 question pairs for position, 23 answers for verbosity, 10 maths questions. The judges are 2023 models. The authors say their human–human measure, between pairs of individuals, understates agreement with the human majority.\n",
+      "summary_status": "draft",
+      "summary_generated_at": "22 Oct 2026, 12:00 pm AEDT",
+      "summary_skill_version": 3,
+      "summary_agent": "Cursor running Claude Opus 5.5 High",
+      "figures": [
+        {
+          "file": "fig1-pairwise-judgment.png",
+          "alt": "A two-turn conversation about the Federal Reserve buying bonds. Assistant A, LLaMA-13B, gives a short answer and then a repetitive list. Assistant B, Vicuna-13B, picks option A and then gives three examples: interest rates, inflation, and employment. Below, GPT-4's judgment explains that A is repetitive and lacks examples and that B is more helpful.",
+          "caption": "Figure 1 from Zheng et al. (2023). A pairwise judgment: the judge sees both conversations and writes its reason before naming the better assistant.",
+          "credit": "Reproduced from Zheng et al. (2023)."
+        },
+        {
+          "file": "table2-4-judge-biases.png",
+          "alt": "Table 2: position-swap consistency for Claude-v1, GPT-3.5, and GPT-4 under a default and a renamed prompt. Default consistency is 23.8%, 46.2%, and 65.0%; Claude-v1 favours the first answer 75.0% of the time. Table 3: failure under the repetitive-list attack, 91.3% for Claude-v1 and GPT-3.5 and 8.7% for GPT-4. Table 4: GPT-4 maths grading failures, 14 of 20 by default, 6 with chain of thought, 3 with a reference.",
+          "caption": "Tables 2–4 from Zheng et al. (2023). Position, verbosity, and maths-grading tests, each on a small set of items.",
+          "credit": "Reproduced from Zheng et al. (2023)."
+        },
+        {
+          "file": "table5-agreement.png",
+          "alt": "Two agreement tables for MT-Bench first and second turns, comparing GPT-4 pairwise, GPT-4 single-answer grading, and human experts. With ties counted (S1, chance 33%), GPT-4 pairwise and humans agree 66%, and humans agree with each other 63%. Without ties (S2, chance 50%), the figures are 85% and 81% on the first turn, and 85% and 82% on the second. Vote counts appear under each value.",
+          "caption": "Table 5 from Zheng et al. (2023). The headline agreement is the no-tie setup. With ties counted it is about 20 points lower for both GPT-4 and the experts.",
+          "credit": "Reproduced from Zheng et al. (2023)."
+        },
+        {
+          "file": "fig2-agreement-vs-gap.png",
+          "alt": "A scatter plot with one point per model pair. The x-axis is the difference in the two models' win rates, from 0 to 1. The y-axis is GPT-4–human agreement on non-tied votes. Agreement rises from about 0.65 for the closest pair to 1.0 for the most different pair.",
+          "caption": "Figure 2 from Zheng et al. (2023). The judge agrees with people most when the two models are far apart.",
+          "credit": "Reproduced from Zheng et al. (2023)."
+        }
+      ],
+      "access_note": null
     },
     {
       "id": "liu-2023-geval",
@@ -1733,7 +1811,7 @@
       "summary_status": "draft",
       "summary_generated_at": "22 Oct 2026, 11:05 am AEDT",
       "summary_skill_version": 3,
-      "summary_agent": "Cursor running Grok 4.7 High Fast",
+      "summary_agent": "Cursor running Claude Opus 5.5 High",
       "figures": [
         {
           "file": "fig1-framework.png",
@@ -2446,7 +2524,7 @@
         }
       ],
       "abstract": "In this paper, we uncover a systematic bias in the evaluation paradigm of adopting large language models~(LLMs), e.g., GPT-4, as a referee to score and compare the quality of responses generated by candidate models. We find that the quality ranking of candidate responses can be easily hacked by simply altering their order of appearance in the context. This manipulation allows us to skew the evaluation result, making one model appear considerably superior to the other, e.g., Vicuna-13B could beat ChatGPT on 66 over 80 tested queries with ChatGPT as an evaluator. To address this issue, we propose a calibration framework with three simple yet effective strategies: 1) Multiple Evidence Calibration, which requires the evaluator model to generate multiple evaluation evidence before assigning ratings; 2) Balanced Position Calibration, which aggregates results across various orders to determine the final score; 3) Human-in-the-Loop Calibration, which introduces a balanced position diversity entropy to measure the difficulty of each example and seeks human assistance when needed. We also manually annotate the \"win/tie/lose\" outcomes of responses from ChatGPT and Vicuna-13B in the Vicuna Benchmark's question prompt, and extensive experiments demonstrate that our approach successfully mitigates evaluation bias, resulting in closer alignment with human judgments. We release our code and human annotation at \\url{ this https URL } to facilitate future research.",
-      "summary": "Shows position and other presentation biases in LLM evaluators. A short Part 4 example: swapping order can change the judgment, so a single hands-on score is not a measurement yet.",
+      "summary": "Shows that GPT-4 and ChatGPT judges change their verdict when two answers swap places. Writing reasons first, averaging both orders, and sending the most unstable items to humans brings them closer to human labels.",
       "groups": [
         "reliability"
       ],
@@ -2454,7 +2532,39 @@
       "mentions": [
         "not Fair Evaluators"
       ],
-      "note": "arXiv submission 2023 (2305.17926). The reading checklist dates it 2024."
+      "note": "arXiv submission 2023 (2305.17926). The reading checklist dates it 2024.",
+      "summary_md": "## Why it is here\n\nWang and colleagues take the pairwise judging template from the Vicuna project and ask a narrow question: does the verdict depend on which answer comes first? It does, strongly. The paper is a compact case study for Part 4's consistency and robustness theme. It also gives Part 2 three concrete protocol choices, each with a measured cost, and a rule for deciding which items a human should check, which bears on choosing between a judge and a human.\n\n## What they did\n\nThe data is the 80-question Vicuna benchmark, spread over 9 categories. The judge sees a question and two responses labelled Assistant 1 and Assistant 2, scores each 1–10 for helpfulness, relevance, accuracy, and detail, then explains. The template already tells the judge not to let order affect its decision. The judges are GPT-4 and ChatGPT (gpt-3.5-turbo-0301).\n\nThe *conflict rate* is the share of questions whose verdict changes when the two responses swap slots. Three of the authors labelled each Vicuna-13B versus ChatGPT pair as win, tie, or lose, seeing the responses in random order. Their majority is the reference label. Judges are scored by accuracy against it and by kappa, an agreement score corrected for chance, where 0 is chance and 1 is perfect.\n\nThey test three fixes (Figure 3):\n\n- **Evidence calibration (EC).** Ask for the explanation before the scores, so the scores can follow from the reasoning. *Multiple evidence calibration (MEC)* samples k explanations at temperature 1 and averages the scores.\n- **Balanced position calibration (BPC).** Run both orders and average.\n- **Human-in-the-loop calibration (HITLC).** Compute the entropy of the win, tie, and lose outcomes across all samples and both orders. High entropy means the judge is unstable on that item. Send the top β% to the human annotators.\n\n{{figure:fig3-calibration.png}}\n\n## What they found\n\nOrder often changed the outcome (Table 2). Judging Vicuna-13B against ChatGPT, GPT-4 gave Vicuna a 51.3% win rate when Vicuna came first and 23.8% when it came second, and flipped on 37 of 80 questions. ChatGPT leaned the other way: 2.5% and 82.5%, with 66 of 80 flips. So GPT-4 favoured the first slot and ChatGPT the second. Against the much weaker Alpaca-13B, GPT-4 flipped on only 4 of 80.\n\n{{figure:table2-position-flip.png}}\n\nFlips concentrate where the judge's two scores are close (Figure 2). In the smallest score-gap bin, 25 of 35 items flipped. At gaps of three points or more, 1 of 39 did.\n\n{{figure:fig2-conflict-vs-gap.png}}\n\nThe fixes helped, but did not reach human level (Table 4). The plain template scored 52.7% accuracy and kappa 0.24 for GPT-4, and 44.4% and 0.06 for ChatGPT. MEC with k = 3 plus BPC raised these to 62.5% and 0.37, and 58.7% and 0.31. Three samples in each order beat six samples in one order at the same cost, which isolates the order effect. Individual annotators scored 68.8–76.3% against the majority. Sending the 20% most unstable items to humans brought GPT-4 to 73.8% and ChatGPT to 71.3%. The authors' cost column puts that ChatGPT setup at US$18.30, against US$30 for one person labelling all 80 items.\n\n{{figure:table4-alignment-cost.png}}\n\nTwo further checks held up. A template that asks only which response is better, without scores, had a 50.0% conflict rate for ChatGPT and responded to the same fixes (Table 5). Entropy over both orders chose items for human review better than random selection or entropy from one order (Figure 5).\n\n## What to carry into the tutorial\n\n- Telling the judge to ignore order does not remove order effects. Measure the conflict rate by swapping.\n- The bias pointed in opposite directions for the two judges. A correction tuned for one judge may not transfer.\n- Order effects are largest on close calls, which are the comparisons an evaluation most needs to get right.\n- Reasoning before scoring and averaging both orders are protocol choices with measured gains. In the paper's GPT-4 cost column they cost about three times the plain template.\n- Instability across samples and orders is a usable signal for routing items to people. Part 2's choice between a judge and a human need not be all or nothing.\n- Even the best automatic setup here was about 9 points below the average annotator.\n\n## Limits\n\nOne benchmark of 80 questions, one main model pair, and two 2023 OpenAI judges. The reference is three authors, and each annotator is scored against a majority that includes their own vote, which flatters the human rows. Human cost is derived from minimum wage and three minutes per item, not a measured budget. The tasks are single chat responses, not agent trajectories. The paper has no limitations section.\n",
+      "summary_status": "draft",
+      "summary_generated_at": "22 Oct 2026, 12:00 pm AEDT",
+      "summary_skill_version": 3,
+      "summary_agent": "Cursor running Claude Opus 5.5 High",
+      "figures": [
+        {
+          "file": "table2-position-flip.png",
+          "alt": "Vicuna-13B's win rate when shown as Assistant 1 and as Assistant 2, and the conflict rate. With GPT-4 judging against ChatGPT: 51.3% and 23.8%, 37 of 80 conflicts. Against Alpaca-13B: 92.5% both ways, 4 of 80. With ChatGPT judging against ChatGPT: 2.5% and 82.5%, 66 of 80. Against Alpaca-13B: 37.5% and 90%, 42 of 80.",
+          "caption": "Table 2 from Wang et al. (2024). Swapping the two answers changes the verdict on nearly half the questions for GPT-4 and most of them for ChatGPT.",
+          "credit": "Reproduced from Wang et al. (2024)."
+        },
+        {
+          "file": "fig2-conflict-vs-gap.png",
+          "alt": "Bars of item counts by GPT-4's score gap between the two responses, with the number of conflicting verdicts overlaid. Gap 0–1: 35 items, 25 conflicts. Gap 1–2: 41 items, 13 conflicts. Gap 2–3: 42 items, 2 conflicts. Gap 3–4: 24 items, 1 conflict. Gap 5 or more: 15 items, none.",
+          "caption": "Figure 2 from Wang et al. (2024). Order flips are concentrated where the judge scores the two responses as close.",
+          "credit": "Reproduced from Wang et al. (2024)."
+        },
+        {
+          "file": "fig3-calibration.png",
+          "alt": "A diagram of the calibration framework. The same question and responses are sent in both orders to an LLM. Each order is sampled several times, each sample writing evidence then two scores. The scores are averaged across samples and orders into calibrated scores, and an entropy score over the outcomes sends high-entropy items to human annotators.",
+          "caption": "Figure 3 from Wang et al. (2024). Evidence before scores, both orders averaged, and unstable items routed to people.",
+          "credit": "Reproduced from Wang et al. (2024)."
+        },
+        {
+          "file": "table4-alignment-cost.png",
+          "alt": "Accuracy, kappa, and cost against the human majority label. Three annotators score 68.8%, 76.3%, and 70.0%, average 71.7% and kappa 0.54, at $30 each. GPT-4 rises from 52.7% with the plain template to 62.5% with evidence and both orders, and 73.8% with 20% human help at $23.10. ChatGPT rises from 44.4% to 58.7%, and 71.3% with human help at $18.30.",
+          "caption": "Table 4 from Wang et al. (2024). Each fix adds accuracy and cost. Only the version with human help reaches the annotators' range.",
+          "credit": "Reproduced from Wang et al. (2024)."
+        }
+      ],
+      "access_note": null
     },
     {
       "id": "panickssery-2024-self-preference",
@@ -2755,7 +2865,7 @@
       "summary_status": "draft",
       "summary_generated_at": "22 Oct 2026, 11:05 am AEDT",
       "summary_skill_version": 3,
-      "summary_agent": "Cursor running Grok 4.7 High Fast",
+      "summary_agent": "Cursor running Claude Opus 5.5 High",
       "figures": [
         {
           "file": "table4-behaviours.png",
@@ -2805,7 +2915,7 @@
         }
       ],
       "abstract": "To solve complex tasks, large language models (LLMs) often require multiple rounds of interactions with the user, sometimes assisted by external tools. However, current evaluation protocols often emphasize benchmark performance with single-turn exchanges, neglecting the nuanced interactions among the user, LLMs, and external tools, while also underestimating the importance of natural language feedback from users. These oversights contribute to discrepancies between research benchmark evaluations and real-world use cases. We introduce MINT, a benchmark that evaluates LLMs' ability to solve tasks with multi-turn interactions by (1) using tools and (2) leveraging natural language feedback. To ensure reproducibility, we provide an evaluation framework where LLMs can access tools by executing Python code and receive users' natural language feedback simulated by GPT-4. We repurpose a diverse set of established evaluation datasets focusing on reasoning, coding, and decision-making and carefully curate them into a compact subset for efficient evaluation. Our analysis of 20 open- and closed-source LLMs offers intriguing findings. (a) LLMs generally benefit from tools and language feedback, with performance gains (absolute, same below) of 1-8% for each turn of tool use and 2-17% with natural language feedback. (b) Better single-turn performance does not guarantee better multi-turn performance. (c) Surprisingly, on the LLMs evaluated, supervised instruction-finetuning (SIFT) and reinforcement learning from human feedback (RLHF) generally hurt multi-turn capabilities. We expect MINT can help measure progress and incentivize research in improving LLMs' capabilities in multi-turn interactions, especially for open-source communities where multi-turn human evaluation can be less accessible compared to commercial LLMs with a larger user base.",
-      "summary": "Evaluates models over multiple turns with tools and language feedback. Supports Part 1’s claim that agent eval is a trajectory, and Part 3’s interest in tool use plus the reply.",
+      "summary": "A benchmark that scores LLMs over up to five turns of Python tool use, with and without natural-language feedback from a GPT-4 \"simulated user\". It also measures how useful different models are as critics, and compares GPT-4's feedback with human-written feedback.",
       "groups": [
         "dialogue",
         "agents"
@@ -2814,7 +2924,33 @@
       "mentions": [
         "MINT"
       ],
-      "note": "arXiv submission 2023 (2309.10691). The reading checklist dates it 2024."
+      "note": "arXiv submission 2023 (2309.10691). The reading checklist dates it 2024.",
+      "summary_md": "## Why it is here\n\nMost benchmarks a reader meets score one input and one output. MINT scores what happens over several turns: the model writes code, sees the interpreter's output, hears whether it is on track, and tries again. That makes it a direct example for Part 1's point that agents are evaluated over a trajectory, not a single reply. It also matters for Part 2 in a less obvious way. The \"simulated user\" is GPT-4 reading the trajectory and writing critique, which is a judge's job, and the paper measures whether that critique helps and whether it reads like a person's.\n\n## What they did\n\nMINT reuses eight datasets: reasoning (GSM8K, MATH, TheoremQA, HotpotQA, MMLU), code generation (HumanEval, MBPP), and decision-making (ALFWorld, a text-only household simulator). From 29,307 instances, the authors removed items a random guess could solve and items gpt-3.5-turbo finished within two turns. They then drew a stratified sample of 586.\n\nEach turn, the model may write a thought, then either run Python code or propose a solution (Figure 1). Answers are checked against the dataset's ground truth. The model gets two attempts, and after a wrong first attempt the simulated user says only \"Your answer is wrong.\" The turn limit k runs from 1 to 5, and the prompt tells the model how many steps and attempts remain.\n\n{{figure:fig1-trajectory.png}}\n\nIn the feedback setting, gpt-4-0613 also comments after every turn. By default it does not see the ground-truth solution. The metric is success rate within k turns. Tool benefit is the slope of success rate against k. Feedback benefit is the success rate with feedback at k = 5 minus the rate without it.\n\nThey evaluated 20 models. Four were API models: gpt-3.5-turbo, claude-2, claude-instant-1, and chat-bison-001. Sixteen were open models from the LLaMA-2, CodeLLaMA, Vicuna, and Lemur families, in base and fine-tuned versions where available. gpt-4 appears as a reference.\n\nTo test the simulated user, two annotators wrote feedback at a randomly chosen turn of 113 trajectories. Two other annotators compared it with GPT-4's feedback for the same turn.\n\n## What they found\n\nMore turns helped every model, at different rates (Table 2, Figure 2). gpt-3.5-turbo rose from 2.7% success at k = 1 to 36.2% at k = 5. claude-2 started highest, at 26.4%, but claude-instant-1 passed it by k = 3 and finished at 45.9% against 39.9%. Single-turn rank did not predict multi-turn rank. gpt-4 reached 69.5% at k = 5.\n\n{{figure:fig2-success-vs-turns.png}}\n\nGPT-4's feedback added 1.7 to 17.2 points for open models and 6.5 to 15.2 for API models (Table 3). In most families, the instruction-tuned or RLHF version gained less from tools and from feedback than its base model. Vicuna and Lemur were exceptions.\n\nGiving useful feedback is a separate skill (Table 4). With gpt-3.5-turbo as the solver, GPT-4's feedback added 15.2 points. Feedback from gpt-3.5-turbo-16k, a variant of the solver itself, cost 10.4 points. CodeLLaMA-34B-Instruct, the weakest solver in that table, still added 3.2.\n\n{{figure:table4-5-feedback.png}}\n\nAnnotators judged GPT-4's feedback more helpful than the human feedback in 54.9% of comparisons, equally helpful in 36.3%, and less helpful in 8.8% (Table 5). They rated it at least as human-like in 92%. Given to gpt-3.5-turbo, human and GPT-4 feedback led to similar success rates, 32.7% and 33.6%.\n\nThe multi-turn tasks also exposed brittle formatting. Vicuna models wrote escaped underscores that broke their code, which the authors traced to an artifact in about 15% of ShareGPT conversations. CodeLLaMA-Instruct (34B) ignored the requested code tags on every code task. An appendix ablation found that showing the critic the ground truth helped on reasoning and code but hurt on ALFWorld. Yes/no feedback, or feedback only when a solution is proposed, helped less than full comments every turn.\n\n## What to carry into the tutorial\n\n- Report performance against the turn budget. Single-turn scores ranked these models differently from five-turn scores.\n- Success rate is still an outcome check. The authors note it does not penalise repeated guessing, so the trajectory needs its own criteria.\n- A critic can be evaluated by its effect: hold the solver fixed and measure how much its comments help. Solving and critiquing were different abilities here.\n- Validating GPT-4's feedback took 113 trajectories, four annotators, and two questions (helpful, human-like). That is a template for validating a judge, not proof that GPT-4 critique is reliable elsewhere.\n- Format-following failures are an agent failure mode that rules can catch before any judge is needed.\n\n## Limits\n\nThe tasks are maths, multi-hop question answering, coding puzzles, and ALFWorld, with Python as the only tool. The authors say GPT-4 cannot stand in for every kind of user, especially where human values are involved. The human comparison is small and reports no agreement between annotators. Success needs a ground-truth answer, so open-ended agent tasks are out of scope. The models and API versions are from 2023.\n",
+      "summary_status": "draft",
+      "summary_generated_at": "22 Oct 2026, 12:00 pm AEDT",
+      "summary_skill_version": 3,
+      "summary_agent": "Cursor running Claude Opus 5.5 High",
+      "figures": [
+        {
+          "file": "fig1-trajectory.png",
+          "alt": "Five interaction turns on a word problem about insects. The model writes a thought and Python code using sympy. The interpreter returns results and the number of steps and proposals left. GPT-4, as a simulated user, says the approach is not good and suggests using what is known about Bodhi. The model corrects itself, computes 16, proposes it, and the user ends the task as solved.",
+          "caption": "Figure 1 from Wang et al. (2024). A MINT trajectory: code, interpreter output, and feedback from GPT-4 in the dotted boxes.",
+          "credit": "Reproduced from Wang et al. (2024)."
+        },
+        {
+          "file": "fig2-success-vs-turns.png",
+          "alt": "Lines of success rate against the maximum number of interaction turns, 1 to 5, for eight models. claude-instant-1 rises from about 12% to 46%, overtaking claude-2, which rises from 26% to 40%. gpt-3.5-turbo climbs steadily to 36%. Open models end between about 14% and 28%. A dashed line marks gpt-4 at 69.11% with five turns.",
+          "caption": "Figure 2 from Wang et al. (2024). More turns help every model, at rates that reorder them.",
+          "credit": "Reproduced from Wang et al. (2024)."
+        },
+        {
+          "file": "table4-5-feedback.png",
+          "alt": "Left, the change in gpt-3.5-turbo's success when different models give feedback: gpt-4 +15.2, claude-instant-1 +1.5, gpt-3.5-turbo-16k −10.4, CodeLlama-34b base +2.4, Llama-2-70b base −0.5, Llama-2-70b-chat −14.0, CodeLlama-34b-Instruct +3.2. Right, human comparison of GPT-4 and human feedback: GPT-4 more helpful 54.9%, both equal 36.3%, human more helpful 8.8%; human-like both equal 69.9%, GPT-4 22.1%, human 8.0%.",
+          "caption": "Tables 4 and 5 from Wang et al. (2024). Feedback quality measured by its effect on a fixed solver, and GPT-4 feedback compared with human feedback.",
+          "credit": "Reproduced from Wang et al. (2024)."
+        }
+      ],
+      "access_note": null
     },
     {
       "id": "chiang-2023-llm-human-eval",
@@ -2850,7 +2986,7 @@
       "summary_status": "draft",
       "summary_generated_at": "22 Oct 2026, 11:05 am AEDT",
       "summary_skill_version": 3,
-      "summary_agent": "Cursor running Grok 4.7 High Fast",
+      "summary_agent": "Cursor running Claude Opus 5.5 High",
       "figures": [
         {
           "file": "fig1-setup.png",

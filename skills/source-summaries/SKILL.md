@@ -31,7 +31,7 @@ Do not use this skill to invent slide claims, rubrics, or timings. Before tying 
 | `summary_status` | `draft` after a successful pass. Organisers change it later. Do not set `reviewed`. |
 | `summary_generated_at` | When this note was written, as a readable time with its zone. Example: `22 Oct 2026, 10:00 am AEDT`. |
 | `summary_skill_version` | Integer version of this skill used to write the note. Copy it from the `version` field above. |
-| `summary_agent` | Who wrote the note. Example: `Cursor running Grok 4.7 High Fast`. |
+| `summary_agent` | Who wrote the note: `Cursor running <model>`, where `<model>` is the model that wrote this note in this run. See Provenance. |
 | `figures` | List of `{file, alt, caption, credit}`. |
 | `access_note` | Plain sentence about what could not be opened or captured. `null` when nothing failed. The page prints it above the summary. |
 | `abstract` | Verbatim from the source, or `null`. Never paraphrase into this field. |
@@ -115,7 +115,12 @@ The page prints a quiet line under the **AI-generated summary** label. It starts
 
 - `summary_generated_at` is when you finished the note. Use a readable time and name the zone, as in `22 Oct 2026, 10:00 am AEDT`. An approximate time is acceptable when the exact minute was not recorded. Update it when you rewrite the note. Leave it when you only fix a typo or a figure crop.
 - `summary_skill_version` is the integer `version` of this file at the time you write the note.
-- `summary_agent` names the agent and the model, in the form `Cursor running <model>`.
+- `summary_agent` names the agent and the model, in the form `Cursor running <model>`. The model is the one answering the current request, which can differ from earlier requests in the same chat:
+  - Take it from your own system instructions or session metadata for this request. Do not copy it from another note, an earlier turn, a commit message, or an example in this file.
+  - Write the readable product name with its effort setting, as the model picker shows it. For example, the slug `claude-opus-5-5-high` is `Claude Opus 5.5 High`.
+  - If a helper agent on a different model read the source or drafted part of the note, name both: `Cursor running <main model>, with <helper model> helpers`.
+  - If you cannot tell which model you are, write `Cursor (model not recorded)`. Do not guess.
+  - When notes from separate requests are committed together, check each note’s label against the request that wrote it.
 
 ## Capture figures
 
