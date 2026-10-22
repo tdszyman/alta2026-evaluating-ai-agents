@@ -259,11 +259,16 @@ pagetitle: "Bibliography"
 format: html
 ---
 
-Click on a source below to view more details, including its AI-generated summary where one has been written.
+Click on a source below to view more details, including the AI-generated summary.
 
-<div class="filters" role="toolbar" aria-label="Filter the bibliography">
+```{{=html}}
+<div class="filters" role="toolbar" aria-labelledby="filters-label">
+<span class="filters-label" id="filters-label">Filter by category:</span>
+<div class="filter-buttons">
 {chr(10).join(buttons)}
 </div>
+</div>
+```
 
 <ul class="bib-list" id="bib-list">
 {chr(10).join(items)}

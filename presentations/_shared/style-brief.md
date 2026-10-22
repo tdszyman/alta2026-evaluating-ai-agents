@@ -72,6 +72,7 @@ Quarto supports a website theme and CSS in `_quarto.yml`, paired website light/d
 | Corners and depth | 2px corner radius. No drop shadows and no backdrop blur. Overlays use a flat scrim, `#14283B` at 40% opacity. |
 | Accent | Links, focus rings, the slide progress bar, the active nav underline, and one chart series. Headings use the main text colour. |
 | Link hover | Light: `#1B467F`. Dark: `#F4F1E9`. |
+| Filter buttons | A muted “Filter by category:” label leads the row. Wrapped buttons line up under the first button, and on phones the buttons drop below the label. Buttons are small uppercase labels, about 0.72rem with light letter spacing, in muted text with a hairline border and no fill. Hover turns the text and border to the accent. |
 | Selected filter | Accent text and a 2px accent border on the quiet surface. Not a filled pill. |
 | Focus | 2px solid accent outline, 2px offset. |
 | Hands-on chart series | Sound `#245BA6` (the accent), tone `#1F7A4D`, compliant `#8C4A2F`. Swatches and legend labels stay. These colours are categorical, not a second brand. |
