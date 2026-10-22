@@ -72,11 +72,13 @@ Quarto supports a website theme and CSS in `_quarto.yml`, paired website light/d
 | Corners and depth | 2px corner radius. No drop shadows and no backdrop blur. Overlays use a flat scrim, `#14283B` at 40% opacity. |
 | Accent | Links, focus rings, the slide progress bar, the active nav underline, and one chart series. Headings use the main text colour. |
 | Link hover | Light: `#1B467F`. Dark: `#F4F1E9`. |
+| Filter buttons | A muted “Filter by category:” label leads the row. Wrapped buttons line up under the first button, and on phones the buttons drop below the label. Buttons are small uppercase labels, about 0.72rem with light letter spacing, in muted text with a hairline border and no fill. Hover turns the text and border to the accent. |
 | Selected filter | Accent text and a 2px accent border on the quiet surface. Not a filled pill. |
 | Focus | 2px solid accent outline, 2px offset. |
 | Hands-on chart series | Sound `#245BA6` (the accent), tone `#1F7A4D`, compliant `#8C4A2F`. Swatches and legend labels stay. These colours are categorical, not a second brand. |
 | Complexity figures | Keep the existing blue `#1F5FA8` and teal `#0F8F88`. They distinguish complicated from complex and already sit next to text labels. |
 | Reveal transition | Fade stays. It marks a step between slides and has a static HTML equivalent. |
 | Removed | Ruled-paper background, display serif, copper/forest palette, glass blur, heavy shadows, pill controls, and the remote Google Fonts request. |
+| Bibliography heading | “Bibliography” with “including AI-generated literature summaries” on the same line at half the title size, regular weight, in the muted text colour. On a narrow screen the whole phrase drops to the next line. One plain sentence below tells visitors that each source page holds the details and any AI-generated summary. |
 | Bibliography figures | Paper figures sit inside the AI-generated summary. The summary measure is 46rem so a chart can stay readable; other long-form text stays 42rem. Images use a white surface and a hairline border so plots remain legible in Night Laboratory. Captions use the muted text colour. |
 | Summary provenance | Under the AI-generated label, one muted line at about 0.78rem. It reads “Generated at” plus the time, then “Skill version N” as an underlined link to the skill file on GitHub, then the agent. The link inherits the muted colour. It is not a heading and it does not use the accent colour. |

@@ -264,13 +264,21 @@ def write_index(sources: list[dict]) -> None:
             f"</li>"
         )
     page = f"""---
-title: "Bibliography"
+title: "Bibliography [including AI-generated literature summaries]{{.title-sub}}"
+pagetitle: "Bibliography"
 format: html
 ---
 
-<div class="filters" role="toolbar" aria-label="Filter the bibliography">
+Click on a source below to view more details, including the AI-generated summary.
+
+```{{=html}}
+<div class="filters" role="toolbar" aria-labelledby="filters-label">
+<span class="filters-label" id="filters-label">Filter by category:</span>
+<div class="filter-buttons">
 {chr(10).join(buttons)}
 </div>
+</div>
+```
 
 <ul class="bib-list" id="bib-list">
 {chr(10).join(items)}
