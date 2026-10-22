@@ -118,7 +118,153 @@
   padding: 0;
 }
 
+/* Roadmap: the four ideas, and the strip under each slide title */
+
+.reveal .terms-slide .tm-steps {
+  display: flex;
+  align-items: stretch;
+  gap: 10px;
+  margin-top: 40px;
+  font-family: Inter, "Source Sans 3", "Segoe UI", system-ui, sans-serif;
+  color: var(--tm-ink);
+}
+
+.reveal .terms-slide .tm-card {
+  flex: 1;
+  padding: 16px 16px 14px;
+  font-size: 17px;
+  line-height: 1.35;
+  color: var(--tm-soft);
+  background: #fff;
+  border: 1px solid var(--tm-line);
+  border-top: 4px solid var(--tm-accent);
+  border-radius: 2px;
+}
+
+.reveal .terms-slide .tm-card b {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 22px;
+  color: var(--tm-ink);
+}
+
+.reveal .terms-slide .tm-num {
+  display: block;
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--tm-accent);
+}
+
+.reveal .terms-slide .tm-card-terms {
+  display: block;
+  margin-top: 10px;
+  font-size: 13px;
+  color: var(--tm-soft);
+}
+
+.reveal .terms-slide .tm-arrow {
+  align-self: center;
+  font-size: 34px;
+  color: var(--tm-line);
+}
+
+.reveal .terms-slide .tm-road {
+  display: flex;
+  gap: 6px;
+  margin: -6px 0 12px;
+  font-family: Inter, "Source Sans 3", "Segoe UI", system-ui, sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--tm-line);
+}
+
+.reveal .terms-slide .tm-road span + span::before {
+  content: "›";
+  margin-right: 6px;
+  color: var(--tm-line);
+}
+
+.reveal .terms-slide .tm-road .tm-road-done { color: var(--tm-soft); }
+
+.reveal .terms-slide .tm-road .tm-road-on {
+  color: var(--tm-accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
 /* One LLM call: context window, model, next token */
+
+.reveal .terms-slide .ta-toks {
+  line-height: 1.9;
+}
+
+.reveal .terms-slide .ta-row {
+  display: block;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1.6;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--tm-soft);
+}
+
+.reveal .terms-slide .ta-chip {
+  display: inline-block;
+  margin-right: 3px;
+  padding: 0 5px;
+  font-size: 13.5px;
+  line-height: 1.5;
+  background: var(--tm-surface);
+  border: 1px solid var(--tm-line);
+  border-radius: 2px;
+}
+
+.reveal .terms-slide .ta-chip-out {
+  font-weight: 700;
+  background: var(--tm-accent-pale);
+  border-color: var(--tm-accent);
+}
+
+.reveal .terms-slide .ta-prob {
+  display: grid;
+  grid-template-columns: 52px 1fr 92px;
+  align-items: center;
+  gap: 8px;
+  font-size: 12.5px;
+}
+
+.reveal .terms-slide .ta-prob i {
+  display: block;
+  height: 8px;
+  background: var(--tm-line);
+}
+
+.reveal .terms-slide .ta-prob em {
+  font-style: normal;
+  color: var(--tm-soft);
+}
+
+.reveal .terms-slide .ta-pick span,
+.reveal .terms-slide .ta-pick em {
+  font-weight: 700;
+  color: var(--tm-ink);
+}
+
+.reveal .terms-slide .ta-pick i { background: var(--tm-accent); }
+
+.reveal .terms-slide .tm-mini {
+  display: block;
+  margin-top: 5px;
+  font-family: var(--tm-mono);
+  font-size: 11.5px;
+  color: var(--tm-ink);
+}
+
+.reveal .terms-slide .tm-term .tm-mini b {
+  display: inline;
+  font-size: inherit;
+}
 
 .reveal .terms-slide .ta-ctx {
   display: flex;
