@@ -1,0 +1,378 @@
+/* "LLM judge spots a multi-turn attack" slide. The figure is laid out on a
+   fixed 1200×600 canvas so the SVG connector in .cat-links lines up.
+   Verdict colours follow the "Judge verdict" row in _shared/style-brief.md. */
+
+.reveal .chat-attack-slide {
+  --cat-ink: #14283b;
+  --cat-soft: #526476;
+  --cat-line: #b8c8d1;
+  --cat-surface: #eff3f5;
+  --cat-accent: #245ba6;
+  --cat-accent-pale: #e3ecf8;
+  --cat-amber: #b54708;
+  --cat-amber-tint: #fef0e1;
+  --cat-red: #b42318;
+  --cat-red-tint: #fde8e6;
+  --cat-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+
+.reveal .chat-attack-slide h2 {
+  font-size: 1.15em;
+  margin-bottom: 0.45em;
+}
+
+.reveal .chat-attack-slide .cat-figure {
+  position: relative;
+  width: 1200px;
+  height: 600px;
+  font-family: Inter, "Source Sans 3", "Segoe UI", system-ui, sans-serif;
+  font-size: 14px;
+  line-height: 1.35;
+  color: var(--cat-ink);
+}
+
+.reveal .chat-attack-slide .cat-label {
+  margin-bottom: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--cat-soft);
+}
+
+/* Mock browser */
+
+.reveal .chat-attack-slide .cat-browser {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 690px;
+  height: 598px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--cat-line);
+  border-radius: 2px;
+  background: #fff;
+  overflow: hidden;
+}
+
+.reveal .chat-attack-slide .cat-chrome {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: 6px;
+  height: 24px;
+  padding: 0 10px;
+  background: var(--cat-surface);
+  border-bottom: 1px solid var(--cat-line);
+}
+
+.reveal .chat-attack-slide .cat-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--cat-line);
+}
+
+.reveal .chat-attack-slide .cat-url {
+  margin-left: 12px;
+  padding: 1px 10px;
+  font-family: var(--cat-mono);
+  font-size: 11px;
+  color: var(--cat-soft);
+  background: #fff;
+  border: 1px solid var(--cat-line);
+  border-radius: 2px;
+}
+
+.reveal .chat-attack-slide .cat-header {
+  display: flex;
+  flex: none;
+  align-items: baseline;
+  gap: 18px;
+  height: 36px;
+  padding: 0 14px;
+  background: var(--cat-ink);
+  color: #fff;
+}
+
+.reveal .chat-attack-slide .cat-wordmark {
+  margin-right: 8px;
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  line-height: 36px;
+}
+
+.reveal .chat-attack-slide .cat-nav {
+  font-size: 13px;
+  opacity: 0.75;
+}
+
+.reveal .chat-attack-slide .cat-nav-on {
+  opacity: 1;
+  font-weight: 600;
+  box-shadow: inset 0 -2px 0 #fff;
+}
+
+.reveal .chat-attack-slide .cat-chat {
+  position: relative;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  margin: 12px 14px 14px;
+  border: 1px solid var(--cat-line);
+  border-radius: 2px;
+  min-height: 0;
+}
+
+.reveal .chat-attack-slide .cat-chat-head {
+  flex: none;
+  padding: 6px 12px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--cat-accent);
+  border-bottom: 1px solid var(--cat-line);
+}
+
+.reveal .chat-attack-slide .cat-msgs {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 7px;
+  padding: 10px 12px;
+}
+
+.reveal .chat-attack-slide .cat-msg {
+  position: relative;
+  max-width: 76%;
+  padding: 6px 10px;
+  font-size: 13.5px;
+  line-height: 1.32;
+  border-radius: 2px;
+}
+
+.reveal .chat-attack-slide .cat-msg.bot {
+  align-self: flex-start;
+  background: var(--cat-surface);
+}
+
+.reveal .chat-attack-slide .cat-msg.user {
+  align-self: flex-end;
+  background: var(--cat-accent-pale);
+}
+
+.reveal .chat-attack-slide .cat-msg.user .cat-t {
+  position: absolute;
+  left: -34px;
+  top: 6px;
+}
+
+.reveal .chat-attack-slide .cat-drift {
+  box-shadow: inset 3px 0 0 var(--cat-amber);
+}
+
+.reveal .chat-attack-slide .cat-t {
+  display: inline-block;
+  padding: 0 5px;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--cat-soft);
+  border: 1px solid var(--cat-line);
+  border-radius: 2px;
+  background: #fff;
+}
+
+.reveal .chat-attack-slide .cat-input {
+  flex: none;
+  margin: 0 12px 10px;
+  padding: 6px 10px;
+  font-size: 13px;
+  color: var(--cat-soft);
+  border: 1px solid var(--cat-line);
+  border-radius: 2px;
+}
+
+.reveal .chat-attack-slide .cat-ended {
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 8px 14px;
+  background: #fff;
+  border: 2px solid var(--cat-red);
+  border-radius: 2px;
+}
+
+.reveal .chat-attack-slide .cat-ended svg {
+  flex: none;
+  width: 52px;
+  height: 52px;
+}
+
+.reveal .chat-attack-slide .cat-ended-title {
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--cat-red);
+}
+
+.reveal .chat-attack-slide .cat-ended-sub {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--cat-red);
+}
+
+/* Judge */
+
+.reveal .chat-attack-slide .cat-judge {
+  position: absolute;
+  left: 736px;
+  top: 0;
+  width: 464px;
+}
+
+.reveal .chat-attack-slide .cat-box {
+  margin-bottom: 14px;
+  background: #fff;
+  border: 1px solid var(--cat-line);
+  border-radius: 2px;
+}
+
+.reveal .chat-attack-slide .cat-box-head {
+  padding: 4px 12px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--cat-soft);
+  background: var(--cat-surface);
+  border-bottom: 1px solid var(--cat-line);
+}
+
+.reveal .chat-attack-slide .cat-box pre {
+  width: auto;
+  margin: 0;
+  padding: 8px 12px;
+  font-family: var(--cat-mono);
+  font-size: 15px;
+  line-height: 1.45;
+  white-space: pre;
+  color: var(--cat-ink);
+  background: none;
+  box-shadow: none;
+}
+
+.reveal .chat-attack-slide .cat-key {
+  float: right;
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.reveal .chat-attack-slide .cat-row {
+  display: grid;
+  grid-template-columns: 30px 1fr 42px 48px;
+  grid-template-areas:
+    "t bar score verdict"
+    ". why why why";
+  align-items: center;
+  column-gap: 8px;
+  row-gap: 3px;
+  padding: 7px 12px;
+  border-bottom: 1px solid var(--cat-surface);
+}
+
+.reveal .chat-attack-slide .cat-row:last-child { border-bottom: 0; }
+
+.reveal .chat-attack-slide .cat-row .cat-t { grid-area: t; justify-self: start; }
+
+.reveal .chat-attack-slide .cat-bar {
+  grid-area: bar;
+  position: relative;
+  height: 12px;
+  background: var(--cat-surface);
+}
+
+.reveal .chat-attack-slide .cat-bar::after {
+  content: "";
+  position: absolute;
+  left: 80%;
+  top: -3px;
+  bottom: -3px;
+  border-left: 2px dashed var(--cat-ink);
+}
+
+.reveal .chat-attack-slide .cat-bar span {
+  display: block;
+  height: 100%;
+  background: var(--cat-accent);
+}
+
+.reveal .chat-attack-slide .cat-score {
+  grid-area: score;
+  font-family: var(--cat-mono);
+  font-size: 14px;
+  text-align: right;
+}
+
+.reveal .chat-attack-slide .cat-verdict {
+  grid-area: verdict;
+  padding: 0 4px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-align: center;
+  text-transform: uppercase;
+  color: var(--cat-accent);
+  border: 1px solid currentColor;
+  border-radius: 2px;
+}
+
+.reveal .chat-attack-slide .cat-why {
+  grid-area: why;
+  font-size: 13.5px;
+  color: var(--cat-soft);
+}
+
+.reveal .chat-attack-slide .cat-warn .cat-bar span { background: var(--cat-amber); }
+.reveal .chat-attack-slide .cat-warn .cat-verdict { color: var(--cat-amber); }
+
+.reveal .chat-attack-slide .cat-fail { background: var(--cat-red-tint); }
+.reveal .chat-attack-slide .cat-fail .cat-bar span { background: var(--cat-red); }
+.reveal .chat-attack-slide .cat-fail .cat-verdict { color: #fff; background: var(--cat-red); border-color: var(--cat-red); }
+.reveal .chat-attack-slide .cat-fail .cat-score { color: var(--cat-red); font-weight: 700; }
+.reveal .chat-attack-slide .cat-fail .cat-why { color: var(--cat-ink); }
+
+.reveal .chat-attack-slide .cat-note {
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+/* Connector */
+
+.reveal .chat-attack-slide .cat-links {
+  position: absolute;
+  inset: 0;
+  width: 1200px;
+  height: 600px;
+  pointer-events: none;
+  overflow: visible;
+}
+
+.reveal .chat-attack-slide .cat-links path {
+  fill: none;
+  stroke: var(--cat-red);
+  stroke-width: 2;
+}
+
+.reveal .chat-attack-slide .cat-caption {
+  margin-top: 4px;
+  font-family: Inter, "Source Sans 3", "Segoe UI", system-ui, sans-serif;
+  font-size: 12px;
+  color: var(--cat-soft);
+}

@@ -126,7 +126,10 @@
       if (!fragments.length) return title;
       var f = Reveal.getIndices().f;
       if (typeof f !== "number" || f < 0) return title;
-      return title + " · " + (f + 1) + "/" + fragments.length;
+      var steps = new Set(Array.prototype.map.call(fragments, function (el) {
+        return el.getAttribute("data-fragment-index");
+      })).size;
+      return title + " · " + (f + 1) + "/" + steps;
     }
 
     function renderCrumbs() {
