@@ -157,7 +157,7 @@ def slide_index(markdown: str) -> list[dict]:
         if line.strip() == "---":
             current = None
             continue
-        match = re.match(r"^(#{1,6})\s+(.+?)\s*$", line)
+        match = re.match(r"^(#{1,6})\s+(.+?)(?:\s+\{[^}]*\})?\s*$", line)
         if not match:
             continue
         base = slugify(match.group(2))

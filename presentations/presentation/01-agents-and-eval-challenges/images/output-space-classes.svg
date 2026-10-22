@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 150" font-family="Inter, 'Source Sans 3', 'Segoe UI', system-ui, sans-serif" role="img">
+<title>Classification output</title>
+<desc>Five job categories. The model picks Technology, which matches the label.</desc>
+<rect x="40" y="8" width="160" height="22" rx="2" fill="#EEF4FC" stroke="#1F5FA8" stroke-width="1.2"/>
+<text x="52" y="24" font-size="14" fill="#14283B">Sales</text>
+<rect x="40" y="35" width="160" height="22" rx="2" fill="#1F5FA8" stroke="#1F5FA8" stroke-width="1.2"/>
+<text x="52" y="51" font-size="14" fill="white">Technology</text>
+<text x="210" y="52" font-size="16" fill="#1F5FA8">✓</text>
+<rect x="40" y="62" width="160" height="22" rx="2" fill="#EEF4FC" stroke="#1F5FA8" stroke-width="1.2"/>
+<text x="52" y="78" font-size="14" fill="#14283B">Healthcare</text>
+<rect x="40" y="89" width="160" height="22" rx="2" fill="#EEF4FC" stroke="#1F5FA8" stroke-width="1.2"/>
+<text x="52" y="105" font-size="14" fill="#14283B">Trades</text>
+<rect x="40" y="116" width="160" height="22" rx="2" fill="#EEF4FC" stroke="#1F5FA8" stroke-width="1.2"/>
+<text x="52" y="132" font-size="14" fill="#14283B">Admin</text>
+</svg>

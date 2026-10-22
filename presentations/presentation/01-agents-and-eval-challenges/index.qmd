@@ -7,6 +7,7 @@ format:
       - ../../_shared/chrome.css
       - complexity.css
       - job-ad-judge.css
+      - generative-eval.css
 ---
 
 ## Part 1 — WIP
@@ -209,6 +210,134 @@ Framework: [Complex versus complicated](../../bibliography/finegood-complex-vers
 - Left: each part on its own checks out.
 - Right: once the parts interact, feedback loops appear (orange) that don't belong to any single part. That behaviour only exists in the whole.
 - Bridge (from the outline, multi-tier evals): with complex systems you still always have to evaluate the system as a whole.
+:::
+
+---
+
+## Why generative AI needs LLM-as-a-judge {.output-space-slide}
+
+```{=html}
+<div class="osp">
+  <div class="osp-groups">
+    <div class="osp-group pred">Predictive AI</div>
+    <div class="osp-group gen">Generative AI</div>
+  </div>
+  <div class="osp-cols">
+    <div class="osp-col pred">
+      <div class="osp-name">Regression</div>
+      <img src="images/output-space-regression.svg" alt="A number line from 0 to 100. The prediction sits close to the label; the gap is the error.">
+      <div class="osp-size"><b>One number</b> in a range</div>
+      <div class="osp-eval"><span>Evaluate by</span>Error against a label: MAE, RMSE</div>
+    </div>
+    <div class="osp-col pred">
+      <div class="osp-name">Classification</div>
+      <img src="images/output-space-classes.svg" alt="Five job categories. The model picks Technology, which matches the label.">
+      <div class="osp-size"><b>One of <i>k</i></b> classes</div>
+      <div class="osp-eval"><span>Evaluate by</span>Match against a label: accuracy, F1</div>
+    </div>
+    <div class="osp-col gen fragment" data-fragment-index="1">
+      <div class="osp-name">One token</div>
+      <img src="images/output-space-vocab.svg" alt="A dense grid of cells stands for the vocabulary. One cell, the chosen token, is filled.">
+      <div class="osp-size"><b>One of |<i>V</i>| ≈ 10<sup>5</sup></b> tokens</div>
+      <div class="osp-eval"><span>Evaluate by</span>Still a match: it is a very wide classifier</div>
+    </div>
+    <div class="osp-col gen fragment" data-fragment-index="2">
+      <div class="osp-name">A response</div>
+      <img src="images/output-space-sequences.svg" alt="A tree that fans out at every token. One highlighted path is the response the model produced.">
+      <div class="osp-size"><b>|<i>V</i>|<sup><i>n</i></sup></b>: 100 tokens ≈ 10<sup>500</sup></div>
+      <div class="osp-eval"><span>Evaluate by</span>No single right answer. Overlap with a reference, then an LLM judge</div>
+    </div>
+    <div class="osp-col gen fragment" data-fragment-index="3">
+      <div class="osp-name">An agent trace</div>
+      <img src="images/output-space-agent.svg" alt="Three response trees in a row, joined by tool calls drawn as squares.">
+      <div class="osp-size"><b>Responses × steps × turns</b></div>
+      <div class="osp-eval"><span>Evaluate by</span>LLM judges, plus multi-tier evals and simulation (next slide)</div>
+    </div>
+  </div>
+  <div class="osp-takeaway fragment" data-fragment-index="4">Once outputs can’t be enumerated, there is no label to match. Something has to read the output and decide whether it is good.</div>
+  <div class="osp-sources">
+    <div>Before LLM judges: reference overlap, e.g. <a href="../../bibliography/papineni-2002-bleu/">BLEU (Papineni et al. 2002)</a> and <a href="../../bibliography/lin-2004-rouge/">ROUGE (Lin 2004)</a>, which correlate poorly with human judgements on open-ended text (<a href="../../bibliography/liu-2023-geval/">Liu et al. 2023</a>).</div>
+    <div>LLM-as-a-judge: <a href="../../bibliography/zheng-2023-mt-bench/">Zheng et al. 2023</a>.</div>
+  </div>
+</div>
+```
+
+::: {.notes}
+- Predictive AI has a narrow output space. A regression model returns one number in a range; a classifier picks one or more classes from a finite set. Both come with a label, so evaluation is arithmetic: error, accuracy, F1.
+- Build 1, one token: an LLM's next token is drawn from a vocabulary of roughly a hundred thousand tokens. That is still countable. On its own it is just a very wide classifier.
+- Build 2, a response: a sequence of n tokens is a sample from |V|^n possibilities. For a 100-token answer that is about 10^500, far beyond anything we could label. There is rarely one right answer, so exact match is meaningless.
+- NLP's earlier answer was overlap with human references, such as [BLEU](../../bibliography/papineni-2002-bleu/) for translation and [ROUGE](../../bibliography/lin-2004-rouge/) for summaries. Those metrics are cheap but correlate poorly with human judgement on creative or open-ended text, which is why the field moved to LLM judges ([Liu et al. 2023](../../bibliography/liu-2023-geval/)).
+- Build 3, an agent trace: many responses, reasoning steps, tool calls and turns, chained together. Even a judge on the final answer is not enough. The next slide covers what agents need on top.
+- Colours follow the complexity slides: blue for predictive, teal for generative.
+:::
+
+---
+
+## Why AI agents need simulation {.agent-sim-slide}
+
+```{=html}
+<div class="asm">
+  <div class="asm-pair">
+    <div class="asm-label">Generative AI: a test case is an input–output pair</div>
+    <div class="asm-pair-row">
+      <div class="asm-card"><span>Input</span>Summarise this job ad in one sentence.</div>
+      <div class="asm-arrow">→</div>
+      <div class="asm-card"><span>Output</span>A part-time retail role in Fitzroy, styling customers.</div>
+      <div class="asm-arrow">→</div>
+      <div class="asm-card asm-judge"><span>Judge</span>Faithful, concise: <b>pass</b></div>
+      <div class="asm-pair-note">Store the pairs once. Re-run the model, re-judge the outputs.</div>
+    </div>
+  </div>
+
+  <div class="asm-run fragment" data-fragment-index="1">
+    <div class="asm-label">AI agent: a test case is a whole run</div>
+    <div class="asm-lanes">
+      <div class="asm-lane-name asm-user-name">
+        <span class="asm-real">User</span>
+        <span class="asm-sim fragment" data-fragment-index="2">Simulated user</span>
+      </div>
+      <div class="asm-lane-name">Agent</div>
+      <div class="asm-lane-name">Tools</div>
+
+      <div class="asm-ev u" style="grid-column: 2; grid-row: 1">Any weekend jobs near Fitzroy?</div>
+      <div class="asm-ev a" style="grid-column: 3; grid-row: 2"><i>Thought:</i> search casual roles nearby</div>
+      <div class="asm-ev t" style="grid-column: 4; grid-row: 3"><code>search_jobs</code><br>Fitzroy, casual</div>
+      <div class="asm-ev a" style="grid-column: 5; grid-row: 2">Here are three roles…</div>
+      <div class="asm-ev u" style="grid-column: 6; grid-row: 1">The café one. Do I need an RSA?</div>
+      <div class="asm-ev t" style="grid-column: 7; grid-row: 3"><code>get_job</code><br>id 2</div>
+      <div class="asm-ev a" style="grid-column: 8; grid-row: 2">Yes, it’s listed. Want to apply?</div>
+      <div class="asm-ev u" style="grid-column: 9; grid-row: 1">Yes, use my profile.</div>
+      <div class="asm-ev t" style="grid-column: 10; grid-row: 3"><code>apply</code><br>id 2</div>
+      <svg class="asm-deps fragment" data-fragment-index="2" viewBox="0 0 1200 198" aria-hidden="true">
+        <defs>
+          <marker id="asm-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 z" fill="#0F8F88"/>
+          </marker>
+        </defs>
+        <path d="M588,99 C626,99 646,90 646,66" marker-end="url(#asm-arrow)"/>
+        <path d="M956,99 C994,99 1014,90 1014,66" marker-end="url(#asm-arrow)"/>
+      </svg>
+    </div>
+    <div class="asm-depends fragment" data-fragment-index="2">
+      Each user turn depends on the agent’s last reply, so a fixed dataset cannot hold the conversation.
+      An LLM plays the user from a persona and a goal (<a href="../../bibliography/yao-2024-tau-bench/">Yao et al. 2024</a>).
+      <span class="asm-persona">Persona: student, no car, wants weekend work. Goal: apply for one suitable role.</span>
+    </div>
+    <div class="asm-tiers fragment" data-fragment-index="3">
+      <div class="asm-tier" style="grid-column: 4 / 5"><b>Step</b>right tool, right arguments?</div>
+      <div class="asm-tier" style="grid-column: 2 / 6"><b>Turn</b>was the reply accurate and helpful?</div>
+      <div class="asm-tier" style="grid-column: 2 / 11"><b>Trajectory</b>was the goal met, within policy? Judges at each tier, e.g. <a href="../../bibliography/jia-2025-agent-gpa/">Agent GPA</a></div>
+    </div>
+  </div>
+</div>
+<div class="asm-caption">Illustrative run; tools and messages are made up.</div>
+```
+
+::: {.notes}
+- Top: for a generative model, a test case is a pair. Store the input once, regenerate the output, and judge it. The dataset is a table.
+- Build 1: an agent run is not a pair. It is a trajectory of user turns, reasoning steps, tool calls and replies.
+- Build 2: the second user message ("the café one") only makes sense after the agent's first reply. Change the agent and the reply changes, so a recorded conversation goes stale. We need something that can respond. A simulated user, an LLM given a persona and a goal, plays that role. [τ-bench](../../bibliography/yao-2024-tau-bench/) is one benchmark built this way.
+- Build 3: we then evaluate at several tiers. Step: was each tool call right? Turn: was each reply good? Trajectory: did the user's goal get met, without breaking policy? Section 3 returns to multi-tier evals and simulation as solutions.
 :::
 
 ---
