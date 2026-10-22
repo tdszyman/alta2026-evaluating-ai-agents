@@ -9,6 +9,7 @@ format:
       - job-ad-judge.css
       - generative-eval.css
       - chat-attack-judge.css
+      - terms.css
 ---
 
 ## Part 1 — WIP
@@ -50,6 +51,184 @@ Placeholder slides only — not final narrative. Do not treat examples as comple
 - What is an **Agent**? What is **Agentic**?
 - Theory vs practice
 - Practical definition: **LLM + Tools + ReAct loop** ([Yao et al. 2023](../../bibliography/yao-2023-react/))
+:::
+
+---
+
+## Terms we use: one agent conversation, labelled {.terms-slide}
+
+```{=html}
+<div class="tm-figure">
+
+  <div class="tm-chat" aria-label="An example conversation between a job seeker and a career assistant agent">
+    <div class="tm-msg tm-sys" id="tm-sys"><span class="tm-role">System</span>You are a career assistant for job seekers. Use the tools provided. Never share other people’s personal data.</div>
+
+    <div class="tm-turn-tag">Turn 1</div>
+    <div class="tm-msg tm-user" id="tm-u1"><span class="tm-role">User</span>Find me barista jobs in Fitzroy.</div>
+    <div class="tm-step" id="tm-s1">
+      <div class="tm-call" id="tm-s1-call">
+        <div><span class="tm-kind">Thought</span>Search for barista roles near Fitzroy.</div>
+        <div><span class="tm-kind">Action</span><code>search_jobs(role="barista", near="Fitzroy")</code></div>
+      </div>
+      <div><span class="tm-kind">Observation</span>3 jobs: Café Lune, Bean Bar, Hill St Coffee</div>
+    </div>
+    <div class="tm-step" id="tm-s2"><span class="tm-kind">Thought</span>I can answer now.</div>
+    <div class="tm-msg tm-asst" id="tm-a1"><span class="tm-role">Assistant</span>I found 3 barista jobs near Fitzroy: Café Lune, Bean Bar and Hill St Coffee.</div>
+
+    <div class="tm-turn-tag">Turn 2</div>
+    <div class="tm-msg tm-user" id="tm-u2"><span class="tm-role">User</span>Apply to Café Lune with my profile.</div>
+    <div class="tm-step" id="tm-s3">
+      <div><span class="tm-kind">Thought</span>The user chose Café Lune. Apply.</div>
+      <div><span class="tm-kind">Action</span><code>apply(job="cafe-lune")</code></div>
+      <div><span class="tm-kind">Observation</span>status: submitted</div>
+    </div>
+    <div class="tm-step" id="tm-s4"><span class="tm-kind">Thought</span>Confirm to the user.</div>
+    <div class="tm-msg tm-asst" id="tm-a2"><span class="tm-role">Assistant</span>Done. Your application to Café Lune has been sent.</div>
+  </div>
+
+  <div class="tm-term fragment" data-fragment-index="1" data-side="left" data-type="point" data-target="tm-sys"><b>System prompt</b>Instructions the developer sets before any user input.</div>
+  <div class="tm-term fragment" data-fragment-index="1" data-side="left" data-type="point" data-target="tm-u1"><b>User message</b>The user’s request, also called the user prompt.</div>
+  <div class="tm-term fragment" data-fragment-index="1" data-side="left" data-type="point" data-target="tm-s1-call"><b>LLM call</b>One act of generation. Here it writes a thought and an action.</div>
+  <div class="tm-term fragment" data-fragment-index="1" data-side="left" data-type="bracket" data-depth="0" data-target="tm-s1"><b>Step</b>One pass of the loop: thought, action (tool call), observation (tool result).</div>
+  <div class="tm-term fragment" data-fragment-index="1" data-side="left" data-type="bracket" data-depth="1" data-target="tm-s1" data-to="tm-s2"><b>Multi-step</b>A span of several steps.</div>
+  <div class="tm-term fragment" data-fragment-index="1" data-side="left" data-type="point" data-target="tm-a1"><b>Assistant message</b>The agent’s reply. The only part the user sees.</div>
+  <div class="tm-term fragment" data-fragment-index="1" data-side="left" data-type="loop" data-target="tm-s3" data-to="tm-s4"><b>ReAct loop</b>Reason (LLM call), act (tool call), observe; repeat until ready to answer (<a href="../../bibliography/yao-2023-react/">Yao et al. 2023</a>).</div>
+
+  <div class="tm-term tm-judge fragment" data-fragment-index="2" data-side="right" data-type="point" data-target="tm-u1"><b>Input guardrail</b>A judge checks the user message before the agent acts on it.</div>
+  <div class="tm-term tm-judge fragment" data-fragment-index="2" data-side="right" data-type="point" data-target="tm-s1"><b>Step-level eval</b>A judge scores one step or LLM call on its own: right tool, right arguments?</div>
+  <div class="tm-term tm-judge fragment" data-fragment-index="2" data-side="right" data-type="point" data-target="tm-a1"><b>Output guardrail</b>A judge checks the reply before the user sees it.</div>
+  <div class="tm-term fragment" data-fragment-index="2" data-side="right" data-type="bracket" data-depth="0" data-target="tm-u2" data-to="tm-a2"><b>Turn</b>One user message, through to the assistant’s reply.</div>
+  <div class="tm-term fragment" data-fragment-index="2" data-side="right" data-type="bracket" data-depth="1" data-target="tm-u1" data-to="tm-a2"><b>Multi-turn</b>A span of several turns.</div>
+  <div class="tm-term tm-judge fragment" data-fragment-index="2" data-side="right" data-type="bracket" data-depth="2" data-anchor="end" data-target="tm-sys" data-to="tm-a2"><b>Trajectory-level eval</b>A judge reads many steps and turns: was the goal met, within policy?</div>
+  <div class="tm-term tm-meta fragment" data-fragment-index="3" data-side="right" data-type="meta"><b>Meta-evaluation</b>Judge the judges: compare their verdicts with human labels (<a href="../../bibliography/pisupati-2026-counsel/">Pisupati et al. 2026</a>).</div>
+
+  <svg class="tm-links fragment" data-fragment-index="1" data-group="1" aria-hidden="true"></svg>
+  <svg class="tm-links fragment" data-fragment-index="2" data-group="2" aria-hidden="true"></svg>
+  <svg class="tm-links fragment" data-fragment-index="3" data-group="3" aria-hidden="true"></svg>
+</div>
+
+<div class="tm-sources">The logged record of a run is a <b>trace</b>, and each LLM call or tool call in it is a <b>span</b> (<a href="../../bibliography/dong-2024-agentops/">Dong et al. 2024</a>). Step-level and trajectory-level evals follow the same source. Illustrative conversation.</div>
+
+<script>
+(function () {
+  var NS = "http://www.w3.org/2000/svg";
+
+  function box(el, fig) {
+    var x = 0, y = 0, e = el;
+    while (e && e !== fig) { x += e.offsetLeft; y += e.offsetTop; e = e.offsetParent; }
+    return { x: x, y: y, w: el.offsetWidth, h: el.offsetHeight, cy: y + el.offsetHeight / 2 };
+  }
+
+  function path(svg, d, cls) {
+    var p = document.createElementNS(NS, "path");
+    p.setAttribute("d", d);
+    if (cls) p.setAttribute("class", cls);
+    svg.appendChild(p);
+  }
+
+  function layout(fig) {
+    if (fig.dataset.laidOut || !fig.offsetWidth) return;
+    fig.dataset.laidOut = "1";
+    var chat = box(fig.querySelector(".tm-chat"), fig);
+    var svgs = {};
+    fig.querySelectorAll(".tm-links").forEach(function (s) {
+      s.setAttribute("viewBox", "0 0 " + fig.offsetWidth + " " + fig.offsetHeight);
+      svgs[s.dataset.fragmentIndex] = s;
+    });
+    var byId = function (id) { return box(fig.querySelector("#" + id), fig); };
+    var terms = Array.prototype.slice.call(fig.querySelectorAll(".tm-term"));
+
+    terms.forEach(function (t) {
+      var a = t.dataset.target ? byId(t.dataset.target) : null;
+      var b = t.dataset.to ? byId(t.dataset.to) : a;
+      if (a) { t._top = a.y; t._bot = b.y + b.h; t._want = t.dataset.anchor === "end" ? t._bot - 24 : (t._top + t._bot) / 2; }
+    });
+
+    ["left", "right"].forEach(function (side) {
+      var col = terms.filter(function (t) { return t.dataset.side === side; });
+      var meta = col.filter(function (t) { return t.dataset.type === "meta"; });
+      col = col.filter(function (t) { return t.dataset.type !== "meta"; });
+      col.sort(function (p, q) { return p._want - q._want; });
+      var floor = 0;
+      col.concat(meta).forEach(function (t) {
+        var h = t.offsetHeight;
+        var want = t._want === undefined ? floor + h / 2 : t._want;
+        var top = Math.max(want - h / 2, floor);
+        t.style.top = top + "px";
+        t._cy = top + h / 2;
+        floor = top + h + 10;
+      });
+    });
+
+    var bottom = chat.y + chat.h;
+    terms.forEach(function (t) { bottom = Math.max(bottom, t._cy + t.offsetHeight / 2); });
+    fig.style.height = bottom + 4 + "px";
+    fig.querySelectorAll(".tm-links").forEach(function (s) {
+      s.setAttribute("viewBox", "0 0 " + fig.offsetWidth + " " + fig.offsetHeight);
+      s.style.height = fig.offsetHeight + "px";
+    });
+
+    var gutterL = chat.x - 6, gutterR = chat.x + chat.w + 6;
+    terms.forEach(function (t) {
+      var svg = svgs[t.dataset.fragmentIndex];
+      var lb = box(t, fig);
+      var left = t.dataset.side === "left";
+      var edge = left ? lb.x + lb.w + 4 : lb.x - 4;
+      var y = t._cy;
+      var type = t.dataset.type;
+      if (type === "point") {
+        var a = byId(t.dataset.target);
+        var tx = left ? a.x - 3 : a.x + a.w + 3;
+        var mid = left ? gutterL - 26 : gutterR + 26;
+        path(svg, "M" + edge + "," + y + " L" + mid + "," + y + " L" + tx + "," + a.cy, "tm-lead");
+      } else if (type === "bracket") {
+        var d = +t.dataset.depth;
+        var bx = left ? gutterL - 4 - d * 11 : gutterR + 4 + d * 11;
+        var tick = left ? 6 : -6;
+        path(svg, "M" + (bx + tick) + "," + (t._top + 1) + " L" + bx + "," + (t._top + 1) + " L" + bx + "," + (t._bot - 1) + " L" + (bx + tick) + "," + (t._bot - 1), "tm-bracket");
+        var yy = Math.min(Math.max(y, t._top + 6), t._bot - 6);
+        path(svg, "M" + edge + "," + y + " L" + (left ? bx - 10 : bx + 10) + "," + yy + " L" + bx + "," + yy, "tm-lead");
+      } else if (type === "loop") {
+        var s = byId(t.dataset.target), e = byId(t.dataset.to);
+        var x0 = s.x - 3, lx = x0 - 30;
+        path(svg, "M" + x0 + "," + s.cy + " C" + lx + "," + s.cy + " " + lx + "," + e.cy + " " + (x0 - 2) + "," + e.cy, "tm-loop");
+        path(svg, "M" + (x0 - 9) + "," + (e.cy - 5) + " L" + (x0 - 2) + "," + e.cy + " L" + (x0 - 9) + "," + (e.cy + 5), "tm-loop");
+        path(svg, "M" + edge + "," + y + " L" + (lx + 8) + "," + ((s.cy + e.cy) / 2), "tm-lead");
+      } else if (type === "meta") {
+        var judges = terms.filter(function (j) { return j.classList.contains("tm-judge"); });
+        var rx = lb.x + lb.w + 10;
+        var ys = judges.map(function (j) { return j._cy; });
+        judges.forEach(function (j) {
+          var jb = box(j, fig);
+          path(svg, "M" + (jb.x + jb.w + 3) + "," + j._cy + " L" + rx + "," + j._cy, "tm-meta-line");
+        });
+        path(svg, "M" + rx + "," + Math.min.apply(null, ys) + " L" + rx + "," + y + " L" + (lb.x + lb.w + 4) + "," + y, "tm-meta-line");
+      }
+    });
+  }
+
+  function run() {
+    document.querySelectorAll(".tm-figure").forEach(layout);
+  }
+
+  window.addEventListener("load", function () {
+    if (!window.Reveal) return;
+    var go = function () { (document.fonts ? document.fonts.ready : Promise.resolve()).then(run); };
+    if (Reveal.isReady()) go(); else Reveal.on("ready", go);
+    Reveal.on("slidechanged", go);
+  });
+})();
+</script>
+```
+
+::: {.notes}
+- One made-up conversation, labelled with the terms the rest of the tutorial uses. Builds: (1) the parts of a conversation, (2) where judges sit, (3) judging the judges.
+- System, user and assistant are the three message roles in chat APIs. "Assistant" is the role name; "agent" is the whole system: model, tools and loop.
+- A turn is one user message through to the assistant's reply. A turn can contain several steps that the user never sees. Multi-turn benchmarks such as [MT-Bench](../../bibliography/zheng-2023-mt-bench/) and [MINT](../../bibliography/wang-2024-mint/) use "turn" in this sense, as does the multi-turn agent survey by [Guan et al. 2025](../../bibliography/guan-2025-multiturn-survey/).
+- "Step" is ambiguous in everyday use. We use it the way the agent papers do: one pass of the ReAct loop, so a thought and an action, then the tool's observation ([Yao et al. 2023](../../bibliography/yao-2023-react/)). For a single act of text generation we say "LLM call". In tracing tools that is one span.
+- Guardrails are judges that run inline and can block: an input guardrail before the agent acts on a message, an output guardrail before the user sees a reply.
+- Step-level and trajectory-level are the evaluation levels used in observability tooling ([Dong et al. 2024](../../bibliography/dong-2024-agentops/)). Some papers say process-level for judging the path and outcome-level for judging the end state ([Pisupati et al. 2026](../../bibliography/pisupati-2026-counsel/)). For conversations, tools also say conversation-level or session-level.
+- Meta-evaluation means evaluating the evaluator: checking judges against human labels before trusting their scores ([Gu et al. 2024](../../bibliography/gu-2024-llm-as-judge-survey/)). Counsel is a recent meta-evaluation dataset for agent trajectories ([Pisupati et al. 2026](../../bibliography/pisupati-2026-counsel/)).
 :::
 
 ---

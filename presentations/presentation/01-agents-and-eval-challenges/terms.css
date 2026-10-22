@@ -1,0 +1,198 @@
+/* "Terms we use" slide. Label positions and connectors are computed by the
+   script on the slide from the chat elements, so wording can change freely. */
+
+.reveal .terms-slide {
+  --tm-ink: #14283b;
+  --tm-soft: #526476;
+  --tm-line: #b8c8d1;
+  --tm-surface: #eff3f5;
+  --tm-accent: #245ba6;
+  --tm-accent-pale: #e3ecf8;
+  --tm-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+
+.reveal .terms-slide h2 {
+  font-size: 1.15em;
+  margin-bottom: 0.35em;
+}
+
+.reveal .terms-slide .tm-figure {
+  position: relative;
+  width: 1200px;
+  height: 560px;
+  font-family: Inter, "Source Sans 3", "Segoe UI", system-ui, sans-serif;
+  font-size: 14px;
+  line-height: 1.32;
+  color: var(--tm-ink);
+}
+
+/* Conversation */
+
+.reveal .terms-slide .tm-chat {
+  position: absolute;
+  left: 390px;
+  top: 0;
+  width: 420px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.reveal .terms-slide .tm-msg {
+  padding: 5px 10px;
+  font-size: 14px;
+  border-radius: 2px;
+}
+
+.reveal .terms-slide .tm-sys {
+  font-size: 13px;
+  background: #fff;
+  border: 1px dashed var(--tm-line);
+  color: var(--tm-soft);
+}
+
+.reveal .terms-slide .tm-user {
+  align-self: flex-end;
+  max-width: 82%;
+  background: var(--tm-accent-pale);
+}
+
+.reveal .terms-slide .tm-asst {
+  align-self: flex-start;
+  max-width: 88%;
+  background: var(--tm-surface);
+}
+
+.reveal .terms-slide .tm-role {
+  display: block;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--tm-soft);
+}
+
+.reveal .terms-slide .tm-turn-tag {
+  margin-top: 4px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--tm-soft);
+  border-bottom: 1px solid var(--tm-line);
+}
+
+.reveal .terms-slide .tm-step {
+  margin-left: 40px;
+  padding: 3px 8px;
+  font-size: 12.5px;
+  line-height: 1.35;
+  background: #fff;
+  border: 1px solid var(--tm-line);
+  border-radius: 2px;
+}
+
+.reveal .terms-slide .tm-call {
+  margin: -1px -4px 1px;
+  padding: 1px 4px;
+  background: var(--tm-surface);
+}
+
+.reveal .terms-slide .tm-kind {
+  display: inline-block;
+  width: 82px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--tm-soft);
+}
+
+.reveal .terms-slide .tm-step code {
+  font-family: var(--tm-mono);
+  font-size: 11.5px;
+  color: var(--tm-ink);
+  background: none;
+  padding: 0;
+}
+
+/* Labels */
+
+.reveal .terms-slide .tm-term {
+  position: absolute;
+  top: 0;
+  transition-property: opacity, visibility;
+  width: 300px;
+  font-size: 13.5px;
+  line-height: 1.3;
+  color: var(--tm-soft);
+}
+
+.reveal .terms-slide .tm-term[data-side="left"] {
+  left: 0;
+  text-align: right;
+}
+
+.reveal .terms-slide .tm-term[data-side="right"] {
+  left: 880px;
+}
+
+.reveal .terms-slide .tm-term b {
+  display: block;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--tm-ink);
+}
+
+.reveal .terms-slide .tm-judge {
+  padding-left: 8px;
+  border-left: 3px solid var(--tm-accent);
+}
+
+.reveal .terms-slide .tm-judge b { color: var(--tm-accent); }
+
+.reveal .terms-slide .tm-meta {
+  padding: 5px 8px;
+  background: var(--tm-accent-pale);
+  border-left: 3px solid var(--tm-ink);
+}
+
+/* Connectors */
+
+.reveal .terms-slide .tm-links {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1200px;
+  height: 590px;
+  pointer-events: none;
+  overflow: visible;
+}
+
+.reveal .terms-slide .tm-links path {
+  fill: none;
+  stroke: var(--tm-soft);
+  stroke-width: 1.4;
+}
+
+.reveal .terms-slide .tm-links .tm-bracket,
+.reveal .terms-slide .tm-links .tm-loop {
+  stroke: var(--tm-ink);
+  stroke-width: 2;
+}
+
+.reveal .terms-slide .tm-links[data-group="2"] .tm-lead,
+.reveal .terms-slide .tm-links[data-group="3"] path {
+  stroke: var(--tm-accent);
+}
+
+.reveal .terms-slide .tm-links .tm-meta-line {
+  stroke-dasharray: 4 3;
+}
+
+.reveal .terms-slide .tm-sources {
+  margin-top: 4px;
+  font-family: Inter, "Source Sans 3", "Segoe UI", system-ui, sans-serif;
+  font-size: 12px;
+  color: var(--tm-soft);
+}
