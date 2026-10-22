@@ -1,5 +1,7 @@
-/* "Terms we use" slide. Label positions and connectors are computed by the
-   script on the slide from the chat elements, so wording can change freely. */
+/* "Anatomy of an LLM call" and "Anatomy of an agent run" slides. Label
+   positions and connectors are computed by the script on the first slide from
+   the chat elements, so wording can change freely. Each build puts one term in
+   focus; the script sets the focus and fade classes used below. */
 
 .reveal .terms-slide {
   --tm-ink: #14283b;
@@ -116,25 +118,151 @@
   padding: 0;
 }
 
+/* One LLM call: context window, model, next token */
+
+.reveal .terms-slide .ta-ctx {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 0 8px 8px;
+  background: #fff;
+  border: 1.5px solid var(--tm-line);
+  border-radius: 3px;
+}
+
+.reveal .terms-slide .ta-ctx-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 -8px;
+  padding: 4px 8px;
+  background: var(--tm-surface);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--tm-soft);
+}
+
+.reveal .terms-slide .ta-meter {
+  flex: 1;
+  height: 6px;
+  background: #fff;
+  border: 1px solid var(--tm-line);
+}
+
+.reveal .terms-slide .ta-meter i {
+  display: block;
+  width: 4%;
+  height: 100%;
+  background: var(--tm-accent);
+}
+
+.reveal .terms-slide .ta-count {
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.reveal .terms-slide .ta-tail {
+  border: 1px dashed var(--tm-line);
+}
+
+.reveal .terms-slide .ta-caret {
+  display: inline-block;
+  width: 2px;
+  height: 1em;
+  margin-left: 2px;
+  vertical-align: -2px;
+  background: var(--tm-ink);
+  animation: ta-blink 1s steps(1) infinite;
+}
+
+@keyframes ta-blink {
+  50% { opacity: 0; }
+}
+
+.reveal .terms-slide .ta-flow {
+  align-self: center;
+  margin: -2px 0;
+  font-size: 16px;
+  line-height: 1;
+  color: var(--tm-soft);
+}
+
+.reveal .terms-slide .ta-llm {
+  align-self: center;
+  padding: 6px 14px;
+  font-size: 13px;
+  background: #fff;
+  border: 2px solid var(--tm-ink);
+  border-radius: 4px;
+}
+
+.reveal .terms-slide .ta-out {
+  margin-left: 40px;
+  padding: 5px 10px;
+  font-size: 13px;
+  background: #fff;
+  border: 1px solid var(--tm-line);
+  border-radius: 2px;
+}
+
+.reveal .terms-slide .ta-tok {
+  display: inline-block;
+  padding: 0 7px;
+  font-weight: 700;
+  background: var(--tm-accent-pale);
+  border: 1px solid var(--tm-accent);
+  border-radius: 3px;
+}
+
+.reveal .terms-slide .ta-then {
+  margin-left: 8px;
+  color: var(--tm-soft);
+}
+
+/* Focus on the chat: the parts the current term names stay bright */
+
+.reveal .terms-slide .tm-dim {
+  transition: opacity 0.3s ease;
+}
+
+.reveal .terms-slide .has-focus .tm-dim:not(.is-lit) {
+  opacity: 0.3;
+}
+
+.reveal .terms-slide .is-focus {
+  outline: 2px solid var(--tm-accent);
+  outline-offset: 1px;
+}
+
 /* Labels */
 
 .reveal .terms-slide .tm-term {
   position: absolute;
   top: 0;
-  transition-property: opacity, visibility;
+  box-sizing: border-box;
   width: 300px;
+  padding: 4px 8px;
+  border-left: 3px solid transparent;
+  border-radius: 2px;
   font-size: 13.5px;
   line-height: 1.3;
   color: var(--tm-soft);
+  transition-property: opacity, visibility, background-color, transform;
+  transition-duration: 0.3s;
 }
 
 .reveal .terms-slide .tm-term[data-side="left"] {
   left: 0;
   text-align: right;
+  transform-origin: right center;
 }
 
 .reveal .terms-slide .tm-term[data-side="right"] {
   left: 880px;
+  transform-origin: left center;
 }
 
 .reveal .terms-slide .tm-term b {
@@ -144,17 +272,55 @@
   color: var(--tm-ink);
 }
 
+.reveal .terms-slide .tm-term i {
+  font-style: normal;
+  font-weight: 700;
+  color: var(--tm-ink);
+}
+
+.reveal .terms-slide .tm-sub {
+  display: block;
+}
+
+.reveal .terms-slide .tm-json {
+  display: block;
+  margin-top: 3px;
+  font-family: var(--tm-mono);
+  font-size: 11px;
+  line-height: 1.35;
+  color: var(--tm-ink);
+  background: none;
+  padding: 0;
+  white-space: nowrap;
+}
+
 .reveal .terms-slide .tm-judge {
-  padding-left: 8px;
-  border-left: 3px solid var(--tm-accent);
+  border-left-color: var(--tm-accent);
 }
 
 .reveal .terms-slide .tm-judge b { color: var(--tm-accent); }
 
 .reveal .terms-slide .tm-meta {
-  padding: 5px 8px;
+  background: var(--tm-surface);
+  border-left-color: var(--tm-ink);
+}
+
+.reveal .terms-slide .tm-figure .tm-term.fragment.tm-focus {
   background: var(--tm-accent-pale);
-  border-left: 3px solid var(--tm-ink);
+  color: var(--tm-ink);
+  transform: scale(1.04);
+}
+
+.reveal .terms-slide .tm-figure .tm-term.fragment.tm-focus b {
+  color: var(--tm-accent);
+}
+
+.reveal .terms-slide .tm-figure .tm-term.fragment.tm-past {
+  opacity: 0.4;
+}
+
+.reveal .terms-slide .tm-figure .tm-term.tm-focus .tm-sub.fragment.visible:not(.current-fragment) {
+  opacity: 0.35;
 }
 
 /* Connectors */
@@ -181,13 +347,27 @@
   stroke-width: 2;
 }
 
-.reveal .terms-slide .tm-links[data-group="2"] .tm-lead,
-.reveal .terms-slide .tm-links[data-group="3"] path {
+.reveal .terms-slide .tm-links .tm-conn-judge .tm-lead,
+.reveal .terms-slide .tm-links .tm-conn-judge .tm-meta-line {
   stroke: var(--tm-accent);
 }
 
 .reveal .terms-slide .tm-links .tm-meta-line {
   stroke-dasharray: 4 3;
+}
+
+.reveal .terms-slide .tm-conn {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.reveal .terms-slide .tm-conn.tm-on,
+html.print-pdf .reveal .terms-slide .tm-conn { opacity: 1; }
+.reveal .terms-slide .tm-conn.tm-on.tm-past { opacity: 0.3; }
+
+.reveal .terms-slide .tm-links .tm-conn.tm-focus path {
+  stroke: var(--tm-accent);
+  stroke-width: 2.4;
 }
 
 .reveal .terms-slide .tm-sources {
