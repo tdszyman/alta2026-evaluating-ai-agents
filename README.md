@@ -71,7 +71,7 @@ See [`presentations/README.md`](presentations/README.md).
 
 ### Workshop
 
-Hands-on assets live under [`workshop/`](workshop/). The starter browser app is in [`workshop/app/`](workshop/app/). The site page is `/hands-on/`, and the app is published at `/hands-on/app/`. Dataset URLs and access notes go in [`workshop/datasets.md`](workshop/datasets.md).
+Hands-on assets live under [`workshop/`](workshop/). The original starter in [`workshop/app/`](workshop/app/) stays at `/hands-on/app/`, with four replies and inline scores/chart. The separate advanced workshop in [`workshop/app/advanced/`](workshop/app/advanced/) adds a custom judge builder, ten draft traces with zero, one, or two tool calls, and detailed reports at `/hands-on/app/advanced/`. The `/hands-on/` page links to both. Dataset URLs and access notes go in [`workshop/datasets.md`](workshop/datasets.md).
 
 ## Status / next steps
 
