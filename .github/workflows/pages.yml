@@ -31,6 +31,9 @@ jobs:
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
 
+      - name: Test workshop evaluation and publishing assets
+        run: node --test workshop/tests/*.test.mjs
+
       - name: Render presentations
         run: ./scripts/render-slides.sh all
 

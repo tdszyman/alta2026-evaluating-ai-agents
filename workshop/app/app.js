@@ -1,3 +1,5 @@
+import { CONNECTION_KEY, readConnection, writeConnection } from "./connection.mjs";
+
 const STORAGE_KEY = "alta2026-hands-on-v1";
 const DEFAULT_BASE = "https://openrouter.ai/api/v1";
 const DEFAULT_MODEL = "anthropic/claude-haiku-5.5";
@@ -115,6 +117,7 @@ keyStatusEl.addEventListener("click", openSettings);
 });
 
 runButton.addEventListener("click", () => {
+  updateKeyStatus();
   hide(panelErrorEl);
   try {
     readRunConfig();
@@ -144,6 +147,12 @@ keyForm.addEventListener("submit", (event) => {
     show(keyError, "Paste an API key to continue.");
     return;
   }
+  try {
+    writeConnection(localStorage, { apiKey: key, baseUrl: settings.baseUrl || DEFAULT_BASE });
+  } catch (error) {
+    show(keyError, error.message);
+    return;
+  }
   settings.apiKey = key;
   persist();
   updateKeyStatus();
@@ -165,8 +174,9 @@ keyDialog.addEventListener("close", () => {
 settingsForm.addEventListener("submit", (event) => {
   event.preventDefault();
   try {
-    settings.apiKey = cleanKey(settingsKey.value);
-    settings.baseUrl = normaliseBaseUrl(settingsBase.value);
+    const connection = { apiKey: cleanKey(settingsKey.value), baseUrl: normaliseBaseUrl(settingsBase.value) };
+    writeConnection(localStorage, connection);
+    Object.assign(settings, connection);
     persist();
     updateKeyStatus();
     settingsDialog.close();
@@ -180,10 +190,13 @@ document.querySelector("#settings-close").addEventListener("click", () => {
 });
 
 document.querySelector("#forget-key").addEventListener("click", () => {
-  settings.apiKey = "";
-  settingsKey.value = "";
-  persist();
-  updateKeyStatus();
+  try {
+    writeConnection(localStorage, { apiKey: "", baseUrl: settings.baseUrl || DEFAULT_BASE });
+    settings.apiKey = "";
+    settingsKey.value = "";
+    persist();
+    updateKeyStatus();
+  } catch (error) { show(settingsError, error.message); }
 });
 
 settingsShow.addEventListener("change", () => {
@@ -205,6 +218,7 @@ function renderCases() {
 }
 
 function openSettings() {
+  updateKeyStatus();
   settingsKey.value = settings.apiKey || "";
   settingsKey.type = "password";
   settingsShow.checked = false;
@@ -696,7 +710,7 @@ function delay(ms, signal) {
 
 function loadSettings() {
   try {
-    return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
+    return { ...(JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}), ...readConnection(localStorage) };
   } catch {
     return {};
   }
@@ -713,7 +727,8 @@ function persist() {
     apiKey: settings.apiKey || "",
   };
   try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(settings));
+    const { apiKey, baseUrl, ...preferences } = settings;
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(preferences));
   } catch {
     /* Private mode can block storage; the session still runs. */
   }
@@ -731,10 +746,13 @@ function updateCallCount() {
 }
 
 function updateKeyStatus() {
+  try { Object.assign(settings, readConnection(localStorage)); } catch { /* Session-only settings still work. */ }
   keyStatusEl.textContent = cleanKey(settings.apiKey || "")
     ? "API key saved in this browser"
     : "No API key yet — you’ll be asked when you run";
 }
+
+window.addEventListener("storage", event => { if (event.key === CONNECTION_KEY || event.key === null) updateKeyStatus(); });
 
 function h(tag, attrs = {}, children = []) {
   const node = document.createElement(tag);
