@@ -131,9 +131,54 @@ Placeholder slides only — not final narrative. Do not treat examples as comple
     g.appendChild(p);
   }
 
+  function line(svg, x1, y1, x2, y2, cls) {
+    path(svg, "M" + x1 + "," + y1 + " L" + x2 + "," + y2, cls);
+  }
+
+  // Unrolled-transformer figure: per-position streams, one attention fan and
+  // the feed from the prediction into the next position, from the grid cells.
+  function unroll(fig) {
+    var grid = fig.querySelector(".tu-grid");
+    if (!grid) return;
+    var q = function (sel) { return grid.querySelector(sel); };
+    var b = function (el) { return box(el, grid); };
+    var canvas = function (div, x, y, w, h) {
+      div.style.left = x + "px"; div.style.top = y + "px";
+      div.style.width = w + "px"; div.style.height = h + "px";
+      var s = document.createElementNS(NS, "svg");
+      s.setAttribute("width", w); s.setAttribute("height", h);
+      s.setAttribute("viewBox", x + " " + y + " " + w + " " + h);
+      div.appendChild(s);
+      return s;
+    };
+    var W = grid.offsetWidth, H = grid.offsetHeight;
+    var stream = canvas(q("#tu-stream"), 0, 0, W, H);
+    var tops = all(grid, "#tu-LN .tu-cell");
+    all(grid, ".tu-tok").forEach(function (tk, i) {
+      var a = b(tk), c = b(tops[i]), x = a.x + a.w / 2;
+      line(stream, x, a.y, x, c.y + c.h);
+    });
+    var out = b(q("#tu-out")), hill = b(q("#tu-gen")), hTop = b(q("#tu-LN .tu-hill"));
+    var hx = hill.x + hill.w / 2;
+    line(stream, hx, hTop.y, hx, out.y + out.h, "tu-up");
+
+    var h2 = b(q("#tu-hl2"));
+    var l1 = all(grid, "#tu-L1 .tu-cell").map(b);
+    var ay = l1[0].y - 2, ah = h2.y + h2.h + 2;
+    var att = canvas(q("#tu-att"), 0, ah, W, ay - ah);
+    l1.forEach(function (c) { line(att, h2.x + h2.w / 2, ah, c.x + c.w / 2, ay); });
+
+    var nx = b(q("#tu-next")), lx = nx.x + nx.w / 2, sy = out.y + 20;
+    var fx = out.x + out.w, fw = nx.x + nx.w + 4 - fx;
+    var feed = canvas(q("#tu-feed"), fx, out.y, fw, nx.y - out.y);
+    path(feed, "M" + fx + "," + sy + " L" + lx + "," + sy + " L" + lx + "," + (nx.y - 3));
+    path(feed, "M" + (lx - 5) + "," + (nx.y - 10) + " L" + lx + "," + (nx.y - 3) + " L" + (lx + 5) + "," + (nx.y - 10));
+  }
+
   function layout(fig) {
     if (fig.dataset.laidOut || !fig.offsetWidth) return;
     fig.dataset.laidOut = "1";
+    unroll(fig);
     var svg = fig.querySelector(".tm-links");
     var chat = box(fig.querySelector(".tm-chat"), fig);
     var byId = function (id) { return box(fig.querySelector("#" + id), fig); };
@@ -170,6 +215,7 @@ Placeholder slides only — not final narrative. Do not treat examples as comple
 
     var bottom = chat.y + chat.h;
     terms.forEach(function (t) { bottom = Math.max(bottom, t._cy + t.offsetHeight / 2); });
+    if (fig.querySelector('[data-edge="under"]')) bottom = Math.max(bottom, chat.y + chat.h + 16);
     fig.style.height = bottom + 4 + "px";
     svg.setAttribute("viewBox", "0 0 " + fig.offsetWidth + " " + fig.offsetHeight);
     svg.style.height = fig.offsetHeight + "px";
@@ -191,7 +237,12 @@ Placeholder slides only — not final narrative. Do not treat examples as comple
         var ty = t.dataset.anchor === "start" ? Math.min(a.y + 24, a.cy) : a.cy;
         var mid = left ? gutterL - 26 : gutterR + 26;
         var gx = left ? gutterL - 6 : gutterR + 6;
-        path(g, "M" + edge + "," + y + " L" + mid + "," + y + " L" + gx + "," + ty + " L" + tx + "," + ty, "tm-lead");
+        if (t.dataset.edge === "under") {
+          var ub = chat.y + chat.h + 10, ux = left ? gutterL - 34 : gutterR + 34, cx = a.x + a.w / 2;
+          path(g, "M" + edge + "," + y + " L" + ux + "," + y + " L" + ux + "," + ub + " L" + cx + "," + ub + " L" + cx + "," + (a.y + a.h + 3), "tm-lead");
+        } else {
+          path(g, "M" + edge + "," + y + " L" + mid + "," + y + " L" + gx + "," + ty + " L" + tx + "," + ty, "tm-lead");
+        }
       } else if (type === "bracket") {
         var d = +t.dataset.depth;
         var bx = left ? gutterL - 4 - d * 11 : gutterR + 4 + d * 11;
@@ -235,6 +286,7 @@ Placeholder slides only — not final narrative. Do not treat examples as comple
         } else {
           [a, b].forEach(function (el) { marks.push(el); light(el); });
         }
+        (t.dataset.also || "").split(" ").filter(Boolean).forEach(function (id) { light(q(id)); });
       });
     }
     var lights = focused.map(function (t) { return t.dataset.lights; }).filter(Boolean);
@@ -285,6 +337,60 @@ Placeholder slides only — not final narrative. Do not treat examples as comple
 - Decoder-only transformer: the architecture of GPT-style models. TODO: add a source to the bibliography if we want to cite one here.
 - Next-token prediction and sequential generation: the model scores every possible next token, one is picked, it is appended, and the model runs again. That is why long outputs cost more, and why an early wrong token can steer the rest.
 - LLM call: one request, from input tokens to a stop token. On the next slides each assistant reply, each thought and each judge verdict is one of these.
+:::
+
+---
+
+## LLM text generation, unrolled (alternative) {.terms-slide .tu-slide}
+
+<!-- TODO: two versions of this slide for comparison. Keep one and delete the other. -->
+
+```{=html}
+<div class="tm-road"><span class="tm-road-on">1 LLM text generation</span><span>2 Conversations</span><span>3 Agent traces</span><span>4 LLM-as-judge</span></div>
+
+<div class="tm-figure tu-figure">
+
+  <div class="tm-chat tu-grid" aria-label="An unrolled decoder-only transformer: token positions run left to right, layers stack upward, and the last position predicts the next token">
+    <div class="tu-row tu-top"><div class="ta-out tu-out tm-dim" id="tu-out"><span class="tm-role">Next-token probabilities</span>
+      <div class="ta-prob ta-pick"><span>St</span><i style="width:86%"></i><em>0.86 · picked</em></div>
+      <div class="ta-prob"><span>Street</span><i style="width:9%"></i><em>0.09</em></div>
+      <div class="ta-prob"><span>Road</span><i style="width:2%"></i><em>0.02</em></div>
+    </div></div>
+    <div class="tu-wire tm-dim" id="tu-stream"></div>
+    <div class="tu-wire tm-dim" id="tu-att"></div>
+    <div class="tu-wire tm-dim" id="tu-feed"></div>
+    <div class="tu-row" id="tu-LN"><span class="tu-name tm-dim">Layer N</span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span><span class="tu-cell tu-hill tm-dim"></span><span class="tu-lane"></span></div>
+    <div class="tu-row tu-more"><span class="tu-name tm-dim">⋮</span></div>
+    <div class="tu-row" id="tu-L2"><span class="tu-name tm-dim">Layer 2</span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span><span class="tu-cell tu-hill tm-dim" id="tu-hl2"></span><span class="tu-lane"></span></div>
+    <div class="tu-row" id="tu-L1"><span class="tu-name tm-dim">Layer 1</span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span><span class="tu-cell tu-hill tm-dim"></span><span class="tu-lane"></span></div>
+    <div class="tu-row tu-toks"><span class="tu-name"></span><span class="tu-span" id="tu-in"><span class="tu-tok tm-dim">Bar</span><span class="tu-tok tm-dim">ista</span><span class="tu-tok tm-dim">jobs</span><span class="tu-tok tm-dim">:</span><span class="tu-tok tm-dim">Café</span><span class="tu-tok tm-dim">Lune</span><span class="tu-tok tm-dim">,</span><span class="tu-tok tm-dim">Bean</span><span class="tu-tok tm-dim">Bar</span><span class="tu-tok tm-dim">and</span></span><span class="tu-tok tu-gen tm-dim" id="tu-gen">Hill</span><span class="tu-next tm-dim" id="tu-next">St</span></div>
+    <div class="tu-ctx tm-dim" id="tu-ctx"><i></i><span>Context window · 12 of 200k token positions used</span></div>
+  </div>
+
+  <div class="tm-term fragment" data-fragment-index="1" data-side="left" data-type="point" data-target="tu-in"><b>Input tokens</b>The text, split into tokens, one per position from left to right.</div>
+  <div class="tm-term fragment" data-fragment-index="2" data-side="left" data-type="point" data-target="tu-ctx"><b>Context window</b>The number of positions one call can hold, input plus output. Recent models allow roughly 100k to 1M+.</div>
+  <div class="tm-term fragment" data-fragment-index="3" data-side="left" data-type="bracket" data-depth="0" data-target="tu-LN" data-to="tu-L1" data-also="tu-stream"><b>Decoder-only transformer</b>A stack of layers, tens of them in current models. Every position passes up through every layer.</div>
+  <div class="tm-term fragment" data-fragment-index="4" data-side="right" data-type="point" data-target="tu-hl2" data-also="tu-att tu-L1"><b>Causal attention</b>In each layer, a position reads itself and the positions before it, never after.</div>
+  <div class="tm-term fragment" data-fragment-index="5" data-side="right" data-type="point" data-target="tu-out" data-also="tu-gen"><b>Next-token prediction</b>The top of the last position gives a probability for every possible next token, and one is picked.</div>
+  <div class="tm-term fragment" data-fragment-index="6" data-side="right" data-type="point" data-target="tu-feed" data-also="tu-out tu-next"><b>Sequential generation</b>The picked token fills the next position and the model runs again, until a stop token. Also called autoregressive.</div>
+  <div class="tm-term fragment" data-fragment-index="7" data-side="left" data-type="point" data-edge="under" data-target="tu-gen" data-also="tu-next"><b>Output tokens</b>Generated tokens sit in the same row as the input, and take up the context window too.</div>
+  <div class="tm-term fragment" data-fragment-index="8" data-side="left" data-type="bracket" data-depth="1" data-anchor="start" data-target="tu-out" data-to="tu-ctx"><b>LLM call</b>One request to the model: input tokens in, output tokens out, until it stops.</div>
+  <span class="fragment tm-overview" data-fragment-index="9"></span>
+
+  <svg class="tm-links" aria-hidden="true"></svg>
+</div>
+
+<div class="tm-sources">Simplified: no embeddings, attention heads or feed-forward blocks. Attention is drawn for one position in one layer. Illustrative tokens and probabilities.</div>
+```
+
+::: {.notes}
+- Alternative to the previous slide: the same call, drawn the way the transformer processes it. Positions run left to right; layers stack upward.
+- Input tokens: one per position. Generated tokens join the same row, which is why they use up the context window.
+- Decoder-only transformer: each position has a column through every layer. TODO: add a source to the bibliography if we want to cite one here.
+- Causal attention: the lines show one position (the latest token, "Hill") reading every earlier position in the layer below. No position can see later ones, which is what lets the model generate left to right.
+- Next-token prediction: every position produces a prediction, but during generation only the last one is used.
+- Sequential generation: the picked token ("St") goes into the next position, and the model runs again for the position after that.
+- Context window: TODO, confirm the current range before the tutorial.
 :::
 
 ---

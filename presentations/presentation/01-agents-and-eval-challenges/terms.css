@@ -368,6 +368,186 @@
   color: var(--tm-soft);
 }
 
+/* Unrolled transformer: positions left to right, layers bottom to top.
+   Columns are 40px cells on a 44px pitch after a 52px row name. */
+
+.reveal .tu-slide .tm-chat.tu-grid {
+  left: 320px;
+  width: 580px;
+  gap: 0;
+}
+
+.reveal .tu-slide.terms-slide .tm-figure .tm-term { width: 260px; }
+.reveal .tu-slide.terms-slide .tm-figure .tm-term[data-side="right"] { left: 945px; width: 255px; }
+
+.reveal .tu-slide .tu-row {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  height: 26px;
+  margin-bottom: 10px;
+}
+
+.reveal .tu-slide .tu-top {
+  height: 76px;
+  margin-bottom: 22px;
+}
+
+.reveal .tu-slide .tu-out {
+  position: absolute;
+  left: 306px;
+  top: 0;
+  width: 230px;
+  margin: 0;
+  padding: 4px 8px;
+  box-sizing: border-box;
+}
+
+.reveal .tu-slide .tu-out .ta-prob {
+  grid-template-columns: 44px 1fr 86px;
+  gap: 6px;
+  font-size: 12px;
+}
+
+.reveal .tu-slide .tu-name {
+  flex: 0 0 52px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--tm-soft);
+}
+
+.reveal .tu-slide .tu-more {
+  height: 14px;
+  margin: -4px 0 6px;
+}
+
+.reveal .tu-slide .tu-more .tu-name {
+  padding-left: 18px;
+  font-size: 16px;
+  line-height: 1;
+}
+
+.reveal .tu-slide .tu-cell,
+.reveal .tu-slide .tu-lane {
+  flex: 0 0 40px;
+  height: 22px;
+  box-sizing: border-box;
+}
+
+.reveal .tu-slide .tu-cell {
+  background: var(--tm-surface);
+  border: 1px solid var(--tm-line);
+  border-radius: 2px;
+}
+
+.reveal .tu-slide .tu-cell.tu-hill {
+  background: var(--tm-accent-pale);
+  border-color: var(--tm-accent);
+}
+
+.reveal .tu-slide #tu-L2 { margin-bottom: 44px; }
+
+.reveal .tu-slide .tu-toks {
+  height: 28px;
+  margin-top: 12px;
+}
+
+.reveal .tu-slide .tu-span {
+  display: flex;
+  gap: 4px;
+}
+
+.reveal .tu-slide .tu-tok,
+.reveal .tu-slide .tu-next {
+  flex: 0 0 40px;
+  width: 40px;
+  height: 26px;
+  box-sizing: border-box;
+  font-size: 13px;
+  line-height: 24px;
+  text-align: center;
+  background: #fff;
+  border: 1px solid var(--tm-line);
+  border-radius: 2px;
+}
+
+.reveal .tu-slide .tu-gen {
+  font-weight: 700;
+  background: var(--tm-accent-pale);
+  border-color: var(--tm-accent);
+}
+
+.reveal .tu-slide .tu-next {
+  font-weight: 700;
+  color: var(--tm-accent);
+  border: 1.5px dashed var(--tm-accent);
+}
+
+.reveal .tu-slide .tu-ctx {
+  margin: 2px 0 0 56px;
+  width: 524px;
+}
+
+.reveal .tu-slide .tu-ctx i {
+  display: block;
+  height: 8px;
+  border: 1.5px solid var(--tm-ink);
+  border-top: none;
+  box-sizing: border-box;
+}
+
+.reveal .tu-slide .tu-ctx span {
+  display: block;
+  padding-top: 3px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--tm-soft);
+  white-space: nowrap;
+}
+
+.reveal .tu-slide .tu-wire {
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.reveal .tu-slide .tu-wire svg {
+  display: block;
+  overflow: visible;
+}
+
+.reveal .tu-slide .tu-wire path {
+  fill: none;
+  stroke: var(--tm-line);
+  stroke-width: 1.4;
+}
+
+.reveal .tu-slide #tu-stream .tu-up { stroke: var(--tm-accent); }
+
+.reveal .tu-slide #tu-att path { stroke: var(--tm-soft); stroke-width: 1; }
+
+.reveal .tu-slide #tu-feed path {
+  stroke: var(--tm-accent);
+  stroke-width: 2;
+  stroke-dasharray: 5 3;
+}
+
+.reveal .tu-slide #tu-feed path + path { stroke-dasharray: none; }
+
+.reveal .tu-slide .tu-wire.is-focus { outline: none; }
+
+.reveal .tu-slide .has-focus #tu-att.is-lit path,
+.reveal .tu-slide .has-focus #tu-feed.is-lit path {
+  stroke: var(--tm-accent);
+  stroke-width: 2;
+}
+
 /* Focus on the chat: the parts the current term names stay bright */
 
 .reveal .terms-slide .tm-dim {
