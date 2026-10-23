@@ -23,4 +23,15 @@ fi
 echo "Serving presentations/_site"
 echo "http://127.0.0.1:${PORT}/"
 cd "$SITE"
-exec python3 -m http.server "$PORT" --bind 127.0.0.1
+# no-store: without it the browser can pair a rebuilt page with a cached
+# stylesheet or script from an earlier build.
+exec python3 - "$PORT" <<'PY'
+import http.server, sys
+
+class NoStoreHandler(http.server.SimpleHTTPRequestHandler):
+    def end_headers(self):
+        self.send_header("Cache-Control", "no-store")
+        super().end_headers()
+
+http.server.ThreadingHTTPServer(("127.0.0.1", int(sys.argv[1])), NoStoreHandler).serve_forever()
+PY

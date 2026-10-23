@@ -9,6 +9,7 @@ format:
       - job-ad-judge.css
       - generative-eval.css
       - chat-attack-judge.css
+      - terms.css
 ---
 
 ## Part 1 — WIP
@@ -50,6 +51,458 @@ Placeholder slides only — not final narrative. Do not treat examples as comple
 - What is an **Agent**? What is **Agentic**?
 - Theory vs practice
 - Practical definition: **LLM + Tools + ReAct loop** ([Yao et al. 2023](../../bibliography/yao-2023-react/))
+:::
+
+---
+
+## Four ideas, each built on the last {.terms-slide .tm-road-slide}
+
+```{=html}
+<div class="tm-steps">
+  <div class="tm-card fragment" data-fragment-index="1"><span class="tm-num">1</span><b>LLM text generation</b>A model reads tokens and predicts the next one, again and again.<span class="tm-card-terms">input tokens · output tokens · LLM call</span></div>
+  <div class="tm-arrow fragment" data-fragment-index="2">›</div>
+  <div class="tm-card fragment" data-fragment-index="2"><span class="tm-num">2</span><b>Conversations</b>The same model, fed a list of messages with roles, one turn at a time.<span class="tm-card-terms">system · user · assistant · turn</span></div>
+  <div class="tm-arrow fragment" data-fragment-index="3">›</div>
+  <div class="tm-card fragment" data-fragment-index="3"><span class="tm-num">3</span><b>Agent traces</b>Between messages, the model thinks, calls tools and reads the results, in a loop.<span class="tm-card-terms"><a href="../../bibliography/yao-2023-react/">ReAct</a> · tool call · step · trace</span></div>
+  <div class="tm-arrow fragment" data-fragment-index="4">›</div>
+  <div class="tm-card fragment" data-fragment-index="4"><span class="tm-num">4</span><b>LLM-as-judge</b>Another LLM reads part of the trace and gives a verdict. Then we check the judge.<span class="tm-card-terms">guardrails · eval levels · meta-evaluation</span></div>
+</div>
+```
+
+::: {.notes}
+- Four ideas, in the order we need them. Each one is the previous one with something added: a conversation is text generation over messages; an agent is a conversation with tool calls in between; a judge is one more LLM call that reads what the agent did.
+- The next four slides take one idea each. The strip under each title shows where we are.
+:::
+
+---
+
+## LLM text generation {.terms-slide .tu-slide}
+
+```{=html}
+<div class="tm-road"><span class="tm-road-on">1 LLM text generation</span><span>2 Conversations</span><span>3 Agent traces</span><span>4 LLM-as-judge</span></div>
+
+<div class="tm-figure tm-flow tu-figure">
+  <div class="tu-grid" aria-label="An LLM drawn unrolled: one column per token. The question tokens go in at the bottom; answer tokens come out at the top, one at a time, and each is fed back in as the next input.">
+    <div class="tu-row tu-top" id="tu-preds"><span class="tu-name tm-dim">Next token</span><span class="tu-slot"></span><span class="tu-slot"></span><span class="tu-slot"></span><span class="tu-slot"></span><span class="tu-slot"></span><span class="tu-slot"></span><span class="tu-slot"></span><span class="tu-slot"></span><span class="tu-slot"></span><span class="tu-tok tu-pred tm-dim" data-col="9">Bean</span><span class="tu-tok tu-pred tm-dim" data-col="10">Bar</span><span class="tu-tok tu-pred tm-dim" data-col="11">on</span><span class="tu-tok tu-pred tm-dim" data-col="12">Smith</span><span class="tu-tok tu-pred tm-dim" data-col="13">St</span><span class="tu-tok tu-pred tm-dim" data-col="14">.</span><span class="tu-tok tu-pred tu-stop tm-dim" data-col="15">&lt;end&gt;</span></div>
+    <div class="tu-wire tm-dim" id="tu-stream"></div>
+    <div class="tu-wire tm-dim" id="tu-feed"></div>
+    <div class="tu-row" id="tu-LN"><span class="tu-name tm-dim">Layer N</span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span></div>
+    <div class="tu-row tu-more"><span class="tu-name tm-dim">⋮</span></div>
+    <div class="tu-row" id="tu-L1"><span class="tu-name tm-dim">Layer 1</span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span></div>
+    <div class="tu-row tu-toks"><span class="tu-name tm-dim">Tokens</span><span class="tu-span" id="tu-in"><span class="tu-tok tm-dim">Which</span><span class="tu-tok tm-dim">café</span><span class="tu-tok tm-dim">near</span><span class="tu-tok tm-dim">Fitz</span><span class="tu-tok tm-dim">roy</span><span class="tu-tok tm-dim">is</span><span class="tu-tok tm-dim">hiring</span><span class="tu-tok tm-dim">bar</span><span class="tu-tok tm-dim">istas</span><span class="tu-tok tm-dim">?</span></span><span class="tu-span" id="tu-outs"><span class="tu-tok tu-gen tm-dim">Bean</span><span class="tu-tok tu-gen tm-dim">Bar</span><span class="tu-tok tu-gen tm-dim">on</span><span class="tu-tok tu-gen tm-dim">Smith</span><span class="tu-tok tu-gen tm-dim">St</span><span class="tu-tok tu-gen tm-dim">.</span></span></div>
+
+    <div class="tu-row tu-terms"><span class="tu-name"></span>
+      <div class="tm-term fragment" data-fragment-index="1" data-target="tu-in" style="width:556px"><i class="tu-brk"></i><b>Input tokens</b>The text the model reads, split into tokens: words or pieces of words, like “bar” + “istas”. There is a length limit, roughly 100k to 1M tokens in recent models.</div>
+      <div class="tm-term fragment" data-fragment-index="2" data-target="tu-outs" data-also="tu-preds tu-feed" style="width:332px"><i class="tu-brk"></i><b>Output tokens</b>Generated one at a time. Each new token is fed back in as the next input, until a stop token.</div>
+    </div>
+    <div class="tu-row tu-terms"><span class="tu-name"></span>
+      <div class="tm-term fragment" data-fragment-index="3" data-type="bracket" data-target="tu-preds" data-to="tu-outs" style="width:892px"><i class="tu-brk"></i><b>LLM call</b>One request to the model: input tokens in, output tokens out.</div>
+    </div>
+  </div>
+  <span class="fragment tm-overview" data-fragment-index="4"></span>
+</div>
+
+<div class="tm-sources">Simplified: each column is one token position passing up through the model’s layers. Illustrative example.</div>
+
+<script>
+(function () {
+  var NS = "http://www.w3.org/2000/svg";
+  var all = function (root, sel) { return Array.prototype.slice.call(root.querySelectorAll(sel)); };
+
+  function box(el, fig) {
+    var x = 0, y = 0, e = el;
+    while (e && e !== fig) { x += e.offsetLeft; y += e.offsetTop; e = e.offsetParent; }
+    return { x: x, y: y, w: el.offsetWidth, h: el.offsetHeight, cy: y + el.offsetHeight / 2 };
+  }
+
+  function path(g, d, cls) {
+    var p = document.createElementNS(NS, "path");
+    p.setAttribute("d", d);
+    if (cls) p.setAttribute("class", cls);
+    g.appendChild(p);
+  }
+
+  function line(svg, x1, y1, x2, y2, cls) {
+    path(svg, "M" + x1 + "," + y1 + " L" + x2 + "," + y2, cls);
+  }
+
+  // Unrolled-transformer figure: one column per token position. Each token
+  // flows up through the layers; each generated token is fed back in as the
+  // next position.
+  function unroll(fig) {
+    var grid = fig.querySelector(".tu-grid");
+    if (!grid) return;
+    var b = function (el) { return box(el, grid); };
+    var W = grid.offsetWidth, H = grid.offsetHeight;
+    var canvas = function (div) {
+      var s = document.createElementNS(NS, "svg");
+      s.setAttribute("width", W); s.setAttribute("height", H);
+      s.setAttribute("viewBox", "0 0 " + W + " " + H);
+      div.appendChild(s);
+      return s;
+    };
+    var stream = canvas(grid.querySelector("#tu-stream"));
+    var feed = canvas(grid.querySelector("#tu-feed"));
+    var tops = all(grid, "#tu-LN .tu-cell").map(b);
+    var preds = all(grid, ".tu-pred");
+    all(grid, ".tu-toks .tu-tok").forEach(function (tk, i) {
+      var a = b(tk), x = a.x + a.w / 2, end = tops[i].y;
+      var p = preds.filter(function (el) { return +el.dataset.col === i; })[0];
+      if (p) { var pb = b(p); end = pb.y + pb.h; }
+      line(stream, x, a.y, x, end, p ? "tu-up" : "");
+    });
+    var outs = all(grid, "#tu-outs .tu-tok");
+    outs.forEach(function (o, k) {
+      var p = b(preds[k]), t = b(o);
+      var x1 = p.x + p.w / 2 + 8, y1 = p.y + p.h, x2 = t.x + t.w / 2 - 8, y2 = t.y - 3;
+      path(feed, "M" + x1 + "," + y1 + " L" + x2 + "," + y2);
+      var ang = Math.atan2(y2 - y1, x2 - x1), hl = 7;
+      var ax = function (s) { return x2 - hl * Math.cos(ang + s); }, ay = function (s) { return y2 - hl * Math.sin(ang + s); };
+      path(feed, "M" + ax(0.45) + "," + ay(0.45) + " L" + x2 + "," + y2 + " L" + ax(-0.45) + "," + ay(-0.45), "tu-head");
+    });
+  }
+
+  function layout(fig) {
+    if (fig.dataset.laidOut || !fig.offsetWidth) return;
+    fig.dataset.laidOut = "1";
+    unroll(fig);
+    if (fig.classList.contains("tm-flow")) return;
+    var svg = fig.querySelector(".tm-links");
+    var chat = box(fig.querySelector(".tm-chat"), fig);
+    var byId = function (id) { return box(fig.querySelector("#" + id), fig); };
+    var terms = all(fig, ".tm-term");
+
+    terms.forEach(function (t, i) {
+      t.dataset.n = i;
+      var a = t.dataset.target ? byId(t.dataset.target) : null;
+      var b = t.dataset.to ? byId(t.dataset.to) : a;
+      if (!a) return;
+      t._top = Math.min(a.y, b.y);
+      t._bot = Math.max(a.y + a.h, b.y + b.h);
+      var anchor = t.dataset.anchor;
+      t._want = anchor === "end" ? t._bot - 24 : anchor === "start" ? t._top + 24 : (t._top + t._bot) / 2;
+    });
+
+    ["left", "right"].forEach(function (side) {
+      var col = terms.filter(function (t) { return t.dataset.side === side; });
+      var free = col.filter(function (t) { return t._want === undefined; });
+      col = col.filter(function (t) { return t._want !== undefined; });
+      col.sort(function (p, q) { return p._want - q._want; });
+      var first = free.filter(function (t) { return t.dataset.place === "top"; });
+      var last = free.filter(function (t) { return t.dataset.place !== "top"; });
+      var floor = 0;
+      first.concat(col, last).forEach(function (t) {
+        var h = t.offsetHeight;
+        var want = t._want === undefined ? floor + h / 2 : t._want;
+        var top = Math.max(want - h / 2, floor);
+        t.style.top = top + "px";
+        t._cy = top + h / 2;
+        floor = top + h + 8;
+      });
+    });
+
+    var bottom = chat.y + chat.h;
+    terms.forEach(function (t) { bottom = Math.max(bottom, t._cy + t.offsetHeight / 2); });
+    if (fig.querySelector('[data-edge="under"]')) bottom = Math.max(bottom, chat.y + chat.h + 16);
+    fig.style.height = bottom + 4 + "px";
+    svg.setAttribute("viewBox", "0 0 " + fig.offsetWidth + " " + fig.offsetHeight);
+    svg.style.height = fig.offsetHeight + "px";
+
+    var gutterL = chat.x - 6, gutterR = chat.x + chat.w + 6;
+    terms.forEach(function (t) {
+      var g = document.createElementNS(NS, "g");
+      g.setAttribute("class", "tm-conn" + (t.classList.contains("tm-judge") ? " tm-conn-judge" : ""));
+      g.setAttribute("data-for", t.dataset.n);
+      svg.appendChild(g);
+      var lb = box(t, fig);
+      var left = t.dataset.side === "left";
+      var edge = left ? lb.x + lb.w + 4 : lb.x - 4;
+      var y = t._cy;
+      var type = t.dataset.type;
+      if (type === "point") {
+        var a = byId(t.dataset.target);
+        var tx = left ? a.x - 3 : a.x + a.w + 3;
+        var ty = t.dataset.anchor === "start" ? Math.min(a.y + 24, a.cy) : a.cy;
+        var mid = left ? gutterL - 26 : gutterR + 26;
+        var gx = left ? gutterL - 6 : gutterR + 6;
+        if (t.dataset.edge === "under") {
+          var ub = chat.y + chat.h + 10, ux = left ? gutterL - 34 : gutterR + 34, cx = a.x + a.w / 2;
+          path(g, "M" + edge + "," + y + " L" + ux + "," + y + " L" + ux + "," + ub + " L" + cx + "," + ub + " L" + cx + "," + (a.y + a.h + 3), "tm-lead");
+        } else {
+          path(g, "M" + edge + "," + y + " L" + mid + "," + y + " L" + gx + "," + ty + " L" + tx + "," + ty, "tm-lead");
+        }
+      } else if (type === "bracket") {
+        var d = +t.dataset.depth;
+        var bx = left ? gutterL - 4 - d * 11 : gutterR + 4 + d * 11;
+        var tick = left ? 6 : -6;
+        path(g, "M" + (bx + tick) + "," + (t._top + 1) + " L" + bx + "," + (t._top + 1) + " L" + bx + "," + (t._bot - 1) + " L" + (bx + tick) + "," + (t._bot - 1), "tm-bracket");
+        var yy = Math.min(Math.max(y, t._top + 6), t._bot - 6);
+        path(g, "M" + edge + "," + y + " L" + (left ? bx - 10 : bx + 10) + "," + yy + " L" + bx + "," + yy, "tm-lead");
+      } else if (type === "loop") {
+        var s = byId(t.dataset.target), e = byId(t.dataset.to);
+        var x0 = Math.min(s.x, e.x) - 3, lx = x0 - 30;
+        path(g, "M" + (s.x - 3) + "," + s.cy + " C" + lx + "," + s.cy + " " + lx + "," + e.cy + " " + (e.x - 5) + "," + e.cy, "tm-loop");
+        path(g, "M" + (e.x - 12) + "," + (e.cy - 5) + " L" + (e.x - 5) + "," + e.cy + " L" + (e.x - 12) + "," + (e.cy + 5), "tm-loop");
+        path(g, "M" + edge + "," + y + " L" + (lx + 8) + "," + ((s.cy + e.cy) / 2), "tm-lead");
+      }
+    });
+  }
+
+  // One term is "in focus" per build step: it and the parts of the chat it
+  // names are highlighted, and everything shown earlier fades back.
+  function focus(fig) {
+    var cur = all(fig, ".fragment.current-fragment").filter(function (f) { return !f.classList.contains("tm-overview"); });
+    var terms = all(fig, ".tm-term");
+    var leaves = all(fig, ".tm-dim");
+    var focused = terms.filter(function (t) { return cur.some(function (f) { return t.contains(f); }); });
+    var lit = [], marks = [];
+    var q = function (id) { return fig.querySelector("#" + id); };
+    var inside = function (leaf, el) { return el.contains(leaf); };
+    var light = function (el) { leaves.forEach(function (l) { if (inside(l, el)) lit.push(l); }); };
+
+    var subs = cur.filter(function (f) { return f.dataset.focus; });
+    if (subs.length) {
+      subs.forEach(function (s) { var el = q(s.dataset.focus); marks.push(el); light(el); });
+    } else {
+      focused.forEach(function (t) {
+        if (!t.dataset.target) return;
+        var a = q(t.dataset.target), b = t.dataset.to ? q(t.dataset.to) : a;
+        if (t.dataset.type === "bracket") {
+          var idx = leaves.map(function (l) { return inside(l, a) || inside(l, b); });
+          var i0 = idx.indexOf(true), i1 = idx.lastIndexOf(true);
+          leaves.forEach(function (l, i) { if (i >= i0 && i <= i1) lit.push(l); });
+        } else {
+          [a, b].forEach(function (el) { marks.push(el); light(el); });
+        }
+        (t.dataset.also || "").split(" ").filter(Boolean).forEach(function (id) { light(q(id)); });
+      });
+    }
+    var lights = focused.map(function (t) { return t.dataset.lights; }).filter(Boolean);
+
+    fig.classList.toggle("has-focus", focused.length > 0);
+    leaves.forEach(function (l) { l.classList.toggle("is-lit", lit.indexOf(l) >= 0); });
+    all(fig, ".is-focus").forEach(function (el) { el.classList.remove("is-focus"); });
+    marks.forEach(function (el) { el.classList.add("is-focus"); });
+
+    terms.forEach(function (t) {
+      var on = t.classList.contains("visible");
+      var isFocus = focused.indexOf(t) >= 0;
+      var isLit = lights.some(function (c) { return t.classList.contains("tm-" + c); });
+      var past = on && !isFocus && !isLit && focused.length > 0;
+      t.classList.toggle("tm-focus", isFocus);
+      t.classList.toggle("tm-lit", isLit);
+      t.classList.toggle("tm-past", past);
+      var g = fig.querySelector('.tm-conn[data-for="' + t.dataset.n + '"]');
+      if (!g) return;
+      g.classList.toggle("tm-on", on);
+      g.classList.toggle("tm-focus", isFocus);
+      g.classList.toggle("tm-past", past);
+    });
+  }
+
+  function run() {
+    var figs = all(document, ".tm-figure");
+    figs.forEach(layout);
+    figs.forEach(focus);
+  }
+
+  window.addEventListener("load", function () {
+    if (!window.Reveal) return;
+    var go = function () { (document.fonts ? document.fonts.ready : Promise.resolve()).then(run); };
+    if (Reveal.isReady()) go(); else Reveal.on("ready", go);
+    Reveal.on("slidechanged", go);
+    Reveal.on("fragmentshown", run);
+    Reveal.on("fragmenthidden", run);
+  });
+})();
+</script>
+```
+
+::: {.notes}
+- Idea 1: what one LLM call does. Everything later is built from calls like this one.
+- The diagram is the model "unrolled": one column per token position, flowing up through the layers. The question goes in at the bottom.
+- Input tokens: the model never sees characters or words, only tokens. A long word can be several tokens ("bar" + "istas"). There is a limit on how many tokens one call can take, often called the context window. TODO: confirm the current range (roughly 100k to 1M) before the tutorial; it changes with each model release.
+- Output tokens: the top of the last column predicts the next token ("Bean"). It is fed back in at the bottom as a new position, and the model predicts again ("Bar"), and so on until it emits a stop token. That is why long answers cost more and take longer.
+- LLM call: one request, from input tokens to the stop token. On the next slides each assistant reply, each agent thought and each judge verdict is one of these.
+- If asked: this is a decoder-only transformer, where each position can only look at the positions before it. TODO: add a source to the bibliography if we want to cite one here.
+:::
+
+---
+
+## Conversations: messages and turns {.terms-slide}
+
+```{=html}
+<div class="tm-road"><span class="tm-road-done">1 LLM text generation</span><span class="tm-road-on">2 Conversations</span><span>3 Agent traces</span><span>4 LLM-as-judge</span></div>
+
+<div class="tm-figure">
+
+  <div class="tm-chat" aria-label="A conversation as one LLM call: the messages so far go in, and the assistant reply is generated">
+    <div class="ta-ctx" id="t2-ctx">
+      <div class="ta-ctx-head tm-dim"><span>Input tokens</span><span class="ta-count">≈ 70 tokens</span></div>
+      <div class="tm-msg tm-sys tm-dim" id="t2-sys"><span class="tm-role">System</span>You are a career assistant for job seekers. Be concise.</div>
+      <div class="tm-turn-tag tm-dim">Turn 1</div>
+      <div class="tm-msg tm-user tm-dim" id="t2-u1"><span class="tm-role">User</span>Find me barista jobs in Fitzroy.</div>
+      <div class="tm-msg tm-asst tm-dim" id="t2-a1"><span class="tm-role">Assistant</span>I found 3: Café Lune, Bean Bar and Hill St Coffee.</div>
+      <div class="tm-turn-tag tm-dim">Turn 2</div>
+      <div class="tm-msg tm-user tm-dim" id="t2-u2"><span class="tm-role">User</span>Which is closest to Brunswick St?</div>
+    </div>
+    <div class="ta-flow tm-dim">↓</div>
+    <div class="ta-llm tm-dim" id="t2-llm"><b>LLM</b> · the same model as before</div>
+    <div class="ta-flow tm-dim">↓</div>
+    <div class="tm-msg tm-asst ta-out tm-dim" id="t2-out"><span class="tm-role">Output tokens · assistant reply</span>Bean Bar is the closest<span class="ta-caret"></span></div>
+  </div>
+
+  <div class="tm-term fragment" data-fragment-index="1" data-side="right" data-type="bracket" data-depth="2" data-anchor="start" data-target="t2-sys" data-to="t2-u2"><b>Messages</b>Chat models take the input as a list of messages, each with a role:<code class="tm-json">[{"role": "system", …},<br>&nbsp;{"role": "user", …},<br>&nbsp;{"role": "assistant", …}, …]</code></div>
+  <div class="tm-term fragment" data-fragment-index="2" data-side="left" data-type="point" data-target="t2-sys"><b>System message</b>The developer’s instructions, set before any user input. Also called the system prompt.</div>
+  <div class="tm-term fragment" data-fragment-index="3" data-side="left" data-type="point" data-target="t2-u1"><b>User message</b>What the person types. Also called the user prompt.</div>
+  <div class="tm-term fragment" data-fragment-index="4" data-side="left" data-type="point" data-target="t2-a1"><b>Assistant message</b>The model’s reply. It goes back into the input for the next call.</div>
+  <div class="tm-term fragment" data-fragment-index="5" data-side="left" data-type="point" data-target="t2-llm"><b>Chat template</b>The messages are flattened into one token sequence with role markers. The model still predicts one token at a time.</div>
+  <div class="tm-term fragment" data-fragment-index="6" data-side="right" data-type="bracket" data-depth="0" data-target="t2-u1" data-to="t2-a1"><b>Turn</b>One user message and the assistant’s reply to it.</div>
+  <div class="tm-term fragment" data-fragment-index="7" data-side="right" data-type="bracket" data-depth="1" data-target="t2-u1" data-to="t2-u2"><b>Multi-turn</b>Several turns. The model keeps no memory between calls, so each call re-sends the whole history.</div>
+  <span class="fragment tm-overview" data-fragment-index="8"></span>
+
+  <svg class="tm-links" aria-hidden="true"></svg>
+</div>
+
+<div class="tm-sources">Message roles as in the common chat APIs. Illustrative conversation.</div>
+```
+
+::: {.notes}
+- Idea 2: a conversation is still one LLM call at a time. What changes is the shape of the input.
+- Messages: the OpenAI Chat Completions, Anthropic Messages and Amazon Bedrock Converse APIs all take the input as a list of role-tagged messages.
+- System, user and assistant are the three standard roles. "Assistant" is the role name; "agent" will mean the whole system, from the next slide on.
+- Chat template: before the call, the messages are joined into one sequence of tokens, with special tokens marking each role. So this is still the next-token generation from the last slide.
+- Turn and multi-turn: a turn is one user message and the reply. The model is stateless, so turn 2 only works because the app re-sends turn 1 as part of the input. Multi-turn benchmarks such as [MT-Bench](../../bibliography/zheng-2023-mt-bench/) and [MINT](../../bibliography/wang-2024-mint/) use "turn" in this sense, as does the multi-turn agent survey by [Guan et al. 2025](../../bibliography/guan-2025-multiturn-survey/).
+:::
+
+---
+
+## Agent traces: think, act, observe {.terms-slide}
+
+```{=html}
+<div class="tm-road"><span class="tm-road-done">1 LLM text generation</span><span class="tm-road-done">2 Conversations</span><span class="tm-road-on">3 Agent traces</span><span>4 LLM-as-judge</span></div>
+
+<div class="tm-figure">
+
+  <div class="tm-chat" aria-label="An agent conversation: between messages, the agent thinks, calls tools and reads the results">
+    <div class="tm-msg tm-sys tm-dim" id="tr-sys"><span class="tm-role">System</span>You are a career assistant. Tools: get_profile, search_jobs, apply.</div>
+
+    <div class="tm-turn-tag tm-dim">Turn 1</div>
+    <div class="tm-msg tm-user tm-dim" id="tr-u1"><span class="tm-role">User</span>Find me barista jobs.</div>
+    <div class="tm-step" id="tr-s1">
+      <div class="tm-call">
+        <div class="tm-dim" id="tr-s1-th"><span class="tm-kind">Thought</span>No location given. Check their profile.</div>
+        <div class="tm-dim" id="tr-s1-ac"><span class="tm-kind">Action</span><code>get_profile()</code></div>
+      </div>
+      <div class="tm-dim" id="tr-s1-ob"><span class="tm-kind">Observation</span>suburb: Fitzroy · recent searches: café, barista</div>
+    </div>
+    <div class="tm-step" id="tr-s2">
+      <div class="tm-call">
+        <div class="tm-dim"><span class="tm-kind">Thought</span>They live in Fitzroy. Search there.</div>
+        <div class="tm-dim"><span class="tm-kind">Action</span><code>search_jobs(role="barista", near="Fitzroy")</code></div>
+      </div>
+      <div class="tm-dim"><span class="tm-kind">Observation</span>3 jobs: Café Lune, Bean Bar, Hill St Coffee</div>
+    </div>
+    <div class="tm-msg tm-asst tm-dim" id="tr-a1"><span class="tm-role">Assistant</span>I found 3 barista jobs near you in Fitzroy: Café Lune, Bean Bar and Hill St Coffee.</div>
+
+    <div class="tm-turn-tag tm-dim">Turn 2</div>
+    <div class="tm-msg tm-user tm-dim" id="tr-u2"><span class="tm-role">User</span>Apply to Café Lune with my profile.</div>
+    <div class="tm-step" id="tr-s3">
+      <div class="tm-call">
+        <div class="tm-dim"><span class="tm-kind">Thought</span>The user chose Café Lune. Apply.</div>
+        <div class="tm-dim"><span class="tm-kind">Action</span><code>apply(job="cafe-lune")</code></div>
+      </div>
+      <div class="tm-dim"><span class="tm-kind">Observation</span>status: submitted</div>
+    </div>
+    <div class="tm-msg tm-asst tm-dim" id="tr-a2"><span class="tm-role">Assistant</span>Done. Your application to Café Lune has been sent.</div>
+  </div>
+
+  <div class="tm-term fragment" data-fragment-index="1" data-side="left" data-type="point" data-target="tr-s1"><b>Thought, action, observation</b><span class="tm-sub fragment" data-fragment-index="1" data-focus="tr-s1-th"><i>Thought:</i> the model reasons about what to do next. Here, it has no location yet.</span><span class="tm-sub fragment" data-fragment-index="2" data-focus="tr-s1-ac"><i>Action:</i> it calls a tool. This is a tool call.</span><span class="tm-sub fragment" data-fragment-index="3" data-focus="tr-s1-ob"><i>Observation:</i> the tool’s result is added to the input for the next LLM call.</span></div>
+  <div class="tm-term fragment" data-fragment-index="4" data-side="left" data-type="loop" data-target="tr-s1" data-to="tr-s2"><b>ReAct loop</b>Thought, action, observation, repeated until the agent can answer (<a href="../../bibliography/yao-2023-react/">Yao et al. 2023</a>).</div>
+  <div class="tm-term fragment" data-fragment-index="5" data-side="right" data-type="bracket" data-depth="0" data-target="tr-s1"><b>Step</b>One pass of the loop. The thought and action are one LLM call; the observation comes from the tool.</div>
+  <div class="tm-term fragment" data-fragment-index="6" data-side="right" data-type="bracket" data-depth="1" data-target="tr-s1" data-to="tr-s2"><b>Multi-step</b>Several steps before a reply. Step 2 needs what step 1 found: the user’s suburb.</div>
+  <div class="tm-term fragment" data-fragment-index="7" data-side="right" data-type="bracket" data-depth="2" data-anchor="start" data-target="tr-sys" data-to="tr-a2"><b>Trace</b>The end-to-end record of an agent run: messages, LLM calls and tool calls. Each call is a span (<a href="../../bibliography/dong-2024-agentops/">Dong et al. 2024</a>). Also called a trajectory.</div>
+  <span class="fragment tm-overview" data-fragment-index="8"></span>
+
+  <svg class="tm-links" aria-hidden="true"></svg>
+</div>
+
+<div class="tm-sources">Illustrative conversation. The user sees only the user and assistant messages.</div>
+```
+
+::: {.notes}
+- Idea 3: an agent is the conversation from the last slide, plus tools. Between the user's message and the reply, the agent runs a loop the user never sees.
+- Thought, action, observation: each thought and action is one LLM call, with everything above it as input. The observation is the tool's output, added to the input for the next call.
+- ReAct loop: the agent repeats thought, action, observation until it can answer ([Yao et al. 2023](../../bibliography/yao-2023-react/)).
+- "Step" is ambiguous in everyday use. We use it the way the agent papers do: one pass of the ReAct loop ([Yao et al. 2023](../../bibliography/yao-2023-react/)).
+- Multi-step: here the agent could not search until it knew where the user lives, so step 2 depends on step 1's result.
+- Trace: the logged record of the whole run, made of spans ([Dong et al. 2024](../../bibliography/dong-2024-agentops/)). Papers also call it a trajectory. This is the data the judges on the next slide read.
+:::
+
+---
+
+## LLM-as-judge: evaluating the trace {.terms-slide}
+
+```{=html}
+<div class="tm-road"><span class="tm-road-done">1 LLM text generation</span><span class="tm-road-done">2 Conversations</span><span class="tm-road-done">3 Agent traces</span><span class="tm-road-on">4 LLM-as-judge</span></div>
+
+<div class="tm-figure">
+
+  <div class="tm-chat" aria-label="The same agent trace, with the places a judge can check it">
+    <div class="tm-msg tm-sys tm-dim" id="tj-sys"><span class="tm-role">System</span>You are a career assistant. Tools: get_profile, search_jobs, apply.</div>
+
+    <div class="tm-turn-tag tm-dim">Turn 1</div>
+    <div class="tm-msg tm-user tm-dim" id="tj-u1"><span class="tm-role">User</span>Find me barista jobs.</div>
+    <div class="tm-step" id="tj-s1">
+      <div class="tm-call">
+        <div class="tm-dim"><span class="tm-kind">Thought</span>No location given. Check their profile.</div>
+        <div class="tm-dim"><span class="tm-kind">Action</span><code>get_profile()</code></div>
+      </div>
+      <div class="tm-dim"><span class="tm-kind">Observation</span>suburb: Fitzroy · recent searches: café, barista</div>
+    </div>
+    <div class="tm-step" id="tj-s2">
+      <div class="tm-call" id="tj-s2-call">
+        <div class="tm-dim"><span class="tm-kind">Thought</span>They live in Fitzroy. Search there.</div>
+        <div class="tm-dim"><span class="tm-kind">Action</span><code>search_jobs(role="barista", near="Fitzroy")</code></div>
+      </div>
+      <div class="tm-dim"><span class="tm-kind">Observation</span>3 jobs: Café Lune, Bean Bar, Hill St Coffee</div>
+    </div>
+    <div class="tm-msg tm-asst tm-dim" id="tj-a1"><span class="tm-role">Assistant</span>I found 3 barista jobs near you in Fitzroy: Café Lune, Bean Bar and Hill St Coffee.</div>
+
+    <div class="tm-turn-tag tm-dim">Turn 2</div>
+    <div class="tm-msg tm-user tm-dim" id="tj-u2"><span class="tm-role">User</span>Apply to Café Lune with my profile.</div>
+    <div class="tm-step" id="tj-s3">
+      <div class="tm-call">
+        <div class="tm-dim"><span class="tm-kind">Thought</span>The user chose Café Lune. Apply.</div>
+        <div class="tm-dim"><span class="tm-kind">Action</span><code>apply(job="cafe-lune")</code></div>
+      </div>
+      <div class="tm-dim"><span class="tm-kind">Observation</span>status: submitted</div>
+    </div>
+    <div class="tm-msg tm-asst tm-dim" id="tj-a2"><span class="tm-role">Assistant</span>Done. Your application to Café Lune has been sent.</div>
+  </div>
+
+  <div class="tm-term tm-judge fragment" data-fragment-index="1" data-side="left" data-place="top"><b>LLM judge</b>One more LLM call. It reads a rubric and part of the trace, and returns a verdict with its reasoning.<span class="tm-mini">rubric + trace excerpt → <b>LLM</b> → verdict</span></div>
+  <div class="tm-term tm-judge fragment" data-fragment-index="2" data-side="left" data-type="point" data-target="tj-u1"><b>Input guardrail</b>A judge checks the user message before the agent acts on it.</div>
+  <div class="tm-term tm-judge fragment" data-fragment-index="3" data-side="left" data-type="point" data-target="tj-s2-call"><b>Call-level eval</b>A judge scores one LLM call: right tool, right arguments?</div>
+  <div class="tm-term tm-judge fragment" data-fragment-index="4" data-side="left" data-type="point" data-target="tj-a1"><b>Output guardrail</b>A judge checks the reply before the user sees it.</div>
+  <div class="tm-term tm-judge fragment" data-fragment-index="5" data-side="right" data-type="bracket" data-depth="0" data-target="tj-s1" data-to="tj-s2"><b>Multi-step eval</b>A judge scores the path within a turn: did it find the location before searching?</div>
+  <div class="tm-term tm-judge fragment" data-fragment-index="6" data-side="right" data-type="bracket" data-depth="1" data-target="tj-u1" data-to="tj-a2"><b>Multi-turn eval</b>A judge reads the conversation turn by turn, for problems no single turn shows.</div>
+  <div class="tm-term tm-judge fragment" data-fragment-index="7" data-side="right" data-type="bracket" data-depth="2" data-anchor="end" data-target="tj-sys" data-to="tj-a2"><b>Trace-level eval</b>A judge reads the whole trace: was the goal met, within policy? Also called trajectory-level.</div>
+  <div class="tm-term tm-meta fragment" data-fragment-index="8" data-side="right" data-place="top" data-lights="judge"><b>Meta-evaluation</b>Judge the judges: humans (or another model) check whether each verdict was right (<a href="../../bibliography/pisupati-2026-counsel/">Pisupati et al. 2026</a>).</div>
+  <span class="fragment tm-overview" data-fragment-index="9"></span>
+
+  <svg class="tm-links" aria-hidden="true"></svg>
+</div>
+
+<div class="tm-sources">Evaluation levels follow observability practice (<a href="../../bibliography/dong-2024-agentops/">Dong et al. 2024</a>). Illustrative conversation.</div>
+```
+
+::: {.notes}
+- Idea 4: the same trace, now with judges on it. A judge is one more LLM call, as on the first slide: its input is a rubric plus some part of the trace, and its output is a verdict.
+- What changes between judges is how much of the trace they read: one message, one LLM call, one turn's steps, the whole conversation, or the whole trace.
+- Guardrails are judges that run inline and can block: an input guardrail before the agent acts on a message, an output guardrail before the user sees a reply.
+- Evaluation levels: step-level and trajectory-level are the terms in observability tooling ([Dong et al. 2024](../../bibliography/dong-2024-agentops/)). Some papers say process-level for judging the path and outcome-level for judging the end state ([Pisupati et al. 2026](../../bibliography/pisupati-2026-counsel/)). For conversations, tools also say conversation-level or session-level.
+- Meta-evaluation means evaluating the evaluator: checking judges against human labels before trusting their scores ([Gu et al. 2024](../../bibliography/gu-2024-llm-as-judge-survey/)). Counsel is a recent meta-evaluation dataset for agent trajectories ([Pisupati et al. 2026](../../bibliography/pisupati-2026-counsel/)).
 :::
 
 ---
