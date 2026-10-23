@@ -8,20 +8,17 @@ set -euo pipefail
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 PART="${1:-all}"
 PRES="$ROOT/presentations"
-APP="$ROOT/workshop/app"
 APP_STAGE="$PRES/hands-on/app"
 
 # The site page is presentations/hands-on/index.qmd.
 # The app is copied beside it so the page can link to app/index.html,
 # then published under _site/hands-on/app/. The stage copy is gitignored.
 stage_app() {
-  mkdir -p "$APP_STAGE"
-  cp "$APP/index.html" "$APP/styles.css" "$APP/app.js" "$APP_STAGE/"
+  python3 "$ROOT/scripts/stage-workshop.py" "$APP_STAGE"
 }
 
 publish_app() {
-  mkdir -p "$PRES/_site/hands-on/app"
-  cp "$APP/index.html" "$APP/styles.css" "$APP/app.js" "$PRES/_site/hands-on/app/"
+  python3 "$ROOT/scripts/stage-workshop.py" "$PRES/_site/hands-on/app"
 }
 
 cleanup_stage() {

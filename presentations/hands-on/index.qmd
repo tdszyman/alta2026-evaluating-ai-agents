@@ -3,8 +3,20 @@ title: "Hands-on"
 format: html
 ---
 
-Part 3 is a short exercise. You write a judge prompt and run it over a few career-advice replies from a tool-using agent.
+Choose the starter exercise or the advanced workshop. Both run in the browser and use the same saved API key and endpoint. Their prompts, model settings, and results stay separate.
 
-The app runs in the browser. You edit the prompt, pick a model, and score each reply for whether the advice is sound, whether the tone fits, and whether the reply follows the instruction. Each call goes to OpenRouter with your own API key, and the key stays in the browser.
+## Starter exercise
+
+Edit one judge prompt and score four career-advice replies for soundness, tone, and compliance. Compare the scores in the table and chart on the same page.
 
 [Open the hands-on app](app/index.html){.app-launch target="_blank" rel="noopener"}
+
+## Advanced agent evaluation
+
+Build your own LLM judge and evaluate recorded career-assistant traces. The draft examples progress from advice without tools to a job search with one tool call, then a job search followed by a course lookup with two tool calls.
+
+Edit the judge instructions, add your own criteria, choose which parts of the trace they assess, and set passing thresholds. Start from editable draft criteria or a blank judge. A separate evaluation report shows each tool's arguments and returned results alongside scores, explanations, and evidence links.
+
+The app runs in the browser. Only the judge makes model calls; the agent traces and tools are recorded, synthetic fixtures. The default model API is OpenRouter, using a key you enter locally. API settings stay in the browser, and reports do not include your key. The scenarios and starter criteria are proposed workshop materials, not an answer key.
+
+[Open the advanced workshop](app/advanced/index.html){.app-launch target="_blank" rel="noopener"}

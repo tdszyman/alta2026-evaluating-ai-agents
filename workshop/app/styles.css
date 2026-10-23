@@ -314,7 +314,8 @@ code {
   cursor: pointer;
 }
 
-.results { margin-top: 0.4rem; }
+.results { margin-top: 0.4rem; min-width: 0; }
+#summary-wrap, #detail-wrap { overflow-x: auto; }
 
 .run-name {
   margin: 0;
@@ -362,6 +363,7 @@ code {
   gap: 1.2rem;
   margin: 0.5rem 0 1.2rem;
 }
+.results-grid > div { min-width: 0; }
 
 table {
   width: 100%;
