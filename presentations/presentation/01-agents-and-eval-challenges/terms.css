@@ -1,7 +1,8 @@
-/* "Anatomy of an LLM call" and "Anatomy of an agent run" slides. Label
-   positions and connectors are computed by the script on the first slide from
-   the chat elements, so wording can change freely. Each build puts one term in
-   focus; the script sets the focus and fade classes used below. */
+/* Part 1 building-block slides: text generation, conversations, agent traces
+   and LLM-as-judge. Label positions and connectors are computed by the script
+   on the first of these slides from the figure elements, so wording can change
+   freely. Each build puts one term in focus; the script sets the focus and
+   fade classes used below. */
 
 .reveal .terms-slide {
   --tm-ink: #14283b;
@@ -195,64 +196,6 @@
 
 /* One LLM call: context window, model, next token */
 
-.reveal .terms-slide .ta-toks {
-  line-height: 1.9;
-}
-
-.reveal .terms-slide .ta-row {
-  display: block;
-  font-size: 10px;
-  font-weight: 700;
-  line-height: 1.6;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--tm-soft);
-}
-
-.reveal .terms-slide .ta-chip {
-  display: inline-block;
-  margin-right: 3px;
-  padding: 0 5px;
-  font-size: 13.5px;
-  line-height: 1.5;
-  background: var(--tm-surface);
-  border: 1px solid var(--tm-line);
-  border-radius: 2px;
-}
-
-.reveal .terms-slide .ta-chip-out {
-  font-weight: 700;
-  background: var(--tm-accent-pale);
-  border-color: var(--tm-accent);
-}
-
-.reveal .terms-slide .ta-prob {
-  display: grid;
-  grid-template-columns: 52px 1fr 92px;
-  align-items: center;
-  gap: 8px;
-  font-size: 12.5px;
-}
-
-.reveal .terms-slide .ta-prob i {
-  display: block;
-  height: 8px;
-  background: var(--tm-line);
-}
-
-.reveal .terms-slide .ta-prob em {
-  font-style: normal;
-  color: var(--tm-soft);
-}
-
-.reveal .terms-slide .ta-pick span,
-.reveal .terms-slide .ta-pick em {
-  font-weight: 700;
-  color: var(--tm-ink);
-}
-
-.reveal .terms-slide .ta-pick i { background: var(--tm-accent); }
-
 .reveal .terms-slide .tm-mini {
   display: block;
   margin-top: 5px;
@@ -290,28 +233,10 @@
   color: var(--tm-soft);
 }
 
-.reveal .terms-slide .ta-meter {
-  flex: 1;
-  height: 6px;
-  background: #fff;
-  border: 1px solid var(--tm-line);
-}
-
-.reveal .terms-slide .ta-meter i {
-  display: block;
-  width: 4%;
-  height: 100%;
-  background: var(--tm-accent);
-}
-
 .reveal .terms-slide .ta-count {
   font-weight: 400;
   letter-spacing: 0;
   text-transform: none;
-}
-
-.reveal .terms-slide .ta-tail {
-  border: 1px dashed var(--tm-line);
 }
 
 .reveal .terms-slide .ta-caret {
@@ -354,31 +279,19 @@
   border-radius: 2px;
 }
 
-.reveal .terms-slide .ta-tok {
-  display: inline-block;
-  padding: 0 7px;
-  font-weight: 700;
-  background: var(--tm-accent-pale);
-  border: 1px solid var(--tm-accent);
-  border-radius: 3px;
+/* LLM text generation, drawn unrolled: one 52px column per token position
+   on a 56px pitch, after a 64px row name. Labels sit below on brackets. */
+
+.reveal .tu-slide .tm-figure.tm-flow {
+  height: auto;
+  width: auto;
 }
 
-.reveal .terms-slide .ta-then {
-  margin-left: 8px;
-  color: var(--tm-soft);
+.reveal .tu-slide .tu-grid {
+  position: relative;
+  width: 960px;
+  margin: 18px auto 0;
 }
-
-/* Unrolled transformer: positions left to right, layers bottom to top.
-   Columns are 40px cells on a 44px pitch after a 52px row name. */
-
-.reveal .tu-slide .tm-chat.tu-grid {
-  left: 320px;
-  width: 580px;
-  gap: 0;
-}
-
-.reveal .tu-slide.terms-slide .tm-figure .tm-term { width: 260px; }
-.reveal .tu-slide.terms-slide .tm-figure .tm-term[data-side="right"] { left: 945px; width: 255px; }
 
 .reveal .tu-slide .tu-row {
   position: relative;
@@ -387,73 +300,38 @@
   align-items: center;
   gap: 4px;
   height: 26px;
-  margin-bottom: 10px;
+  margin-bottom: 18px;
 }
 
-.reveal .tu-slide .tu-top {
-  height: 76px;
-  margin-bottom: 22px;
-}
-
-.reveal .tu-slide .tu-out {
-  position: absolute;
-  left: 306px;
-  top: 0;
-  width: 230px;
-  margin: 0;
-  padding: 4px 8px;
-  box-sizing: border-box;
-}
-
-.reveal .tu-slide .tu-out .ta-prob {
-  grid-template-columns: 44px 1fr 86px;
-  gap: 6px;
-  font-size: 12px;
-}
+.reveal .tu-slide .tu-top { height: 30px; margin-bottom: 44px; }
+.reveal .tu-slide .tu-more { height: 16px; margin: -6px 0 6px; }
+.reveal .tu-slide .tu-toks { height: 30px; margin: 52px 0 6px; }
 
 .reveal .tu-slide .tu-name {
-  flex: 0 0 52px;
-  font-size: 10px;
+  flex: 0 0 64px;
+  font-size: 10.5px;
   font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: uppercase;
   color: var(--tm-soft);
 }
 
-.reveal .tu-slide .tu-more {
-  height: 14px;
-  margin: -4px 0 6px;
-}
-
 .reveal .tu-slide .tu-more .tu-name {
-  padding-left: 18px;
-  font-size: 16px;
+  padding-left: 22px;
+  font-size: 18px;
   line-height: 1;
 }
 
-.reveal .tu-slide .tu-cell,
-.reveal .tu-slide .tu-lane {
-  flex: 0 0 40px;
-  height: 22px;
-  box-sizing: border-box;
-}
+.reveal .tu-slide .tu-slot { flex: 0 0 52px; }
 
 .reveal .tu-slide .tu-cell {
+  flex: 0 0 40px;
+  height: 24px;
+  margin: 0 6px;
+  box-sizing: border-box;
   background: var(--tm-surface);
   border: 1px solid var(--tm-line);
   border-radius: 2px;
-}
-
-.reveal .tu-slide .tu-cell.tu-hill {
-  background: var(--tm-accent-pale);
-  border-color: var(--tm-accent);
-}
-
-.reveal .tu-slide #tu-L2 { margin-bottom: 44px; }
-
-.reveal .tu-slide .tu-toks {
-  height: 28px;
-  margin-top: 12px;
 }
 
 .reveal .tu-slide .tu-span {
@@ -461,58 +339,69 @@
   gap: 4px;
 }
 
-.reveal .tu-slide .tu-tok,
-.reveal .tu-slide .tu-next {
-  flex: 0 0 40px;
-  width: 40px;
-  height: 26px;
+.reveal .tu-slide .tu-tok {
+  flex: 0 0 52px;
+  height: 30px;
   box-sizing: border-box;
-  font-size: 13px;
-  line-height: 24px;
+  font-size: 15px;
+  line-height: 28px;
   text-align: center;
   background: #fff;
   border: 1px solid var(--tm-line);
   border-radius: 2px;
 }
 
-.reveal .tu-slide .tu-gen {
+.reveal .tu-slide .tu-gen,
+.reveal .tu-slide .tu-pred {
   font-weight: 700;
   background: var(--tm-accent-pale);
   border-color: var(--tm-accent);
 }
 
-.reveal .tu-slide .tu-next {
-  font-weight: 700;
-  color: var(--tm-accent);
-  border: 1.5px dashed var(--tm-accent);
-}
-
-.reveal .tu-slide .tu-ctx {
-  margin: 2px 0 0 56px;
-  width: 524px;
-}
-
-.reveal .tu-slide .tu-ctx i {
-  display: block;
-  height: 8px;
-  border: 1.5px solid var(--tm-ink);
-  border-top: none;
-  box-sizing: border-box;
-}
-
-.reveal .tu-slide .tu-ctx span {
-  display: block;
-  padding-top: 3px;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+.reveal .tu-slide .tu-stop {
+  font-size: 12px;
+  font-weight: 400;
   color: var(--tm-soft);
-  white-space: nowrap;
+  background: #fff;
+  border-style: dashed;
 }
+
+.reveal .tu-slide .tu-terms {
+  align-items: flex-start;
+  height: auto;
+  margin: 0 0 20px;
+}
+
+.reveal .tu-slide.terms-slide .tm-figure .tu-terms .tm-term {
+  position: static;
+  flex: 0 0 auto;
+  padding: 0 8px 6px;
+  border-left: none;
+  text-align: center;
+  font-size: 16px;
+  line-height: 1.35;
+  transform-origin: center top;
+}
+
+.reveal .tu-slide.terms-slide .tm-figure .tu-terms .tm-term b {
+  font-size: 18px;
+  margin-bottom: 2px;
+}
+
+.reveal .tu-slide .tu-brk {
+  display: block;
+  height: 10px;
+  margin: 0 -8px 6px;
+  border: 2px solid var(--tm-ink);
+  border-top: none;
+}
+
+.reveal .tu-slide .tm-term.tm-focus .tu-brk { border-color: var(--tm-accent); }
 
 .reveal .tu-slide .tu-wire {
   position: absolute;
+  left: 0;
+  top: 0;
   z-index: 0;
   pointer-events: none;
 }
@@ -530,23 +419,17 @@
 
 .reveal .tu-slide #tu-stream .tu-up { stroke: var(--tm-accent); }
 
-.reveal .tu-slide #tu-att path { stroke: var(--tm-soft); stroke-width: 1; }
-
 .reveal .tu-slide #tu-feed path {
   stroke: var(--tm-accent);
-  stroke-width: 2;
+  stroke-width: 1.6;
   stroke-dasharray: 5 3;
 }
 
-.reveal .tu-slide #tu-feed path + path { stroke-dasharray: none; }
+.reveal .tu-slide #tu-feed .tu-head { stroke-dasharray: none; }
 
 .reveal .tu-slide .tu-wire.is-focus { outline: none; }
 
-.reveal .tu-slide .has-focus #tu-att.is-lit path,
-.reveal .tu-slide .has-focus #tu-feed.is-lit path {
-  stroke: var(--tm-accent);
-  stroke-width: 2;
-}
+.reveal .tu-slide .has-focus #tu-feed.is-lit path { stroke-width: 2.2; }
 
 /* Focus on the chat: the parts the current term names stay bright */
 
