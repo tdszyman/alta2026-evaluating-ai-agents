@@ -1,22 +1,46 @@
 import { TARGETS, cellStatus, runSummary, metricSummary } from "./core.mjs";
 import { loadRun, listRuns } from "./storage.mjs";
 import { h, fmt, badge, statusLabel, transcript, metricRow, toolDefinitions } from "./ui.mjs";
+import { ROUNDS, loadWorkflow, saveWorkflow, resolveRound, stepHref } from "../workflow.mjs";
+import { exerciseNavigation } from "../workflow-ui.mjs";
 
 const $ = selector => document.querySelector(selector);
 const params = new URLSearchParams(location.search);
 let storage;
 try { storage = localStorage; } catch { /* The empty state explains missing browser storage. */ }
 const runs = listRuns(storage);
-const requestedId = params.get("run");
-const run = requestedId ? loadRun(storage, requestedId) : runs[0];
+const workflow = loadWorkflow(storage);
+const requestedRound = resolveRound(location.search, workflow);
+const requestedId = params.get("run") || (params.has("round") ? workflow.latestRuns[requestedRound.id] : null);
+const run = requestedId ? loadRun(storage, requestedId) : params.has("round") ? null : runs[0];
+const round = (run?.scenarios.length === 1 && ROUNDS.find(item => item.id === run.scenarios[0].id)) || requestedRound;
 let scope = params.get("scenario") || "all";
 let view = params.get("view") === "cases" ? "cases" : "overview";
+
+$("#step-navigation").replaceChildren(exerciseNavigation(round, "review", run?.id));
+$("#back-to-run").href = stepHref("run", round.id);
+const actions = $("#review-actions");
+actions.append(h("a", { class: "ghost", href: stepHref("run", round.id) }, "Back: run evaluation"),
+  h("a", { class: "ghost", href: stepHref("rubric", round.id) }, "Revise rubric"));
+if (run) actions.append(h("a", { class: "ghost", href: stepHref("run", round.id) }, "Run again"));
+const nextRound = ROUNDS[ROUNDS.findIndex(item => item.id === round.id) + 1];
+if (run?.scenarios.length === 1) {
+  if (nextRound) actions.append(h("a", { class: "primary", id: "next-round", href: stepHref("cases", nextRound.id) }, "Continue to the next round"));
+  else {
+    actions.append(h("p", { id: "exercise-complete" }, run.finishedAt
+      ? "You have reached the final round. Revisit your rubric, inspect the evidence, or compare your saved reports."
+      : "This is the final round. This report is incomplete; return to the run page to start a new evaluation."),
+    h("a", { href: "index.html#saved-reports" }, "Browse saved reports"));
+  }
+} else if (run) actions.prepend(h("p", {}, "Saved report · includes multiple scenarios. Use the scenario navigation to inspect each one."));
+try { saveWorkflow(storage, { round: round.id, step: "review" }); }
+catch (error) { actions.append(h("p", { class: "panel-error", role: "alert" }, error.message)); }
 
 if (!run) {
   $("#report-empty").hidden = false;
   $("#report-empty").append(h("h1", {}, "Report unavailable"), h("p", {}, requestedId
     ? "This run is not available in this browser. Reports are saved on the device and site address where you ran the exercise. Browser storage may have been cleared or disabled."
-    : "No evaluations have been saved in this browser yet."), h("a", { href: "index.html" }, "Return to the judge builder"));
+    : "No evaluation is saved for this round yet. You can inspect cases and edit your judge without an API key."), h("a", { href: stepHref("run", round.id) }, "Return to the run page"));
 } else {
   if (scope !== "all" && !run.scenarios.some(scenario => scenario.id === scope)) scope = "all";
   document.title = `${run.name} — Evaluation report — ALTA 2026`;
@@ -34,8 +58,10 @@ if (!run) {
 function cellsInScope() { return run.cells.filter(cell => scope === "all" || cell.scenarioId === scope); }
 
 function updateLocation() {
-  const query = new URLSearchParams({ run: run.id, view });
+  const query = new URLSearchParams(location.search);
+  query.set("run", run.id); query.set("view", view); query.set("round", round.id);
   if (scope !== "all") query.set("scenario", scope);
+  else query.delete("scenario");
   history.replaceState(null, "", `?${query}${location.hash}`);
 }
 

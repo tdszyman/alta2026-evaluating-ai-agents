@@ -3,20 +3,18 @@ title: "Hands-on"
 format: html
 ---
 
-Choose the starter exercise or the advanced workshop. Both run in the browser and use the same saved API key and endpoint. Their prompts, model settings, and results stay separate.
+Build an LLM judge and evaluate recorded career-assistant interactions in three rounds: advice without tools, a job search with one tool call, then a job search and course lookup with two tool calls.
 
-## Starter exercise
+Each round follows five pages:
 
-Edit one judge prompt and score four career-advice replies for soundness, tone, and compliance. Compare the scores in the table and chart on the same page.
+1. Inspect the recorded cases.
+2. Design your rubric.
+3. Write judge instructions.
+4. Run the evaluation.
+5. Review scores, explanations, and evidence.
 
-[Open the hands-on app](app/index.html){.app-launch target="_blank" rel="noopener"}
+Your rubric and judge instructions carry forward between rounds. Start with an editable draft or a blank rubric, and add tool-use criteria when you reach the tool examples. Back and Next links let you revisit each stage. Your work and reports are saved in this browser.
 
-## Advanced agent evaluation
+[Start exercise](app/index.html?round=advice){.app-launch target="_blank" rel="noopener"}
 
-Build your own LLM judge and evaluate recorded career-assistant traces. The draft examples progress from advice without tools to a job search with one tool call, then a job search followed by a course lookup with two tool calls.
-
-Edit the judge instructions, add your own criteria, choose which parts of the trace they assess, and set passing thresholds. Start from editable draft criteria or a blank judge. A separate evaluation report shows each tool's arguments and returned results alongside scores, explanations, and evidence links.
-
-The app runs in the browser. Only the judge makes model calls; the agent traces and tools are recorded, synthetic fixtures. The default model API is OpenRouter, using a key you enter locally. API settings stay in the browser, and reports do not include your key. The scenarios and starter criteria are proposed workshop materials, not an answer key.
-
-[Open the advanced workshop](app/advanced/index.html){.app-launch target="_blank" rel="noopener"}
+You can inspect cases and design your judge without an API key. Running it requires a key for OpenRouter or another supported endpoint. Only the judge makes model calls; agent traces and tools are recorded, synthetic fixtures. API settings stay in the browser, and reports do not include your key. The scenarios and draft criteria are proposed workshop materials, not an answer key.
