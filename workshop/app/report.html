@@ -4,15 +4,57 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex">
-  <title>Advanced evaluation report — ALTA 2026</title>
+  <title>Evaluation report — ALTA 2026</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="advanced/report.css">
 </head>
-<body>
-  <p>The evaluation report has moved to the <a href="advanced/report.html">advanced workshop</a>.</p>
-  <script>
-    const destination = new URL("advanced/report.html", location.href);
-    destination.search = location.search;
-    destination.hash = location.hash;
-    location.replace(destination.href);
-  </script>
+<body class="report-page" data-step="review">
+  <a class="skip" href="#report-main">Skip to report</a>
+  <header class="report-header">
+    <a class="report-brand" href="report.html">AI Evaluation Report <span>ALTA 2026</span></a>
+    <a id="back-to-run" href="run.html">Back to run</a>
+  </header>
+  <div id="step-navigation"></div>
+  <div id="review-actions" class="review-actions"></div>
+  <div id="report-empty" class="report-empty" hidden role="status"></div>
+  <div id="report-layout" class="report-layout" hidden>
+    <aside class="report-sidebar">
+      <nav aria-labelledby="scenario-nav-heading">
+        <h2 id="scenario-nav-heading" class="eyebrow">Scenarios</h2>
+        <div id="scenario-nav"></div>
+      </nav>
+      <label class="execution-picker">
+        <span class="field-label">Run</span>
+        <select id="report-run" aria-label="Report run"></select>
+      </label>
+    </aside>
+    <main id="report-main" class="report-main" tabindex="-1">
+      <div class="report-tabs" role="tablist" aria-label="Report views">
+        <button id="tab-overview" type="button" role="tab" aria-selected="true" aria-controls="overview-panel">Overview</button>
+        <button id="tab-cases" type="button" role="tab" aria-selected="false" aria-controls="cases-panel" tabindex="-1">Cases <span id="case-count"></span></button>
+      </div>
+      <div class="report-context">
+        <h1 id="report-title"></h1>
+        <p id="report-meta"></p>
+      </div>
+      <section id="overview-panel" role="tabpanel" aria-labelledby="tab-overview"></section>
+      <section id="cases-panel" role="tabpanel" aria-labelledby="tab-cases" hidden>
+        <div class="case-filters">
+          <label><span class="visually-hidden">Search cases</span><input id="case-search" type="search" placeholder="Search cases and trace text"></label>
+          <label class="check"><input id="failed-only" type="checkbox"> Below threshold only</label>
+        </div>
+        <p id="case-filter-count" class="hint" aria-live="polite"></p>
+        <div id="report-cases"></div>
+      </section>
+      <details id="judge-snapshot" class="judge-snapshot">
+        <summary>Judge configuration used for this run</summary>
+        <div id="snapshot-content"></div>
+      </details>
+      <footer class="report-footer">Draft synthetic workshop scenarios · Scores and explanations are model-generated. Inspect the evidence and challenge the judge.</footer>
+    </main>
+  </div>
+  <noscript><p class="report-empty">Enable JavaScript to read reports stored in this browser.</p></noscript>
+  <script type="module" src="advanced/report.js"></script>
 </body>
 </html>

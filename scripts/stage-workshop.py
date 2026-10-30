@@ -11,9 +11,9 @@ def stage(destination: Path) -> None:
     destination = destination.resolve()
     if destination == workshop or workshop in destination.parents:
         raise ValueError("Stage outside workshop/ to avoid copying source onto itself")
-    # Remove only assets owned by the former advanced-at-root build. Keep the
-    # report.html compatibility redirect, starter assets and unrelated files.
-    for name in ("core.mjs", "storage.mjs", "ui.mjs", "report.js", "report.css", "data", "prompts"):
+    # Remove obsolete modules from earlier layouts. Guided pages and both
+    # compatibility redirects are copied from app/ below.
+    for name in ("core.mjs", "storage.mjs", "ui.mjs", "report.js", "report.css", "data", "prompts", "advanced/app.js"):
         obsolete = destination / name
         if obsolete.is_symlink() or obsolete.is_file():
             obsolete.unlink()

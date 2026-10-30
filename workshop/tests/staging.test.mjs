@@ -12,11 +12,14 @@ test("staging publishes the report, all modules, prompts and fixtures under a Pa
     const destination = join(directory, "alta2026-evaluating-ai-agents/hands-on/app");
     await mkdir(join(destination, "data"), { recursive: true });
     await writeFile(join(destination, "core.mjs"), "old advanced module");
+    await mkdir(join(destination, "advanced"), { recursive: true });
+    await writeFile(join(destination, "advanced/app.js"), "old builder module");
     execFileSync("python3", [fileURLToPath(new URL("../../scripts/stage-workshop.py", import.meta.url)), destination]);
-    for (const path of ["index.html", "app.js", "connection.mjs", "report.html", "styles.css", "advanced/index.html", "advanced/app.js", "advanced/core.mjs", "advanced/ui.mjs", "advanced/storage.mjs", "advanced/report.html", "advanced/report.js", "advanced/report.css", "advanced/styles.css", "advanced/data/scenarios.json", "advanced/prompts/judges.json"]) await access(join(destination, path));
+    for (const path of ["index.html", "rubric.html", "judge.html", "run.html", "report.html", "app.js", "workflow.mjs", "workflow-ui.mjs", "connection.mjs", "styles.css", "advanced/index.html", "advanced/core.mjs", "advanced/ui.mjs", "advanced/storage.mjs", "advanced/report.html", "advanced/report.js", "advanced/report.css", "advanced/styles.css", "advanced/data/scenarios.json", "advanced/prompts/judges.json"]) await access(join(destination, path));
     await assert.rejects(access(join(destination, "core.mjs")));
+    await assert.rejects(access(join(destination, "advanced/app.js")));
     await assert.rejects(access(join(destination, "data")));
-    for (const file of ["index.html", "report.html", "advanced/index.html", "advanced/report.html"]) {
+    for (const file of ["index.html", "rubric.html", "judge.html", "run.html", "report.html", "advanced/index.html", "advanced/report.html"]) {
       const html = await readFile(join(destination, file), "utf8");
       for (const match of html.matchAll(/(?:src|href)="([^"]+)"/g)) {
         const link = match[1];

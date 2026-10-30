@@ -1,15 +1,17 @@
-# Hands-on prototype direction — 22 October 2026
+# Hands-on prototype direction
 
-Implementation direction requested by Yelaman in the workshop planning session. This records prototype choices, not final tutorial agenda or workshop answers.
+Implementation direction requested by Yelaman in the workshop planning session, updated on 30 October 2026 to simplify audience navigation. This records prototype choices, not final tutorial agenda or workshop answers.
 
-- Preserve the original browser exercise at `/hands-on/app/`, with its four replies, prompt editor, and inline scores/chart. Put the advanced judge builder and reports on separate pages under `/hands-on/app/advanced/`.
-- In the advanced workshop, keep career advice and add recorded one-call job search and two-call job/course scenarios.
+- Use one guided app at `/hands-on/app/`, replacing the starter/advanced choice. Split each stage into a separate page: inspect cases, design rubric, write judge instructions, run evaluation, and review results.
+- Progress through career advice (the existing four replies), one-call job search, then two-call job/course scenarios. Each run evaluates its current round; review links lead to the next round.
 - Use three neutral-labelled variants per new scenario, allowing tool-use and final-answer failures to differ. All data is synthetic; no preset scores.
 - Let participants build judges through editable instructions and criteria, with blank and draft example starting points. Retain soundness/tone/compliance and add per-call tool metrics and grounding.
 - Keep 1–5 scores with participant-editable passing thresholds, initially 4.
+- Carry rubric and instruction edits forward. Offer the existing tool-use criteria through an explicit add button, preserving edits and avoiding duplicates. Retain a dedicated rubric page with full criterion editing.
 - Add a separate Microsoft-style report page in the same tab. Adapt the actual report arrangement lightly, keeping the repository theme and plain JavaScript implementation.
 - Use one judge request per trace and repeat. No live agent/tool execution or .NET integration in this prototype.
-- Share API key and endpoint across exercises, with separate prompts, model settings, and results. Keep existing advanced saved judges/reports and redirect their earlier report URLs. Link the starter first on the hands-on landing page.
+- Keep a single saved judge and connection, with report snapshots for each run. Preserve existing saved judges, prompts, preferences, and reports. Redirect former advanced entry/report URLs to the guided pages. The landing page has one Start exercise button.
+- Keep numbered navigation and Back/Next controls consistent. Tuck temperature, repeats, and run name into More run settings. Browsing and editing require no key; only an explicit run makes API calls.
 
 Reference exploration ran Microsoft's report frontend with its generated development data in a temporary checkout of [dotnet/extensions, commit ed24aee](https://github.com/dotnet/extensions/tree/ed24aee220c7958953c173c7aabdda162937a941/src/Libraries/Microsoft.Extensions.AI.Evaluation.Reporting/TypeScript). Inspected the scenario sidebar, Overview/Cases navigation, a two-tool transcript, and expanded metric context/diagnostics. Fifty focused upstream report tests passed; this did not run live model evaluations.
 
