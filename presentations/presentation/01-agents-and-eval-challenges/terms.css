@@ -280,7 +280,8 @@
 }
 
 /* LLM text generation, drawn unrolled: one 52px column per token position
-   on a 56px pitch, after a 64px row name. Labels sit below on brackets. */
+   on a 56px pitch, after a 64px row name. Sixteen token columns plus one on
+   the right for the stop token. Labels sit below on brackets. */
 
 .reveal .tu-slide .tm-figure.tm-flow {
   height: auto;
@@ -289,7 +290,7 @@
 
 .reveal .tu-slide .tu-grid {
   position: relative;
-  width: 960px;
+  width: 1016px;
   margin: 18px auto 0;
 }
 
