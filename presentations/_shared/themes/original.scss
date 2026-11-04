@@ -1,0 +1,110 @@
+/* Slide template: Original (Scientific Modernist, light).
+   The look the decks had before templates. Select it in _quarto.yml
+   (format.revealjs.theme); see _shared/style-brief.md.
+   Every deck colour, the type stack and the chat roles are set here and
+   nowhere else. _shared/slides.scss, _shared/chrome.css and the deck CSS
+   read only the custom properties below. */
+
+/*-- scss:defaults --*/
+
+$t-font-sans: Inter, "Source Sans 3", "Segoe UI", system-ui, sans-serif;
+$t-font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+$t-heading-weight: 600;
+
+$t-bg: #fbfcfb;
+$t-paper: #ffffff;
+$t-surface: #eff3f5;
+$t-line: #b8c8d1;
+$t-ink: #14283b;
+$t-soft: #526476;
+$t-heading: #14283b;
+$t-accent: #245ba6;
+$t-accent-strong: #1b467f;
+$t-accent-tint: #e3ecf8;
+$t-accent-ring: #d6e4f5;
+
+$font-family-sans-serif: $t-font-sans;
+$font-family-monospace: $t-font-mono;
+$presentation-heading-font: $t-font-sans;
+$presentation-heading-color: $t-heading;
+$presentation-heading-font-weight: $t-heading-weight;
+$presentation-slide-text-align: left;
+$presentation-title-slide-text-align: left;
+$body-bg: $t-bg;
+$body-color: $t-ink;
+$link-color: $t-accent;
+$link-color-hover: $t-accent-strong;
+$selection-bg: $t-accent-ring;
+$selection-color: $t-ink;
+$code-block-bg: $t-surface;
+
+/*-- scss:rules --*/
+
+:root {
+  --deck-font-sans: Inter, "Source Sans 3", "Segoe UI", system-ui, sans-serif;
+  --deck-font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --deck-heading-weight: #{$t-heading-weight};
+  --deck-heading-tracking: -0.02em;
+
+  --deck-bg: #{$t-bg};
+  --deck-paper: #{$t-paper};
+  --deck-surface: #{$t-surface};
+  --deck-line: #{$t-line};
+  --deck-ink: #{$t-ink};
+  --deck-soft: #{$t-soft};
+  --deck-heading: #{$t-heading};
+  --deck-accent: #{$t-accent};
+  --deck-accent-strong: #{$t-accent-strong};
+  --deck-accent-tint: #{$t-accent-tint};
+  --deck-accent-ring: #{$t-accent-ring};
+  --deck-on-accent: #ffffff;
+  --deck-scrim: #{rgba($t-ink, 0.4)};
+
+  /* Chat roles. The edge width is 0 and thoughts are upright here, so the
+     original chat mock-ups keep their flat look. */
+  --chat-edge-width: 0px;
+  --chat-system-bg: #{$t-paper};
+  --chat-system-edge: #{$t-line};
+  --chat-user-bg: #{$t-accent-tint};
+  --chat-user-edge: #{$t-accent};
+  --chat-user-label: #{$t-accent};
+  --chat-agent-bg: #{$t-surface};
+  --chat-agent-edge: #{$t-accent};
+  --chat-agent-label: #{$t-soft};
+  --chat-call-bg: #{$t-surface};
+  --chat-thought-bg: transparent;
+  --chat-thought-edge: #{$t-accent};
+  --chat-thought-line: solid;
+  --chat-thought-ink: #{$t-ink};
+  --chat-thought-style: normal;
+  --chat-action-bg: transparent;
+  --chat-action-edge: #{$t-ink};
+  --chat-observation-bg: #{$t-paper};
+  --chat-observation-edge: #{$t-line};
+  --chat-judge-edge: #{$t-accent};
+  --chat-judge-label: #{$t-accent};
+  --chat-judge-box-edge: #{$t-line};
+  --chat-judge-head-bg: #{$t-surface};
+  --chat-judge-head-ink: #{$t-soft};
+  --chat-judge-tint: #{$t-accent-tint};
+
+  /* Judge verdicts */
+  --verdict-pass: #{$t-accent};
+  --verdict-warn: #b54708;
+  --verdict-warn-ink: #b54708;
+  --verdict-warn-tint: #fef0e1;
+  --verdict-fail: #b42318;
+  --verdict-fail-tint: #fde8e6;
+  --verdict-on: #ffffff;
+
+  /* Two-category figures: predictive / complicated (a), generative / complex (b) */
+  --series-a: #1f5fa8;
+  --series-a-ink: #1f5fa8;
+  --series-a-tint: #eef4fc;
+  --series-b: #0f8f88;
+  --series-b-ink: #0f8f88;
+  --series-b-mid: #3fbfb3;
+  --series-b-tint: #e3f6f4;
+  --figure-ink: #3a4356;
+  --figure-muted: #8a94a6;
+}

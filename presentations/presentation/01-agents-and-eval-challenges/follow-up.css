@@ -8,15 +8,15 @@
   margin-top: 8px;
   font-size: 17px;
   line-height: 1.35;
-  color: #14283b;
+  color: var(--deck-ink);
 }
 
 .reveal .follow-up-slide .fu-item {
   break-inside: avoid;
   margin: 0 0 14px;
   padding: 8px 12px 6px;
-  background: #eff3f5;
-  border-left: 2px solid #b8c8d1;
+  background: var(--deck-surface);
+  border-left: 2px solid var(--deck-line);
   border-radius: 2px;
 }
 
@@ -26,7 +26,7 @@
   font-size: 18px;
   font-weight: 600;
   line-height: 1.25;
-  color: #14283b;
+  color: var(--deck-ink);
 }
 
 .reveal .follow-up-slide .fu-item p {

@@ -1,14 +1,9 @@
-/* "AI Agents are Complex Systems" slides. Colours match scripts/generate-complexity-figures.py. */
+/* "AI Agents are Complex Systems" slides. Series tokens come from the slide
+   template; the figure SVGs from scripts/generate-complexity-figures.py keep
+   their own fixed colours. */
 
-.reveal .complexity-slide {
-  --cx-blue: #1F5FA8;
-  --cx-teal: #0F8F88;
-  --cx-teal-mid: #3FBFB3;
-  --cx-ink: #3A4356;
-}
-
-.reveal .complexity-slide .complicated { color: var(--cx-blue); }
-.reveal .complexity-slide .complex { color: var(--cx-teal); }
+.reveal .complexity-slide .complicated { color: var(--series-a-ink); }
+.reveal .complexity-slide .complex { color: var(--series-b-ink); }
 
 .reveal .complexity-slide img {
   margin: 0;
@@ -30,7 +25,7 @@
 .reveal .complexity-slide .sys-caption {
   font-size: 0.55em;
   line-height: 1.45;
-  color: var(--cx-ink);
+  color: var(--figure-ink);
   margin-top: 0.3em;
 }
 
@@ -85,7 +80,7 @@
   height: 8px;
   margin: 0 16px;
   border-radius: 4px;
-  background: linear-gradient(90deg, var(--cx-blue), var(--cx-teal-mid));
+  background: linear-gradient(90deg, var(--series-a), var(--series-b-mid));
 }
 
 .reveal .complexity-slide .spec-arrow::before,
@@ -99,20 +94,20 @@
 
 .reveal .complexity-slide .spec-arrow::before {
   left: -16px;
-  border-right: 16px solid var(--cx-blue);
+  border-right: 16px solid var(--series-a);
   border-left-width: 0;
 }
 
 .reveal .complexity-slide .spec-arrow::after {
   right: -16px;
-  border-left: 16px solid var(--cx-teal-mid);
+  border-left: 16px solid var(--series-b-mid);
   border-right-width: 0;
 }
 
 .reveal .complexity-slide .attribution {
   margin-top: 1.6em;
   font-size: 0.4em;
-  color: #8A94A6;
+  color: var(--figure-muted);
   text-align: center;
 }
 
@@ -124,7 +119,7 @@
   font-size: 0.75em;
   font-style: italic;
   text-align: center;
-  color: var(--cx-ink);
+  color: var(--figure-ink);
 }
 
 .reveal .complexity-slide .sullivan-quote p { margin: 0.2em 0; }
@@ -132,5 +127,5 @@
 .reveal .complexity-slide .quote-source {
   font-size: 0.8em;
   font-style: normal;
-  color: var(--cx-teal);
+  color: var(--series-b-ink);
 }

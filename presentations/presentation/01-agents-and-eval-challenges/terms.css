@@ -4,16 +4,6 @@
    freely. Each build puts one term in focus; the script sets the focus and
    fade classes used below. */
 
-.reveal .terms-slide {
-  --tm-ink: #14283b;
-  --tm-soft: #526476;
-  --tm-line: #b8c8d1;
-  --tm-surface: #eff3f5;
-  --tm-accent: #245ba6;
-  --tm-accent-pale: #e3ecf8;
-  --tm-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
-}
-
 .reveal .terms-slide h2 {
   font-size: 1.15em;
   margin-bottom: 0.35em;
@@ -23,10 +13,10 @@
   position: relative;
   width: 1200px;
   height: 560px;
-  font-family: Inter, "Source Sans 3", "Segoe UI", system-ui, sans-serif;
+  font-family: var(--deck-font-sans);
   font-size: 14px;
   line-height: 1.32;
-  color: var(--tm-ink);
+  color: var(--deck-ink);
 }
 
 /* Conversation */
@@ -49,21 +39,23 @@
 
 .reveal .terms-slide .tm-sys {
   font-size: 13px;
-  background: #fff;
-  border: 1px dashed var(--tm-line);
-  color: var(--tm-soft);
+  background: var(--chat-system-bg);
+  border: 1px dashed var(--chat-system-edge);
+  color: var(--deck-soft);
 }
 
 .reveal .terms-slide .tm-user {
   align-self: flex-end;
   max-width: 82%;
-  background: var(--tm-accent-pale);
+  background: var(--chat-user-bg);
+  box-shadow: inset calc(-1 * var(--chat-edge-width)) 0 0 var(--chat-user-edge);
 }
 
 .reveal .terms-slide .tm-asst {
   align-self: flex-start;
   max-width: 88%;
-  background: var(--tm-surface);
+  background: var(--chat-agent-bg);
+  box-shadow: inset var(--chat-edge-width) 0 0 var(--chat-agent-edge);
 }
 
 .reveal .terms-slide .tm-role {
@@ -72,8 +64,11 @@
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--tm-soft);
+  color: var(--deck-soft);
 }
+
+.reveal .terms-slide .tm-user .tm-role { color: var(--chat-user-label); }
+.reveal .terms-slide .tm-asst .tm-role { color: var(--chat-agent-label); }
 
 .reveal .terms-slide .tm-turn-tag {
   margin-top: 4px;
@@ -81,8 +76,8 @@
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--tm-soft);
-  border-bottom: 1px solid var(--tm-line);
+  color: var(--deck-soft);
+  border-bottom: 1px solid var(--deck-line);
 }
 
 .reveal .terms-slide .tm-step {
@@ -90,16 +85,41 @@
   padding: 3px 8px;
   font-size: 12.5px;
   line-height: 1.35;
-  background: #fff;
-  border: 1px solid var(--tm-line);
+  background: var(--deck-paper);
+  border: 1px solid var(--deck-line);
   border-radius: 2px;
 }
 
 .reveal .terms-slide .tm-call {
   margin: -1px -4px 1px;
   padding: 1px 4px;
-  background: var(--tm-surface);
+  background: var(--chat-call-bg);
 }
+
+/* Thought is internal: no fill, a broken rule, set in the thought style.
+   Action and observation are the tool side of the step. */
+
+.reveal .terms-slide .tm-thought {
+  padding-left: calc(2 * var(--chat-edge-width));
+  color: var(--chat-thought-ink);
+  font-style: var(--chat-thought-style);
+  background: var(--chat-thought-bg);
+  border-left: var(--chat-edge-width) var(--chat-thought-line) var(--chat-thought-edge);
+}
+
+.reveal .terms-slide .tm-action {
+  padding-left: calc(2 * var(--chat-edge-width));
+  background: var(--chat-action-bg);
+  box-shadow: inset var(--chat-edge-width) 0 0 var(--chat-action-edge);
+}
+
+.reveal .terms-slide .tm-obs {
+  padding-left: calc(2 * var(--chat-edge-width));
+  background: var(--chat-observation-bg);
+  box-shadow: inset var(--chat-edge-width) 0 0 var(--chat-observation-edge);
+}
+
+.reveal .terms-slide .tm-thought .tm-kind { font-style: normal; }
 
 .reveal .terms-slide .tm-kind {
   display: inline-block;
@@ -108,13 +128,13 @@
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--tm-soft);
+  color: var(--deck-soft);
 }
 
 .reveal .terms-slide .tm-step code {
-  font-family: var(--tm-mono);
+  font-family: var(--deck-font-mono);
   font-size: 11.5px;
-  color: var(--tm-ink);
+  color: var(--deck-ink);
   background: none;
   padding: 0;
 }
@@ -126,8 +146,8 @@
   align-items: stretch;
   gap: 10px;
   margin-top: 40px;
-  font-family: Inter, "Source Sans 3", "Segoe UI", system-ui, sans-serif;
-  color: var(--tm-ink);
+  font-family: var(--deck-font-sans);
+  color: var(--deck-ink);
 }
 
 .reveal .terms-slide .tm-card {
@@ -135,10 +155,10 @@
   padding: 16px 16px 14px;
   font-size: 17px;
   line-height: 1.35;
-  color: var(--tm-soft);
-  background: #fff;
-  border: 1px solid var(--tm-line);
-  border-top: 4px solid var(--tm-accent);
+  color: var(--deck-soft);
+  background: var(--deck-paper);
+  border: 1px solid var(--deck-line);
+  border-top: 4px solid var(--deck-accent);
   border-radius: 2px;
 }
 
@@ -146,7 +166,7 @@
   display: block;
   margin-bottom: 6px;
   font-size: 22px;
-  color: var(--tm-ink);
+  color: var(--deck-ink);
 }
 
 .reveal .terms-slide .tm-num {
@@ -154,42 +174,42 @@
   font-size: 30px;
   font-weight: 700;
   line-height: 1;
-  color: var(--tm-accent);
+  color: var(--deck-accent);
 }
 
 .reveal .terms-slide .tm-card-terms {
   display: block;
   margin-top: 10px;
   font-size: 13px;
-  color: var(--tm-soft);
+  color: var(--deck-soft);
 }
 
 .reveal .terms-slide .tm-arrow {
   align-self: center;
   font-size: 34px;
-  color: var(--tm-line);
+  color: var(--deck-line);
 }
 
 .reveal .terms-slide .tm-road {
   display: flex;
   gap: 6px;
   margin: -6px 0 12px;
-  font-family: Inter, "Source Sans 3", "Segoe UI", system-ui, sans-serif;
+  font-family: var(--deck-font-sans);
   font-size: 12px;
   font-weight: 600;
-  color: var(--tm-line);
+  color: var(--deck-line);
 }
 
 .reveal .terms-slide .tm-road span + span::before {
   content: "›";
   margin-right: 6px;
-  color: var(--tm-line);
+  color: var(--deck-line);
 }
 
-.reveal .terms-slide .tm-road .tm-road-done { color: var(--tm-soft); }
+.reveal .terms-slide .tm-road .tm-road-done { color: var(--deck-soft); }
 
 .reveal .terms-slide .tm-road .tm-road-on {
-  color: var(--tm-accent);
+  color: var(--deck-accent);
   text-decoration: underline;
   text-underline-offset: 3px;
 }
@@ -199,9 +219,9 @@
 .reveal .terms-slide .tm-mini {
   display: block;
   margin-top: 5px;
-  font-family: var(--tm-mono);
+  font-family: var(--deck-font-mono);
   font-size: 11.5px;
-  color: var(--tm-ink);
+  color: var(--deck-ink);
 }
 
 .reveal .terms-slide .tm-term .tm-mini b {
@@ -214,8 +234,8 @@
   flex-direction: column;
   gap: 6px;
   padding: 0 8px 8px;
-  background: #fff;
-  border: 1.5px solid var(--tm-line);
+  background: var(--deck-paper);
+  border: 1.5px solid var(--deck-line);
   border-radius: 3px;
 }
 
@@ -225,12 +245,12 @@
   gap: 8px;
   margin: 0 -8px;
   padding: 4px 8px;
-  background: var(--tm-surface);
+  background: var(--deck-surface);
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--tm-soft);
+  color: var(--deck-soft);
 }
 
 .reveal .terms-slide .ta-count {
@@ -245,7 +265,7 @@
   height: 1em;
   margin-left: 2px;
   vertical-align: -2px;
-  background: var(--tm-ink);
+  background: var(--deck-ink);
   animation: ta-blink 1s steps(1) infinite;
 }
 
@@ -258,15 +278,15 @@
   margin: -2px 0;
   font-size: 16px;
   line-height: 1;
-  color: var(--tm-soft);
+  color: var(--deck-soft);
 }
 
 .reveal .terms-slide .ta-llm {
   align-self: center;
   padding: 6px 14px;
   font-size: 13px;
-  background: #fff;
-  border: 2px solid var(--tm-ink);
+  background: var(--deck-paper);
+  border: 2px solid var(--deck-ink);
   border-radius: 4px;
 }
 
@@ -274,9 +294,10 @@
   margin-left: 40px;
   padding: 5px 10px;
   font-size: 13px;
-  background: #fff;
-  border: 1px solid var(--tm-line);
+  background: var(--deck-paper);
+  border: 1px solid var(--deck-line);
   border-radius: 2px;
+  box-shadow: inset var(--chat-edge-width) 0 0 var(--chat-agent-edge);
 }
 
 /* LLM text generation, drawn unrolled: one 52px column per token position
@@ -314,7 +335,7 @@
   font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: var(--tm-soft);
+  color: var(--deck-soft);
 }
 
 .reveal .tu-slide .tu-more .tu-name {
@@ -330,8 +351,8 @@
   height: 24px;
   margin: 0 6px;
   box-sizing: border-box;
-  background: var(--tm-surface);
-  border: 1px solid var(--tm-line);
+  background: var(--deck-surface);
+  border: 1px solid var(--deck-line);
   border-radius: 2px;
 }
 
@@ -347,23 +368,23 @@
   font-size: 15px;
   line-height: 28px;
   text-align: center;
-  background: #fff;
-  border: 1px solid var(--tm-line);
+  background: var(--deck-paper);
+  border: 1px solid var(--deck-line);
   border-radius: 2px;
 }
 
 .reveal .tu-slide .tu-gen,
 .reveal .tu-slide .tu-pred {
   font-weight: 700;
-  background: var(--tm-accent-pale);
-  border-color: var(--tm-accent);
+  background: var(--deck-accent-tint);
+  border-color: var(--deck-accent);
 }
 
 .reveal .tu-slide .tu-stop {
   font-size: 12px;
   font-weight: 400;
-  color: var(--tm-soft);
-  background: #fff;
+  color: var(--deck-soft);
+  background: var(--deck-paper);
   border-style: dashed;
 }
 
@@ -393,11 +414,11 @@
   display: block;
   height: 10px;
   margin: 0 -8px 6px;
-  border: 2px solid var(--tm-ink);
+  border: 2px solid var(--deck-ink);
   border-top: none;
 }
 
-.reveal .tu-slide .tm-term.tm-focus .tu-brk { border-color: var(--tm-accent); }
+.reveal .tu-slide .tm-term.tm-focus .tu-brk { border-color: var(--deck-accent); }
 
 .reveal .tu-slide .tu-wire {
   position: absolute;
@@ -414,14 +435,14 @@
 
 .reveal .tu-slide .tu-wire path {
   fill: none;
-  stroke: var(--tm-line);
+  stroke: var(--deck-line);
   stroke-width: 1.4;
 }
 
-.reveal .tu-slide #tu-stream .tu-up { stroke: var(--tm-accent); }
+.reveal .tu-slide #tu-stream .tu-up { stroke: var(--deck-accent); }
 
 .reveal .tu-slide #tu-feed path {
-  stroke: var(--tm-accent);
+  stroke: var(--deck-accent);
   stroke-width: 1.6;
   stroke-dasharray: 5 3;
 }
@@ -443,7 +464,7 @@
 }
 
 .reveal .terms-slide .is-focus {
-  outline: 2px solid var(--tm-accent);
+  outline: 2px solid var(--deck-accent);
   outline-offset: 1px;
 }
 
@@ -459,7 +480,7 @@
   border-radius: 2px;
   font-size: 13.5px;
   line-height: 1.3;
-  color: var(--tm-soft);
+  color: var(--deck-soft);
   transition-property: opacity, visibility, background-color, transform;
   transition-duration: 0.3s;
 }
@@ -479,13 +500,13 @@
   display: block;
   font-size: 15px;
   font-weight: 700;
-  color: var(--tm-ink);
+  color: var(--deck-ink);
 }
 
 .reveal .terms-slide .tm-term i {
   font-style: normal;
   font-weight: 700;
-  color: var(--tm-ink);
+  color: var(--deck-ink);
 }
 
 .reveal .terms-slide .tm-sub {
@@ -495,34 +516,42 @@
 .reveal .terms-slide .tm-json {
   display: block;
   margin-top: 3px;
-  font-family: var(--tm-mono);
+  font-family: var(--deck-font-mono);
   font-size: 11px;
   line-height: 1.35;
-  color: var(--tm-ink);
+  color: var(--deck-ink);
   background: none;
   padding: 0;
   white-space: nowrap;
 }
 
 .reveal .terms-slide .tm-judge {
-  border-left-color: var(--tm-accent);
+  border-left-color: var(--chat-judge-edge);
 }
 
-.reveal .terms-slide .tm-judge b { color: var(--tm-accent); }
+.reveal .terms-slide .tm-judge b { color: var(--chat-judge-label); }
 
 .reveal .terms-slide .tm-meta {
-  background: var(--tm-surface);
-  border-left-color: var(--tm-ink);
+  background: var(--deck-surface);
+  border-left-color: var(--deck-ink);
 }
 
 .reveal .terms-slide .tm-figure .tm-term.fragment.tm-focus {
-  background: var(--tm-accent-pale);
-  color: var(--tm-ink);
+  background: var(--deck-accent-tint);
+  color: var(--deck-ink);
   transform: scale(1.04);
 }
 
 .reveal .terms-slide .tm-figure .tm-term.fragment.tm-focus b {
-  color: var(--tm-accent);
+  color: var(--deck-accent);
+}
+
+.reveal .terms-slide .tm-figure .tm-term.tm-judge.fragment.tm-focus {
+  background: var(--chat-judge-tint);
+}
+
+.reveal .terms-slide .tm-figure .tm-term.tm-judge.fragment.tm-focus b {
+  color: var(--chat-judge-label);
 }
 
 .reveal .terms-slide .tm-figure .tm-term.fragment.tm-past {
@@ -547,19 +576,19 @@
 
 .reveal .terms-slide .tm-links path {
   fill: none;
-  stroke: var(--tm-soft);
+  stroke: var(--deck-soft);
   stroke-width: 1.4;
 }
 
 .reveal .terms-slide .tm-links .tm-bracket,
 .reveal .terms-slide .tm-links .tm-loop {
-  stroke: var(--tm-ink);
+  stroke: var(--deck-ink);
   stroke-width: 2;
 }
 
 .reveal .terms-slide .tm-links .tm-conn-judge .tm-lead,
 .reveal .terms-slide .tm-links .tm-conn-judge .tm-meta-line {
-  stroke: var(--tm-accent);
+  stroke: var(--chat-judge-edge);
 }
 
 .reveal .terms-slide .tm-links .tm-meta-line {
@@ -576,13 +605,17 @@ html.print-pdf .reveal .terms-slide .tm-conn { opacity: 1; }
 .reveal .terms-slide .tm-conn.tm-on.tm-past { opacity: 0.3; }
 
 .reveal .terms-slide .tm-links .tm-conn.tm-focus path {
-  stroke: var(--tm-accent);
+  stroke: var(--deck-accent);
   stroke-width: 2.4;
+}
+
+.reveal .terms-slide .tm-links .tm-conn-judge.tm-focus path {
+  stroke: var(--chat-judge-edge);
 }
 
 .reveal .terms-slide .tm-sources {
   margin-top: 4px;
-  font-family: Inter, "Source Sans 3", "Segoe UI", system-ui, sans-serif;
+  font-family: var(--deck-font-sans);
   font-size: 12px;
-  color: var(--tm-soft);
+  color: var(--deck-soft);
 }

@@ -493,10 +493,10 @@ Image: the screenshot posted to Reddit’s r/australia forum under the title “
   <div class="jad-trace fragment" data-fragment-index="1">
     <div class="jad-label">Agent reasoning trace (simplified)</div>
     <ol class="jad-steps">
-      <li><span class="jad-kind">Input</span>Notes: “customers are mostly young women”, “fits in with the team”</li>
-      <li><span class="jad-kind">Thought</span>The best fit is someone like the customers.</li>
-      <li><span class="jad-kind">Thought</span>Say so in the ad, so the right people apply.</li>
-      <li><span class="jad-kind">Action</span><code>write_ad</code> adds “would suit a young woman aged 18–25”</li>
+      <li class="jad-input"><span class="jad-kind">Input</span>Notes: “customers are mostly young women”, “fits in with the team”</li>
+      <li class="jad-thought"><span class="jad-kind">Thought</span>The best fit is someone like the customers.</li>
+      <li class="jad-thought"><span class="jad-kind">Thought</span>Say so in the ad, so the right people apply.</li>
+      <li class="jad-action"><span class="jad-kind">Action</span><code>write_ad</code> adds “would suit a young woman aged 18–25”</li>
     </ol>
   </div>
 
@@ -529,8 +529,8 @@ action:  block; agent rewrites</pre>
 
   <div class="jad-nogo fragment" data-fragment-index="3">
     <svg viewBox="0 0 100 100" aria-hidden="true">
-      <circle cx="50" cy="50" r="42" fill="#fff" stroke="#B42318" stroke-width="12"/>
-      <line x1="21" y1="79" x2="79" y2="21" stroke="#B42318" stroke-width="12"/>
+      <circle cx="50" cy="50" r="42" stroke-width="12"/>
+      <line x1="21" y1="79" x2="79" y2="21" stroke-width="12"/>
     </svg>
     <div class="jad-nogo-text">ILLEGAL</div>
     <div class="jad-nogo-sub">Blocked by LLM judge</div>
@@ -539,7 +539,7 @@ action:  block; agent rewrites</pre>
   <svg class="jad-links fragment" data-fragment-index="3" viewBox="0 0 1200 600" aria-hidden="true">
     <defs>
       <marker id="jad-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-        <path d="M0,0 L10,5 L0,10 z" fill="#B42318"/>
+        <path d="M0,0 L10,5 L0,10 z"/>
       </marker>
     </defs>
     <path class="jad-zoom-lead" d="M484,263 L484,296"/>
@@ -736,8 +736,8 @@ Image: the agent’s apology to Andrew, published in the ABC report and credited
       <div class="cat-input">Type a message…</div>
       <div class="cat-ended fragment" data-fragment-index="5">
         <svg viewBox="0 0 100 100" aria-hidden="true">
-          <circle cx="50" cy="50" r="42" fill="#fff" stroke="#B42318" stroke-width="12"/>
-          <line x1="21" y1="79" x2="79" y2="21" stroke="#B42318" stroke-width="12"/>
+          <circle cx="50" cy="50" r="42" stroke-width="12"/>
+          <line x1="21" y1="79" x2="79" y2="21" stroke-width="12"/>
         </svg>
         <div>
           <div class="cat-ended-title">Conversation ended</div>
@@ -791,7 +791,7 @@ End the chat if risk ≥ 0.8.</pre>
   <svg class="cat-links fragment" data-fragment-index="5" viewBox="0 0 1200 600" aria-hidden="true">
     <defs>
       <marker id="cat-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-        <path d="M0,0 L10,5 L0,10 z" fill="#B42318"/>
+        <path d="M0,0 L10,5 L0,10 z"/>
       </marker>
     </defs>
     <path d="M735,456 C704,462 702,522 668,536" marker-end="url(#cat-arrow)"/>
@@ -1353,17 +1353,17 @@ Image: the headline of the Sydney Morning Herald report by Jessica Yun, 26 Febru
     <div class="tm-msg tm-user tm-dim" id="tr-u1"><span class="tm-role">User</span>Find me barista jobs.</div>
     <div class="tm-step" id="tr-s1">
       <div class="tm-call">
-        <div class="tm-dim" id="tr-s1-th"><span class="tm-kind">Thought</span>No location given. Check their profile.</div>
-        <div class="tm-dim" id="tr-s1-ac"><span class="tm-kind">Action</span><code>get_profile()</code></div>
+        <div class="tm-dim tm-thought" id="tr-s1-th"><span class="tm-kind">Thought</span>No location given. Check their profile.</div>
+        <div class="tm-dim tm-action" id="tr-s1-ac"><span class="tm-kind">Action</span><code>get_profile()</code></div>
       </div>
-      <div class="tm-dim" id="tr-s1-ob"><span class="tm-kind">Observation</span>suburb: Fitzroy · recent searches: café, barista</div>
+      <div class="tm-dim tm-obs" id="tr-s1-ob"><span class="tm-kind">Observation</span>suburb: Fitzroy · recent searches: café, barista</div>
     </div>
     <div class="tm-step" id="tr-s2">
       <div class="tm-call">
-        <div class="tm-dim"><span class="tm-kind">Thought</span>They live in Fitzroy. Search there.</div>
-        <div class="tm-dim"><span class="tm-kind">Action</span><code>search_jobs(role="barista", near="Fitzroy")</code></div>
+        <div class="tm-dim tm-thought"><span class="tm-kind">Thought</span>They live in Fitzroy. Search there.</div>
+        <div class="tm-dim tm-action"><span class="tm-kind">Action</span><code>search_jobs(role="barista", near="Fitzroy")</code></div>
       </div>
-      <div class="tm-dim"><span class="tm-kind">Observation</span>3 jobs: Café Lune, Bean Bar, Hill St Coffee</div>
+      <div class="tm-dim tm-obs"><span class="tm-kind">Observation</span>3 jobs: Café Lune, Bean Bar, Hill St Coffee</div>
     </div>
     <div class="tm-msg tm-asst tm-dim" id="tr-a1"><span class="tm-role">Assistant</span>I found 3 barista jobs near you in Fitzroy: Café Lune, Bean Bar and Hill St Coffee.</div>
 
@@ -1371,10 +1371,10 @@ Image: the headline of the Sydney Morning Herald report by Jessica Yun, 26 Febru
     <div class="tm-msg tm-user tm-dim" id="tr-u2"><span class="tm-role">User</span>Apply to Café Lune with my profile.</div>
     <div class="tm-step" id="tr-s3">
       <div class="tm-call">
-        <div class="tm-dim"><span class="tm-kind">Thought</span>The user chose Café Lune. Apply.</div>
-        <div class="tm-dim"><span class="tm-kind">Action</span><code>apply(job="cafe-lune")</code></div>
+        <div class="tm-dim tm-thought"><span class="tm-kind">Thought</span>The user chose Café Lune. Apply.</div>
+        <div class="tm-dim tm-action"><span class="tm-kind">Action</span><code>apply(job="cafe-lune")</code></div>
       </div>
-      <div class="tm-dim"><span class="tm-kind">Observation</span>status: submitted</div>
+      <div class="tm-dim tm-obs"><span class="tm-kind">Observation</span>status: submitted</div>
     </div>
     <div class="tm-msg tm-asst tm-dim" id="tr-a2"><span class="tm-role">Assistant</span>Done. Your application to Café Lune has been sent.</div>
   </div>
@@ -1421,17 +1421,17 @@ Image: the headline of the Sydney Morning Herald report by Jessica Yun, 26 Febru
     <div class="tm-msg tm-user tm-dim" id="tj-u1"><span class="tm-role">User</span>Find me barista jobs.</div>
     <div class="tm-step" id="tj-s1">
       <div class="tm-call">
-        <div class="tm-dim"><span class="tm-kind">Thought</span>No location given. Check their profile.</div>
-        <div class="tm-dim"><span class="tm-kind">Action</span><code>get_profile()</code></div>
+        <div class="tm-dim tm-thought"><span class="tm-kind">Thought</span>No location given. Check their profile.</div>
+        <div class="tm-dim tm-action"><span class="tm-kind">Action</span><code>get_profile()</code></div>
       </div>
-      <div class="tm-dim"><span class="tm-kind">Observation</span>suburb: Fitzroy · recent searches: café, barista</div>
+      <div class="tm-dim tm-obs"><span class="tm-kind">Observation</span>suburb: Fitzroy · recent searches: café, barista</div>
     </div>
     <div class="tm-step" id="tj-s2">
       <div class="tm-call" id="tj-s2-call">
-        <div class="tm-dim"><span class="tm-kind">Thought</span>They live in Fitzroy. Search there.</div>
-        <div class="tm-dim"><span class="tm-kind">Action</span><code>search_jobs(role="barista", near="Fitzroy")</code></div>
+        <div class="tm-dim tm-thought"><span class="tm-kind">Thought</span>They live in Fitzroy. Search there.</div>
+        <div class="tm-dim tm-action"><span class="tm-kind">Action</span><code>search_jobs(role="barista", near="Fitzroy")</code></div>
       </div>
-      <div class="tm-dim"><span class="tm-kind">Observation</span>3 jobs: Café Lune, Bean Bar, Hill St Coffee</div>
+      <div class="tm-dim tm-obs"><span class="tm-kind">Observation</span>3 jobs: Café Lune, Bean Bar, Hill St Coffee</div>
     </div>
     <div class="tm-msg tm-asst tm-dim" id="tj-a1"><span class="tm-role">Assistant</span>I found 3 barista jobs near you in Fitzroy: Café Lune, Bean Bar and Hill St Coffee.</div>
 
@@ -1439,10 +1439,10 @@ Image: the headline of the Sydney Morning Herald report by Jessica Yun, 26 Febru
     <div class="tm-msg tm-user tm-dim" id="tj-u2"><span class="tm-role">User</span>Apply to Café Lune with my profile.</div>
     <div class="tm-step" id="tj-s3">
       <div class="tm-call">
-        <div class="tm-dim"><span class="tm-kind">Thought</span>The user chose Café Lune. Apply.</div>
-        <div class="tm-dim"><span class="tm-kind">Action</span><code>apply(job="cafe-lune")</code></div>
+        <div class="tm-dim tm-thought"><span class="tm-kind">Thought</span>The user chose Café Lune. Apply.</div>
+        <div class="tm-dim tm-action"><span class="tm-kind">Action</span><code>apply(job="cafe-lune")</code></div>
       </div>
-      <div class="tm-dim"><span class="tm-kind">Observation</span>status: submitted</div>
+      <div class="tm-dim tm-obs"><span class="tm-kind">Observation</span>status: submitted</div>
     </div>
     <div class="tm-msg tm-asst tm-dim" id="tj-a2"><span class="tm-role">Assistant</span>Done. Your application to Café Lune has been sent.</div>
   </div>
@@ -1588,7 +1588,7 @@ Image: the headline of the Sydney Morning Herald report by Jessica Yun, 26 Febru
       <div class="asm-lane-name">Tools</div>
 
       <div class="asm-ev u" style="grid-column: 2; grid-row: 1">Any weekend jobs near Fitzroy?</div>
-      <div class="asm-ev a" style="grid-column: 3; grid-row: 2"><i>Thought:</i> search casual roles nearby</div>
+      <div class="asm-ev a asm-thought" style="grid-column: 3; grid-row: 2"><i>Thought:</i> search casual roles nearby</div>
       <div class="asm-ev t" style="grid-column: 4; grid-row: 3"><code>search_jobs</code><br>Fitzroy, casual</div>
       <div class="asm-ev a" style="grid-column: 5; grid-row: 2">Here are three roles…</div>
       <div class="asm-ev u" style="grid-column: 6; grid-row: 1">The café one. Do I need an RSA?</div>
@@ -1599,7 +1599,7 @@ Image: the headline of the Sydney Morning Herald report by Jessica Yun, 26 Febru
       <svg class="asm-deps fragment" data-fragment-index="2" viewBox="0 0 1200 198" aria-hidden="true">
         <defs>
           <marker id="asm-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-            <path d="M0,0 L10,5 L0,10 z" fill="#0F8F88"/>
+            <path d="M0,0 L10,5 L0,10 z"/>
           </marker>
         </defs>
         <path d="M588,99 C626,99 646,90 646,66" marker-end="url(#asm-arrow)"/>

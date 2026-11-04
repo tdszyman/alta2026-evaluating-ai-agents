@@ -55,7 +55,12 @@ format:
     # links as external and open them in a new tab.
     link-external-newwindow: false
   revealjs:
-    theme: [default, _shared/slides.scss]
+    # Slide template: the middle entry. Swap to _shared/themes/original.scss
+    # for the original look. See _shared/style-brief.md.
+    theme:
+      - default
+      - _shared/themes/nyfw-ss26.scss
+      - _shared/slides.scss
     css: _shared/chrome.css
     include-after-body: _shared/chrome.html
     slide-number: false
