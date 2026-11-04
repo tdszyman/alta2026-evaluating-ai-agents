@@ -183,7 +183,7 @@ AI has a decidedly mixed, if not entirely negative, perception among the public.
 ::::
 
 ::: {.notes}
-**About this slide:** Six ways an AI agent can create risk for a company like SEEK, an online employment marketplace that connects hirers and candidates. Each row gives the risk, an example of how it could happen at SEEK, and how agent evaluations and LLM judges help reduce it. The examples are hypothetical. The first four are about a single failure: a bad decision, a bad comment, an illegal output, or an attack. The last two build up over many tasks: an agent that costs too much to run, or one that does a mediocre job until users leave. The next four slides show real, publicly reported cases of the first four risks.
+**About this slide:** Six ways an AI agent can create risk for a company like SEEK, an online employment marketplace that connects hirers and candidates. Each row gives the risk, an example of how it could happen at SEEK, and how agent evaluations and LLM judges help reduce it. The examples are hypothetical. The first four are about a single failure: a bad decision, a bad comment, an illegal output, or an attack. The last two build up over many tasks: an agent that costs too much to run, or one that does a mediocre job until users leave. The next slides show real, publicly reported cases of the first four risks, with a second candidate case for cybersecurity.
 
 **Presenter notes:**
 
@@ -338,6 +338,46 @@ AI has a decidedly mixed, if not entirely negative, perception among the public.
 - Be clear that no attack on customers was reported. It is here because it shows how an agent with access to company data becomes something attackers can use.
 - Contrast with the multi-turn attack mock-up later in this section. There, the attacker is the user in the chat. Here, the attacker never talks to the agent: the instructions arrive inside content the agent reads while doing its job.
 - Microsoft’s advisory describes it as “AI command injection in M365 Copilot”.
+:::
+
+---
+
+## Cybersecurity risk in practice: Musk’s Lego order {.case-slide}
+
+<!-- TODO: candidate slide. Terrence to decide whether to keep this, EchoLeak, or both. The order changes are claims from screenshots on X; Lego has not confirmed them. -->
+
+[Reported case · a retailer’s AI support assistant · the changes are claims from screenshots, not confirmed]{.cs-tag}
+
+:::: {.columns}
+
+::: {.column width="58%"}
+- In October 2026 Elon Musk posted a screenshot of a Lego order placed by his Grok AI agent. It showed the order number, the email address, both addresses and the last four digits of his card.
+- An X user then posted screenshots that appeared to show Lego’s AI support assistant, Sophia, accepting that order number and email and requesting a cancellation.
+- Another user’s screenshots appeared to show Sophia raising the order to 400 sets and changing the delivery address, still on Musk’s card.
+- Musk said the order was not cancelled. Lego declined to comment. None of the changes has been confirmed.
+:::
+
+::: {.column width="42%" .cs-fit}
+[Where evals fit]{.cs-fit-title}
+
+- The details used as proof of identity were in a public screenshot. Test cases should include someone who knows the order details but is not the customer.
+- A judge can check that the agent verified who it was talking to before changing an order, and flag unusual changes for a person to review.
+:::
+
+::::
+
+[Source: [White 2026](../../bibliography/white-2026-musk-lego/), WIRED; [Puri 2026](../../bibliography/puri-2026-grok-lego/), Tech Times.]{.cs-source}
+
+::: {.notes}
+**About this slide:** A candidate second example of cybersecurity risk, kept beside EchoLeak until Terrence decides whether to keep one or both. In October 2026 Elon Musk posted a screenshot of a Lego order that his Grok AI agent had placed. It showed the order number, the email address, the delivery and billing addresses and the last four digits of his card ([White 2026](../../bibliography/white-2026-musk-lego/)). X users then posted screenshots of Lego’s AI support assistant, Sophia, that appeared to show it accepting those details as proof of ownership: one asked it to cancel the order, and another appeared to get it to raise the order to 400 sets and change the delivery address. Musk said the order was not cancelled, Lego declined to comment, and none of the changes has been confirmed ([Puri 2026](../../bibliography/puri-2026-grok-lego/)). What the screenshots do show is a support assistant treating details anyone could read as proof of who the customer was.
+
+**Presenter notes:**
+
+- Candidate slide: Terrence to decide whether to keep it, keep only EchoLeak, or keep both.
+- Say “reportedly” and “appeared to”. The changes are claims from screenshots posted on X. Musk said the order was not cancelled, and Lego would not confirm anything.
+- The weakness is in Lego’s support assistant, not in Grok. Grok placed the order; the screenshot Musk posted gave strangers the details that Sophia apparently accepted as proof of ownership.
+- Contrast with EchoLeak: there, the attack was hidden in content the agent read. Here, the attacker simply claimed to be the customer and the agent appeared to believe them.
+- The same risk applies to any SEEK agent that can change an account, a job ad or a payment on request: it has to check who is asking before it acts.
 :::
 
 ---

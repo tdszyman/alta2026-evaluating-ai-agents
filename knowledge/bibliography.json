@@ -4020,6 +4020,56 @@
       "note": null,
       "featured_rank": null,
       "abstract": null
+    },
+    {
+      "id": "white-2026-musk-lego",
+      "type": "website",
+      "authors": [
+        "Jeremy White"
+      ],
+      "year": "2026",
+      "title": "Elon Musk Bragged About His Grok Lego Star Wars Haul. Then X Users Punked Him",
+      "venue": "WIRED, 12 October 2026.",
+      "url": "https://www.wired.com/story/elon-musk-bragged-about-his-grok-lego-star-wars-haul-then-x-users-punked-him/",
+      "links": [
+        {
+          "label": "WIRED",
+          "href": "https://www.wired.com/story/elon-musk-bragged-about-his-grok-lego-star-wars-haul-then-x-users-punked-him/"
+        }
+      ],
+      "groups": [
+        "industry"
+      ],
+      "mentions": [],
+      "summary": "Report on Elon Musk posting a screenshot of a Lego order placed by his Grok AI agent that showed the order number, price, delivery and billing addresses, the last four digits of his card and the email address used. X users then posted screenshots of Lego’s AI support assistant, Sophia, apparently using the order number and email to cancel the order and, in another user’s screenshots, to raise it to 400 sets and change the delivery address. Part 1 uses it as a candidate case of an AI support assistant accepting public details as proof of who the customer is.",
+      "note": "Musk said the order had not been cancelled. Lego declined to comment when WIRED asked whether the changes took place, so they are claims from screenshots, not confirmed events.",
+      "featured_rank": null,
+      "abstract": null
+    },
+    {
+      "id": "puri-2026-grok-lego",
+      "type": "website",
+      "authors": [
+        "Tanmay Puri"
+      ],
+      "year": "2026",
+      "title": "Elon Musk Showed People How To Shop With Grok Using Credit Cards: Then He Exposed His Own Order Details",
+      "venue": "Tech Times, 14 October 2026.",
+      "url": "https://www.techtimes.co.uk/elon-musk-grok-shopping-demo-privacy-risks-1809142",
+      "links": [
+        {
+          "label": "Tech Times",
+          "href": "https://www.techtimes.co.uk/elon-musk-grok-shopping-demo-privacy-risks-1809142"
+        }
+      ],
+      "groups": [
+        "industry"
+      ],
+      "mentions": [],
+      "summary": "Follow-up report on the Musk Lego order. It quotes the posts on X: Enderman’s screenshots appeared to show Lego’s support chatbot accepting the order number and submitting a cancellation request, and another user’s screenshots appeared to show the order raised to 400 sets with a new address. It stresses that neither account established that the changes were completed. Part 1 cites it alongside the WIRED report for what was and was not confirmed.",
+      "note": "Musk’s reply on X, as quoted: “That’s not my address and the order isn’t canceled.”",
+      "featured_rank": null,
+      "abstract": null
     }
   ]
 }
