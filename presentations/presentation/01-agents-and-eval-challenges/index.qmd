@@ -183,7 +183,7 @@ AI has a decidedly mixed, if not entirely negative, perception among the public.
 ::::
 
 ::: {.notes}
-**About this slide:** Six ways an AI agent can create risk for a company like SEEK, an online employment marketplace that connects hirers and candidates. Each row gives the risk, an example of how it could happen at SEEK, and how agent evaluations and LLM judges help reduce it. The examples are hypothetical. The first four are about a single failure: a bad decision, a bad comment, an illegal output, or an attack. The last two build up over many tasks: an agent that costs too much to run, or one that does a mediocre job until users leave. The next slides show real, publicly reported cases of the first four risks, with a second candidate case for cybersecurity.
+**About this slide:** Six ways an AI agent can create risk for a company like SEEK, an online employment marketplace that connects hirers and candidates. Each row gives the risk, an example of how it could happen at SEEK, and how agent evaluations and LLM judges help reduce it. The examples are hypothetical. The first four are about a single failure: a bad decision, a bad comment, an illegal output, or an attack. The last two build up over many tasks: an agent that costs too much to run, or one that does a mediocre job until users leave. The next slides show real, publicly reported cases of the first four risks, with second candidate cases for regulatory and cybersecurity risk.
 
 **Presenter notes:**
 
@@ -302,6 +302,47 @@ AI has a decidedly mixed, if not entirely negative, perception among the public.
 - The useful detail for this audience is how the reporters found it: a set of questions with known answers, asked repeatedly by different people. That is an evaluation, done by hand, after launch.
 - The bot did not give the same answer every time; it once gave a reporter the correct answer on vouchers. One correct test is not enough, so evals repeat the same case.
 - The chatbot page already carried a note that it “may occasionally produce incorrect, harmful or biased content”. A disclaimer does not tell a user which answer is wrong.
+:::
+
+---
+
+## Regulatory risk in practice: Bunnings’ AI assistant {.case-slide}
+
+<!-- TODO: Terrence to decide whether to keep this, MyCity, or both. -->
+
+[Real case · Australia · a retailer’s AI assistant, treated here as an agent]{.cs-tag}
+
+:::: {.columns}
+
+::: {.column width="58%"}
+- A customer in Queensland asked the Bunnings AI Assistant: “I have an extension cord where the plug needs to be replaced. How can I replace that?”
+- It replied with six steps of instructions.
+- In Queensland, that work can legally be done only by a licensed electrician.
+- In December 2025 Bunnings admitted the fault. It now refers requests about electrical, plumbing or other licensed work to a qualified tradesperson, and added a notice above the chat box.
+:::
+
+::: {.column width="42%" .cs-fit}
+[Where evals fit]{.cs-fit-title}
+
+- Whether the advice was legal depended on where the customer lived. Test cases should vary the user’s state, not just the question.
+- A judge checks whether the agent should answer at all: licensed work gets a referral, not instructions.
+:::
+
+::::
+
+[Source: [Booth 2025](../../bibliography/booth-2025-bunnings-chatbot/), Inside Retail Australia.]{.cs-source}
+
+::: {.notes}
+**About this slide:** An Australian case of regulatory risk, kept beside the New York MyCity case until Terrence decides whether to keep one or both. A customer in Queensland asked the Bunnings AI Assistant how to replace the plug on an extension cord, and it replied with six steps of instructions. In Queensland that work can legally be done only by a licensed electrician, so the assistant was in effect advising the customer to break a state law. Bunnings admitted the fault and said it had strengthened its safeguards so that requests about electrical, plumbing or other licensed work are referred to a qualified tradesperson; it also added a notice above the chat box ([Booth 2025](../../bibliography/booth-2025-bunnings-chatbot/)). The tutorial treats the assistant as an agent.
+
+**Presenter notes:**
+
+- Candidate slide: Terrence to decide whether to keep it, keep only MyCity, or keep both.
+- The lesson differs from MyCity. There, the answers were wrong. Here, the problem is that the agent answered at all: the same question can be fine in one state and unlawful in another, so the right reply was a referral to a licensed tradesperson.
+- So the test set needs the user’s context, such as their state, as well as the question. A judge then checks whether the agent stayed inside what it is allowed to advise on.
+- Bunnings’ chief information officer, Gen Elliott: “We take this matter seriously and immediately further strengthen our safeguards to ensure that any request for advice related to electrical, plumbing or other licensed work is referred to a qualified tradesperson.”
+- A spokesperson added: “While our safeguards and testing measures minimise the risk of non-compliance advice, like any AI model, there is always a small risk of an incorrect or unexpected response.” Testing reduces the risk but does not remove it, which is why evaluation continues after launch.
+- Inside Retail notes that Roy Morgan had just named Bunnings Australia’s most trusted brand for the eighth consecutive quarter. The article does not name the Queensland law or a regulator.
 :::
 
 ---

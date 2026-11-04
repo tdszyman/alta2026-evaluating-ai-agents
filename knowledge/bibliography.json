@@ -4070,6 +4070,31 @@
       "note": "Musk’s reply on X, as quoted: “That’s not my address and the order isn’t canceled.”",
       "featured_rank": null,
       "abstract": null
+    },
+    {
+      "id": "booth-2025-bunnings-chatbot",
+      "type": "website",
+      "authors": [
+        "Harry Booth"
+      ],
+      "year": "2025",
+      "title": "Bunnings addresses ‘illegal advice’ from its AI chatbot",
+      "venue": "Inside Retail Australia, 8 December 2025.",
+      "url": "https://insideretail.com.au/digital/ai/bunnings-addresses-illegal-advice-from-its-ai-chatbot-202512",
+      "links": [
+        {
+          "label": "Inside Retail",
+          "href": "https://insideretail.com.au/digital/ai/bunnings-addresses-illegal-advice-from-its-ai-chatbot-202512"
+        }
+      ],
+      "groups": [
+        "industry"
+      ],
+      "mentions": [],
+      "summary": "Report that the Bunnings AI Assistant gave a Queensland customer six steps for replacing the plug on an extension cord, work that in Queensland can legally be done only by a licensed electrician. Bunnings admitted the fault and said it had strengthened its safeguards so that requests about electrical, plumbing or other licensed work are referred to a qualified tradesperson. Part 1 uses it as an Australian case of the regulatory risk of an AI assistant giving advice that breaks the law.",
+      "note": "The article does not name the Queensland law, a regulator, or the earlier reports it refers to. A Bunnings spokesperson is quoted: “While our safeguards and testing measures minimise the risk of non-compliance advice, like any AI model, there is always a small risk of an incorrect or unexpected response.”",
+      "featured_rank": null,
+      "abstract": null
     }
   ]
 }
