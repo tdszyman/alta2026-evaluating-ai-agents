@@ -4,6 +4,21 @@
 **Deck (WIP):** [`../../presentations/presentation/01-agents-and-eval-challenges/index.qmd`](../../presentations/presentation/01-agents-and-eval-challenges/index.qmd)  
 **Status:** Detailed outline WIP — deck placeholders follow this outline; not final slide content.
 
+## Deck order (4 Nov 2026, Terrence’s structure)
+
+The deck now follows this order. The detailed outline below is the earlier plan and is kept for its content.
+
+1. **Why AI agents, and why evaluate them.** Motivation for the whole tutorial, mostly non-technical: why organisations and researchers care, what agents promise, how they go wrong, why evals matter because of the risk. LLM-as-a-judge introduced early, in plain terms.
+2. **Technical foundations.** What an LLM is, generative AI, AI agents; the building-block terminology.
+3. **Why agents need LLM judges.** Why other methods fall short, building on step 2.
+4. **Hand-off to Part 2** (LLM-as-a-judge methods in depth).
+
+Open questions for Terrence:
+
+- [ ] The program lists the industry evaluation lifecycle (prompts, test cases, datasets, rubrics, code; versioning; offline vs production monitoring) under Part 1. The new order has no place for it, so those stubs sit on the section 3 follow-up slide. Keep it in Part 1, move it to another part, or ask to change the program text?
+- [ ] Step 3 (why other methods fall short) overlaps Part 2’s program topics: deterministic vs non-deterministic evaluation, and when teams choose rules vs judges vs humans. Where is the line between Part 1 and Part 2?
+- [ ] Section 1 has no finished slides yet on why organisations care about agents or what they promise. Which examples speak to students and researchers as well as businesses?
+
 ## Detailed outline (WIP)
 
 1. **Intro and background**
