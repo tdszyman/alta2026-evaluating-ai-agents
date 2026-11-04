@@ -65,6 +65,48 @@
   color: #14283b;
 }
 
+/* "Why organisations adopt AI agents": two cards, each a name, one
+   definition and who it applies to. */
+
+.reveal .adopt-slide .ad-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  margin-top: 28px;
+}
+
+.reveal .adopt-slide .ad-card {
+  padding: 22px 26px 20px;
+  background: #eff3f5;
+  border-left: 2px solid #b8c8d1;
+  border-radius: 2px;
+}
+
+.reveal .adopt-slide .ad-card p {
+  margin: 0 0 18px;
+  font-size: 28px;
+  line-height: 1.35;
+  color: #14283b;
+}
+
+.reveal .adopt-slide .ad-card p:last-child {
+  margin-bottom: 0;
+}
+
+.reveal .adopt-slide .ad-name {
+  font-size: 34px;
+  font-weight: 600;
+  color: #245ba6;
+}
+
+.reveal .adopt-slide .ad-who {
+  display: block;
+  padding-top: 14px;
+  font-size: 20px;
+  color: #526476;
+  border-top: 1px solid #b8c8d1;
+}
+
 /* "How AI agents create risk": a numbered list laid out as rows of
    risk, example and mitigation. The header and each item share one grid. */
 

@@ -80,6 +80,42 @@ Placeholder slides only — not final narrative. Do not treat examples as comple
 
 ---
 
+## Why organisations adopt AI agents {.adopt-slide}
+
+:::: {.ad-grid}
+
+::: {.ad-card}
+[Efficiency]{.ad-name}
+
+Deliver outcomes with less effort, greater speed or better consistency.
+
+[Nearly every organisation, through agents for some of its internal work.]{.ad-who}
+:::
+
+::: {.ad-card}
+[Growth]{.ad-name}
+
+Create better customer experiences, new offerings or additional revenue.
+
+[Some organisations, by selling agents or building them into what customers use. Often startups.]{.ad-who}
+:::
+
+::::
+
+::: {.notes}
+**About this slide:** Why organisations are interested in adopting AI agents, in two parts. Efficiency means delivering outcomes with less effort, greater speed or better consistency. Growth means creating better customer experiences, new offerings or additional revenue. Nearly every organisation, whether a company, a university or a research lab, has internal work where an agent could help, so efficiency applies widely. Growth applies to fewer: only some organisations sell agents or put them in front of customers, and these tend to be startups working out how to build new products on them. Either way, the organisation needs to know the agent does the job well, which is what the rest of this tutorial is about.
+
+**Presenter notes:**
+
+- Terrence’s framing. Efficiency: deliver business outcomes with less effort, greater speed or better consistency. Growth: create better customer experiences, new offerings or additional revenue.
+- Nearly all organisations can benefit from some element of efficiency, by adopting AI agents for some type of internal business operations.
+- Some, but not all, businesses can also “sell” AI agents in some way, or use them in the customer experience. This does not apply to all businesses, and may skew towards startups figuring out how to create new products and value out of AI agents.
+- For the students and researchers in the room: both motives raise the same question this tutorial is about, which is how you know the agent is doing the job well.
+- Next: the public is less enthusiastic than the organisations adopting agents, and agents bring risks as well as promise.
+:::
+
+---
+
 ## The public’s view of AI is mixed {.perception-slide}
 
 :::: {.columns}
@@ -550,6 +586,8 @@ End the chat if risk ≥ 0.8.</pre>
 
 ::: {.fu-item}
 [How are enterprises using agents?]{.fu-title}
+
+<!-- Partly covered now by "Why organisations adopt AI agents" (efficiency and growth). Products vs productivity is close to growth vs efficiency; kept until Terrence confirms. -->
 
 - **Products** vs **Productivity**
 - General vs specialist productivity
