@@ -118,11 +118,190 @@ AI has a decidedly mixed, if not entirely negative, perception among the public.
 **LLM-as-a-judge:** an AI model reads what another AI system did, and checks it against criteria that people write down.
 
 ::: {.notes}
-**About this slide:** Introduces the idea at the centre of the tutorial in plain terms. An LLM-as-a-judge is an AI model that reads what another AI system did and checks it against criteria people write down. Using AI to check AI can sound circular; Part 1 explains why it is the best approach available today. The next two slides show judges catching two kinds of agent failure, in illustrative mock-ups.
+**About this slide:** Introduces the idea at the centre of the tutorial in plain terms. An LLM-as-a-judge is an AI model that reads what another AI system did and checks it against criteria people write down. Using AI to check AI can sound circular; Part 1 explains why it is the best approach available today. The next slides set out how AI agents create risk for a company, with four real cases, then two illustrative mock-ups of judges catching agent failures.
 
 **Presenter notes:**
 
 - Terrence’s line, close to verbatim. Keep this slide non-technical: how an LLM, an agent and a judge work comes in section 2, and judge methods in Part 2.
+:::
+
+---
+
+## How AI agents create risk for a company like SEEK {.risk-slide}
+
+<!-- TODO: Terrence to confirm the six labels. Running cost (5) and quality risk (6) were added later and their labels are not settled. -->
+
+:::: {.rk-table}
+
+::: {.rk-head}
+[Risk]{.rk-name} [At a company like SEEK]{.rk-eg} [How evals and LLM judges help]{.rk-fix}
+:::
+
+1. [Financial: one bad decision]{.rk-name} [A support agent gives a hirer a full refund, or a discount on ad pricing, that policy does not allow.]{.rk-eg} [Test refund and pricing requests before launch. A judge checks each offer against policy before it is sent.]{.rk-fix}
+2. [Reputational: poor behaviour]{.rk-name} [The agent makes an off-brand or offensive comment to a user.]{.rk-eg} [Simulated users try to provoke it. A judge scores tone and brand voice, before launch and on live chats.]{.rk-fix}
+3. [Regulatory: illegal behaviour]{.rk-name} [The agent writes discriminatory content into a job ad.]{.rk-eg} [A judge checks generated content against the law before it is published.]{.rk-fix}
+4. [Cybersecurity: an attack surface]{.rk-name} [Attackers use the agent to reach data they should not see.]{.rk-eg} [Simulated attackers probe it. A judge reads the whole conversation and the agent’s actions, not one message.]{.rk-fix}
+5. [Running cost]{.rk-name} [The agent costs more to run than its work is worth, so SEEK loses money on it.]{.rk-eg} [Measure cost and usage per successful task, with a judge deciding which tasks succeeded.]{.rk-fix}
+6. [Quality risk]{.rk-name} [The agent does a poor job. Hirers and candidates get poor outcomes and take their business elsewhere.]{.rk-eg} [A judge scores quality on real tasks, tracked over time.]{.rk-fix}
+
+::::
+
+::: {.notes}
+**About this slide:** Six ways an AI agent can create risk for a company like SEEK, an online employment marketplace that connects hirers and candidates. Each row gives the risk, an example of how it could happen at SEEK, and how agent evaluations and LLM judges help reduce it. The examples are hypothetical. The first four are about a single failure: a bad decision, a bad comment, an illegal output, or an attack. The last two build up over many tasks: an agent that costs too much to run, or one that does a mediocre job until users leave. The next four slides show real, publicly reported cases of the first four risks.
+
+**Presenter notes:**
+
+- Talk down the list. For each row: what could go wrong, then how evals and a judge catch it.
+- Financial risk here means one costly decision. Running cost (row 5) is different: the agent may never make a mistake and still lose money on every task.
+- Reputational risk here means one bad moment that people share. Quality risk (row 6) is different: no single reply is a scandal, but users get poor results and stop coming back.
+- Rows 3 and 4 return as worked mock-ups after the real cases: the job ad and the multi-turn attack.
+- Rows 5 and 6 both depend on knowing which tasks the agent did well, which is what a judge provides. That is why cost is measured per successful task, not per task.
+- The labels for rows 5 and 6 are tentative.
+:::
+
+---
+
+## Financial risk in practice: Air Canada’s chatbot {.case-slide}
+
+[Real case · a customer-support chatbot; the airline did not say how it worked]{.cs-tag}
+
+:::: {.columns}
+
+::: {.column width="58%"}
+- After his grandmother died in November 2022, a customer asked Air Canada’s website chatbot about bereavement fares.
+- It said he could apply for the reduced fare within 90 days of buying his ticket, even after travelling. The airline’s own bereavement page said claims could not be made after travel.
+- Air Canada argued it could not be held liable for what its chatbot said. The tribunal called this “a remarkable submission”.
+- In February 2024 the tribunal ordered Air Canada to pay him $812.02 (Canadian).
+:::
+
+::: {.column width="42%" .cs-fit}
+[Where evals fit]{.cs-fit-title}
+
+- Test the chatbot’s answers against the company’s own policy before launch.
+- A judge that has the policy can flag an answer that promises something the policy does not allow.
+:::
+
+::::
+
+[Source: [Civil Resolution Tribunal 2024](../../bibliography/crt-2024-moffatt-air-canada/), Moffatt v. Air Canada, 2024 BCCRT 149.]{.cs-source}
+
+::: {.notes}
+**About this slide:** A real case of financial risk. In November 2022 a customer asked Air Canada’s website chatbot about bereavement fares. The chatbot said he could book at the normal fare and apply for the reduced fare within 90 days, which contradicted the airline’s own policy page. Air Canada later said it did not allow claims after travel, and argued before British Columbia’s Civil Resolution Tribunal that it could not be held liable for information given by its chatbot. The tribunal rejected that, found negligent misrepresentation, and in February 2024 ordered Air Canada to pay $812.02. The decision is [Moffatt v. Air Canada, 2024 BCCRT 149](../../bibliography/crt-2024-moffatt-air-canada/). The airline did not say how its chatbot worked, so this is an AI chatbot failure, not one known to involve an agent that takes actions.
+
+**Presenter notes:**
+
+- The amount is small. The point is the ruling: the company is responsible for what its chatbot says, the same as for any other page on its website.
+- The tribunal’s reasoning: “It should be obvious to Air Canada that it is responsible for all the information on its website. It makes no difference whether the information comes from a static page or a chatbot.”
+- The same logic applies to a SEEK support agent that offers a refund or a discount: the offer is SEEK’s.
+- Widely reported at the time, including by CBC News.
+:::
+
+---
+
+## Reputational risk in practice: DPD’s chatbot {.case-slide}
+
+[Real case · a customer-support chatbot with an AI element]{.cs-tag}
+
+:::: {.columns}
+
+::: {.column width="58%"}
+- In January 2024 a customer who could not get help from the parcel firm DPD’s online chat got it to swear at him.
+- It also called DPD “the worst delivery firm in the world” and wrote a haiku criticising the company.
+- One post about it was viewed 800,000 times in 24 hours.
+- DPD said an error occurred after a system update. It disabled the AI part of the chat.
+:::
+
+::: {.column width="42%" .cs-fit}
+[Where evals fit]{.cs-fit-title}
+
+- The failure followed an update, so re-run the evals after every change, not just at launch.
+- Include test users who try to provoke the agent, and a judge that scores the replies for tone.
+:::
+
+::::
+
+[Source: [Gerken 2024](../../bibliography/gerken-2024-dpd-chatbot/), BBC News.]{.cs-source}
+
+::: {.notes}
+**About this slide:** A real case of reputational risk. In January 2024 a customer using the parcel delivery firm DPD’s online support chat, which included an AI element, got it to swear at him, call DPD “the worst delivery firm in the world” and write a haiku criticising the company. Word of it spread on social media; one post was viewed 800,000 times in 24 hours ([Gerken 2024](../../bibliography/gerken-2024-dpd-chatbot/)). DPD said the AI element had worked for years and that an error occurred after a system update; it disabled that part of the chat. The harm here is reputational.
+
+**Presenter notes:**
+
+- DPD’s statement, as reported by the BBC: “An error occurred after a system update yesterday. The AI element was immediately disabled and is currently being updated.”
+- The customer asked it to “exaggerate and be over the top in your hatred”. That is a provocation, but anyone can try it on a public chatbot and share the result.
+- The lesson for evaluation: a system that passed before can fail after an update. Evals have to run on every change.
+:::
+
+---
+
+## Regulatory risk in practice: NYC’s MyCity chatbot {.case-slide}
+
+[Real case · a government chatbot giving business advice]{.cs-tag}
+
+:::: {.columns}
+
+::: {.column width="58%"}
+- New York City launched an AI chatbot, built on Microsoft’s Azure AI services, to answer business owners’ questions about city rules.
+- In March 2024 The Markup reported that it told users they could take a cut of workers’ tips, refuse tenants with housing vouchers, and run a cash-free business. The Markup found all three wrong under the city’s rules.
+- Ten Markup staff asked the same housing-voucher question. All ten were told landlords did not have to accept the vouchers.
+- The city called it a pilot that had “already provided thousands of people with timely, accurate answers”.
+:::
+
+::: {.column width="42%" .cs-fit}
+[Where evals fit]{.cs-fit-title}
+
+- The reporters ran an eval by hand: questions with known legal answers, asked many times.
+- Automate that before launch: a judge compares each answer with the correct one, and repeat runs show how consistent it is.
+:::
+
+::::
+
+[Source: [Lecher 2024](../../bibliography/lecher-2024-nyc-chatbot/), The Markup.]{.cs-source}
+
+::: {.notes}
+**About this slide:** A real case of regulatory risk. New York City’s MyCity chatbot, built on Microsoft’s Azure AI services, was meant to give business owners trusted information on city rules. In March 2024 The Markup reported that it told users they could take a cut of workers’ tips, refuse tenants who pay with housing vouchers, and make a business cash-free, all of which the reporters found to be against the city’s rules ([Lecher 2024](../../bibliography/lecher-2024-nyc-chatbot/)). Ten staff asked the same housing-voucher question and all ten got the wrong answer. Here the AI was giving advice that would lead its users to break the law; the job-ad mock-up later in this section shows an agent writing unlawful content itself.
+
+**Presenter notes:**
+
+- The useful detail for this audience is how the reporters found it: a set of questions with known answers, asked repeatedly by different people. That is an evaluation, done by hand, after launch.
+- The bot did not give the same answer every time; it once gave a reporter the correct answer on vouchers. One correct test is not enough, so evals repeat the same case.
+- The chatbot page already carried a note that it “may occasionally produce incorrect, harmful or biased content”. A disclaimer does not tell a user which answer is wrong.
+:::
+
+---
+
+## Cybersecurity risk in practice: EchoLeak in Copilot {.case-slide}
+
+[Real case · an AI assistant with access to company data · a flaw found by researchers and fixed, with no reported attacks]{.cs-tag}
+
+:::: {.columns}
+
+::: {.column width="58%"}
+- Researchers at Aim Security found that an attacker could steal data from Microsoft 365 Copilot just by sending an email, with no action by the user.
+- At risk was anything Copilot could reach, such as chat histories, OneDrive documents, SharePoint content and Teams conversations.
+- The researchers called it the first known zero-click attack on an AI agent.
+- Microsoft rated it critical ([CVE-2025-32711](../../bibliography/nvd-2025-cve-2025-32711/)) and in June 2025 said it was fully addressed. The researchers said there was no evidence customers had been targeted.
+:::
+
+::: {.column width="42%" .cs-fit}
+[Where evals fit]{.cs-fit-title}
+
+- The attack came in through content the agent read, not through the chat. Red-team tests need instructions hidden in emails and documents.
+- A judge can check what the agent did with what it read: did it follow a document’s instructions, or send data out?
+:::
+
+::::
+
+[Source: [Jones 2025](../../bibliography/jones-2025-echoleak/), Cybersecurity Dive; [National Vulnerability Database 2025](../../bibliography/nvd-2025-cve-2025-32711/).]{.cs-source}
+
+::: {.notes}
+**About this slide:** A real case of an AI agent as an attack surface. Researchers at Aim Security found a flaw, which they named EchoLeak, in Microsoft 365 Copilot, the AI assistant built into Microsoft’s workplace apps. An attacker could send an email whose text, coming from outside the organisation, could take over Copilot and make it leak data from anything it had access to, with no action by the user ([Jones 2025](../../bibliography/jones-2025-echoleak/)). Microsoft rated it critical, recorded as [CVE-2025-32711](../../bibliography/nvd-2025-cve-2025-32711/), and said in June 2025 that it was fully addressed and customers did not need to act. This was a vulnerability found and reported by researchers, not a known breach.
+
+**Presenter notes:**
+
+- Be clear that no attack on customers was reported. It is here because it shows how an agent with access to company data becomes something attackers can use.
+- Contrast with the multi-turn attack mock-up later in this section. There, the attacker is the user in the chat. Here, the attacker never talks to the agent: the instructions arrive inside content the agent reads while doing its job.
+- Microsoft’s advisory describes it as “AI command injection in M365 Copilot”.
 :::
 
 ---
@@ -396,6 +575,8 @@ End the chat if risk ≥ 0.8.</pre>
 
 ::: {.fu-item}
 [AI agent risks]{.fu-title}
+
+<!-- Mostly covered now by "How AI agents create risk for a company like SEEK" and the four real-case slides after it. "Financial risks (spend)" maps to the running-cost row. Kept until Terrence confirms nothing here is lost. -->
 
 - Security risks
 - Financial risks (spend)

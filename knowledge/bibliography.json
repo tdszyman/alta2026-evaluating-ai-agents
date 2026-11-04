@@ -3882,6 +3882,144 @@
       "note": null,
       "featured_rank": null,
       "abstract": null
+    },
+    {
+      "id": "crt-2024-moffatt-air-canada",
+      "type": "website",
+      "authors": [
+        "Civil Resolution Tribunal"
+      ],
+      "year": "2024",
+      "title": "Moffatt v. Air Canada, 2024 BCCRT 149",
+      "venue": "Reasons for decision, Tribunal Member Christopher C. Rivers, file SC-2023-005609. Civil Resolution Tribunal of British Columbia, 14 February 2024.",
+      "url": "https://decisions.civilresolutionbc.ca/crt/crtd/en/525448/1/document.do",
+      "links": [
+        {
+          "label": "Decision",
+          "href": "https://decisions.civilresolutionbc.ca/crt/crtd/en/525448/1/document.do"
+        },
+        {
+          "label": "CanLII PDF",
+          "href": "https://www.canlii.org/en/bc/bccrt/doc/2024/2024bccrt149/2024bccrt149.pdf"
+        }
+      ],
+      "groups": [
+        "industry"
+      ],
+      "mentions": [
+        "Moffatt v. Air Canada",
+        "2024 BCCRT 149"
+      ],
+      "summary": "The tribunal decision that held Air Canada liable after its website chatbot told a customer he could claim a bereavement fare within 90 days of buying his ticket, when the airline’s own policy page said such claims could not be made after travel. Air Canada argued it could not be held liable for what the chatbot said; the tribunal disagreed and ordered it to pay $812.02. Part 1 uses it as a real case of the financial risk of a customer-facing AI system.",
+      "note": "A tribunal record. The decision says Air Canada did not provide any information about the nature of its chatbot, so it is not known whether it used an LLM or took actions. The case was also reported by CBC News, the National Post and Ars Technica in February 2024.",
+      "featured_rank": null,
+      "abstract": null
+    },
+    {
+      "id": "gerken-2024-dpd-chatbot",
+      "type": "website",
+      "authors": [
+        "Tom Gerken"
+      ],
+      "year": "2024",
+      "title": "DPD error caused chatbot to swear at customer",
+      "venue": "BBC News, 19 January 2024.",
+      "url": "https://www.bbc.com/news/technology-68025677",
+      "links": [
+        {
+          "label": "BBC News",
+          "href": "https://www.bbc.com/news/technology-68025677"
+        }
+      ],
+      "groups": [
+        "industry"
+      ],
+      "mentions": [],
+      "summary": "BBC report on the parcel firm DPD disabling the AI part of its online support chat after a customer got it to swear at him, call DPD “the worst delivery firm in the world” and write a haiku criticising the company. DPD said an error occurred after a system update. Part 1 uses it as a real case of the reputational risk of a customer-facing AI system.",
+      "note": "DPD’s statement, as quoted by the BBC: “We have operated an AI element within the chat successfully for a number of years. An error occurred after a system update yesterday. The AI element was immediately disabled and is currently being updated.”",
+      "featured_rank": null,
+      "abstract": null
+    },
+    {
+      "id": "lecher-2024-nyc-chatbot",
+      "type": "website",
+      "authors": [
+        "Colin Lecher"
+      ],
+      "year": "2024",
+      "title": "NYC’s AI Chatbot Tells Businesses to Break the Law",
+      "venue": "The Markup, 29 March 2024. Co-published with Documented and THE CITY.",
+      "url": "https://themarkup.org/artificial-intelligence/2024/03/29/nycs-ai-chatbot-tells-businesses-to-break-the-law",
+      "links": [
+        {
+          "label": "The Markup",
+          "href": "https://themarkup.org/artificial-intelligence/2024/03/29/nycs-ai-chatbot-tells-businesses-to-break-the-law"
+        }
+      ],
+      "groups": [
+        "industry"
+      ],
+      "mentions": [],
+      "summary": "An investigation into New York City’s MyCity business chatbot, built on Microsoft’s Azure AI services, which told users they could do things that are illegal in the city: take a cut of workers’ tips, refuse tenants with housing vouchers, and run a cash-free business. When ten reporters asked the same housing-voucher question, all ten got the wrong answer. Part 1 uses it as a real case of the regulatory risk of an AI system giving unlawful advice.",
+      "note": "A city spokesperson said the chatbot was a pilot that “has already provided thousands of people with timely, accurate answers”.",
+      "featured_rank": null,
+      "abstract": null
+    },
+    {
+      "id": "nvd-2025-cve-2025-32711",
+      "type": "website",
+      "authors": [
+        "National Vulnerability Database"
+      ],
+      "year": "2025",
+      "title": "CVE-2025-32711",
+      "venue": "NIST, published 11 June 2025.",
+      "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-32711",
+      "links": [
+        {
+          "label": "NVD record",
+          "href": "https://nvd.nist.gov/vuln/detail/CVE-2025-32711"
+        },
+        {
+          "label": "Microsoft advisory",
+          "href": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2025-32711"
+        }
+      ],
+      "groups": [
+        "industry"
+      ],
+      "mentions": [
+        "CVE-2025-32711"
+      ],
+      "summary": "The public vulnerability record for the Microsoft 365 Copilot flaw that its finders, Aim Security, called EchoLeak. The record describes it as “AI command injection in M365 Copilot allows an unauthorized attacker to disclose information over a network.” Part 1 uses it as a real case of an AI assistant becoming an attack surface.",
+      "note": "Microsoft scored it 9.3 (critical) on CVSS; NIST scored it 7.5.",
+      "featured_rank": null,
+      "abstract": null
+    },
+    {
+      "id": "jones-2025-echoleak",
+      "type": "website",
+      "authors": [
+        "David Jones"
+      ],
+      "year": "2025",
+      "title": "Critical flaw in Microsoft Copilot could have allowed zero-click attack",
+      "venue": "Cybersecurity Dive, 11 June 2025.",
+      "url": "https://www.cybersecuritydive.com/news/flaw-microsoft-copilot-zero-click-attack/750456/",
+      "links": [
+        {
+          "label": "Cybersecurity Dive",
+          "href": "https://www.cybersecuritydive.com/news/flaw-microsoft-copilot-zero-click-attack/750456/"
+        }
+      ],
+      "groups": [
+        "industry"
+      ],
+      "mentions": [],
+      "summary": "News report on EchoLeak, a flaw in Microsoft 365 Copilot found by researchers at Aim Security, who said an attacker could steal data from Copilot’s context simply by sending an email, with no action by the user, and called it the first known zero-click attack on an AI agent. Microsoft said the issue was fully addressed and customers did not need to act; the researchers said there was no evidence customers were targeted. Part 1 uses it as a real case of an AI agent as an attack surface.",
+      "note": null,
+      "featured_rank": null,
+      "abstract": null
     }
   ]
 }

@@ -18,6 +18,8 @@ Open questions for Terrence:
 - [ ] The program lists the industry evaluation lifecycle (prompts, test cases, datasets, rubrics, code; versioning; offline vs production monitoring) under Part 1. The new order has no place for it, so those stubs sit on the section 3 follow-up slide. Keep it in Part 1, move it to another part, or ask to change the program text?
 - [ ] Step 3 (why other methods fall short) overlaps Part 2’s program topics: deterministic vs non-deterministic evaluation, and when teams choose rules vs judges vs humans. Where is the line between Part 1 and Part 2?
 - [ ] Section 1 has no finished slides yet on why organisations care about agents or what they promise. Which examples speak to students and researchers as well as businesses?
+- [ ] Risk slide labels. The slide lists six risks: financial, reputational, regulatory, cybersecurity, then “Running cost” and “Quality risk”. The last two were added later and their labels are tentative. Keep, rename, or merge?
+- [ ] The four real cases (Air Canada, DPD, NYC MyCity, EchoLeak) are AI chatbot or assistant failures. Only EchoLeak is described by its finders as an attack on an AI agent; the other three are chatbots. Is that close enough, or should we keep looking for agent cases that take actions?
 
 ## Detailed outline (WIP)
 
