@@ -167,11 +167,12 @@
   color: #245ba6;
 }
 
-/* Real-world case slides: what happened beside where evals fit. */
+/* Real-world case slides: a large screenshot of the failure or of the
+   report, credited under it, beside three short facts and the eval point. */
 
 .reveal .case-slide .cs-tag {
   display: inline-block;
-  margin: 0 0 14px;
+  margin: 0 0 12px;
   padding: 3px 10px;
   font-size: 15px;
   color: #526476;
@@ -179,45 +180,118 @@
   border-radius: 2px;
 }
 
-.reveal .case-slide .columns {
-  display: flex;
-  align-items: flex-start;
-  gap: 28px;
+.reveal .case-slide .cs-body {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  align-items: start;
+  gap: 32px;
 }
 
-.reveal .case-slide .column {
-  font-size: 22px;
+.reveal .case-slide .cs-visual p {
+  margin: 0;
+}
+
+.reveal .case-slide .cs-visual img {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 430px;
+  margin: 0;
+  border: 1px solid #b8c8d1;
+}
+
+.reveal .case-slide .cs-credit {
+  display: block;
+  margin-top: 6px;
+  font-size: 14px;
   line-height: 1.35;
+  color: #526476;
 }
 
-.reveal .case-slide .column ul {
+.reveal .case-slide .cs-facts {
+  font-size: 21px;
+  line-height: 1.35;
+  color: #14283b;
+}
+
+.reveal .case-slide .cs-facts ul {
   margin: 0 0 0 1em;
   padding: 0;
 }
 
-.reveal .case-slide .column li {
+.reveal .case-slide .cs-facts li {
   margin: 0 0 10px;
 }
 
 .reveal .case-slide .cs-fit {
-  padding: 12px 18px 4px;
-  font-size: 20px;
+  margin-top: 16px;
+  padding: 10px 16px;
+  font-size: 19px;
   background: #eff3f5;
   border-left: 2px solid #b8c8d1;
   border-radius: 2px;
 }
 
+.reveal .case-slide .cs-fit p {
+  margin: 0;
+}
+
 .reveal .case-slide .cs-fit-title {
   display: block;
-  margin: 0 0 8px;
-  font-size: 18px;
+  margin: 0 0 4px;
+  font-size: 16px;
   font-weight: 600;
   color: #245ba6;
 }
 
 .reveal .case-slide .cs-source {
   display: block;
-  margin-top: 14px;
+  margin-top: 12px;
   font-size: 15px;
   color: #526476;
+}
+
+/* "Layers of control around an AI agent": a stack of plain rows, with the
+   layer this tutorial covers picked out in the accent colour. */
+
+.reveal .layers-slide .ly-stack {
+  margin-top: 18px;
+  font-size: 21px;
+  line-height: 1.35;
+  color: #14283b;
+}
+
+.reveal .layers-slide .ly-row {
+  margin: 0 0 8px;
+  padding: 10px 18px;
+  background: #eff3f5;
+  border-left: 2px solid #b8c8d1;
+  border-radius: 2px;
+}
+
+.reveal .layers-slide .ly-row p {
+  display: grid;
+  grid-template-columns: 330px 1fr;
+  column-gap: 24px;
+  margin: 0;
+}
+
+.reveal .layers-slide .ly-name {
+  font-weight: 600;
+}
+
+.reveal .layers-slide .ly-row.ly-focus {
+  background: #fff;
+  border: 2px solid #245ba6;
+}
+
+.reveal .layers-slide .ly-focus .ly-name {
+  color: #245ba6;
+}
+
+.reveal .layers-slide .ly-point {
+  margin-top: 18px;
+  font-size: 22px;
+  color: #14283b;
 }
