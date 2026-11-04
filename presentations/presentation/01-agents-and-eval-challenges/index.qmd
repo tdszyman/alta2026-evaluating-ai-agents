@@ -11,6 +11,7 @@ format:
       - chat-attack-judge.css
       - terms.css
       - follow-up.css
+      - trends.css
 title-slide-attributes:
   data-notes: "<p><b>About this slide:</b> Part 1 of the ALTA 2026 tutorial “Evaluating AI Agents with LLM-as-a-Judge”. It introduces AI agents and the vocabulary used in the rest of the tutorial, then explains why agents are hard to evaluate and why LLM judges are needed.</p>"
 ---
@@ -45,6 +46,36 @@ Placeholder slides only — not final narrative. Do not treat examples as comple
 
 ::: {.notes}
 **About this slide:** Section 1 sets out why AI agents matter, to the organisations that deploy them and to the researchers and students who study them; how they can go wrong; and why that risk makes evaluation essential. It introduces LLM-as-a-judge in plain terms. The technical detail comes in section 2.
+:::
+
+---
+
+## Interest in AI agents {.trends-slide}
+
+```{=html}
+<div class="gt-frame">
+  <div class="gt-live" id="gt-agents"></div>
+  <div class="gt-offline" id="gt-offline" hidden>The live Google Trends chart needs an internet connection. <a href="https://trends.google.com/trends/explore?date=today%205-y&amp;q=AI%20Agent,Agentic%20AI,Generative%20AI,LLM&amp;hl=en-US">Open the query in Google Trends</a>.</div>
+</div>
+<div class="gt-caption">Google Trends, worldwide, past 5 years: “AI Agent”, “Agentic AI”, “Generative AI” and “LLM”. Search interest is relative: 100 is the highest point on the chart. <a href="https://trends.google.com/trends/explore?date=today%205-y&amp;q=AI%20Agent,Agentic%20AI,Generative%20AI,LLM&amp;hl=en-US">Open in Google Trends</a></div>
+<script type="text/javascript" src="https://ssl.gstatic.com/trends_nrtr/4630_RC01/embed_loader.js"></script>
+<script type="text/javascript">
+  if (!window.trends) {
+    document.getElementById("gt-offline").hidden = false;
+  } else {
+    trends.embed.renderExploreWidgetTo(document.getElementById("gt-agents"), "TIMESERIES", {"comparisonItem":[{"keyword":"AI Agent","geo":"","time":"today 5-y"},{"keyword":"Agentic AI","geo":"","time":"today 5-y"},{"keyword":"Generative AI","geo":"","time":"today 5-y"},{"keyword":"LLM","geo":"","time":"today 5-y"}],"category":0,"property":""}, {"exploreQuery":"date=today%205-y&q=AI%20Agent,Agentic%20AI,Generative%20AI,LLM&hl=en-US","guestPath":"https://trends.google.com:443/trends/embed/"});
+  }
+</script>
+```
+
+::: {.notes}
+**About this slide:** Context for why AI agents matter now. The chart shows Google search interest over the past five years, worldwide, for four terms: “AI Agent”, “Agentic AI”, “Generative AI” and “LLM”. Interest in AI agents has grown alongside interest in generative AI and LLMs. Search interest says what people are curious about, not how agents are used or how well they work; it is here as motivation, not evidence. The chart is live, so it shows the latest data when viewed.
+
+**Presenter notes:**
+
+- The chart is a live Google Trends embed and needs an internet connection. Without one, the slide shows a short message and a link to the same query instead. Check the venue connection, or open the query in a browser tab beforehand.
+- Use it to set the scene, not as a finding: search interest is not a measure of adoption or capability.
+- The data updates, so the shape may differ from the last rehearsal.
 :::
 
 ---
