@@ -10,7 +10,7 @@ The deck now follows this order. The detailed outline below is the earlier plan 
 
 1. **Why AI agents, and why evaluate them.** Motivation for the whole tutorial, mostly non-technical. LLM-as-a-judge introduced early, in plain terms. Terrence’s narrative, in three beats:
     1. Organisations are racing to adopt AI agents for their potential and promise, even while the public grows more wary of AI (trends, efficiency and growth, public perception).
-    2. Major risks anyone working with agents needs to know: the six-risk slide, then the cases in risk order (Air Canada; DPD; MyCity, Bunnings and the job-ad mock-up; EchoLeak, the Lego order, the gym booking agent and the multi-turn mock-up; Woolworths’ Olive).
+    2. Major risks anyone working with agents needs to know: the six-risk slide, a headline collage of all the real cases (one to two minutes), then the cases in risk order (Air Canada; DPD; MyCity, Bunnings and the job-ad mock-up; EchoLeak, the Lego order, the gym booking agent and the multi-turn mock-up; Woolworths’ Olive).
     3. So organisations put layers of control around agents (identities, runtimes, gateways, RBAC, observability); evals, guardrails and judges are one layer, and the one this tutorial covers.
 
     The beats are internal and informal. The deck refers to them only in notes, so they can be dropped without changing the slides.
@@ -27,6 +27,7 @@ Open questions for Terrence:
 - [ ] Regulatory has two candidate cases: NYC’s MyCity chatbot (wrong legal answers) and the Bunnings AI Assistant (Queensland electrical advice, Inside Retail, 8 December 2025). Keep one or both?
 - [ ] Cybersecurity has three candidate cases: EchoLeak (Microsoft 365 Copilot), Musk’s Lego order (Lego’s Sophia support assistant, October 2026) and the gym booking agent (ABC News, 10 August 2026). The Lego order changes are claims from screenshots on X; WIRED and Tech Times report that Lego did not confirm them. The gym case also raises the regulatory question of who is liable when an agent acts on its own; no law or charge is reported. Keep which?
 - [ ] Woolworths’ Olive (Sydney Morning Herald, 26 February 2026) is placed as quality risk first, reputational second. Terrence read the mother stories as hallucination; Woolworths says they came from a persona prompt written years ago. How should the slide describe them?
+- [ ] The headline collage after the risk slide makes the point that the risks are real in one to two minutes. Do the individual case slides stay as they are, move after the collage as backup or detail, or get cut to one or two kept examples? None has been deleted yet.
 - [ ] The layers-of-control slide at the end of section 1 lists identity and registry, runtime, gateway, access control (RBAC), observability, and evals, guardrails and judges. Confirm the layers, names and order.
 - [ ] “Using AI to evaluate AI” (Terrence’s opening line) still sits between the first beat and the risk slide, because the risk slide and mock-ups use the term “LLM judge”. Keep it there, or move it after the layers-of-control slide?
 - [ ] Most real cases (Air Canada, DPD, NYC MyCity, Bunnings, Woolworths) are AI chatbot or assistant failures. EchoLeak is described by its finders as an attack on an AI agent, and the gym case is an agent taking actions for its user. Is that balance close enough?

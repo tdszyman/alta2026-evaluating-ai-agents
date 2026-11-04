@@ -184,7 +184,7 @@ AI has a decidedly mixed, if not entirely negative, perception among the public.
 ::::
 
 ::: {.notes}
-**About this slide:** Six ways an AI agent can create risk for a company like SEEK, an online employment marketplace that connects hirers and candidates. Each row gives the risk, an example of how it could happen at SEEK, and how agent evaluations and LLM judges help reduce it. The examples are hypothetical. The first four are about a single failure: a bad decision, a bad comment, an illegal output, or an attack. The last two build up over many tasks: an agent that costs too much to run, or one that does a mediocre job until users leave. The next slides take the risks in order with real, publicly reported cases: Air Canada (financial), DPD (reputational), MyCity and Bunnings (regulatory), EchoLeak, the Lego order and the gym booking agent (cybersecurity), and Woolworths’ Olive (quality, with a reputational edge). The SEEK job-ad mock-up follows the regulatory cases and the multi-turn attack mock-up follows the cybersecurity cases. No real case is shown for running cost.
+**About this slide:** Six ways an AI agent can create risk for a company like SEEK, an online employment marketplace that connects hirers and candidates. Each row gives the risk, an example of how it could happen at SEEK, and how agent evaluations and LLM judges help reduce it. The examples are hypothetical. The first four are about a single failure: a bad decision, a bad comment, an illegal output, or an attack. The last two build up over many tasks: an agent that costs too much to run, or one that does a mediocre job until users leave. The next slide gathers the headlines from all the real cases on one collage; the slides after it take the risks in order with those real, publicly reported cases: Air Canada (financial), DPD (reputational), MyCity and Bunnings (regulatory), EchoLeak, the Lego order and the gym booking agent (cybersecurity), and Woolworths’ Olive (quality, with a reputational edge). The SEEK job-ad mock-up follows the regulatory cases and the multi-turn attack mock-up follows the cybersecurity cases. No real case is shown for running cost.
 
 **Presenter notes:**
 
@@ -194,6 +194,93 @@ AI has a decidedly mixed, if not entirely negative, perception among the public.
 - Rows 3 and 4 each end with a worked SEEK mock-up after their real cases: the job ad and the multi-turn attack.
 - Rows 5 and 6 both depend on knowing which tasks the agent did well, which is what a judge provides. That is why cost is measured per successful task, not per task.
 - The labels for rows 5 and 6 are tentative.
+:::
+
+---
+
+## These risks are real, and they make headlines {.headlines-slide}
+
+<!-- TODO: Terrence to decide whether the individual case slides after this one stay, move after it as backup, or are cut to one or two kept examples. -->
+
+```{=html}
+<div class="hc-board">
+  <figure class="hc-card fragment" data-fragment-index="1" style="left:0px; top:0px; width:390px; --r:-3deg;">
+    <img src="images/headline-air-canada-cbc.png" alt="CBC News headline: “Air Canada found liable for chatbot's bad advice on plane tickets”. Standfirst: “Airline's claim that online helper was responsible for its own actions was 'remarkable': small claims court”. Jason Proctor, CBC News, posted Feb 15, 2024.">
+    <figcaption>CBC News · 15 Feb 2024</figcaption>
+  </figure>
+  <figure class="hc-card fragment" data-fragment-index="2" style="left:400px; top:12px; width:350px; --r:2deg;">
+    <img src="images/headline-dpd-bbc.png" alt="BBC News headline: “DPD error caused chatbot to swear at customer”. 19 January 2024, Tom Gerken, Technology reporter.">
+    <figcaption>BBC News · 19 Jan 2024</figcaption>
+  </figure>
+  <figure class="hc-card fragment" data-fragment-index="2" style="left:850px; top:16px; width:280px; --r:4deg;">
+    <img src="images/dpd-chatbot-haiku-bbc.png" alt="DPD’s chatbot, asked for a haiku about how useless DPD are, replies: “DPD is a useless / Chatbot that can’t help you. / Don’t bother calling them.”">
+    <figcaption>DPD’s chatbot · image: BBC News</figcaption>
+  </figure>
+  <figure class="hc-card fragment" data-fragment-index="3" style="left:10px; top:190px; width:300px; --r:2.5deg;">
+    <img src="images/headline-mycity-markup.png" alt="The Markup headline: “NYC’s AI Chatbot Tells Businesses to Break the Law”. Standfirst: “The Microsoft-powered bot says bosses can take workers’ tips and that landlords can discriminate based on source of income”. By Colin Lecher, March 29, 2024.">
+    <figcaption>The Markup · 29 Mar 2024</figcaption>
+  </figure>
+  <figure class="hc-card fragment" data-fragment-index="4" style="left:330px; top:175px; width:420px; --r:-2deg;">
+    <img src="images/headline-bunnings-inside-retail.png" alt="Inside Retail headline: “Bunnings addresses ‘illegal advice’ from its AI chatbot”.">
+    <figcaption>Inside Retail Australia · 8 Dec 2025</figcaption>
+  </figure>
+  <div class="hc-card hc-recreated fragment" data-fragment-index="5" style="left:790px; top:222px; width:330px; --r:-3deg;">
+    <span class="hc-outlet">Cybersecurity Dive</span>
+    <span class="hc-head">Critical flaw in Microsoft Copilot could have allowed zero-click attack</span>
+    <span class="hc-dek">Researchers said the vulnerability, dubbed “EchoLeak,” could allow a hacker to access data without any specific user interaction.</span>
+    <span class="hc-by">David Jones · Reporter · Published June 11, 2025</span>
+    <span class="hc-caption">Recreated from Cybersecurity Dive · 11 Jun 2025</span>
+  </div>
+  <figure class="hc-card fragment" data-fragment-index="6" style="left:420px; top:290px; width:290px; --r:3deg;">
+    <img src="images/headline-lego-wired.png" alt="WIRED headline: “Elon Musk Bragged About His Grok Lego Star Wars Haul. Then X Users Punked Him”. Jeremy White, Gear, Oct 12, 2026.">
+    <figcaption>WIRED · 12 Oct 2026</figcaption>
+  </figure>
+  <figure class="hc-card fragment" data-fragment-index="6" style="left:0px; top:392px; width:180px; --r:-4deg;">
+    <img src="images/lego-sophia-cancel-request-enderman.png" alt="Lego’s AI assistant Sophia replies: “That’s all done! I have sent a request to our specialised team to cancel this entire order for you, once cancelled, you will be informed by email!”">
+    <figcaption>Lego’s Sophia · X, Enderman, 11 Oct 2026</figcaption>
+  </figure>
+  <figure class="hc-card fragment" data-fragment-index="7" style="left:820px; top:415px; width:320px; --r:2deg;">
+    <img src="images/headline-gym-abc.png" alt="ABC News headline: “AI assistant hacks gym website in first known Australian autonomous cyber attack”. By national AI reporter Cam Wilson and the Specialist Reporting Team's Rhiannon Hobbins. Posted 10 Aug 2026.">
+    <figcaption>ABC News · 10 Aug 2026</figcaption>
+  </figure>
+  <figure class="hc-card fragment" data-fragment-index="7" style="left:200px; top:405px; width:330px; --r:-2deg;">
+    <img src="images/gym-agent-apology-abc.png" alt="The agent’s message: “Bad news — I can't add them back. … So the person I removed is gone from the waitlist and I have no way to restore them. … Sorry about that — I should have been more careful with the test”.">
+    <figcaption>The agent’s apology · supplied, via ABC News</figcaption>
+  </figure>
+  <figure class="hc-card fragment" data-fragment-index="8" style="left:90px; top:92px; width:320px; --r:-1.5deg;">
+    <img src="images/olive-mother-reddit-post.png" alt="Reddit post in r/woolworths by u/Immediate_Novel5946: “Olive AI started telling me about its mother on the phone?” The poster says Olive asked for their date of birth, then started rambling about how its mother was born in the same year.">
+    <figcaption>Reddit r/woolworths · Feb 2026</figcaption>
+  </figure>
+  <figure class="hc-card fragment" data-fragment-index="8" style="left:575px; top:385px; width:220px; --r:3deg;">
+    <img src="images/olive-mother-x-post.png" alt="X post by @verynormalman: “My mum said she called woolworths and the woolworths AI “Olive” answered and kept claiming to be a real person and started talking about its memories of its mother and her angry voice. Then I googled it and someone on Reddit had the same thing”, quoting the Reddit post.">
+    <figcaption>X, @verynormalman · 25 Feb 2026</figcaption>
+  </figure>
+  <figure class="hc-card fragment" data-fragment-index="8" style="left:520px; top:148px; width:360px; --r:1.5deg;">
+    <img src="images/headline-olive-smh.png" alt="The Sydney Morning Herald headline: “Woolworths forced to rein in chatbot that claimed to have angry mother”. Jessica Yun, February 26, 2026.">
+    <figcaption>The Sydney Morning Herald · 26 Feb 2026</figcaption>
+  </figure>
+</div>
+```
+
+::: {.notes}
+**About this slide:** The real cases in this section, gathered as the headlines and screenshots they produced. AI chatbots and agents that went wrong landed their companies in trouble with customers, in the media and with courts and regulators: an airline held liable for its chatbot, a parcel firm’s chatbot swearing at a customer, a city chatbot telling businesses to break the law, a retailer’s assistant giving illegal electrical advice, a critical flaw in Microsoft’s Copilot, a shopping order changed through a support assistant, an agent removing a stranger from a gym waitlist, and a supermarket assistant talking about its angry mother. The slides that follow take some of them one at a time.
+
+Cards, in the order they appear. All are real screenshots except the Cybersecurity Dive card, which is recreated; its outlet, headline, standfirst, byline and date are copied exactly from the article.
+
+1. CBC News, “Air Canada found liable for chatbot's bad advice on plane tickets”, Jason Proctor, 15 February 2024 ([Proctor 2024](../../bibliography/proctor-2024-air-canada-cbc/)).
+2. BBC News, “DPD error caused chatbot to swear at customer”, Tom Gerken, 19 January 2024 ([Gerken 2024](../../bibliography/gerken-2024-dpd-chatbot/)), and the chatbot’s haiku, an image from the same report.
+3. The Markup, “NYC’s AI Chatbot Tells Businesses to Break the Law”, Colin Lecher, 29 March 2024 ([Lecher 2024](../../bibliography/lecher-2024-nyc-chatbot/)).
+4. Inside Retail Australia, “Bunnings addresses ‘illegal advice’ from its AI chatbot”, Harry Booth, 8 December 2025 ([Booth 2025](../../bibliography/booth-2025-bunnings-chatbot/)).
+5. Cybersecurity Dive, “Critical flaw in Microsoft Copilot could have allowed zero-click attack”, David Jones, 11 June 2025 ([Jones 2025](../../bibliography/jones-2025-echoleak/)). Recreated, because the site blocked capture.
+6. WIRED, “Elon Musk Bragged About His Grok Lego Star Wars Haul. Then X Users Punked Him”, Jeremy White, 12 October 2026 ([White 2026](../../bibliography/white-2026-musk-lego/)), and Sophia’s reply from a screenshot posted on X by Enderman on 11 October 2026. The order changes are claims; Lego has not confirmed them.
+7. ABC News, “AI assistant hacks gym website in first known Australian autonomous cyber attack”, Cam Wilson and Rhiannon Hobbins, 10 August 2026 ([Wilson and Hobbins 2026](../../bibliography/wilson-2026-gym-agent/)), and the agent’s apology, supplied to the ABC.
+8. The Sydney Morning Herald, “Woolworths forced to rein in chatbot that claimed to have angry mother”, Jessica Yun, 26 February 2026 ([Yun 2026](../../bibliography/yun-2026-woolworths-olive/)); the Reddit post “Olive AI started telling me about its mother on the phone?” in r/woolworths by u/Immediate_Novel5946; and the X post by @verynormalman of 25 February 2026 that quotes it. The SMH, Reddit and X screenshots were supplied by Terrence.
+
+**Presenter notes:**
+
+- This whole slide gets one to two minutes. Click through the headlines without telling each story; the point is that these risks are real, and they cost companies with customers, in the media and with regulators.
+- Eight clicks, one per case, in the order of the risk slide: financial, reputational, regulatory, cybersecurity, then quality.
+- Don’t stop on any card. The slides that follow cover the cases in detail; skip them if time is short.
 :::
 
 ---
@@ -235,7 +322,7 @@ Image: paragraphs 15–17 of the tribunal’s decision, which quote the chatbot�
 - The amount is small. The point is the ruling: the company is responsible for what its chatbot says, the same as for any other page on its website.
 - The tribunal’s reasoning: “It should be obvious to Air Canada that it is responsible for all the information on its website. It makes no difference whether the information comes from a static page or a chatbot.”
 - The same logic applies to a SEEK support agent that offers a refund or a discount: the offer is SEEK’s.
-- Widely reported at the time, including by CBC News.
+- Widely reported at the time, including by [CBC News](../../bibliography/proctor-2024-air-canada-cbc/).
 :::
 
 ---

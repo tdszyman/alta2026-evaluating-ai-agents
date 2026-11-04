@@ -295,3 +295,84 @@
   font-size: 22px;
   color: #14283b;
 }
+
+/* "These risks are real, and they make headlines": cards dropped one case
+   per click into a loose, overlapping stack. Each card sets its position,
+   width and tilt inline; later cards sit on top. Flat cards with a hairline
+   border, no shadows, per the style brief. */
+
+.reveal .headlines-slide .hc-board {
+  position: relative;
+  width: 1140px;
+  height: 575px;
+  margin: 4px auto 0;
+}
+
+.reveal .headlines-slide .hc-card {
+  position: absolute;
+  margin: 0;
+  padding: 8px 8px 6px;
+  background: #fff;
+  border: 1px solid #b8c8d1;
+  border-radius: 2px;
+  transform: rotate(var(--r, 0deg)) scale(1.06);
+  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
+}
+
+.reveal .headlines-slide .hc-card.visible {
+  transform: rotate(var(--r, 0deg)) scale(1);
+}
+
+.reveal .headlines-slide .hc-card img {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0;
+  max-width: none;
+  max-height: none;
+}
+
+.reveal .headlines-slide .hc-card figcaption,
+.reveal .headlines-slide .hc-caption {
+  display: block;
+  margin-top: 5px;
+  font-size: 12px;
+  line-height: 1.3;
+  color: #526476;
+}
+
+.reveal .headlines-slide .hc-recreated {
+  padding: 12px 14px 8px;
+  color: #14283b;
+}
+
+.reveal .headlines-slide .hc-recreated span {
+  display: block;
+}
+
+.reveal .headlines-slide .hc-outlet {
+  margin-bottom: 6px;
+  padding-bottom: 6px;
+  font-size: 15px;
+  font-weight: 700;
+  border-bottom: 1px solid #b8c8d1;
+}
+
+.reveal .headlines-slide .hc-head {
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.reveal .headlines-slide .hc-dek {
+  margin-top: 6px;
+  font-size: 14px;
+  line-height: 1.35;
+  color: #526476;
+}
+
+.reveal .headlines-slide .hc-by {
+  margin-top: 6px;
+  font-size: 12px;
+  color: #14283b;
+}

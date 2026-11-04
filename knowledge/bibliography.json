@@ -4146,6 +4146,31 @@
       "note": "The article does not say how many customers were affected or what exactly Woolworths changed. Olive’s page carries the notice “Olive is powered by AI and may make mistakes. Always check the product label.” Woolworths told investors it planned to use AI and a partnership with Google to turn Olive into a “market-leading conversational shopping companion”.",
       "featured_rank": null,
       "abstract": null
+    },
+    {
+      "id": "proctor-2024-air-canada-cbc",
+      "type": "website",
+      "authors": [
+        "Jason Proctor"
+      ],
+      "year": "2024",
+      "title": "Air Canada found liable for chatbot's bad advice on plane tickets",
+      "venue": "CBC News, 15 February 2024.",
+      "url": "https://www.cbc.ca/news/canada/british-columbia/air-canada-chatbot-lawsuit-1.7116416",
+      "links": [
+        {
+          "label": "CBC News",
+          "href": "https://www.cbc.ca/news/canada/british-columbia/air-canada-chatbot-lawsuit-1.7116416"
+        }
+      ],
+      "groups": [
+        "industry"
+      ],
+      "mentions": [],
+      "summary": "News report of the Civil Resolution Tribunal ruling in Moffatt v. Air Canada: the airline was found liable for its website chatbot’s wrong advice on bereavement fares, after arguing that the chatbot was responsible for its own actions, a claim the tribunal called “remarkable”. Part 1 uses its headline on the slide that gathers news coverage of AI failures.",
+      "note": "Standfirst: “Airline's claim that online helper was responsible for its own actions was 'remarkable': small claims court”. Posted 15 February 2024, last updated 16 February 2024.",
+      "featured_rank": null,
+      "abstract": null
     }
   ]
 }
