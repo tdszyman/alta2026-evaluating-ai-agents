@@ -619,3 +619,67 @@ html.print-pdf .reveal .terms-slide .tm-conn { opacity: 1; }
   font-size: 12px;
   color: var(--deck-soft);
 }
+
+/* "Terms this section defines": one column per section 2 slide. */
+
+.reveal .glossary-slide .tg-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1.08fr;
+  gap: 12px;
+  margin-top: 34px;
+  font-family: var(--deck-font-sans);
+}
+
+.reveal .glossary-slide .tg-col {
+  padding: 14px 14px 12px;
+  background: var(--deck-paper);
+  border: 1px solid var(--deck-line);
+  border-top: 4px solid var(--deck-accent);
+  border-radius: 2px;
+}
+
+.reveal .glossary-slide .tg-head {
+  display: block;
+  min-height: 62px;
+  margin-bottom: 10px;
+  font-size: 21px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--deck-ink);
+  text-decoration: none;
+}
+
+.reveal .glossary-slide .tg-head:hover { color: var(--deck-accent-strong); }
+
+.reveal .glossary-slide .tg-num {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 30px;
+  line-height: 1;
+  color: var(--deck-accent);
+}
+
+.reveal .glossary-slide .tg-num-blank { visibility: hidden; }
+
+.reveal .glossary-slide .tg-col ul {
+  display: block;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.reveal .glossary-slide .tg-col li {
+  margin: 0;
+  padding: 7px 0;
+  border-top: 1px solid var(--deck-line);
+  font-size: 21px;
+  line-height: 1.25;
+  white-space: nowrap;
+  color: var(--deck-ink);
+}
+
+.reveal .glossary-slide .tg-caption {
+  margin-top: 16px;
+  font-size: 15px;
+  color: var(--deck-soft);
+}

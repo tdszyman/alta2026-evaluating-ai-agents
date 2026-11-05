@@ -783,6 +783,37 @@ The two Olive screenshots: the Reddit post “Olive AI started telling me about 
 
 ---
 
+## Terms this section defines {#section-2-terms .glossary-slide}
+
+```{=html}
+<div class="tg-grid">
+  <div class="tg-col"><a class="tg-head" href="#/definitions-what-is-an-agent"><span class="tg-num tg-num-blank">·</span>What is an agent?</a><ul><li>Agent</li></ul></div>
+  <div class="tg-col"><a class="tg-head" href="#/llm-text-generation"><span class="tg-num">1</span>LLM text generation</a><ul><li>Input tokens</li><li>Output tokens</li><li>LLM call</li></ul></div>
+  <div class="tg-col"><a class="tg-head" href="#/conversations-messages-and-turns"><span class="tg-num">2</span>Conversations</a><ul><li>Messages</li><li>System message</li><li>User message</li><li>Assistant message</li><li>Chat template</li><li>Turn</li><li>Multi-turn</li></ul></div>
+  <div class="tg-col"><a class="tg-head" href="#/agent-traces-think-act-observe"><span class="tg-num">3</span>Agent traces</a><ul><li>Thought</li><li>Action</li><li>Observation</li><li><a href="../../bibliography/yao-2023-react/">ReAct</a> loop</li><li>Step</li><li>Multi-step</li><li>Trace</li></ul></div>
+  <div class="tg-col"><a class="tg-head" href="#/llm-as-judge-evaluating-the-trace"><span class="tg-num">4</span>LLM-as-judge</a><ul><li>LLM judge</li><li>Input guardrail</li><li>Call-level eval</li><li>Output guardrail</li><li>Multi-step eval</li><li>Multi-turn eval</li><li>Trace-level eval</li><li>Meta-evaluation</li></ul></div>
+</div>
+<p class="tg-caption">One column per slide, in the order they come. Each heading links to its slide.</p>
+```
+
+::: {.notes}
+**About this slide:** The vocabulary of section 2 on one slide, before the detail. Each column is one slide in this section, in order, and lists the terms that slide defines, in the order its builds introduce them. Nothing is defined here; the definitions come on the slides themselves.
+
+**Presenter notes:**
+
+- Don’t read the list. Say that every word here gets a definition and a picture in the next few minutes, and that they build on each other from left to right.
+- The terms, by slide:
+  - “Definitions: What is an Agent?”: agent (the working definition is LLM + tools + [ReAct](../../bibliography/yao-2023-react/) loop).
+  - 1, “LLM text generation”: input tokens, output tokens, LLM call.
+  - 2, “Conversations: messages and turns”: messages, system message, user message, assistant message, chat template, turn, multi-turn.
+  - 3, “Agent traces: think, act, observe”: thought, action, observation, [ReAct](../../bibliography/yao-2023-react/) loop, step, multi-step, trace.
+  - 4, “LLM-as-judge: evaluating the trace”: LLM judge, input guardrail, call-level eval, output guardrail, multi-step eval, multi-turn eval, trace-level eval, meta-evaluation.
+- Not listed: “agentic” is asked on the definitions slide but not defined, and “Evals vs training” names RLHF, RLVR and [RLAIF](../../bibliography/bai-2022-constitutional-ai/) without defining them.
+- The numbers 1 to 4 match the roadmap slide, “Four ideas, each built on the last”.
+:::
+
+---
+
 ## Definitions: What is an Agent?
 
 <!-- TODO: placeholder kept. Outline bullets only, but the four building-block slides that follow rely on its working definition. Write it up before the tutorial. -->
