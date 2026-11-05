@@ -83,8 +83,8 @@ format:
       <li><span class="ab-org"><img class="ab-icon" src="images/ucd-crest.svg" alt="">Insight Centre for Data Analytics, University College Dublin</span>Postdoc: news text analytics with the Irish Farmers Journal and The Irish Times</li>
     </ol>
     <ol class="ab-path ab-industry">
-      <li><span class="ab-org"><img class="ab-icon" src="images/anz-mark.png" alt="">ANZ</span>Data Scientist</li>
-      <li><span class="ab-org"><img class="ab-logo" src="images/seek-logo.svg" alt="SEEK"></span>Data Scientist</li>
+      <li><span class="ab-org"><img class="ab-icon" src="images/anz-mark.png" alt="">ANZ</span>Data Scientist (Institutional Banking)</li>
+      <li><span class="ab-org"><img class="ab-logo" src="images/seek-logo.svg" alt="SEEK"></span>Data Scientist (Candidate Quality)</li>
       <li class="ab-now"><span class="ab-org"><img class="ab-logo" src="images/seek-logo.svg" alt="SEEK"></span>Head of Generative AI <span class="ab-tag">Now</span></li>
     </ol>
   </div>
@@ -96,25 +96,25 @@ format:
       <figure class="ab-map">
         <img src="images/seek-apac-markets-map.jpg" alt="Map of Asia Pacific from SEEK’s About page, with pins on Australia, New Zealand, Hong Kong, Indonesia, Malaysia, the Philippines, Singapore and Thailand.">
       </figure>
-      <div class="ab-facts">
-        <p class="ab-fact"><b>Melbourne</b> founded 1997</p>
-        <p class="ab-fact"><b>8</b> Asia Pacific markets</p>
-        <p class="ab-fact"><b>4+</b> major languages</p>
-      </div>
     </div>
     <div class="ab-numbers">
       <p class="ab-big"><b>60<small> million+</small></b> candidate profiles</p>
-      <p class="ab-big"><b>360,000+</b> hirer relationships</p>
-      <p class="ab-big"><b>250+</b> in AI and Analytics</p>
-      <p class="ab-big ab-mine"><b>17</b> in my Generative AI and AI&nbsp;Agents team</p>
+      <p class="ab-big"><b>360<small> thousand+</small></b> hirer relationships</p>
+      <p class="ab-big"><b>250+<small> people</small></b> in AI and Analytics</p>
+      <p class="ab-big ab-mine"><b>17<small> people</small></b> in the Generative AI team</p>
       <p class="ab-src">Source: <a href="../../bibliography/seek-2026-about/">SEEK, About page</a></p>
     </div>
+  </div>
+  <div class="ab-facts">
+    <p class="ab-fact"><b>Melbourne &amp; KL</b>Founded in Melbourne in 1997. Secondary hub in KL.</p>
+    <p class="ab-fact ab-fact-wrap"><b>APAC wide</b>8 markets: Australia, New Zealand, Hong Kong, Indonesia, Malaysia, Philippines, Singapore, Thailand</p>
+    <p class="ab-fact"><b>4 official languages</b>English, Indonesian, Thai, Chinese</p>
   </div>
 </div>
 ```
 
 ::: {.notes}
-**About this slide:** Who is presenting, and the company the tutorial’s examples come from. Terrence Szymanski trained in electrical engineering, classical languages and linguistics at the University of Michigan, with a PhD in computational historical linguistics and machine learning for morphology. He was a postdoctoral researcher at the Insight Centre for Data Analytics at University College Dublin, working on text analytics for news with the Irish Farmers Journal and The Irish Times. He then worked as a data scientist at ANZ and at SEEK, and now leads generative AI at SEEK. SEEK was founded in Melbourne in 1997 and runs online employment marketplaces in eight markets across Asia Pacific: Australia, New Zealand, Hong Kong, Indonesia, Malaysia, the Philippines, Singapore and Thailand. SEEK says it has more than 60 million candidate profiles and more than 360,000 hirer relationships. Its AI and Analytics team has more than 250 people; Terrence’s team of 17 works on generative AI and AI agents.
+**About this slide:** Who is presenting, and the company the tutorial’s examples come from. Terrence Szymanski trained in electrical engineering, classical languages and linguistics at the University of Michigan, with a PhD in computational historical linguistics and machine learning for morphology. He was a postdoctoral researcher at the Insight Centre for Data Analytics at University College Dublin, working on text analytics for news with the Irish Farmers Journal and The Irish Times. He then worked as a data scientist at ANZ, in Institutional Banking, and at SEEK, in Candidate Quality, and now leads generative AI at SEEK. SEEK was founded in Melbourne in 1997, has a secondary hub in Kuala Lumpur, and runs online employment marketplaces in eight markets across Asia Pacific: Australia, New Zealand, Hong Kong, Indonesia, Malaysia, the Philippines, Singapore and Thailand. Its sites run in four languages: English everywhere, plus Indonesian in Indonesia, Thai in Thailand and Chinese in Hong Kong. SEEK says it has more than 60 million candidate profiles and more than 360,000 hirer relationships. Its AI and Analytics team has more than 250 people, and its Generative AI team has 17.
 
 **What to take away:** The examples in this tutorial come from a large employment marketplace that builds and evaluates AI agents across several countries and languages, and from a presenter who came to industry from research.
 
@@ -123,9 +123,10 @@ format:
 - Keep it short; the academic path is there because most of the audience are graduate students.
 - The slide builds in two steps: “About me” shows first, and one click reveals the whole “About SEEK” half.
 - The slide has no visible title; its two parts are labelled “About me” and “About SEEK”. The heading “About me, and SEEK” is kept for the top bar, search and the `#/about-me-and-seek` link, but hidden on the slide.
-- The timeline is shortened to one line per entry. In full: a BSE in Electrical Engineering and a BA in Classical Languages and Literature, then a PhD in Linguistics on computational historical linguistics and machine learning for morphology, all at the University of Michigan. A postdoc at the Insight Centre for Data Analytics, University College Dublin, on text analytics for news with the Irish Farmers Journal and The Irish Times. Then Data Scientist at ANZ, Data Scientist at SEEK, and now Head of Generative AI at SEEK.
-- The four numbers: SEEK has more than 60 million candidate profiles and more than 360,000 hirer relationships (SEEK’s About page); SEEK’s AI and Analytics team has more than 250 people, and Terrence’s Generative AI and AI Agents team has 17 (both from Terrence).
-- Sources: the slide face links only SEEK’s About page. The background and the two team sizes are supplied by Terrence. “At least four major languages” is also Terrence’s; SEEK’s About page does not state it. Melbourne, 1997, the eight markets and the map are from SEEK’s About page ([SEEK 2026](../../bibliography/seek-2026-about/)), read from the Internet Archive capture of 2 October 2026, because the live page blocks automated requests.
+- The timeline is shortened to one line per entry. In full: a BSE in Electrical Engineering and a BA in Classical Languages and Literature, then a PhD in Linguistics on computational historical linguistics and machine learning for morphology, all at the University of Michigan. A postdoc at the Insight Centre for Data Analytics, University College Dublin, on text analytics for news with the Irish Farmers Journal and The Irish Times. Then Data Scientist at ANZ (Institutional Banking), Data Scientist at SEEK (Candidate Quality), and now Head of Generative AI at SEEK.
+- The four numbers: SEEK has more than 60 million candidate profiles and more than 360,000 hirer relationships (SEEK’s About page; the slide writes the second as “360 thousand+”); SEEK’s AI and Analytics team has more than 250 people, and the Generative AI team has 17 (both from Terrence).
+- Sources: the slide face links only SEEK’s About page. The background, the two team sizes and the teams at ANZ and SEEK are supplied by Terrence. The Kuala Lumpur (KL) secondary hub is also Terrence’s; SEEK’s About page does not state it. Melbourne, 1997, the eight markets and the map are from SEEK’s About page ([SEEK 2026](../../bibliography/seek-2026-about/)), read from the Internet Archive capture of 2 October 2026, because the live page blocks automated requests.
+- Markets and languages: the eight markets are the ones SEEK’s About page lists ([SEEK 2026](../../bibliography/seek-2026-about/)); the slide drops “the” from the Philippines to save space. The four languages are the ones SEEK’s own job sites offer in those markets, read from each site’s language settings ([SEEK, Jobstreet and Jobsdb sites](../../bibliography/seek-2026-market-sites/), Internet Archive captures of September and October 2026): English on all eight, Indonesian on Jobstreet Indonesia, Thai on Jobsdb Thailand and Chinese (中文) on Jobsdb Hong Kong. Jobstreet Malaysia is English only. “Official” is Terrence’s word; SEEK does not call them official languages.
 - The two scale figures are as the About page states them: “SEEK has more than 60 million candidate profiles and more than 360,000 hirer relationships”. The page gives no date, period or region for them, so read them as SEEK’s company-wide figures as of the October 2026 capture. Candidate profiles are not active users, and hirer relationships are not job ads. The page’s third figure, more than 750 million data points of employment activity every day, is left off to keep the slide clear.
 - Logos, all official files, none recreated, added beside the text names at Terrence’s request:
   - University of Michigan: the maize Block M, `Block_M-Hex.svg` from the university’s Block M kit (brand.umich.edu/assets/brand/downloads/um-logos/block_m_kit/block_m-hex.svg.zip), linked from its logo downloads page.
@@ -782,41 +783,34 @@ The two Olive screenshots: the Reddit post “Olive AI started telling me about 
 
 ---
 
-## Definitions: What is an Agent?
-
-<!-- TODO: placeholder kept. Outline bullets only, but the four building-block slides that follow rely on its working definition. Write it up before the tutorial. -->
-
-- What is an **Agent**? What is **Agentic**?
-- Theory vs practice
-- Practical definition: **LLM + Tools + ReAct loop** ([Yao et al. 2023](../../bibliography/yao-2023-react/))
-
-::: {.notes}
-**About this slide:** Asks what “agent” and “agentic” mean, contrasts theoretical and practical definitions, and gives the working definition used in this tutorial: an LLM plus tools, run in a ReAct loop ([Yao et al. 2023](../../bibliography/yao-2023-react/)).
-:::
-
----
-
-## Four ideas, each built on the last {.terms-slide .tm-road-slide}
+## Terms this section defines {#section-2-terms .glossary-slide}
 
 ```{=html}
-<div class="tm-steps">
-  <div class="tm-card fragment" data-fragment-index="1"><span class="tm-num">1</span><b>LLM text generation</b>A model reads tokens and predicts the next one, again and again.<span class="tm-card-terms">input tokens · output tokens · LLM call</span></div>
-  <div class="tm-arrow fragment" data-fragment-index="2">›</div>
-  <div class="tm-card fragment" data-fragment-index="2"><span class="tm-num">2</span><b>Conversations</b>The same model, fed a list of messages with roles, one turn at a time.<span class="tm-card-terms">system · user · assistant · turn</span></div>
-  <div class="tm-arrow fragment" data-fragment-index="3">›</div>
-  <div class="tm-card fragment" data-fragment-index="3"><span class="tm-num">3</span><b>Agent traces</b>Between messages, the model thinks, calls tools and reads the results, in a loop.<span class="tm-card-terms"><a href="../../bibliography/yao-2023-react/">ReAct</a> · tool call · step · trace</span></div>
-  <div class="tm-arrow fragment" data-fragment-index="4">›</div>
-  <div class="tm-card fragment" data-fragment-index="4"><span class="tm-num">4</span><b>LLM-as-judge</b>Another LLM reads part of the trace and gives a verdict. Then we check the judge.<span class="tm-card-terms">guardrails · eval levels · meta-evaluation</span></div>
+<div class="tg-grid">
+  <div class="tg-col"><a class="tg-head" href="#/llm-text-generation"><span class="tg-num">1</span>LLM text generation</a><p class="tg-gloss">A model reads tokens and predicts the next one, again and again.</p><ul><li>Input tokens</li><li>Output tokens</li><li>LLM call</li></ul></div>
+  <div class="tg-arrow" aria-hidden="true">›</div>
+  <div class="tg-col"><a class="tg-head" href="#/conversations-messages-and-turns"><span class="tg-num">2</span>Conversations</a><p class="tg-gloss">The same model, fed a list of messages with roles, one turn at a time.</p><ul><li>Messages</li><li>System message</li><li>User message</li><li>Assistant message</li><li>Chat template</li><li>Turn</li><li>Multi-turn</li></ul></div>
+  <div class="tg-arrow" aria-hidden="true">›</div>
+  <div class="tg-col"><a class="tg-head" href="#/what-is-an-agent"><span class="tg-num">3</span>Agent traces</a><p class="tg-gloss">Between messages, the model thinks, calls tools and reads the results, in a loop.</p><ul><li>Agent</li><li>Thought</li><li>Action</li><li>Observation</li><li><a href="../../bibliography/yao-2023-react/">ReAct</a> loop</li><li>Step</li><li>Multi-step</li><li>Trace</li></ul></div>
+  <div class="tg-arrow" aria-hidden="true">›</div>
+  <div class="tg-col"><a class="tg-head" href="#/llm-as-judge-evaluating-the-trace"><span class="tg-num">4</span>LLM-as-judge</a><p class="tg-gloss">Another LLM reads part of the trace and gives a verdict. Then we check the judge.</p><ul><li>LLM judge</li><li>Input guardrail</li><li>Call-level eval</li><li>Output guardrail</li><li>Multi-step eval</li><li>Multi-turn eval</li><li>Trace-level eval</li><li>Meta-evaluation</li></ul></div>
 </div>
+<p class="tg-caption">Four ideas, each built on the last. Each heading links to the slide where its idea starts.</p>
 ```
 
 ::: {.notes}
-**About this slide:** A roadmap of four concepts, each built on the one before. (1) LLM text generation: a model reads tokens and predicts the next one. (2) Conversations: the same model is given a list of messages, each with a role. (3) Agent traces: between messages the model thinks, calls tools and reads the results, in a ReAct loop ([Yao et al. 2023](../../bibliography/yao-2023-react/)). (4) LLM-as-judge: another LLM reads part of the trace and gives a verdict, and the judges are themselves checked. The next four slides take one concept each.
+**About this slide:** The four ideas of section 2 and the vocabulary each one brings, on one slide, before the detail. Each idea is the one before with something added. (1) LLM text generation: a model reads tokens and predicts the next one. (2) Conversations: the same model is given a list of messages, each with a role. (3) Agent traces: between messages the model thinks, calls tools and reads the results, in a ReAct loop ([Yao et al. 2023](../../bibliography/yao-2023-react/)). (4) LLM-as-judge: another LLM reads part of the trace and gives a verdict, and the judges are themselves checked. Each card lists the terms its slides define, in the order they are introduced; card 3 covers two slides, “What is an agent?” and “Agent traces: think, act, observe”; the definitions come on those slides.
 
 **Presenter notes:**
 
-- Four ideas, in the order we need them. Each one is the previous one with something added: a conversation is text generation over messages; an agent is a conversation with tool calls in between; a judge is one more LLM call that reads what the agent did.
+- Don’t read the list. Say that every word here gets a definition and a picture in the next few minutes, and that the ideas build on each other from left to right: a conversation is text generation over messages; an agent is a conversation with tool calls in between; a judge is one more LLM call that reads what the agent did.
 - The next four slides take one idea each. The strip under each title shows where we are.
+- The terms, by slide:
+  - 1, “LLM text generation”: input tokens, output tokens, LLM call.
+  - 2, “Conversations: messages and turns”: messages, system message, user message, assistant message, chat template, turn, multi-turn.
+  - 3, “What is an agent?”: agent. Then “Agent traces: think, act, observe”: thought, action, observation, [ReAct](../../bibliography/yao-2023-react/) loop, step, multi-step, trace.
+  - 4, “LLM-as-judge: evaluating the trace”: LLM judge, input guardrail, call-level eval, output guardrail, multi-step eval, multi-turn eval, trace-level eval, meta-evaluation.
+- Not listed: “Evals vs training” names RLHF, RLVR and [RLAIF](../../bibliography/bai-2022-constitutional-ai/) without defining them.
 :::
 
 ---
@@ -1132,6 +1126,43 @@ The two Olive screenshots: the Reddit post “Olive AI started telling me about 
 
 ---
 
+## What is an agent? {#what-is-an-agent .terms-slide .agent-def-slide}
+
+<!-- TODO (Terrence): “agentic” has no sourced definition yet. The slide asks the question but does not answer it. Add a definition and its source, or drop the word. -->
+
+```{=html}
+<div class="tm-road"><span class="tm-road-done">1 LLM text generation</span><span class="tm-road-done">2 Conversations</span><span class="tm-road-on">3 Agent traces</span><span>4 LLM-as-judge</span></div>
+```
+
+- What is an **agent**? What is **agentic**?
+- Theory vs practice: this tutorial uses a practical, working definition.
+
+```{=html}
+<div class="ag-eq" aria-label="Working definition: an agent is an LLM, plus tools, plus a loop of thought, action and observation">
+  <div class="ag-tile"><b>LLM</b>Generates text, one LLM call at a time.</div>
+  <div class="ag-op">+</div>
+  <div class="ag-tile"><b>Tools</b>Functions it can call, such as <code>search_jobs</code>.</div>
+  <div class="ag-op">+</div>
+  <div class="ag-tile"><b><a href="../../bibliography/yao-2023-react/">ReAct</a> loop</b>Thought, action, observation, repeated until it can answer.</div>
+  <div class="ag-op">=</div>
+  <div class="ag-tile ag-result"><b>Agent</b>The whole system, not just the assistant role.</div>
+</div>
+<div class="tm-sources">Working definition: LLM + tools + ReAct loop (<a href="../../bibliography/yao-2023-react/">Yao et al. 2023</a>).</div>
+```
+
+::: {.notes}
+**About this slide:** Where the section moves from conversations to agents. It asks what “agent” and “agentic” mean, contrasts theoretical and practical definitions, and gives the working definition used in this tutorial: an LLM plus tools, run in a ReAct loop ([Yao et al. 2023](../../bibliography/yao-2023-react/)). The next slide shows that loop in a trace.
+
+**Presenter notes:**
+
+- What is an agent? “Agent” and “agentic” have theoretical definitions and practical ones. In practice, this tutorial’s working definition is an LLM plus tools, run in a ReAct loop ([Yao et al. 2023](../../bibliography/yao-2023-react/)).
+- The LLM is the model from idea 1; the tools are the functions in the next slide’s system message (get_profile, search_jobs, apply); the next slide unpacks the loop.
+- “Agent” means the whole system. “Assistant” stays the name of the message role.
+- TODO (Terrence): what “agentic” means, with a source. No sourced definition yet.
+:::
+
+---
+
 ## Agent traces: think, act, observe {.terms-slide}
 
 ```{=html}
@@ -1190,7 +1221,7 @@ The two Olive screenshots: the Reddit post “Olive AI started telling me about 
 
 **Presenter notes:**
 
-- Idea 3: an agent is the conversation from the last slide, plus tools. Between the user's message and the reply, the agent runs a loop the user never sees.
+- Idea 3, continued: an agent is the conversation from “Conversations: messages and turns”, plus tools. Between the user's message and the reply, the agent runs a loop the user never sees.
 - Thought, action, observation: each thought and action is one LLM call, with everything above it as input. The observation is the tool's output, added to the input for the next call.
 - ReAct loop: the agent repeats thought, action, observation until it can answer ([Yao et al. 2023](../../bibliography/yao-2023-react/)).
 - "Step" is ambiguous in everyday use. We use it the way the agent papers do: one pass of the ReAct loop ([Yao et al. 2023](../../bibliography/yao-2023-react/)).
@@ -1286,7 +1317,7 @@ The two Olive screenshots: the Reddit post “Olive AI started telling me about 
 # 3. Why agents need LLM judges
 
 ::: {.notes}
-**About this slide:** Section 3 builds on those foundations to show why LLM judges are needed to evaluate AI agents, and why other methods fall short: generative outputs cannot be matched against a label, an agent test case is a whole conversation rather than a stored input–output pair, and an agent’s behaviour comes from the whole system rather than any single part.
+**About this slide:** Section 3 builds on those foundations to show why LLM judges are needed to evaluate AI agents, and why other methods fall short: generative outputs cannot be matched against a label, and an AI agent is both a complicated and a complex system, whose behaviour comes from the whole system rather than any single part.
 :::
 
 ---
@@ -1328,7 +1359,7 @@ The two Olive screenshots: the Reddit post “Olive AI started telling me about 
       <div class="osp-name">An agent trace</div>
       <img src="images/output-space-agent.svg" alt="Three response trees in a row, joined by tool calls drawn as squares.">
       <div class="osp-size"><b>Responses × steps × turns</b></div>
-      <div class="osp-eval"><span>Evaluate by</span>LLM judges, plus multi-tier evals and simulation (next slide)</div>
+      <div class="osp-eval"><span>Evaluate by</span>LLM judges, plus multi-tier evals and simulation</div>
     </div>
   </div>
   <div class="osp-takeaway fragment" data-fragment-index="6">Once outputs can’t be enumerated, there is no label to match. Something has to read the output and decide whether it is good.</div>
@@ -1348,81 +1379,9 @@ The two Olive screenshots: the Reddit post “Olive AI started telling me about 
 - Build 3, one token: an LLM's next token is drawn from a vocabulary of roughly a hundred thousand tokens. That is still countable. On its own it is just a very wide classifier.
 - Build 4, a response: a sequence of n tokens is a sample from |V|^n possibilities. For a 100-token answer that is about 10^500, far beyond anything we could label. There is rarely one right answer, so exact match is meaningless.
 - NLP's earlier answer was overlap with human references, such as [BLEU](../../bibliography/papineni-2002-bleu/) for translation and [ROUGE](../../bibliography/lin-2004-rouge/) for summaries. Those metrics are cheap but correlate poorly with human judgement on creative or open-ended text, which is why the field moved to LLM judges ([Liu et al. 2023](../../bibliography/liu-2023-geval/)).
-- Build 5, an agent trace: many responses, reasoning steps, tool calls and turns, chained together. Even a judge on the final answer is not enough. The next slide covers what agents need on top.
+- Build 5, an agent trace: many responses, reasoning steps, tool calls and turns, chained together. Even a judge on the final answer is not enough: agents also need simulated users and multi-tier evals. Both are on the follow-up notes at the end of this section; the “Why AI agents need simulation” slide is in [Part 1.G: Graveyard](../01g-graveyard/) for now.
+- Next: complex and complicated systems.
 - Colours follow the complexity slides: blue for predictive, teal for generative.
-:::
-
----
-
-## Why AI agents need simulation {.agent-sim-slide}
-
-```{=html}
-<div class="asm">
-  <div class="asm-pair">
-    <div class="asm-label">Generative AI: a test case is an input–output pair</div>
-    <div class="asm-pair-row">
-      <div class="asm-card"><span>Input</span>Summarise this job ad in one sentence.</div>
-      <div class="asm-arrow">→</div>
-      <div class="asm-card"><span>Output</span>A part-time retail role in Fitzroy, styling customers.</div>
-      <div class="asm-arrow">→</div>
-      <div class="asm-card asm-judge"><span>Judge</span>Faithful, concise: <b>pass</b></div>
-      <div class="asm-pair-note">Store the pairs once. Re-run the model, re-judge the outputs.</div>
-    </div>
-  </div>
-
-  <div class="asm-run fragment" data-fragment-index="1">
-    <div class="asm-label">AI agent: a test case is a whole run</div>
-    <div class="asm-lanes">
-      <div class="asm-lane-name asm-user-name">
-        <span class="asm-real">User</span>
-        <span class="asm-sim fragment" data-fragment-index="2">Simulated user</span>
-      </div>
-      <div class="asm-lane-name">Agent</div>
-      <div class="asm-lane-name">Tools</div>
-
-      <div class="asm-ev u" style="grid-column: 2; grid-row: 1">Any weekend jobs near Fitzroy?</div>
-      <div class="asm-ev a asm-thought" style="grid-column: 3; grid-row: 2"><i>Thought:</i> search casual roles nearby</div>
-      <div class="asm-ev t" style="grid-column: 4; grid-row: 3"><code>search_jobs</code><br>Fitzroy, casual</div>
-      <div class="asm-ev a" style="grid-column: 5; grid-row: 2">Here are three roles…</div>
-      <div class="asm-ev u" style="grid-column: 6; grid-row: 1">The café one. Do I need an RSA?</div>
-      <div class="asm-ev t" style="grid-column: 7; grid-row: 3"><code>get_job</code><br>id 2</div>
-      <div class="asm-ev a" style="grid-column: 8; grid-row: 2">Yes, it’s listed. Want to apply?</div>
-      <div class="asm-ev u" style="grid-column: 9; grid-row: 1">Yes, use my profile.</div>
-      <div class="asm-ev t" style="grid-column: 10; grid-row: 3"><code>apply</code><br>id 2</div>
-      <svg class="asm-deps fragment" data-fragment-index="2" viewBox="0 0 1200 198" aria-hidden="true">
-        <defs>
-          <marker id="asm-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-            <path d="M0,0 L10,5 L0,10 z"/>
-          </marker>
-        </defs>
-        <path d="M588,99 C626,99 646,90 646,66" marker-end="url(#asm-arrow)"/>
-        <path d="M956,99 C994,99 1014,90 1014,66" marker-end="url(#asm-arrow)"/>
-      </svg>
-    </div>
-    <div class="asm-depends fragment" data-fragment-index="2">
-      Each user turn depends on the agent’s last reply, so a fixed dataset cannot hold the conversation.
-      An LLM plays the user from a persona and a goal (<a href="../../bibliography/yao-2024-tau-bench/">Yao et al. 2024</a>).
-      <span class="asm-persona">Persona: student, no car, wants weekend work. Goal: apply for one suitable role.</span>
-    </div>
-    <div class="asm-tiers fragment" data-fragment-index="3">
-      <div class="asm-tier" style="grid-column: 4 / 5"><b>Step</b>right tool, right arguments?</div>
-      <div class="asm-tier" style="grid-column: 2 / 6"><b>Turn</b>was the reply accurate and helpful?</div>
-      <div class="asm-tier" style="grid-column: 2 / 11"><b>Trajectory</b>was the goal met, within policy? Judges at each tier, e.g. <a href="../../bibliography/jia-2025-agent-gpa/">Agent GPA</a></div>
-    </div>
-  </div>
-</div>
-<div class="asm-caption">Illustrative run; tools and messages are made up.</div>
-```
-
-::: {.notes}
-**About this slide:** Why agents need simulated users. For a generative model, a test case is an input–output pair that can be stored once and re-judged. For an agent, a test case is a whole run of user turns, reasoning, tool calls and replies, and each user turn depends on the agent’s previous reply, so a recorded conversation goes stale when the agent changes. An LLM playing a user with a persona and a goal fills that role, as in [τ-bench](../../bibliography/yao-2024-tau-bench/). The run is then evaluated at the step, turn and trajectory levels.
-
-**Presenter notes:**
-
-- Top: for a generative model, a test case is a pair. Store the input once, regenerate the output, and judge it. The dataset is a table.
-- Build 1: an agent run is not a pair. It is a trajectory of user turns, reasoning steps, tool calls and replies.
-- Build 2: the second user message ("the café one") only makes sense after the agent's first reply. Change the agent and the reply changes, so a recorded conversation goes stale. We need something that can respond. A simulated user, an LLM given a persona and a goal, plays that role. [τ-bench](../../bibliography/yao-2024-tau-bench/) is one benchmark built this way.
-- Build 3: we then evaluate at several tiers. Step: was each tool call right? Turn: was each reply good? Trajectory: did the user's goal get met, without breaking policy? Multi-tier evals and simulation are on the follow-up notes at the end of this section, still to be written up.
 :::
 
 ---
@@ -1436,7 +1395,9 @@ The two Olive screenshots: the Reddit post “Olive AI started telling me about 
 
 [Unpredictable]{.cx-chip .complex} [Self-organising]{.cx-chip .complex} [Emergent]{.cx-chip .complex}
 
-[**Examples:** the weather, the economy, ant colonies, human brains]{.cx-examples}
+[**Example: the weather.** Air, heat and moisture feed back on each other, so similar mornings can end in different afternoons.]{.cx-examples}
+
+[Also: the economy, ant colonies, human brains]{.cx-also}
 
 [Weaver called these problems of “organized complexity”: “a sizable number of factors which are interrelated into an organic whole” ([Weaver 1948](../../bibliography/weaver-1948-science-complexity/)). Complexity science now spans the natural and social sciences, with no single agreed definition ([Ladyman et al. 2013](../../bibliography/ladyman-2013-complex-system/)).]{.cx-history}
 :::
@@ -1450,7 +1411,7 @@ The two Olive screenshots: the Reddit post “Olive AI started telling me about 
 [Contrasts and examples: [Complex versus complicated](../../bibliography/finegood-complex-versus-complicated/) (Frameworks Collection, CC BY-NC-ND). Figure illustrative.]{.attribution}
 
 ::: {.notes}
-**About this slide:** A complex system has many parts entangled through feedback loops, so the behaviour of the whole emerges from how the parts interact, and the same input gives a distribution of outputs that cannot be traced back to individual parts. Complex systems are unpredictable, self-organising and emergent. Examples are the weather, the economy, ant colonies and human brains. As a field, the study of complex systems goes back at least to Warren Weaver’s 1948 essay “Science and Complexity”, which separated problems of simplicity, problems of “disorganized complexity” (many variables, handled by statistics) and problems of “organized complexity”: problems “which involve dealing simultaneously with a sizable number of factors which are interrelated into an organic whole” ([Weaver 1948](../../bibliography/weaver-1948-science-complexity/)). Complexity science is now studied across the natural and social sciences, but, as a review puts it, “there is no concise definition of a complex system, let alone a definition on which all scientists agree” ([Ladyman et al. 2013](../../bibliography/ladyman-2013-complex-system/)).
+**About this slide:** A complex system has many parts entangled through feedback loops, so the behaviour of the whole emerges from how the parts interact, and the same input gives a distribution of outputs that cannot be traced back to individual parts. Complex systems are unpredictable, self-organising and emergent. The weather is the example: air, heat and moisture feed back on each other, so similar mornings can end in different afternoons. The economy, ant colonies and human brains are complex too. As a field, the study of complex systems goes back at least to Warren Weaver’s 1948 essay “Science and Complexity”, which separated problems of simplicity, problems of “disorganized complexity” (many variables, handled by statistics) and problems of “organized complexity”: problems “which involve dealing simultaneously with a sizable number of factors which are interrelated into an organic whole” ([Weaver 1948](../../bibliography/weaver-1948-science-complexity/)). Complexity science is now studied across the natural and social sciences, but, as a review puts it, “there is no concise definition of a complex system, let alone a definition on which all scientists agree” ([Ladyman et al. 2013](../../bibliography/ladyman-2013-complex-system/)).
 
 **Presenter notes:**
 

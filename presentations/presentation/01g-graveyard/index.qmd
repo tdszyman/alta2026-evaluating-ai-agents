@@ -6,6 +6,7 @@ format:
       - ../../_shared/chrome.css
       - ../01-agents-and-eval-challenges/motivation.css
       - ../01-agents-and-eval-challenges/complexity.css
+      - ../01-agents-and-eval-challenges/generative-eval.css
 ---
 
 # Part 1.G: Graveyard {.graveyard-slide}
@@ -17,9 +18,10 @@ Kept slides that are not in the talk. They were cut from [Part 1](../01-agents-a
 1. News-story examples: the eight real cases behind the headline collage
 2. Opening and section 1 slides: the old title slide, work-in-progress notice, agenda and section 1 header, and the five slides cut from section 1
 3. Complex-systems slides: the three slides replaced by the new complex, complicated and “complicated and complex” slides
+4. Agent simulation: “Why AI agents need simulation”, moved out of Part 1 section 3
 
 ::: {.notes}
-**About this slide:** Not part of the tutorial. This deck keeps the slides cut from Part 1, so the Part 1 deck shows only the talk. The slides and their notes are unchanged, so notes that say “next”, “the last slide” or “section 1” describe their old place in Part 1. The styles come from Part 1’s `motivation.css` and `complexity.css`. Delete the deck before the tutorial on 30 November 2026.
+**About this slide:** Not part of the tutorial. This deck keeps the slides cut from Part 1, so the Part 1 deck shows only the talk. The slides and their notes are unchanged, so notes that say “next”, “the last slide” or “section 1” describe their old place in Part 1. The styles come from Part 1’s `motivation.css`, `complexity.css` and `generative-eval.css`. Delete the deck before the tutorial on 30 November 2026.
 :::
 
 # Graveyard: news-story examples {.graveyard-slide}
@@ -743,4 +745,89 @@ Framework: [Complex versus complicated](../../bibliography/finegood-complex-vers
 - Left: each part on its own checks out.
 - Right: once the parts interact, feedback loops appear (orange) that don't belong to any single part. That behaviour only exists in the whole.
 - Bridge (from the outline, multi-tier evals): with complex systems you still always have to evaluate the system as a whole.
+:::
+
+---
+
+# Graveyard: agent simulation {.graveyard-slide}
+
+“Why AI agents need simulation”, moved out of Part 1 section 3 (6 November 2026), kept unchanged.
+
+::: {.notes}
+**About this slide:** The fourth group in this deck. The slide sat between “Why generative AI needs LLM-as-a-judge” and “Complex system”. It is kept with its builds, notes and citations ([τ-bench](../../bibliography/yao-2024-tau-bench/) and [Agent GPA](../../bibliography/jia-2025-agent-gpa/)), and its styles come from Part 1’s `generative-eval.css`, so it can go back into Part 1 unchanged. Its notes say “the follow-up notes at the end of this section”; that is Part 1’s section 3 follow-up slide.
+:::
+
+---
+
+## Why AI agents need simulation {.agent-sim-slide}
+
+<!-- Moved from Part 1 section 3 on 6 Nov 2026, between “Why generative AI needs LLM-as-a-judge” and “Complex system”. Kept unchanged. -->
+
+```{=html}
+<div class="asm">
+  <div class="asm-pair">
+    <div class="asm-label">Generative AI: a test case is an input–output pair</div>
+    <div class="asm-pair-row">
+      <div class="asm-card"><span>Input</span>Summarise this job ad in one sentence.</div>
+      <div class="asm-arrow">→</div>
+      <div class="asm-card"><span>Output</span>A part-time retail role in Fitzroy, styling customers.</div>
+      <div class="asm-arrow">→</div>
+      <div class="asm-card asm-judge"><span>Judge</span>Faithful, concise: <b>pass</b></div>
+      <div class="asm-pair-note">Store the pairs once. Re-run the model, re-judge the outputs.</div>
+    </div>
+  </div>
+
+  <div class="asm-run fragment" data-fragment-index="1">
+    <div class="asm-label">AI agent: a test case is a whole run</div>
+    <div class="asm-lanes">
+      <div class="asm-lane-name asm-user-name">
+        <span class="asm-real">User</span>
+        <span class="asm-sim fragment" data-fragment-index="2">Simulated user</span>
+      </div>
+      <div class="asm-lane-name">Agent</div>
+      <div class="asm-lane-name">Tools</div>
+
+      <div class="asm-ev u" style="grid-column: 2; grid-row: 1">Any weekend jobs near Fitzroy?</div>
+      <div class="asm-ev a asm-thought" style="grid-column: 3; grid-row: 2"><i>Thought:</i> search casual roles nearby</div>
+      <div class="asm-ev t" style="grid-column: 4; grid-row: 3"><code>search_jobs</code><br>Fitzroy, casual</div>
+      <div class="asm-ev a" style="grid-column: 5; grid-row: 2">Here are three roles…</div>
+      <div class="asm-ev u" style="grid-column: 6; grid-row: 1">The café one. Do I need an RSA?</div>
+      <div class="asm-ev t" style="grid-column: 7; grid-row: 3"><code>get_job</code><br>id 2</div>
+      <div class="asm-ev a" style="grid-column: 8; grid-row: 2">Yes, it’s listed. Want to apply?</div>
+      <div class="asm-ev u" style="grid-column: 9; grid-row: 1">Yes, use my profile.</div>
+      <div class="asm-ev t" style="grid-column: 10; grid-row: 3"><code>apply</code><br>id 2</div>
+      <svg class="asm-deps fragment" data-fragment-index="2" viewBox="0 0 1200 198" aria-hidden="true">
+        <defs>
+          <marker id="asm-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 z"/>
+          </marker>
+        </defs>
+        <path d="M588,99 C626,99 646,90 646,66" marker-end="url(#asm-arrow)"/>
+        <path d="M956,99 C994,99 1014,90 1014,66" marker-end="url(#asm-arrow)"/>
+      </svg>
+    </div>
+    <div class="asm-depends fragment" data-fragment-index="2">
+      Each user turn depends on the agent’s last reply, so a fixed dataset cannot hold the conversation.
+      An LLM plays the user from a persona and a goal (<a href="../../bibliography/yao-2024-tau-bench/">Yao et al. 2024</a>).
+      <span class="asm-persona">Persona: student, no car, wants weekend work. Goal: apply for one suitable role.</span>
+    </div>
+    <div class="asm-tiers fragment" data-fragment-index="3">
+      <div class="asm-tier" style="grid-column: 4 / 5"><b>Step</b>right tool, right arguments?</div>
+      <div class="asm-tier" style="grid-column: 2 / 6"><b>Turn</b>was the reply accurate and helpful?</div>
+      <div class="asm-tier" style="grid-column: 2 / 11"><b>Trajectory</b>was the goal met, within policy? Judges at each tier, e.g. <a href="../../bibliography/jia-2025-agent-gpa/">Agent GPA</a></div>
+    </div>
+  </div>
+</div>
+<div class="asm-caption">Illustrative run; tools and messages are made up.</div>
+```
+
+::: {.notes}
+**About this slide:** Why agents need simulated users. For a generative model, a test case is an input–output pair that can be stored once and re-judged. For an agent, a test case is a whole run of user turns, reasoning, tool calls and replies, and each user turn depends on the agent’s previous reply, so a recorded conversation goes stale when the agent changes. An LLM playing a user with a persona and a goal fills that role, as in [τ-bench](../../bibliography/yao-2024-tau-bench/). The run is then evaluated at the step, turn and trajectory levels.
+
+**Presenter notes:**
+
+- Top: for a generative model, a test case is a pair. Store the input once, regenerate the output, and judge it. The dataset is a table.
+- Build 1: an agent run is not a pair. It is a trajectory of user turns, reasoning steps, tool calls and replies.
+- Build 2: the second user message ("the café one") only makes sense after the agent's first reply. Change the agent and the reply changes, so a recorded conversation goes stale. We need something that can respond. A simulated user, an LLM given a persona and a goal, plays that role. [τ-bench](../../bibliography/yao-2024-tau-bench/) is one benchmark built this way.
+- Build 3: we then evaluate at several tiers. Step: was each tool call right? Turn: was each reply good? Trajectory: did the user's goal get met, without breaking policy? Multi-tier evals and simulation are on the follow-up notes at the end of this section, still to be written up.
 :::
