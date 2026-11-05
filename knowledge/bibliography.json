@@ -4248,6 +4248,116 @@
       "note": "Standfirst: “Airline's claim that online helper was responsible for its own actions was 'remarkable': small claims court”. Posted 15 February 2024, last updated 16 February 2024.",
       "featured_rank": null,
       "abstract": null
+    },
+    {
+      "id": "campbell-2026-artificial-applicant",
+      "type": "website",
+      "authors": [
+        "Jack Campbell"
+      ],
+      "year": "2026",
+      "title": "HR leaders tackle the rise of the ‘artificial applicant’ in hiring",
+      "venue": "HRD Australia (Human Resources Director), 9 July 2026.",
+      "url": "https://www.hcamag.com/au/specialisation/hr-technology/hr-leaders-tackle-the-rise-of-the-artificial-applicant-in-hiring/581801",
+      "links": [
+        {
+          "label": "HRD Australia",
+          "href": "https://www.hcamag.com/au/specialisation/hr-technology/hr-leaders-tackle-the-rise-of-the-artificial-applicant-in-hiring/581801"
+        }
+      ],
+      "groups": [
+        "industry"
+      ],
+      "mentions": [],
+      "summary": "Report of an HR leaders’ roundtable in Sydney on 7 July 2026, built around Indeed’s report The Artificial Applicant: How Hiring Changed the Candidate, which the article describes as a nationally representative study of more than 1,000 working-age Australians conducted with YouGov in March 2026. It reports that 41% of candidates use AI to write or refine cover letters, 38% to prepare for interviews, 37% to rewrite their CV and 29% to try to beat applicant tracking systems; that 43% of workers are comfortable with employers using AI in recruitment; and that 79% believe employers should disclose when AI screens or assesses candidates. Part 1 opens with its AI-use figures as Australian evidence that job seekers already use AI for parts of a job search.",
+      "note": "Read on 5 November 2026. The figures are the article’s summary of Indeed’s report, not the report itself: the article does not give the survey questions, and it calls the base “candidates” without saying whether that means every respondent or only those who had recently looked for work. The Indeed report was not read; its page on au.indeed.com refused automated requests. The article also cites Roy Morgan data (58% average AI use among Australians aged 14 and over), which Part 1 does not use.",
+      "featured_rank": null,
+      "abstract": null
+    },
+    {
+      "id": "greenhouse-2026-candidate-report",
+      "type": "website",
+      "authors": [
+        "Greenhouse"
+      ],
+      "year": "2026",
+      "title": "6 in 10 job seekers are rethinking how they write to avoid sounding like AI, even as most use it in their search",
+      "venue": "Greenhouse newsroom, 20 October 2026. Press release for the 2026 Greenhouse Future of Hiring Candidate Report.",
+      "url": "https://www.greenhouse.com/newsroom/6-in-10-job-seekers-are-rethinking-how-they-write-to-avoid-sounding-like-ai-even-as-most-use-it-in-their-search",
+      "links": [
+        {
+          "label": "Greenhouse newsroom",
+          "href": "https://www.greenhouse.com/newsroom/6-in-10-job-seekers-are-rethinking-how-they-write-to-avoid-sounding-like-ai-even-as-most-use-it-in-their-search"
+        }
+      ],
+      "groups": [
+        "industry"
+      ],
+      "mentions": [],
+      "summary": "Press release for a survey of more than 2,800 job seekers in the US, UK, Ireland, Germany and Australia; unless noted, its figures are for the 1,200 US respondents. It reports that 77% of US job seekers used AI in their search in the past year, and that 69% would feel comfortable using an AI agent but only 5% would let one apply to jobs on its own. Part 1 uses the gap between 69% and 5% to show that comfort with AI help does not extend to an agent acting alone.",
+      "note": "Read on 5 November 2026. The release does not give the question wording or the answer options behind the 69% and 5%, and it gives no Australian figures. Greenhouse sells hiring software, including AI interviews. The full report was not read.",
+      "featured_rank": null,
+      "abstract": null
+    },
+    {
+      "id": "harris-ruth-2026-trust-gap",
+      "type": "website",
+      "authors": [
+        "The Harris Poll",
+        "Ruth AI"
+      ],
+      "author_label": "The Harris Poll and Ruth AI",
+      "year": "2026",
+      "title": "New Harris Poll and Ruth AI study: 81% of Americans would let an AI agent handle part of their job search",
+      "venue": "PR Newswire, 23 July 2026. Press release for The Trust Gap, a survey by The Harris Poll in collaboration with Ruth AI.",
+      "url": "https://www.prnewswire.com/news-releases/new-harris-poll-and-ruth-ai-study-81-of-americans-would-let-an-ai-agent-handle-part-of-their-job-search-302833298.html",
+      "links": [
+        {
+          "label": "PR Newswire",
+          "href": "https://www.prnewswire.com/news-releases/new-harris-poll-and-ruth-ai-study-81-of-americans-would-let-an-ai-agent-handle-part-of-their-job-search-302833298.html"
+        },
+        {
+          "label": "Study page (Ruth AI)",
+          "href": "https://ruthapp.ai/research"
+        }
+      ],
+      "groups": [
+        "industry"
+      ],
+      "mentions": [],
+      "summary": "Online survey of 2,131 US adults by The Harris Poll with Ruth AI, an AI career strategist, fielded 11–13 June 2026 and weighted to the US general adult population. 81% would be comfortable having an AI agent handle at least one part of a job search; a majority would let AI search for jobs (67%), conduct pre-interview research (67%), update their resume (65%) or apply for jobs outright (55%); 49% and 47% would let it negotiate benefits or salary. Part 1 sets it beside the Greenhouse survey to show that the share willing to let AI apply for them depends on who is asked and how.",
+      "note": "Read on 5 November 2026. The study page charts the same figures under “% comfortable letting AI do this step”. Neither page gives the exact question text. Ruth AI sells an AI career agent.",
+      "featured_rank": null,
+      "abstract": null
+    },
+    {
+      "id": "seek-2026-about",
+      "type": "website",
+      "authors": [
+        "SEEK"
+      ],
+      "year": "2026",
+      "title": "About SEEK",
+      "venue": "SEEK website (au.seek.com/about). Internet Archive capture of 2 October 2026.",
+      "url": "https://au.seek.com/about",
+      "links": [
+        {
+          "label": "SEEK",
+          "href": "https://au.seek.com/about"
+        },
+        {
+          "label": "Internet Archive capture, 2 October 2026",
+          "href": "https://web.archive.org/web/20261002014455/https://au.seek.com/about"
+        }
+      ],
+      "groups": [
+        "industry"
+      ],
+      "mentions": [],
+      "summary": "SEEK’s own description of the company: founded in Melbourne, Australia in 1997, it operates online employment marketplaces in Australia, New Zealand, Hong Kong, Indonesia, Malaysia, the Philippines, Singapore and Thailand, has more than 3,000 employees and is listed on the Australian Securities Exchange. The page shows a map of those markets and says SEEK’s use of AI is governed by its Responsible AI framework. Part 1 uses it to introduce SEEK, the employer behind the tutorial’s examples.",
+      "note": "Read on 5 November 2026 from the Internet Archive capture of 2 October 2026, because the live page refused automated requests. The regional map and SEEK logo on the slide are SEEK’s own images, downloaded from the image host the page uses.",
+      "featured_rank": null,
+      "abstract": null
     }
   ]
 }

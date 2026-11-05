@@ -11,6 +11,120 @@ format:
       - terms.css
       - follow-up.css
       - motivation.css
+      - opening.css
+---
+
+## Would you use an AI agent to… {.vote-slide}
+
+<!-- TODO: The poll figures are from press coverage, not the surveys' own reports, and none asks Terrence's four questions. Replace them if the full Indeed, Greenhouse or Harris reports give closer questions or Australian figures. -->
+
+```{=html}
+<div class="vt-grid">
+  <div class="vt-ask">
+    <p class="vt-kicker">Hands up if you would</p>
+    <ol class="vt-questions">
+      <li class="fragment" data-fragment-index="1"><span class="vt-n">1</span>proofread your CV and suggest changes?</li>
+      <li class="fragment" data-fragment-index="2"><span class="vt-n">2</span>find and recommend jobs for you?</li>
+      <li class="fragment" data-fragment-index="3"><span class="vt-n">3</span>write your whole CV for you?</li>
+      <li class="fragment" data-fragment-index="4"><span class="vt-n">4</span>apply to jobs for you, automatically?</li>
+    </ol>
+  </div>
+  <div class="vt-polls">
+    <p class="vt-kicker fragment" data-fragment-index="5">What surveys found <span class="vt-caveat">Their questions, not ours</span></p>
+    <div class="vt-card fragment" data-fragment-index="5">
+      <p class="vt-who">Australia · use AI to…</p>
+      <div class="vt-stats">
+        <p><b>37%</b> rewrite their CV</p>
+        <p><b>41%</b> write or refine cover letters</p>
+      </div>
+      <p class="vt-src">Indeed with YouGov, 1,000+ working-age Australians, March 2026, as reported by <a href="../../bibliography/campbell-2026-artificial-applicant/">Campbell 2026</a></p>
+    </div>
+    <div class="vt-card fragment" data-fragment-index="6">
+      <p class="vt-who">US job seekers · an AI agent</p>
+      <div class="vt-stats">
+        <p><b>69%</b> would feel comfortable using one</p>
+        <p class="vt-low"><b>5%</b> would let one apply to jobs on its own</p>
+      </div>
+      <p class="vt-src">Greenhouse survey, 1,200 US job seekers, 2026 (<a href="../../bibliography/greenhouse-2026-candidate-report/">Greenhouse 2026</a>)</p>
+    </div>
+    <div class="vt-card fragment" data-fragment-index="7">
+      <p class="vt-who">US adults · comfortable letting AI…</p>
+      <div class="vt-stats">
+        <p><b>67%</b> search for jobs</p>
+        <p><b>65%</b> update their résumé</p>
+        <p class="vt-low"><b>55%</b> apply for jobs outright</p>
+      </div>
+      <p class="vt-src">The Harris Poll for Ruth AI, 2,131 US adults, June 2026 (<a href="../../bibliography/harris-ruth-2026-trust-gap/">The Harris Poll and Ruth AI 2026</a>)</p>
+    </div>
+  </div>
+</div>
+```
+
+::: {.notes}
+**About this slide:** An opening vote. Four questions about using an AI agent in a job search, from help (proofreading a CV) to acting alone (applying for jobs automatically). Then three surveys. They asked different questions from ours, of different people, so their numbers are not answers to our four questions. In Australia, many job seekers already use AI for parts of a job search: 37% to rewrite their CV and 41% to write or refine cover letters. In a US survey of job seekers, 69% would feel comfortable using an AI agent, but only 5% would let one apply to jobs on its own. In a US survey of adults, 55% would be comfortable letting AI apply for jobs outright, fewer than for searching for jobs (67%) or updating a résumé (65%).
+
+**What to take away:** Most of us already use AI for some things and would use it for more. Trust in an agent acting on its own has a ceiling, partly because we worry it will do the wrong thing. Where that ceiling sits depends on how you ask: the two US surveys put it at 5% and 55%.
+
+**Presenter notes:**
+
+- Vote mechanics. Each click shows one question. Ask for hands, give it two or three seconds, and say roughly how many (“about half”, “a few”). The current question has a coloured bar; earlier ones fade.
+- Expect hands to drop from question 1 to question 4. If they don’t, say so; it is still a useful contrast with the surveys.
+- Clicks 5 to 7 show the surveys one at a time. Say each population out loud: Australians, then US job seekers, then US adults.
+- Do not read the numbers as answers to our questions. The Australian figures are what people do now; the US figures are what people say they would be comfortable with.
+- The 5% and 55% come from differently worded questions put to different people. The releases do not give the exact questions or answer options. It is a small example of why how you measure matters, which is the theme of the tutorial.
+- Sources:
+  - The Australian figures are from Indeed’s report *The Artificial Applicant*, a study of more than 1,000 working-age Australians with YouGov in March 2026, as reported by HRD Australia ([Campbell 2026](../../bibliography/campbell-2026-artificial-applicant/)). The article calls the base “candidates”.
+  - The Greenhouse figures are for its 1,200 US respondents, from the release for its 2026 Future of Hiring Candidate Report ([Greenhouse 2026](../../bibliography/greenhouse-2026-candidate-report/)).
+  - The Harris figures are from an online survey of 2,131 US adults, 11–13 June 2026, weighted to the US adult population ([The Harris Poll and Ruth AI 2026](../../bibliography/harris-ruth-2026-trust-gap/)).
+- Greenhouse sells hiring software and Ruth AI sells an AI career agent.
+:::
+
+---
+
+## About me, and SEEK {.about-slide}
+
+```{=html}
+<div class="ab-me">
+  <ol class="ab-path ab-academic">
+    <li><span class="ab-org">University of Michigan</span>BSE Electrical Engineering; BA Classical Languages and Literature</li>
+    <li><span class="ab-org">University of Michigan</span>PhD Linguistics: computational historical linguistics, machine learning for morphology</li>
+    <li><span class="ab-org">Insight Centre for Data Analytics, University College Dublin</span>Postdoc: text analytics for news, with the Irish Farmers Journal and The Irish Times</li>
+  </ol>
+  <ol class="ab-path ab-industry">
+    <li><span class="ab-org">ANZ</span>Data Scientist</li>
+    <li><span class="ab-org"><img class="ab-logo" src="images/seek-logo.svg" alt="SEEK"></span>Data Scientist</li>
+    <li class="ab-now"><span class="ab-org"><img class="ab-logo" src="images/seek-logo.svg" alt="SEEK"></span>Head of Generative AI <span class="ab-tag">Now</span></li>
+  </ol>
+</div>
+<div class="ab-seek">
+  <figure class="ab-map">
+    <img src="images/seek-apac-markets-map.jpg" alt="Map of Asia Pacific from SEEK’s About page, with pins on Australia, New Zealand, Hong Kong, Indonesia, Malaysia, the Philippines, Singapore and Thailand.">
+    <figcaption>SEEK’s markets. Map: <a href="../../bibliography/seek-2026-about/">SEEK 2026</a></figcaption>
+  </figure>
+  <div class="ab-facts">
+    <p class="ab-fact"><b>Melbourne</b> founded here in 1997</p>
+    <p class="ab-fact"><b>8</b> markets across Asia Pacific</p>
+    <p class="ab-fact"><b>4+</b> major languages</p>
+  </div>
+  <div class="ab-team">
+    <p class="ab-big"><b>250+</b> people in SEEK’s AI and Analytics team</p>
+    <p class="ab-big ab-mine"><b>17</b> in my team, on generative AI and AI agents</p>
+  </div>
+</div>
+```
+
+::: {.notes}
+**About this slide:** Who is presenting, and the company the tutorial’s examples come from. Terrence Szymanski trained in electrical engineering, classical languages and linguistics at the University of Michigan, with a PhD in computational historical linguistics and machine learning for morphology. He was a postdoctoral researcher at the Insight Centre for Data Analytics at University College Dublin, working on text analytics for news with the Irish Farmers Journal and The Irish Times. He then worked as a data scientist at ANZ and at SEEK, and now leads generative AI at SEEK. SEEK was founded in Melbourne in 1997 and runs online employment marketplaces in eight markets across Asia Pacific: Australia, New Zealand, Hong Kong, Indonesia, Malaysia, the Philippines, Singapore and Thailand. Its AI and Analytics team has more than 250 people; Terrence’s team of 17 works on generative AI and AI agents.
+
+**What to take away:** The examples in this tutorial come from a large employment marketplace that builds and evaluates AI agents across several countries and languages, and from a presenter who came to industry from research.
+
+**Presenter notes:**
+
+- Keep it short; the academic path is there because most of the audience are graduate students.
+- Sources: the background and the two team sizes are supplied by Terrence. “At least four major languages” is also Terrence’s; SEEK’s About page does not state it. Melbourne, 1997, the eight markets and the map are from SEEK’s About page ([SEEK 2026](../../bibliography/seek-2026-about/)), read from the Internet Archive capture of 2 October 2026.
+- Logos: only SEEK’s, from SEEK’s own site. The University of Michigan, University College Dublin, Insight and ANZ are shown as text. Michigan’s brand policy does not allow its logos on projects not affiliated with the university, UCD asks third parties to request permission, ANZ’s Australian brand assets are private, and Insight publishes no terms of use for its logo.
+:::
+
 ---
 
 ## 2026 is the year of the AI Agent {.trends-slide}
@@ -34,7 +148,7 @@ format:
 ```
 
 ::: {.notes}
-**About this slide:** The opening claim of the tutorial: 2026 is the year of the AI agent. Context for why AI agents matter now. The chart shows Google search interest over the past five years, worldwide, for four terms: “AI Agent”, “Agentic AI”, “Generative AI” and “LLM”. Interest in AI agents has grown alongside interest in generative AI and LLMs. Search interest says what people are curious about, not how agents are used or how well they work; it is here as motivation, not evidence. The chart is live, so it shows the latest data when viewed.
+**About this slide:** The first claim of the tutorial: 2026 is the year of the AI agent. Context for why AI agents matter now. The chart shows Google search interest over the past five years, worldwide, for four terms: “AI Agent”, “Agentic AI”, “Generative AI” and “LLM”. Interest in AI agents has grown alongside interest in generative AI and LLMs. Search interest says what people are curious about, not how agents are used or how well they work; it is here as motivation, not evidence. The chart is live, so it shows the latest data when viewed.
 
 **Presenter notes:**
 
