@@ -5,6 +5,7 @@ format:
     css:
       - ../../_shared/chrome.css
       - ../01-agents-and-eval-challenges/motivation.css
+      - ../01-agents-and-eval-challenges/complexity.css
 ---
 
 # Part 1.G: Graveyard {.graveyard-slide}
@@ -15,9 +16,10 @@ Kept slides that are not in the talk. They were cut from [Part 1](../01-agents-a
 
 1. News-story examples: the eight real cases behind the headline collage
 2. Opening and section 1 slides: the old title slide, work-in-progress notice, agenda and section 1 header, and the five slides cut from section 1
+3. Complex-systems slides: the three slides replaced by the new complex, complicated and “complicated and complex” slides
 
 ::: {.notes}
-**About this slide:** Not part of the tutorial. This deck keeps the slides cut from Part 1, so the Part 1 deck shows only the talk. The slides and their notes are unchanged, so notes that say “next”, “the last slide” or “section 1” describe their old place in Part 1. The styles come from Part 1’s `motivation.css`. Delete the deck before the tutorial on 30 November 2026.
+**About this slide:** Not part of the tutorial. This deck keeps the slides cut from Part 1, so the Part 1 deck shows only the talk. The slides and their notes are unchanged, so notes that say “next”, “the last slide” or “section 1” describe their old place in Part 1. The styles come from Part 1’s `motivation.css` and `complexity.css`. Delete the deck before the tutorial on 30 November 2026.
 :::
 
 # Graveyard: news-story examples {.graveyard-slide}
@@ -602,4 +604,143 @@ AI has a decidedly mixed, if not entirely negative, perception among the public.
 - From the follow-up notes: every version of an agent, subagent or tool should be versioned and linked to an eval result, and agent access to tools is restricted, versioned, governed and observed. Those notes, and the SEEK agent-platform topics (runtime, gateway, observability, offline and online evals, experimentation), stay on the section 3 follow-up slide.
 - The list is not complete. Use it to place evals in the bigger picture, not as a reference architecture.
 - Next: how agents work, so we can see what a judge reads.
+:::
+
+---
+
+# Graveyard: complex-systems slides {.graveyard-slide}
+
+The three slides that “Complex system”, “Complicated system” and “AI Agents are complicated *and* complex systems” replaced in Part 1 (6 November 2026), kept unchanged.
+
+::: {.notes}
+**About this slide:** The third group in this deck. The two-figure slide, the complicated-vs-complex spectrum and the parts-vs-whole slide, as they were. Their keywords, examples, figures and notes are carried into the three new Part 1 slides. The parts-vs-whole figure and the placeholder for a Tim Sullivan quotation are only here.
+:::
+
+---
+
+## AI Agents are Complex Systems {.complexity-slide}
+
+<!-- Replaced in Part 1 on 6 Nov 2026 by “Complex system”, “Complicated system” and “AI Agents are complicated and complex systems”. Kept unchanged. -->
+
+<!-- Figures are generated: python3 scripts/generate-complexity-figures.py -->
+
+:::: {.columns}
+
+::: {.column width="50%"}
+::: {.sys-label .complicated}
+Complicated
+:::
+
+![](../01-agents-and-eval-challenges/images/complicated-system.svg){fig-alt="A complicated system: subsystems of components wired together. Signals follow fixed, traceable routes and every run lands on the same single output."}
+
+::: {.sys-caption}
+Many parts, intricately wired, but every path can be traced.<br>
+**Same input → same output.**
+:::
+:::
+
+::: {.column width="50%" .fragment}
+::: {.sys-label .complex}
+Complex
+:::
+
+![](../01-agents-and-eval-challenges/images/complex-system.svg){fig-alt="A complex system: a dense network of interconnected parts with feedback loops. Signals wander different routes and runs land on a spread-out distribution of outputs."}
+
+::: {.sys-caption}
+Many parts, entangled through feedback loops; outputs can't be traced back.<br>
+**Same input → a distribution of outputs.**
+:::
+:::
+
+::::
+
+::: {.notes}
+**About this slide:** Contrasts two kinds of system. A complicated system has many parts, but every connection is designed and can be traced, so the same input always gives the same output. A complex system’s parts are entangled through feedback loops, so the same input gives a distribution of outputs that cannot be traced back to individual parts. The animated figures are illustrative.
+
+**Presenter notes:**
+
+- Left, complicated: lots of components and subsystems connected in intricate ways, but every connection was designed and can be traced. The orange signals take the same routes every time and arrive together, so all runs land on one point on the output axis. The behaviour of the whole is dictated by the behaviour of the components.
+- Right, complex: lots of parts, intertwined, with feedback loops and long-range links. Each signal wanders a different route, and runs land on a distribution of outputs. You can't easily trace an output back to the parts that produced it.
+- The histogram on the right comes from simulated random walks over the drawn network: illustrative, not data.
+:::
+
+---
+
+## Complicated vs complex {.complexity-slide}
+
+:::: {.spectrum-wrap}
+
+::: {.examples .complicated}
+- jet engines
+- mechanical watches
+- traditional software
+- ETL pipelines
+- workflows
+:::
+
+```{=html}
+<div class="spectrum">
+  <div class="spec-row spec-heads">
+    <div class="complicated">Simple or complicated</div><div></div><div class="complex">Complex</div>
+  </div>
+  <div class="spec-row">
+    <div class="complicated">Predictable</div><div class="spec-arrow"></div><div class="complex">Unpredictable</div>
+  </div>
+  <div class="spec-row">
+    <div class="complicated">Controllable</div><div class="spec-arrow"></div><div class="complex">Self-organising</div>
+  </div>
+  <div class="spec-row">
+    <div class="complicated">Designable</div><div class="spec-arrow"></div><div class="complex">Emergent</div>
+  </div>
+</div>
+```
+
+::: {.examples .complex}
+- the economy
+- the weather
+- ant colonies
+- human brains
+- **foundation models**
+- **agents**
+- **agent swarms**
+:::
+
+::::
+
+::: {.attribution}
+Framework: [Complex versus complicated](../../bibliography/finegood-complex-versus-complicated/) (Frameworks Collection, CC BY-NC-ND)
+:::
+
+::: {.notes}
+**About this slide:** Places familiar systems on a spectrum. Complicated systems such as jet engines, traditional software and workflows are predictable, controllable and designable. Complex systems such as the weather, the economy and human brains are unpredictable, self-organising and emergent. Foundation models, agents and agent swarms sit on the complex side. The framework is from [Complex versus complicated](../../bibliography/finegood-complex-versus-complicated/).
+
+**Presenter notes:**
+
+- Same three contrasts and examples as the AIPS Showcase slide, without the original illustration.
+- Point to the bottom of the right column: foundation models, agents, and agent swarms sit with the weather and the economy, not with jet engines.
+:::
+
+---
+
+## The whole is more than the sum of its parts {.complexity-slide}
+
+<!-- TODO: placeholder kept. The figure is final; the Tim Sullivan quotation below is still missing. -->
+
+![](../01-agents-and-eval-challenges/images/parts-vs-whole.svg){fig-alt="Left: twelve parts shown in isolation, each with a check mark. Right: the same parts connected, with signals circulating around feedback loops that no single part contains."}
+
+::: {.sullivan-quote .fragment}
+<!-- TODO: paste the exact Tim Sullivan quotation and its source; the attachment did not come through. -->
+"TODO: Tim Sullivan quotation"
+
+[— Tim Sullivan]{.quote-source}
+:::
+
+::: {.notes}
+**About this slide:** Each part of a system can pass its own checks while the system as a whole misbehaves: once the parts interact, feedback loops appear that belong to no single part. For agents, this means testing each component is not enough; the whole system has to be evaluated too.
+
+**Presenter notes:**
+
+- Left: each part on its own checks out.
+- Right: once the parts interact, feedback loops appear (orange) that don't belong to any single part. That behaviour only exists in the whole.
+- Bridge (from the outline, multi-tier evals): with complex systems you still always have to evaluate the system as a whole.
 :::

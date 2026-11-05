@@ -1,6 +1,8 @@
-/* "AI Agents are Complex Systems" slides. Series tokens come from the slide
-   template; the figure SVGs from scripts/generate-complexity-figures.py keep
-   their own fixed colours. */
+/* Complex-systems slides: "Complex system", "Complicated system" and "AI
+   Agents are complicated and complex systems". The two-figure, spectrum and
+   parts-vs-whole rules are used by the originals kept in Part 1.G. Series
+   tokens come from the slide template; the figure SVGs from
+   scripts/generate-complexity-figures.py keep their own fixed colours. */
 
 .reveal .complexity-slide .complicated { color: var(--series-a-ink); }
 .reveal .complexity-slide .complex { color: var(--series-b-ink); }
@@ -129,3 +131,95 @@
   font-style: normal;
   color: var(--series-b-ink);
 }
+
+/* Definition slides: text left, figure right */
+
+.reveal .cx-slide .cx-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 0 1.1em;
+  align-items: center;
+  margin-top: 0.9em;
+}
+
+.reveal .cx-slide .cx-text p { margin: 0 0 0.9em; }
+.reveal .cx-slide .cx-text p:last-child { margin-bottom: 0; }
+
+.reveal .cx-slide .cx-lead {
+  display: block;
+  font-size: 0.74em;
+  line-height: 1.4;
+  color: var(--deck-ink);
+}
+
+.reveal .cx-slide .cx-chip {
+  display: inline-block;
+  margin: 0 0.35em 0.3em 0;
+  padding: 0.2em 0.7em;
+  border: 2px solid currentColor;
+  border-radius: 999px;
+  font-size: 0.54em;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.reveal .cx-slide .cx-examples {
+  display: block;
+  font-size: 0.62em;
+  line-height: 1.4;
+  color: var(--deck-ink);
+}
+
+.reveal .cx-slide .cx-also {
+  display: block;
+  font-size: 0.56em;
+  line-height: 1.4;
+  color: var(--deck-soft);
+}
+
+.reveal .cx-slide .cx-history {
+  display: block;
+  padding-left: 0.8em;
+  border-left: 4px solid var(--series-b-mid);
+  font-size: 0.5em;
+  line-height: 1.45;
+  color: var(--deck-soft);
+}
+
+.reveal .cx-slide .cx-figure img { width: 100%; }
+.reveal .cx-slide .cx-figure p { margin: 0; }
+
+.reveal .cx-slide .attribution { margin-top: 1.4em; }
+
+/* Both: two mini figures, then two points */
+
+.reveal .cx-both-slide .cx-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 1.2em;
+  width: 90%;
+  margin: 0.3em auto 0;
+}
+
+.reveal .cx-both-slide .cx-mini { text-align: center; }
+.reveal .cx-both-slide .cx-mini p { margin: 0; }
+.reveal .cx-both-slide .cx-mini .sys-label { display: block; margin: 0 0 0.15em; }
+.reveal .cx-both-slide .cx-mini img { width: 100%; }
+
+.reveal .cx-both-slide .cx-mini-caption {
+  display: block;
+  font-size: 0.54em;
+  line-height: 1.35;
+  color: var(--figure-ink);
+}
+
+.reveal .cx-both-slide .cx-points ul {
+  display: block;
+  margin: 0.8em 0 0;
+  padding-left: 1.1em;
+  font-size: 0.64em;
+  line-height: 1.4;
+}
+
+.reveal .cx-both-slide .cx-points li { margin: 0 0 0.45em; }

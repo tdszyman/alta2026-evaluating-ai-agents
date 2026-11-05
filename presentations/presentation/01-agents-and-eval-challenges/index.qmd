@@ -344,7 +344,7 @@ This is the first place the tutorial uses the term. **LLM-as-a-judge** means an 
   - Arize AX: Arize’s managed agent observability and evaluation platform, beside its open-source Phoenix ([Arize](../../bibliography/arize/)).
   - LangSmith: LangChain’s agent observability and evaluation platform ([LangChain 2026](../../bibliography/langchain-2026-langsmith/)).
 - The two kinds of protection, from the platforms’ own pages. Deterministic: AWS describes AgentCore Policy as “deterministic control” over which tools an agent can call, and under what conditions. Non-deterministic: LangSmith lists “Online LLM-as-judge and code evals”, so judges and fixed code checks run side by side ([LangChain 2026](../../bibliography/langchain-2026-langsmith/)).
-- Complicated and complex: a one-line nod here. The complicated vs complex slide later in Part 1 explains the difference.
+- Complicated and complex: a one-line nod here. The “Complex system”, “Complicated system” and “AI Agents are complicated *and* complex systems” slides at the end of section 3 explain the difference.
 - Keep the definition non-technical. Judge methods come in Part 2.
 - The list is short on purpose and is not a ranking. Other clouds and vendors offer similar platforms.
 :::
@@ -1427,129 +1427,114 @@ The two Olive screenshots: the Reddit post “Olive AI started telling me about 
 
 ---
 
-## AI Agents are Complex Systems {.complexity-slide}
+## Complex system {.complexity-slide .cx-slide}
 
-<!-- Figures are generated: python3 scripts/generate-complexity-figures.py -->
+:::: {.cx-grid}
 
-:::: {.columns}
+::: {.cx-text}
+[Many parts, entangled through feedback loops, so the behaviour of the whole emerges from how they interact. **Same input → a distribution of outputs.**]{.cx-lead}
 
-::: {.column width="50%"}
-::: {.sys-label .complicated}
-Complicated
+[Unpredictable]{.cx-chip .complex} [Self-organising]{.cx-chip .complex} [Emergent]{.cx-chip .complex}
+
+[**Examples:** the weather, the economy, ant colonies, human brains]{.cx-examples}
+
+[Weaver called these problems of “organized complexity”: “a sizable number of factors which are interrelated into an organic whole” ([Weaver 1948](../../bibliography/weaver-1948-science-complexity/)). Complexity science now spans the natural and social sciences, with no single agreed definition ([Ladyman et al. 2013](../../bibliography/ladyman-2013-complex-system/)).]{.cx-history}
 :::
 
-![](images/complicated-system.svg){fig-alt="A complicated system: subsystems of components wired together. Signals follow fixed, traceable routes and every run lands on the same single output."}
-
-::: {.sys-caption}
-Many parts, intricately wired, but every path can be traced.<br>
-**Same input → same output.**
-:::
-:::
-
-::: {.column width="50%" .fragment}
-::: {.sys-label .complex}
-Complex
-:::
-
+::: {.cx-figure}
 ![](images/complex-system.svg){fig-alt="A complex system: a dense network of interconnected parts with feedback loops. Signals wander different routes and runs land on a spread-out distribution of outputs."}
-
-::: {.sys-caption}
-Many parts, entangled through feedback loops; outputs can't be traced back.<br>
-**Same input → a distribution of outputs.**
-:::
 :::
 
 ::::
 
+[Contrasts and examples: [Complex versus complicated](../../bibliography/finegood-complex-versus-complicated/) (Frameworks Collection, CC BY-NC-ND). Figure illustrative.]{.attribution}
+
 ::: {.notes}
-**About this slide:** Contrasts two kinds of system. A complicated system has many parts, but every connection is designed and can be traced, so the same input always gives the same output. A complex system’s parts are entangled through feedback loops, so the same input gives a distribution of outputs that cannot be traced back to individual parts. The animated figures are illustrative.
+**About this slide:** A complex system has many parts entangled through feedback loops, so the behaviour of the whole emerges from how the parts interact, and the same input gives a distribution of outputs that cannot be traced back to individual parts. Complex systems are unpredictable, self-organising and emergent. Examples are the weather, the economy, ant colonies and human brains. As a field, the study of complex systems goes back at least to Warren Weaver’s 1948 essay “Science and Complexity”, which separated problems of simplicity, problems of “disorganized complexity” (many variables, handled by statistics) and problems of “organized complexity”: problems “which involve dealing simultaneously with a sizable number of factors which are interrelated into an organic whole” ([Weaver 1948](../../bibliography/weaver-1948-science-complexity/)). Complexity science is now studied across the natural and social sciences, but, as a review puts it, “there is no concise definition of a complex system, let alone a definition on which all scientists agree” ([Ladyman et al. 2013](../../bibliography/ladyman-2013-complex-system/)).
 
 **Presenter notes:**
 
-- Left, complicated: lots of components and subsystems connected in intricate ways, but every connection was designed and can be traced. The orange signals take the same routes every time and arrive together, so all runs land on one point on the output axis. The behaviour of the whole is dictated by the behaviour of the components.
-- Right, complex: lots of parts, intertwined, with feedback loops and long-range links. Each signal wanders a different route, and runs land on a distribution of outputs. You can't easily trace an output back to the parts that produced it.
-- The histogram on the right comes from simulated random walks over the drawn network: illustrative, not data.
+- The figure: lots of parts, intertwined, with feedback loops and long-range links. Each signal wanders a different route, and runs land on a distribution of outputs. You can’t easily trace an output back to the parts that produced it.
+- The histogram comes from simulated random walks over the drawn network: illustrative, not data.
+- The three keywords and the examples are from the framework [Complex versus complicated](../../bibliography/finegood-complex-versus-complicated/), the same contrasts and examples as the AIPS Showcase slide.
+- History, in one breath: Weaver 1948 names organized complexity; Ladyman et al. 2013 review attempts to define a complex system and find no agreed definition. Don’t go further; the point is that “complex” has a meaning beyond “hard”.
+- Next: the other kind of system, which looks similar from outside.
 :::
 
 ---
 
-## Complicated vs complex {.complexity-slide}
+## Complicated system {.complexity-slide .cx-slide}
 
-:::: {.spectrum-wrap}
+:::: {.cx-grid}
 
-::: {.examples .complicated}
-- jet engines
-- mechanical watches
-- traditional software
-- ETL pipelines
-- workflows
+::: {.cx-text}
+[Many parts, intricately wired, but every connection is designed and can be traced, so the parts dictate the behaviour of the whole. **Same input → same output.**]{.cx-lead}
+
+[Predictable]{.cx-chip .complicated} [Controllable]{.cx-chip .complicated} [Designable]{.cx-chip .complicated}
+
+[**Example: a jet engine.** Every part is designed and every path can be traced, so it behaves the same way every time.]{.cx-examples}
+
+[Also: mechanical watches, traditional software, ETL pipelines, workflows]{.cx-also}
 :::
 
-```{=html}
-<div class="spectrum">
-  <div class="spec-row spec-heads">
-    <div class="complicated">Simple or complicated</div><div></div><div class="complex">Complex</div>
-  </div>
-  <div class="spec-row">
-    <div class="complicated">Predictable</div><div class="spec-arrow"></div><div class="complex">Unpredictable</div>
-  </div>
-  <div class="spec-row">
-    <div class="complicated">Controllable</div><div class="spec-arrow"></div><div class="complex">Self-organising</div>
-  </div>
-  <div class="spec-row">
-    <div class="complicated">Designable</div><div class="spec-arrow"></div><div class="complex">Emergent</div>
-  </div>
-</div>
-```
-
-::: {.examples .complex}
-- the economy
-- the weather
-- ant colonies
-- human brains
-- **foundation models**
-- **agents**
-- **agent swarms**
+::: {.cx-figure}
+![](images/complicated-system.svg){fig-alt="A complicated system: subsystems of components wired together. Signals follow fixed, traceable routes and every run lands on the same single output."}
 :::
 
 ::::
 
-::: {.attribution}
-Framework: [Complex versus complicated](../../bibliography/finegood-complex-versus-complicated/) (Frameworks Collection, CC BY-NC-ND)
-:::
+[Contrasts and examples: [Complex versus complicated](../../bibliography/finegood-complex-versus-complicated/) (Frameworks Collection, CC BY-NC-ND). Figure illustrative.]{.attribution}
 
 ::: {.notes}
-**About this slide:** Places familiar systems on a spectrum. Complicated systems such as jet engines, traditional software and workflows are predictable, controllable and designable. Complex systems such as the weather, the economy and human brains are unpredictable, self-organising and emergent. Foundation models, agents and agent swarms sit on the complex side. The framework is from [Complex versus complicated](../../bibliography/finegood-complex-versus-complicated/).
+**About this slide:** A complicated system also has many parts, but every connection is designed and can be traced, so the behaviour of the whole is dictated by the behaviour of its parts, and the same input always gives the same output. Complicated systems are predictable, controllable and designable. A jet engine is the example: every part is designed and every path can be traced. Mechanical watches, traditional software, ETL pipelines and workflows are complicated too.
 
 **Presenter notes:**
 
-- Same three contrasts and examples as the AIPS Showcase slide, without the original illustration.
-- Point to the bottom of the right column: foundation models, agents, and agent swarms sit with the weather and the economy, not with jet engines.
+- The figure: lots of components and subsystems connected in intricate ways, but every connection was designed and can be traced. The orange signals take the same routes every time and arrive together, so all runs land on one point on the output axis.
+- Complicated is not the same as simple: a jet engine is hard to build. The difference from a complex system is that you can trace why it did what it did.
+- Keywords and examples from [Complex versus complicated](../../bibliography/finegood-complex-versus-complicated/).
+- Next: where AI agents sit.
 :::
 
 ---
 
-## The whole is more than the sum of its parts {.complexity-slide}
+## AI Agents are complicated *and* complex systems {.complexity-slide .cx-both-slide}
 
-<!-- TODO: placeholder kept. The figure is final; the Tim Sullivan quotation below is still missing. -->
+:::: {.cx-pair}
 
-![](images/parts-vs-whole.svg){fig-alt="Left: twelve parts shown in isolation, each with a check mark. Right: the same parts connected, with signals circulating around feedback loops that no single part contains."}
+::: {.cx-mini}
+[Complicated]{.sys-label .complicated}
 
-::: {.sullivan-quote .fragment}
-<!-- TODO: paste the exact Tim Sullivan quotation and its source; the attachment did not come through. -->
-"TODO: Tim Sullivan quotation"
+![](images/complicated-system.svg){fig-alt="Small version of the complicated-system figure: fixed, traceable routes and one output."}
 
-[— Tim Sullivan]{.quote-source}
+[The code, tools and workflows around the model]{.cx-mini-caption}
+:::
+
+::: {.cx-mini}
+[Complex]{.sys-label .complex}
+
+![](images/complex-system.svg){fig-alt="Small version of the complex-system figure: wandering routes and a distribution of outputs."}
+
+[Foundation models, agents and agent swarms]{.cx-mini-caption}
+:::
+
+::::
+
+::: {.cx-points}
+- **Evaluate with a mix.** Deterministic, rule-based checks (tests, exact matches, schemas) suit the complicated parts. Non-deterministic checks (LLM-as-judge) suit the complex behaviour.
+- **Test the components, and the whole system.** Each part can pass its own checks while the agent as a whole misbehaves: the whole is more than the sum of its parts.
 :::
 
 ::: {.notes}
-**About this slide:** Each part of a system can pass its own checks while the system as a whole misbehaves: once the parts interact, feedback loops appear that belong to no single part. For agents, this means testing each component is not enough; the whole system has to be evaluated too.
+**About this slide:** An AI agent is both. The code, tools, workflows and pipelines around the model are complicated: designed, traceable and predictable. The model, the agent built on it, and swarms of agents are complex: the same input gives a distribution of outputs. So agents are evaluated with a mix of methods. Deterministic, rule-based checks such as tests, exact matches and schema checks suit the complicated parts. Non-deterministic checks, LLM-as-a-judge, suit the complex behaviour. And because the whole is more than the sum of its parts, testing each component is not enough: each part can pass its own checks while the system as a whole misbehaves, because once the parts interact, feedback loops appear that belong to no single part. The whole system has to be evaluated too.
 
 **Presenter notes:**
 
-- Left: each part on its own checks out.
-- Right: once the parts interact, feedback loops appear (orange) that don't belong to any single part. That behaviour only exists in the whole.
-- Bridge (from the outline, multi-tier evals): with complex systems you still always have to evaluate the system as a whole.
+- Point at the two mini figures: the left one is the agent’s plumbing, the right one is its behaviour.
+- The mix echoes the “Agent platforms” slide: protections can be deterministic (rule-based) or non-deterministic (LLM-as-judge).
+- From the framework [Complex versus complicated](../../bibliography/finegood-complex-versus-complicated/): foundation models, agents and agent swarms sit with the weather and the economy, not with jet engines.
+- Bridge, from the outline’s multi-tier evals item (system-level vs component-level): with complex systems you still always have to evaluate the system as a whole.
+- The earlier parts-vs-whole figure and its placeholder for a Tim Sullivan quotation are in [Part 1.G: Graveyard](../01g-graveyard/); the quotation is still missing.
 :::
 
 ---

@@ -23,7 +23,12 @@ The deck now follows this order. The detailed outline below is the earlier plan 
 
     Kept in Part 1.G, after the news-story cases: why organisations adopt AI agents, the public’s view of AI, “Using AI to evaluate AI”, the full six-risk slide, and the layers-of-control slide. The single-case slides (Air Canada, DPD, MyCity, Bunnings, EchoLeak, the Lego order, the gym booking agent, Woolworths’ Olive) are the first group in Part 1.G.
 2. **Technical foundations.** What an LLM is, generative AI, AI agents; the building-block terminology.
-3. **Why agents need LLM judges.** Why other methods fall short, building on step 2.
+3. **Why agents need LLM judges.** Why other methods fall short, building on step 2. Ends with three complex-systems slides (6 Nov 2026, Terrence’s request):
+    1. “Complex system”: definition (feedback loops; same input, a distribution of outputs), the keywords unpredictable, self-organising and emergent, examples (the weather, the economy, ant colonies, human brains), a short history (Weaver 1948, “organized complexity”; Ladyman et al. 2013, no agreed definition) and the complex-system figure.
+    2. “Complicated system”: definition (designed, traceable; same input, same output), the keywords predictable, controllable and designable, the jet engine example plus mechanical watches, traditional software, ETL pipelines and workflows, and the complicated-system figure.
+    3. “AI Agents are complicated *and* complex systems”: both figures small; why agents are evaluated with a mix of deterministic checks and LLM-as-judge; test the components and the whole system, because the whole is more than the sum of its parts.
+
+    The three slides they replaced (the two-figure slide, the complicated-vs-complex spectrum, and “The whole is more than the sum of its parts” with its parts-vs-whole figure) are kept unchanged at the end of Part 1.G.
 4. **Hand-off to Part 2** (LLM-as-a-judge methods in depth).
 
 Open questions for Terrence:
@@ -43,6 +48,7 @@ Open questions for Terrence:
 - [ ] “Building well-governed agents” is Google’s view, with Google’s component names, until Terrence reworks it into a SEEK view. Which components should a SEEK view keep? The older layers-of-control slide (identity and registry, runtime, gateway, access control, observability, and evals, guardrails and judges) is in Part 1.G.
 - [ ] “Agent platforms” lists four platforms (AWS, Google, Arize, LangChain), as Terrence named them. Add others, such as Microsoft’s, or keep it to four?
 - [ ] “Using AI to evaluate AI” (Terrence’s opening line) is now in Part 1.G, and LLM-as-a-judge is first defined on “Agent platforms”, just before “Building well-governed agents”. Does the opening line come back, on that slide or only in the talk?
+- [ ] “The whole is more than the sum of its parts” had a placeholder for a Tim Sullivan quotation, never filled. The slide is in Part 1.G. Which quotation, and should it come back on “AI Agents are complicated *and* complex systems”?
 - [ ] Most real cases (Air Canada, DPD, NYC MyCity, Bunnings, Woolworths) are AI chatbot or assistant failures. EchoLeak is described by its finders as an attack on an AI agent, and the gym case is an agent taking actions for its user. Is that balance close enough?
 
 ## Detailed outline (WIP)

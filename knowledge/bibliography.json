@@ -3579,9 +3579,70 @@
         "Complex versus complicated"
       ],
       "note": "The Part 1 slide credits finegood@sfu.ca, Frameworks Collection, CC BY-NC-ND. A personal byline was not copied beyond that credit.",
-      "summary": "The framework behind the Part 1 complicated-versus-complex slide. The tutorial uses it to say why an agent is not evaluated like a pipeline: the same input can lead to a spread of outputs, so you still have to evaluate the whole system.",
+      "summary": "The framework behind the Part 1 “Complex system” and “Complicated system” slides: the keywords (predictable, controllable, designable versus unpredictable, self-organising, emergent) and the examples. The tutorial uses it to say why an agent is not evaluated like a pipeline: the same input can lead to a spread of outputs, so you still have to evaluate the whole system.",
       "featured_rank": null,
       "abstract": null
+    },
+    {
+      "id": "weaver-1948-science-complexity",
+      "type": "paper",
+      "authors": [
+        "Warren Weaver"
+      ],
+      "year": "1948",
+      "title": "Science and complexity",
+      "venue": "American Scientist, 36(4):536–544.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18882675/",
+      "links": [
+        {
+          "label": "PubMed",
+          "href": "https://pubmed.ncbi.nlm.nih.gov/18882675/"
+        }
+      ],
+      "abstract": null,
+      "summary": "An early, widely cited essay on complexity. Weaver separates problems of simplicity (a few variables), problems of “disorganized complexity” (very many variables, handled by statistics) and problems of “organized complexity”, which involve “a sizable number of factors which are interrelated into an organic whole”. The Part 1 “Complex system” slide uses it for the history of the field.",
+      "groups": [
+        "agents"
+      ],
+      "featured_rank": null,
+      "mentions": [
+        "Science and Complexity"
+      ],
+      "note": "Read on 6 November 2026. PubMed has no abstract. The quotation was checked against the archived copy of the text at https://web.archive.org/web/20091009171939/http://people.physics.anu.edu.au/~tas110/Teaching/Lectures/L1/Material/WEAVER1947.pdf."
+    },
+    {
+      "id": "ladyman-2013-complex-system",
+      "type": "paper",
+      "authors": [
+        "James Ladyman",
+        "James Lambert",
+        "Karoline Wiesner"
+      ],
+      "year": "2013",
+      "title": "What is a complex system?",
+      "venue": "European Journal for Philosophy of Science, 3(1):33–67.",
+      "url": "https://doi.org/10.1007/s13194-012-0056-8",
+      "links": [
+        {
+          "label": "Springer",
+          "href": "https://link.springer.com/article/10.1007/s13194-012-0056-8"
+        },
+        {
+          "label": "DOI",
+          "href": "https://doi.org/10.1007/s13194-012-0056-8"
+        }
+      ],
+      "abstract": "Complex systems research is becoming ever more important in both the natural and social sciences. It is commonly implied that there is such a thing as a complex system, different examples of which are studied across many disciplines. However, there is no concise definition of a complex system, let alone a definition on which all scientists agree. We review various attempts to characterize a complex system, and consider a core set of features that are widely associated with complex systems in the literature and by those in the field. We argue that some of these features are neither necessary nor sufficient for complexity, and that some of them are too vague or confused to be of any analytical use. In order to bring mathematical rigour to the issue we then review some standard measures of complexity from the scientific literature, and offer a taxonomy for them, before arguing that the one that best captures the qualitative notion of the order produced by complex systems is that of the Statistical Complexity. Finally, we offer our own list of necessary conditions as a characterization of complexity. These conditions are qualitative and may not be jointly sufficient for complexity. We close with some suggestions for future work.",
+      "summary": "A review of what “complex system” means across the sciences. It finds no concise, agreed definition, tests commonly listed features, and proposes its own necessary conditions. The Part 1 “Complex system” slide uses it to say the field spans many disciplines without one agreed definition.",
+      "groups": [
+        "surveys",
+        "agents"
+      ],
+      "featured_rank": null,
+      "mentions": [
+        "What is a complex system?"
+      ],
+      "note": "Read on 6 November 2026. Published online 19 June 2012; issue dated January 2013."
     },
     {
       "id": "deepeval",
