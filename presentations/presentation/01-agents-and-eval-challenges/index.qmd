@@ -194,7 +194,7 @@ Create better customer experiences, new offerings or additional revenue.
 :::
 :::
 
-::: {.vr-side .vr-risks}
+::: {.vr-side .vr-risks .fragment}
 [Risk]{.vr-label}
 
 1. [Financial]{.vr-name} [One bad decision, such as a refund that policy does not allow.]{.vr-desc}
@@ -223,6 +223,7 @@ The first four are about a single failure: a bad decision, a bad comment, an ill
 
 **Presenter notes:**
 
+- The slide builds in two steps: the Value side first, then one click reveals all six risks.
 - Terrence’s framing. Efficiency: deliver business outcomes with less effort, greater speed or better consistency. Growth: create better customer experiences, new offerings or additional revenue.
 - Nearly all organisations can benefit from some element of efficiency, by adopting AI agents for some type of internal business operations.
 - Some, but not all, businesses can also “sell” AI agents in some way, or use them in the customer experience. This does not apply to all businesses, and may skew towards startups figuring out how to create new products and value out of AI agents.

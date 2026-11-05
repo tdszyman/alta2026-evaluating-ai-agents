@@ -154,7 +154,11 @@
   color: var(--deck-accent);
 }
 
+/* Six rows of equal height (1fr rows size to the tallest), each with its
+   number, name and description centred vertically. */
 .reveal .value-risk-slide .vr-risks ol {
+  display: grid;
+  grid-auto-rows: 1fr;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -162,12 +166,12 @@
 }
 
 .reveal .value-risk-slide .vr-risks li {
-  position: relative;
   display: grid;
-  grid-template-columns: 170px 1fr;
-  column-gap: 16px;
+  grid-template-columns: 34px 170px 1fr;
+  column-gap: 0;
+  align-items: center;
   margin: 0;
-  padding: 9px 0 9px 34px;
+  padding: 9px 0;
   font-size: 21px;
   line-height: 1.3;
   border-bottom: 1px solid var(--deck-line);
@@ -176,11 +180,13 @@
 
 .reveal .value-risk-slide .vr-risks li::before {
   content: counter(vr);
-  position: absolute;
-  left: 4px;
-  top: 9px;
+  padding-left: 4px;
   font-weight: 600;
   color: var(--deck-accent);
+}
+
+.reveal .value-risk-slide .vr-risks .vr-desc {
+  padding-left: 16px;
 }
 
 .reveal .value-risk-slide .vr-risks .vr-name {
