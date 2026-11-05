@@ -785,70 +785,35 @@ The two Olive screenshots: the Reddit post “Olive AI started telling me about 
 
 ## Terms this section defines {#section-2-terms .glossary-slide}
 
+<!-- TODO: the working definition of an agent is now only in this slide's notes, since “Definitions: What is an Agent?” was deleted (6 Nov 2026). Say it aloud here, or give it a home on a slide, before the tutorial. -->
+
 ```{=html}
 <div class="tg-grid">
-  <div class="tg-col"><a class="tg-head" href="#/definitions-what-is-an-agent"><span class="tg-num tg-num-blank">·</span>What is an agent?</a><ul><li>Agent</li></ul></div>
-  <div class="tg-col"><a class="tg-head" href="#/llm-text-generation"><span class="tg-num">1</span>LLM text generation</a><ul><li>Input tokens</li><li>Output tokens</li><li>LLM call</li></ul></div>
-  <div class="tg-col"><a class="tg-head" href="#/conversations-messages-and-turns"><span class="tg-num">2</span>Conversations</a><ul><li>Messages</li><li>System message</li><li>User message</li><li>Assistant message</li><li>Chat template</li><li>Turn</li><li>Multi-turn</li></ul></div>
-  <div class="tg-col"><a class="tg-head" href="#/agent-traces-think-act-observe"><span class="tg-num">3</span>Agent traces</a><ul><li>Thought</li><li>Action</li><li>Observation</li><li><a href="../../bibliography/yao-2023-react/">ReAct</a> loop</li><li>Step</li><li>Multi-step</li><li>Trace</li></ul></div>
-  <div class="tg-col"><a class="tg-head" href="#/llm-as-judge-evaluating-the-trace"><span class="tg-num">4</span>LLM-as-judge</a><ul><li>LLM judge</li><li>Input guardrail</li><li>Call-level eval</li><li>Output guardrail</li><li>Multi-step eval</li><li>Multi-turn eval</li><li>Trace-level eval</li><li>Meta-evaluation</li></ul></div>
+  <div class="tg-col"><a class="tg-head" href="#/llm-text-generation"><span class="tg-num">1</span>LLM text generation</a><p class="tg-gloss">A model reads tokens and predicts the next one, again and again.</p><ul><li>Input tokens</li><li>Output tokens</li><li>LLM call</li></ul></div>
+  <div class="tg-arrow" aria-hidden="true">›</div>
+  <div class="tg-col"><a class="tg-head" href="#/conversations-messages-and-turns"><span class="tg-num">2</span>Conversations</a><p class="tg-gloss">The same model, fed a list of messages with roles, one turn at a time.</p><ul><li>Messages</li><li>System message</li><li>User message</li><li>Assistant message</li><li>Chat template</li><li>Turn</li><li>Multi-turn</li></ul></div>
+  <div class="tg-arrow" aria-hidden="true">›</div>
+  <div class="tg-col"><a class="tg-head" href="#/agent-traces-think-act-observe"><span class="tg-num">3</span>Agent traces</a><p class="tg-gloss">Between messages, the model thinks, calls tools and reads the results, in a loop.</p><ul><li>Thought</li><li>Action</li><li>Observation</li><li><a href="../../bibliography/yao-2023-react/">ReAct</a> loop</li><li>Step</li><li>Multi-step</li><li>Trace</li></ul></div>
+  <div class="tg-arrow" aria-hidden="true">›</div>
+  <div class="tg-col"><a class="tg-head" href="#/llm-as-judge-evaluating-the-trace"><span class="tg-num">4</span>LLM-as-judge</a><p class="tg-gloss">Another LLM reads part of the trace and gives a verdict. Then we check the judge.</p><ul><li>LLM judge</li><li>Input guardrail</li><li>Call-level eval</li><li>Output guardrail</li><li>Multi-step eval</li><li>Multi-turn eval</li><li>Trace-level eval</li><li>Meta-evaluation</li></ul></div>
 </div>
-<p class="tg-caption">One column per slide, in the order they come. Each heading links to its slide.</p>
+<p class="tg-caption">Four ideas, each built on the last. Each heading links to its slide.</p>
 ```
 
 ::: {.notes}
-**About this slide:** The vocabulary of section 2 on one slide, before the detail. Each column is one slide in this section, in order, and lists the terms that slide defines, in the order its builds introduce them. Nothing is defined here; the definitions come on the slides themselves.
+**About this slide:** The four ideas of section 2 and the vocabulary each one brings, on one slide, before the detail. Each idea is the one before with something added. (1) LLM text generation: a model reads tokens and predicts the next one. (2) Conversations: the same model is given a list of messages, each with a role. (3) Agent traces: between messages the model thinks, calls tools and reads the results, in a ReAct loop ([Yao et al. 2023](../../bibliography/yao-2023-react/)). (4) LLM-as-judge: another LLM reads part of the trace and gives a verdict, and the judges are themselves checked. Each card lists the terms its slide defines, in the order the slide introduces them; the definitions come on those slides.
 
 **Presenter notes:**
 
-- Don’t read the list. Say that every word here gets a definition and a picture in the next few minutes, and that they build on each other from left to right.
+- Don’t read the list. Say that every word here gets a definition and a picture in the next few minutes, and that the ideas build on each other from left to right: a conversation is text generation over messages; an agent is a conversation with tool calls in between; a judge is one more LLM call that reads what the agent did.
+- What is an agent? “Agent” and “agentic” have theoretical definitions and practical ones. In practice, this tutorial’s working definition is an LLM plus tools, run in a ReAct loop ([Yao et al. 2023](../../bibliography/yao-2023-react/)). Card 3 is that loop.
+- The next four slides take one idea each. The strip under each title shows where we are.
 - The terms, by slide:
-  - “Definitions: What is an Agent?”: agent (the working definition is LLM + tools + [ReAct](../../bibliography/yao-2023-react/) loop).
   - 1, “LLM text generation”: input tokens, output tokens, LLM call.
   - 2, “Conversations: messages and turns”: messages, system message, user message, assistant message, chat template, turn, multi-turn.
   - 3, “Agent traces: think, act, observe”: thought, action, observation, [ReAct](../../bibliography/yao-2023-react/) loop, step, multi-step, trace.
   - 4, “LLM-as-judge: evaluating the trace”: LLM judge, input guardrail, call-level eval, output guardrail, multi-step eval, multi-turn eval, trace-level eval, meta-evaluation.
-- Not listed: “agentic” is asked on the definitions slide but not defined, and “Evals vs training” names RLHF, RLVR and [RLAIF](../../bibliography/bai-2022-constitutional-ai/) without defining them.
-- The numbers 1 to 4 match the roadmap slide, “Four ideas, each built on the last”.
-:::
-
----
-
-## Definitions: What is an Agent?
-
-<!-- TODO: placeholder kept. Outline bullets only, but the four building-block slides that follow rely on its working definition. Write it up before the tutorial. -->
-
-- What is an **Agent**? What is **Agentic**?
-- Theory vs practice
-- Practical definition: **LLM + Tools + ReAct loop** ([Yao et al. 2023](../../bibliography/yao-2023-react/))
-
-::: {.notes}
-**About this slide:** Asks what “agent” and “agentic” mean, contrasts theoretical and practical definitions, and gives the working definition used in this tutorial: an LLM plus tools, run in a ReAct loop ([Yao et al. 2023](../../bibliography/yao-2023-react/)).
-:::
-
----
-
-## Four ideas, each built on the last {.terms-slide .tm-road-slide}
-
-```{=html}
-<div class="tm-steps">
-  <div class="tm-card fragment" data-fragment-index="1"><span class="tm-num">1</span><b>LLM text generation</b>A model reads tokens and predicts the next one, again and again.<span class="tm-card-terms">input tokens · output tokens · LLM call</span></div>
-  <div class="tm-arrow fragment" data-fragment-index="2">›</div>
-  <div class="tm-card fragment" data-fragment-index="2"><span class="tm-num">2</span><b>Conversations</b>The same model, fed a list of messages with roles, one turn at a time.<span class="tm-card-terms">system · user · assistant · turn</span></div>
-  <div class="tm-arrow fragment" data-fragment-index="3">›</div>
-  <div class="tm-card fragment" data-fragment-index="3"><span class="tm-num">3</span><b>Agent traces</b>Between messages, the model thinks, calls tools and reads the results, in a loop.<span class="tm-card-terms"><a href="../../bibliography/yao-2023-react/">ReAct</a> · tool call · step · trace</span></div>
-  <div class="tm-arrow fragment" data-fragment-index="4">›</div>
-  <div class="tm-card fragment" data-fragment-index="4"><span class="tm-num">4</span><b>LLM-as-judge</b>Another LLM reads part of the trace and gives a verdict. Then we check the judge.<span class="tm-card-terms">guardrails · eval levels · meta-evaluation</span></div>
-</div>
-```
-
-::: {.notes}
-**About this slide:** A roadmap of four concepts, each built on the one before. (1) LLM text generation: a model reads tokens and predicts the next one. (2) Conversations: the same model is given a list of messages, each with a role. (3) Agent traces: between messages the model thinks, calls tools and reads the results, in a ReAct loop ([Yao et al. 2023](../../bibliography/yao-2023-react/)). (4) LLM-as-judge: another LLM reads part of the trace and gives a verdict, and the judges are themselves checked. The next four slides take one concept each.
-
-**Presenter notes:**
-
-- Four ideas, in the order we need them. Each one is the previous one with something added: a conversation is text generation over messages; an agent is a conversation with tool calls in between; a judge is one more LLM call that reads what the agent did.
-- The next four slides take one idea each. The strip under each title shows where we are.
+- Not listed: “Evals vs training” names RLHF, RLVR and [RLAIF](../../bibliography/bai-2022-constitutional-ai/) without defining them.
 :::
 
 ---

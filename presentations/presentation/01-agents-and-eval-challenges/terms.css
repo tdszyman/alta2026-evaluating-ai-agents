@@ -139,56 +139,7 @@
   padding: 0;
 }
 
-/* Roadmap: the four ideas, and the strip under each slide title */
-
-.reveal .terms-slide .tm-steps {
-  display: flex;
-  align-items: stretch;
-  gap: 10px;
-  margin-top: 40px;
-  font-family: var(--deck-font-sans);
-  color: var(--deck-ink);
-}
-
-.reveal .terms-slide .tm-card {
-  flex: 1;
-  padding: 16px 16px 14px;
-  font-size: 17px;
-  line-height: 1.35;
-  color: var(--deck-soft);
-  background: var(--deck-paper);
-  border: 1px solid var(--deck-line);
-  border-top: 4px solid var(--deck-accent);
-  border-radius: 2px;
-}
-
-.reveal .terms-slide .tm-card b {
-  display: block;
-  margin-bottom: 6px;
-  font-size: 22px;
-  color: var(--deck-ink);
-}
-
-.reveal .terms-slide .tm-num {
-  display: block;
-  font-size: 30px;
-  font-weight: 700;
-  line-height: 1;
-  color: var(--deck-accent);
-}
-
-.reveal .terms-slide .tm-card-terms {
-  display: block;
-  margin-top: 10px;
-  font-size: 13px;
-  color: var(--deck-soft);
-}
-
-.reveal .terms-slide .tm-arrow {
-  align-self: center;
-  font-size: 34px;
-  color: var(--deck-line);
-}
+/* The strip under each slide title */
 
 .reveal .terms-slide .tm-road {
   display: flex;
@@ -620,12 +571,12 @@ html.print-pdf .reveal .terms-slide .tm-conn { opacity: 1; }
   color: var(--deck-soft);
 }
 
-/* "Terms this section defines": one column per section 2 slide. */
+/* "Terms this section defines": one card per idea, then its terms. */
 
 .reveal .glossary-slide .tg-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1.08fr;
-  gap: 12px;
+  grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr;
+  gap: 8px;
   margin-top: 34px;
   font-family: var(--deck-font-sans);
 }
@@ -640,8 +591,7 @@ html.print-pdf .reveal .terms-slide .tm-conn { opacity: 1; }
 
 .reveal .glossary-slide .tg-head {
   display: block;
-  min-height: 62px;
-  margin-bottom: 10px;
+  margin-bottom: 6px;
   font-size: 21px;
   font-weight: 700;
   line-height: 1.2;
@@ -659,7 +609,19 @@ html.print-pdf .reveal .terms-slide .tm-conn { opacity: 1; }
   color: var(--deck-accent);
 }
 
-.reveal .glossary-slide .tg-num-blank { visibility: hidden; }
+.reveal .glossary-slide .tg-gloss {
+  min-height: 4.05em;
+  margin: 0 0 8px;
+  font-size: 15px;
+  line-height: 1.35;
+  color: var(--deck-soft);
+}
+
+.reveal .glossary-slide .tg-arrow {
+  align-self: center;
+  font-size: 34px;
+  color: var(--deck-line);
+}
 
 .reveal .glossary-slide .tg-col ul {
   display: block;
