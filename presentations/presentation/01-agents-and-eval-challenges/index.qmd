@@ -195,7 +195,7 @@ Create better customer experiences, new offerings or additional revenue.
 :::
 
 ::: {.vr-side .vr-risks .fragment}
-[Risk]{.vr-label}
+[Risk [Illustrative, not definitive]{.vr-tag}]{.vr-label}
 
 1. [Financial]{.vr-name} [One bad decision, such as a refund that policy does not allow.]{.vr-desc}
 2. [Reputational]{.vr-name} [An off-brand or offensive comment to a user.]{.vr-desc}
@@ -224,6 +224,7 @@ The first four are about a single failure: a bad decision, a bad comment, an ill
 **Presenter notes:**
 
 - The slide builds in two steps: the Value side first, then one click reveals all six risks.
+- The Risk side is labelled “Illustrative, not definitive”: the six are a way to organise the risks, not a complete or standard list.
 - Terrence’s framing. Efficiency: deliver business outcomes with less effort, greater speed or better consistency. Growth: create better customer experiences, new offerings or additional revenue.
 - Nearly all organisations can benefit from some element of efficiency, by adopting AI agents for some type of internal business operations.
 - Some, but not all, businesses can also “sell” AI agents in some way, or use them in the customer experience. This does not apply to all businesses, and may skew towards startups figuring out how to create new products and value out of AI agents.
@@ -303,6 +304,53 @@ Cards, in the order they appear: one per case, the news headline. All are real s
 
 ---
 
+## Agent platforms {.platforms-slide}
+
+```{=html}
+<p class="pf-lead">Agent platforms provide multiple levels of protections to mitigate agent risks.</p>
+<div class="pf-platforms">
+  <p class="pf-label">Agent platforms include</p>
+  <ul>
+    <li><b>Amazon Bedrock AgentCore</b><span>AWS · <a href="../../bibliography/aws-2026-bedrock-agentcore/">AWS 2026</a></span></li>
+    <li><b>Gemini Enterprise Agent Platform</b><span>Google Cloud · <a href="../../bibliography/google-cloud-2026-agent-platform-overview/">Google Cloud 2026a</a></span></li>
+    <li><b>Arize AX</b><span>Arize · <a href="../../bibliography/arize/">Arize</a></span></li>
+    <li><b>LangSmith</b><span>LangChain · <a href="../../bibliography/langchain-2026-langsmith/">LangChain 2026</a></span></li>
+  </ul>
+</div>
+<div class="pf-row">
+  <div class="pf-kinds">
+    <p class="pf-text">Protections can be <b>deterministic</b> (rule-based) or <b>non-deterministic</b> (LLM-as-judge).</p>
+    <div class="pf-pair">
+      <p class="pf-kind"><b>Deterministic</b>a rule, such as a policy that blocks a tool call</p>
+      <p class="pf-kind pf-kind-judge"><b>Non-deterministic</b>an LLM judge, such as one that scores each response</p>
+    </div>
+  </div>
+  <p class="pf-text pf-complex">AI agents are both <b>complicated</b> and <b>complex</b> systems: many designed parts, and behaviour that emerges from how they interact.</p>
+</div>
+<p class="pf-def"><b>LLM-as-a-judge:</b> an LLM, the <i>judge</i>, reads what an agent did and checks it against criteria that people write down. Evals and guardrails use judges to check agents before launch and while they run.</p>
+```
+
+::: {.notes}
+**About this slide:** Organisations rarely build every safeguard for an agent themselves. Agent platforms provide multiple levels of protections to mitigate agent risks. Four examples: Amazon Bedrock AgentCore from AWS ([AWS 2026](../../bibliography/aws-2026-bedrock-agentcore/)), Gemini Enterprise Agent Platform from Google Cloud ([Google Cloud 2026a](../../bibliography/google-cloud-2026-agent-platform-overview/)), Arize AX from Arize ([Arize](../../bibliography/arize/)) and LangSmith from LangChain ([LangChain 2026](../../bibliography/langchain-2026-langsmith/)). Protections can be deterministic, following fixed rules, or non-deterministic, using an LLM as a judge. AI agents are both complicated and complex systems: they have many designed parts, and their behaviour emerges from how those parts interact, which is one reason no single check is enough.
+
+This is the first place the tutorial uses the term. **LLM-as-a-judge** means an LLM, the judge, reads what an agent did and checks it against criteria that people write down. Evals and guardrails use judges to check agents before launch and while they run. Using AI to check AI can sound circular; the rest of Part 1 explains why it is the best approach available today.
+
+**Presenter notes:**
+
+- Terrence’s framing: agent platforms provide multiple levels of protections to mitigate agent risks. The next slide shows the levels in one platform’s architecture.
+- The four platforms, as their makers describe them:
+  - Amazon Bedrock AgentCore: AWS calls it “an agentic platform for building, deploying, and operating highly effective agents securely at scale”. Its services include Gateway, Identity, Observability, Evaluations, Registry and Policy ([AWS 2026](../../bibliography/aws-2026-bedrock-agentcore/)).
+  - Gemini Enterprise Agent Platform: Google Cloud’s “unified platform to build, deploy, govern, and optimize enterprise-grade AI agents” ([Google Cloud 2026a](../../bibliography/google-cloud-2026-agent-platform-overview/)). Its architecture is on the next slide.
+  - Arize AX: Arize’s managed agent observability and evaluation platform, beside its open-source Phoenix ([Arize](../../bibliography/arize/)).
+  - LangSmith: LangChain’s agent observability and evaluation platform ([LangChain 2026](../../bibliography/langchain-2026-langsmith/)).
+- The two kinds of protection, from the platforms’ own pages. Deterministic: AWS describes AgentCore Policy as “deterministic control” over which tools an agent can call, and under what conditions. Non-deterministic: LangSmith lists “Online LLM-as-judge and code evals”, so judges and fixed code checks run side by side ([LangChain 2026](../../bibliography/langchain-2026-langsmith/)).
+- Complicated and complex: a one-line nod here. The complicated vs complex slide later in Part 1 explains the difference.
+- Keep the definition non-technical. Judge methods come in Part 2.
+- The list is short on purpose and is not a ranking. Other clouds and vendors offer similar platforms.
+:::
+
+---
+
 ## Building well-governed agents {.governed-slide}
 
 <!-- TODO: Terrence will likely rework this into a SEEK view of agent architecture. For now it redraws the architecture figure from Google Cloud's Gemini Enterprise Agent Platform overview, keeping Google's component names. -->
@@ -312,15 +360,15 @@ Cards, in the order they appear: one per case, the news headline. All are real s
   <svg class="gv-lines" viewBox="0 0 1100 420" aria-hidden="true">
     <path class="gv-dash" d="M270,96 V172 M270,272 V368 M830,96 V172 M830,272 V368"/>
     <path d="M172,222 H195 M345,222 H372 M728,222 H755 M905,222 H926 M926,194 V250 M926,194 H946 M926,250 H946"/>
-    <polygon class="gv-diamond" points="270,172 345,222 270,272 195,222"/>
-    <polygon class="gv-diamond" points="830,172 905,222 830,272 755,222"/>
+    <polygon class="gv-diamond fragment custom gv-hl" data-fragment-index="2" points="270,172 345,222 270,272 195,222"/>
+    <polygon class="gv-diamond fragment custom gv-hl" data-fragment-index="2" points="830,172 905,222 830,272 755,222"/>
   </svg>
 
   <div class="gv-group gv-gov" style="left:230px; top:0px; width:640px; height:96px;">
     <span class="gv-group-title">Governance</span>
     <div class="gv-row">
       <div class="gv-box gv-gov-item"><b>Agent Registry</b><small>approved agents, tools and MCP servers</small></div>
-      <div class="gv-box gv-gov-item"><b>Policies &amp; AI protection</b><small>access rules; Model Armor guardrails</small></div>
+      <div class="gv-box gv-gov-item fragment custom gv-hl" data-fragment-index="1"><b>Policies &amp; AI protection</b><small>access rules; Model Armor guardrails</small></div>
     </div>
   </div>
 
@@ -347,13 +395,15 @@ Cards, in the order they appear: one per case, the news headline. All are real s
   <div class="gv-box gv-solo gv-dest" style="left:946px; top:172px; width:154px; height:44px;">Other agents</div>
   <div class="gv-box gv-solo gv-dest" style="left:946px; top:228px; width:154px; height:44px;">Tools</div>
 
-  <div class="gv-box gv-solo gv-obs" style="left:230px; top:368px; width:640px; height:52px;"><b>Agent observability</b><small>monitoring, logging and tracing of what agents do</small></div>
+  <div class="gv-box gv-solo gv-obs fragment custom gv-hl" data-fragment-index="3" style="left:230px; top:368px; width:640px; height:52px;"><b>Agent observability</b><small>monitoring, logging and tracing of what agents do</small></div>
+
+  <div class="gv-tag fragment" data-fragment-index="1" style="left:884px; top:8px; width:216px;"><span class="gv-n">1</span><b>Input and output guardrails</b><small>a judge screens prompts and responses</small></div>
+  <div class="gv-tag fragment" data-fragment-index="2" style="left:176px; top:104px; width:196px;"><span class="gv-n">2</span><b>At the gateway</b><small>a judge checks traffic in and out</small></div>
+  <div class="gv-tag fragment" data-fragment-index="3" style="left:0px; top:334px; width:214px;"><span class="gv-n">3</span><b>Observability metrics</b><small>a judge scores logged traces</small></div>
 </div>
 ```
 
-::: {.gv-judge}
-- **LLM-as-a-judge:** an LLM, the *judge*, reads what an agent did and checks it against criteria that people write down. Evals and guardrails use judges to check agents before launch and while they run.
-:::
+[Where an LLM judge can check the agent in this architecture]{.gv-legend}
 
 [Redrawn from the architecture figure in Google Cloud’s Agent Platform overview ([Google Cloud 2026a](../../bibliography/google-cloud-2026-agent-platform-overview/)). Component names are Google’s; the short descriptions summarise Google’s documentation.]{.gv-credit}
 
@@ -369,15 +419,23 @@ Cards, in the order they appear: one per case, the news headline. All are real s
 
 Google groups the platform into four pillars: Build, Scale, Govern and Optimize. Evaluation sits under Optimize, which the launch post describes as “Agent Simulation, Agent Evaluation, and Agent Observability”. The same post says its agent anomaly detection “uses statistical models and an LLM-as-a-judge framework to flag unusual reasoning” ([Gerstenhaber and Bachman 2026](../../bibliography/gerstenhaber-2026-agent-platform/)).
 
-This is the first place the tutorial uses the term. **LLM-as-a-judge** means an LLM, the judge, reads what an agent did and checks it against criteria that people write down. Evals and guardrails use judges to check agents before launch and while they run. Using AI to check AI can sound circular; the rest of Part 1 explains why it is the best approach available today. The next two slides are illustrative SEEK mock-ups of judges catching agent failures. How an LLM, an agent and a judge work comes in section 2.
+Three clicks then highlight, one at a time, the levels in this figure where an LLM judge can check the agent. Earlier highlights stay on.
+
+1. **Input and output guardrails,** in Policies and AI protection: a judge screens prompts going in and responses coming out. In Google’s figure this is Model Armor’s role.
+2. **At the gateway:** both Agent Gateways apply policies to all traffic that passes through them, so a judge there can check requests coming in and the agent’s calls out to tools and other agents.
+3. **Observability metrics:** a judge scores the traces that agent observability logs. Google’s launch post says its agent anomaly detection “uses statistical models and an LLM-as-a-judge framework to flag unusual reasoning” ([Gerstenhaber and Bachman 2026](../../bibliography/gerstenhaber-2026-agent-platform/)).
+
+The next two slides are illustrative SEEK mock-ups of judges catching agent failures. How an LLM, an agent and a judge work comes in section 2.
 
 **Presenter notes:**
 
 - TODO: Terrence will likely rework this into a SEEK view of agent architecture. Until then it is Google’s view, with Google’s names; say so.
 - The point: an organisation does not rely on one safeguard. Identity, registry, gateway, policies and observability each control part of what an agent can do. Evals, guardrails and LLM judges are the part this tutorial covers.
-- Walk the figure left to right: people and apps, the gateway in, the agent in its runtime with its own identity, the gateway out to other agents and tools. Governance sits over the whole path, and observability under it.
+- Walk the figure left to right first: people and apps, the gateway in, the agent in its runtime with its own identity, the gateway out to other agents and tools. Governance sits over the whole path, and observability under it.
+- Then three clicks, one per level where a judge can work. Only the highlighted parts are claims about judges. Google’s documentation does not say Model Armor or the gateway uses an LLM judge; the highlights show where one can be placed. The anomaly detection quote is the one place Google says it uses LLM-as-a-judge.
+- Policies define the guardrails and the gateways enforce them, so steps 1 and 2 overlap; the point is that a judge can sit on the content (step 1) or on the traffic (step 2).
 - “Guardrails” here means checks that run while the agent works, such as Model Armor on the gateway. Some guardrails are themselves LLM judges, as in the next two slides.
-- Keep the definition non-technical. Judge methods come in Part 2.
+- The definition of LLM-as-a-judge is on the previous slide.
 - This replaces the earlier layers-of-control slide, which is kept in [Part 1.G: Graveyard](../01g-graveyard/).
 - Sources: [Google Cloud 2026a](../../bibliography/google-cloud-2026-agent-platform-overview/), the platform overview with the figure; [Google Cloud 2026b](../../bibliography/google-cloud-2026-agent-gateway-overview/), the Agent Gateway overview, for identity, registry, policies and observability; [Gerstenhaber and Bachman 2026](../../bibliography/gerstenhaber-2026-agent-platform/), the launch post.
 :::

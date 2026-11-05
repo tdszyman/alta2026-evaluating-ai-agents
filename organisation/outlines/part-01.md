@@ -11,14 +11,15 @@ The deck now follows this order. The detailed outline below is the earlier plan 
 0. **Opening (5 Nov 2026).** Two slides before section 1:
     1. “Would you use an AI agent to…”: a hands-up vote on four job-search questions, one at a time, then two surveys with their own wording and population: Indeed with YouGov (Australians, via HRD Australia) and Greenhouse (US job seekers). None asks Terrence’s questions. The Harris Poll / Ruth AI panel was removed at Terrence’s request (5 Nov 2026); its bibliography record stays.
     2. “About me, and SEEK”: Terrence’s path, academic first, then SEEK from its About page (Melbourne, 1997, eight markets, its map, more than 60 million candidate profiles and more than 360,000 hirer relationships) and Terrence’s numbers (250+ in AI and Analytics, 17 in his team, at least four major languages).
-1. **Why AI agents, and why evaluate them.** Terrence’s seven-slide order (5 Nov 2026). The deck now opens on this section: the title slide, the work-in-progress notice, the agenda and the section 1 header sit in the separate Part 1.G: Graveyard deck (`presentations/presentation/01g-graveyard/`), which also holds every other cut slide. Part 1 ends on the hand-off to Part 2.
+1. **Why AI agents, and why evaluate them.** Terrence’s seven-slide order (5 Nov 2026), plus the platforms overview he asked for on 6 Nov 2026. The deck now opens on this section: the title slide, the work-in-progress notice, the agenda and the section 1 header sit in the separate Part 1.G: Graveyard deck (`presentations/presentation/01g-graveyard/`), which also holds every other cut slide. Part 1 ends on the hand-off to Part 2.
     1. “2026 is the year of the AI Agent”: the Google Trends chart for now. Terrence may replace it.
-    2. “Agents can create value, but introduce risk”: efficiency and growth beside a short version of the six risks (financial, reputational, regulatory, cybersecurity, operational, competitive; Terrence named the last two on 5 Nov 2026). The fuller wording is in the slide notes and on the full risk slide in Part 1.G.
+    2. “Agents can create value, but introduce risk”: efficiency and growth beside a short version of the six risks (financial, reputational, regulatory, cybersecurity, operational, competitive; Terrence named the last two on 5 Nov 2026), labelled “Illustrative, not definitive”. Value shows first; the Risk side comes on one click. The fuller wording is in the slide notes and on the full risk slide in Part 1.G.
     3. The headline collage, one headline per incident.
-    4. “Building well-governed agents”: Google Cloud’s Gemini Enterprise Agent Platform view of agent architecture (identity, runtime, registry, gateway, policies and AI protection, observability), with one point defining LLM-as-a-judge. This is where the term is first introduced.
-    5. The SEEK job-ad mock-up.
-    6. The SEEK multi-turn attack mock-up.
-    7. “Notes to follow up”, which keeps the section 1 material that would otherwise have been deleted.
+    4. “Agent platforms”: agent platforms provide multiple levels of protections to mitigate agent risks; four examples (Amazon Bedrock AgentCore, Gemini Enterprise Agent Platform, Arize AX, LangSmith); deterministic (rule-based) vs non-deterministic (LLM-as-judge) protections; agents as complicated and complex systems; the LLM-as-a-judge definition. This is where the term is first introduced.
+    5. “Building well-governed agents”: Google Cloud’s Gemini Enterprise Agent Platform view of agent architecture (identity, runtime, registry, gateway, policies and AI protection, observability). Three clicks highlight where an LLM judge can work in it: input and output guardrails (Policies and AI protection), the two Agent Gateways, and observability metrics.
+    6. The SEEK job-ad mock-up.
+    7. The SEEK multi-turn attack mock-up.
+    8. “Notes to follow up”, which keeps the section 1 material that would otherwise have been deleted.
 
     Kept in Part 1.G, after the news-story cases: why organisations adopt AI agents, the public’s view of AI, “Using AI to evaluate AI”, the full six-risk slide, and the layers-of-control slide. The single-case slides (Air Canada, DPD, MyCity, Bunnings, EchoLeak, the Lego order, the gym booking agent, Woolworths’ Olive) are the first group in Part 1.G.
 2. **Technical foundations.** What an LLM is, generative AI, AI agents; the building-block terminology.
@@ -40,7 +41,8 @@ Open questions for Terrence:
 - [ ] Part 1.G is a working deck for organisers (5 Nov 2026). Delete it, or move anything worth keeping back into Part 1, before the tutorial on 30 November 2026.
 - [ ] The collage now shows one headline per incident. The two Woolworths’ Olive social-media screenshots it dropped are kept on the section 1 “Notes to follow up” slide; DPD’s haiku, Lego’s Sophia reply and the gym agent’s apology are on their case slides. Bring any back?
 - [ ] “Building well-governed agents” is Google’s view, with Google’s component names, until Terrence reworks it into a SEEK view. Which components should a SEEK view keep? The older layers-of-control slide (identity and registry, runtime, gateway, access control, observability, and evals, guardrails and judges) is in Part 1.G.
-- [ ] “Using AI to evaluate AI” (Terrence’s opening line) is now in Part 1.G, and LLM-as-a-judge is first defined on “Building well-governed agents”. Does the opening line come back, on that slide or only in the talk?
+- [ ] “Agent platforms” lists four platforms (AWS, Google, Arize, LangChain), as Terrence named them. Add others, such as Microsoft’s, or keep it to four?
+- [ ] “Using AI to evaluate AI” (Terrence’s opening line) is now in Part 1.G, and LLM-as-a-judge is first defined on “Agent platforms”, just before “Building well-governed agents”. Does the opening line come back, on that slide or only in the talk?
 - [ ] Most real cases (Air Canada, DPD, NYC MyCity, Bunnings, Woolworths) are AI chatbot or assistant failures. EchoLeak is described by its finders as an attack on an AI agent, and the gym case is an agent taking actions for its user. Is that balance close enough?
 
 ## Detailed outline (WIP)

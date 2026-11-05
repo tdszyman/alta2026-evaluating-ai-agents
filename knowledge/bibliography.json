@@ -3659,6 +3659,64 @@
       "abstract": null
     },
     {
+      "id": "aws-2026-bedrock-agentcore",
+      "type": "website",
+      "authors": [
+        "Amazon Web Services"
+      ],
+      "year": "2026",
+      "title": "Overview: What is Amazon Bedrock AgentCore?",
+      "venue": "Amazon Bedrock AgentCore Developer Guide, Amazon Web Services.",
+      "url": "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/what-is-bedrock-agentcore.html",
+      "links": [
+        {
+          "label": "AWS documentation",
+          "href": "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/what-is-bedrock-agentcore.html"
+        },
+        {
+          "label": "Product page",
+          "href": "https://aws.amazon.com/bedrock/agentcore/"
+        }
+      ],
+      "groups": [
+        "platforms"
+      ],
+      "mentions": [
+        "Bedrock AgentCore"
+      ],
+      "summary": "AWS’s overview of Amazon Bedrock AgentCore, which it calls “an agentic platform for building, deploying, and operating highly effective agents securely at scale”. It lists AgentCore’s services, including Runtime, Memory, Gateway, Identity, Observability, Evaluations, Registry and Policy, which it describes as “deterministic control” over what agents may do, applied to tool calls through the Gateway. Part 1 cites it for the platform’s name and as an example of a rule-based protection.",
+      "note": "Read on 6 November 2026.",
+      "featured_rank": null,
+      "abstract": null
+    },
+    {
+      "id": "langchain-2026-langsmith",
+      "type": "website",
+      "authors": [
+        "LangChain"
+      ],
+      "year": "2026",
+      "title": "LangSmith Observability: AI Agent Observability Platform",
+      "venue": "LangChain website.",
+      "url": "https://www.langchain.com/langsmith",
+      "links": [
+        {
+          "label": "Product page",
+          "href": "https://www.langchain.com/langsmith"
+        }
+      ],
+      "groups": [
+        "platforms"
+      ],
+      "mentions": [
+        "LangSmith"
+      ],
+      "summary": "LangChain’s product page for LangSmith, its agent observability and evaluation platform. It lists agent tracing, production monitoring with “Online LLM-as-judge and code evals”, and trajectory monitoring. Part 1 cites it for the platform’s name and as an example of judges and code checks running side by side.",
+      "note": "Read on 6 November 2026.",
+      "featured_rank": null,
+      "abstract": null
+    },
+    {
       "id": "ragas",
       "type": "website",
       "year": "n.d.",
