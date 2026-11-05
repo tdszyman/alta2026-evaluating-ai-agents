@@ -16,7 +16,7 @@ format:
 
 ## Would you use an AI agent to… {.vote-slide}
 
-<!-- TODO: The poll figures are from press coverage, not the surveys' own reports, and none asks Terrence's four questions. Replace them if the full Indeed, Greenhouse or Harris reports give closer questions or Australian figures. -->
+<!-- TODO: The poll figures are from press coverage, not the surveys' own reports, and none asks Terrence's four questions. Replace them if the full Indeed or Greenhouse reports give closer questions or Australian figures. -->
 
 ```{=html}
 <div class="vt-grid">
@@ -47,36 +47,26 @@ format:
       </div>
       <p class="vt-src">Greenhouse survey, 1,200 US job seekers, 2026 (<a href="../../bibliography/greenhouse-2026-candidate-report/">Greenhouse 2026</a>)</p>
     </div>
-    <div class="vt-card fragment" data-fragment-index="7">
-      <p class="vt-who">US adults · comfortable letting AI…</p>
-      <div class="vt-stats">
-        <p><b>67%</b> search for jobs</p>
-        <p><b>65%</b> update their résumé</p>
-        <p class="vt-low"><b>55%</b> apply for jobs outright</p>
-      </div>
-      <p class="vt-src">The Harris Poll for Ruth AI, 2,131 US adults, June 2026 (<a href="../../bibliography/harris-ruth-2026-trust-gap/">The Harris Poll and Ruth AI 2026</a>)</p>
-    </div>
   </div>
 </div>
 ```
 
 ::: {.notes}
-**About this slide:** An opening vote. Four questions about using an AI agent in a job search, from help (proofreading a CV) to acting alone (applying for jobs automatically). Then three surveys. They asked different questions from ours, of different people, so their numbers are not answers to our four questions. In Australia, many job seekers already use AI for parts of a job search: 37% to rewrite their CV and 41% to write or refine cover letters. In a US survey of job seekers, 69% would feel comfortable using an AI agent, but only 5% would let one apply to jobs on its own. In a US survey of adults, 55% would be comfortable letting AI apply for jobs outright, fewer than for searching for jobs (67%) or updating a résumé (65%).
+**About this slide:** An opening vote. Four questions about using an AI agent in a job search, from help (proofreading a CV) to acting alone (applying for jobs automatically). Then two surveys. They asked different questions from ours, of different people, so their numbers are not answers to our four questions. In Australia, many job seekers already use AI for parts of a job search: 37% to rewrite their CV and 41% to write or refine cover letters. In a US survey of job seekers, 69% would feel comfortable using an AI agent, but only 5% would let one apply to jobs on its own.
 
-**What to take away:** Most of us already use AI for some things and would use it for more. Trust in an agent acting on its own has a ceiling, partly because we worry it will do the wrong thing. Where that ceiling sits depends on how you ask: the two US surveys put it at 5% and 55%.
+**What to take away:** Most of us already use AI for some things and would use it for more. Trust in an agent acting on its own has a ceiling, partly because we worry it will do the wrong thing.
 
 **Presenter notes:**
 
 - Vote mechanics. Each click shows one question. Ask for hands, give it two or three seconds, and say roughly how many (“about half”, “a few”). The current question has a coloured bar; earlier ones fade.
 - Expect hands to drop from question 1 to question 4. If they don’t, say so; it is still a useful contrast with the surveys.
-- Clicks 5 to 7 show the surveys one at a time. Say each population out loud: Australians, then US job seekers, then US adults.
+- Clicks 5 and 6 show the surveys one at a time. Say each population out loud: Australians, then US job seekers.
 - Do not read the numbers as answers to our questions. The Australian figures are what people do now; the US figures are what people say they would be comfortable with.
-- The 5% and 55% come from differently worded questions put to different people. The releases do not give the exact questions or answer options. It is a small example of why how you measure matters, which is the theme of the tutorial.
+- The two surveys asked differently worded questions of different people, and the releases do not give the exact questions or answer options. That is a small example of why how you measure matters, which is the theme of the tutorial.
 - Sources:
   - The Australian figures are from Indeed’s report *The Artificial Applicant*, a study of more than 1,000 working-age Australians with YouGov in March 2026, as reported by HRD Australia ([Campbell 2026](../../bibliography/campbell-2026-artificial-applicant/)). The article calls the base “candidates”.
   - The Greenhouse figures are for its 1,200 US respondents, from the release for its 2026 Future of Hiring Candidate Report ([Greenhouse 2026](../../bibliography/greenhouse-2026-candidate-report/)).
-  - The Harris figures are from an online survey of 2,131 US adults, 11–13 June 2026, weighted to the US adult population ([The Harris Poll and Ruth AI 2026](../../bibliography/harris-ruth-2026-trust-gap/)).
-- Greenhouse sells hiring software and Ruth AI sells an AI career agent.
+- Greenhouse sells hiring software.
 :::
 
 ---
