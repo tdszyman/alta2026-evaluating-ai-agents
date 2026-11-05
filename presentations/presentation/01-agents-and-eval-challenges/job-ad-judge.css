@@ -1,17 +1,6 @@
 /* "LLM judge stops an unlawful job ad" slide. The figure is laid out on a
    fixed 1200×600 canvas so the SVG connectors in .jad-links line up. */
 
-.reveal .job-ad-slide {
-  --jad-ink: #14283b;
-  --jad-soft: #526476;
-  --jad-line: #b8c8d1;
-  --jad-surface: #eff3f5;
-  --jad-accent: #245ba6;
-  --jad-red: #b42318;
-  --jad-red-tint: #fde8e6;
-  --jad-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
-}
-
 .reveal .job-ad-slide h2 {
   font-size: 1.15em;
   margin-bottom: 0.45em;
@@ -21,10 +10,10 @@
   position: relative;
   width: 1200px;
   height: 600px;
-  font-family: Inter, "Source Sans 3", "Segoe UI", system-ui, sans-serif;
+  font-family: var(--deck-font-sans);
   font-size: 14px;
   line-height: 1.35;
-  color: var(--jad-ink);
+  color: var(--deck-ink);
 }
 
 .reveal .job-ad-slide .jad-label {
@@ -32,7 +21,7 @@
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--jad-soft);
+  color: var(--deck-soft);
   margin-bottom: 6px;
 }
 
@@ -44,9 +33,9 @@
   top: 0;
   width: 690px;
   height: 420px;
-  border: 1px solid var(--jad-line);
+  border: 1px solid var(--deck-line);
   border-radius: 2px;
-  background: #fff;
+  background: var(--deck-paper);
   overflow: hidden;
 }
 
@@ -56,25 +45,25 @@
   gap: 6px;
   height: 24px;
   padding: 0 10px;
-  background: var(--jad-surface);
-  border-bottom: 1px solid var(--jad-line);
+  background: var(--deck-surface);
+  border-bottom: 1px solid var(--deck-line);
 }
 
 .reveal .job-ad-slide .jad-dot {
   width: 9px;
   height: 9px;
   border-radius: 50%;
-  background: var(--jad-line);
+  background: var(--deck-line);
 }
 
 .reveal .job-ad-slide .jad-url {
   margin-left: 12px;
   padding: 1px 10px;
-  font-family: var(--jad-mono);
+  font-family: var(--deck-font-mono);
   font-size: 11px;
-  color: var(--jad-soft);
-  background: #fff;
-  border: 1px solid var(--jad-line);
+  color: var(--deck-soft);
+  background: var(--deck-paper);
+  border: 1px solid var(--deck-line);
   border-radius: 2px;
 }
 
@@ -84,8 +73,8 @@
   gap: 10px;
   height: 36px;
   padding: 0 14px;
-  background: var(--jad-ink);
-  color: #fff;
+  background: var(--deck-ink);
+  color: var(--deck-paper);
 }
 
 .reveal .job-ad-slide .jad-wordmark {
@@ -120,7 +109,7 @@
 .reveal .job-ad-slide .jad-field span {
   display: block;
   font-size: 11px;
-  color: var(--jad-soft);
+  color: var(--deck-soft);
   margin-bottom: 2px;
 }
 
@@ -129,7 +118,7 @@
   font-weight: 400;
   font-size: 13px;
   padding: 4px 8px;
-  border: 1px solid var(--jad-line);
+  border: 1px solid var(--deck-line);
   border-radius: 2px;
 }
 
@@ -143,17 +132,17 @@
   text-align: center;
   font-size: 14px;
   font-weight: 600;
-  color: #fff;
-  background: var(--jad-accent);
+  color: var(--deck-on-accent);
+  background: var(--deck-accent-fill);
   border-radius: 2px;
-  outline: 3px solid #d6e4f5;
+  outline: 3px solid var(--deck-accent-ring);
 }
 
 .reveal .job-ad-slide .jad-ad {
   position: relative;
   padding: 12px 14px;
-  background: var(--jad-surface);
-  border: 1px solid var(--jad-line);
+  background: var(--deck-surface);
+  border: 1px solid var(--deck-line);
   border-radius: 2px;
   font-size: 14px;
 }
@@ -177,8 +166,8 @@
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--jad-accent);
-  border: 1px solid var(--jad-accent);
+  color: var(--deck-accent);
+  border: 1px solid var(--deck-accent);
   border-radius: 2px;
 }
 
@@ -189,12 +178,12 @@
 
 .reveal .job-ad-slide .jad-ad-meta {
   font-size: 12px;
-  color: var(--jad-soft);
+  color: var(--deck-soft);
   margin-bottom: 8px;
 }
 
 .reveal .job-ad-slide .jad-ad-list {
-  color: var(--jad-soft);
+  color: var(--deck-soft);
 }
 
 .reveal .job-ad-slide .jad-flag {
@@ -202,8 +191,8 @@
 }
 
 .reveal .job-ad-slide .jad-flag.visible {
-  background: var(--jad-red-tint);
-  box-shadow: inset 0 -2px 0 var(--jad-red);
+  background: var(--verdict-fail-tint);
+  box-shadow: inset 0 -2px 0 var(--verdict-fail);
 }
 
 /* Agent trace */
@@ -231,8 +220,8 @@
   min-height: 98px;
   font-size: 17px;
   line-height: 1.35;
-  background: var(--jad-surface);
-  border-top: 3px solid var(--jad-accent);
+  background: var(--deck-surface);
+  border-top: 3px solid var(--deck-accent);
 }
 
 .reveal .job-ad-slide .jad-steps li + li::before {
@@ -241,12 +230,27 @@
   left: -21px;
   top: 36px;
   font-size: 18px;
-  color: var(--jad-soft);
+  color: var(--deck-soft);
 }
 
-.reveal .job-ad-slide .jad-steps li:last-child {
-  border-top-color: var(--jad-red);
+.reveal .job-ad-slide .jad-steps .jad-input {
+  background: var(--chat-user-bg);
+  border-top-color: var(--chat-user-edge);
 }
+
+.reveal .job-ad-slide .jad-steps .jad-thought {
+  color: var(--chat-thought-ink);
+  font-style: var(--chat-thought-style);
+  background: linear-gradient(var(--chat-thought-bg), var(--chat-thought-bg)), var(--chat-call-bg);
+  border-top: 3px var(--chat-thought-line) var(--chat-thought-edge);
+}
+
+.reveal .job-ad-slide .jad-steps .jad-action {
+  background: linear-gradient(var(--chat-action-bg), var(--chat-action-bg)), var(--chat-call-bg);
+  border-top-color: var(--verdict-fail);
+}
+
+.reveal .job-ad-slide .jad-steps .jad-thought .jad-kind { font-style: normal; }
 
 .reveal .job-ad-slide .jad-kind {
   display: block;
@@ -254,14 +258,14 @@
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--jad-soft);
+  color: var(--deck-soft);
   margin-bottom: 4px;
 }
 
 .reveal .job-ad-slide .jad-steps code {
-  font-family: var(--jad-mono);
+  font-family: var(--deck-font-mono);
   font-size: 15px;
-  color: var(--jad-ink);
+  color: var(--deck-ink);
   background: none;
   padding: 0;
 }
@@ -276,9 +280,9 @@
 }
 
 .reveal .job-ad-slide .jad-box {
-  border: 1px solid var(--jad-line);
+  border: 1px solid var(--chat-judge-box-edge);
   border-radius: 2px;
-  background: #fff;
+  background: var(--deck-paper);
   margin-bottom: 18px;
 }
 
@@ -288,9 +292,9 @@
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--jad-soft);
-  background: var(--jad-surface);
-  border-bottom: 1px solid var(--jad-line);
+  color: var(--chat-judge-head-ink);
+  background: var(--chat-judge-head-bg);
+  border-bottom: 1px solid var(--chat-judge-box-edge);
 }
 
 .reveal .job-ad-slide .jad-box pre {
@@ -299,26 +303,26 @@
   width: auto;
   box-shadow: none;
   background: none;
-  font-family: var(--jad-mono);
+  font-family: var(--deck-font-mono);
   font-size: 16px;
   line-height: 1.5;
   white-space: pre;
-  color: var(--jad-ink);
+  color: var(--deck-ink);
 }
 
 .reveal .job-ad-slide .jad-output {
-  border: 2px solid var(--jad-red);
+  border: 2px solid var(--verdict-fail);
 }
 
 .reveal .job-ad-slide .jad-output .jad-box-head {
-  color: var(--jad-red);
-  background: var(--jad-red-tint);
-  border-bottom-color: var(--jad-red);
+  color: var(--verdict-fail);
+  background: var(--verdict-fail-tint);
+  border-bottom-color: var(--verdict-fail);
 }
 
 .reveal .job-ad-slide .jad-fail {
   font-weight: 700;
-  color: var(--jad-red);
+  color: var(--verdict-fail);
 }
 
 /* Zoom insert over the ad */
@@ -328,8 +332,8 @@
   left: 276px;
   top: 296px;
   padding: 8px 14px;
-  background: #fff;
-  border: 2px solid var(--jad-red);
+  background: var(--deck-paper);
+  border: 2px solid var(--verdict-fail);
   border-radius: 2px;
 }
 
@@ -343,8 +347,8 @@
 
 .reveal .job-ad-slide .jad-zoom-text u {
   text-decoration: none;
-  background: var(--jad-red-tint);
-  box-shadow: inset 0 -3px 0 var(--jad-red);
+  background: var(--verdict-fail-tint);
+  box-shadow: inset 0 -3px 0 var(--verdict-fail);
 }
 
 .reveal .job-ad-slide .jad-zoom-tags {
@@ -359,8 +363,8 @@
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: #fff;
-  background: var(--jad-red);
+  color: var(--verdict-on);
+  background: var(--verdict-fail);
   border-radius: 2px;
 }
 
@@ -381,18 +385,23 @@
   margin: 0 auto;
 }
 
+.reveal .job-ad-slide .jad-nogo circle { fill: var(--deck-paper); }
+
+.reveal .job-ad-slide .jad-nogo circle,
+.reveal .job-ad-slide .jad-nogo line { stroke: var(--verdict-fail); }
+
 .reveal .job-ad-slide .jad-nogo-text {
   margin-top: 2px;
   font-size: 20px;
   font-weight: 800;
   letter-spacing: 0.06em;
-  color: var(--jad-red);
+  color: var(--verdict-fail);
 }
 
 .reveal .job-ad-slide .jad-nogo-sub {
   font-size: 11px;
   font-weight: 600;
-  color: var(--jad-red);
+  color: var(--verdict-fail);
 }
 
 /* Connectors */
@@ -408,7 +417,7 @@
 
 .reveal .job-ad-slide .jad-links path {
   fill: none;
-  stroke: var(--jad-red);
+  stroke: var(--verdict-fail);
   stroke-width: 2;
 }
 
@@ -418,7 +427,7 @@
 
 .reveal .job-ad-slide .jad-caption {
   margin-top: 4px;
-  font-family: Inter, "Source Sans 3", "Segoe UI", system-ui, sans-serif;
+  font-family: var(--deck-font-sans);
   font-size: 12px;
-  color: var(--jad-soft);
+  color: var(--deck-soft);
 }

@@ -31,6 +31,7 @@ Published from `main` to GitHub Pages. Routes:
 | `/` | Home. Landing page and the jump-off to the other public sections | `presentations/index.qmd` |
 | `/presentation/` | Presentation landing | `presentations/presentation/index.qmd` |
 | `/presentation/01-agents-and-eval-challenges/` | Part 1 deck | that folder’s `index.qmd` |
+| `/presentation/01g-graveyard/` | Part 1.G: Graveyard. Slides cut from Part 1, kept for organisers; delete before tutorial day | that folder’s `index.qmd` |
 | `/presentation/02-llm-as-judge-methods/` | Part 2 deck | that folder’s `index.qmd` |
 | `/presentation/03-hands-on-exercise/` | Part 3 deck | that folder’s `index.qmd` |
 | `/presentation/04-reliability-and-future/` | Part 4 deck | that folder’s `index.qmd` |
@@ -62,8 +63,8 @@ Each presentation part is its own deck and URL so contributors can work in one f
 
 Default slide chrome:
 
-- Top bar: slide-list button (opens a left drawer of every slide), breadcrumbs `Home / Part n / slide number / slide title` (and `k/n` when a fragment is showing), previous/next with `13 / 45`, and search over that deck.
-- Keyboard: Left and Right move slides. Escape closes the drawer or search first, then goes to the site home.
+- Top bar: slide-list button (opens a left drawer of every slide), breadcrumbs `Home / Part n / slide number / slide title` (and `k/n` when a fragment is showing), previous/next with `13 / 45`, a theme picker (Original, NYFW SS26, Canva; the choice is remembered across decks and reloads, and a fresh load shows the build default, Canva), and search over that deck.
+- Keyboard: Left and Right move slides. `T` cycles the slide theme. Escape closes the drawer or search first, then goes to the site home.
 - Page number at the bottom, same `n / total` count.
 - Edge previous/next controls that fade after the pointer is still.
 

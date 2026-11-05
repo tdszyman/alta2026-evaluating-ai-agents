@@ -1,0 +1,73 @@
+/* "Notes to follow up" slides: outline material parked from placeholder
+   slides, kept in full. Dense on purpose; these are working notes, not
+   slides to present from. */
+
+.reveal .follow-up-slide .fu-grid {
+  column-count: 3;
+  column-gap: 28px;
+  margin-top: 8px;
+  font-size: 17px;
+  line-height: 1.35;
+  color: var(--deck-ink);
+}
+
+.reveal .follow-up-slide .fu-item {
+  break-inside: avoid;
+  margin: 0 0 14px;
+  padding: 8px 12px 6px;
+  background: var(--deck-surface);
+  border-left: 2px solid var(--deck-line);
+  border-radius: 2px;
+}
+
+.reveal .follow-up-slide .fu-title {
+  display: block;
+  margin: 0 0 6px;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--deck-ink);
+}
+
+.reveal .follow-up-slide .fu-item p {
+  margin: 4px 0;
+}
+
+.reveal .follow-up-slide .fu-item ul {
+  margin: 0 0 4px 1.1em;
+  padding: 0;
+}
+
+.reveal .follow-up-slide .fu-item li {
+  margin: 0 0 2px;
+}
+
+.reveal .follow-up-slide .fu-shots {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  margin: 4px 0 6px;
+}
+
+.reveal .follow-up-slide .fu-shots img {
+  display: block;
+  width: calc(50% - 3px);
+  height: auto;
+  margin: 0;
+  border: 1px solid var(--deck-line);
+}
+
+.reveal .follow-up-slide.fu-dense .fu-grid {
+  column-count: 4;
+  column-gap: 20px;
+  font-size: 15px;
+  line-height: 1.3;
+}
+
+.reveal .follow-up-slide.fu-dense .fu-item {
+  margin-bottom: 10px;
+}
+
+.reveal .follow-up-slide.fu-dense .fu-title {
+  font-size: 16px;
+}

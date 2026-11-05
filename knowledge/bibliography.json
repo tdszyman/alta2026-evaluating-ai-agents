@@ -3579,9 +3579,70 @@
         "Complex versus complicated"
       ],
       "note": "The Part 1 slide credits finegood@sfu.ca, Frameworks Collection, CC BY-NC-ND. A personal byline was not copied beyond that credit.",
-      "summary": "The framework behind the Part 1 complicated-versus-complex slide. The tutorial uses it to say why an agent is not evaluated like a pipeline: the same input can lead to a spread of outputs, so you still have to evaluate the whole system.",
+      "summary": "The framework behind the Part 1 “Complex system” and “Complicated system” slides: the keywords (predictable, controllable, designable versus unpredictable, self-organising, emergent) and the examples. The tutorial uses it to say why an agent is not evaluated like a pipeline: the same input can lead to a spread of outputs, so you still have to evaluate the whole system.",
       "featured_rank": null,
       "abstract": null
+    },
+    {
+      "id": "weaver-1948-science-complexity",
+      "type": "paper",
+      "authors": [
+        "Warren Weaver"
+      ],
+      "year": "1948",
+      "title": "Science and complexity",
+      "venue": "American Scientist, 36(4):536–544.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18882675/",
+      "links": [
+        {
+          "label": "PubMed",
+          "href": "https://pubmed.ncbi.nlm.nih.gov/18882675/"
+        }
+      ],
+      "abstract": null,
+      "summary": "An early, widely cited essay on complexity. Weaver separates problems of simplicity (a few variables), problems of “disorganized complexity” (very many variables, handled by statistics) and problems of “organized complexity”, which involve “a sizable number of factors which are interrelated into an organic whole”. The Part 1 “Complex system” slide uses it for the history of the field.",
+      "groups": [
+        "agents"
+      ],
+      "featured_rank": null,
+      "mentions": [
+        "Science and Complexity"
+      ],
+      "note": "Read on 6 November 2026. PubMed has no abstract. The quotation was checked against the archived copy of the text at https://web.archive.org/web/20091009171939/http://people.physics.anu.edu.au/~tas110/Teaching/Lectures/L1/Material/WEAVER1947.pdf."
+    },
+    {
+      "id": "ladyman-2013-complex-system",
+      "type": "paper",
+      "authors": [
+        "James Ladyman",
+        "James Lambert",
+        "Karoline Wiesner"
+      ],
+      "year": "2013",
+      "title": "What is a complex system?",
+      "venue": "European Journal for Philosophy of Science, 3(1):33–67.",
+      "url": "https://doi.org/10.1007/s13194-012-0056-8",
+      "links": [
+        {
+          "label": "Springer",
+          "href": "https://link.springer.com/article/10.1007/s13194-012-0056-8"
+        },
+        {
+          "label": "DOI",
+          "href": "https://doi.org/10.1007/s13194-012-0056-8"
+        }
+      ],
+      "abstract": "Complex systems research is becoming ever more important in both the natural and social sciences. It is commonly implied that there is such a thing as a complex system, different examples of which are studied across many disciplines. However, there is no concise definition of a complex system, let alone a definition on which all scientists agree. We review various attempts to characterize a complex system, and consider a core set of features that are widely associated with complex systems in the literature and by those in the field. We argue that some of these features are neither necessary nor sufficient for complexity, and that some of them are too vague or confused to be of any analytical use. In order to bring mathematical rigour to the issue we then review some standard measures of complexity from the scientific literature, and offer a taxonomy for them, before arguing that the one that best captures the qualitative notion of the order produced by complex systems is that of the Statistical Complexity. Finally, we offer our own list of necessary conditions as a characterization of complexity. These conditions are qualitative and may not be jointly sufficient for complexity. We close with some suggestions for future work.",
+      "summary": "A review of what “complex system” means across the sciences. It finds no concise, agreed definition, tests commonly listed features, and proposes its own necessary conditions. The Part 1 “Complex system” slide uses it to say the field spans many disciplines without one agreed definition.",
+      "groups": [
+        "surveys",
+        "agents"
+      ],
+      "featured_rank": null,
+      "mentions": [
+        "What is a complex system?"
+      ],
+      "note": "Read on 6 November 2026. Published online 19 June 2012; issue dated January 2013."
     },
     {
       "id": "deepeval",
@@ -3659,6 +3720,64 @@
       "abstract": null
     },
     {
+      "id": "aws-2026-bedrock-agentcore",
+      "type": "website",
+      "authors": [
+        "Amazon Web Services"
+      ],
+      "year": "2026",
+      "title": "Overview: What is Amazon Bedrock AgentCore?",
+      "venue": "Amazon Bedrock AgentCore Developer Guide, Amazon Web Services.",
+      "url": "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/what-is-bedrock-agentcore.html",
+      "links": [
+        {
+          "label": "AWS documentation",
+          "href": "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/what-is-bedrock-agentcore.html"
+        },
+        {
+          "label": "Product page",
+          "href": "https://aws.amazon.com/bedrock/agentcore/"
+        }
+      ],
+      "groups": [
+        "platforms"
+      ],
+      "mentions": [
+        "Bedrock AgentCore"
+      ],
+      "summary": "AWS’s overview of Amazon Bedrock AgentCore, which it calls “an agentic platform for building, deploying, and operating highly effective agents securely at scale”. It lists AgentCore’s services, including Runtime, Memory, Gateway, Identity, Observability, Evaluations, Registry and Policy, which it describes as “deterministic control” over what agents may do, applied to tool calls through the Gateway. Part 1 cites it for the platform’s name and as an example of a rule-based protection.",
+      "note": "Read on 6 November 2026.",
+      "featured_rank": null,
+      "abstract": null
+    },
+    {
+      "id": "langchain-2026-langsmith",
+      "type": "website",
+      "authors": [
+        "LangChain"
+      ],
+      "year": "2026",
+      "title": "LangSmith Observability: AI Agent Observability Platform",
+      "venue": "LangChain website.",
+      "url": "https://www.langchain.com/langsmith",
+      "links": [
+        {
+          "label": "Product page",
+          "href": "https://www.langchain.com/langsmith"
+        }
+      ],
+      "groups": [
+        "platforms"
+      ],
+      "mentions": [
+        "LangSmith"
+      ],
+      "summary": "LangChain’s product page for LangSmith, its agent observability and evaluation platform. It lists agent tracing, production monitoring with “Online LLM-as-judge and code evals”, and trajectory monitoring. Part 1 cites it for the platform’s name and as an example of judges and code checks running side by side.",
+      "note": "Read on 6 November 2026.",
+      "featured_rank": null,
+      "abstract": null
+    },
+    {
       "id": "ragas",
       "type": "website",
       "year": "n.d.",
@@ -3730,6 +3849,83 @@
       "summary": "Google’s documentation for evaluating agents on their platform. Listed under platforms in the organiser notes. This draft does not describe features beyond that.",
       "mentions": [],
       "note": null,
+      "featured_rank": null,
+      "abstract": null
+    },
+    {
+      "id": "google-cloud-2026-agent-platform-overview",
+      "type": "website",
+      "authors": [
+        "Google Cloud"
+      ],
+      "year": "2026",
+      "title": "Agent Platform overview",
+      "venue": "Gemini Enterprise Agent Platform documentation, Google Cloud. Last updated 4 November 2026.",
+      "url": "https://docs.cloud.google.com/gemini-enterprise-agent-platform/overview",
+      "links": [
+        {
+          "label": "Google Cloud documentation",
+          "href": "https://docs.cloud.google.com/gemini-enterprise-agent-platform/overview"
+        }
+      ],
+      "groups": [
+        "platforms"
+      ],
+      "mentions": [],
+      "summary": "Google Cloud’s overview of its Gemini Enterprise Agent Platform, which it describes as a unified platform to build, deploy, govern and optimize enterprise AI agents, organised into four pillars: Build, Scale, Govern and Optimize. Its architecture figure places each agent in Agent Runtime with its own Agent Identity, behind Agent Gateways to users, tools and other agents, under governance (Agent Registry, policies and AI protection) and agent observability. Part 1 redraws that figure to show where evals and LLM judges sit among the controls around an agent.",
+      "note": "Read on 5 November 2026. The page’s figure has the alt text “Agent Platform is organized around four key pillars”, but it shows the agent architecture, not the four pillars.",
+      "featured_rank": null,
+      "abstract": null
+    },
+    {
+      "id": "google-cloud-2026-agent-gateway-overview",
+      "type": "website",
+      "authors": [
+        "Google Cloud"
+      ],
+      "year": "2026",
+      "title": "Agent Gateway overview",
+      "venue": "Gemini Enterprise Agent Platform documentation, Google Cloud.",
+      "url": "https://docs.cloud.google.com/gemini-enterprise-agent-platform/govern/gateways/agent-gateway-overview",
+      "links": [
+        {
+          "label": "Google Cloud documentation",
+          "href": "https://docs.cloud.google.com/gemini-enterprise-agent-platform/govern/gateways/agent-gateway-overview"
+        }
+      ],
+      "groups": [
+        "platforms"
+      ],
+      "mentions": [],
+      "summary": "Google Cloud’s description of the governance parts of its agent platform and how they work together: Agent Identity (who made the request), Agent Registry (which destinations are approved), policies including Model Armor content filters (what actions are permitted), Agent Gateway (where policies are enforced) and agent observability. It calls the Model Armor filters “AI security guardrails”. Part 1 uses it for the descriptions of those components.",
+      "note": "Read on 5 November 2026. The page says support for some runtimes and policy types is coming soon.",
+      "featured_rank": null,
+      "abstract": null
+    },
+    {
+      "id": "gerstenhaber-2026-agent-platform",
+      "type": "blog",
+      "authors": [
+        "Michael Gerstenhaber",
+        "Michael Bachman"
+      ],
+      "year": "2026",
+      "title": "Introducing Gemini Enterprise Agent Platform, powering the next wave of agents",
+      "venue": "Google Cloud Blog, 22 April 2026.",
+      "url": "https://cloud.google.com/blog/products/ai-machine-learning/introducing-gemini-enterprise-agent-platform",
+      "links": [
+        {
+          "label": "Google Cloud Blog",
+          "href": "https://cloud.google.com/blog/products/ai-machine-learning/introducing-gemini-enterprise-agent-platform"
+        }
+      ],
+      "groups": [
+        "platforms",
+        "industry"
+      ],
+      "mentions": [],
+      "summary": "Google Cloud’s launch post for Gemini Enterprise Agent Platform, the evolution of Vertex AI. It describes the Build, Scale, Govern and Optimize pillars; under Optimize it names Agent Simulation, Agent Evaluation with multi-turn autoraters on live traffic, and Agent Observability, and it says Agent Anomaly Detection uses an LLM-as-a-judge framework to flag unusual reasoning. Part 1 cites it as an industry view of where evaluation sits in agent governance.",
+      "note": "The authors are Google Cloud vice presidents: Michael Gerstenhaber (Product Management, Gemini) and Michael Bachman (Cloud Foundations).",
       "featured_rank": null,
       "abstract": null
     },
@@ -3880,6 +4076,405 @@
       "summary": "The organiser note groups this with voice-agent evaluation tools. Listed under platforms in the organiser notes. This draft does not describe features beyond that.",
       "mentions": [],
       "note": null,
+      "featured_rank": null,
+      "abstract": null
+    },
+    {
+      "id": "crt-2024-moffatt-air-canada",
+      "type": "website",
+      "authors": [
+        "Civil Resolution Tribunal"
+      ],
+      "year": "2024",
+      "title": "Moffatt v. Air Canada, 2024 BCCRT 149",
+      "venue": "Reasons for decision, Tribunal Member Christopher C. Rivers, file SC-2023-005609. Civil Resolution Tribunal of British Columbia, 14 February 2024.",
+      "url": "https://decisions.civilresolutionbc.ca/crt/crtd/en/525448/1/document.do",
+      "links": [
+        {
+          "label": "Decision",
+          "href": "https://decisions.civilresolutionbc.ca/crt/crtd/en/525448/1/document.do"
+        },
+        {
+          "label": "CanLII PDF",
+          "href": "https://www.canlii.org/en/bc/bccrt/doc/2024/2024bccrt149/2024bccrt149.pdf"
+        }
+      ],
+      "groups": [
+        "industry"
+      ],
+      "mentions": [
+        "Moffatt v. Air Canada",
+        "2024 BCCRT 149"
+      ],
+      "summary": "The tribunal decision that held Air Canada liable after its website chatbot told a customer he could claim a bereavement fare within 90 days of buying his ticket, when the airline’s own policy page said such claims could not be made after travel. Air Canada argued it could not be held liable for what the chatbot said; the tribunal disagreed and ordered it to pay $812.02. Part 1 uses it as a real case of the financial risk of a customer-facing AI system.",
+      "note": "A tribunal record. The decision says Air Canada did not provide any information about the nature of its chatbot, so it is not known whether it used an LLM or took actions. The case was also reported by CBC News, the National Post and Ars Technica in February 2024.",
+      "featured_rank": null,
+      "abstract": null
+    },
+    {
+      "id": "gerken-2024-dpd-chatbot",
+      "type": "website",
+      "authors": [
+        "Tom Gerken"
+      ],
+      "year": "2024",
+      "title": "DPD error caused chatbot to swear at customer",
+      "venue": "BBC News, 19 January 2024.",
+      "url": "https://www.bbc.com/news/technology-68025677",
+      "links": [
+        {
+          "label": "BBC News",
+          "href": "https://www.bbc.com/news/technology-68025677"
+        }
+      ],
+      "groups": [
+        "industry"
+      ],
+      "mentions": [],
+      "summary": "BBC report on the parcel firm DPD disabling the AI part of its online support chat after a customer got it to swear at him, call DPD “the worst delivery firm in the world” and write a haiku criticising the company. DPD said an error occurred after a system update. Part 1 uses it as a real case of the reputational risk of a customer-facing AI system.",
+      "note": "DPD’s statement, as quoted by the BBC: “We have operated an AI element within the chat successfully for a number of years. An error occurred after a system update yesterday. The AI element was immediately disabled and is currently being updated.”",
+      "featured_rank": null,
+      "abstract": null
+    },
+    {
+      "id": "lecher-2024-nyc-chatbot",
+      "type": "website",
+      "authors": [
+        "Colin Lecher"
+      ],
+      "year": "2024",
+      "title": "NYC’s AI Chatbot Tells Businesses to Break the Law",
+      "venue": "The Markup, 29 March 2024. Co-published with Documented and THE CITY.",
+      "url": "https://themarkup.org/artificial-intelligence/2024/03/29/nycs-ai-chatbot-tells-businesses-to-break-the-law",
+      "links": [
+        {
+          "label": "The Markup",
+          "href": "https://themarkup.org/artificial-intelligence/2024/03/29/nycs-ai-chatbot-tells-businesses-to-break-the-law"
+        }
+      ],
+      "groups": [
+        "industry"
+      ],
+      "mentions": [],
+      "summary": "An investigation into New York City’s MyCity business chatbot, built on Microsoft’s Azure AI services, which told users they could do things that are illegal in the city: take a cut of workers’ tips, refuse tenants with housing vouchers, and run a cash-free business. When ten reporters asked the same housing-voucher question, all ten got the wrong answer. Part 1 uses it as a real case of the regulatory risk of an AI system giving unlawful advice.",
+      "note": "A city spokesperson said the chatbot was a pilot that “has already provided thousands of people with timely, accurate answers”.",
+      "featured_rank": null,
+      "abstract": null
+    },
+    {
+      "id": "nvd-2025-cve-2025-32711",
+      "type": "website",
+      "authors": [
+        "National Vulnerability Database"
+      ],
+      "year": "2025",
+      "title": "CVE-2025-32711",
+      "venue": "NIST, published 11 June 2025.",
+      "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-32711",
+      "links": [
+        {
+          "label": "NVD record",
+          "href": "https://nvd.nist.gov/vuln/detail/CVE-2025-32711"
+        },
+        {
+          "label": "Microsoft advisory",
+          "href": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2025-32711"
+        }
+      ],
+      "groups": [
+        "industry"
+      ],
+      "mentions": [
+        "CVE-2025-32711"
+      ],
+      "summary": "The public vulnerability record for the Microsoft 365 Copilot flaw that its finders, Aim Security, called EchoLeak. The record describes it as “AI command injection in M365 Copilot allows an unauthorized attacker to disclose information over a network.” Part 1 uses it as a real case of an AI assistant becoming an attack surface.",
+      "note": "Microsoft scored it 9.3 (critical) on CVSS; NIST scored it 7.5.",
+      "featured_rank": null,
+      "abstract": null
+    },
+    {
+      "id": "jones-2025-echoleak",
+      "type": "website",
+      "authors": [
+        "David Jones"
+      ],
+      "year": "2025",
+      "title": "Critical flaw in Microsoft Copilot could have allowed zero-click attack",
+      "venue": "Cybersecurity Dive, 11 June 2025.",
+      "url": "https://www.cybersecuritydive.com/news/flaw-microsoft-copilot-zero-click-attack/750456/",
+      "links": [
+        {
+          "label": "Cybersecurity Dive",
+          "href": "https://www.cybersecuritydive.com/news/flaw-microsoft-copilot-zero-click-attack/750456/"
+        }
+      ],
+      "groups": [
+        "industry"
+      ],
+      "mentions": [],
+      "summary": "News report on EchoLeak, a flaw in Microsoft 365 Copilot found by researchers at Aim Security, who said an attacker could steal data from Copilot’s context simply by sending an email, with no action by the user, and called it the first known zero-click attack on an AI agent. Microsoft said the issue was fully addressed and customers did not need to act; the researchers said there was no evidence customers were targeted. Part 1 uses it as a real case of an AI agent as an attack surface.",
+      "note": null,
+      "featured_rank": null,
+      "abstract": null
+    },
+    {
+      "id": "white-2026-musk-lego",
+      "type": "website",
+      "authors": [
+        "Jeremy White"
+      ],
+      "year": "2026",
+      "title": "Elon Musk Bragged About His Grok Lego Star Wars Haul. Then X Users Punked Him",
+      "venue": "WIRED, 12 October 2026.",
+      "url": "https://www.wired.com/story/elon-musk-bragged-about-his-grok-lego-star-wars-haul-then-x-users-punked-him/",
+      "links": [
+        {
+          "label": "WIRED",
+          "href": "https://www.wired.com/story/elon-musk-bragged-about-his-grok-lego-star-wars-haul-then-x-users-punked-him/"
+        }
+      ],
+      "groups": [
+        "industry"
+      ],
+      "mentions": [],
+      "summary": "Report on Elon Musk posting a screenshot of a Lego order placed by his Grok AI agent that showed the order number, price, delivery and billing addresses, the last four digits of his card and the email address used. X users then posted screenshots of Lego’s AI support assistant, Sophia, apparently using the order number and email to cancel the order and, in another user’s screenshots, to raise it to 400 sets and change the delivery address. Part 1 uses it as a candidate case of an AI support assistant accepting public details as proof of who the customer is.",
+      "note": "Musk said the order had not been cancelled. Lego declined to comment when WIRED asked whether the changes took place, so they are claims from screenshots, not confirmed events.",
+      "featured_rank": null,
+      "abstract": null
+    },
+    {
+      "id": "puri-2026-grok-lego",
+      "type": "website",
+      "authors": [
+        "Tanmay Puri"
+      ],
+      "year": "2026",
+      "title": "Elon Musk Showed People How To Shop With Grok Using Credit Cards: Then He Exposed His Own Order Details",
+      "venue": "Tech Times, 14 October 2026.",
+      "url": "https://www.techtimes.co.uk/elon-musk-grok-shopping-demo-privacy-risks-1809142",
+      "links": [
+        {
+          "label": "Tech Times",
+          "href": "https://www.techtimes.co.uk/elon-musk-grok-shopping-demo-privacy-risks-1809142"
+        }
+      ],
+      "groups": [
+        "industry"
+      ],
+      "mentions": [],
+      "summary": "Follow-up report on the Musk Lego order. It quotes the posts on X: Enderman’s screenshots appeared to show Lego’s support chatbot accepting the order number and submitting a cancellation request, and another user’s screenshots appeared to show the order raised to 400 sets with a new address. It stresses that neither account established that the changes were completed. Part 1 cites it alongside the WIRED report for what was and was not confirmed.",
+      "note": "Musk’s reply on X, as quoted: “That’s not my address and the order isn’t canceled.”",
+      "featured_rank": null,
+      "abstract": null
+    },
+    {
+      "id": "booth-2025-bunnings-chatbot",
+      "type": "website",
+      "authors": [
+        "Harry Booth"
+      ],
+      "year": "2025",
+      "title": "Bunnings addresses ‘illegal advice’ from its AI chatbot",
+      "venue": "Inside Retail Australia, 8 December 2025.",
+      "url": "https://insideretail.com.au/digital/ai/bunnings-addresses-illegal-advice-from-its-ai-chatbot-202512",
+      "links": [
+        {
+          "label": "Inside Retail",
+          "href": "https://insideretail.com.au/digital/ai/bunnings-addresses-illegal-advice-from-its-ai-chatbot-202512"
+        }
+      ],
+      "groups": [
+        "industry"
+      ],
+      "mentions": [],
+      "summary": "Report that the Bunnings AI Assistant gave a Queensland customer six steps for replacing the plug on an extension cord, work that in Queensland can legally be done only by a licensed electrician. Bunnings admitted the fault and said it had strengthened its safeguards so that requests about electrical, plumbing or other licensed work are referred to a qualified tradesperson. Part 1 uses it as an Australian case of the regulatory risk of an AI assistant giving advice that breaks the law.",
+      "note": "The article does not name the Queensland law, a regulator, or the earlier reports it refers to. A Bunnings spokesperson is quoted: “While our safeguards and testing measures minimise the risk of non-compliance advice, like any AI model, there is always a small risk of an incorrect or unexpected response.”",
+      "featured_rank": null,
+      "abstract": null
+    },
+    {
+      "id": "wilson-2026-gym-agent",
+      "type": "website",
+      "authors": [
+        "Cam Wilson",
+        "Rhiannon Hobbins"
+      ],
+      "year": "2026",
+      "title": "AI assistant hacks gym website in first known Australian autonomous cyber attack",
+      "venue": "ABC News, 10 August 2026.",
+      "url": "https://www.abc.net.au/news/2026-08-10/ai-assistant-hacks-gym-website-aus-cyber-attack/107007986",
+      "links": [
+        {
+          "label": "ABC News",
+          "href": "https://www.abc.net.au/news/2026-08-10/ai-assistant-hacks-gym-website-aus-cyber-attack/107007986"
+        }
+      ],
+      "groups": [
+        "industry"
+      ],
+      "mentions": [],
+      "summary": "Report of a man, named only as Andrew, who asked an OpenClaw AI assistant running on Anthropic’s Claude to book a gym class. The assistant found a flaw in the gym booking software, booked further ahead than allowed, and, when he asked whether he could be moved to the top of a waitlist, while testing whether that was possible, removed the person in first place. It could not undo the change. The ABC describes it as the first known Australian case of an autonomous AI cyber attack. Part 1 uses it as a case of an agent causing harm on a user’s behalf by a method the user did not ask for.",
+      "note": "No law, charge or regulator action is reported. The gym software company would not discuss specific security matters and Anthropic did not respond. Hayden Delaney (Thomsons Lawyers) is quoted: “Software is not a legal person. Only a legal person can be liable at law.” Bill Simpson-Young (Gradient Institute): “The more autonomous they become, the more likely it is they'll cause harm.”",
+      "featured_rank": null,
+      "abstract": null
+    },
+    {
+      "id": "yun-2026-woolworths-olive",
+      "type": "website",
+      "authors": [
+        "Jessica Yun"
+      ],
+      "year": "2026",
+      "title": "Woolworths forced to rein in chatbot that claimed to have angry mother",
+      "venue": "The Sydney Morning Herald, 26 February 2026.",
+      "url": "https://www.smh.com.au/business/companies/woolworths-forced-to-rein-in-chatbot-that-claimed-to-have-angry-mother-20260226-p5o5mh.html",
+      "links": [
+        {
+          "label": "The Sydney Morning Herald",
+          "href": "https://www.smh.com.au/business/companies/woolworths-forced-to-rein-in-chatbot-that-claimed-to-have-angry-mother-20260226-p5o5mh.html"
+        }
+      ],
+      "groups": [
+        "industry"
+      ],
+      "mentions": [],
+      "summary": "Report that Woolworths tweaked Olive, its AI-powered virtual assistant, after customers reported odd attempts at “banter”, including references to its “mother” who spoke in an “angry voice”; one user said it kept claiming to be a real person. In the newspaper’s own tests Olive also quoted wrong prices for two products. Woolworths said an employee had prompted Olive years earlier to chat about its family to give it a quirky personality. Part 1 uses it as a case of competitive risk with a reputational edge.",
+      "note": "The article does not say how many customers were affected or what exactly Woolworths changed. Olive’s page carries the notice “Olive is powered by AI and may make mistakes. Always check the product label.” Woolworths told investors it planned to use AI and a partnership with Google to turn Olive into a “market-leading conversational shopping companion”.",
+      "featured_rank": null,
+      "abstract": null
+    },
+    {
+      "id": "proctor-2024-air-canada-cbc",
+      "type": "website",
+      "authors": [
+        "Jason Proctor"
+      ],
+      "year": "2024",
+      "title": "Air Canada found liable for chatbot's bad advice on plane tickets",
+      "venue": "CBC News, 15 February 2024.",
+      "url": "https://www.cbc.ca/news/canada/british-columbia/air-canada-chatbot-lawsuit-1.7116416",
+      "links": [
+        {
+          "label": "CBC News",
+          "href": "https://www.cbc.ca/news/canada/british-columbia/air-canada-chatbot-lawsuit-1.7116416"
+        }
+      ],
+      "groups": [
+        "industry"
+      ],
+      "mentions": [],
+      "summary": "News report of the Civil Resolution Tribunal ruling in Moffatt v. Air Canada: the airline was found liable for its website chatbot’s wrong advice on bereavement fares, after arguing that the chatbot was responsible for its own actions, a claim the tribunal called “remarkable”. Part 1 uses its headline on the slide that gathers news coverage of AI failures.",
+      "note": "Standfirst: “Airline's claim that online helper was responsible for its own actions was 'remarkable': small claims court”. Posted 15 February 2024, last updated 16 February 2024.",
+      "featured_rank": null,
+      "abstract": null
+    },
+    {
+      "id": "campbell-2026-artificial-applicant",
+      "type": "website",
+      "authors": [
+        "Jack Campbell"
+      ],
+      "year": "2026",
+      "title": "HR leaders tackle the rise of the ‘artificial applicant’ in hiring",
+      "venue": "HRD Australia (Human Resources Director), 9 July 2026.",
+      "url": "https://www.hcamag.com/au/specialisation/hr-technology/hr-leaders-tackle-the-rise-of-the-artificial-applicant-in-hiring/581801",
+      "links": [
+        {
+          "label": "HRD Australia",
+          "href": "https://www.hcamag.com/au/specialisation/hr-technology/hr-leaders-tackle-the-rise-of-the-artificial-applicant-in-hiring/581801"
+        }
+      ],
+      "groups": [
+        "industry"
+      ],
+      "mentions": [],
+      "summary": "Report of an HR leaders’ roundtable in Sydney on 7 July 2026, built around Indeed’s report The Artificial Applicant: How Hiring Changed the Candidate, which the article describes as a nationally representative study of more than 1,000 working-age Australians conducted with YouGov in March 2026. It reports that 41% of candidates use AI to write or refine cover letters, 38% to prepare for interviews, 37% to rewrite their CV and 29% to try to beat applicant tracking systems; that 43% of workers are comfortable with employers using AI in recruitment; and that 79% believe employers should disclose when AI screens or assesses candidates. Part 1 opens with its AI-use figures as Australian evidence that job seekers already use AI for parts of a job search.",
+      "note": "Read on 5 November 2026. The figures are the article’s summary of Indeed’s report, not the report itself: the article does not give the survey questions, and it calls the base “candidates” without saying whether that means every respondent or only those who had recently looked for work. The Indeed report was not read; its page on au.indeed.com refused automated requests. The article also cites Roy Morgan data (58% average AI use among Australians aged 14 and over), which Part 1 does not use.",
+      "featured_rank": null,
+      "abstract": null
+    },
+    {
+      "id": "greenhouse-2026-candidate-report",
+      "type": "website",
+      "authors": [
+        "Greenhouse"
+      ],
+      "year": "2026",
+      "title": "6 in 10 job seekers are rethinking how they write to avoid sounding like AI, even as most use it in their search",
+      "venue": "Greenhouse newsroom, 20 October 2026. Press release for the 2026 Greenhouse Future of Hiring Candidate Report.",
+      "url": "https://www.greenhouse.com/newsroom/6-in-10-job-seekers-are-rethinking-how-they-write-to-avoid-sounding-like-ai-even-as-most-use-it-in-their-search",
+      "links": [
+        {
+          "label": "Greenhouse newsroom",
+          "href": "https://www.greenhouse.com/newsroom/6-in-10-job-seekers-are-rethinking-how-they-write-to-avoid-sounding-like-ai-even-as-most-use-it-in-their-search"
+        }
+      ],
+      "groups": [
+        "industry"
+      ],
+      "mentions": [],
+      "summary": "Press release for a survey of more than 2,800 job seekers in the US, UK, Ireland, Germany and Australia; unless noted, its figures are for the 1,200 US respondents. It reports that 77% of US job seekers used AI in their search in the past year, and that 69% would feel comfortable using an AI agent but only 5% would let one apply to jobs on its own. Part 1 uses the gap between 69% and 5% to show that comfort with AI help does not extend to an agent acting alone.",
+      "note": "Read on 5 November 2026. The release does not give the question wording or the answer options behind the 69% and 5%, and it gives no Australian figures. Greenhouse sells hiring software, including AI interviews. The full report was not read.",
+      "featured_rank": null,
+      "abstract": null
+    },
+    {
+      "id": "harris-ruth-2026-trust-gap",
+      "type": "website",
+      "authors": [
+        "The Harris Poll",
+        "Ruth AI"
+      ],
+      "author_label": "The Harris Poll and Ruth AI",
+      "year": "2026",
+      "title": "New Harris Poll and Ruth AI study: 81% of Americans would let an AI agent handle part of their job search",
+      "venue": "PR Newswire, 23 July 2026. Press release for The Trust Gap, a survey by The Harris Poll in collaboration with Ruth AI.",
+      "url": "https://www.prnewswire.com/news-releases/new-harris-poll-and-ruth-ai-study-81-of-americans-would-let-an-ai-agent-handle-part-of-their-job-search-302833298.html",
+      "links": [
+        {
+          "label": "PR Newswire",
+          "href": "https://www.prnewswire.com/news-releases/new-harris-poll-and-ruth-ai-study-81-of-americans-would-let-an-ai-agent-handle-part-of-their-job-search-302833298.html"
+        },
+        {
+          "label": "Study page (Ruth AI)",
+          "href": "https://ruthapp.ai/research"
+        }
+      ],
+      "groups": [
+        "industry"
+      ],
+      "mentions": [],
+      "summary": "Online survey of 2,131 US adults by The Harris Poll with Ruth AI, an AI career strategist, fielded 11–13 June 2026 and weighted to the US general adult population. 81% would be comfortable having an AI agent handle at least one part of a job search; a majority would let AI search for jobs (67%), conduct pre-interview research (67%), update their resume (65%) or apply for jobs outright (55%); 49% and 47% would let it negotiate benefits or salary. Part 1 sets it beside the Greenhouse survey to show that the share willing to let AI apply for them depends on who is asked and how.",
+      "note": "Read on 5 November 2026. The study page charts the same figures under “% comfortable letting AI do this step”. Neither page gives the exact question text. Ruth AI sells an AI career agent.",
+      "featured_rank": null,
+      "abstract": null
+    },
+    {
+      "id": "seek-2026-about",
+      "type": "website",
+      "authors": [
+        "SEEK"
+      ],
+      "year": "2026",
+      "title": "About SEEK",
+      "venue": "SEEK website (au.seek.com/about). Internet Archive capture of 2 October 2026.",
+      "url": "https://au.seek.com/about",
+      "links": [
+        {
+          "label": "SEEK",
+          "href": "https://au.seek.com/about"
+        },
+        {
+          "label": "Internet Archive capture, 2 October 2026",
+          "href": "https://web.archive.org/web/20261002014455/https://au.seek.com/about"
+        }
+      ],
+      "groups": [
+        "industry"
+      ],
+      "mentions": [],
+      "summary": "SEEK’s own description of the company: founded in Melbourne, Australia in 1997, it operates online employment marketplaces in Australia, New Zealand, Hong Kong, Indonesia, Malaysia, the Philippines, Singapore and Thailand, has more than 3,000 employees and is listed on the Australian Securities Exchange. It says SEEK has more than 60 million candidate profiles and more than 360,000 hirer relationships, and more than 750 million data points of employment activity every day; it gives no date or region for these figures. The page shows a map of those markets and says SEEK’s use of AI is governed by its Responsible AI framework. Part 1 uses it to introduce SEEK, the employer behind the tutorial’s examples.",
+      "note": "Read on 5 November 2026 from the Internet Archive capture of 2 October 2026, because the live page refused automated requests. The regional map and SEEK logo on the slide are SEEK’s own images, downloaded from the image host the page uses.",
       "featured_rank": null,
       "abstract": null
     }

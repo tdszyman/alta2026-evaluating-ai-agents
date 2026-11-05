@@ -2,20 +2,6 @@
    fixed 1200×600 canvas so the SVG connector in .cat-links lines up.
    Verdict colours follow the "Judge verdict" row in _shared/style-brief.md. */
 
-.reveal .chat-attack-slide {
-  --cat-ink: #14283b;
-  --cat-soft: #526476;
-  --cat-line: #b8c8d1;
-  --cat-surface: #eff3f5;
-  --cat-accent: #245ba6;
-  --cat-accent-pale: #e3ecf8;
-  --cat-amber: #b54708;
-  --cat-amber-tint: #fef0e1;
-  --cat-red: #b42318;
-  --cat-red-tint: #fde8e6;
-  --cat-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
-}
-
 .reveal .chat-attack-slide h2 {
   font-size: 1.15em;
   margin-bottom: 0.45em;
@@ -25,10 +11,10 @@
   position: relative;
   width: 1200px;
   height: 600px;
-  font-family: Inter, "Source Sans 3", "Segoe UI", system-ui, sans-serif;
+  font-family: var(--deck-font-sans);
   font-size: 14px;
   line-height: 1.35;
-  color: var(--cat-ink);
+  color: var(--deck-ink);
 }
 
 .reveal .chat-attack-slide .cat-label {
@@ -37,7 +23,7 @@
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--cat-soft);
+  color: var(--deck-soft);
 }
 
 /* Mock browser */
@@ -50,9 +36,9 @@
   height: 598px;
   display: flex;
   flex-direction: column;
-  border: 1px solid var(--cat-line);
+  border: 1px solid var(--deck-line);
   border-radius: 2px;
-  background: #fff;
+  background: var(--deck-paper);
   overflow: hidden;
 }
 
@@ -63,25 +49,25 @@
   gap: 6px;
   height: 24px;
   padding: 0 10px;
-  background: var(--cat-surface);
-  border-bottom: 1px solid var(--cat-line);
+  background: var(--deck-surface);
+  border-bottom: 1px solid var(--deck-line);
 }
 
 .reveal .chat-attack-slide .cat-dot {
   width: 9px;
   height: 9px;
   border-radius: 50%;
-  background: var(--cat-line);
+  background: var(--deck-line);
 }
 
 .reveal .chat-attack-slide .cat-url {
   margin-left: 12px;
   padding: 1px 10px;
-  font-family: var(--cat-mono);
+  font-family: var(--deck-font-mono);
   font-size: 11px;
-  color: var(--cat-soft);
-  background: #fff;
-  border: 1px solid var(--cat-line);
+  color: var(--deck-soft);
+  background: var(--deck-paper);
+  border: 1px solid var(--deck-line);
   border-radius: 2px;
 }
 
@@ -92,8 +78,8 @@
   gap: 18px;
   height: 36px;
   padding: 0 14px;
-  background: var(--cat-ink);
-  color: #fff;
+  background: var(--deck-ink);
+  color: var(--deck-paper);
 }
 
 .reveal .chat-attack-slide .cat-wordmark {
@@ -112,7 +98,7 @@
 .reveal .chat-attack-slide .cat-nav-on {
   opacity: 1;
   font-weight: 600;
-  box-shadow: inset 0 -2px 0 #fff;
+  box-shadow: inset 0 -2px 0 var(--deck-paper);
 }
 
 .reveal .chat-attack-slide .cat-chat {
@@ -121,7 +107,7 @@
   flex: 1;
   flex-direction: column;
   margin: 12px 14px 14px;
-  border: 1px solid var(--cat-line);
+  border: 1px solid var(--deck-line);
   border-radius: 2px;
   min-height: 0;
 }
@@ -131,8 +117,8 @@
   padding: 6px 12px;
   font-size: 14px;
   font-weight: 700;
-  color: var(--cat-accent);
-  border-bottom: 1px solid var(--cat-line);
+  color: var(--deck-accent);
+  border-bottom: 1px solid var(--deck-line);
 }
 
 .reveal .chat-attack-slide .cat-msgs {
@@ -154,12 +140,14 @@
 
 .reveal .chat-attack-slide .cat-msg.bot {
   align-self: flex-start;
-  background: var(--cat-surface);
+  background: var(--chat-agent-bg);
+  box-shadow: inset var(--chat-edge-width) 0 0 var(--chat-agent-edge);
 }
 
 .reveal .chat-attack-slide .cat-msg.user {
   align-self: flex-end;
-  background: var(--cat-accent-pale);
+  background: var(--chat-user-bg);
+  box-shadow: inset calc(-1 * var(--chat-edge-width)) 0 0 var(--chat-user-edge);
 }
 
 .reveal .chat-attack-slide .cat-msg.user .cat-t {
@@ -168,8 +156,8 @@
   top: 6px;
 }
 
-.reveal .chat-attack-slide .cat-drift {
-  box-shadow: inset 3px 0 0 var(--cat-amber);
+.reveal .chat-attack-slide .cat-msg.cat-drift {
+  box-shadow: inset 3px 0 0 var(--verdict-warn);
 }
 
 .reveal .chat-attack-slide .cat-t {
@@ -177,10 +165,10 @@
   padding: 0 5px;
   font-size: 11px;
   font-weight: 700;
-  color: var(--cat-soft);
-  border: 1px solid var(--cat-line);
+  color: var(--deck-soft);
+  border: 1px solid var(--deck-line);
   border-radius: 2px;
-  background: #fff;
+  background: var(--deck-paper);
 }
 
 .reveal .chat-attack-slide .cat-input {
@@ -188,8 +176,8 @@
   margin: 0 12px 10px;
   padding: 6px 10px;
   font-size: 13px;
-  color: var(--cat-soft);
-  border: 1px solid var(--cat-line);
+  color: var(--deck-soft);
+  border: 1px solid var(--deck-line);
   border-radius: 2px;
 }
 
@@ -202,8 +190,8 @@
   align-items: center;
   gap: 14px;
   padding: 8px 14px;
-  background: #fff;
-  border: 2px solid var(--cat-red);
+  background: var(--deck-paper);
+  border: 2px solid var(--verdict-fail);
   border-radius: 2px;
 }
 
@@ -213,18 +201,23 @@
   height: 52px;
 }
 
+.reveal .chat-attack-slide .cat-ended circle { fill: var(--deck-paper); }
+
+.reveal .chat-attack-slide .cat-ended circle,
+.reveal .chat-attack-slide .cat-ended line { stroke: var(--verdict-fail); }
+
 .reveal .chat-attack-slide .cat-ended-title {
   font-size: 22px;
   font-weight: 800;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: var(--cat-red);
+  color: var(--verdict-fail);
 }
 
 .reveal .chat-attack-slide .cat-ended-sub {
   font-size: 13px;
   font-weight: 600;
-  color: var(--cat-red);
+  color: var(--verdict-fail);
 }
 
 /* Judge */
@@ -238,8 +231,8 @@
 
 .reveal .chat-attack-slide .cat-box {
   margin-bottom: 14px;
-  background: #fff;
-  border: 1px solid var(--cat-line);
+  background: var(--deck-paper);
+  border: 1px solid var(--chat-judge-box-edge);
   border-radius: 2px;
 }
 
@@ -249,20 +242,20 @@
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--cat-soft);
-  background: var(--cat-surface);
-  border-bottom: 1px solid var(--cat-line);
+  color: var(--chat-judge-head-ink);
+  background: var(--chat-judge-head-bg);
+  border-bottom: 1px solid var(--chat-judge-box-edge);
 }
 
 .reveal .chat-attack-slide .cat-box pre {
   width: auto;
   margin: 0;
   padding: 8px 12px;
-  font-family: var(--cat-mono);
+  font-family: var(--deck-font-mono);
   font-size: 15px;
   line-height: 1.45;
   white-space: pre;
-  color: var(--cat-ink);
+  color: var(--deck-ink);
   background: none;
   box-shadow: none;
 }
@@ -284,7 +277,7 @@
   column-gap: 8px;
   row-gap: 3px;
   padding: 7px 12px;
-  border-bottom: 1px solid var(--cat-surface);
+  border-bottom: 1px solid var(--deck-surface);
 }
 
 .reveal .chat-attack-slide .cat-row:last-child { border-bottom: 0; }
@@ -295,7 +288,7 @@
   grid-area: bar;
   position: relative;
   height: 12px;
-  background: var(--cat-surface);
+  background: var(--deck-surface);
 }
 
 .reveal .chat-attack-slide .cat-bar::after {
@@ -304,18 +297,18 @@
   left: 80%;
   top: -3px;
   bottom: -3px;
-  border-left: 2px dashed var(--cat-ink);
+  border-left: 2px dashed var(--deck-ink);
 }
 
 .reveal .chat-attack-slide .cat-bar span {
   display: block;
   height: 100%;
-  background: var(--cat-accent);
+  background: var(--verdict-pass);
 }
 
 .reveal .chat-attack-slide .cat-score {
   grid-area: score;
-  font-family: var(--cat-mono);
+  font-family: var(--deck-font-mono);
   font-size: 14px;
   text-align: right;
 }
@@ -328,7 +321,7 @@
   letter-spacing: 0.06em;
   text-align: center;
   text-transform: uppercase;
-  color: var(--cat-accent);
+  color: var(--verdict-pass);
   border: 1px solid currentColor;
   border-radius: 2px;
 }
@@ -336,17 +329,17 @@
 .reveal .chat-attack-slide .cat-why {
   grid-area: why;
   font-size: 13.5px;
-  color: var(--cat-soft);
+  color: var(--deck-soft);
 }
 
-.reveal .chat-attack-slide .cat-warn .cat-bar span { background: var(--cat-amber); }
-.reveal .chat-attack-slide .cat-warn .cat-verdict { color: var(--cat-amber); }
+.reveal .chat-attack-slide .cat-warn .cat-bar span { background: var(--verdict-warn); }
+.reveal .chat-attack-slide .cat-warn .cat-verdict { color: var(--verdict-warn-ink); }
 
-.reveal .chat-attack-slide .cat-fail { background: var(--cat-red-tint); }
-.reveal .chat-attack-slide .cat-fail .cat-bar span { background: var(--cat-red); }
-.reveal .chat-attack-slide .cat-fail .cat-verdict { color: #fff; background: var(--cat-red); border-color: var(--cat-red); }
-.reveal .chat-attack-slide .cat-fail .cat-score { color: var(--cat-red); font-weight: 700; }
-.reveal .chat-attack-slide .cat-fail .cat-why { color: var(--cat-ink); }
+.reveal .chat-attack-slide .cat-fail { background: var(--verdict-fail-tint); }
+.reveal .chat-attack-slide .cat-fail .cat-bar span { background: var(--verdict-fail); }
+.reveal .chat-attack-slide .cat-fail .cat-verdict { color: var(--verdict-on); background: var(--verdict-fail); border-color: var(--verdict-fail); }
+.reveal .chat-attack-slide .cat-fail .cat-score { color: var(--verdict-fail); font-weight: 700; }
+.reveal .chat-attack-slide .cat-fail .cat-why { color: var(--deck-ink); }
 
 .reveal .chat-attack-slide .cat-note {
   font-size: 15px;
@@ -366,13 +359,13 @@
 
 .reveal .chat-attack-slide .cat-links path {
   fill: none;
-  stroke: var(--cat-red);
+  stroke: var(--verdict-fail);
   stroke-width: 2;
 }
 
 .reveal .chat-attack-slide .cat-caption {
   margin-top: 4px;
-  font-family: Inter, "Source Sans 3", "Segoe UI", system-ui, sans-serif;
+  font-family: var(--deck-font-sans);
   font-size: 12px;
-  color: var(--cat-soft);
+  color: var(--deck-soft);
 }

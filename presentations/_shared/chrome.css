@@ -1,11 +1,25 @@
+/* Colours and type come from the slide template in _shared/themes/. */
 :root {
-  --deck-paper: #fbfcfb;
-  --deck-ink: #14283b;
-  --deck-soft: #526476;
-  --deck-line: #b8c8d1;
-  --deck-accent: #245ba6;
-  --deck-surface: #eff3f5;
   --deck-bar: 42px;
+}
+
+/* Bundled so the Canva template does not need a font service (SIL OFL,
+   fonts/plus-jakarta-sans/OFL.txt). Browsers fetch it only when a template
+   names it. */
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 200 800;
+  src: url("fonts/plus-jakarta-sans/plus-jakarta-sans-latin-wght-normal.woff2") format("woff2-variations");
+}
+
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  font-style: italic;
+  font-display: swap;
+  font-weight: 200 800;
+  src: url("fonts/plus-jakarta-sans/plus-jakarta-sans-latin-wght-italic.woff2") format("woff2-variations");
 }
 
 .deck-topbar {
@@ -19,10 +33,10 @@
   align-items: center;
   gap: 0.75rem;
   padding: 0 0.7rem;
-  background: var(--deck-paper);
+  background: var(--deck-bg);
   border-bottom: 1px solid var(--deck-line);
   color: var(--deck-ink);
-  font-family: Inter, "Source Sans 3", "Segoe UI", system-ui, sans-serif;
+  font-family: var(--deck-font-sans);
   font-size: 13px;
   line-height: 1.2;
 }
@@ -86,15 +100,51 @@
   color: var(--deck-ink);
 }
 
+.deck-theme {
+  display: flex;
+  align-items: center;
+  flex: none;
+  border: 1px solid var(--deck-line);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.deck-theme button {
+  appearance: none;
+  border: 0;
+  border-left: 1px solid var(--deck-line);
+  background: var(--deck-paper);
+  color: var(--deck-soft);
+  font: inherit;
+  font-size: 12px;
+  line-height: 1;
+  padding: 0.38rem 0.55rem;
+  cursor: pointer;
+}
+
+.deck-theme button:first-child { border-left: 0; }
+
+.deck-theme button:hover { color: var(--deck-ink); background: var(--deck-surface); }
+
+.deck-theme button:focus-visible {
+  outline: 2px solid var(--deck-accent);
+  outline-offset: -2px;
+}
+
+.deck-theme button[aria-pressed="true"] {
+  color: var(--deck-on-accent);
+  background: var(--deck-accent-fill);
+}
+
 .deck-search {
   position: relative;
   flex: none;
 }
 
 .deck-search input {
-  width: 11rem;
+  width: 10rem;
   border: 1px solid var(--deck-line);
-  background: #fff;
+  background: var(--deck-paper);
   color: var(--deck-ink);
   border-radius: 2px;
   padding: 0.28rem 0.7rem;
@@ -116,7 +166,7 @@
   margin: 0;
   padding: 0.3rem;
   list-style: none;
-  background: var(--deck-paper);
+  background: var(--deck-bg);
   border: 1px solid var(--deck-line);
 }
 
@@ -148,7 +198,7 @@
   position: fixed;
   inset: 0;
   z-index: 85;
-  background: rgba(20, 40, 59, 0.4);
+  background: var(--deck-scrim);
 }
 
 .deck-backdrop[hidden] { display: none; }
@@ -160,12 +210,12 @@
   left: 0;
   bottom: 0;
   width: min(22rem, 88vw);
-  background: var(--deck-paper);
+  background: var(--deck-bg);
   color: var(--deck-ink);
   border-right: 1px solid var(--deck-line);
   display: flex;
   flex-direction: column;
-  font-family: Inter, "Source Sans 3", "Segoe UI", system-ui, sans-serif;
+  font-family: var(--deck-font-sans);
   transform: translateX(-105%);
   transition: transform 0.2s ease;
 }
@@ -178,7 +228,7 @@
   align-items: center;
   padding: 0.8rem 0.9rem;
   border-bottom: 1px solid var(--deck-line);
-  font-family: Inter, "Source Sans 3", "Segoe UI", system-ui, sans-serif;
+  font-family: var(--deck-font-sans);
 }
 
 .deck-drawer ol {
@@ -232,7 +282,7 @@
   transform: translateX(-50%);
   pointer-events: none;
   color: var(--deck-soft);
-  font-family: Inter, "Source Sans 3", "Segoe UI", system-ui, sans-serif;
+  font-family: var(--deck-font-sans);
   font-size: 14px;
   font-variant-numeric: tabular-nums;
   letter-spacing: 0.04em;
@@ -294,6 +344,7 @@ html.deck-idle .reveal .controls .navigate-right:focus {
 
 @media (max-width: 760px) {
   .deck-search input { width: 7rem; }
+  .deck-theme button { padding: 0.38rem 0.4rem; }
   .deck-crumbs .deck-here { max-width: 7rem; }
 }
 

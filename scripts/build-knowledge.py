@@ -26,6 +26,7 @@ OUT = ROOT / "presentations" / "bibliography"
 
 PARTS = {
     "01-agents-and-eval-challenges": "Part 1",
+    "01g-graveyard": "Part 1.G",
     "02-llm-as-judge-methods": "Part 2",
     "03-hands-on-exercise": "Part 3",
     "04-reliability-and-future": "Part 4",

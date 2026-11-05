@@ -1,38 +1,66 @@
-/* Scientific Modernist slides. See _shared/style-brief.md.
-   Decks stay light. The website appearance toggle does not restyle them. */
+/* Shared slide rules. Colours and type come from the selected template in
+   _shared/themes/ (see format.revealjs.theme in _quarto.yml and
+   _shared/style-brief.md). Decks stay light. The website appearance toggle
+   does not restyle them. */
 /*-- scss:defaults --*/
-$font-family-sans-serif: Inter, "Source Sans 3", "Segoe UI", system-ui, sans-serif;
-$font-family-monospace: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
-$presentation-heading-font: Inter, "Source Sans 3", "Segoe UI", system-ui, sans-serif;
-$presentation-heading-color: #14283b;
-$presentation-heading-font-weight: 600;
-$presentation-slide-text-align: left;
-$presentation-title-slide-text-align: left;
-$body-bg: #fbfcfb;
-$body-color: #14283b;
-$link-color: #245ba6;
-$link-color-hover: #1b467f;
-$selection-bg: #d6e4f5;
-$selection-color: #14283b;
-$code-block-bg: #eff3f5;
 
 /*-- scss:rules --*/
+
+/* Reveal's own properties read the template tokens, so the theme picker in
+   chrome.html can swap templates live by replacing the tokens alone. */
+:root {
+  --r-background-color: var(--deck-bg);
+  --r-main-font: var(--deck-font-sans);
+  --r-main-color: var(--deck-ink);
+  --r-heading-font: var(--deck-font-sans);
+  --r-heading-color: var(--deck-heading);
+  --r-heading-font-weight: var(--deck-heading-weight);
+  --r-code-font: var(--deck-font-mono);
+  --r-link-color: var(--deck-accent);
+  --r-link-color-hover: var(--deck-accent-strong);
+  --r-selection-background-color: var(--deck-selection);
+  --r-selection-color: var(--deck-ink);
+}
+
+.reveal-viewport {
+  background: var(--deck-bg);
+}
+
 .reveal {
   font-size: 32px;
+  font-family: var(--deck-font-sans);
+  color: var(--deck-ink);
 }
 
 .reveal h1,
 .reveal h2,
 .reveal h3 {
-  font-weight: 600;
-  letter-spacing: -0.02em;
+  font-family: var(--deck-font-sans);
+  font-weight: var(--deck-heading-weight);
+  letter-spacing: var(--deck-heading-tracking);
   text-transform: none;
-  color: #14283b;
+  color: var(--deck-heading);
 }
 
 .reveal a {
+  color: var(--deck-accent);
   text-decoration-thickness: 1px;
   text-underline-offset: 0.14em;
+}
+
+.reveal a:hover {
+  color: var(--deck-accent-strong);
+}
+
+.reveal ::selection {
+  background: var(--deck-selection);
+  color: var(--deck-ink);
+}
+
+.reveal pre code,
+.reveal pre {
+  background-color: var(--deck-surface);
+  color: var(--deck-ink);
 }
 
 .reveal .progress {
@@ -40,12 +68,23 @@ $code-block-bg: #eff3f5;
 }
 
 .reveal .progress span {
-  background-color: #245ba6;
+  background: var(--deck-gradient);
+}
+
+#title-slide .title::after {
+  content: "";
+  display: block;
+  width: 3.2em;
+  height: var(--deck-title-rule);
+  /* No gap when the template sets no rule. */
+  margin-top: min(0.3em, calc(var(--deck-title-rule) * 100));
+  background: var(--deck-gradient);
+  border-radius: 1px;
 }
 
 .reveal .slide-number {
   background: transparent;
-  color: #526476;
-  font-family: Inter, "Source Sans 3", "Segoe UI", system-ui, sans-serif;
+  color: var(--deck-soft);
+  font-family: var(--deck-font-sans);
   font-size: 14px;
 }

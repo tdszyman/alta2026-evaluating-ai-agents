@@ -1,0 +1,131 @@
+/* Slide template: NYFW SS26.
+   New York Fashion Week Spring/Summer 2026 palette, as shown by Wunderlabel,
+   "Colour Trends 2026: Pantone, Coloro & Fashion Weeks" (13 Jan 2026),
+   https://wunderlabel.com/en-gb/blog/p/colour-trends-2026-uk/
+   The page gives no hex codes. Each value below is the flat colour of that
+   swatch in the page's "NYFW SS26 – Key Colors" image
+   (NYFW-SS26-color_Trends_2026_8.jpg). The Pantone TCX numbers are the ones
+   the page prints; it prints none for Marina, Dusty Rose or Tea Rose.
+   Every other colour is a mix() of these with white or black, written out
+   below. Select the template in _quarto.yml (format.revealjs.theme); see
+   _shared/style-brief.md for the role of each token. */
+
+/*-- scss:defaults --*/
+
+$nyfw-acacia: #dacd65;      // 13-0640
+$nyfw-marina: #4f85c3;      // no TCX number on the page
+$nyfw-muskmelon: #ee935c;   // 15-1242
+$nyfw-alexandrite: #00646c; // 18-4835
+$nyfw-lava-falls: #9a2b31;  // 18-1552
+$nyfw-dusty-rose: #ba7a7a;  // no TCX number on the page
+$nyfw-tea-rose: #de7176;    // no TCX number on the page
+$nyfw-amaranth: #6e3c55;    // 19-2410
+
+$t-font-sans: Inter, "Source Sans 3", "Segoe UI", system-ui, sans-serif;
+$t-font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+$t-heading-weight: 700;
+
+$t-paper: #ffffff;
+$t-bg: mix($nyfw-muskmelon, $t-paper, 5%);
+$t-surface: mix($nyfw-dusty-rose, $t-paper, 12%);
+$t-line: mix($nyfw-dusty-rose, $t-paper, 50%);
+$t-ink: mix($nyfw-amaranth, #000000, 50%);
+$t-soft: mix($t-ink, $t-paper, 72%);
+$t-heading: $t-ink;
+$t-accent: $nyfw-alexandrite;
+$t-accent-strong: $t-ink;
+$t-accent-tint: mix($nyfw-alexandrite, $t-paper, 12%);
+$t-accent-ring: mix($nyfw-alexandrite, $t-paper, 22%);
+
+$font-family-sans-serif: $t-font-sans;
+$font-family-monospace: $t-font-mono;
+$presentation-heading-font: $t-font-sans;
+$presentation-heading-color: $t-heading;
+$presentation-heading-font-weight: $t-heading-weight;
+$presentation-slide-text-align: left;
+$presentation-title-slide-text-align: left;
+$body-bg: $t-bg;
+$body-color: $t-ink;
+$link-color: $t-accent;
+$link-color-hover: $t-accent-strong;
+$selection-bg: mix($nyfw-acacia, $t-paper, 45%);
+$selection-color: $t-ink;
+$code-block-bg: $t-surface;
+
+/*-- scss:rules --*/
+
+:root {
+  --deck-theme: nyfw-ss26;
+  --deck-font-sans: Inter, "Source Sans 3", "Segoe UI", system-ui, sans-serif;
+  --deck-font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --deck-heading-weight: #{$t-heading-weight};
+  --deck-heading-tracking: -0.025em;
+
+  --deck-bg: #{$t-bg};
+  --deck-paper: #{$t-paper};
+  --deck-surface: #{$t-surface};
+  --deck-line: #{$t-line};
+  --deck-ink: #{$t-ink};
+  --deck-soft: #{$t-soft};
+  --deck-heading: #{$t-heading};
+  --deck-accent: #{$t-accent};
+  --deck-accent-strong: #{$t-accent-strong};
+  --deck-accent-tint: #{$t-accent-tint};
+  --deck-accent-ring: #{$t-accent-ring};
+  --deck-on-accent: #{$t-paper};
+  --deck-scrim: #{rgba($t-ink, 0.4)};
+  --deck-selection: #{mix($nyfw-acacia, $t-paper, 45%)};
+
+  /* No gradients in this template: the gradient tokens are flat. */
+  --deck-gradient: linear-gradient(#{$t-accent}, #{$t-accent});
+  --deck-accent-fill: #{$t-accent};
+  --deck-title-rule: 0px;
+
+  /* Chat roles. Marina, Dusty Rose, Acacia and Muskmelon are below 4.5:1 on
+     white, so they colour fills and edges only; text on them stays ink. */
+  --chat-edge-width: 3px;
+  --chat-system-bg: #{$t-paper};
+  --chat-system-edge: #{$t-line};
+  --chat-user-bg: #{mix($nyfw-marina, $t-paper, 20%)};
+  --chat-user-edge: #{$nyfw-marina};
+  --chat-user-label: #{mix($nyfw-marina, $t-ink, 70%)};
+  --chat-agent-bg: #{mix($nyfw-alexandrite, $t-paper, 12%)};
+  --chat-agent-edge: #{$nyfw-alexandrite};
+  --chat-agent-label: #{$nyfw-alexandrite};
+  --chat-call-bg: transparent;
+  --chat-thought-bg: transparent;
+  --chat-thought-edge: #{$nyfw-dusty-rose};
+  --chat-thought-line: dashed;
+  --chat-thought-ink: #{$t-soft};
+  --chat-thought-style: italic;
+  --chat-action-bg: #{mix($nyfw-acacia, $t-paper, 30%)};
+  --chat-action-edge: #{$nyfw-acacia};
+  --chat-observation-bg: #{$t-paper};
+  --chat-observation-edge: #{$nyfw-acacia};
+  --chat-judge-edge: #{$nyfw-amaranth};
+  --chat-judge-label: #{$nyfw-amaranth};
+  --chat-judge-box-edge: #{$nyfw-amaranth};
+  --chat-judge-head-bg: #{$nyfw-amaranth};
+  --chat-judge-head-ink: #{$t-paper};
+  --chat-judge-tint: #{mix($nyfw-amaranth, $t-paper, 8%)};
+
+  /* Judge verdicts */
+  --verdict-pass: #{$nyfw-alexandrite};
+  --verdict-warn: #{$nyfw-muskmelon};
+  --verdict-warn-ink: #{mix($nyfw-muskmelon, $t-ink, 45%)};
+  --verdict-warn-tint: #{mix($nyfw-muskmelon, $t-paper, 18%)};
+  --verdict-fail: #{$nyfw-lava-falls};
+  --verdict-fail-tint: #{mix($nyfw-tea-rose, $t-paper, 20%)};
+  --verdict-on: #{$t-paper};
+
+  /* Two-category figures: predictive / complicated (a), generative / complex (b) */
+  --series-a: #{$nyfw-marina};
+  --series-a-ink: #{mix($nyfw-marina, $t-ink, 70%)};
+  --series-a-tint: #{mix($nyfw-marina, $t-paper, 12%)};
+  --series-b: #{$nyfw-alexandrite};
+  --series-b-ink: #{$nyfw-alexandrite};
+  --series-b-mid: #{mix($nyfw-alexandrite, $t-paper, 55%)};
+  --series-b-tint: #{mix($nyfw-alexandrite, $t-paper, 12%)};
+  --figure-ink: #{$t-soft};
+  --figure-muted: #{$t-soft};
+}

@@ -1,0 +1,147 @@
+/* Slide template: Canva.
+   Based on the stylesheet behind https://www.canva.com/en_au/ as archived by
+   the Internet Archive on 3 Nov 2026 (web.archive.org/web/20261103073129/),
+   because the live page shows a "Verify you are human" check to scripts.
+   Colours marked "Canva" are values written in that stylesheet; colours
+   marked "derived" are mix() of them. Canva's own typeface, Canva Sans, is
+   not available to use, so the type is Plus Jakarta Sans (SIL OFL), bundled
+   in _shared/fonts/. No Canva logo, icon or image is used. Select the
+   template in _quarto.yml (format.revealjs.theme); see
+   _shared/style-brief.md for the role of each token. */
+
+/*-- scss:defaults --*/
+
+$canva-turquoise: #00c4cc;  // Canva: start of the brand gradient
+$canva-violet: #5a32fa;     // Canva: middle stop of the three-stop gradient
+$canva-purple: #7d2ae8;     // Canva: end of the brand gradient
+$canva-primary: #8b3dff;    // Canva: primary button
+$canva-primary-hover: #7630d7; // Canva: primary button, hover
+$canva-primary-press: #612dae; // Canva: primary button, pressed
+$canva-lavender: #e7dbff;   // Canva: purple tint
+$canva-ink: #0f1015;        // Canva: main text
+$canva-ink-soft: #101219;   // Canva: secondary text, used at 70%
+$canva-slate: #35415a;      // Canva: borders, used at low opacity
+$canva-surface: #f3f4f7;    // Canva: quiet fill
+$canva-blue: #1a62ff;       // Canva: info
+$canva-blue-ink: #1854d7;   // Canva: info, darker
+$canva-blue-tint: #cce1ff;  // Canva: info tint
+$canva-magenta: #e950f7;    // Canva: magenta from its colour-dot gradients
+$canva-orange: #ff6108;     // Canva: orange from its colour-dot gradients
+$canva-amber-ink: #ad5a00;  // Canva: warning text
+$canva-amber-tint: #ffd9ad; // Canva: warning tint
+$canva-red: #db142c;        // Canva: critical
+$canva-red-tint: #ffd6d8;   // Canva: critical tint
+$canva-green: #008009;      // Canva: positive
+
+$t-font-sans: "Plus Jakarta Sans", "Segoe UI Variable Display", "Segoe UI", system-ui, sans-serif;
+$t-font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+$t-heading-weight: 600;
+
+$t-paper: #ffffff;
+$t-bg: $t-paper;
+$t-surface: $canva-surface;
+$t-line: mix($canva-slate, $t-paper, 30%);   // derived
+$t-ink: $canva-ink;
+$t-soft: mix($canva-ink-soft, $t-paper, 70%); // derived: Canva's 70% secondary text on white
+$t-heading: $t-ink;
+$t-accent: $canva-primary;
+$t-accent-strong: $canva-primary-press;
+$t-accent-tint: mix($canva-lavender, $t-paper, 55%); // derived
+$t-accent-ring: $canva-lavender;
+
+$font-family-sans-serif: $t-font-sans;
+$font-family-monospace: $t-font-mono;
+$presentation-heading-font: $t-font-sans;
+$presentation-heading-color: $t-heading;
+$presentation-heading-font-weight: $t-heading-weight;
+$presentation-slide-text-align: left;
+$presentation-title-slide-text-align: left;
+$body-bg: $t-bg;
+$body-color: $t-ink;
+$link-color: $t-accent;
+$link-color-hover: $t-accent-strong;
+$selection-bg: $canva-lavender;
+$selection-color: $t-ink;
+$code-block-bg: $t-surface;
+
+/*-- scss:rules --*/
+
+:root {
+  --deck-theme: canva;
+  --deck-font-sans: "Plus Jakarta Sans", "Segoe UI Variable Display", "Segoe UI", system-ui, sans-serif;
+  --deck-font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --deck-heading-weight: #{$t-heading-weight};
+  --deck-heading-tracking: -0.015em;
+
+  --deck-bg: #{$t-bg};
+  --deck-paper: #{$t-paper};
+  --deck-surface: #{$t-surface};
+  --deck-line: #{$t-line};
+  --deck-ink: #{$t-ink};
+  --deck-soft: #{$t-soft};
+  --deck-heading: #{$t-heading};
+  --deck-accent: #{$t-accent};
+  --deck-accent-strong: #{$t-accent-strong};
+  --deck-accent-tint: #{$t-accent-tint};
+  --deck-accent-ring: #{$t-accent-ring};
+  --deck-on-accent: #{$t-paper};
+  --deck-scrim: #{rgba($t-ink, 0.4)};
+  --deck-selection: #{$canva-lavender};
+
+  /* Gradients. --deck-gradient is Canva's brand gradient and only paints
+     marks with no text on them (progress bar, title rule). --deck-accent-fill
+     sits under white text, so it keeps to the violet half of Canva's
+     three-stop gradient. */
+  --deck-gradient: linear-gradient(90deg, #{$canva-turquoise}, #{$canva-purple});
+  --deck-accent-fill: linear-gradient(98deg, #{$canva-violet}, #{$canva-primary-hover});
+  --deck-title-rule: 6px;
+
+  /* Chat roles. Turquoise, magenta and orange are below 4.5:1 on white, so
+     they colour fills and edges only; text beside them is ink or a darker
+     Canva value. */
+  --chat-edge-width: 3px;
+  --chat-system-bg: #{$t-paper};
+  --chat-system-edge: #{$t-line};
+  --chat-user-bg: #{mix($canva-blue-tint, $t-paper, 70%)};
+  --chat-user-edge: #{$canva-blue};
+  --chat-user-label: #{$canva-blue-ink};
+  --chat-agent-bg: #{mix($canva-turquoise, $t-paper, 12%)};
+  --chat-agent-edge: #{$canva-turquoise};
+  --chat-agent-label: #{mix($canva-turquoise, $t-ink, 55%)};
+  --chat-call-bg: transparent;
+  --chat-thought-bg: transparent;
+  --chat-thought-edge: #{mix($canva-primary, $t-paper, 60%)};
+  --chat-thought-line: dashed;
+  --chat-thought-ink: #{$t-soft};
+  --chat-thought-style: italic;
+  --chat-action-bg: #{mix($canva-magenta, $t-paper, 14%)};
+  --chat-action-edge: #{$canva-magenta};
+  --chat-observation-bg: #{$t-paper};
+  --chat-observation-edge: #{$canva-magenta};
+  --chat-judge-edge: #{$canva-purple};
+  --chat-judge-label: #{$canva-primary-hover};
+  --chat-judge-box-edge: #{$canva-purple};
+  --chat-judge-head-bg: linear-gradient(90deg, #{$canva-violet}, #{$canva-purple});
+  --chat-judge-head-ink: #{$t-paper};
+  --chat-judge-tint: #{mix($canva-lavender, $t-paper, 40%)};
+
+  /* Judge verdicts */
+  --verdict-pass: #{$canva-green};
+  --verdict-warn: #{$canva-orange};
+  --verdict-warn-ink: #{$canva-amber-ink};
+  --verdict-warn-tint: #{mix($canva-amber-tint, $t-paper, 25%)};
+  --verdict-fail: #{$canva-red};
+  --verdict-fail-tint: #{mix($canva-red-tint, $t-paper, 35%)};
+  --verdict-on: #{$t-paper};
+
+  /* Two-category figures: predictive / complicated (a), generative / complex (b) */
+  --series-a: #{$canva-blue};
+  --series-a-ink: #{$canva-blue-ink};
+  --series-a-tint: #{mix($canva-blue-tint, $t-paper, 45%)};
+  --series-b: #{$canva-primary};
+  --series-b-ink: #{$canva-primary-hover};
+  --series-b-mid: #{mix($canva-primary, $t-paper, 55%)};
+  --series-b-tint: #{mix($canva-lavender, $t-paper, 50%)};
+  --figure-ink: #{$t-soft};
+  --figure-muted: #{$t-soft};
+}

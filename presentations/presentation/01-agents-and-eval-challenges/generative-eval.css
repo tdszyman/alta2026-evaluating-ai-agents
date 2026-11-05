@@ -1,20 +1,6 @@
 /* "Why generative AI needs LLM-as-a-judge" and "Why AI agents need simulation".
-   Blue and teal match complexity.css and scripts/generate-output-space-figures.py. */
-
-.reveal .output-space-slide,
-.reveal .agent-sim-slide {
-  --ge-blue: #1F5FA8;
-  --ge-blue-pale: #EEF4FC;
-  --ge-teal: #0F8F88;
-  --ge-teal-pale: #E3F6F4;
-  --ge-ink: #14283b;
-  --ge-soft: #526476;
-  --ge-line: #b8c8d1;
-  --ge-surface: #eff3f5;
-  --ge-accent: #245ba6;
-  --ge-sans: Inter, "Source Sans 3", "Segoe UI", system-ui, sans-serif;
-  --ge-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
-}
+   The two series tokens match complexity.css. The figure SVGs from
+   scripts/generate-output-space-figures.py keep their own fixed colours. */
 
 .reveal .output-space-slide h2,
 .reveal .agent-sim-slide h2 {
@@ -25,10 +11,10 @@
 .reveal .output-space-slide .osp,
 .reveal .agent-sim-slide .asm {
   width: 1200px;
-  font-family: var(--ge-sans);
+  font-family: var(--deck-font-sans);
   font-size: 18px;
   line-height: 1.35;
-  color: var(--ge-ink);
+  color: var(--deck-ink);
 }
 
 /* Output space */
@@ -49,8 +35,8 @@
   border-bottom: 3px solid currentColor;
 }
 
-.reveal .output-space-slide .osp-group.pred { color: var(--ge-blue); }
-.reveal .output-space-slide .osp-group.gen { color: var(--ge-teal); }
+.reveal .output-space-slide .osp-group.pred { color: var(--series-a-ink); }
+.reveal .output-space-slide .osp-group.gen { color: var(--series-b-ink); }
 
 .reveal .output-space-slide .osp-cols {
   display: grid;
@@ -69,8 +55,8 @@
   margin-bottom: 6px;
 }
 
-.reveal .output-space-slide .osp-col.pred .osp-name { color: var(--ge-blue); }
-.reveal .output-space-slide .osp-col.gen .osp-name { color: var(--ge-teal); }
+.reveal .output-space-slide .osp-col.pred .osp-name { color: var(--series-a-ink); }
+.reveal .output-space-slide .osp-col.gen .osp-name { color: var(--series-b-ink); }
 
 .reveal .output-space-slide .osp-col img {
   display: block;
@@ -91,18 +77,18 @@
   flex: 1;
   padding: 8px 10px;
   font-size: 16px;
-  background: var(--ge-surface);
-  border-top: 3px solid var(--ge-line);
+  background: var(--deck-surface);
+  border-top: 3px solid var(--deck-line);
 }
 
 .reveal .output-space-slide .osp-col.pred .osp-eval {
-  background: var(--ge-blue-pale);
-  border-top-color: var(--ge-blue);
+  background: var(--series-a-tint);
+  border-top-color: var(--series-a);
 }
 
 .reveal .output-space-slide .osp-col.gen .osp-eval {
-  background: var(--ge-teal-pale);
-  border-top-color: var(--ge-teal);
+  background: var(--series-b-tint);
+  border-top-color: var(--series-b);
 }
 
 .reveal .output-space-slide .osp-eval span {
@@ -112,7 +98,7 @@
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--ge-soft);
+  color: var(--deck-soft);
 }
 
 .reveal .output-space-slide .osp-takeaway {
@@ -124,7 +110,7 @@
 .reveal .output-space-slide .osp-sources {
   margin-top: 12px;
   font-size: 14px;
-  color: var(--ge-soft);
+  color: var(--deck-soft);
 }
 
 .reveal .output-space-slide .osp-sources div + div { margin-top: 2px; }
@@ -137,7 +123,7 @@
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--ge-soft);
+  color: var(--deck-soft);
 }
 
 .reveal .agent-sim-slide .asm-pair-row {
@@ -150,8 +136,8 @@
 .reveal .agent-sim-slide .asm-card {
   padding: 6px 10px;
   font-size: 16px;
-  background: var(--ge-surface);
-  border-top: 3px solid var(--ge-line);
+  background: var(--deck-surface);
+  border-top: 3px solid var(--deck-line);
 }
 
 .reveal .agent-sim-slide .asm-card span,
@@ -161,22 +147,22 @@
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--ge-soft);
+  color: var(--deck-soft);
 }
 
-.reveal .agent-sim-slide .asm-judge { border-top-color: var(--ge-accent); }
+.reveal .agent-sim-slide .asm-judge { border-top-color: var(--chat-judge-edge); }
 
 .reveal .agent-sim-slide .asm-arrow {
   align-self: center;
   text-align: center;
-  color: var(--ge-soft);
+  color: var(--deck-soft);
 }
 
 .reveal .agent-sim-slide .asm-pair-note {
   align-self: center;
   padding-left: 12px;
   font-size: 15px;
-  color: var(--ge-soft);
+  color: var(--deck-soft);
 }
 
 .reveal .agent-sim-slide .asm-run { margin-top: 22px; }
@@ -199,7 +185,7 @@
   align-self: center;
   font-size: 14px;
   font-weight: 700;
-  color: var(--ge-soft);
+  color: var(--deck-soft);
 }
 
 .reveal .agent-sim-slide .asm-lane-name:nth-child(1) { grid-row: 1; }
@@ -208,24 +194,29 @@
 
 .reveal .agent-sim-slide .asm-user-name:has(.asm-sim.visible) .asm-real { display: none; }
 
-.reveal .agent-sim-slide .asm-sim { color: var(--ge-teal); }
+.reveal .agent-sim-slide .asm-sim { color: var(--chat-user-label); }
 
 .reveal .agent-sim-slide .asm-ev {
   padding: 5px 7px;
   font-size: 13.5px;
   line-height: 1.3;
-  background: var(--ge-surface);
-  border-left: 3px solid var(--ge-line);
+  background: var(--deck-surface);
+  border-left: 3px solid var(--deck-line);
 }
 
-.reveal .agent-sim-slide .asm-ev.u { border-left-color: var(--ge-teal); background: var(--ge-teal-pale); }
-.reveal .agent-sim-slide .asm-ev.a { border-left-color: var(--ge-accent); }
-.reveal .agent-sim-slide .asm-ev.t { border-left-color: var(--ge-ink); background: #fff; outline: 1px solid var(--ge-line); }
+.reveal .agent-sim-slide .asm-ev.u { border-left-color: var(--chat-user-edge); background: var(--chat-user-bg); }
+.reveal .agent-sim-slide .asm-ev.a { border-left-color: var(--chat-agent-edge); background: var(--chat-agent-bg); }
+.reveal .agent-sim-slide .asm-ev.asm-thought {
+  color: var(--chat-thought-ink);
+  background: linear-gradient(var(--chat-thought-bg), var(--chat-thought-bg)), var(--chat-call-bg);
+  border-left: 3px var(--chat-thought-line) var(--chat-thought-edge);
+}
+.reveal .agent-sim-slide .asm-ev.t { border-left-color: var(--chat-action-edge); background: linear-gradient(var(--chat-action-bg), var(--chat-action-bg)), var(--deck-paper); outline: 1px solid var(--deck-line); }
 
 .reveal .agent-sim-slide .asm-ev code {
-  font-family: var(--ge-mono);
+  font-family: var(--deck-font-mono);
   font-size: 13px;
-  color: var(--ge-ink);
+  color: var(--deck-ink);
   background: none;
   padding: 0;
 }
@@ -239,7 +230,7 @@
   display: block;
   margin-top: 4px;
   font-size: 15px;
-  color: var(--ge-teal);
+  color: var(--chat-user-label);
 }
 
 .reveal .agent-sim-slide .asm-tiers {
@@ -251,20 +242,20 @@
   padding: 3px 8px 4px;
   white-space: nowrap;
   font-size: 14px;
-  border-top: 2px solid var(--ge-ink);
+  border-top: 2px solid var(--deck-ink);
 }
 
 .reveal .agent-sim-slide .asm-tier b {
   display: inline;
   margin-right: 8px;
-  color: var(--ge-ink);
+  color: var(--deck-ink);
 }
 
 .reveal .agent-sim-slide .asm-caption {
   margin-top: 8px;
-  font-family: var(--ge-sans);
+  font-family: var(--deck-font-sans);
   font-size: 12px;
-  color: var(--ge-soft);
+  color: var(--deck-soft);
 }
 
 .reveal .agent-sim-slide .asm-deps {
@@ -278,6 +269,6 @@
 
 .reveal .agent-sim-slide .asm-deps path {
   fill: none;
-  stroke: var(--ge-teal);
+  stroke: var(--chat-user-edge);
   stroke-width: 2.5;
 }

@@ -2,10 +2,89 @@
 (function () {
   var PARTS = {
     "01-agents-and-eval-challenges": { label: "Part 1", anchor: "part-1" },
+    "01g-graveyard": { label: "Part 1.G", anchor: "part-1g" },
     "02-llm-as-judge-methods": { label: "Part 2", anchor: "part-2" },
     "03-hands-on-exercise": { label: "Part 3", anchor: "part-3" },
     "04-reliability-and-future": { label: "Part 4", anchor: "part-4" }
   };
+
+  /* Slide templates the picker offers. Each id is a file in _shared/themes/;
+     scripts/render-slides.sh compiles it to _site/_shared/themes/<id>.css.
+     The deck's own template (format.revealjs.theme) names itself in
+     --deck-theme and needs no extra stylesheet. */
+  var THEMES = [
+    { id: "original", label: "Original" },
+    { id: "nyfw-ss26", label: "NYFW SS26" },
+    { id: "canva", label: "Canva" }
+  ];
+  var THEME_KEY = "alta2026-deck-theme";
+  var SITE_ROOT = "../../";
+  var buildTheme = getComputedStyle(document.documentElement).getPropertyValue("--deck-theme").trim();
+  var themeLink = null;
+  var themeButtons = [];
+
+  function knownTheme(id) {
+    return THEMES.some(function (t) { return t.id === id; });
+  }
+
+  function storedTheme() {
+    try { return localStorage.getItem(THEME_KEY); } catch (e) { return null; }
+  }
+
+  function activeTheme() {
+    return document.documentElement.dataset.deckTheme || buildTheme;
+  }
+
+  function relayout() {
+    if (window.Reveal && Reveal.isReady && Reveal.isReady()) Reveal.layout();
+  }
+
+  function syncThemeButtons() {
+    var id = activeTheme();
+    themeButtons.forEach(function (btn) {
+      btn.setAttribute("aria-pressed", btn.dataset.theme === id ? "true" : "false");
+    });
+  }
+
+  function applyTheme(id, save) {
+    if (!knownTheme(id)) id = buildTheme;
+    var previous = themeLink;
+    themeLink = null;
+    if (id === buildTheme) {
+      if (previous) previous.remove();
+      relayout();
+    } else {
+      var link = document.createElement("link");
+      link.rel = "stylesheet";
+      link.href = SITE_ROOT + "_shared/themes/" + id + ".css";
+      link.dataset.deckTheme = id;
+      link.addEventListener("load", function () {
+        if (previous) previous.remove();
+        relayout();
+      });
+      link.addEventListener("error", function () {
+        link.remove();
+        applyTheme(buildTheme, false);
+      });
+      document.head.append(link);
+      themeLink = link;
+    }
+    document.documentElement.dataset.deckTheme = id;
+    if (save) {
+      try { localStorage.setItem(THEME_KEY, id); } catch (e) {}
+    }
+    syncThemeButtons();
+  }
+
+  function cycleTheme() {
+    var i = THEMES.findIndex(function (t) { return t.id === activeTheme(); });
+    applyTheme(THEMES[(i + 1) % THEMES.length].id, true);
+  }
+
+  applyTheme(knownTheme(storedTheme()) ? storedTheme() : buildTheme, false);
+  window.addEventListener("storage", function (event) {
+    if (event.key === THEME_KEY) applyTheme(event.newValue, false);
+  });
 
   function partInfo() {
     var bits = location.pathname.split("/");
@@ -52,6 +131,11 @@
       '<span class="deck-count" data-deck-count>1 / 1</span>' +
       '<button type="button" data-dir="1" aria-label="Next slide">&#8250;</button>' +
       "</div>" +
+      '<div class="deck-theme" role="group" aria-label="Slide theme" title="Slide theme. Press T to cycle.">' +
+      THEMES.map(function (t) {
+        return '<button type="button" data-theme="' + t.id + '" aria-pressed="false">' + t.label + "</button>";
+      }).join("") +
+      "</div>" +
       '<form class="deck-search" role="search">' +
       '<label class="visually-hidden" for="deck-search-input" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Search this presentation</label>' +
       '<input id="deck-search-input" type="search" placeholder="Search slides" autocomplete="off">' +
@@ -69,7 +153,7 @@
     drawer.innerHTML =
       "<header><strong>" + part.label + "</strong>" +
       '<button type="button" class="deck-icon-btn" data-deck-close aria-label="Close slide list">&times;</button></header>' +
-      "<ol></ol><footer>Left and right arrows move between slides. Escape closes this list, then returns home.</footer>";
+      "<ol></ol><footer>Left and right arrows move between slides. T changes the slide theme. Escape closes this list, then returns home.</footer>";
 
     var footerNum = document.createElement("div");
     footerNum.className = "deck-footer-num";
@@ -82,6 +166,14 @@
     var search = bar.querySelector("input");
     var list = drawer.querySelector("ol");
     var menuBtn = bar.querySelector("[data-deck-menu]");
+    themeButtons = Array.prototype.slice.call(bar.querySelectorAll("[data-theme]"));
+    themeButtons.forEach(function (btn) {
+      btn.addEventListener("click", function () { applyTheme(btn.dataset.theme, true); });
+    });
+    syncThemeButtons();
+    if (typeof Reveal.addKeyBinding === "function") {
+      Reveal.addKeyBinding({ keyCode: 84, key: "T", description: "Next slide theme" }, cycleTheme);
+    }
     var catalog = [];
     var activeResult = -1;
 
