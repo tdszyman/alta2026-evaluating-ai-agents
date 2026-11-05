@@ -1,6 +1,6 @@
 # Shared presentation assets
 
-Project-level Quarto defaults and the shared slide chrome live in [`../_quarto.yml`](../_quarto.yml) and this folder (`chrome.css`, `chrome.html`, `slides.scss`). Slide colours, type and chat roles come from one template in [`themes/`](themes/): `nyfw-ss26.scss` (default) or `original.scss`, selected in `_quarto.yml`. Website component rules shared by the light and dark themes are in `site-components.scss`.
+Project-level Quarto defaults and the shared slide chrome live in [`../_quarto.yml`](../_quarto.yml) and this folder (`chrome.css`, `chrome.html`, `slides.scss`). Slide colours, type and chat roles come from one template in [`themes/`](themes/): `canva.scss` (default), `nyfw-ss26.scss` or `original.scss`, selected in `_quarto.yml`. The theme picker in the deck top bar (`chrome.html`) swaps between them live; `scripts/render-slides.sh` compiles each template to `_site/_shared/themes/<id>.css` for it. `fonts/` holds Plus Jakarta Sans (SIL OFL) for the Canva template. Website component rules shared by the light and dark themes are in `site-components.scss`.
 
 The visual source of truth is [`style-brief.md`](style-brief.md). Change that before changing these files.
 

@@ -55,6 +55,7 @@ $code-block-bg: $t-surface;
 /*-- scss:rules --*/
 
 :root {
+  --deck-theme: nyfw-ss26;
   --deck-font-sans: Inter, "Source Sans 3", "Segoe UI", system-ui, sans-serif;
   --deck-font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
   --deck-heading-weight: #{$t-heading-weight};
@@ -73,6 +74,12 @@ $code-block-bg: $t-surface;
   --deck-accent-ring: #{$t-accent-ring};
   --deck-on-accent: #{$t-paper};
   --deck-scrim: #{rgba($t-ink, 0.4)};
+  --deck-selection: #{mix($nyfw-acacia, $t-paper, 45%)};
+
+  /* No gradients in this template: the gradient tokens are flat. */
+  --deck-gradient: linear-gradient(#{$t-accent}, #{$t-accent});
+  --deck-accent-fill: #{$t-accent};
+  --deck-title-rule: 0px;
 
   /* Chat roles. Marina, Dusty Rose, Acacia and Muskmelon are below 4.5:1 on
      white, so they colour fills and edges only; text on them stays ink. */

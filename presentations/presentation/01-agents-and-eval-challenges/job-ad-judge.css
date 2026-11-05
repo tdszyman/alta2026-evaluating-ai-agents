@@ -133,7 +133,7 @@
   font-size: 14px;
   font-weight: 600;
   color: var(--deck-on-accent);
-  background: var(--deck-accent);
+  background: var(--deck-accent-fill);
   border-radius: 2px;
   outline: 3px solid var(--deck-accent-ring);
 }

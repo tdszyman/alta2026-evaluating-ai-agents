@@ -28,8 +28,10 @@ presentations/
   about/index.qmd             # /about/
   presentation/index.qmd      # /presentation/
   presentation/01-…/index.qmd # one Reveal deck per part
+  presentation/01g-graveyard/ # Part 1.G: slides cut from Part 1, not in the talk
   _shared/style-brief.md      # visual source of truth; edit this before restyling
-  _shared/themes/             # slide templates: original.scss, nyfw-ss26.scss (default)
+  _shared/themes/             # slide templates: original.scss, nyfw-ss26.scss, canva.scss (default)
+  _shared/fonts/              # bundled Plus Jakarta Sans (SIL OFL) for the Canva template
   _shared/                    # slide chrome and shared website component rules
   _site/                      # build output (gitignored) — CI deploys this
   _site/hands-on/             # rendered hands-on page
@@ -42,7 +44,7 @@ One Quarto **website**. Home, about, the presentation landing, the hands-on page
 
 [`_shared/style-brief.md`](../../presentations/_shared/style-brief.md) is the source of truth for visual style. Change that document first, then the theme files. Do not introduce a palette, typeface, or effect that the brief does not allow.
 
-The website uses Quarto’s light/dark toggle (`site.scss` / `site-dark.scss`). Slide decks use one light slide template from `_shared/themes/`, chosen by the middle entry of `format.revealjs.theme` in `_quarto.yml` (`nyfw-ss26.scss` by default; swap that line to `original.scss` for the Scientific Modernist look). Slide CSS reads the template’s custom properties (`--deck-*`, `--chat-*`, `--verdict-*`, `--series-*`); do not write hex codes in deck CSS or slides. That choice is recorded under **Implementation decisions** in the brief, which is an AI-generated section and must stay labelled as such.
+The website uses Quarto’s light/dark toggle (`site.scss` / `site-dark.scss`). Slide decks use one light slide template from `_shared/themes/`, chosen by the middle entry of `format.revealjs.theme` in `_quarto.yml` (`canva.scss` by default; swap that line to `original.scss` or `nyfw-ss26.scss` to change what a fresh load shows). Every deck's top bar also has a theme picker (Original, NYFW SS26, Canva; `T` cycles) that swaps templates live and remembers the choice in `localStorage`. It loads `_site/_shared/themes/<id>.css`, which `scripts/render-slides.sh` compiles from each template with Quarto's bundled Dart Sass; add a new template's id to `THEMES` in `_shared/chrome.html`. Slide CSS reads the template’s custom properties (`--deck-*`, `--chat-*`, `--verdict-*`, `--series-*`); do not write hex codes in deck CSS or slides. That choice is recorded under **Implementation decisions** in the brief, which is an AI-generated section and must stay labelled as such.
 
 ## Publish target
 

@@ -5,13 +5,37 @@
 /*-- scss:defaults --*/
 
 /*-- scss:rules --*/
+
+/* Reveal's own properties read the template tokens, so the theme picker in
+   chrome.html can swap templates live by replacing the tokens alone. */
+:root {
+  --r-background-color: var(--deck-bg);
+  --r-main-font: var(--deck-font-sans);
+  --r-main-color: var(--deck-ink);
+  --r-heading-font: var(--deck-font-sans);
+  --r-heading-color: var(--deck-heading);
+  --r-heading-font-weight: var(--deck-heading-weight);
+  --r-code-font: var(--deck-font-mono);
+  --r-link-color: var(--deck-accent);
+  --r-link-color-hover: var(--deck-accent-strong);
+  --r-selection-background-color: var(--deck-selection);
+  --r-selection-color: var(--deck-ink);
+}
+
+.reveal-viewport {
+  background: var(--deck-bg);
+}
+
 .reveal {
   font-size: 32px;
+  font-family: var(--deck-font-sans);
+  color: var(--deck-ink);
 }
 
 .reveal h1,
 .reveal h2,
 .reveal h3 {
+  font-family: var(--deck-font-sans);
   font-weight: var(--deck-heading-weight);
   letter-spacing: var(--deck-heading-tracking);
   text-transform: none;
@@ -19,8 +43,24 @@
 }
 
 .reveal a {
+  color: var(--deck-accent);
   text-decoration-thickness: 1px;
   text-underline-offset: 0.14em;
+}
+
+.reveal a:hover {
+  color: var(--deck-accent-strong);
+}
+
+.reveal ::selection {
+  background: var(--deck-selection);
+  color: var(--deck-ink);
+}
+
+.reveal pre code,
+.reveal pre {
+  background-color: var(--deck-surface);
+  color: var(--deck-ink);
 }
 
 .reveal .progress {
@@ -28,7 +68,18 @@
 }
 
 .reveal .progress span {
-  background-color: var(--deck-accent);
+  background: var(--deck-gradient);
+}
+
+#title-slide .title::after {
+  content: "";
+  display: block;
+  width: 3.2em;
+  height: var(--deck-title-rule);
+  /* No gap when the template sets no rule. */
+  margin-top: min(0.3em, calc(var(--deck-title-rule) * 100));
+  background: var(--deck-gradient);
+  border-radius: 1px;
 }
 
 .reveal .slide-number {

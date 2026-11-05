@@ -41,6 +41,7 @@ $code-block-bg: $t-surface;
 /*-- scss:rules --*/
 
 :root {
+  --deck-theme: original;
   --deck-font-sans: Inter, "Source Sans 3", "Segoe UI", system-ui, sans-serif;
   --deck-font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
   --deck-heading-weight: #{$t-heading-weight};
@@ -59,6 +60,12 @@ $code-block-bg: $t-surface;
   --deck-accent-ring: #{$t-accent-ring};
   --deck-on-accent: #ffffff;
   --deck-scrim: #{rgba($t-ink, 0.4)};
+  --deck-selection: #{$t-accent-ring};
+
+  /* No gradients in this template: the gradient tokens are flat. */
+  --deck-gradient: linear-gradient(#{$t-accent}, #{$t-accent});
+  --deck-accent-fill: #{$t-accent};
+  --deck-title-rule: 0px;
 
   /* Chat roles. The edge width is 0 and thoughts are upright here, so the
      original chat mock-ups keep their flat look. */

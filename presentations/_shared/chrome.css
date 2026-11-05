@@ -3,6 +3,25 @@
   --deck-bar: 42px;
 }
 
+/* Bundled so the Canva template does not need a font service (SIL OFL,
+   fonts/plus-jakarta-sans/OFL.txt). Browsers fetch it only when a template
+   names it. */
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 200 800;
+  src: url("fonts/plus-jakarta-sans/plus-jakarta-sans-latin-wght-normal.woff2") format("woff2-variations");
+}
+
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  font-style: italic;
+  font-display: swap;
+  font-weight: 200 800;
+  src: url("fonts/plus-jakarta-sans/plus-jakarta-sans-latin-wght-italic.woff2") format("woff2-variations");
+}
+
 .deck-topbar {
   position: fixed;
   z-index: 80;
@@ -81,13 +100,49 @@
   color: var(--deck-ink);
 }
 
+.deck-theme {
+  display: flex;
+  align-items: center;
+  flex: none;
+  border: 1px solid var(--deck-line);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.deck-theme button {
+  appearance: none;
+  border: 0;
+  border-left: 1px solid var(--deck-line);
+  background: var(--deck-paper);
+  color: var(--deck-soft);
+  font: inherit;
+  font-size: 12px;
+  line-height: 1;
+  padding: 0.38rem 0.55rem;
+  cursor: pointer;
+}
+
+.deck-theme button:first-child { border-left: 0; }
+
+.deck-theme button:hover { color: var(--deck-ink); background: var(--deck-surface); }
+
+.deck-theme button:focus-visible {
+  outline: 2px solid var(--deck-accent);
+  outline-offset: -2px;
+}
+
+.deck-theme button[aria-pressed="true"] {
+  color: var(--deck-on-accent);
+  background: var(--deck-accent-fill);
+}
+
 .deck-search {
   position: relative;
   flex: none;
 }
 
 .deck-search input {
-  width: 11rem;
+  width: 10rem;
   border: 1px solid var(--deck-line);
   background: var(--deck-paper);
   color: var(--deck-ink);
@@ -289,6 +344,7 @@ html.deck-idle .reveal .controls .navigate-right:focus {
 
 @media (max-width: 760px) {
   .deck-search input { width: 7rem; }
+  .deck-theme button { padding: 0.38rem 0.4rem; }
   .deck-crumbs .deck-here { max-width: 7rem; }
 }
 
