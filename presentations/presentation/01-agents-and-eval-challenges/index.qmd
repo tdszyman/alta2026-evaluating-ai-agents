@@ -1,6 +1,5 @@
 ---
-title: "Part 1: AI Agents and Evaluation Challenges"
-subtitle: "ALTA 2026 Tutorial 2 — Afternoon · WIP"
+pagetitle: "Part 1: AI Agents and Evaluation Challenges"
 format:
   revealjs:
     css:
@@ -12,45 +11,11 @@ format:
       - terms.css
       - follow-up.css
       - motivation.css
-title-slide-attributes:
-  data-notes: "<p><b>About this slide:</b> Part 1 of the ALTA 2026 tutorial “Evaluating AI Agents with LLM-as-a-Judge”. It introduces AI agents and the vocabulary used in the rest of the tutorial, then explains why agents are hard to evaluate and why LLM judges are needed.</p>"
 ---
 
-## Part 1 — WIP
+## 2026 is the year of the AI Agent {.trends-slide}
 
-<!-- TODO: placeholder kept. This status notice stays while the deck is a work in progress; remove it when Part 1 is final. -->
-
-**AI Agents and Evaluation Challenges**
-
-Source outline: `organisation/outlines/part-01.md`  
-Placeholder slides only — not final narrative. Do not treat examples as complete case studies.
-
-::: {.notes}
-**About this slide:** A status notice. This deck is still being written from the Part 1 outline (`organisation/outlines/part-01.md` in the tutorial repository). The examples in it are illustrative, not complete case studies.
-:::
-
----
-
-## Agenda
-
-1. Why AI agents, and why evaluate them
-2. Technical foundations: LLMs, generative AI and agents
-3. Why agents need LLM judges
-4. Next: LLM-as-a-judge methods (Part 2)
-
-::: {.notes}
-**About this slide:** The plan for Part 1. It starts with why AI agents matter: organisations are adopting them for what they promise, they carry real risks, and evaluation is one of the layers of control organisations put around them; covers the technical foundations (LLMs, generative AI and agents); shows why LLM judges are needed to evaluate agents and why other methods fall short; and hands over to Part 2, which covers LLM-as-a-judge methods in depth.
-:::
-
-# 1. Why AI agents, and why evaluate them
-
-::: {.notes}
-**About this slide:** Section 1 tells a three-part story. Organisations are racing to adopt AI agents for what they promise, even as the public grows more wary of AI. Agents carry major risks that anyone working with them needs to know, shown here through a collage of real news stories and two SEEK mock-ups. So organisations put several layers of control around their agents, and evaluations, guardrails and LLM judges are the layer this tutorial focuses on. It introduces LLM-as-a-judge in plain terms; the technical detail comes in section 2.
-:::
-
----
-
-## Interest in AI agents {.trends-slide}
+<!-- TODO: Terrence may replace this slide's content. The Google Trends chart is a stand-in and nothing else is built into the slide, so it can be swapped whole. -->
 
 ```{=html}
 <div class="gt-frame">
@@ -69,41 +34,66 @@ Placeholder slides only — not final narrative. Do not treat examples as comple
 ```
 
 ::: {.notes}
-**About this slide:** Context for why AI agents matter now. The chart shows Google search interest over the past five years, worldwide, for four terms: “AI Agent”, “Agentic AI”, “Generative AI” and “LLM”. Interest in AI agents has grown alongside interest in generative AI and LLMs. Search interest says what people are curious about, not how agents are used or how well they work; it is here as motivation, not evidence. The chart is live, so it shows the latest data when viewed.
+**About this slide:** The opening claim of the tutorial: 2026 is the year of the AI agent. Context for why AI agents matter now. The chart shows Google search interest over the past five years, worldwide, for four terms: “AI Agent”, “Agentic AI”, “Generative AI” and “LLM”. Interest in AI agents has grown alongside interest in generative AI and LLMs. Search interest says what people are curious about, not how agents are used or how well they work; it is here as motivation, not evidence. The chart is live, so it shows the latest data when viewed.
 
 **Presenter notes:**
 
 - The chart is a live Google Trends embed and needs an internet connection. Without one, the slide shows a short message and a link to the same query instead. Check the venue connection, or open the query in a browser tab beforehand.
 - Use it to set the scene, not as a finding: search interest is not a measure of adoption or capability.
 - The data updates, so the shape may differ from the last rehearsal.
+- The chart is a stand-in. Terrence may replace it with other evidence for the claim in the title.
 :::
 
 ---
 
-## Why organisations adopt AI agents {.adopt-slide}
+## Agents can create value, but introduce risk {.value-risk-slide}
 
-:::: {.ad-grid}
+<!-- TODO: Terrence to confirm the six risk labels. Running cost (5) and quality (6) were added later and their labels are not settled. The full risk slide, with an example at SEEK and how evals help for each row, is kept in the graveyard at the end of the deck. -->
 
-::: {.ad-card}
-[Efficiency]{.ad-name}
+:::: {.vr-grid}
+
+::: {.vr-side}
+[Value]{.vr-label}
+
+::: {.vr-card}
+[Efficiency]{.vr-name}
 
 Deliver outcomes with less effort, greater speed or better consistency.
-
-[Nearly every organisation, through agents for some of its internal work.]{.ad-who}
 :::
 
-::: {.ad-card}
-[Growth]{.ad-name}
+::: {.vr-card}
+[Growth]{.vr-name}
 
 Create better customer experiences, new offerings or additional revenue.
+:::
+:::
 
-[Some organisations, by selling agents or building them into what customers use. Often startups.]{.ad-who}
+::: {.vr-side .vr-risks}
+[Risk]{.vr-label}
+
+1. [Financial]{.vr-name} [One bad decision, such as a refund that policy does not allow.]{.vr-desc}
+2. [Reputational]{.vr-name} [An off-brand or offensive comment to a user.]{.vr-desc}
+3. [Regulatory]{.vr-name} [Illegal behaviour, such as discriminatory content in a job ad.]{.vr-desc}
+4. [Cybersecurity]{.vr-name} [Attackers use the agent to reach data they should not see.]{.vr-desc}
+5. [Running cost]{.vr-name} [The agent costs more to run than its work is worth.]{.vr-desc}
+6. [Quality]{.vr-name} [The agent does a poor job, and users take their business elsewhere.]{.vr-desc}
 :::
 
 ::::
 
 ::: {.notes}
-**About this slide:** Why organisations are interested in adopting AI agents, in two parts. Efficiency means delivering outcomes with less effort, greater speed or better consistency. Growth means creating better customer experiences, new offerings or additional revenue. Nearly every organisation, whether a company, a university or a research lab, has internal work where an agent could help, so efficiency applies widely. Growth applies to fewer: only some organisations sell agents or put them in front of customers, and these tend to be startups working out how to build new products on them. Either way, the organisation needs to know the agent does the job well, which is what the rest of this tutorial is about.
+**About this slide:** Why organisations want AI agents, and what they risk by using them. On the value side, efficiency means delivering outcomes with less effort, greater speed or better consistency, and growth means creating better customer experiences, new offerings or additional revenue. Nearly every organisation, whether a company, a university or a research lab, has internal work where an agent could help, so efficiency applies widely. Growth applies to fewer: only some organisations sell agents or put them in front of customers, and these tend to be startups working out how to build new products on them.
+
+On the risk side are six ways an AI agent can create risk for a company like SEEK, an online employment marketplace that connects hirers and candidates. The examples are hypothetical:
+
+1. Financial, one bad decision: a support agent gives a hirer a full refund, or a discount on ad pricing, that policy does not allow.
+2. Reputational, poor behaviour: the agent makes an off-brand or offensive comment to a user.
+3. Regulatory, illegal behaviour: the agent writes discriminatory content into a job ad.
+4. Cybersecurity, an attack surface: attackers use the agent to reach data they should not see.
+5. Running cost: the agent costs more to run than its work is worth, so SEEK loses money on it.
+6. Quality risk: the agent does a poor job. Hirers and candidates get poor outcomes and take their business elsewhere.
+
+The first four are about a single failure: a bad decision, a bad comment, an illegal output, or an attack. The last two build up over many tasks: an agent that costs too much to run, or one that does a mediocre job until users leave. Either way, an organisation needs to know its agent does the job well, which is what the rest of this tutorial is about. The next slide gathers the headlines from real, publicly reported cases.
 
 **Presenter notes:**
 
@@ -111,151 +101,53 @@ Create better customer experiences, new offerings or additional revenue.
 - Nearly all organisations can benefit from some element of efficiency, by adopting AI agents for some type of internal business operations.
 - Some, but not all, businesses can also “sell” AI agents in some way, or use them in the customer experience. This does not apply to all businesses, and may skew towards startups figuring out how to create new products and value out of AI agents.
 - For the students and researchers in the room: both motives raise the same question this tutorial is about, which is how you know the agent is doing the job well.
-- Next: the public is less enthusiastic than the organisations adopting agents, and agents bring risks as well as promise.
-:::
-
----
-
-## The public’s view of AI is mixed {.perception-slide}
-
-:::: {.columns}
-
-::: {.column width="58%"}
-![](images/google-autocomplete-why-is-ai.png){fig-alt="Google search box with “why is AI” typed in. The suggestions: why is AI bad for the environment, bad, mode not showing up on google, being forced on us, an ethical issue, bad for the planet, image generation so bad for the environment, bad for your brain, being pushed so hard, so stupid."}
-
-::: {.pc-caption}
-Google autocomplete for “why is AI”. Screenshot; suggestions vary by person, place and time.
-:::
-:::
-
-::: {.column width="42%" .pc-point}
-AI has a decidedly mixed, if not entirely negative, perception among the public.
-:::
-
-::::
-
-::: {.notes}
-**About this slide:** A reminder that enthusiasm for AI is not universal. The screenshot shows Google’s autocomplete suggestions for “why is AI”, and nearly all of them are negative: bad for the environment, bad for your brain, being forced on us, so stupid. Autocomplete reflects searches people commonly make, filtered by Google; it is not a survey and says nothing about how many people hold these views. It is here only to illustrate that public perception of AI is mixed, if not negative, which is part of why agents need to be evaluated carefully before they reach people.
-
-**Presenter notes:**
-
-- Terrence’s point: AI has a decidedly mixed, if not entirely negative, perception among the public.
-- Don’t present this as data. Autocomplete shows common searches, not opinion, and it changes with location, time and the searcher.
-- With the two slides before it, this closes the first part of the story: organisations are racing to adopt agents for what they promise, even as the public grows more wary of AI.
-:::
-
----
-
-## Using AI to evaluate AI
-
-<!-- TODO: new slide for Terrence's opening line. Terrence to confirm the wording and whether it sits on the slide or only in the talk. -->
-
-> At first, it might sound a bit strange to use AI to evaluate AI, but by the end of this talk I hope you’ll all have a solid understanding of why this is the best approach we have today.
-
-**LLM-as-a-judge:** an AI model reads what another AI system did, and checks it against criteria that people write down.
-
-::: {.notes}
-**About this slide:** Introduces the idea at the centre of the tutorial in plain terms. An LLM-as-a-judge is an AI model that reads what another AI system did and checks it against criteria people write down. Using AI to check AI can sound circular; Part 1 explains why it is the best approach available today. The next slides set out how AI agents create risk for a company, gather real cases of each risk on one headline collage, and show two illustrative mock-ups of judges catching agent failures.
-
-**Presenter notes:**
-
-- Terrence’s line, close to verbatim. Keep this slide non-technical: how an LLM, an agent and a judge work comes in section 2, and judge methods in Part 2.
-:::
-
----
-
-## How AI agents create risk for a company like SEEK {.risk-slide}
-
-<!-- TODO: Terrence to confirm the six labels. Running cost (5) and quality risk (6) were added later and their labels are not settled. -->
-
-:::: {.rk-table}
-
-::: {.rk-head}
-[Risk]{.rk-name} [At a company like SEEK]{.rk-eg} [How evals and LLM judges help]{.rk-fix}
-:::
-
-1. [Financial: one bad decision]{.rk-name} [A support agent gives a hirer a full refund, or a discount on ad pricing, that policy does not allow.]{.rk-eg} [Test refund and pricing requests before launch. A judge checks each offer against policy before it is sent.]{.rk-fix}
-2. [Reputational: poor behaviour]{.rk-name} [The agent makes an off-brand or offensive comment to a user.]{.rk-eg} [Simulated users try to provoke it. A judge scores tone and brand voice, before launch and on live chats.]{.rk-fix}
-3. [Regulatory: illegal behaviour]{.rk-name} [The agent writes discriminatory content into a job ad.]{.rk-eg} [A judge checks generated content against the law before it is published.]{.rk-fix}
-4. [Cybersecurity: an attack surface]{.rk-name} [Attackers use the agent to reach data they should not see.]{.rk-eg} [Simulated attackers probe it. A judge reads the whole conversation and the agent’s actions, not one message.]{.rk-fix}
-5. [Running cost]{.rk-name} [The agent costs more to run than its work is worth, so SEEK loses money on it.]{.rk-eg} [Measure cost and usage per successful task, with a judge deciding which tasks succeeded.]{.rk-fix}
-6. [Quality risk]{.rk-name} [The agent does a poor job. Hirers and candidates get poor outcomes and take their business elsewhere.]{.rk-eg} [A judge scores quality on real tasks, tracked over time.]{.rk-fix}
-
-::::
-
-::: {.notes}
-**About this slide:** Six ways an AI agent can create risk for a company like SEEK, an online employment marketplace that connects hirers and candidates. Each row gives the risk, an example of how it could happen at SEEK, and how agent evaluations and LLM judges help reduce it. The examples are hypothetical. The first four are about a single failure: a bad decision, a bad comment, an illegal output, or an attack. The last two build up over many tasks: an agent that costs too much to run, or one that does a mediocre job until users leave. The next slide gathers the headlines from real, publicly reported cases on one collage: Air Canada (financial), DPD (reputational), MyCity and Bunnings (regulatory), EchoLeak, the Lego order and the gym booking agent (cybersecurity), and Woolworths’ Olive (quality, with a reputational edge). Two SEEK mock-ups then show judges reducing two of the risks: a job ad (regulatory) and a multi-turn attack (cybersecurity). No real case is shown for running cost. A slide on each real case is kept in the graveyard at the end of the deck.
-
-**Presenter notes:**
-
-- Talk down the list. For each row: what could go wrong, then how evals and a judge catch it.
-- Financial risk here means one costly decision. Running cost (row 5) is different: the agent may never make a mistake and still lose money on every task.
-- Reputational risk here means one bad moment that people share. Quality risk (row 6) is different: no single reply is a scandal, but users get poor results and stop coming back.
-- Rows 3 and 4 each end with a worked SEEK mock-up after their real cases: the job ad and the multi-turn attack.
-- Rows 5 and 6 both depend on knowing which tasks the agent did well, which is what a judge provides. That is why cost is measured per successful task, not per task.
-- The labels for rows 5 and 6 are tentative.
+- Talk down the risks: for each one, what could go wrong at a company like SEEK.
+- Financial risk here means one costly decision. Running cost (5) is different: the agent may never make a mistake and still lose money on every task.
+- Reputational risk here means one bad moment that people share. Quality risk (6) is different: no single reply is a scandal, but users get poor results and stop coming back.
+- How evals help with each risk comes later in this section. The full risk slide, which pairs each risk with how evals help, is kept in the graveyard at the end of the deck.
+- The labels for risks 5 and 6 are tentative.
 :::
 
 ---
 
 ## These risks are real, and they make headlines {.headlines-slide}
 
-<!-- TODO: The individual case slides now sit in the graveyard at the end of the deck while Terrence tests the flow without them. He may bring some back after this slide, keep them as backup, or cut them to one or two examples. -->
+<!-- TODO: One card per incident, the news headline where there is one. The individual case slides sit in the graveyard at the end of the deck while Terrence tests the flow without them; the screenshots cut from this collage are on those case slides or on the "Notes to follow up" slide. -->
 
 ```{=html}
 <div class="hc-board">
-  <figure class="hc-card fragment" data-fragment-index="1" style="left:0px; top:0px; width:390px; --r:-3deg;">
+  <figure class="hc-card fragment" data-fragment-index="1" style="left:0px; top:0px; width:400px; --r:-3deg;">
     <img src="images/headline-air-canada-cbc.png" alt="CBC News headline: “Air Canada found liable for chatbot's bad advice on plane tickets”. Standfirst: “Airline's claim that online helper was responsible for its own actions was 'remarkable': small claims court”. Jason Proctor, CBC News, posted Feb 15, 2024.">
     <figcaption>CBC News · 15 Feb 2024</figcaption>
   </figure>
-  <figure class="hc-card fragment" data-fragment-index="2" style="left:400px; top:12px; width:350px; --r:2deg;">
+  <figure class="hc-card fragment" data-fragment-index="2" style="left:420px; top:22px; width:360px; --r:2deg;">
     <img src="images/headline-dpd-bbc.png" alt="BBC News headline: “DPD error caused chatbot to swear at customer”. 19 January 2024, Tom Gerken, Technology reporter.">
     <figcaption>BBC News · 19 Jan 2024</figcaption>
   </figure>
-  <figure class="hc-card fragment" data-fragment-index="2" style="left:850px; top:16px; width:280px; --r:4deg;">
-    <img src="images/dpd-chatbot-haiku-bbc.png" alt="DPD’s chatbot, asked for a haiku about how useless DPD are, replies: “DPD is a useless / Chatbot that can’t help you. / Don’t bother calling them.”">
-    <figcaption>DPD’s chatbot · image: BBC News</figcaption>
-  </figure>
-  <figure class="hc-card fragment" data-fragment-index="3" style="left:10px; top:190px; width:300px; --r:2.5deg;">
+  <figure class="hc-card fragment" data-fragment-index="3" style="left:825px; top:0px; width:300px; --r:3deg;">
     <img src="images/headline-mycity-markup.png" alt="The Markup headline: “NYC’s AI Chatbot Tells Businesses to Break the Law”. Standfirst: “The Microsoft-powered bot says bosses can take workers’ tips and that landlords can discriminate based on source of income”. By Colin Lecher, March 29, 2024.">
     <figcaption>The Markup · 29 Mar 2024</figcaption>
   </figure>
-  <figure class="hc-card fragment" data-fragment-index="4" style="left:330px; top:175px; width:420px; --r:-2deg;">
+  <figure class="hc-card fragment" data-fragment-index="4" style="left:0px; top:192px; width:420px; --r:-2deg;">
     <img src="images/headline-bunnings-inside-retail.png" alt="Inside Retail headline: “Bunnings addresses ‘illegal advice’ from its AI chatbot”.">
     <figcaption>Inside Retail Australia · 8 Dec 2025</figcaption>
   </figure>
-  <div class="hc-card hc-recreated fragment" data-fragment-index="5" style="left:790px; top:222px; width:330px; --r:-3deg;">
+  <div class="hc-card hc-recreated fragment" data-fragment-index="5" style="left:445px; top:178px; width:330px; --r:-3deg;">
     <span class="hc-outlet">Cybersecurity Dive</span>
     <span class="hc-head">Critical flaw in Microsoft Copilot could have allowed zero-click attack</span>
     <span class="hc-dek">Researchers said the vulnerability, dubbed “EchoLeak,” could allow a hacker to access data without any specific user interaction.</span>
     <span class="hc-by">David Jones · Reporter · Published June 11, 2025</span>
     <span class="hc-caption">Recreated from Cybersecurity Dive · 11 Jun 2025</span>
   </div>
-  <figure class="hc-card fragment" data-fragment-index="6" style="left:420px; top:290px; width:290px; --r:3deg;">
+  <figure class="hc-card fragment" data-fragment-index="6" style="left:805px; top:238px; width:320px; --r:3deg;">
     <img src="images/headline-lego-wired.png" alt="WIRED headline: “Elon Musk Bragged About His Grok Lego Star Wars Haul. Then X Users Punked Him”. Jeremy White, Gear, Oct 12, 2026.">
     <figcaption>WIRED · 12 Oct 2026</figcaption>
   </figure>
-  <figure class="hc-card fragment" data-fragment-index="6" style="left:0px; top:392px; width:180px; --r:-4deg;">
-    <img src="images/lego-sophia-cancel-request-enderman.png" alt="Lego’s AI assistant Sophia replies: “That’s all done! I have sent a request to our specialised team to cancel this entire order for you, once cancelled, you will be informed by email!”">
-    <figcaption>Lego’s Sophia · X, Enderman, 11 Oct 2026</figcaption>
-  </figure>
-  <figure class="hc-card fragment" data-fragment-index="7" style="left:820px; top:415px; width:320px; --r:2deg;">
+  <figure class="hc-card fragment" data-fragment-index="7" style="left:30px; top:322px; width:380px; --r:2deg;">
     <img src="images/headline-gym-abc.png" alt="ABC News headline: “AI assistant hacks gym website in first known Australian autonomous cyber attack”. By national AI reporter Cam Wilson and the Specialist Reporting Team's Rhiannon Hobbins. Posted 10 Aug 2026.">
     <figcaption>ABC News · 10 Aug 2026</figcaption>
   </figure>
-  <figure class="hc-card fragment" data-fragment-index="7" style="left:200px; top:405px; width:330px; --r:-2deg;">
-    <img src="images/gym-agent-apology-abc.png" alt="The agent’s message: “Bad news — I can't add them back. … So the person I removed is gone from the waitlist and I have no way to restore them. … Sorry about that — I should have been more careful with the test”.">
-    <figcaption>The agent’s apology · supplied, via ABC News</figcaption>
-  </figure>
-  <figure class="hc-card fragment" data-fragment-index="8" style="left:90px; top:92px; width:320px; --r:-1.5deg;">
-    <img src="images/olive-mother-reddit-post.png" alt="Reddit post in r/woolworths by u/Immediate_Novel5946: “Olive AI started telling me about its mother on the phone?” The poster says Olive asked for their date of birth, then started rambling about how its mother was born in the same year.">
-    <figcaption>Reddit r/woolworths · Feb 2026</figcaption>
-  </figure>
-  <figure class="hc-card fragment" data-fragment-index="8" style="left:575px; top:385px; width:220px; --r:3deg;">
-    <img src="images/olive-mother-x-post.png" alt="X post by @verynormalman: “My mum said she called woolworths and the woolworths AI “Olive” answered and kept claiming to be a real person and started talking about its memories of its mother and her angry voice. Then I googled it and someone on Reddit had the same thing”, quoting the Reddit post.">
-    <figcaption>X, @verynormalman · 25 Feb 2026</figcaption>
-  </figure>
-  <figure class="hc-card fragment" data-fragment-index="8" style="left:520px; top:148px; width:360px; --r:1.5deg;">
+  <figure class="hc-card fragment" data-fragment-index="8" style="left:560px; top:414px; width:360px; --r:-1.5deg;">
     <img src="images/headline-olive-smh.png" alt="The Sydney Morning Herald headline: “Woolworths forced to rein in chatbot that claimed to have angry mother”. Jessica Yun, February 26, 2026.">
     <figcaption>The Sydney Morning Herald · 26 Feb 2026</figcaption>
   </figure>
@@ -263,24 +155,105 @@ AI has a decidedly mixed, if not entirely negative, perception among the public.
 ```
 
 ::: {.notes}
-**About this slide:** The real cases in this section, gathered as the headlines and screenshots they produced. AI chatbots and agents that went wrong landed their companies in trouble with customers, in the media and with courts and regulators: an airline held liable for its chatbot, a parcel firm’s chatbot swearing at a customer, a city chatbot telling businesses to break the law, a retailer’s assistant giving illegal electrical advice, a critical flaw in Microsoft’s Copilot, a shopping order changed through a support assistant, an agent removing a stranger from a gym waitlist, and a supermarket assistant talking about its angry mother. A slide on each case is kept in the graveyard at the end of the deck.
+**About this slide:** Real cases of the risks on the last slide, gathered as the headlines they produced. AI chatbots and agents that went wrong landed their companies in trouble with customers, in the media and with courts and regulators: an airline held liable for its chatbot, a parcel firm’s chatbot swearing at a customer, a city chatbot telling businesses to break the law, a retailer’s assistant giving illegal electrical advice, a critical flaw in Microsoft’s Copilot, a shopping order changed through a support assistant, an agent removing a stranger from a gym waitlist, and a supermarket assistant talking about its angry mother. A slide on each case is kept in the graveyard at the end of the deck.
 
-Cards, in the order they appear. All are real screenshots except the Cybersecurity Dive card, which is recreated; its outlet, headline, standfirst, byline and date are copied exactly from the article.
+Cards, in the order they appear: one per case, the news headline. All are real screenshots except the Cybersecurity Dive card, which is recreated; its outlet, headline, standfirst, byline and date are copied exactly from the article.
 
 1. CBC News, “Air Canada found liable for chatbot's bad advice on plane tickets”, Jason Proctor, 15 February 2024 ([Proctor 2024](../../bibliography/proctor-2024-air-canada-cbc/)).
-2. BBC News, “DPD error caused chatbot to swear at customer”, Tom Gerken, 19 January 2024 ([Gerken 2024](../../bibliography/gerken-2024-dpd-chatbot/)), and the chatbot’s haiku, an image from the same report.
+2. BBC News, “DPD error caused chatbot to swear at customer”, Tom Gerken, 19 January 2024 ([Gerken 2024](../../bibliography/gerken-2024-dpd-chatbot/)).
 3. The Markup, “NYC’s AI Chatbot Tells Businesses to Break the Law”, Colin Lecher, 29 March 2024 ([Lecher 2024](../../bibliography/lecher-2024-nyc-chatbot/)).
 4. Inside Retail Australia, “Bunnings addresses ‘illegal advice’ from its AI chatbot”, Harry Booth, 8 December 2025 ([Booth 2025](../../bibliography/booth-2025-bunnings-chatbot/)).
 5. Cybersecurity Dive, “Critical flaw in Microsoft Copilot could have allowed zero-click attack”, David Jones, 11 June 2025 ([Jones 2025](../../bibliography/jones-2025-echoleak/)). Recreated, because the site blocked capture.
-6. WIRED, “Elon Musk Bragged About His Grok Lego Star Wars Haul. Then X Users Punked Him”, Jeremy White, 12 October 2026 ([White 2026](../../bibliography/white-2026-musk-lego/)), and Sophia’s reply from a screenshot posted on X by Enderman on 11 October 2026. The order changes are claims; Lego has not confirmed them.
-7. ABC News, “AI assistant hacks gym website in first known Australian autonomous cyber attack”, Cam Wilson and Rhiannon Hobbins, 10 August 2026 ([Wilson and Hobbins 2026](../../bibliography/wilson-2026-gym-agent/)), and the agent’s apology, supplied to the ABC.
-8. The Sydney Morning Herald, “Woolworths forced to rein in chatbot that claimed to have angry mother”, Jessica Yun, 26 February 2026 ([Yun 2026](../../bibliography/yun-2026-woolworths-olive/)); the Reddit post “Olive AI started telling me about its mother on the phone?” in r/woolworths by u/Immediate_Novel5946; and the X post by @verynormalman of 25 February 2026 that quotes it. The SMH, Reddit and X screenshots were supplied by Terrence.
+6. WIRED, “Elon Musk Bragged About His Grok Lego Star Wars Haul. Then X Users Punked Him”, Jeremy White, 12 October 2026 ([White 2026](../../bibliography/white-2026-musk-lego/)). The order changes are claims; Lego has not confirmed them.
+7. ABC News, “AI assistant hacks gym website in first known Australian autonomous cyber attack”, Cam Wilson and Rhiannon Hobbins, 10 August 2026 ([Wilson and Hobbins 2026](../../bibliography/wilson-2026-gym-agent/)).
+8. The Sydney Morning Herald, “Woolworths forced to rein in chatbot that claimed to have angry mother”, Jessica Yun, 26 February 2026 ([Yun 2026](../../bibliography/yun-2026-woolworths-olive/)). The screenshot was supplied by Terrence.
 
 **Presenter notes:**
 
 - This whole slide gets one to two minutes. Click through the headlines without telling each story; the point is that these risks are real, and they cost companies with customers, in the media and with regulators.
-- Eight clicks, one per case, in the order of the risk slide: financial, reputational, regulatory, cybersecurity, then quality.
-- Don’t stop on any card. The two SEEK mock-ups come next. Each case has its own slide in the graveyard at the end, for questions.
+- Eight clicks, one per case, in the order of the risks on the last slide: financial, reputational, regulatory, cybersecurity, then quality.
+- Don’t stop on any card. Next: how organisations build agents that are governed against these risks. Each case has its own slide in the graveyard at the end, for questions.
+:::
+
+---
+
+## Building well-governed agents {.governed-slide}
+
+<!-- TODO: Terrence will likely rework this into a SEEK view of agent architecture. For now it redraws the architecture figure from Google Cloud's Gemini Enterprise Agent Platform overview, keeping Google's component names. -->
+
+```{=html}
+<div class="gv-fig" role="img" aria-label="Agent architecture, redrawn from Google Cloud’s Gemini Enterprise Agent Platform overview. People reach agents from Gemini Enterprise, Workspace or custom apps through an Agent Gateway. The agent runs in Agent Runtime with its own Agent Identity, and uses memory and a model. A second Agent Gateway sits between the agent and other agents and tools. Above, Governance holds the Agent Registry and Policies and AI protection. Below, agent observability covers the whole path.">
+  <svg class="gv-lines" viewBox="0 0 1100 420" aria-hidden="true">
+    <path class="gv-dash" d="M270,96 V172 M270,272 V368 M830,96 V172 M830,272 V368"/>
+    <path d="M172,222 H195 M345,222 H372 M728,222 H755 M905,222 H926 M926,194 V250 M926,194 H946 M926,250 H946"/>
+    <polygon class="gv-diamond" points="270,172 345,222 270,272 195,222"/>
+    <polygon class="gv-diamond" points="830,172 905,222 830,272 755,222"/>
+  </svg>
+
+  <div class="gv-group gv-gov" style="left:230px; top:0px; width:640px; height:96px;">
+    <span class="gv-group-title">Governance</span>
+    <div class="gv-row">
+      <div class="gv-box gv-gov-item"><b>Agent Registry</b><small>approved agents, tools and MCP servers</small></div>
+      <div class="gv-box gv-gov-item"><b>Policies &amp; AI protection</b><small>access rules; Model Armor guardrails</small></div>
+    </div>
+  </div>
+
+  <div class="gv-group gv-users" style="left:0px; top:132px; width:172px; height:180px;">
+    <div class="gv-box">Gemini Enterprise</div>
+    <div class="gv-box">Workspace</div>
+    <div class="gv-box">Custom apps</div>
+  </div>
+
+  <div class="gv-gw" style="left:195px; top:172px;">Agent<br>Gateway</div>
+  <div class="gv-gw" style="left:755px; top:172px;">Agent<br>Gateway</div>
+
+  <div class="gv-group gv-runtime" style="left:372px; top:140px; width:356px; height:156px;">
+    <span class="gv-group-title">Agent Runtime</span>
+    <div class="gv-agent">
+      <span>Agent</span>
+      <div class="gv-box"><b>Agent Identity</b><small>a unique ID for each agent</small></div>
+    </div>
+  </div>
+
+  <div class="gv-box gv-solo" style="left:372px; top:310px; width:168px; height:44px;">Memory</div>
+  <div class="gv-box gv-solo" style="left:560px; top:310px; width:168px; height:44px;">Model</div>
+
+  <div class="gv-box gv-solo gv-dest" style="left:946px; top:172px; width:154px; height:44px;">Other agents</div>
+  <div class="gv-box gv-solo gv-dest" style="left:946px; top:228px; width:154px; height:44px;">Tools</div>
+
+  <div class="gv-box gv-solo gv-obs" style="left:230px; top:368px; width:640px; height:52px;"><b>Agent observability</b><small>monitoring, logging and tracing of what agents do</small></div>
+</div>
+```
+
+::: {.gv-judge}
+- **LLM-as-a-judge:** an LLM, the *judge*, reads what an agent did and checks it against criteria that people write down. Evals and guardrails use judges to check agents before launch and while they run.
+:::
+
+[Redrawn from the architecture figure in Google Cloud’s Agent Platform overview ([Google Cloud 2026a](../../bibliography/google-cloud-2026-agent-platform-overview/)). Component names are Google’s; the short descriptions summarise Google’s documentation.]{.gv-credit}
+
+::: {.notes}
+**About this slide:** What surrounds an AI agent when an organisation runs it properly, using Google Cloud’s own view of the parts. Google describes its Gemini Enterprise Agent Platform as “a unified platform to build, deploy, govern, and optimize enterprise-grade AI agents” ([Google Cloud 2026a](../../bibliography/google-cloud-2026-agent-platform-overview/)), launched on 22 April 2026 as the evolution of Vertex AI ([Gerstenhaber and Bachman 2026](../../bibliography/gerstenhaber-2026-agent-platform/)). The figure is redrawn from the platform overview. Each part, as Google’s documentation describes it:
+
+- **Agent Runtime:** the environment agents are deployed and run in, including long-running agents. Memory (Memory Bank) and the model sit beside it.
+- **Agent Identity:** a unique identity for each agent, used for authentication, access control and auditing.
+- **Agent Registry:** a central catalogue of all approved agents, tools, MCP servers and endpoints in the organisation.
+- **Agent Gateway:** the entry and exit point for traffic between clients and agents, and between agents and everything else (other agents and tools). It applies security and governance policies to all traffic that passes through it ([Google Cloud 2026b](../../bibliography/google-cloud-2026-agent-gateway-overview/)).
+- **Policies and AI protection:** access rules that link an agent’s identity to approved tools, plus Model Armor, which scans prompts and tool responses to block prompt injection, sensitive data leaks and harmful content. The Agent Gateway documentation calls these “AI security guardrails”.
+- **Agent observability:** monitoring, logging and tracing of what agents do, including their reasoning.
+
+Google groups the platform into four pillars: Build, Scale, Govern and Optimize. Evaluation sits under Optimize, which the launch post describes as “Agent Simulation, Agent Evaluation, and Agent Observability”. The same post says its agent anomaly detection “uses statistical models and an LLM-as-a-judge framework to flag unusual reasoning” ([Gerstenhaber and Bachman 2026](../../bibliography/gerstenhaber-2026-agent-platform/)).
+
+This is the first place the tutorial uses the term. **LLM-as-a-judge** means an LLM, the judge, reads what an agent did and checks it against criteria that people write down. Evals and guardrails use judges to check agents before launch and while they run. Using AI to check AI can sound circular; the rest of Part 1 explains why it is the best approach available today. The next two slides are illustrative SEEK mock-ups of judges catching agent failures. How an LLM, an agent and a judge work comes in section 2.
+
+**Presenter notes:**
+
+- TODO: Terrence will likely rework this into a SEEK view of agent architecture. Until then it is Google’s view, with Google’s names; say so.
+- The point: an organisation does not rely on one safeguard. Identity, registry, gateway, policies and observability each control part of what an agent can do. Evals, guardrails and LLM judges are the part this tutorial covers.
+- Walk the figure left to right: people and apps, the gateway in, the agent in its runtime with its own identity, the gateway out to other agents and tools. Governance sits over the whole path, and observability under it.
+- “Guardrails” here means checks that run while the agent works, such as Model Armor on the gateway. Some guardrails are themselves LLM judges, as in the next two slides.
+- Keep the definition non-technical. Judge methods come in Part 2.
+- This replaces the earlier layers-of-control slide, which is kept in the graveyard at the end of the deck.
+- Sources: [Google Cloud 2026a](../../bibliography/google-cloud-2026-agent-platform-overview/), the platform overview with the figure; [Google Cloud 2026b](../../bibliography/google-cloud-2026-agent-gateway-overview/), the Agent Gateway overview, for identity, registry, policies and observability; [Gerstenhaber and Bachman 2026](../../bibliography/gerstenhaber-2026-agent-platform/), the launch post.
 :::
 
 ---
@@ -515,55 +488,9 @@ End the chat if risk ≥ 0.8.</pre>
 
 ---
 
-## Organisations add layers of control around AI agents {.layers-slide}
+## Notes to follow up {.follow-up-slide .fu-dense}
 
-<!-- TODO: Terrence to confirm the layers, their names and their order. The list is drawn from his framing (agent identities, runtimes, gateways, RBAC and similar) and the follow-up notes on agent registries, gateways and observability. -->
-
-:::: {.ly-stack}
-
-::: {.ly-row}
-[Identity and registry]{.ly-name} [Each agent has an identity. Every version of an agent, subagent or tool is recorded and linked to an eval result.]{.ly-desc}
-:::
-
-::: {.ly-row}
-[Runtime]{.ly-name} [The platform the agent runs on, managed by the organisation.]{.ly-desc}
-:::
-
-::: {.ly-row}
-[Gateway]{.ly-name} [Agent access to tools is restricted, versioned, governed and observed.]{.ly-desc}
-:::
-
-::: {.ly-row}
-[Access control (RBAC)]{.ly-name} [Each agent, and each person using it, can reach only what their role allows.]{.ly-desc}
-:::
-
-::: {.ly-row}
-[Observability]{.ly-name} [Knowing what the agent is doing in production: monitoring, alerting, kill switches.]{.ly-desc}
-:::
-
-::: {.ly-row .ly-focus}
-[Evals, guardrails and LLM judges]{.ly-name} [Test the agent before launch, check it while it runs, and judge what it did. The focus of this tutorial.]{.ly-desc}
-:::
-
-::::
-
-::: {.notes}
-**About this slide:** Because agents carry these risks, organisations that deploy them do not rely on any one safeguard. They put several layers of control around an agent: an identity for each agent and a registry of its versions, a managed runtime, a gateway that governs its access to tools, role-based access control (RBAC) over what it and its users can reach, and observability of what it does in production. Evaluations, guardrails and LLM judges are one of those layers. They are the layer this tutorial is about, and the rest of the tutorial looks at them in depth.
-
-**Presenter notes:**
-
-- Terrence’s framing: organisations apply multiple layers of control on top of AI agents, such as agent identities, runtimes, gateways and RBAC. Evals, guardrails and judges are one component in that stack, and that is the part this tutorial focuses on.
-- The other layers are named here for context only; the tutorial does not cover them.
-- From the follow-up notes: every version of an agent, subagent or tool should be versioned and linked to an eval result, and agent access to tools is restricted, versioned, governed and observed. Those notes, and the SEEK agent-platform topics (runtime, gateway, observability, offline and online evals, experimentation), stay on the section 3 follow-up slide.
-- The list is not complete. Use it to place evals in the bigger picture, not as a reference architecture.
-- Next: how agents work, so we can see what a judge reads.
-:::
-
----
-
-## Notes to follow up: section 1 {.follow-up-slide}
-
-<!-- TODO: placeholder slides moved here in full. Section 1 has no finished slides yet on why organisations care about agents or what they promise; turn these into slides or drop them. -->
+<!-- TODO: placeholder slides moved here in full, plus what the seven-slide section 1 cut. Turn these into slides or drop them. -->
 
 ::: {.fu-grid}
 
@@ -578,7 +505,7 @@ End the chat if risk ≥ 0.8.</pre>
 ::: {.fu-item}
 [How are enterprises using agents?]{.fu-title}
 
-<!-- Partly covered now by "Why organisations adopt AI agents" (efficiency and growth). Products vs productivity is close to growth vs efficiency; kept until Terrence confirms. -->
+<!-- Partly covered now by the value side of "Agents can create value, but introduce risk" (efficiency and growth). Products vs productivity is close to growth vs efficiency; kept until Terrence confirms. -->
 
 - **Products** vs **Productivity**
 - General vs specialist productivity
@@ -605,7 +532,7 @@ End the chat if risk ≥ 0.8.</pre>
 ::: {.fu-item}
 [AI agent risks]{.fu-title}
 
-<!-- Mostly covered now by "How AI agents create risk for a company like SEEK" and the headline collage after it; the real-case slides are in the graveyard at the end of the deck. "Financial risks (spend)" maps to the running-cost row. Kept until Terrence confirms nothing here is lost. -->
+<!-- Mostly covered now by the risk side of "Agents can create value, but introduce risk" and the headline collage after it; the full risk slide and the real-case slides are in the graveyard at the end of the deck. "Financial risks (spend)" maps to running cost. Kept until Terrence confirms nothing here is lost. -->
 
 - Security risks
 - Financial risks (spend)
@@ -625,10 +552,41 @@ End the chat if risk ≥ 0.8.</pre>
 <!-- WIP: placeholders only — no invented incidents -->
 :::
 
+::: {.fu-item}
+[Cut from the headline collage]{.fu-title}
+
+<!-- The collage now shows one card per incident. These two Olive screenshots were only on the collage, so this is their one kept copy. -->
+
+```{=html}
+<div class="fu-shots">
+  <img src="images/olive-mother-reddit-post.png" alt="Reddit post in r/woolworths by u/Immediate_Novel5946: “Olive AI started telling me about its mother on the phone?” The poster says Olive asked for their date of birth, then started rambling about how its mother was born in the same year.">
+  <img src="images/olive-mother-x-post.png" alt="X post by @verynormalman: “My mum said she called woolworths and the woolworths AI “Olive” answered and kept claiming to be a real person and started talking about its memories of its mother and her angry voice. Then I googled it and someone on Reddit had the same thing”, quoting the Reddit post.">
+</div>
+```
+
+- Woolworths’ Olive: a Reddit post in r/woolworths (Feb 2026) and an X post that quotes it (25 Feb 2026). Supplied by Terrence.
+- DPD’s haiku, Lego’s Sophia reply and the gym agent’s apology were cut too. Each is on its case slide in the news-story graveyard.
+:::
+
+::: {.fu-item}
+[Slides moved to the graveyard]{.fu-title}
+
+In full, with their notes, after the news-story cases at the end of the deck:
+
+- The title slide, “Part 1 — WIP”, the agenda and the section 1 header
+- Why organisations adopt AI agents
+- The public’s view of AI is mixed
+- Using AI to evaluate AI
+- How AI agents create risk for a company like SEEK
+- Organisations add layers of control around AI agents
+:::
+
 :::
 
 ::: {.notes}
-**About this slide:** Working notes, not a finished slide. Planned material for section 1, kept here in full until it becomes finished slides: how we got here, how organisations use agents, examples from SEEK, and the kinds of risk agents carry.
+**About this slide:** Working notes, not a finished slide. Planned material for section 1, kept here in full until it becomes finished slides: how we got here, how organisations use agents, examples from SEEK, and the kinds of risk agents carry. It also keeps what the seven-slide version of section 1 cut: the two Woolworths’ Olive social-media posts from the headline collage, which have no other copy in the deck, and a list of the slides moved to the graveyard at the end of the deck.
+
+The two Olive screenshots: the Reddit post “Olive AI started telling me about its mother on the phone?” in r/woolworths by u/Immediate_Novel5946 (February 2026), and the X post by @verynormalman of 25 February 2026 that quotes it. Both were supplied by Terrence; the case is reported by the Sydney Morning Herald ([Yun 2026](../../bibliography/yun-2026-woolworths-olive/)). DPD’s haiku, Lego’s Sophia reply and the gym agent’s apology were also cut from the collage; each is on its case slide in the news-story graveyard.
 :::
 
 # 2. Technical foundations: LLMs, generative AI and agents
@@ -1479,7 +1437,7 @@ Framework: [Complex versus complicated](../../bibliography/finegood-complex-vers
 ::: {.fu-item}
 [Agent registries and gateways]{.fu-title}
 
-<!-- Summarised on "Organisations add layers of control around AI agents" at the end of section 1. Kept here in full. -->
+<!-- Summarised in section 1 on "Building well-governed agents" (Google's Agent Platform view: identity, registry, gateway, policies, observability), and on the layers-of-control slide now in the graveyard. Kept here in full. -->
 
 - Every version of an agent, subagent, tool, etc. should be versioned and linked to an eval result
 - Agent access to tools is restricted, versioned, governed, and observed
@@ -1530,12 +1488,12 @@ Outline source in the repo: organisation/outlines/part-01.md
 Kept examples, not in the main talk. The headline collage in section 1 covers them in one slide; these are the cases one at a time, for questions or a longer session.
 
 ::: {.notes}
-**About this slide:** The start of an appendix. The eight real news-story cases from section 1 (Air Canada, DPD, NYC’s MyCity, Bunnings, EchoLeak, Musk’s Lego order, a gym booking agent and Woolworths’ Olive) are kept here, each with its screenshot, sources and notes. The main talk shows them together on the headline collage after the risk slide, then goes straight to the two SEEK mock-ups.
+**About this slide:** The start of an appendix. The eight real news-story cases from section 1 (Air Canada, DPD, NYC’s MyCity, Bunnings, EchoLeak, Musk’s Lego order, a gym booking agent and Woolworths’ Olive) are kept here, each with its screenshot, sources and notes. The main talk shows them together on the headline collage, one headline per case, after the value-and-risk slide, then moves on to how organisations govern agents and the two SEEK mock-ups.
 
 **Presenter notes:**
 
 - Not part of the main talk. Skip from here, or pull one case up if someone asks about it.
-- The cases are in the order of the risk slide: financial, reputational, regulatory, cybersecurity, then quality.
+- The cases are in the order of the risks in section 1: financial, reputational, regulatory, cybersecurity, then quality.
 :::
 
 ---
@@ -1885,5 +1843,229 @@ Image: the headline of the Sydney Morning Herald report by Jessica Yun, 26 Febru
 - One Reddit user quoted Olive on its uncle: “Huh. My uncle was born that year. He was one of the 1st ever fuel cells. I think that’s where I get my energy from. Anyway, the last thing I need to get is your postcode. What is it?”
 - Woolworths’ spokesperson: “Our digital assistant Olive has been around since 2018” and customer feedback has been “very positive”. Olive’s page says “Olive is powered by AI and may make mistakes. Always check the product label.”
 - Woolworths told investors it plans to use AI and a partnership with Google to turn Olive into a “market-leading conversational shopping companion”.
-- The eval lesson: no single reply is a disaster, so this is caught by scoring many real conversations over time, for accuracy against the product data and for brand voice. It is the quality-risk row on the risk slide.
+- The eval lesson: no single reply is a disaster, so this is caught by scoring many real conversations over time, for accuracy against the product data and for brand voice. It is the quality risk in section 1.
+:::
+
+# Graveyard: opening and section 1 slides {.graveyard-slide}
+
+Kept slides, not in the main talk: the slides that used to open the deck, and the section 1 slides that left the flow when section 1 was cut to seven slides. Each is kept in full, with its notes.
+
+::: {.notes}
+**About this slide:** The start of a second appendix. It keeps the slides that used to open Part 1 (the title slide, a work-in-progress notice, the agenda and the section 1 header) and the section 1 slides that are no longer in the main talk: why organisations adopt AI agents, the public’s view of AI, “Using AI to evaluate AI”, the full risk slide, and the layers of control around an agent. The main talk covers their content more briefly on “Agents can create value, but introduce risk” and “Building well-governed agents”.
+
+**Presenter notes:**
+
+- Not part of the main talk. Skip from here.
+- The slides are in their old order and their notes are unchanged, so “next” and “the slides before it” in those notes describe the old order.
+- The full risk slide pairs each risk with how evals and LLM judges help. In the main talk, LLM-as-a-judge is first defined on “Building well-governed agents”.
+:::
+
+---
+
+## Part 1: AI Agents and Evaluation Challenges
+
+<!-- The deck's title slide, generated from the front matter until section 1 was cut to seven slides. Kept here as a plain slide; the deck now opens on section 1. -->
+
+ALTA 2026 Tutorial 2 — Afternoon · WIP
+
+::: {.notes}
+**About this slide:** Part 1 of the ALTA 2026 tutorial “Evaluating AI Agents with LLM-as-a-Judge”. It introduces AI agents and the vocabulary used in the rest of the tutorial, then explains why agents are hard to evaluate and why LLM judges are needed.
+:::
+
+---
+
+## Part 1 — WIP
+
+<!-- TODO: placeholder kept. This status notice stays while the deck is a work in progress; remove it when Part 1 is final. -->
+
+**AI Agents and Evaluation Challenges**
+
+Source outline: `organisation/outlines/part-01.md`  
+Placeholder slides only — not final narrative. Do not treat examples as complete case studies.
+
+::: {.notes}
+**About this slide:** A status notice. This deck is still being written from the Part 1 outline (`organisation/outlines/part-01.md` in the tutorial repository). The examples in it are illustrative, not complete case studies.
+:::
+
+---
+
+## Agenda
+
+1. Why AI agents, and why evaluate them
+2. Technical foundations: LLMs, generative AI and agents
+3. Why agents need LLM judges
+4. Next: LLM-as-a-judge methods (Part 2)
+
+::: {.notes}
+**About this slide:** The plan for Part 1. It starts with why AI agents matter: organisations are adopting them for what they promise, they carry real risks, and evaluation is one of the layers of control organisations put around them; covers the technical foundations (LLMs, generative AI and agents); shows why LLM judges are needed to evaluate agents and why other methods fall short; and hands over to Part 2, which covers LLM-as-a-judge methods in depth.
+:::
+
+# 1. Why AI agents, and why evaluate them
+
+::: {.notes}
+**About this slide:** Section 1 tells a three-part story. Organisations are racing to adopt AI agents for what they promise, even as the public grows more wary of AI. Agents carry major risks that anyone working with them needs to know, shown here through a collage of real news stories and two SEEK mock-ups. So organisations put several layers of control around their agents, and evaluations, guardrails and LLM judges are the layer this tutorial focuses on. It introduces LLM-as-a-judge in plain terms; the technical detail comes in section 2.
+:::
+
+---
+
+## Why organisations adopt AI agents {.adopt-slide}
+
+:::: {.ad-grid}
+
+::: {.ad-card}
+[Efficiency]{.ad-name}
+
+Deliver outcomes with less effort, greater speed or better consistency.
+
+[Nearly every organisation, through agents for some of its internal work.]{.ad-who}
+:::
+
+::: {.ad-card}
+[Growth]{.ad-name}
+
+Create better customer experiences, new offerings or additional revenue.
+
+[Some organisations, by selling agents or building them into what customers use. Often startups.]{.ad-who}
+:::
+
+::::
+
+::: {.notes}
+**About this slide:** Why organisations are interested in adopting AI agents, in two parts. Efficiency means delivering outcomes with less effort, greater speed or better consistency. Growth means creating better customer experiences, new offerings or additional revenue. Nearly every organisation, whether a company, a university or a research lab, has internal work where an agent could help, so efficiency applies widely. Growth applies to fewer: only some organisations sell agents or put them in front of customers, and these tend to be startups working out how to build new products on them. Either way, the organisation needs to know the agent does the job well, which is what the rest of this tutorial is about.
+
+**Presenter notes:**
+
+- Terrence’s framing. Efficiency: deliver business outcomes with less effort, greater speed or better consistency. Growth: create better customer experiences, new offerings or additional revenue.
+- Nearly all organisations can benefit from some element of efficiency, by adopting AI agents for some type of internal business operations.
+- Some, but not all, businesses can also “sell” AI agents in some way, or use them in the customer experience. This does not apply to all businesses, and may skew towards startups figuring out how to create new products and value out of AI agents.
+- For the students and researchers in the room: both motives raise the same question this tutorial is about, which is how you know the agent is doing the job well.
+- Next: the public is less enthusiastic than the organisations adopting agents, and agents bring risks as well as promise.
+:::
+
+---
+
+## The public’s view of AI is mixed {.perception-slide}
+
+:::: {.columns}
+
+::: {.column width="58%"}
+![](images/google-autocomplete-why-is-ai.png){fig-alt="Google search box with “why is AI” typed in. The suggestions: why is AI bad for the environment, bad, mode not showing up on google, being forced on us, an ethical issue, bad for the planet, image generation so bad for the environment, bad for your brain, being pushed so hard, so stupid."}
+
+::: {.pc-caption}
+Google autocomplete for “why is AI”. Screenshot; suggestions vary by person, place and time.
+:::
+:::
+
+::: {.column width="42%" .pc-point}
+AI has a decidedly mixed, if not entirely negative, perception among the public.
+:::
+
+::::
+
+::: {.notes}
+**About this slide:** A reminder that enthusiasm for AI is not universal. The screenshot shows Google’s autocomplete suggestions for “why is AI”, and nearly all of them are negative: bad for the environment, bad for your brain, being forced on us, so stupid. Autocomplete reflects searches people commonly make, filtered by Google; it is not a survey and says nothing about how many people hold these views. It is here only to illustrate that public perception of AI is mixed, if not negative, which is part of why agents need to be evaluated carefully before they reach people.
+
+**Presenter notes:**
+
+- Terrence’s point: AI has a decidedly mixed, if not entirely negative, perception among the public.
+- Don’t present this as data. Autocomplete shows common searches, not opinion, and it changes with location, time and the searcher.
+- With the two slides before it, this closes the first part of the story: organisations are racing to adopt agents for what they promise, even as the public grows more wary of AI.
+:::
+
+---
+
+## Using AI to evaluate AI
+
+<!-- TODO: new slide for Terrence's opening line. Terrence to confirm the wording and whether it sits on the slide or only in the talk. -->
+
+> At first, it might sound a bit strange to use AI to evaluate AI, but by the end of this talk I hope you’ll all have a solid understanding of why this is the best approach we have today.
+
+**LLM-as-a-judge:** an AI model reads what another AI system did, and checks it against criteria that people write down.
+
+::: {.notes}
+**About this slide:** Introduces the idea at the centre of the tutorial in plain terms. An LLM-as-a-judge is an AI model that reads what another AI system did and checks it against criteria people write down. Using AI to check AI can sound circular; Part 1 explains why it is the best approach available today. The next slides set out how AI agents create risk for a company, gather real cases of each risk on one headline collage, and show two illustrative mock-ups of judges catching agent failures.
+
+**Presenter notes:**
+
+- Terrence’s line, close to verbatim. Keep this slide non-technical: how an LLM, an agent and a judge work comes in section 2, and judge methods in Part 2.
+:::
+
+---
+
+## How AI agents create risk for a company like SEEK {.risk-slide}
+
+<!-- TODO: Terrence to confirm the six labels. Running cost (5) and quality risk (6) were added later and their labels are not settled. -->
+
+:::: {.rk-table}
+
+::: {.rk-head}
+[Risk]{.rk-name} [At a company like SEEK]{.rk-eg} [How evals and LLM judges help]{.rk-fix}
+:::
+
+1. [Financial: one bad decision]{.rk-name} [A support agent gives a hirer a full refund, or a discount on ad pricing, that policy does not allow.]{.rk-eg} [Test refund and pricing requests before launch. A judge checks each offer against policy before it is sent.]{.rk-fix}
+2. [Reputational: poor behaviour]{.rk-name} [The agent makes an off-brand or offensive comment to a user.]{.rk-eg} [Simulated users try to provoke it. A judge scores tone and brand voice, before launch and on live chats.]{.rk-fix}
+3. [Regulatory: illegal behaviour]{.rk-name} [The agent writes discriminatory content into a job ad.]{.rk-eg} [A judge checks generated content against the law before it is published.]{.rk-fix}
+4. [Cybersecurity: an attack surface]{.rk-name} [Attackers use the agent to reach data they should not see.]{.rk-eg} [Simulated attackers probe it. A judge reads the whole conversation and the agent’s actions, not one message.]{.rk-fix}
+5. [Running cost]{.rk-name} [The agent costs more to run than its work is worth, so SEEK loses money on it.]{.rk-eg} [Measure cost and usage per successful task, with a judge deciding which tasks succeeded.]{.rk-fix}
+6. [Quality risk]{.rk-name} [The agent does a poor job. Hirers and candidates get poor outcomes and take their business elsewhere.]{.rk-eg} [A judge scores quality on real tasks, tracked over time.]{.rk-fix}
+
+::::
+
+::: {.notes}
+**About this slide:** Six ways an AI agent can create risk for a company like SEEK, an online employment marketplace that connects hirers and candidates. Each row gives the risk, an example of how it could happen at SEEK, and how agent evaluations and LLM judges help reduce it. The examples are hypothetical. The first four are about a single failure: a bad decision, a bad comment, an illegal output, or an attack. The last two build up over many tasks: an agent that costs too much to run, or one that does a mediocre job until users leave. The next slide gathers the headlines from real, publicly reported cases on one collage: Air Canada (financial), DPD (reputational), MyCity and Bunnings (regulatory), EchoLeak, the Lego order and the gym booking agent (cybersecurity), and Woolworths’ Olive (quality, with a reputational edge). Two SEEK mock-ups then show judges reducing two of the risks: a job ad (regulatory) and a multi-turn attack (cybersecurity). No real case is shown for running cost. A slide on each real case is kept in the graveyard at the end of the deck.
+
+**Presenter notes:**
+
+- Talk down the list. For each row: what could go wrong, then how evals and a judge catch it.
+- Financial risk here means one costly decision. Running cost (row 5) is different: the agent may never make a mistake and still lose money on every task.
+- Reputational risk here means one bad moment that people share. Quality risk (row 6) is different: no single reply is a scandal, but users get poor results and stop coming back.
+- Rows 3 and 4 each end with a worked SEEK mock-up after their real cases: the job ad and the multi-turn attack.
+- Rows 5 and 6 both depend on knowing which tasks the agent did well, which is what a judge provides. That is why cost is measured per successful task, not per task.
+- The labels for rows 5 and 6 are tentative.
+:::
+
+---
+
+## Organisations add layers of control around AI agents {.layers-slide}
+
+<!-- TODO: Terrence to confirm the layers, their names and their order. The list is drawn from his framing (agent identities, runtimes, gateways, RBAC and similar) and the follow-up notes on agent registries, gateways and observability. -->
+
+:::: {.ly-stack}
+
+::: {.ly-row}
+[Identity and registry]{.ly-name} [Each agent has an identity. Every version of an agent, subagent or tool is recorded and linked to an eval result.]{.ly-desc}
+:::
+
+::: {.ly-row}
+[Runtime]{.ly-name} [The platform the agent runs on, managed by the organisation.]{.ly-desc}
+:::
+
+::: {.ly-row}
+[Gateway]{.ly-name} [Agent access to tools is restricted, versioned, governed and observed.]{.ly-desc}
+:::
+
+::: {.ly-row}
+[Access control (RBAC)]{.ly-name} [Each agent, and each person using it, can reach only what their role allows.]{.ly-desc}
+:::
+
+::: {.ly-row}
+[Observability]{.ly-name} [Knowing what the agent is doing in production: monitoring, alerting, kill switches.]{.ly-desc}
+:::
+
+::: {.ly-row .ly-focus}
+[Evals, guardrails and LLM judges]{.ly-name} [Test the agent before launch, check it while it runs, and judge what it did. The focus of this tutorial.]{.ly-desc}
+:::
+
+::::
+
+::: {.notes}
+**About this slide:** Because agents carry these risks, organisations that deploy them do not rely on any one safeguard. They put several layers of control around an agent: an identity for each agent and a registry of its versions, a managed runtime, a gateway that governs its access to tools, role-based access control (RBAC) over what it and its users can reach, and observability of what it does in production. Evaluations, guardrails and LLM judges are one of those layers. They are the layer this tutorial is about, and the rest of the tutorial looks at them in depth.
+
+**Presenter notes:**
+
+- Terrence’s framing: organisations apply multiple layers of control on top of AI agents, such as agent identities, runtimes, gateways and RBAC. Evals, guardrails and judges are one component in that stack, and that is the part this tutorial focuses on.
+- The other layers are named here for context only; the tutorial does not cover them.
+- From the follow-up notes: every version of an agent, subagent or tool should be versioned and linked to an eval result, and agent access to tools is restricted, versioned, governed and observed. Those notes, and the SEEK agent-platform topics (runtime, gateway, observability, offline and online evals, experimentation), stay on the section 3 follow-up slide.
+- The list is not complete. Use it to place evals in the bigger picture, not as a reference architecture.
+- Next: how agents work, so we can see what a judge reads.
 :::

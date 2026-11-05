@@ -3734,6 +3734,83 @@
       "abstract": null
     },
     {
+      "id": "google-cloud-2026-agent-platform-overview",
+      "type": "website",
+      "authors": [
+        "Google Cloud"
+      ],
+      "year": "2026",
+      "title": "Agent Platform overview",
+      "venue": "Gemini Enterprise Agent Platform documentation, Google Cloud. Last updated 4 November 2026.",
+      "url": "https://docs.cloud.google.com/gemini-enterprise-agent-platform/overview",
+      "links": [
+        {
+          "label": "Google Cloud documentation",
+          "href": "https://docs.cloud.google.com/gemini-enterprise-agent-platform/overview"
+        }
+      ],
+      "groups": [
+        "platforms"
+      ],
+      "mentions": [],
+      "summary": "Google Cloud’s overview of its Gemini Enterprise Agent Platform, which it describes as a unified platform to build, deploy, govern and optimize enterprise AI agents, organised into four pillars: Build, Scale, Govern and Optimize. Its architecture figure places each agent in Agent Runtime with its own Agent Identity, behind Agent Gateways to users, tools and other agents, under governance (Agent Registry, policies and AI protection) and agent observability. Part 1 redraws that figure to show where evals and LLM judges sit among the controls around an agent.",
+      "note": "Read on 5 November 2026. The page’s figure has the alt text “Agent Platform is organized around four key pillars”, but it shows the agent architecture, not the four pillars.",
+      "featured_rank": null,
+      "abstract": null
+    },
+    {
+      "id": "google-cloud-2026-agent-gateway-overview",
+      "type": "website",
+      "authors": [
+        "Google Cloud"
+      ],
+      "year": "2026",
+      "title": "Agent Gateway overview",
+      "venue": "Gemini Enterprise Agent Platform documentation, Google Cloud.",
+      "url": "https://docs.cloud.google.com/gemini-enterprise-agent-platform/govern/gateways/agent-gateway-overview",
+      "links": [
+        {
+          "label": "Google Cloud documentation",
+          "href": "https://docs.cloud.google.com/gemini-enterprise-agent-platform/govern/gateways/agent-gateway-overview"
+        }
+      ],
+      "groups": [
+        "platforms"
+      ],
+      "mentions": [],
+      "summary": "Google Cloud’s description of the governance parts of its agent platform and how they work together: Agent Identity (who made the request), Agent Registry (which destinations are approved), policies including Model Armor content filters (what actions are permitted), Agent Gateway (where policies are enforced) and agent observability. It calls the Model Armor filters “AI security guardrails”. Part 1 uses it for the descriptions of those components.",
+      "note": "Read on 5 November 2026. The page says support for some runtimes and policy types is coming soon.",
+      "featured_rank": null,
+      "abstract": null
+    },
+    {
+      "id": "gerstenhaber-2026-agent-platform",
+      "type": "blog",
+      "authors": [
+        "Michael Gerstenhaber",
+        "Michael Bachman"
+      ],
+      "year": "2026",
+      "title": "Introducing Gemini Enterprise Agent Platform, powering the next wave of agents",
+      "venue": "Google Cloud Blog, 22 April 2026.",
+      "url": "https://cloud.google.com/blog/products/ai-machine-learning/introducing-gemini-enterprise-agent-platform",
+      "links": [
+        {
+          "label": "Google Cloud Blog",
+          "href": "https://cloud.google.com/blog/products/ai-machine-learning/introducing-gemini-enterprise-agent-platform"
+        }
+      ],
+      "groups": [
+        "platforms",
+        "industry"
+      ],
+      "mentions": [],
+      "summary": "Google Cloud’s launch post for Gemini Enterprise Agent Platform, the evolution of Vertex AI. It describes the Build, Scale, Govern and Optimize pillars; under Optimize it names Agent Simulation, Agent Evaluation with multi-turn autoraters on live traffic, and Agent Observability, and it says Agent Anomaly Detection uses an LLM-as-a-judge framework to flag unusual reasoning. Part 1 cites it as an industry view of where evaluation sits in agent governance.",
+      "note": "The authors are Google Cloud vice presidents: Michael Gerstenhaber (Product Management, Gemini) and Michael Bachman (Cloud Foundations).",
+      "featured_rank": null,
+      "abstract": null
+    },
+    {
       "id": "bedrock-evals",
       "type": "website",
       "year": "n.d.",

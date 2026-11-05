@@ -41,3 +41,33 @@
 .reveal .follow-up-slide .fu-item li {
   margin: 0 0 2px;
 }
+
+.reveal .follow-up-slide .fu-shots {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  margin: 4px 0 6px;
+}
+
+.reveal .follow-up-slide .fu-shots img {
+  display: block;
+  width: calc(50% - 3px);
+  height: auto;
+  margin: 0;
+  border: 1px solid var(--deck-line);
+}
+
+.reveal .follow-up-slide.fu-dense .fu-grid {
+  column-count: 4;
+  column-gap: 20px;
+  font-size: 15px;
+  line-height: 1.3;
+}
+
+.reveal .follow-up-slide.fu-dense .fu-item {
+  margin-bottom: 10px;
+}
+
+.reveal .follow-up-slide.fu-dense .fu-title {
+  font-size: 16px;
+}
