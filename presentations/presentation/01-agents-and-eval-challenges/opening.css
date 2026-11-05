@@ -156,7 +156,7 @@
 
 .reveal .about-slide .ab-me {
   display: grid;
-  grid-template-columns: 1fr 290px;
+  grid-template-columns: 1fr 380px;
   gap: 32px;
 }
 
@@ -260,9 +260,7 @@
 
 .reveal .about-slide .ab-facts {
   display: grid;
-  grid-template-columns: auto auto auto;
-  justify-content: start;
-  column-gap: 22px;
+  row-gap: 8px;
   margin-top: 10px;
 }
 
@@ -275,7 +273,7 @@
 
 .reveal .about-slide .ab-fact b {
   display: block;
-  font-size: 26px;
+  font-size: 22px;
   font-weight: 700;
   line-height: 1.15;
   color: var(--deck-ink);
