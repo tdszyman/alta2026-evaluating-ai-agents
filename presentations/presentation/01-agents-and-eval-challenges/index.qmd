@@ -84,45 +84,64 @@ format:
 ## About me, and SEEK {.about-slide}
 
 ```{=html}
-<div class="ab-me">
-  <ol class="ab-path ab-academic">
-    <li><span class="ab-org">University of Michigan</span>BSE Electrical Engineering; BA Classical Languages and Literature</li>
-    <li><span class="ab-org">University of Michigan</span>PhD Linguistics: computational historical linguistics, machine learning for morphology</li>
-    <li><span class="ab-org">Insight Centre for Data Analytics, University College Dublin</span>Postdoc: text analytics for news, with the Irish Farmers Journal and The Irish Times</li>
-  </ol>
-  <ol class="ab-path ab-industry">
-    <li><span class="ab-org">ANZ</span>Data Scientist</li>
-    <li><span class="ab-org"><img class="ab-logo" src="images/seek-logo.svg" alt="SEEK"></span>Data Scientist</li>
-    <li class="ab-now"><span class="ab-org"><img class="ab-logo" src="images/seek-logo.svg" alt="SEEK"></span>Head of Generative AI <span class="ab-tag">Now</span></li>
-  </ol>
-</div>
-<div class="ab-seek">
-  <figure class="ab-map">
-    <img src="images/seek-apac-markets-map.jpg" alt="Map of Asia Pacific from SEEK’s About page, with pins on Australia, New Zealand, Hong Kong, Indonesia, Malaysia, the Philippines, Singapore and Thailand.">
-    <figcaption>SEEK’s markets. Map: <a href="../../bibliography/seek-2026-about/">SEEK 2026</a></figcaption>
-  </figure>
-  <div class="ab-facts">
-    <p class="ab-fact"><b>Melbourne</b> founded here in 1997</p>
-    <p class="ab-fact"><b>8</b> markets across Asia Pacific</p>
-    <p class="ab-fact"><b>4+</b> major languages</p>
+<div class="ab-part ab-part-me" role="group" aria-label="About me">
+  <p class="ab-side" aria-hidden="true">About me</p>
+  <div class="ab-me">
+    <ol class="ab-path ab-academic">
+      <li><span class="ab-org"><img class="ab-icon" src="images/umich-block-m-maize.svg" alt="">University of Michigan</span>BSE Electrical Engineering; BA Classical Languages and Literature</li>
+      <li><span class="ab-org"><img class="ab-icon" src="images/umich-block-m-maize.svg" alt="">University of Michigan</span>PhD Linguistics: computational historical linguistics, machine learning for morphology</li>
+      <li><span class="ab-org"><img class="ab-icon" src="images/ucd-crest.svg" alt="">Insight Centre for Data Analytics, University College Dublin</span>Postdoc: text analytics for news, with the Irish Farmers Journal and The Irish Times</li>
+    </ol>
+    <ol class="ab-path ab-industry">
+      <li><span class="ab-org"><img class="ab-icon" src="images/anz-mark.png" alt="">ANZ</span>Data Scientist</li>
+      <li><span class="ab-org"><img class="ab-logo" src="images/seek-logo.svg" alt="SEEK"></span>Data Scientist</li>
+      <li class="ab-now"><span class="ab-org"><img class="ab-logo" src="images/seek-logo.svg" alt="SEEK"></span>Head of Generative AI <span class="ab-tag">Now</span></li>
+    </ol>
   </div>
-  <div class="ab-team">
-    <p class="ab-big"><b>250+</b> people in SEEK’s AI and Analytics team</p>
-    <p class="ab-big ab-mine"><b>17</b> in my team, on generative AI and AI agents</p>
+</div>
+<div class="ab-part ab-part-seek" role="group" aria-label="About SEEK">
+  <p class="ab-side" aria-hidden="true">About SEEK</p>
+  <div class="ab-seek">
+    <div class="ab-where">
+      <figure class="ab-map">
+        <img src="images/seek-apac-markets-map.jpg" alt="Map of Asia Pacific from SEEK’s About page, with pins on Australia, New Zealand, Hong Kong, Indonesia, Malaysia, the Philippines, Singapore and Thailand.">
+      </figure>
+      <div class="ab-facts">
+        <p class="ab-fact"><b>Melbourne</b> founded 1997</p>
+        <p class="ab-fact"><b>8</b> markets in Asia Pacific</p>
+        <p class="ab-fact"><b>4+</b> major languages</p>
+      </div>
+    </div>
+    <div class="ab-numbers">
+      <p class="ab-big"><b>60<small> million+</small></b> candidate profiles</p>
+      <p class="ab-big"><b>360,000+</b> hirer relationships</p>
+      <p class="ab-big"><b>250+</b> people in SEEK’s AI and Analytics team</p>
+      <p class="ab-big ab-mine"><b>17</b> in my team, on generative AI and AI agents</p>
+      <p class="ab-src">Map, markets and SEEK’s figures: SEEK’s About page, October 2026 (<a href="../../bibliography/seek-2026-about/">SEEK 2026</a>). Team sizes: Terrence.</p>
+    </div>
   </div>
 </div>
 ```
 
 ::: {.notes}
-**About this slide:** Who is presenting, and the company the tutorial’s examples come from. Terrence Szymanski trained in electrical engineering, classical languages and linguistics at the University of Michigan, with a PhD in computational historical linguistics and machine learning for morphology. He was a postdoctoral researcher at the Insight Centre for Data Analytics at University College Dublin, working on text analytics for news with the Irish Farmers Journal and The Irish Times. He then worked as a data scientist at ANZ and at SEEK, and now leads generative AI at SEEK. SEEK was founded in Melbourne in 1997 and runs online employment marketplaces in eight markets across Asia Pacific: Australia, New Zealand, Hong Kong, Indonesia, Malaysia, the Philippines, Singapore and Thailand. Its AI and Analytics team has more than 250 people; Terrence’s team of 17 works on generative AI and AI agents.
+**About this slide:** Who is presenting, and the company the tutorial’s examples come from. Terrence Szymanski trained in electrical engineering, classical languages and linguistics at the University of Michigan, with a PhD in computational historical linguistics and machine learning for morphology. He was a postdoctoral researcher at the Insight Centre for Data Analytics at University College Dublin, working on text analytics for news with the Irish Farmers Journal and The Irish Times. He then worked as a data scientist at ANZ and at SEEK, and now leads generative AI at SEEK. SEEK was founded in Melbourne in 1997 and runs online employment marketplaces in eight markets across Asia Pacific: Australia, New Zealand, Hong Kong, Indonesia, Malaysia, the Philippines, Singapore and Thailand. SEEK says it has more than 60 million candidate profiles and more than 360,000 hirer relationships. Its AI and Analytics team has more than 250 people; Terrence’s team of 17 works on generative AI and AI agents.
 
 **What to take away:** The examples in this tutorial come from a large employment marketplace that builds and evaluates AI agents across several countries and languages, and from a presenter who came to industry from research.
 
 **Presenter notes:**
 
 - Keep it short; the academic path is there because most of the audience are graduate students.
-- Sources: the background and the two team sizes are supplied by Terrence. “At least four major languages” is also Terrence’s; SEEK’s About page does not state it. Melbourne, 1997, the eight markets and the map are from SEEK’s About page ([SEEK 2026](../../bibliography/seek-2026-about/)), read from the Internet Archive capture of 2 October 2026.
-- Logos: only SEEK’s, from SEEK’s own site. The University of Michigan, University College Dublin, Insight and ANZ are shown as text. Michigan’s brand policy does not allow its logos on projects not affiliated with the university, UCD asks third parties to request permission, ANZ’s Australian brand assets are private, and Insight publishes no terms of use for its logo.
+- The slide has two parts, labelled down the left edge: “About me” and “About SEEK”.
+- Sources: the background and the two team sizes are supplied by Terrence. “At least four major languages” is also Terrence’s; SEEK’s About page does not state it. Melbourne, 1997, the eight markets and the map are from SEEK’s About page ([SEEK 2026](../../bibliography/seek-2026-about/)), read from the Internet Archive capture of 2 October 2026, because the live page blocks automated requests.
+- The two scale figures are as the About page states them: “SEEK has more than 60 million candidate profiles and more than 360,000 hirer relationships”. The page gives no date, period or region for them, so read them as SEEK’s company-wide figures as of the October 2026 capture. Candidate profiles are not active users, and hirer relationships are not job ads. The page’s third figure, more than 750 million data points of employment activity every day, is left off to keep the slide clear.
+- Logos, all official files, none recreated, added beside the text names at Terrence’s request:
+  - University of Michigan: the maize Block M, `Block_M-Hex.svg` from the university’s Block M kit (brand.umich.edu/assets/brand/downloads/um-logos/block_m_kit/block_m-hex.svg.zip), linked from its logo downloads page.
+  - University College Dublin: the UCD crest, `crest-ucd.svg` from ucd.ie (www.ucd.ie/t4media/crest-ucd.svg), the crest in UCD’s own site header.
+  - ANZ: the person mark, ANZ’s 196 × 196 site icon (www.anz.com.au/apps/settings/wcm/designs/commons/images/appicons/favicon-196x196.png). It is the mark alone, without the ANZ wordmark.
+  - SEEK: the SEEK logo from SEEK’s own image host.
+  - Insight has no icon; its line shows the UCD crest, because the postdoc was at UCD.
+  - Michigan’s and UCD’s brand guidelines restrict use of their marks outside the university, and ANZ’s Australian brand library is private. Terrence asked for the logos anyway; check with the institutions if the deck is published.
+  - The maize M is light on a white slide; the text name beside it carries the meaning.
 :::
 
 ---
