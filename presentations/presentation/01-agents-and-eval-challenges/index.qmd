@@ -89,7 +89,7 @@ format:
     </ol>
   </div>
 </div>
-<div class="ab-part ab-part-seek">
+<div class="ab-part ab-part-seek fragment">
   <h3 class="ab-label">About SEEK</h3>
   <div class="ab-seek">
     <div class="ab-where">
@@ -121,6 +121,7 @@ format:
 **Presenter notes:**
 
 - Keep it short; the academic path is there because most of the audience are graduate students.
+- The slide builds in two steps: “About me” shows first, and one click reveals the whole “About SEEK” half.
 - The slide has no visible title; its two parts are labelled “About me” and “About SEEK”. The heading “About me, and SEEK” is kept for the top bar, search and the `#/about-me-and-seek` link, but hidden on the slide.
 - The timeline is shortened to one line per entry. In full: a BSE in Electrical Engineering and a BA in Classical Languages and Literature, then a PhD in Linguistics on computational historical linguistics and machine learning for morphology, all at the University of Michigan. A postdoc at the Insight Centre for Data Analytics, University College Dublin, on text analytics for news with the Irish Farmers Journal and The Irish Times. Then Data Scientist at ANZ, Data Scientist at SEEK, and now Head of Generative AI at SEEK.
 - The four numbers: SEEK has more than 60 million candidate profiles and more than 360,000 hirer relationships (SEEK’s About page); SEEK’s AI and Analytics team has more than 250 people, and Terrence’s Generative AI and AI Agents team has 17 (both from Terrence).
