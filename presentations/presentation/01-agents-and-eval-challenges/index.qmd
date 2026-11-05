@@ -48,7 +48,7 @@ format:
 
 ## Agents can create value, but introduce risk {.value-risk-slide}
 
-<!-- TODO: Terrence to confirm the six risk labels. Running cost (5) and quality (6) were added later and their labels are not settled. The full risk slide, with an example at SEEK and how evals help for each row, is kept in the graveyard at the end of the deck. -->
+<!-- The full risk slide, with an example at SEEK and how evals help for each row, is kept in the graveyard at the end of the deck. -->
 
 :::: {.vr-grid}
 
@@ -74,9 +74,9 @@ Create better customer experiences, new offerings or additional revenue.
 1. [Financial]{.vr-name} [One bad decision, such as a refund that policy does not allow.]{.vr-desc}
 2. [Reputational]{.vr-name} [An off-brand or offensive comment to a user.]{.vr-desc}
 3. [Regulatory]{.vr-name} [Illegal behaviour, such as discriminatory content in a job ad.]{.vr-desc}
-4. [Cybersecurity]{.vr-name} [Attackers use the agent to reach data they should not see.]{.vr-desc}
-5. [Running cost]{.vr-name} [The agent costs more to run than its work is worth.]{.vr-desc}
-6. [Quality]{.vr-name} [The agent does a poor job, and users take their business elsewhere.]{.vr-desc}
+4. [Cybersecurity]{.vr-name} [Attackers use the agent to access data or systems they should not.]{.vr-desc}
+5. [Operational]{.vr-name} [The agent costs more to run than its work is worth.]{.vr-desc}
+6. [Competitive]{.vr-name} [The agent does a poor job, and users take their business elsewhere.]{.vr-desc}
 :::
 
 ::::
@@ -89,9 +89,9 @@ On the risk side are six ways an AI agent can create risk for a company like SEE
 1. Financial, one bad decision: a support agent gives a hirer a full refund, or a discount on ad pricing, that policy does not allow.
 2. Reputational, poor behaviour: the agent makes an off-brand or offensive comment to a user.
 3. Regulatory, illegal behaviour: the agent writes discriminatory content into a job ad.
-4. Cybersecurity, an attack surface: attackers use the agent to reach data they should not see.
-5. Running cost: the agent costs more to run than its work is worth, so SEEK loses money on it.
-6. Quality risk: the agent does a poor job. Hirers and candidates get poor outcomes and take their business elsewhere.
+4. Cybersecurity, an attack surface: attackers use the agent to access data or systems they should not.
+5. Operational: the agent costs more to run than its work is worth, so SEEK loses money on it.
+6. Competitive: the agent does a poor job. Hirers and candidates get poor outcomes and take their business elsewhere, so SEEK loses them.
 
 The first four are about a single failure: a bad decision, a bad comment, an illegal output, or an attack. The last two build up over many tasks: an agent that costs too much to run, or one that does a mediocre job until users leave. Either way, an organisation needs to know its agent does the job well, which is what the rest of this tutorial is about. The next slide gathers the headlines from real, publicly reported cases.
 
@@ -102,10 +102,9 @@ The first four are about a single failure: a bad decision, a bad comment, an ill
 - Some, but not all, businesses can also “sell” AI agents in some way, or use them in the customer experience. This does not apply to all businesses, and may skew towards startups figuring out how to create new products and value out of AI agents.
 - For the students and researchers in the room: both motives raise the same question this tutorial is about, which is how you know the agent is doing the job well.
 - Talk down the risks: for each one, what could go wrong at a company like SEEK.
-- Financial risk here means one costly decision. Running cost (5) is different: the agent may never make a mistake and still lose money on every task.
-- Reputational risk here means one bad moment that people share. Quality risk (6) is different: no single reply is a scandal, but users get poor results and stop coming back.
+- Financial risk here means one costly decision. Operational risk (5) is different: the agent may never make a mistake and still lose money on every task.
+- Reputational risk here means one bad moment that people share. Competitive risk (6) is different: no single reply is a scandal, but users get poor results and take their business elsewhere.
 - How evals help with each risk comes later in this section. The full risk slide, which pairs each risk with how evals help, is kept in the graveyard at the end of the deck.
-- The labels for risks 5 and 6 are tentative.
 :::
 
 ---
@@ -171,7 +170,7 @@ Cards, in the order they appear: one per case, the news headline. All are real s
 **Presenter notes:**
 
 - This whole slide gets one to two minutes. Click through the headlines without telling each story; the point is that these risks are real, and they cost companies with customers, in the media and with regulators.
-- Eight clicks, one per case, in the order of the risks on the last slide: financial, reputational, regulatory, cybersecurity, then quality.
+- Eight clicks, one per case, in the order of the risks on the last slide: financial, reputational, regulatory, cybersecurity, then competitive.
 - Don’t stop on any card. Next: how organisations build agents that are governed against these risks. Each case has its own slide in the graveyard at the end, for questions.
 :::
 
@@ -532,7 +531,7 @@ End the chat if risk ≥ 0.8.</pre>
 ::: {.fu-item}
 [AI agent risks]{.fu-title}
 
-<!-- Mostly covered now by the risk side of "Agents can create value, but introduce risk" and the headline collage after it; the full risk slide and the real-case slides are in the graveyard at the end of the deck. "Financial risks (spend)" maps to running cost. Kept until Terrence confirms nothing here is lost. -->
+<!-- Mostly covered now by the risk side of "Agents can create value, but introduce risk" and the headline collage after it; the full risk slide and the real-case slides are in the graveyard at the end of the deck. "Financial risks (spend)" maps to operational risk. Kept until Terrence confirms nothing here is lost. -->
 
 - Security risks
 - Financial risks (spend)
@@ -1493,7 +1492,7 @@ Kept examples, not in the main talk. The headline collage in section 1 covers th
 **Presenter notes:**
 
 - Not part of the main talk. Skip from here, or pull one case up if someone asks about it.
-- The cases are in the order of the risks in section 1: financial, reputational, regulatory, cybersecurity, then quality.
+- The cases are in the order of the risks in section 1: financial, reputational, regulatory, cybersecurity, then competitive.
 :::
 
 ---
@@ -1802,11 +1801,11 @@ Image: the agent’s apology to Andrew, published in the ABC report and credited
 
 ---
 
-## Quality risk in practice: Woolworths’ Olive {.case-slide}
+## Competitive risk in practice: Woolworths’ Olive {.case-slide}
 
 <!-- TODO: Terrence to confirm the framing. He reads Olive’s mother stories as hallucination; Woolworths says they came from a persona prompt an employee wrote years ago. The wrong prices are the clearer errors. -->
 
-[Real case · Australia · a supermarket’s AI assistant · quality risk first, reputational second]{.cs-tag}
+[Real case · Australia · a supermarket’s AI assistant · competitive risk first, reputational second]{.cs-tag}
 
 ::::: {.cs-body}
 
@@ -1832,18 +1831,18 @@ A judge scores live replies for accuracy, such as prices, and for brand voice, s
 [Source: [Yun 2026](../../bibliography/yun-2026-woolworths-olive/), The Sydney Morning Herald.]{.cs-source}
 
 ::: {.notes}
-**About this slide:** An Australian case that is mainly about quality, with a reputational edge. Woolworths was forced to tweak Olive, its AI-powered virtual assistant, after customers reported odd attempts at “banter”, including references to its “mother” who spoke in an “angry voice” ([Yun 2026](../../bibliography/yun-2026-woolworths-olive/)). One Reddit user said Olive asked for their date of birth and then talked about its mother being born the same year; another user on X said Olive “kept claiming to be a real person” to their mother. In the Herald’s own tests, Olive gave wrong prices: $1.40 for La Gina 400g peeled tomatoes, which were $1.70 on the website, and $2.20 for Annalisa 800g diced tomatoes, which were $2.70. Woolworths confirmed it was looking into the issue. The article does not say how many customers were affected or what exactly was changed.
+**About this slide:** An Australian case that is mainly a competitive risk, an agent doing its job badly, with a reputational edge. Woolworths was forced to tweak Olive, its AI-powered virtual assistant, after customers reported odd attempts at “banter”, including references to its “mother” who spoke in an “angry voice” ([Yun 2026](../../bibliography/yun-2026-woolworths-olive/)). One Reddit user said Olive asked for their date of birth and then talked about its mother being born the same year; another user on X said Olive “kept claiming to be a real person” to their mother. In the Herald’s own tests, Olive gave wrong prices: $1.40 for La Gina 400g peeled tomatoes, which were $1.70 on the website, and $2.20 for Annalisa 800g diced tomatoes, which were $2.70. Woolworths confirmed it was looking into the issue. The article does not say how many customers were affected or what exactly was changed.
 
 Image: the headline of the Sydney Morning Herald report by Jessica Yun, 26 February 2026. The report has no screenshot of Olive’s replies; its main photo, credited to Matthew Absalom-Wong, shows Olive’s mascot, not a conversation. The page was readable; a free-registration prompt appears over it in some browsers.
 
 **Presenter notes:**
 
-- Quality first: wrong prices and claims to be a person are the agent doing its job badly. Reputation second: a supermarket assistant telling customers about its angry mother is off-brand, and it made the news.
+- Competitive first: wrong prices and claims to be a person are the agent doing its job badly, the kind of poor outcome that sends customers elsewhere. The article does not report customers leaving. Reputation second: a supermarket assistant telling customers about its angry mother is off-brand, and it made the news.
 - Terrence’s framing is that Olive was trying too hard to be relatable and hallucinated stories about its mother. Woolworths’ account is different: a spokesperson said an employee prompted Olive many years ago to chat about its family, to give it a quirky personality, and the “mother” replies appear to be programmed responses to a date of birth. So present the mother stories as a persona nobody re-checked, and the prices as the errors. <!-- TODO: Terrence to decide how to describe this. -->
 - One Reddit user quoted Olive on its uncle: “Huh. My uncle was born that year. He was one of the 1st ever fuel cells. I think that’s where I get my energy from. Anyway, the last thing I need to get is your postcode. What is it?”
 - Woolworths’ spokesperson: “Our digital assistant Olive has been around since 2018” and customer feedback has been “very positive”. Olive’s page says “Olive is powered by AI and may make mistakes. Always check the product label.”
 - Woolworths told investors it plans to use AI and a partnership with Google to turn Olive into a “market-leading conversational shopping companion”.
-- The eval lesson: no single reply is a disaster, so this is caught by scoring many real conversations over time, for accuracy against the product data and for brand voice. It is the quality risk in section 1.
+- The eval lesson: no single reply is a disaster, so this is caught by scoring many real conversations over time, for accuracy against the product data and for brand voice. It is the competitive risk in section 1.
 :::
 
 # Graveyard: opening and section 1 slides {.graveyard-slide}
@@ -1994,8 +1993,6 @@ AI has a decidedly mixed, if not entirely negative, perception among the public.
 
 ## How AI agents create risk for a company like SEEK {.risk-slide}
 
-<!-- TODO: Terrence to confirm the six labels. Running cost (5) and quality risk (6) were added later and their labels are not settled. -->
-
 :::: {.rk-table}
 
 ::: {.rk-head}
@@ -2005,23 +2002,22 @@ AI has a decidedly mixed, if not entirely negative, perception among the public.
 1. [Financial: one bad decision]{.rk-name} [A support agent gives a hirer a full refund, or a discount on ad pricing, that policy does not allow.]{.rk-eg} [Test refund and pricing requests before launch. A judge checks each offer against policy before it is sent.]{.rk-fix}
 2. [Reputational: poor behaviour]{.rk-name} [The agent makes an off-brand or offensive comment to a user.]{.rk-eg} [Simulated users try to provoke it. A judge scores tone and brand voice, before launch and on live chats.]{.rk-fix}
 3. [Regulatory: illegal behaviour]{.rk-name} [The agent writes discriminatory content into a job ad.]{.rk-eg} [A judge checks generated content against the law before it is published.]{.rk-fix}
-4. [Cybersecurity: an attack surface]{.rk-name} [Attackers use the agent to reach data they should not see.]{.rk-eg} [Simulated attackers probe it. A judge reads the whole conversation and the agent’s actions, not one message.]{.rk-fix}
-5. [Running cost]{.rk-name} [The agent costs more to run than its work is worth, so SEEK loses money on it.]{.rk-eg} [Measure cost and usage per successful task, with a judge deciding which tasks succeeded.]{.rk-fix}
-6. [Quality risk]{.rk-name} [The agent does a poor job. Hirers and candidates get poor outcomes and take their business elsewhere.]{.rk-eg} [A judge scores quality on real tasks, tracked over time.]{.rk-fix}
+4. [Cybersecurity: an attack surface]{.rk-name} [Attackers use the agent to access data or systems they should not.]{.rk-eg} [Simulated attackers probe it. A judge reads the whole conversation and the agent’s actions, not one message.]{.rk-fix}
+5. [Operational: too costly to run]{.rk-name} [The agent costs more to run than its work is worth, so SEEK loses money on it.]{.rk-eg} [Measure cost and usage per successful task, with a judge deciding which tasks succeeded.]{.rk-fix}
+6. [Competitive: poor outcomes]{.rk-name} [The agent does a poor job. Hirers and candidates get poor outcomes and take their business elsewhere.]{.rk-eg} [A judge scores quality on real tasks, tracked over time.]{.rk-fix}
 
 ::::
 
 ::: {.notes}
-**About this slide:** Six ways an AI agent can create risk for a company like SEEK, an online employment marketplace that connects hirers and candidates. Each row gives the risk, an example of how it could happen at SEEK, and how agent evaluations and LLM judges help reduce it. The examples are hypothetical. The first four are about a single failure: a bad decision, a bad comment, an illegal output, or an attack. The last two build up over many tasks: an agent that costs too much to run, or one that does a mediocre job until users leave. The next slide gathers the headlines from real, publicly reported cases on one collage: Air Canada (financial), DPD (reputational), MyCity and Bunnings (regulatory), EchoLeak, the Lego order and the gym booking agent (cybersecurity), and Woolworths’ Olive (quality, with a reputational edge). Two SEEK mock-ups then show judges reducing two of the risks: a job ad (regulatory) and a multi-turn attack (cybersecurity). No real case is shown for running cost. A slide on each real case is kept in the graveyard at the end of the deck.
+**About this slide:** Six ways an AI agent can create risk for a company like SEEK, an online employment marketplace that connects hirers and candidates. Each row gives the risk, an example of how it could happen at SEEK, and how agent evaluations and LLM judges help reduce it. The examples are hypothetical. The first four are about a single failure: a bad decision, a bad comment, an illegal output, or an attack. The last two build up over many tasks: an agent that costs too much to run, or one that does a mediocre job until users leave. The next slide gathers the headlines from real, publicly reported cases on one collage: Air Canada (financial), DPD (reputational), MyCity and Bunnings (regulatory), EchoLeak, the Lego order and the gym booking agent (cybersecurity), and Woolworths’ Olive (competitive, with a reputational edge). Two SEEK mock-ups then show judges reducing two of the risks: a job ad (regulatory) and a multi-turn attack (cybersecurity). No real case is shown for operational risk. A slide on each real case is kept in the graveyard at the end of the deck.
 
 **Presenter notes:**
 
 - Talk down the list. For each row: what could go wrong, then how evals and a judge catch it.
-- Financial risk here means one costly decision. Running cost (row 5) is different: the agent may never make a mistake and still lose money on every task.
-- Reputational risk here means one bad moment that people share. Quality risk (row 6) is different: no single reply is a scandal, but users get poor results and stop coming back.
+- Financial risk here means one costly decision. Operational risk (row 5) is different: the agent may never make a mistake and still lose money on every task.
+- Reputational risk here means one bad moment that people share. Competitive risk (row 6) is different: no single reply is a scandal, but users get poor results and take their business elsewhere.
 - Rows 3 and 4 each end with a worked SEEK mock-up after their real cases: the job ad and the multi-turn attack.
 - Rows 5 and 6 both depend on knowing which tasks the agent did well, which is what a judge provides. That is why cost is measured per successful task, not per task.
-- The labels for rows 5 and 6 are tentative.
 :::
 
 ---
