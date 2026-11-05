@@ -645,3 +645,52 @@ html.print-pdf .reveal .terms-slide .tm-conn { opacity: 1; }
   font-size: 15px;
   color: var(--deck-soft);
 }
+
+/* "What is an agent?": two static bullets, then the working definition as tiles. */
+
+.reveal .agent-def-slide ul {
+  margin: 28px 0 0;
+  font-size: 32px;
+  line-height: 1.4;
+}
+
+.reveal .agent-def-slide .ag-eq {
+  display: flex;
+  align-items: stretch;
+  gap: 14px;
+  margin: 70px 0 12px;
+  font-family: var(--deck-font-sans);
+}
+
+.reveal .agent-def-slide .ag-tile {
+  flex: 1;
+  padding: 24px 22px 26px;
+  font-size: 21px;
+  line-height: 1.35;
+  color: var(--deck-soft);
+  background: var(--deck-paper);
+  border: 1px solid var(--deck-line);
+  border-top: 4px solid var(--deck-accent);
+  border-radius: 2px;
+}
+
+.reveal .agent-def-slide .ag-tile b {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 34px;
+  color: var(--deck-ink);
+}
+
+.reveal .agent-def-slide .ag-tile code {
+  font-size: 0.95em;
+  color: var(--deck-ink);
+}
+
+.reveal .agent-def-slide .ag-result { background: var(--deck-accent-tint); }
+
+.reveal .agent-def-slide .ag-op {
+  align-self: center;
+  font-size: 44px;
+  font-weight: 700;
+  color: var(--deck-accent);
+}

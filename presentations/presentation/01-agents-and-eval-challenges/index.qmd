@@ -785,33 +785,30 @@ The two Olive screenshots: the Reddit post “Olive AI started telling me about 
 
 ## Terms this section defines {#section-2-terms .glossary-slide}
 
-<!-- TODO: the working definition of an agent is now only in this slide's notes, since “Definitions: What is an Agent?” was deleted (6 Nov 2026). Say it aloud here, or give it a home on a slide, before the tutorial. -->
-
 ```{=html}
 <div class="tg-grid">
   <div class="tg-col"><a class="tg-head" href="#/llm-text-generation"><span class="tg-num">1</span>LLM text generation</a><p class="tg-gloss">A model reads tokens and predicts the next one, again and again.</p><ul><li>Input tokens</li><li>Output tokens</li><li>LLM call</li></ul></div>
   <div class="tg-arrow" aria-hidden="true">›</div>
   <div class="tg-col"><a class="tg-head" href="#/conversations-messages-and-turns"><span class="tg-num">2</span>Conversations</a><p class="tg-gloss">The same model, fed a list of messages with roles, one turn at a time.</p><ul><li>Messages</li><li>System message</li><li>User message</li><li>Assistant message</li><li>Chat template</li><li>Turn</li><li>Multi-turn</li></ul></div>
   <div class="tg-arrow" aria-hidden="true">›</div>
-  <div class="tg-col"><a class="tg-head" href="#/agent-traces-think-act-observe"><span class="tg-num">3</span>Agent traces</a><p class="tg-gloss">Between messages, the model thinks, calls tools and reads the results, in a loop.</p><ul><li>Thought</li><li>Action</li><li>Observation</li><li><a href="../../bibliography/yao-2023-react/">ReAct</a> loop</li><li>Step</li><li>Multi-step</li><li>Trace</li></ul></div>
+  <div class="tg-col"><a class="tg-head" href="#/what-is-an-agent"><span class="tg-num">3</span>Agent traces</a><p class="tg-gloss">Between messages, the model thinks, calls tools and reads the results, in a loop.</p><ul><li>Agent</li><li>Thought</li><li>Action</li><li>Observation</li><li><a href="../../bibliography/yao-2023-react/">ReAct</a> loop</li><li>Step</li><li>Multi-step</li><li>Trace</li></ul></div>
   <div class="tg-arrow" aria-hidden="true">›</div>
   <div class="tg-col"><a class="tg-head" href="#/llm-as-judge-evaluating-the-trace"><span class="tg-num">4</span>LLM-as-judge</a><p class="tg-gloss">Another LLM reads part of the trace and gives a verdict. Then we check the judge.</p><ul><li>LLM judge</li><li>Input guardrail</li><li>Call-level eval</li><li>Output guardrail</li><li>Multi-step eval</li><li>Multi-turn eval</li><li>Trace-level eval</li><li>Meta-evaluation</li></ul></div>
 </div>
-<p class="tg-caption">Four ideas, each built on the last. Each heading links to its slide.</p>
+<p class="tg-caption">Four ideas, each built on the last. Each heading links to the slide where its idea starts.</p>
 ```
 
 ::: {.notes}
-**About this slide:** The four ideas of section 2 and the vocabulary each one brings, on one slide, before the detail. Each idea is the one before with something added. (1) LLM text generation: a model reads tokens and predicts the next one. (2) Conversations: the same model is given a list of messages, each with a role. (3) Agent traces: between messages the model thinks, calls tools and reads the results, in a ReAct loop ([Yao et al. 2023](../../bibliography/yao-2023-react/)). (4) LLM-as-judge: another LLM reads part of the trace and gives a verdict, and the judges are themselves checked. Each card lists the terms its slide defines, in the order the slide introduces them; the definitions come on those slides.
+**About this slide:** The four ideas of section 2 and the vocabulary each one brings, on one slide, before the detail. Each idea is the one before with something added. (1) LLM text generation: a model reads tokens and predicts the next one. (2) Conversations: the same model is given a list of messages, each with a role. (3) Agent traces: between messages the model thinks, calls tools and reads the results, in a ReAct loop ([Yao et al. 2023](../../bibliography/yao-2023-react/)). (4) LLM-as-judge: another LLM reads part of the trace and gives a verdict, and the judges are themselves checked. Each card lists the terms its slides define, in the order they are introduced; card 3 covers two slides, “What is an agent?” and “Agent traces: think, act, observe”; the definitions come on those slides.
 
 **Presenter notes:**
 
 - Don’t read the list. Say that every word here gets a definition and a picture in the next few minutes, and that the ideas build on each other from left to right: a conversation is text generation over messages; an agent is a conversation with tool calls in between; a judge is one more LLM call that reads what the agent did.
-- What is an agent? “Agent” and “agentic” have theoretical definitions and practical ones. In practice, this tutorial’s working definition is an LLM plus tools, run in a ReAct loop ([Yao et al. 2023](../../bibliography/yao-2023-react/)). Card 3 is that loop.
 - The next four slides take one idea each. The strip under each title shows where we are.
 - The terms, by slide:
   - 1, “LLM text generation”: input tokens, output tokens, LLM call.
   - 2, “Conversations: messages and turns”: messages, system message, user message, assistant message, chat template, turn, multi-turn.
-  - 3, “Agent traces: think, act, observe”: thought, action, observation, [ReAct](../../bibliography/yao-2023-react/) loop, step, multi-step, trace.
+  - 3, “What is an agent?”: agent. Then “Agent traces: think, act, observe”: thought, action, observation, [ReAct](../../bibliography/yao-2023-react/) loop, step, multi-step, trace.
   - 4, “LLM-as-judge: evaluating the trace”: LLM judge, input guardrail, call-level eval, output guardrail, multi-step eval, multi-turn eval, trace-level eval, meta-evaluation.
 - Not listed: “Evals vs training” names RLHF, RLVR and [RLAIF](../../bibliography/bai-2022-constitutional-ai/) without defining them.
 :::
@@ -1129,6 +1126,43 @@ The two Olive screenshots: the Reddit post “Olive AI started telling me about 
 
 ---
 
+## What is an agent? {#what-is-an-agent .terms-slide .agent-def-slide}
+
+<!-- TODO (Terrence): “agentic” has no sourced definition yet. The slide asks the question but does not answer it. Add a definition and its source, or drop the word. -->
+
+```{=html}
+<div class="tm-road"><span class="tm-road-done">1 LLM text generation</span><span class="tm-road-done">2 Conversations</span><span class="tm-road-on">3 Agent traces</span><span>4 LLM-as-judge</span></div>
+```
+
+- What is an **agent**? What is **agentic**?
+- Theory vs practice: this tutorial uses a practical, working definition.
+
+```{=html}
+<div class="ag-eq" aria-label="Working definition: an agent is an LLM, plus tools, plus a loop of thought, action and observation">
+  <div class="ag-tile"><b>LLM</b>Generates text, one LLM call at a time.</div>
+  <div class="ag-op">+</div>
+  <div class="ag-tile"><b>Tools</b>Functions it can call, such as <code>search_jobs</code>.</div>
+  <div class="ag-op">+</div>
+  <div class="ag-tile"><b><a href="../../bibliography/yao-2023-react/">ReAct</a> loop</b>Thought, action, observation, repeated until it can answer.</div>
+  <div class="ag-op">=</div>
+  <div class="ag-tile ag-result"><b>Agent</b>The whole system, not just the assistant role.</div>
+</div>
+<div class="tm-sources">Working definition: LLM + tools + ReAct loop (<a href="../../bibliography/yao-2023-react/">Yao et al. 2023</a>).</div>
+```
+
+::: {.notes}
+**About this slide:** Where the section moves from conversations to agents. It asks what “agent” and “agentic” mean, contrasts theoretical and practical definitions, and gives the working definition used in this tutorial: an LLM plus tools, run in a ReAct loop ([Yao et al. 2023](../../bibliography/yao-2023-react/)). The next slide shows that loop in a trace.
+
+**Presenter notes:**
+
+- What is an agent? “Agent” and “agentic” have theoretical definitions and practical ones. In practice, this tutorial’s working definition is an LLM plus tools, run in a ReAct loop ([Yao et al. 2023](../../bibliography/yao-2023-react/)).
+- The LLM is the model from idea 1; the tools are the functions in the next slide’s system message (get_profile, search_jobs, apply); the next slide unpacks the loop.
+- “Agent” means the whole system. “Assistant” stays the name of the message role.
+- TODO (Terrence): what “agentic” means, with a source. No sourced definition yet.
+:::
+
+---
+
 ## Agent traces: think, act, observe {.terms-slide}
 
 ```{=html}
@@ -1187,7 +1221,7 @@ The two Olive screenshots: the Reddit post “Olive AI started telling me about 
 
 **Presenter notes:**
 
-- Idea 3: an agent is the conversation from the last slide, plus tools. Between the user's message and the reply, the agent runs a loop the user never sees.
+- Idea 3, continued: an agent is the conversation from “Conversations: messages and turns”, plus tools. Between the user's message and the reply, the agent runs a loop the user never sees.
 - Thought, action, observation: each thought and action is one LLM call, with everything above it as input. The observation is the tool's output, added to the input for the next call.
 - ReAct loop: the agent repeats thought, action, observation until it can answer ([Yao et al. 2023](../../bibliography/yao-2023-react/)).
 - "Step" is ambiguous in everyday use. We use it the way the agent papers do: one pass of the ReAct loop ([Yao et al. 2023](../../bibliography/yao-2023-react/)).
