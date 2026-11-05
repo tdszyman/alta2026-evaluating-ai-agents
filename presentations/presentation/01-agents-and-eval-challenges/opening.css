@@ -260,8 +260,13 @@
 
 .reveal .about-slide .ab-facts {
   display: grid;
-  row-gap: 8px;
-  margin-top: 10px;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  column-gap: 36px;
+  margin-top: 16px;
+}
+
+.reveal .about-slide .ab-fact.ab-fact-wrap {
+  white-space: normal;
 }
 
 .reveal .about-slide .ab-fact {

@@ -4477,6 +4477,59 @@
       "note": "Read on 5 November 2026 from the Internet Archive capture of 2 October 2026, because the live page refused automated requests. The regional map and SEEK logo on the slide are SEEK’s own images, downloaded from the image host the page uses.",
       "featured_rank": null,
       "abstract": null
+    },
+    {
+      "id": "seek-2026-market-sites",
+      "type": "website",
+      "authors": [
+        "SEEK"
+      ],
+      "year": "2026",
+      "title": "SEEK, Jobstreet and Jobsdb home pages in SEEK’s eight markets",
+      "venue": "SEEK websites. Internet Archive captures of September and October 2026.",
+      "url": "https://web.archive.org/web/20261027065555/https://au.seek.com/",
+      "links": [
+        {
+          "label": "SEEK Australia (au.seek.com), capture of 27 October 2026",
+          "href": "https://web.archive.org/web/20261027065555/https://au.seek.com/"
+        },
+        {
+          "label": "SEEK New Zealand (nz.seek.com), capture of 29 September 2026",
+          "href": "https://web.archive.org/web/20260929131716/https://nz.seek.com/"
+        },
+        {
+          "label": "Jobsdb Hong Kong (hk.jobsdb.com), capture of 8 September 2026",
+          "href": "https://web.archive.org/web/20260908103231/https://hk.jobsdb.com/"
+        },
+        {
+          "label": "Jobsdb Thailand (th.jobsdb.com), capture of 20 October 2026",
+          "href": "https://web.archive.org/web/20261020165503/https://th.jobsdb.com/"
+        },
+        {
+          "label": "Jobstreet Indonesia (id.jobstreet.com), capture of 27 October 2026",
+          "href": "https://web.archive.org/web/20261027105417/https://id.jobstreet.com/"
+        },
+        {
+          "label": "Jobstreet Malaysia (my.jobstreet.com), capture of 27 October 2026",
+          "href": "https://web.archive.org/web/20261027105416/https://my.jobstreet.com/"
+        },
+        {
+          "label": "Jobstreet Philippines (ph.jobstreet.com), capture of 12 October 2026",
+          "href": "https://web.archive.org/web/20261012190752/https://ph.jobstreet.com/"
+        },
+        {
+          "label": "Jobstreet Singapore (sg.jobstreet.com), capture of 27 October 2026",
+          "href": "https://web.archive.org/web/20261027105418/https://sg.jobstreet.com/"
+        }
+      ],
+      "groups": [
+        "industry"
+      ],
+      "mentions": [],
+      "summary": "SEEK’s job sites in its eight markets, read for the languages each one offers. Every site is in English. Jobstreet Indonesia also offers Indonesian, Jobsdb Thailand Thai, and Jobsdb Hong Kong Chinese (labelled 中文); the sites in Australia, New Zealand, Malaysia, the Philippines and Singapore offer English only. That makes four languages in all. Part 1 uses them for the “4 official languages” fact on “About me, and SEEK”.",
+      "note": "Read on 6 November 2026 from Internet Archive captures, because the live sites refused automated requests. The languages are each page’s own locale list (availableLocales in its app config) and its language switcher. SEEK does not call them official languages.",
+      "featured_rank": null,
+      "abstract": null
     }
   ]
 }
