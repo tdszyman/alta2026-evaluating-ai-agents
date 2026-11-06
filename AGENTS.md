@@ -68,7 +68,8 @@ Default slide chrome:
 - Keyboard: Left and Right move slides. `T` cycles the slide theme. Escape closes the drawer or search first, then goes to the site home.
 - Page number at the bottom, same `n / total` count.
 - Edge previous/next controls that fade after the pointer is still.
-- Deck chain: if a deck’s last slide has a link with `data-next-deck`, going forward from the end (right arrow, space, page down, or the top bar’s next button) opens it. Going back from a deck’s first slide opens the deck named by `prev` in the `PARTS` map in `chrome.html`, at its last slide with every build shown (`?at=end`). The talk runs Intro → Part 1 → Part 2 → Part 3 → Part 4; Part 4 has no forward link and Part 1.G is outside the chain. The speaker view (S) follows each hop and can drive it. The fading edge arrows stop at a deck’s ends.
+- Every page needs a next action, even when there is no next slide. A deck’s last slide ends on a `.next-deck` link with `data-next-deck`: the next deck, or, at the end of the talk or outside it, a page of the site (use a relative link so the site's base path holds). A website page ends on a link to where the reader goes next.
+- Deck chain: if a deck’s last slide has a link with `data-next-deck`, going forward from the end (right arrow, space, page down, or the top bar’s next button) opens it. Going back from a deck’s first slide opens the deck named by `prev` in the `PARTS` map in `chrome.html`, at its last slide with every build shown (`?at=end`). The talk runs Intro → Part 1 → Part 2 → Part 3 → Part 4. Part 4's last slide links back to the site home (`../../`), and Part 1.G, which is outside the chain, ends on a link to the presentation landing (`../`). The speaker view (S) follows each hop and can drive it. The fading edge arrows stop at a deck’s ends.
 
 Bibliography:
 

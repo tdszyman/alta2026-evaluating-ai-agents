@@ -831,3 +831,15 @@ Framework: [Complex versus complicated](../../bibliography/finegood-complex-vers
 - Build 2: the second user message ("the café one") only makes sense after the agent's first reply. Change the agent and the reply changes, so a recorded conversation goes stale. We need something that can respond. A simulated user, an LLM given a persona and a goal, plays that role. [τ-bench](../../bibliography/yao-2024-tau-bench/) is one benchmark built this way.
 - Build 3: we then evaluate at several tiers. Step: was each tool call right? Turn: was each reply good? Trajectory: did the user's goal get met, without breaking policy? Multi-tier evals and simulation are on the follow-up notes at the end of this section, still to be written up.
 :::
+
+---
+
+## End of Part 1.G {#end-of-part-1g}
+
+Every slide cut from Part 1 is above, kept in full with its notes.
+
+[Back to the presentation →](../){.next-deck data-next-deck="true"}
+
+::: {.notes}
+**About this slide:** The end of the graveyard deck. It is not part of the talk, so going forward from here opens the presentation landing page rather than another deck.
+:::

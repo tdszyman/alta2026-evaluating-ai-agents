@@ -8,7 +8,7 @@ format:
       - intro.css
 ---
 
-## Evaluating AI Agents with LLM-as-a-Judge {#welcome .intro-slide .welcome-slide .section-divider .sd-7 style="--deck-heading: var(--sd-on-ink); --deck-ink: var(--sd-on-ink); --deck-soft: var(--sd-on-ink); --deck-accent: var(--sd-on-ink); --deck-accent-strong: var(--sd-on-ink); --deck-line: var(--sd-on-ink); --deck-gradient: linear-gradient(var(--sd-on-ink), var(--sd-on-ink));"}
+## Evaluating AI Agents with LLM-as-a-Judge {#welcome .intro-slide .welcome-slide .section-divider .part-title .sd-7 style="--deck-heading: var(--sd-on-ink); --deck-ink: var(--sd-on-ink); --deck-soft: var(--sd-on-ink); --deck-accent: var(--sd-on-ink); --deck-accent-strong: var(--sd-on-ink); --deck-line: var(--sd-on-ink); --deck-gradient: linear-gradient(var(--sd-on-ink), var(--sd-on-ink));"}
 
 <!-- TODO: housekeeping (emergency exits, toilets, Wi-Fi, recording) goes in the notes only. Fill the prompts there before the day. -->
 

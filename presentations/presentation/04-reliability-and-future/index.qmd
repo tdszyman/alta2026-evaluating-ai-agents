@@ -67,3 +67,9 @@ Pointers for the reliability discussion. This deck is still a placeholder.
 Questions · discussion · links TBD
 
 ALTA 2026 · Evaluating AI Agents with LLM-as-a-Judge
+
+[Back to home →](../../){.next-deck data-next-deck="true"}
+
+::: {.notes}
+**About this slide:** The last slide of the tutorial. Going forward from here (right arrow, space or the next button) opens the site home page, so the talk ends on a next action rather than a dead end.
+:::

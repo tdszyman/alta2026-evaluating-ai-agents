@@ -72,6 +72,7 @@ If that fails (permissions), the owner must enable it in the UI.
 3. Speaker notes: `::: {.notes}` … `:::`.
 4. Do **not** invent claims — leave `<!-- TODO: … -->` or mark **WIP**.
 5. Part outlines live under `organisation/outlines/`; keep decks aligned.
+6. Every page needs a next action, even when there is no next slide. End each deck's last slide on a hand-off link with the shared style and the forward hook: `[Next: Part n · Title →](../0n-…/){.next-deck data-next-deck="true"}`. Going forward from the end (right arrow, space, the next button) then follows it. The last deck of the talk links home (`[Back to home →](../../)`), and a deck outside the talk links to the presentation landing (`../`). Keep the links relative, so the site's base path on GitHub Pages holds. Website pages likewise end on a link to where the reader goes next.
 
 ## Render (local = CI)
 
