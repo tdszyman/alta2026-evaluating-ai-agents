@@ -4,6 +4,8 @@ format:
   revealjs:
     css:
       - ../../_shared/chrome.css
+      - ../../_shared/section-divider.css
+      - ../../_shared/organiser-only.css
       - complexity.css
       - job-ad-judge.css
       - generative-eval.css
@@ -673,7 +675,7 @@ End the chat if risk ≥ 0.8.</pre>
 
 ---
 
-## Notes to follow up {.follow-up-slide .fu-dense}
+## Notes to follow up {.follow-up-slide .fu-dense .organiser-only}
 
 <!-- TODO: placeholder slides moved here in full, plus what the seven-slide section 1 cut. Turn these into slides or drop them. -->
 
@@ -775,7 +777,7 @@ In full, with their notes, in the separate [Part 1.G: Graveyard](../01g-graveyar
 The two Olive screenshots: the Reddit post “Olive AI started telling me about its mother on the phone?” in r/woolworths by u/Immediate_Novel5946 (February 2026), and the X post by @verynormalman of 25 February 2026 that quotes it. Both were supplied by Terrence; the case is reported by the Sydney Morning Herald ([Yun 2026](../../bibliography/yun-2026-woolworths-olive/)). DPD’s haiku, Lego’s Sophia reply and the gym agent’s apology were also cut from the collage; each is on its case slide in [Part 1.G: Graveyard](../01g-graveyard/).
 :::
 
-# 2. Technical foundations: LLMs, generative AI and agents
+# 2. Technical foundations: LLMs, generative AI and agents {.section-divider .sd-1}
 
 ::: {.notes}
 **About this slide:** Section 2 covers the technical foundations: what an LLM does when it generates text, how conversations are fed to it, and what turns it into an AI agent. It ends with the terms for where an LLM judge can check an agent, and how evaluation relates to training.
@@ -1314,7 +1316,7 @@ The two Olive screenshots: the Reddit post “Olive AI started telling me about 
 **About this slide:** How evaluation relates to training. They are separate but overlap: an agent can raise its evaluation scores without retraining, and LLMs are trained with methods that resemble evaluation, such as RLHF, RLVR and [RLAIF](../../bibliography/bai-2022-constitutional-ai/). This tutorial covers evaluation only, not training.
 :::
 
-# 3. Why agents need LLM judges
+# 3. Why agents need LLM judges {.section-divider .sd-2}
 
 ::: {.notes}
 **About this slide:** Section 3 builds on those foundations to show why LLM judges are needed to evaluate AI agents, and why other methods fall short: generative outputs cannot be matched against a label, and an AI agent is both a complicated and a complex system, whose behaviour comes from the whole system rather than any single part.
@@ -1500,7 +1502,7 @@ The two Olive screenshots: the Reddit post “Olive AI started telling me about 
 
 ---
 
-## Notes to follow up: section 3 {.follow-up-slide}
+## Notes to follow up: section 3 {.follow-up-slide .organiser-only}
 
 <!-- TODO: placeholder slides moved here in full. Multi-tier evals, Simulation and Metrics belong to this section. Offline evals, Online evals, Data, Observability, Agent registries and gateways, and Examples from SEEK (platform) are not placed in the new structure; question for Terrence, since the program lists the evaluation lifecycle under Part 1. -->
 

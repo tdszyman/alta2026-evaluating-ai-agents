@@ -1,0 +1,39 @@
+/* Organisers-only slides: working material to remove before the final draft.
+   Add .organiser-only to the slide heading: ## Notes to follow up {.organiser-only}
+   The slide's text and accents drop to the theme's muted colours, images go grey,
+   and a tag names the slide as temporary.
+   A deck opts in by listing ../../_shared/organiser-only.css in format.revealjs.css. */
+
+.reveal .slides section.organiser-only {
+  --deck-ink: var(--deck-soft);
+  --deck-heading: var(--deck-soft);
+  --deck-accent: var(--deck-soft);
+  --deck-accent-strong: var(--deck-soft);
+  --deck-accent-tint: var(--deck-surface);
+  --deck-accent-ring: var(--deck-line);
+  --deck-accent-fill: var(--deck-soft);
+  --deck-gradient: linear-gradient(var(--deck-line), var(--deck-line));
+  color: var(--deck-soft);
+}
+
+.reveal .slides section.organiser-only img {
+  filter: grayscale(1) opacity(0.75);
+}
+
+.reveal .slides section.organiser-only::before {
+  content: "To be removed prior to final draft";
+  position: absolute;
+  top: 4px;
+  right: 0;
+  z-index: 2;
+  padding: 5px 12px;
+  font-family: var(--deck-font-sans);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+  color: var(--deck-soft);
+  background: var(--deck-surface);
+  border: 1.5px dashed var(--deck-soft);
+  border-radius: 999px;
+}
