@@ -3,7 +3,8 @@
    Variants .sd-1 to .sd-7 each have their own gradient; no variant means .sd-1.
    Assigned: .sd-1 and .sd-2 Part 1 section dividers; .sd-3 to .sd-6 the Part 1 to 4
    title slides; .sd-7 the Intro title slide. Pick a new number for any new use.
-   A part title slide adds .part-title and a .pt-meta block:
+   Every title slide (Intro and Parts) adds .part-title, which also shows the
+   ALTA 2026 logo on a white chip at the top right. A part title slide adds a .pt-meta block:
      ::: {.pt-meta}
      [Part 1]{.pt-part} [Presenter name]{.pt-presenter}
      :::
@@ -161,4 +162,21 @@ html:has(.reveal .slides section.present.section-divider) .reveal .slide-menu-bu
 .reveal .slides section.part-title .pt-presenter {
   font-size: 32px;
   font-weight: 600;
+}
+
+/* ALTA 2026 logo on title slides. It sits on Reveal's full-screen background
+   layer, so it is in the same place in every deck and never touches the title.
+   The chip keeps the logo's own colours legible on every gradient.
+   Source and permission: _shared/README.md. */
+html:has(.reveal .slides section.present.part-title) .reveal .backgrounds::after {
+  content: "";
+  position: absolute;
+  top: calc(var(--deck-bar, 42px) + 26px);
+  right: 34px;
+  width: 116px;
+  height: 92px;
+  background: #ffffff url("alta-2026-logo.png") center / 88px auto no-repeat;
+  border: 1px solid rgb(15 16 21 / 0.08);
+  border-radius: 14px;
+  box-shadow: 0 6px 20px rgb(15 16 21 / 0.14);
 }
