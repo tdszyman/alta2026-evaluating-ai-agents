@@ -158,13 +158,17 @@ def slide_index(markdown: str) -> list[dict]:
         if line.strip() == "---":
             current = None
             continue
-        match = re.match(r"^(#{1,6})\s+(.+?)(?:\s+\{[^}]*\})?\s*$", line)
+        match = re.match(r"^(#{1,6})\s+(.+?)(?:\s+\{([^}]*)\})?\s*$", line)
         if not match:
             continue
-        base = slugify(match.group(2))
-        n = seen.get(base, 0)
-        seen[base] = n + 1
-        ident = base if n == 0 else f"{base}-{n}"
+        explicit = re.search(r"(?:^|\s)#([\w-]+)", match.group(3) or "")
+        if explicit:
+            ident = explicit.group(1)
+        else:
+            base = slugify(match.group(2))
+            n = seen.get(base, 0)
+            seen[base] = n + 1
+            ident = base if n == 0 else f"{base}-{n}"
         if current is None:
             current = {"id": ident, "title": re.sub(r"[*_`]", "", match.group(2)).strip()}
             slides.append(current)
@@ -458,6 +462,8 @@ Draft for organiser review. A coding agent wrote this note. It is not a substitu
 ## Cited in the presentation
 
 {cite_md}
+
+[← Back to the bibliography](../)
 """
     (dest / "index.qmd").write_text(page, encoding="utf-8")
 
