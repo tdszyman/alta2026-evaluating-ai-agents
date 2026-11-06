@@ -355,3 +355,19 @@ html.deck-idle .reveal .controls .navigate-right:focus {
   .deck-footer-num,
   .reveal .controls { display: none !important; }
 }
+
+/* "Next: Part n" hand-off link on a deck's last slide (data-next-deck).
+   Right-aligned under the slide content, accent text, no underline until
+   hover. */
+.reveal .slides a.next-deck {
+  display: block;
+  width: fit-content;
+  margin: 1.1em 0 0 auto;
+  font-size: 22px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.reveal .slides a.next-deck:hover {
+  text-decoration: underline;
+}

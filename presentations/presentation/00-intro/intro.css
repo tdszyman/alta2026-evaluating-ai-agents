@@ -345,13 +345,14 @@
   color: var(--deck-soft);
 }
 
-.reveal .presenters-slide .next-deck {
+.reveal .presenters-slide a.next-deck {
   flex: none;
+  margin: 0;
   font-size: 22px;
   font-weight: 600;
   text-decoration: none;
 }
 
-.reveal .presenters-slide .next-deck:hover {
+.reveal .presenters-slide a.next-deck:hover {
   text-decoration: underline;
 }

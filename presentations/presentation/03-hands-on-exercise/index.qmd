@@ -58,4 +58,6 @@ Use your own OpenRouter API key. It stays in this browser, and judge calls go di
 
 ## Next
 
-**Part 4:** Reliability, Limitations, and Future Directions → [Part 4](../04-reliability-and-future/)
+**Part 4:** Reliability, Limitations, and Future Directions
+
+[Next: Part 4 · Reliability, Limitations, and Future Directions →](../04-reliability-and-future/){.next-deck data-next-deck="true"}
