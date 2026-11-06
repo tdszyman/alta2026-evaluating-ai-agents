@@ -21,9 +21,11 @@ DEST = ROOT / "presentations" / "organisation"
 REMOVE_ON = date(2026, 11, 30)
 
 BANNER = (
-    "> **Organisers only.** This section is not linked from the public site. "
+    "::: {.org-banner}\n"
+    "**Organisers only.** This section is not linked from the public site. "
     "The build stops publishing it on 30 November 2026. "
     "Some links that point outside `organisation/` in the repository do not resolve here.\n"
+    ":::\n"
 )
 
 

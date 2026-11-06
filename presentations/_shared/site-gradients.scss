@@ -1,0 +1,18 @@
+/* Website card gradients, the same in light and dark. Hues follow the Canva deck
+   dividers (section-divider.css); the lighter stops there sit behind no text, but a
+   site card's text covers most of the card, so every stop here keeps white text at
+   4.5:1 or more and the light corner glows are left out. See _shared/style-brief.md. */
+:root {
+  --card-ink: #ffffff;
+  --card-violet: linear-gradient(160deg, #902cff 0%, #a81ae6 55%, #cd04c7 100%);
+  --card-magenta: linear-gradient(160deg, #cd04c7 0%, #db142c 100%);
+  --card-blue: linear-gradient(160deg, #902cff 0%, #3868d9 62%, #1d6fb0 100%);
+  --card-green: linear-gradient(160deg, #00602a 0%, #008636 100%);
+  --card-indigo: linear-gradient(160deg, #362ab9 0%, #474cef 100%);
+  --card-teal: linear-gradient(160deg, #005f6f 0%, #007285 100%);
+  --card-brand: linear-gradient(100deg, #7b2ae9 0%, #5c31f9 100%);
+  --card-sunset: linear-gradient(160deg, #db142c 0%, #b83a00 100%);
+  --card-slate: linear-gradient(160deg, #35415a 0%, #4b5772 100%);
+  --accent-fill: linear-gradient(98deg, #5a32fa, #7630d7);
+  --accent-fill-hover: linear-gradient(98deg, #4a22e0, #612dae);
+}

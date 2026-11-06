@@ -1,11 +1,15 @@
-/* Shared website components. Colours come from the theme file's custom properties.
-   See presentations/_shared/style-brief.md. */
+/* Shared website components. Colours come from the theme file's custom properties
+   and _shared/site-gradients.scss. See presentations/_shared/style-brief.md. */
 
 body {
   background: var(--bg);
   color: var(--text);
   font-size: 1.05rem;
   line-height: 1.6;
+}
+
+h1, h2, h3, h4, .h1, .h2, .h3, .h4 {
+  letter-spacing: -0.015em;
 }
 
 #quarto-header {
@@ -52,8 +56,40 @@ body {
   color: var(--muted);
 }
 
+/* Canva's tab bar: rounded pills, the current page filled. */
+.navbar .navbar-nav {
+  gap: 0.15rem;
+}
+
+.navbar .nav-link {
+  border-radius: 999px;
+  font-weight: 500;
+  color: var(--text);
+}
+
+@media (min-width: 992px) {
+  .navbar-expand-lg .navbar-nav .nav-link {
+    padding: 0.4rem 0.95rem;
+  }
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link:focus {
+  background: var(--nav-hover);
+  color: var(--text);
+}
+
+.navbar .nav-link.active,
+.navbar .nav-link.active:hover,
+.navbar .nav-link.active:focus {
+  background: var(--accent-fill);
+  color: var(--card-ink);
+}
+
 #title-block-header .title {
-  line-height: 1.15;
+  font-size: clamp(2rem, 1.4rem + 2vw, 2.7rem);
+  line-height: 1.12;
+  letter-spacing: -0.025em;
 }
 
 #title-block-header .title:has(.title-sub) {
@@ -73,16 +109,8 @@ body {
 #title-block-header .subtitle,
 .eyebrow,
 .note,
-.tag,
-.jump-card p,
-.part-card p,
-.person p {
+.tag {
   color: var(--muted);
-}
-
-.navbar .nav-link.active {
-  color: var(--accent);
-  box-shadow: inset 0 -2px 0 var(--accent);
 }
 
 #quarto-document-content,
@@ -93,6 +121,7 @@ body {
 .eyebrow {
   margin: 0 0 0.4rem;
   font-size: 0.75rem;
+  font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
@@ -110,37 +139,59 @@ body {
 .jump-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.9rem;
+  gap: 1rem;
   margin: 1.5rem 0 2rem;
 }
 
+/* Gradient cards. White text sits on every stop; see site-gradients.scss. */
 .jump-card,
 .part-card,
-.person,
-.ai-summary,
-.org-banner {
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: 2px;
-  color: inherit;
+.person {
+  --card-bg: var(--card-violet);
+  background: var(--card-bg);
+  border: 0;
+  border-radius: 24px;
+  color: var(--card-ink);
 }
+
+.jump-grid > .jump-card:nth-child(4n + 1) { --card-bg: var(--card-violet); }
+.jump-grid > .jump-card:nth-child(4n + 2) { --card-bg: var(--card-indigo); }
+.jump-grid > .jump-card:nth-child(4n + 3) { --card-bg: var(--card-green); }
+.jump-grid > .jump-card:nth-child(4n + 4) { --card-bg: var(--card-magenta); }
+
+/* Same colours as each deck's title slide (.sd-3 to .sd-7 in section-divider.css). */
+#intro.part-card { --card-bg: var(--card-brand); }
+#part-1.part-card { --card-bg: var(--card-blue); }
+#part-1g.part-card { --card-bg: var(--card-slate); }
+#part-2.part-card { --card-bg: var(--card-green); }
+#part-3.part-card { --card-bg: var(--card-indigo); }
+#part-4.part-card { --card-bg: var(--card-teal); }
+
+.person-grid > .person:nth-child(4n + 1) { --card-bg: var(--card-blue); }
+.person-grid > .person:nth-child(4n + 2) { --card-bg: var(--card-sunset); }
+.person-grid > .person:nth-child(4n + 3) { --card-bg: var(--card-teal); }
+.person-grid > .person:nth-child(4n + 4) { --card-bg: var(--card-brand); }
 
 .jump-card,
 .part-card {
   position: relative;
-  display: block;
-  padding: 1rem 1.05rem 1.1rem;
+  display: flex;
+  flex-direction: column;
+  min-height: 11rem;
+  padding: 1.35rem 1.5rem 1.5rem;
   text-decoration: none;
+  transition: transform 160ms ease;
 }
 
 .jump-card .card-title,
 .part-card .card-title {
   display: block;
-  margin: 0.15rem 0 0.35rem;
-  font-size: 1.35rem;
+  margin: 0.7rem 0 0.4rem;
+  font-size: 1.45rem;
   font-weight: 600;
+  line-height: 1.2;
   letter-spacing: -0.02em;
-  color: var(--text);
+  color: var(--card-ink);
   text-decoration: none;
 }
 
@@ -149,67 +200,103 @@ body {
   content: "";
   position: absolute;
   inset: 0;
+  border-radius: inherit;
 }
 
-.part-card p a {
+.jump-card .card-title:focus-visible,
+.part-card .card-title:focus-visible {
+  outline: none;
+}
+
+.jump-card:focus-within,
+.part-card:focus-within {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.jump-card p,
+.part-card p,
+.person p {
+  margin: 0;
+  color: var(--card-ink);
+}
+
+.part-card p a,
+.person a {
   position: relative;
   z-index: 1;
-}
-
-a.app-launch {
-  display: inline-block;
-  margin-top: 0.4rem;
-  padding: 0.55rem 0.9rem;
-  background: var(--accent);
-  color: var(--bg);
-  border-radius: 2px;
-  font-weight: 600;
-  text-decoration: none;
-}
-
-a.app-launch:hover {
-  color: var(--bg);
-  text-decoration: none;
-  filter: brightness(0.92);
+  color: var(--card-ink);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
 }
 
 .jump-card:hover,
 .part-card:hover {
-  border-color: var(--accent);
-  color: inherit;
+  color: var(--card-ink);
   text-decoration: none;
+  transform: translateY(-3px);
 }
 
-.jump-card p,
-.part-card p { margin: 0; }
+@media (prefers-reduced-motion: reduce) {
+  .jump-card,
+  .part-card { transition: none; }
+  .jump-card:hover,
+  .part-card:hover { transform: none; }
+}
 
+/* Outlined pill, like the "Part n" pill on the deck title slides. */
 .jump-card .index,
 .part-card .index {
-  display: block;
-  font-size: 0.75rem;
+  align-self: flex-start;
+  padding: 0.1rem 0.65rem;
+  border: 1.5px solid currentColor;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 700;
   letter-spacing: 0.08em;
-  color: var(--accent);
+  line-height: 1.5;
+  text-transform: uppercase;
+  color: var(--card-ink);
 }
-
-.jump-card .index { text-transform: uppercase; }
 
 .part-list {
   display: grid;
-  gap: 0.8rem;
-  margin: 1rem 0 2rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin: 1.25rem 0 2rem;
 }
 
 .person-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.8rem;
+  gap: 1rem;
 }
 
-.person { padding: 0.9rem 1rem; }
-.person h3 { margin: 0 0 0.2rem; font-size: 1.2rem; color: var(--text); }
+.person { padding: 1.25rem 1.5rem 1.35rem; }
+.person h3 { margin: 0 0 0.3rem; font-size: 1.3rem; color: var(--card-ink); }
 .person p { margin: 0.2rem 0; }
+.person p.note { font-size: 0.92rem; font-style: italic; }
 
 .note { font-size: 0.95rem; }
+
+/* Canva primary button: a filled pill. */
+a.app-launch {
+  display: inline-block;
+  margin-top: 0.4rem;
+  padding: 0.65rem 1.4rem;
+  background: var(--accent-fill);
+  color: var(--card-ink);
+  border-radius: 999px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+a.app-launch:hover,
+a.app-launch:focus {
+  background: var(--accent-fill-hover);
+  color: var(--card-ink);
+  text-decoration: none;
+}
 
 .filters {
   display: flex;
@@ -230,36 +317,32 @@ a.app-launch:hover {
   display: flex;
   flex: 1 1 18rem;
   flex-wrap: wrap;
-  gap: 0.35rem;
+  gap: 0.4rem;
 }
 
 .filters button {
   border: 1px solid var(--line);
   background: transparent;
-  color: var(--muted);
-  border-radius: 2px;
-  padding: 0.18rem 0.55rem;
+  color: var(--text);
+  border-radius: 999px;
+  padding: 0.2rem 0.8rem;
   font: inherit;
-  font-size: 0.72rem;
+  font-size: 0.8rem;
   font-weight: 500;
-  letter-spacing: 0.07em;
-  line-height: 1.4;
-  text-transform: uppercase;
+  line-height: 1.5;
   cursor: pointer;
   transition: color 120ms ease, border-color 120ms ease, background-color 120ms ease;
 }
 
 .filters button:hover {
   border-color: var(--accent);
-  color: var(--accent);
+  background: var(--nav-hover);
 }
 
-/* The inset ring makes the 2px selected border without shifting the row. */
 .filters button[aria-pressed="true"] {
-  background: var(--surface);
-  color: var(--accent);
-  border-color: var(--accent);
-  box-shadow: inset 0 0 0 1px var(--accent);
+  background: var(--accent-fill);
+  color: var(--card-ink);
+  border-color: transparent;
 }
 
 .bib-list {
@@ -293,16 +376,30 @@ a.app-launch:hover {
   margin: 0.8rem 0 1.2rem;
 }
 
+/* Long-form reading stays dark-on-pale, like Canva's pale tint cards. */
+.ai-summary,
+.access-note {
+  background: var(--tint);
+  border: 0;
+  border-radius: 24px;
+}
+
+.ai-summary a,
+.access-note a {
+  color: var(--tint-link);
+}
+
 .ai-summary {
   max-width: 46rem;
   margin-top: 1.4rem;
-  padding: 0.9rem 1rem 0.2rem;
+  padding: 1.25rem 1.5rem 0.4rem;
 }
 
 .ai-summary h2 {
   margin: 1.15rem 0 0.35rem;
   font-size: 1.15rem;
   color: var(--text);
+  border-bottom: 0;
 }
 
 .ai-summary h3 {
@@ -317,11 +414,7 @@ a.app-launch:hover {
 .access-note {
   max-width: 46rem;
   margin: 1rem 0;
-  padding: 0.7rem 0.9rem;
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-left: 3px solid var(--accent);
-  border-radius: 2px;
+  padding: 0.9rem 1.25rem;
 }
 
 .paper-figure { margin: 1rem 0 1.15rem; }
@@ -332,6 +425,7 @@ a.app-launch:hover {
   height: auto;
   background: #fff;
   border: 1px solid var(--line);
+  border-radius: 12px;
 }
 
 .paper-figure figcaption {
@@ -351,11 +445,12 @@ a.app-launch:hover {
 .ai-label {
   display: inline-block;
   margin: 0 0 0.45rem;
-  padding: 0.1rem 0.45rem;
-  border: 1px solid var(--accent);
-  border-radius: 2px;
-  color: var(--accent);
-  font-size: 0.75rem;
+  padding: 0.15rem 0.75rem;
+  background: var(--accent-fill);
+  border-radius: 999px;
+  color: var(--card-ink);
+  font-size: 0.72rem;
+  font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
@@ -367,6 +462,7 @@ a.app-launch:hover {
   color: var(--muted);
 }
 
+.ai-summary .ai-provenance a,
 .ai-provenance a,
 .ai-provenance a:hover,
 .ai-provenance a:visited,
@@ -377,8 +473,19 @@ a.app-launch:hover {
 }
 
 .org-banner {
-  padding: 0.7rem 0.9rem;
-  margin-bottom: 1rem;
+  margin-bottom: 1.25rem;
+  padding: 1rem 1.35rem;
+  background: var(--card-magenta);
+  border-radius: 24px;
+  color: var(--card-ink);
+}
+
+.org-banner p { margin: 0; }
+
+.org-banner code,
+.org-banner p code:not(.sourceCode) {
+  background: rgb(0 0 0 / 0.22);
+  color: var(--card-ink);
 }
 
 a:focus-visible,
@@ -391,5 +498,9 @@ summary:focus-visible {
 
 @media (max-width: 720px) {
   .jump-grid,
+  .part-list,
   .person-grid { grid-template-columns: 1fr; }
+
+  .jump-card,
+  .part-card { min-height: 0; }
 }
