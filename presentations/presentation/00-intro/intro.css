@@ -22,6 +22,17 @@
   white-space: nowrap;
 }
 
+/* A draft time or length that is not confirmed yet: a dotted underline, so
+   it reads as provisional without drawing the eye. Remove the span once the
+   item is confirmed. */
+.reveal .tbc {
+  text-decoration-line: underline;
+  text-decoration-style: dotted;
+  text-decoration-color: var(--deck-soft);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.22em;
+}
+
 /* Welcome: the title by scale and a left-aligned grid, not a gradient. The
    kicker sits above the heading, which stays first in the source for the top
    bar, search and the slide's anchor. */
@@ -110,11 +121,11 @@
 
 .reveal .timeline-slide .tl-rows li {
   display: grid;
-  grid-template-columns: 96px 1fr 84px;
+  grid-template-columns: 76px 1fr 100px;
   column-gap: 16px;
   align-items: baseline;
   margin: 0;
-  padding: 15px 12px;
+  padding: 10px 12px;
   border-bottom: 1px solid var(--deck-line);
   font-size: 26px;
   line-height: 1.25;
@@ -127,6 +138,7 @@
 }
 
 .reveal .timeline-slide .tl-len {
+  white-space: nowrap;
   text-align: right;
   color: var(--deck-soft);
 }
@@ -158,6 +170,14 @@
   min-width: 2.9em;
   font-weight: 700;
   color: var(--deck-accent);
+}
+
+.reveal .timeline-slide .tl-who {
+  display: block;
+  margin-top: 2px;
+  font-size: 17px;
+  line-height: 1.25;
+  color: var(--deck-soft);
 }
 
 .reveal .timeline-slide .tl-break .tl-what {
