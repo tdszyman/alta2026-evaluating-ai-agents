@@ -1,30 +1,36 @@
-/* Scientific Modernist. Tokens and decisions: _shared/style-brief.md */
+/* Canva, light. Tokens and decisions: _shared/style-brief.md */
 /*-- scss:defaults --*/
-$font-family-sans-serif: Inter, "Source Sans 3", "Segoe UI", system-ui, sans-serif;
+$font-family-sans-serif: "Plus Jakarta Sans", "Segoe UI Variable Display", "Segoe UI", system-ui, sans-serif;
 $font-family-monospace: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
-$headings-font-family: Inter, "Source Sans 3", "Segoe UI", system-ui, sans-serif;
+$headings-font-family: "Plus Jakarta Sans", "Segoe UI Variable Display", "Segoe UI", system-ui, sans-serif;
 $headings-font-weight: 600;
-$headings-color: #14283b;
-$body-bg: #fbfcfb;
-$body-color: #14283b;
-$body-secondary-color: #526476;
-$body-secondary-bg: #eff3f5;
-$primary: #245ba6;
-$link-color: #245ba6;
-$link-hover-color: #1b467f;
-$navbar-bg: #fbfcfb;
-$border-color: #b8c8d1;
-$code-block-bg: #eff3f5;
-$code-color: #14283b;
+$headings-color: #0f1015;
+$body-bg: #ffffff;
+$body-color: #0f1015;
+$body-secondary-color: #58595e;
+$body-secondary-bg: #f3f4f7;
+$primary: #8b3dff;
+$link-color: #8b3dff;
+$link-hover-color: #612dae;
+$navbar-bg: #ffffff;
+$border-color: #c2c6ce;
+$border-radius: 8px;
+$code-block-bg: #f3f4f7;
+$code-color: #0f1015;
 
 /*-- scss:rules --*/
 :root {
-  --bg: #fbfcfb;
-  --text: #14283b;
-  --accent: #245ba6;
-  --muted: #526476;
-  --surface: #eff3f5;
-  --line: #b8c8d1;
+  --bg: #ffffff;
+  --text: #0f1015;
+  --accent: #8b3dff;
+  --accent-strong: #612dae;
+  --muted: #58595e;
+  --surface: #f3f4f7;
+  --tint: #f2ebff;
+  --tint-link: #7630d7;
+  --line: #c2c6ce;
+  --nav-hover: #f3f4f7;
 }
 
+@import "_shared/site-gradients";
 @import "_shared/site-components";

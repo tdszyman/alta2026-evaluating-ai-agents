@@ -50,6 +50,7 @@ format:
     theme:
       light: [default, site.scss]
       dark: [default, site-dark.scss]
+    css: _shared/site-fonts.css
     toc: false
     # Stay in the current tab. The local preview host (127.0.0.1) is not
     # the published site URL, so Quarto would otherwise mark knowledge

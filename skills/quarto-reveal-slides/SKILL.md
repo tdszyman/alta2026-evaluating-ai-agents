@@ -22,8 +22,8 @@ description: >-
 ```
 presentations/
   _quarto.yml                 # website project (routes, theme, Reveal defaults)
-  site.scss                   # Scientific Modernist (light) website theme
-  site-dark.scss              # Night Laboratory (dark) website theme
+  site.scss                   # Canva (light) website theme
+  site-dark.scss              # Canva (dark) website theme
   index.qmd                   # site home (/)
   about/index.qmd             # /about/
   presentation/index.qmd      # /presentation/
@@ -32,7 +32,7 @@ presentations/
   presentation/01g-graveyard/ # Part 1.G: slides cut from Part 1, not in the talk
   _shared/style-brief.md      # visual source of truth; edit this before restyling
   _shared/themes/             # slide templates: original.scss, nyfw-ss26.scss, canva.scss (default)
-  _shared/fonts/              # bundled Plus Jakarta Sans (SIL OFL) for the Canva template
+  _shared/fonts/              # bundled Plus Jakarta Sans (SIL OFL) for the Canva template and the website
   _shared/                    # slide chrome and shared website component rules
   _site/                      # build output (gitignored) — CI deploys this
   _site/hands-on/             # rendered hands-on page
