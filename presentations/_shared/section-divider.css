@@ -9,40 +9,55 @@
      [Part 1]{.pt-part} [Presenter name]{.pt-presenter}
      :::
    A deck opts in by listing ../../_shared/section-divider.css in format.revealjs.css.
+   Layout: full-bleed by default; the Layout block at the end switches to an inset card.
    Each --sd-n-ink is the text colour checked against the gradient behind the text. */
 
 :root {
-  /* Canva: violet, sunset, blue, green, red, turquoise, gold. */
-  --sd-1-bg: radial-gradient(circle at 88% 16%, rgb(233 80 247 / 0.55), transparent 42%),
-             linear-gradient(125deg, #5a32fa 0%, #7d2ae8 55%, #8b3dff 100%);
+  /* Canva: stops sampled from the gradient cards on canva.com/en_au. White text throughout. Each slide's text sits on its darker stops; the lighter
+     stops that fall under 4.5:1 with white (teal, sky, coral, lavender) are corner glows. */
+  /* .sd-1 violet to magenta: the Video and Magic Layers cards. */
+  --sd-1-bg: radial-gradient(circle at 92% 12%, rgb(234 57 255 / 0.55), transparent 34%),
+             linear-gradient(125deg, #902cff 0%, #902cff 40%, #cd04c7 100%);
   --sd-1-ink: #ffffff;
-  --sd-2-bg: radial-gradient(circle at 86% 18%, rgb(255 217 173 / 0.7), transparent 40%),
-             linear-gradient(125deg, #ff6108 0%, #ff7a3d 45%, #e950f7 100%);
-  --sd-2-ink: #0f1015;
-  --sd-3-bg: radial-gradient(circle at 94% 8%, rgb(0 196 204 / 0.5), transparent 28%),
-             linear-gradient(125deg, #1645c0 0%, #1854d7 55%, #1a62ff 100%);
+  /* .sd-2 magenta to red, coral corner: the Magic Layers and Magic Eraser cards. */
+  --sd-2-bg: radial-gradient(circle at 100% 100%, rgb(255 115 71 / 0.9), transparent 34%),
+             linear-gradient(150deg, #cd04c7 0%, #cd04c7 25%, #eb2139 100%);
+  --sd-2-ink: #ffffff;
+  /* .sd-3 violet to blue, aqua corner: the Visual Suite card. */
+  --sd-3-bg: radial-gradient(circle at 100% 100%, rgb(169 233 248 / 0.75), transparent 30%),
+             linear-gradient(160deg, #902cff 0%, #3868d9 62%, #2585c7 100%);
   --sd-3-ink: #ffffff;
-  --sd-4-bg: radial-gradient(circle at 94% 8%, rgb(0 196 204 / 0.4), transparent 28%),
-             linear-gradient(125deg, #006b0f 0%, #008009 100%);
+  /* .sd-4 green: the "Try Canva with your favourite apps" card. */
+  --sd-4-bg: radial-gradient(circle at 100% 100%, rgb(26 150 42 / 0.9), transparent 30%),
+             linear-gradient(160deg, #008636 0%, #008636 100%);
   --sd-4-ink: #ffffff;
-  --sd-5-bg: radial-gradient(circle at 94% 8%, rgb(255 97 8 / 0.45), transparent 30%),
-             linear-gradient(125deg, #a8102a 0%, #db142c 100%);
+  /* .sd-5 indigo to lavender: the Canva Enterprise card. */
+  --sd-5-bg: radial-gradient(circle at 100% 100%, rgb(177 181 253 / 0.8), transparent 32%),
+             linear-gradient(160deg, #362ab9 0%, #474cef 85%);
   --sd-5-ink: #ffffff;
-  --sd-6-bg: radial-gradient(circle at 88% 14%, rgb(204 225 255 / 0.8), transparent 40%),
-             linear-gradient(125deg, #00c4cc 0%, #3fd6dc 55%, #a6ecef 100%);
-  --sd-6-ink: #0f1015;
-  --sd-7-bg: radial-gradient(circle at 88% 14%, rgb(255 97 8 / 0.35), transparent 40%),
-             linear-gradient(125deg, #ffd9ad 0%, #ffc46b 55%, #ffb03b 100%);
-  --sd-7-ink: #0f1015;
+  /* .sd-6 teal to aqua: the Barbie card. Its #009bb1 teal is 3.3:1 with white, so the
+     text sits on the same teal deepened to #007285, and the sampled teal and aqua glow. */
+  --sd-6-bg: radial-gradient(circle at 100% 100%, rgb(92 203 220 / 0.9), transparent 24%),
+             radial-gradient(circle at 100% 100%, rgb(0 155 177 / 0.95), transparent 34%),
+             linear-gradient(160deg, #007285 0%, #007285 100%);
+  --sd-6-ink: #ffffff;
+  /* .sd-7 violet to indigo to teal: the "Start designing with Canva" banner, mirrored
+     so the text sits on violet and indigo and the banner's teal end glows bottom right. */
+  --sd-7-bg: radial-gradient(ellipse 46% 60% at 100% 100%, rgb(1 194 205 / 0.95), transparent 100%),
+             radial-gradient(ellipse 40% 55% at 100% 70%, rgb(51 113 230 / 0.7), transparent 100%),
+             linear-gradient(100deg, #7b2ae9 0%, #5c31f9 60%, #5c31f9 100%);
+  --sd-7-ink: #ffffff;
 }
 
 html[data-deck-theme="nyfw-ss26"] {
-  /* NYFW SS26: alexandrite to marina, muskmelon to tea rose, deep marina, pale alexandrite,
-     lava falls, amaranth, acacia to muskmelon. */
+  /* NYFW SS26: alexandrite to marina, deep marina to amaranth, deep marina, pale alexandrite,
+     lava falls, amaranth, plum ink to amaranth. Muskmelon, tea rose and acacia are too light
+     for white text, so they only glow in a corner. */
   --sd-1-bg: linear-gradient(125deg, #00646c 0%, #00646c 35%, #4f85c3 100%);
   --sd-1-ink: #ffffff;
-  --sd-2-bg: linear-gradient(125deg, #ee935c 0%, #de7176 100%);
-  --sd-2-ink: #371e2a;
+  --sd-2-bg: radial-gradient(circle at 100% 100%, rgb(222 113 118 / 0.85), transparent 30%),
+             linear-gradient(125deg, #2d5a8f 0%, #6e3c55 100%);
+  --sd-2-ink: #ffffff;
   --sd-3-bg: linear-gradient(125deg, #2d5a8f 0%, #3f70aa 100%);
   --sd-3-ink: #ffffff;
   --sd-4-bg: linear-gradient(125deg, #b3d0d3 0%, #e0ecee 100%);
@@ -51,8 +66,10 @@ html[data-deck-theme="nyfw-ss26"] {
   --sd-5-ink: #ffffff;
   --sd-6-bg: linear-gradient(125deg, #6e3c55 0%, #8f5a6c 100%);
   --sd-6-ink: #ffffff;
-  --sd-7-bg: linear-gradient(125deg, #dacd65 0%, #e4b061 100%);
-  --sd-7-ink: #371e2a;
+  --sd-7-bg: radial-gradient(ellipse 42% 55% at 100% 100%, rgb(218 205 101 / 0.8), transparent 100%),
+             radial-gradient(ellipse 36% 50% at 100% 70%, rgb(238 147 92 / 0.6), transparent 100%),
+             linear-gradient(110deg, #371e2a 0%, #6e3c55 100%);
+  --sd-7-ink: #ffffff;
 }
 
 html[data-deck-theme="original"] {
@@ -179,4 +196,46 @@ html:has(.reveal .slides section.present.part-title) .reveal .backgrounds::after
   border: 1px solid rgb(15 16 21 / 0.08);
   border-radius: 14px;
   box-shadow: 0 6px 20px rgb(15 16 21 / 0.14);
+}
+
+/* Layout. Full-bleed (above) is the default. The inset layout draws the gradient as a
+   large rounded card on the slide's own background instead, with the top bar, page
+   number and edge arrows in their normal colours. A slide opts in with .sd-inset.
+   To make every divider and title slide inset, change ".sd-inset" to ".section-divider"
+   in the selector below: that one line is the whole switch. */
+html:has(.reveal .slides section.present.section-divider.sd-inset) {
+  --sd-card-radius: 32px;
+
+  .reveal .backgrounds {
+    background: none;
+  }
+
+  .reveal .backgrounds::before {
+    content: "";
+    position: absolute;
+    top: calc(var(--deck-bar, 42px) + 18px);
+    right: 36px;
+    bottom: 50px;
+    left: 36px;
+    background: var(--sd-on-bg);
+    border-radius: var(--sd-card-radius);
+  }
+
+  .reveal .backgrounds::after {
+    top: calc(var(--deck-bar, 42px) + 42px);
+    right: 60px;
+  }
+
+  .deck-footer-num {
+    color: var(--deck-soft);
+  }
+
+  .reveal .controls {
+    color: var(--deck-accent);
+  }
+
+  .reveal .slide-menu-button {
+    padding: 0;
+    background: none;
+  }
 }
