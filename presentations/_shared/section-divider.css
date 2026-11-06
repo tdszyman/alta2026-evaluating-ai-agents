@@ -1,4 +1,4 @@
-/* Section dividers and part title slides: a full-screen block of colour.
+/* Section dividers and part title slides: a large rounded card of colour.
    Use on a level-1 heading: # 2. Title {.section-divider .sd-1}
    Variants .sd-1 to .sd-7 each have their own gradient; no variant means .sd-1.
    Assigned: .sd-1 and .sd-2 Part 1 section dividers; .sd-3 to .sd-6 the Part 1 to 4
@@ -9,7 +9,6 @@
      [Part 1]{.pt-part} [Presenter name]{.pt-presenter}
      :::
    A deck opts in by listing ../../_shared/section-divider.css in format.revealjs.css.
-   Layout: full-bleed by default; the Layout block at the end switches to an inset card.
    Each --sd-n-ink is the text colour checked against the gradient behind the text. */
 
 :root {
@@ -125,22 +124,18 @@ html:has(.reveal .slides section.present.section-divider.sd-7) {
   --sd-on-ink: var(--sd-7-ink);
 }
 
-/* The slide box is smaller than the window, so the colour goes on Reveal's
-   full-screen background layer while a divider is the current slide. */
-html:has(.reveal .slides section.present.section-divider) .reveal .backgrounds {
+/* The card is drawn on Reveal's full-screen background layer, so it is the same size
+   in every deck. Its margins keep it clear of the top bar, the edge arrows, the menu
+   button and the page number, which all keep their normal colours. */
+html:has(.reveal .slides section.present.section-divider) .reveal .backgrounds::before {
+  content: "";
+  position: absolute;
+  top: calc(var(--deck-bar, 42px) + 18px);
+  right: 36px;
+  bottom: 50px;
+  left: 36px;
   background: var(--sd-on-bg);
-}
-
-html:has(.reveal .slides section.present.section-divider) .deck-footer-num,
-html:has(.reveal .slides section.present.section-divider) .reveal .controls {
-  color: var(--sd-on-ink);
-}
-
-/* Quarto draws the menu icon as a fixed-colour image, so it sits on a paper chip instead. */
-html:has(.reveal .slides section.present.section-divider) .reveal .slide-menu-button {
-  padding: 2px 5px;
-  background: var(--deck-paper);
-  border-radius: 6px;
+  border-radius: 32px;
 }
 
 .reveal .slides section.section-divider h1 {
@@ -181,61 +176,19 @@ html:has(.reveal .slides section.present.section-divider) .reveal .slide-menu-bu
   font-weight: 600;
 }
 
-/* ALTA 2026 logo on title slides. It sits on Reveal's full-screen background
-   layer, so it is in the same place in every deck and never touches the title.
+/* ALTA 2026 logo on title slides, inside the card's top-right corner. It sits on
+   Reveal's full-screen background layer, so it is in the same place in every deck.
    The chip keeps the logo's own colours legible on every gradient.
    Source and permission: _shared/README.md. */
 html:has(.reveal .slides section.present.part-title) .reveal .backgrounds::after {
   content: "";
   position: absolute;
-  top: calc(var(--deck-bar, 42px) + 26px);
-  right: 34px;
+  top: calc(var(--deck-bar, 42px) + 42px);
+  right: 60px;
   width: 116px;
   height: 92px;
   background: #ffffff url("alta-2026-logo.png") center / 88px auto no-repeat;
   border: 1px solid rgb(15 16 21 / 0.08);
   border-radius: 14px;
   box-shadow: 0 6px 20px rgb(15 16 21 / 0.14);
-}
-
-/* Layout. Full-bleed (above) is the default. The inset layout draws the gradient as a
-   large rounded card on the slide's own background instead, with the top bar, page
-   number and edge arrows in their normal colours. A slide opts in with .sd-inset.
-   To make every divider and title slide inset, change ".sd-inset" to ".section-divider"
-   in the selector below: that one line is the whole switch. */
-html:has(.reveal .slides section.present.section-divider.sd-inset) {
-  --sd-card-radius: 32px;
-
-  .reveal .backgrounds {
-    background: none;
-  }
-
-  .reveal .backgrounds::before {
-    content: "";
-    position: absolute;
-    top: calc(var(--deck-bar, 42px) + 18px);
-    right: 36px;
-    bottom: 50px;
-    left: 36px;
-    background: var(--sd-on-bg);
-    border-radius: var(--sd-card-radius);
-  }
-
-  .reveal .backgrounds::after {
-    top: calc(var(--deck-bar, 42px) + 42px);
-    right: 60px;
-  }
-
-  .deck-footer-num {
-    color: var(--deck-soft);
-  }
-
-  .reveal .controls {
-    color: var(--deck-accent);
-  }
-
-  .reveal .slide-menu-button {
-    padding: 0;
-    background: none;
-  }
 }
