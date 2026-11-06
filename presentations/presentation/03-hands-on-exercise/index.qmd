@@ -1,7 +1,22 @@
 ---
-title: "Part 3: Hands-on Agent Evaluation Exercise"
-subtitle: "ALTA 2026 Tutorial 2 — Afternoon · WIP"
-format: revealjs
+pagetitle: "Part 3: Hands-on Agent Evaluation Exercise"
+format:
+  revealjs:
+    css:
+      - ../../_shared/chrome.css
+      - ../../_shared/section-divider.css
+---
+
+# Hands-on Agent Evaluation Exercise {#part-3-title .section-divider .part-title .sd-5}
+
+::: {.pt-meta}
+[Part 3]{.pt-part} [Yelaman Abdullin]{.pt-presenter}
+:::
+
+::: {.notes}
+**About this slide:** Part 3 of the tutorial, “Hands-on Agent Evaluation Exercise”, presented by Yelaman Abdullin.
+:::
+
 ---
 
 ## Hands-on session

@@ -16,6 +16,18 @@ format:
       - opening.css
 ---
 
+# AI Agents and Evaluation Challenges {#part-1-title .section-divider .part-title .sd-3}
+
+::: {.pt-meta}
+[Part 1]{.pt-part} [Terrence Szymanski]{.pt-presenter}
+:::
+
+::: {.notes}
+**About this slide:** Part 1 of the tutorial, “AI Agents and Evaluation Challenges”, presented by Terrence Szymanski.
+:::
+
+---
+
 ## Would you use an AI agent to… {.vote-slide}
 
 <!-- TODO: The poll figures are from press coverage, not the surveys' own reports, and none asks Terrence's four questions. Replace them if the full Indeed or Greenhouse reports give closer questions or Australian figures. -->
@@ -1294,7 +1306,7 @@ The two Olive screenshots: the Reddit post “Olive AI started telling me about 
 
 **Presenter notes:**
 
-- Idea 4: the same trace, now with judges on it. A judge is one more LLM call, as on the first slide: its input is a rubric plus some part of the trace, and its output is a verdict.
+- Idea 4: the same trace, now with judges on it. A judge is one more LLM call, as on “LLM text generation”: its input is a rubric plus some part of the trace, and its output is a verdict.
 - What changes between judges is how much of the trace they read: one message, one LLM call, one turn's steps, the whole conversation, or the whole trace.
 - Guardrails are judges that run inline and can block: an input guardrail before the agent acts on a message, an output guardrail before the user sees a reply.
 - Evaluation levels: step-level and trajectory-level are the terms in observability tooling ([Dong et al. 2024](../../bibliography/dong-2024-agentops/)). Some papers say process-level for judging the path and outcome-level for judging the end state ([Pisupati et al. 2026](../../bibliography/pisupati-2026-counsel/)). For conversations, tools also say conversation-level or session-level.

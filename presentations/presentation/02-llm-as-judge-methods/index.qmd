@@ -1,7 +1,22 @@
 ---
-title: "Part 2: LLM-as-a-Judge Methods"
-subtitle: "ALTA 2026 Tutorial 2 — Afternoon · WIP"
-format: revealjs
+pagetitle: "Part 2: LLM-as-a-Judge Methods"
+format:
+  revealjs:
+    css:
+      - ../../_shared/chrome.css
+      - ../../_shared/section-divider.css
+---
+
+# LLM-as-a-Judge Methods {#part-2-title .section-divider .part-title .sd-4}
+
+::: {.pt-meta}
+[Part 2]{.pt-part} [Parvin Zarei Eskikand]{.pt-presenter}
+:::
+
+::: {.notes}
+**About this slide:** Part 2 of the tutorial, “LLM-as-a-Judge Methods”, presented by Parvin Zarei Eskikand.
+:::
+
 ---
 
 ## Part 2 overview

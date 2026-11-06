@@ -1,7 +1,22 @@
 ---
-title: "Part 4: Reliability, Limitations, and Future Directions"
-subtitle: "ALTA 2026 Tutorial 2 — Afternoon · WIP"
-format: revealjs
+pagetitle: "Part 4: Reliability, Limitations, and Future Directions"
+format:
+  revealjs:
+    css:
+      - ../../_shared/chrome.css
+      - ../../_shared/section-divider.css
+---
+
+# Reliability, Limitations, and Future Directions {#part-4-title .section-divider .part-title .sd-6}
+
+::: {.pt-meta}
+[Part 4]{.pt-part} [Sara Mirabi]{.pt-presenter}
+:::
+
+::: {.notes}
+**About this slide:** Part 4 of the tutorial, “Reliability, Limitations, and Future Directions”, presented by Sara Mirabi.
+:::
+
 ---
 
 ## Closing session
