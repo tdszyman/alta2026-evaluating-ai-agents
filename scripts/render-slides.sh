@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Render the Quarto site (home, decks, knowledge, about, hands-on).
 # Local preview should match CI (GitHub Actions → GitHub Pages from main).
-# Usage: ./scripts/render-slides.sh [01|01g|02|03|04|all]
+# Usage: ./scripts/render-slides.sh [00|01|01g|02|03|04|all]
 
 set -euo pipefail
 
@@ -34,6 +34,7 @@ fi
 
 part_path() {
   case "$1" in
+    00) echo "presentation/00-intro/index.qmd" ;;
     01) echo "presentation/01-agents-and-eval-challenges/index.qmd" ;;
     01g) echo "presentation/01g-graveyard/index.qmd" ;;
     02) echo "presentation/02-llm-as-judge-methods/index.qmd" ;;
@@ -124,7 +125,7 @@ render_one() {
   local rel
   rel="$(part_path "$key")"
   if [[ -z "$rel" ]]; then
-    echo "error: unknown part '$key' (expected 01, 01g, 02–04 or all)" >&2
+    echo "error: unknown part '$key' (expected 00, 01, 01g, 02–04 or all)" >&2
     exit 1
   fi
   prepare_site
@@ -136,11 +137,11 @@ case "$PART" in
   all)
     render_all
     ;;
-  01|01g|02|03|04)
+  00|01|01g|02|03|04)
     render_one "$PART"
     ;;
   *)
-    echo "usage: $0 [01|01g|02|03|04|all]" >&2
+    echo "usage: $0 [00|01|01g|02|03|04|all]" >&2
     exit 1
     ;;
 esac

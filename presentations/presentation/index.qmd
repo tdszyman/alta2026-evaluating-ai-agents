@@ -1,6 +1,6 @@
 ---
 title: "Presentation"
-subtitle: "Four parts, each its own deck"
+subtitle: "An intro and four parts, each its own deck"
 format: html
 ---
 
@@ -9,6 +9,14 @@ Each part is its own slide deck and its own URL, so contributors can edit one se
 Inside a deck: open the slide list from the menu at the top left, move with the arrows or the left and right keys, and search the text of that deck. Escape returns to this site’s home page. The edge arrows fade when the pointer is still.
 
 ::: {.part-list}
+
+::: {#intro .part-card}
+<span class="index">Intro · Before Part 1</span>
+
+[Welcome and introductions](00-intro/){.card-title}
+
+The afternoon's plan and the four presenters, before Part 1.
+:::
 
 ::: {#part-1 .part-card}
 <span class="index">Part 1 · Session 1</span>
