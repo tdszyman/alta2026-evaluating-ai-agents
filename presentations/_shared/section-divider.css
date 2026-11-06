@@ -1,0 +1,88 @@
+/* Section dividers: a full-screen block of colour per divider.
+   Use on a level-1 heading: # 2. Title {.section-divider .sd-1}
+   Variants .sd-1 to .sd-4 each have their own gradient; no variant means .sd-1.
+   A deck opts in by listing ../../_shared/section-divider.css in format.revealjs.css.
+   Each --sd-n-ink is the text colour checked against every stop of --sd-n-bg. */
+
+:root {
+  /* Canva: brand violet, sunset, ocean, berry. */
+  --sd-1-bg: radial-gradient(circle at 88% 16%, rgb(233 80 247 / 0.55), transparent 42%),
+             linear-gradient(125deg, #5a32fa 0%, #7d2ae8 55%, #8b3dff 100%);
+  --sd-1-ink: #ffffff;
+  --sd-2-bg: radial-gradient(circle at 86% 18%, rgb(255 217 173 / 0.7), transparent 40%),
+             linear-gradient(125deg, #ff6108 0%, #ff7a3d 45%, #e950f7 100%);
+  --sd-2-ink: #0f1015;
+  --sd-3-bg: radial-gradient(circle at 86% 18%, rgb(204 225 255 / 0.6), transparent 42%),
+             linear-gradient(125deg, #00c4cc 0%, #3d9bff 60%, #5a7dff 100%);
+  --sd-3-ink: #0f1015;
+  --sd-4-bg: radial-gradient(circle at 86% 18%, rgb(255 214 216 / 0.45), transparent 40%),
+             linear-gradient(125deg, #612dae 0%, #b73fd8 60%, #e950f7 100%);
+  --sd-4-ink: #ffffff;
+}
+
+html[data-deck-theme="nyfw-ss26"] {
+  /* NYFW SS26: alexandrite to marina, muskmelon to tea rose, acacia to muskmelon, amaranth to lava falls. */
+  --sd-1-bg: linear-gradient(125deg, #00646c 0%, #00646c 35%, #4f85c3 100%);
+  --sd-1-ink: #ffffff;
+  --sd-2-bg: linear-gradient(125deg, #ee935c 0%, #de7176 100%);
+  --sd-2-ink: #371e2a;
+  --sd-3-bg: linear-gradient(125deg, #dacd65 0%, #ee935c 100%);
+  --sd-3-ink: #371e2a;
+  --sd-4-bg: linear-gradient(125deg, #6e3c55 0%, #9a2b31 100%);
+  --sd-4-ink: #ffffff;
+}
+
+html[data-deck-theme="original"] {
+  /* Original: its blues only, two dark and two pale. */
+  --sd-1-bg: linear-gradient(125deg, #1b467f 0%, #245ba6 100%);
+  --sd-1-ink: #ffffff;
+  --sd-2-bg: linear-gradient(125deg, #d6e4f5 0%, #e3ecf8 55%, #eff3f5 100%);
+  --sd-2-ink: #14283b;
+  --sd-3-bg: linear-gradient(125deg, #14283b 0%, #1b467f 100%);
+  --sd-3-ink: #ffffff;
+  --sd-4-bg: linear-gradient(125deg, #eff3f5 0%, #b8c8d1 100%);
+  --sd-4-ink: #14283b;
+}
+
+html:has(.reveal .slides section.present.section-divider) {
+  --sd-on-bg: var(--sd-1-bg);
+  --sd-on-ink: var(--sd-1-ink);
+}
+
+html:has(.reveal .slides section.present.section-divider.sd-2) {
+  --sd-on-bg: var(--sd-2-bg);
+  --sd-on-ink: var(--sd-2-ink);
+}
+
+html:has(.reveal .slides section.present.section-divider.sd-3) {
+  --sd-on-bg: var(--sd-3-bg);
+  --sd-on-ink: var(--sd-3-ink);
+}
+
+html:has(.reveal .slides section.present.section-divider.sd-4) {
+  --sd-on-bg: var(--sd-4-bg);
+  --sd-on-ink: var(--sd-4-ink);
+}
+
+/* The slide box is smaller than the window, so the colour goes on Reveal's
+   full-screen background layer while a divider is the current slide. */
+html:has(.reveal .slides section.present.section-divider) .reveal .backgrounds {
+  background: var(--sd-on-bg);
+}
+
+html:has(.reveal .slides section.present.section-divider) .deck-footer-num,
+html:has(.reveal .slides section.present.section-divider) .reveal .controls,
+html:has(.reveal .slides section.present.section-divider) .reveal .slide-menu-button a,
+html:has(.reveal .slides section.present.section-divider) .reveal .slide-menu-button i {
+  color: var(--sd-on-ink);
+}
+
+.reveal .slides section.section-divider h1 {
+  max-width: 13.5em;
+  margin: 0;
+  font-size: 80px;
+  font-weight: 800;
+  line-height: 1.06;
+  letter-spacing: -0.025em;
+  color: var(--sd-on-ink, var(--deck-heading));
+}
