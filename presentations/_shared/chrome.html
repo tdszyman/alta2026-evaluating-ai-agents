@@ -2,11 +2,11 @@
 (function () {
   var PARTS = {
     "00-intro": { label: "Intro", anchor: "intro" },
-    "01-agents-and-eval-challenges": { label: "Part 1", anchor: "part-1" },
+    "01-agents-and-eval-challenges": { label: "Part 1", anchor: "part-1", prev: "00-intro" },
     "01g-graveyard": { label: "Part 1.G", anchor: "part-1g" },
-    "02-llm-as-judge-methods": { label: "Part 2", anchor: "part-2" },
-    "03-hands-on-exercise": { label: "Part 3", anchor: "part-3" },
-    "04-reliability-and-future": { label: "Part 4", anchor: "part-4" }
+    "02-llm-as-judge-methods": { label: "Part 2", anchor: "part-2", prev: "01-agents-and-eval-challenges" },
+    "03-hands-on-exercise": { label: "Part 3", anchor: "part-3", prev: "02-llm-as-judge-methods" },
+    "04-reliability-and-future": { label: "Part 4", anchor: "part-4", prev: "03-hands-on-exercise" }
   };
 
   /* Slide templates the picker offers. Each id is a file in _shared/themes/;
@@ -337,37 +337,124 @@
     drawer.querySelector("[data-deck-close]").addEventListener("click", closeDrawer);
     backdrop.addEventListener("click", closeDrawer);
 
-    /* A deck can hand over to the next one: a link with data-next-deck on its
-       last slide is followed when the presenter goes forward from the end. */
+    /* Decks chain into one talk. A link with data-next-deck on a deck's last
+       slide is followed when the presenter goes forward from the end; going
+       back from the first slide opens the deck named in PARTS[...].prev at its
+       last slide (?at=end). In the speaker view the slides are receiver
+       iframes, so the jump goes to the main deck window (the popup's opener),
+       and the keys arrive as Reveal "triggerKey" messages, not key events. */
     var nextDeck = document.querySelector(".reveal .slides a[data-next-deck]");
+    var nextHref = nextDeck ? nextDeck.href : null;
+    var prevHref = part.prev ? new URL("../" + part.prev + "/?at=end", location.href).href : null;
+    var isReceiver = /receiver/i.test(location.search);
+    var FORWARD_CODES = [39, 40, 34, 78, 76, 74];
+    var BACK_CODES = [37, 38, 33, 80, 72, 75];
 
     function atDeckEnd() {
       return Reveal.isLastSlide() && !Reveal.availableFragments().next;
     }
 
-    function forward() {
-      if (nextDeck && atDeckEnd()) window.location.href = nextDeck.href;
-      else Reveal.next();
+    function atDeckStart() {
+      return Reveal.isFirstSlide() && !Reveal.availableFragments().prev;
+    }
+
+    function openDeck(href) {
+      var target = window;
+      if (isReceiver) {
+        try { target = window.parent.opener; } catch (e) { target = null; }
+      }
+      if (target) target.location.href = href;
+    }
+
+    /* Returns true when the step left this deck, so the caller skips Reveal. */
+    function chainStep(dir) {
+      if (dir > 0 && nextHref && atDeckEnd()) { openDeck(nextHref); return true; }
+      if (dir < 0 && prevHref && atDeckStart()) { openDeck(prevHref); return true; }
+      return false;
+    }
+
+    function keyDirection(code, shift) {
+      if (code === 32) return shift ? -1 : 1;
+      if (FORWARD_CODES.indexOf(code) !== -1) return 1;
+      if (BACK_CODES.indexOf(code) !== -1) return -1;
+      return 0;
     }
 
     bar.querySelectorAll("[data-dir]").forEach(function (btn) {
       btn.addEventListener("click", function () {
-        if (btn.dataset.dir === "1") forward();
+        var dir = btn.dataset.dir === "1" ? 1 : -1;
+        if (chainStep(dir)) return;
+        if (dir > 0) Reveal.next();
         else Reveal.prev();
       });
     });
 
-    if (nextDeck) {
+    if (nextHref || prevHref) {
+      /* Capture on window runs before Reveal's own handlers, so the position
+         checked is the one before Reveal moves. */
       window.addEventListener("keydown", function (event) {
-        var forwardKeys = ["ArrowRight", "ArrowDown", "PageDown", " ", "n", "N"];
-        if (forwardKeys.indexOf(event.key) === -1) return;
         if (event.metaKey || event.ctrlKey || event.altKey) return;
         if (drawerOpen() || event.target.closest("input, textarea, select")) return;
-        if (!atDeckEnd()) return;
-        event.preventDefault();
-        event.stopPropagation();
-        window.location.href = nextDeck.href;
+        var dir = keyDirection(event.keyCode, event.shiftKey);
+        if (dir && chainStep(dir)) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
       }, true);
+      if (isReceiver) {
+        /* Reveal handles a triggerKey message before this listener sees it,
+           so check the position as it was before the key: the snapshot is
+           only refreshed after the current task. */
+        var before = { end: false, start: false };
+        var remember = function () {
+          setTimeout(function () { before = { end: atDeckEnd(), start: atDeckStart() }; }, 0);
+        };
+        ["slidechanged", "fragmentshown", "fragmenthidden"].forEach(function (name) { Reveal.on(name, remember); });
+        remember();
+        window.addEventListener("message", function (event) {
+          var data;
+          try { data = JSON.parse(event.data); } catch (e) { return; }
+          if (!data || data.method !== "triggerKey") return;
+          var dir = keyDirection(data.args && data.args[0], false);
+          if (dir > 0 && nextHref && before.end) openDeck(nextHref);
+          else if (dir < 0 && prevHref && before.start) openDeck(prevHref);
+        }, true);
+      }
+    }
+
+    /* Reveal's speaker view reconnects to a reloaded main window through its
+       heartbeat, but builds its slide previews only once, for the first deck.
+       After a hop, point its preview iframes at this deck. */
+    if (!isReceiver) {
+      window.addEventListener("message", function (event) {
+        var data;
+        try { data = JSON.parse(event.data); } catch (e) { return; }
+        if (!data || data.namespace !== "reveal-notes" || data.type !== "heartbeat") return;
+        try {
+          var frames = event.source.document.querySelectorAll("#current-slide iframe, #upcoming-slide iframe");
+          Array.prototype.forEach.call(frames, function (frame) {
+            var src = new URL(frame.getAttribute("src"), location.href);
+            if (src.pathname === location.pathname) return;
+            /* Reveal reads the build index only from an id hash, #/id/f. */
+            var at = Reveal.getIndices();
+            var id = Reveal.getCurrentSlide().id;
+            src.pathname = location.pathname;
+            src.hash = (id ? "#/" + id : "#/" + at.h + "/" + (at.v || 0)) + (at.f >= 0 ? "/" + at.f : "");
+            frame.setAttribute("src", src.href);
+          });
+        } catch (e) { /* not the speaker view, or another origin */ }
+      });
+    }
+
+    var params = new URLSearchParams(location.search);
+    if (params.get("at") === "end" && !isReceiver) {
+      params.delete("at");
+      var query = params.toString();
+      history.replaceState(null, "", location.pathname + (query ? "?" + query : "") + location.hash);
+      var slides = Reveal.getSlides();
+      var last = Reveal.getIndices(slides[slides.length - 1]);
+      Reveal.slide(last.h, last.v);
+      while (Reveal.availableFragments().next) Reveal.nextFragment();
     }
 
     search.addEventListener("input", function () { showResults(search.value); });

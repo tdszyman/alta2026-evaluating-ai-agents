@@ -1608,10 +1608,14 @@ The two Olive screenshots: the Reddit post “Olive AI started telling me about 
 - When teams choose rules, judges or humans
 - Quality, latency, reliability and cost trade-offs
 
+[Next: Part 2 · LLM-as-a-Judge Methods →](../02-llm-as-judge-methods/){.next-deck data-next-deck="true"}
+
 ::: {.notes}
 **About this slide:** The end of Part 1 and the hand-off to Part 2, which covers LLM-as-a-judge methods in depth. The topics listed are from the ALTA 2026 program description of Part 2.
 
 **Presenter notes:**
+
+- Going forward from this slide (right arrow, space, page down, or the top bar’s next button) opens Part 2, as does the link at the bottom.
 
 Outline source in the repo: organisation/outlines/part-01.md
 :::

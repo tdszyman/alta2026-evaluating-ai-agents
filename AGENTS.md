@@ -68,7 +68,7 @@ Default slide chrome:
 - Keyboard: Left and Right move slides. `T` cycles the slide theme. Escape closes the drawer or search first, then goes to the site home.
 - Page number at the bottom, same `n / total` count.
 - Edge previous/next controls that fade after the pointer is still.
-- Next deck: if a deck’s last slide has a link with `data-next-deck`, going forward from the end (right arrow, space, page down, or the top bar’s next button) opens it. The Intro uses this to hand over to Part 1.
+- Deck chain: if a deck’s last slide has a link with `data-next-deck`, going forward from the end (right arrow, space, page down, or the top bar’s next button) opens it. Going back from a deck’s first slide opens the deck named by `prev` in the `PARTS` map in `chrome.html`, at its last slide with every build shown (`?at=end`). The talk runs Intro → Part 1 → Part 2 → Part 3 → Part 4; Part 4 has no forward link and Part 1.G is outside the chain. The speaker view (S) follows each hop and can drive it. The fading edge arrows stop at a deck’s ends.
 
 Bibliography:
 

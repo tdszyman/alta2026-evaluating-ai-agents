@@ -49,4 +49,6 @@ Pointers only. The outline above is still a placeholder.
 
 ## Next
 
-**Part 3:** Hands-on exercise → [Part 3](../03-hands-on-exercise/) · workshop materials in repo `workshop/`
+**Part 3:** Hands-on exercise · workshop materials in repo `workshop/`
+
+[Next: Part 3 · Hands-on Agent Evaluation Exercise →](../03-hands-on-exercise/){.next-deck data-next-deck="true"}
