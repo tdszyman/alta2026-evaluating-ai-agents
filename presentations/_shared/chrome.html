@@ -1,6 +1,7 @@
 <script>
 (function () {
   var PARTS = {
+    "00-intro": { label: "Intro", anchor: "intro" },
     "01-agents-and-eval-challenges": { label: "Part 1", anchor: "part-1" },
     "01g-graveyard": { label: "Part 1.G", anchor: "part-1g" },
     "02-llm-as-judge-methods": { label: "Part 2", anchor: "part-2" },
@@ -336,12 +337,38 @@
     drawer.querySelector("[data-deck-close]").addEventListener("click", closeDrawer);
     backdrop.addEventListener("click", closeDrawer);
 
+    /* A deck can hand over to the next one: a link with data-next-deck on its
+       last slide is followed when the presenter goes forward from the end. */
+    var nextDeck = document.querySelector(".reveal .slides a[data-next-deck]");
+
+    function atDeckEnd() {
+      return Reveal.isLastSlide() && !Reveal.availableFragments().next;
+    }
+
+    function forward() {
+      if (nextDeck && atDeckEnd()) window.location.href = nextDeck.href;
+      else Reveal.next();
+    }
+
     bar.querySelectorAll("[data-dir]").forEach(function (btn) {
       btn.addEventListener("click", function () {
-        if (btn.dataset.dir === "1") Reveal.next();
+        if (btn.dataset.dir === "1") forward();
         else Reveal.prev();
       });
     });
+
+    if (nextDeck) {
+      window.addEventListener("keydown", function (event) {
+        var forwardKeys = ["ArrowRight", "ArrowDown", "PageDown", " ", "n", "N"];
+        if (forwardKeys.indexOf(event.key) === -1) return;
+        if (event.metaKey || event.ctrlKey || event.altKey) return;
+        if (drawerOpen() || event.target.closest("input, textarea, select")) return;
+        if (!atDeckEnd()) return;
+        event.preventDefault();
+        event.stopPropagation();
+        window.location.href = nextDeck.href;
+      }, true);
+    }
 
     search.addEventListener("input", function () { showResults(search.value); });
     bar.querySelector("form").addEventListener("submit", function (event) {

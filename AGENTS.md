@@ -30,6 +30,7 @@ Published from `main` to GitHub Pages. Routes:
 |-----|------|--------|
 | `/` | Home. Landing page and the jump-off to the other public sections | `presentations/index.qmd` |
 | `/presentation/` | Presentation landing | `presentations/presentation/index.qmd` |
+| `/presentation/00-intro/` | Intro deck: welcome, the afternoon’s timeline, the presenters. Comes before Part 1 and hands over to it; its breadcrumb reads “Intro” | that folder’s `index.qmd` |
 | `/presentation/01-agents-and-eval-challenges/` | Part 1 deck | that folder’s `index.qmd` |
 | `/presentation/01g-graveyard/` | Part 1.G: Graveyard. Slides cut from Part 1, kept for organisers; delete before tutorial day | that folder’s `index.qmd` |
 | `/presentation/02-llm-as-judge-methods/` | Part 2 deck | that folder’s `index.qmd` |
@@ -67,6 +68,7 @@ Default slide chrome:
 - Keyboard: Left and Right move slides. `T` cycles the slide theme. Escape closes the drawer or search first, then goes to the site home.
 - Page number at the bottom, same `n / total` count.
 - Edge previous/next controls that fade after the pointer is still.
+- Next deck: if a deck’s last slide has a link with `data-next-deck`, going forward from the end (right arrow, space, page down, or the top bar’s next button) opens it. The Intro uses this to hand over to Part 1.
 
 Bibliography:
 
@@ -95,7 +97,7 @@ Slides publish target: `https://tdszyman.github.io/alta2026-evaluating-ai-agents
 
 ## Conventions
 
-- Four parts map 1:1 to `presentations/presentation/01` … `04` and to Session 1 / Session 2 on the ALTA program page. Public URLs are `/presentation/01-…` and so on.
+- Four parts map 1:1 to `presentations/presentation/01` … `04` and to Session 1 / Session 2 on the ALTA program page. Public URLs are `/presentation/01-…` and so on. The Intro (`00-intro`) is not one of the four official parts; it comes before Part 1.
 - Workshop code and prompts stay under `workshop/`; do not bury them inside slide folders.
 - Prefer editing existing stubs over creating parallel structures.
 - Mark unfinished material with `TODO:` or HTML/Markdown comments so humans can find gaps.

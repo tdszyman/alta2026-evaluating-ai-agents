@@ -27,6 +27,7 @@ presentations/
   index.qmd                   # site home (/)
   about/index.qmd             # /about/
   presentation/index.qmd      # /presentation/
+  presentation/00-intro/      # Intro: welcome, timeline, presenters; hands over to Part 1
   presentation/01-…/index.qmd # one Reveal deck per part
   presentation/01g-graveyard/ # Part 1.G: slides cut from Part 1, not in the talk
   _shared/style-brief.md      # visual source of truth; edit this before restyling
@@ -76,7 +77,7 @@ If that fails (permissions), the owner must enable it in the UI.
 
 ```bash
 ./scripts/render-slides.sh all   # full site → presentations/_site
-./scripts/render-slides.sh 01    # one part (still under the presentations project)
+./scripts/render-slides.sh 01    # one part (still under the presentations project); 00 is the Intro
 ./scripts/preview-site.sh        # http://127.0.0.1:8090/
 ```
 
@@ -94,6 +95,7 @@ When the user asks to open the site, view a page, or how to look at a route, sta
 |-----|-----|
 | Home | `http://127.0.0.1:8090/` |
 | Presentation | `http://127.0.0.1:8090/presentation/` |
+| Intro | `http://127.0.0.1:8090/presentation/00-intro/` |
 | Part 1–4 | `http://127.0.0.1:8090/presentation/01-agents-and-eval-challenges/` (and `02-…`, `03-…`, `04-…`) |
 | Hands-on | `http://127.0.0.1:8090/hands-on/` |
 | Hands-on app | `http://127.0.0.1:8090/hands-on/app/` |
