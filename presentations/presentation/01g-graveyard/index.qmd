@@ -405,7 +405,7 @@ Kept slides, not in the main talk: the slides that used to open the deck, and th
 
 ## Part 1: AI Agents and Evaluation Challenges
 
-<!-- The deck's title slide, generated from the front matter until section 1 was cut to seven slides. Kept here as a plain slide; the deck now opens on section 1. -->
+<!-- The deck's title slide, generated from the front matter until section 1 was cut to seven slides. Kept here as a plain slide. Part 1 now opens on a full-colour title slide, then section 1. -->
 
 ALTA 2026 Tutorial 2 — Afternoon · WIP
 
