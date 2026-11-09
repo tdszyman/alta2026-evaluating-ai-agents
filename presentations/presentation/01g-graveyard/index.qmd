@@ -19,6 +19,7 @@ Kept slides that are not in the talk. They were cut from [Part 1](../01-agents-a
 2. Opening and section 1 slides: the old title slide, work-in-progress notice, agenda and section 1 header, and the five slides cut from section 1
 3. Complex-systems slides: the three slides replaced by the new complex, complicated and “complicated and complex” slides
 4. Agent simulation: “Why AI agents need simulation”, moved out of Part 1 section 3
+5. Google Trends chart: the first version of “2026 is the year of the AI Agent”
 
 ::: {.notes}
 **About this slide:** Not part of the tutorial. This deck keeps the slides cut from Part 1, so the Part 1 deck shows only the talk. The slides and their notes are unchanged, so notes that say “next”, “the last slide” or “section 1” describe their old place in Part 1. The styles come from Part 1’s `motivation.css`, `complexity.css` and `generative-eval.css`. Delete the deck before the tutorial on 30 November 2026.
@@ -830,6 +831,49 @@ Framework: [Complex versus complicated](../../bibliography/finegood-complex-vers
 - Build 1: an agent run is not a pair. It is a trajectory of user turns, reasoning steps, tool calls and replies.
 - Build 2: the second user message ("the café one") only makes sense after the agent's first reply. Change the agent and the reply changes, so a recorded conversation goes stale. We need something that can respond. A simulated user, an LLM given a persona and a goal, plays that role. [τ-bench](../../bibliography/yao-2024-tau-bench/) is one benchmark built this way.
 - Build 3: we then evaluate at several tiers. Step: was each tool call right? Turn: was each reply good? Trajectory: did the user's goal get met, without breaking policy? Multi-tier evals and simulation are on the follow-up notes at the end of this section, still to be written up.
+:::
+
+---
+
+# Graveyard: Google Trends chart {.graveyard-slide}
+
+The first version of “2026 is the year of the AI Agent”, a live Google Trends chart. Part 1 now makes the point with stats and quotes instead.
+
+::: {.notes}
+**About this slide:** The fifth group in this deck. Part 1’s “2026 is the year of the AI Agent” showed a live Google Trends chart of search interest. On 9 November 2026 it was replaced by a slide of stats and quotes about AI agent hype and investment, in Australia, New Zealand and around the world. The chart slide is kept here with its notes.
+:::
+
+---
+
+## 2026 is the year of the AI Agent {#year-of-the-ai-agent-google-trends .trends-slide}
+
+<!-- Cut from Part 1 on 9 November 2026: the stats-and-quotes slide with the same title replaced it. -->
+
+```{=html}
+<div class="gt-frame">
+  <div class="gt-live" id="gt-agents"></div>
+  <div class="gt-offline" id="gt-offline" hidden>The live Google Trends chart needs an internet connection. <a href="https://trends.google.com/trends/explore?date=today%205-y&amp;q=AI%20Agent,Agentic%20AI,Generative%20AI,LLM&amp;hl=en-US">Open the query in Google Trends</a>.</div>
+</div>
+<div class="gt-caption">Google Trends, worldwide, past 5 years: “AI Agent”, “Agentic AI”, “Generative AI” and “LLM”. Search interest is relative: 100 is the highest point on the chart. <a href="https://trends.google.com/trends/explore?date=today%205-y&amp;q=AI%20Agent,Agentic%20AI,Generative%20AI,LLM&amp;hl=en-US">Open in Google Trends</a></div>
+<script type="text/javascript" src="https://ssl.gstatic.com/trends_nrtr/4630_RC01/embed_loader.js"></script>
+<script type="text/javascript">
+  if (!window.trends) {
+    document.getElementById("gt-offline").hidden = false;
+  } else {
+    trends.embed.renderExploreWidgetTo(document.getElementById("gt-agents"), "TIMESERIES", {"comparisonItem":[{"keyword":"AI Agent","geo":"","time":"today 5-y"},{"keyword":"Agentic AI","geo":"","time":"today 5-y"},{"keyword":"Generative AI","geo":"","time":"today 5-y"},{"keyword":"LLM","geo":"","time":"today 5-y"}],"category":0,"property":""}, {"exploreQuery":"date=today%205-y&q=AI%20Agent,Agentic%20AI,Generative%20AI,LLM&hl=en-US","guestPath":"https://trends.google.com:443/trends/embed/"});
+  }
+</script>
+```
+
+::: {.notes}
+**About this slide:** The first claim of the tutorial: 2026 is the year of the AI agent. Context for why AI agents matter now. The chart shows Google search interest over the past five years, worldwide, for four terms: “AI Agent”, “Agentic AI”, “Generative AI” and “LLM”. Interest in AI agents has grown alongside interest in generative AI and LLMs. Search interest says what people are curious about, not how agents are used or how well they work; it is here as motivation, not evidence. The chart is live, so it shows the latest data when viewed.
+
+**Presenter notes:**
+
+- The chart is a live Google Trends embed and needs an internet connection. Without one, the slide shows a short message and a link to the same query instead. Check the venue connection, or open the query in a browser tab beforehand.
+- Use it to set the scene, not as a finding: search interest is not a measure of adoption or capability.
+- The data updates, so the shape may differ from the last rehearsal.
+- The chart is a stand-in. Terrence may replace it with other evidence for the claim in the title.
 :::
 
 ---
