@@ -393,13 +393,13 @@ Image: the headline of the Sydney Morning Herald report by Jessica Yun, 26 Febru
 Kept slides, not in the main talk: the slides that used to open the deck, and the section 1 slides that left the flow when section 1 was cut to seven slides. Each is kept in full, with its notes.
 
 ::: {.notes}
-**About this slide:** The second group in this deck. It keeps the slides that used to open Part 1 (the title slide, a work-in-progress notice, the agenda and the section 1 header) and the section 1 slides that are no longer in the main talk: why organisations adopt AI agents, the public’s view of AI, “Using AI to evaluate AI”, the full risk slide, and the layers of control around an agent. The main talk covers their content more briefly on “Agents can create value, but introduce risk” and “Building well-governed agents”.
+**About this slide:** The second group in this deck. It keeps the slides that used to open Part 1 (the title slide, a work-in-progress notice, the agenda and the section 1 header) and the section 1 slides that are no longer in the main talk: why organisations adopt AI agents, the public’s view of AI, “Using AI to evaluate AI”, the full risk slide, and the layers of control around an agent. The main talk covers their content more briefly on “Agents can create value, but introduce risk” and “AI agents in production need multi-layer protection”.
 
 **Presenter notes:**
 
 - Not part of the main talk.
 - The slides are in their old order and their notes are unchanged, so “next” and “the slides before it” in those notes describe the old order.
-- The full risk slide pairs each risk with how evals and LLM judges help. In the main talk, LLM-as-a-judge is first defined on “Building well-governed agents”.
+- The full risk slide pairs each risk with how evals and LLM judges help. In the main talk, LLM-as-a-judge is first defined on “Agent platforms layer protections to mitigate these risks”.
 :::
 
 ---

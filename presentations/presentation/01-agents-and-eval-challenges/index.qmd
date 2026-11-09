@@ -445,9 +445,11 @@ This is the first place the tutorial uses the term. **LLM-as-a-judge** means an 
 
 ---
 
-## Building well-governed agents {.governed-slide}
+## AI agents in production need multi-layer protection {#multi-layer-protection .governed-slide}
 
 <!-- TODO: Terrence will likely rework this into a SEEK view of agent architecture. For now it redraws the architecture figure from Google Cloud's Gemini Enterprise Agent Platform overview, keeping Google's component names. -->
+
+[[LLM-as-a-judge]{.gv-term} methods can be applied at various points across the platform.]{.gv-sub}
 
 ```{=html}
 <div class="gv-fig" role="img" aria-label="Agent architecture, redrawn from Google Cloud’s Gemini Enterprise Agent Platform overview. People reach agents from Gemini Enterprise, Workspace or custom apps through an Agent Gateway. The agent runs in Agent Runtime with its own Agent Identity, and uses memory and a model. A second Agent Gateway sits between the agent and other agents and tools. Above, Governance holds the Agent Registry and Policies and AI protection. Below, agent observability covers the whole path.">
@@ -499,10 +501,10 @@ This is the first place the tutorial uses the term. **LLM-as-a-judge** means an 
 
 [Where an LLM judge can check the agent in this architecture]{.gv-legend}
 
-[Redrawn from the architecture figure in Google Cloud’s Agent Platform overview ([Google Cloud 2026a](../../bibliography/google-cloud-2026-agent-platform-overview/)). Component names are Google’s; the short descriptions summarise Google’s documentation.]{.gv-credit}
+[Diagram adapted from Google Cloud’s Agent Platform overview ([Google Cloud 2026a](../../bibliography/google-cloud-2026-agent-platform-overview/)).]{.gv-credit}
 
 ::: {.notes}
-**About this slide:** What surrounds an AI agent when an organisation runs it properly, using Google Cloud’s own view of the parts. Google describes its Gemini Enterprise Agent Platform as “a unified platform to build, deploy, govern, and optimize enterprise-grade AI agents” ([Google Cloud 2026a](../../bibliography/google-cloud-2026-agent-platform-overview/)), launched on 22 April 2026 as the evolution of Vertex AI ([Gerstenhaber and Bachman 2026](../../bibliography/gerstenhaber-2026-agent-platform/)). The figure is redrawn from the platform overview. Each part, as Google’s documentation describes it:
+**About this slide:** An AI agent in production is protected by several layers, not one safeguard. The slide shows them in Google Cloud’s own view of the parts, and its subtitle sets up the point of the three clicks: LLM-as-a-judge methods can be applied at various points across the platform. Google describes its Gemini Enterprise Agent Platform as “a unified platform to build, deploy, govern, and optimize enterprise-grade AI agents” ([Google Cloud 2026a](../../bibliography/google-cloud-2026-agent-platform-overview/)), launched on 22 April 2026 as the evolution of Vertex AI ([Gerstenhaber and Bachman 2026](../../bibliography/gerstenhaber-2026-agent-platform/)). The diagram is adapted from the architecture figure in the platform overview: the component names are Google’s, and the short descriptions in the boxes summarise Google’s documentation. Each part, as Google’s documentation describes it:
 
 - **Agent Runtime:** the environment agents are deployed and run in, including long-running agents. Memory (Memory Bank) and the model sit beside it.
 - **Agent Identity:** a unique identity for each agent, used for authentication, access control and auditing.
@@ -524,6 +526,7 @@ The next two slides are illustrative SEEK mock-ups of judges catching agent fail
 **Presenter notes:**
 
 - TODO: Terrence will likely rework this into a SEEK view of agent architecture. Until then it is Google’s view, with Google’s names; say so.
+- Title and subtitle (10 Nov 2026, Terrence’s note): agents in production need multi-layer protection, and LLM-as-a-judge methods can be applied at various points across the platform. Read the subtitle, then use the three clicks to show where.
 - The point: an organisation does not rely on one safeguard. Identity, registry, gateway, policies and observability each control part of what an agent can do. Evals, guardrails and LLM judges are the part this tutorial covers.
 - Walk the figure left to right first: people and apps, the gateway in, the agent in its runtime with its own identity, the gateway out to other agents and tools. Governance sits over the whole path, and observability under it.
 - Then three clicks, one per level where a judge can work. Only the highlighted parts are claims about judges. Google’s documentation does not say Model Armor or the gateway uses an LLM judge; the highlights show where one can be placed. The anomaly detection quote is the one place Google says it uses LLM-as-a-judge.
@@ -1655,7 +1658,7 @@ In full, with their notes, in the separate [Part 1.G: Graveyard](../01g-graveyar
 ::: {.fu-item}
 [Agent registries and gateways]{.fu-title}
 
-<!-- Summarised in section 1 on "Building well-governed agents" (Google's Agent Platform view: identity, registry, gateway, policies, observability), and on the layers-of-control slide now in the Part 1.G graveyard deck. Kept here in full. -->
+<!-- Summarised in section 1 on "AI agents in production need multi-layer protection" (Google's Agent Platform view: identity, registry, gateway, policies, observability), and on the layers-of-control slide now in the Part 1.G graveyard deck. Kept here in full. -->
 
 - Every version of an agent, subagent, tool, etc. should be versioned and linked to an eval result
 - Agent access to tools is restricted, versioned, governed, and observed
