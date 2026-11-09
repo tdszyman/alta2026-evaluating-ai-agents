@@ -317,40 +317,51 @@ Cards, in the order they appear: one per case, the news headline. All are real s
 
 ---
 
-## Agent platforms {.platforms-slide}
+## Agent platforms layer protections to mitigate these risks {#agent-platforms .platforms-slide}
+
+<!-- TODO: Check permission to use the AWS, Google Cloud, Arize and LangChain logos on this slide; their sources are in the speaker notes. -->
 
 ```{=html}
-<p class="pf-lead">Agent platforms provide multiple levels of protections to mitigate agent risks.</p>
-<div class="pf-platforms">
-  <p class="pf-label">Agent platforms include</p>
-  <ul>
-    <li><b>Amazon Bedrock AgentCore</b><span>AWS · <a href="../../bibliography/aws-2026-bedrock-agentcore/">AWS 2026</a></span></li>
-    <li><b>Gemini Enterprise Agent Platform</b><span>Google Cloud · <a href="../../bibliography/google-cloud-2026-agent-platform-overview/">Google Cloud 2026a</a></span></li>
-    <li><b>Arize AX</b><span>Arize · <a href="../../bibliography/arize/">Arize</a></span></li>
-    <li><b>LangSmith</b><span>LangChain · <a href="../../bibliography/langchain-2026-langsmith/">LangChain 2026</a></span></li>
+<div role="group" class="pf-band pf-band-platforms" aria-label="Agent platforms">
+  <p class="pf-lead">There are many agent platforms organisations can choose from, including but not limited to:</p>
+  <ul class="pf-cards">
+    <li><span class="pf-logo"><img class="pf-logo-aws" src="images/logo-aws.svg" alt="AWS"></span><b>Amazon Bedrock AgentCore</b><span class="pf-cite">AWS · <a href="../../bibliography/aws-2026-bedrock-agentcore/">AWS 2026</a></span></li>
+    <li><span class="pf-logo"><img src="images/logo-google-cloud.svg" alt="Google Cloud"></span><b>Gemini Enterprise Agent Platform</b><span class="pf-cite">Google Cloud · <a href="../../bibliography/google-cloud-2026-agent-platform-overview/">Google Cloud 2026a</a></span></li>
+    <li><span class="pf-logo"><img src="images/logo-arize.svg" alt="Arize"></span><b>Arize AX</b><span class="pf-cite">Arize · <a href="../../bibliography/arize/">Arize</a></span></li>
+    <li><span class="pf-logo"><img src="images/logo-langchain.svg" alt="LangChain"></span><b>LangSmith</b><span class="pf-cite">LangChain · <a href="../../bibliography/langchain-2026-langsmith/">LangChain 2026</a></span></li>
   </ul>
 </div>
-<div class="pf-row">
-  <div class="pf-kinds">
-    <p class="pf-text">Protections can be <b>deterministic</b> (rule-based) or <b>non-deterministic</b> (LLM-as-judge).</p>
-    <div class="pf-pair">
-      <p class="pf-kind"><b>Deterministic</b>a rule, such as a policy that blocks a tool call</p>
-      <p class="pf-kind pf-kind-judge"><b>Non-deterministic</b>an LLM judge, such as one that scores each response</p>
+<div role="group" class="pf-band pf-band-checks fragment" data-fragment-index="1" aria-label="Protections">
+  <p class="pf-lead">They include many protections, in multiple layers, using multiple methods. AI agents are both:</p>
+  <div class="pf-flow">
+    <div class="pf-chain pf-chain-rules">
+      <p class="pf-node pf-system"><b>Complicated systems</b>many designed parts</p>
+      <span class="pf-arrow" aria-hidden="true">→</span>
+      <p class="pf-node pf-check"><b>Deterministic checks</b>rule-based tests and checks, such as a policy that blocks a tool call</p>
+    </div>
+    <div class="pf-chain pf-chain-judge fragment" data-fragment-index="2">
+      <p class="pf-node pf-system"><b>Complex systems</b>behaviour that emerges from how the parts interact</p>
+      <span class="pf-arrow" aria-hidden="true">→</span>
+      <p class="pf-node pf-check"><b>Non-deterministic checks</b>model-based checks, where the result can vary from run to run</p>
+      <span class="pf-arrow" aria-hidden="true">→</span>
+      <div class="pf-node pf-judge">
+        <p class="pf-judge-head"><b>LLM-as-a-judge</b>one of the most common, and the focus of this tutorial</p>
+        <p class="pf-def">An LLM, the <i>judge</i>, reads what an agent did and checks it against criteria that people write down. Evals and guardrails use judges to check agents before launch and while they run.</p>
+      </div>
     </div>
   </div>
-  <p class="pf-text pf-complex">AI agents are both <b>complicated</b> and <b>complex</b> systems: many designed parts, and behaviour that emerges from how they interact.</p>
 </div>
-<p class="pf-def"><b>LLM-as-a-judge:</b> an LLM, the <i>judge</i>, reads what an agent did and checks it against criteria that people write down. Evals and guardrails use judges to check agents before launch and while they run.</p>
 ```
 
 ::: {.notes}
-**About this slide:** Organisations rarely build every safeguard for an agent themselves. Agent platforms provide multiple levels of protections to mitigate agent risks. Four examples: Amazon Bedrock AgentCore from AWS ([AWS 2026](../../bibliography/aws-2026-bedrock-agentcore/)), Gemini Enterprise Agent Platform from Google Cloud ([Google Cloud 2026a](../../bibliography/google-cloud-2026-agent-platform-overview/)), Arize AX from Arize ([Arize](../../bibliography/arize/)) and LangSmith from LangChain ([LangChain 2026](../../bibliography/langchain-2026-langsmith/)). Protections can be deterministic, following fixed rules, or non-deterministic, using an LLM as a judge. AI agents are both complicated and complex systems: they have many designed parts, and their behaviour emerges from how those parts interact, which is one reason no single check is enough.
+**About this slide:** Agent platforms are the answer to the risks on the previous slide. Organisations rarely build every safeguard for an agent themselves: agent platforms provide multiple levels of protections to mitigate agent risks. Four examples: Amazon Bedrock AgentCore from AWS ([AWS 2026](../../bibliography/aws-2026-bedrock-agentcore/)), Gemini Enterprise Agent Platform from Google Cloud ([Google Cloud 2026a](../../bibliography/google-cloud-2026-agent-platform-overview/)), Arize AX from Arize ([Arize](../../bibliography/arize/)) and LangSmith from LangChain ([LangChain 2026](../../bibliography/langchain-2026-langsmith/)). These platforms include many protections, in multiple layers, using multiple methods. AI agents are both complicated systems, which need deterministic tests and checks, and complex systems, which need non-deterministic checks. LLM-as-a-judge is one of the most commonly used non-deterministic checks, and a key focus of this tutorial.
 
 This is the first place the tutorial uses the term. **LLM-as-a-judge** means an LLM, the judge, reads what an agent did and checks it against criteria that people write down. Evals and guardrails use judges to check agents before launch and while they run. Using AI to check AI can sound circular; the rest of Part 1 explains why it is the best approach available today.
 
 **Presenter notes:**
 
 - Terrence’s framing: agent platforms provide multiple levels of protections to mitigate agent risks. The next slide shows the levels in one platform’s architecture.
+- Two reveals. The slide opens on the four platforms. Click 1 adds the protections band with its first chain: complicated systems need deterministic checks. Click 2 adds the second: complex systems need non-deterministic checks, and the most common of these is LLM-as-a-judge, with its definition.
 - The four platforms, as their makers describe them:
   - Amazon Bedrock AgentCore: AWS calls it “an agentic platform for building, deploying, and operating highly effective agents securely at scale”. Its services include Gateway, Identity, Observability, Evaluations, Registry and Policy ([AWS 2026](../../bibliography/aws-2026-bedrock-agentcore/)).
   - Gemini Enterprise Agent Platform: Google Cloud’s “unified platform to build, deploy, govern, and optimize enterprise-grade AI agents” ([Google Cloud 2026a](../../bibliography/google-cloud-2026-agent-platform-overview/)). Its architecture is on the next slide.
@@ -360,6 +371,11 @@ This is the first place the tutorial uses the term. **LLM-as-a-judge** means an 
 - Complicated and complex: a one-line nod here. The “Complex system”, “Complicated system” and “AI Agents are complicated *and* complex systems” slides at the end of section 3 explain the difference.
 - Keep the definition non-technical. Judge methods come in Part 2.
 - The list is short on purpose and is not a ranking. Other clouds and vendors offer similar platforms.
+- Logo sources, all saved in this deck’s `images/` folder. TODO: check permission to use each logo before the slides are shared.
+  - `logo-aws.svg`: the AWS logo from the header of [aws.amazon.com](https://aws.amazon.com/), with its colours inlined. AWS’s [trademark guidelines](https://aws.amazon.com/trademark-guidelines/) govern its use.
+  - `logo-google-cloud.svg`: the full-colour Google Cloud logo that the [cloud.google.com](https://cloud.google.com/) header loads, `https://www.gstatic.com/cgc/google-cloud-logo-fullcolor.svg`.
+  - `logo-arize.svg`: the Arize logo from Arize’s [brand page](https://arize.com/brand/).
+  - `logo-langchain.svg`: `LangChain_Lockup_Black.svg` from the LangChain [brand assets](https://www.langchain.com/brand-assets) kit. The kit also has a product wordmark, as PNG only; like the other three cards, this one uses the company logo.
 :::
 
 ---
@@ -1504,7 +1520,7 @@ The two Olive screenshots: the Reddit post “Olive AI started telling me about 
 **Presenter notes:**
 
 - Point at the two mini figures: the left one is the agent’s plumbing, the right one is its behaviour.
-- The mix echoes the “Agent platforms” slide: protections can be deterministic (rule-based) or non-deterministic (LLM-as-judge).
+- The mix echoes the “Agent platforms layer protections” slide: protections can be deterministic (rule-based) or non-deterministic (LLM-as-judge).
 - From the framework [Complex versus complicated](../../bibliography/finegood-complex-versus-complicated/): foundation models, agents and agent swarms sit with the weather and the economy, not with jet engines.
 - Bridge, from the outline’s multi-tier evals item (system-level vs component-level): with complex systems you still always have to evaluate the system as a whole.
 - The earlier parts-vs-whole figure and its placeholder for a Tim Sullivan quotation are in [Part 1.G: Graveyard](../01g-graveyard/); the quotation is still missing.
