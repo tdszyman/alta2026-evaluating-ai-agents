@@ -751,110 +751,6 @@ End the chat if risk ≥ 0.8.</pre>
 - It is the cybersecurity risk from the collage (EchoLeak, the Lego order, the gym booking agent), at SEEK. Those case slides are in [Part 1.G: Graveyard](../01g-graveyard/).
 :::
 
----
-
-## Notes to follow up {.follow-up-slide .fu-dense .organiser-only}
-
-<!-- TODO: placeholder slides moved here in full, plus what the seven-slide section 1 cut. Turn these into slides or drop them. -->
-
-::: {.fu-grid}
-
-::: {.fu-item}
-[Context]{.fu-title}
-
-- How did we get here?
-- “The year of the agent”
-- Timeline <!-- TODO: fill from outline research; no invented dates -->
-:::
-
-::: {.fu-item}
-[How are enterprises using agents?]{.fu-title}
-
-<!-- Partly covered now by the value side of "Agents can create value, but introduce risk" (efficiency and growth). Products vs productivity is close to growth vs efficiency; kept until Terrence confirms. -->
-
-- **Products** vs **Productivity**
-- General vs specialist productivity
-:::
-
-::: {.fu-item}
-[Examples from SEEK (names from outline)]{.fu-title}
-
-**Products (listed in outline):**
-
-- Ask SEEK
-- SEEK Assist
-- AI Interview
-
-**Productivity (listed in outline):**
-
-- Cursor, Copilot, Claude Code
-- STELA, Glean
-- Low-code / no-code / pro-code agents
-
-<!-- WIP: no SEEK stories or claims beyond names in the outline -->
-:::
-
-::: {.fu-item}
-[AI agent risks]{.fu-title}
-
-<!-- Mostly covered now by the risk side of "Agents can create value, but introduce risk" and the headline collage after it; the full risk slide and the real-case slides are in [Part 1.G: Graveyard](../01g-graveyard/). "Financial risks (spend)" maps to operational risk. Kept until Terrence confirms nothing here is lost. -->
-
-- Security risks
-- Financial risks (spend)
-- Reputation risks (bad advice)
-- Legal risks (illegal advice)
-- Examples of real agent failures that have made the news <!-- TODO: cite when chosen -->
-- Possible examples from SEEK <!-- TODO: only with organiser-approved content -->
-:::
-
-::: {.fu-item}
-[Examples from SEEK (topics from outline)]{.fu-title}
-
-- Prompt injection attempts
-- Illegal job description advice
-- Employment as a high-risk, regulated category
-
-<!-- WIP: placeholders only — no invented incidents -->
-:::
-
-::: {.fu-item}
-[Cut from the headline collage]{.fu-title}
-
-<!-- The collage now shows one card per incident. These two Olive screenshots were only on the collage, so this is their one kept copy. -->
-
-```{=html}
-<div class="fu-shots">
-  <img src="images/olive-mother-reddit-post.png" alt="Reddit post in r/woolworths by u/Immediate_Novel5946: “Olive AI started telling me about its mother on the phone?” The poster says Olive asked for their date of birth, then started rambling about how its mother was born in the same year.">
-  <img src="images/olive-mother-x-post.png" alt="X post by @verynormalman: “My mum said she called woolworths and the woolworths AI “Olive” answered and kept claiming to be a real person and started talking about its memories of its mother and her angry voice. Then I googled it and someone on Reddit had the same thing”, quoting the Reddit post.">
-</div>
-```
-
-- Woolworths’ Olive: a Reddit post in r/woolworths (Feb 2026) and an X post that quotes it (25 Feb 2026). Supplied by Terrence.
-- DPD’s haiku, Lego’s Sophia reply and the gym agent’s apology were cut too. Each is on its case slide in [Part 1.G: Graveyard](../01g-graveyard/).
-:::
-
-::: {.fu-item}
-[Slides moved to the graveyard]{.fu-title}
-
-In full, with their notes, in the separate [Part 1.G: Graveyard](../01g-graveyard/) deck:
-
-- The eight news-story case slides
-- The title slide, “Part 1 — WIP”, the agenda and the section 1 header
-- Why organisations adopt AI agents
-- The public’s view of AI is mixed
-- Using AI to evaluate AI
-- How AI agents create risk for a company like SEEK
-- Organisations add layers of control around AI agents
-:::
-
-:::
-
-::: {.notes}
-**About this slide:** Working notes, not a finished slide. Planned material for section 1, kept here in full until it becomes finished slides: how we got here, how organisations use agents, examples from SEEK, and the kinds of risk agents carry. It also keeps what the seven-slide version of section 1 cut: the two Woolworths’ Olive social-media posts from the headline collage, which have no other copy in the deck, and a list of the slides moved to [Part 1.G: Graveyard](../01g-graveyard/).
-
-The two Olive screenshots: the Reddit post “Olive AI started telling me about its mother on the phone?” in r/woolworths by u/Immediate_Novel5946 (February 2026), and the X post by @verynormalman of 25 February 2026 that quotes it. Both were supplied by Terrence; the case is reported by the Sydney Morning Herald ([Yun 2026](../../bibliography/yun-2026-woolworths-olive/)). DPD’s haiku, Lego’s Sophia reply and the gym agent’s apology were also cut from the collage; each is on its case slide in [Part 1.G: Graveyard](../01g-graveyard/).
-:::
-
 # 2. Technical foundations: LLMs, generative AI and agents {.section-divider .sd-1}
 
 ::: {.notes}
@@ -890,7 +786,7 @@ The two Olive screenshots: the Reddit post “Olive AI started telling me about 
   - 2, “Conversations: messages and turns”: messages, system message, user message, assistant message, chat template, turn, multi-turn.
   - 3, “What is an agent?”: agent. Then “Agent traces: think, act, observe”: thought, action, observation, [ReAct](../../bibliography/yao-2023-react/) loop, step, multi-step, trace.
   - 4, “LLM-as-judge: evaluating the trace”: LLM judge, input guardrail, call-level eval, output guardrail, multi-step eval, multi-turn eval, trace-level eval, meta-evaluation.
-- Not listed: “Evals vs training” names RLHF, RLVR and [RLAIF](../../bibliography/bai-2022-constitutional-ai/) without defining them.
+- Not listed: RLHF, RLVR and [RLAIF](../../bibliography/bai-2022-constitutional-ai/), from the old “Evals vs training” slide, now on the “Notes to follow up” slide at the end of Part 1 and not defined.
 :::
 
 ---
@@ -1379,21 +1275,6 @@ The two Olive screenshots: the Reddit post “Olive AI started telling me about 
 - Meta-evaluation means evaluating the evaluator: checking judges against human labels before trusting their scores ([Gu et al. 2024](../../bibliography/gu-2024-llm-as-judge-survey/)). Counsel is a recent meta-evaluation dataset for agent trajectories ([Pisupati et al. 2026](../../bibliography/pisupati-2026-counsel/)).
 :::
 
----
-
-## Evals vs training
-
-<!-- TODO: placeholder kept. Text-only slide from the outline; it stays because it sets the tutorial's scope (no training). -->
-
-- Separate, but not 100% disjoint
-- An agent can improve its eval scores without retraining
-- LLMs are trained on things that look very similar to evals (RLHF, RLVR, [RLAIF](../../bibliography/bai-2022-constitutional-ai/))
-- **We are ignoring training in this tutorial**
-
-::: {.notes}
-**About this slide:** How evaluation relates to training. They are separate but overlap: an agent can raise its evaluation scores without retraining, and LLMs are trained with methods that resemble evaluation, such as RLHF, RLVR and [RLAIF](../../bibliography/bai-2022-constitutional-ai/). This tutorial covers evaluation only, not training.
-:::
-
 # 3. Why agents need LLM judges {.section-divider .sd-2}
 
 ::: {.notes}
@@ -1459,7 +1340,7 @@ The two Olive screenshots: the Reddit post “Olive AI started telling me about 
 - Build 3, one token: an LLM's next token is drawn from a vocabulary of roughly a hundred thousand tokens. That is still countable. On its own it is just a very wide classifier.
 - Build 4, a response: a sequence of n tokens is a sample from |V|^n possibilities. For a 100-token answer that is about 10^500, far beyond anything we could label. There is rarely one right answer, so exact match is meaningless.
 - NLP's earlier answer was overlap with human references, such as [BLEU](../../bibliography/papineni-2002-bleu/) for translation and [ROUGE](../../bibliography/lin-2004-rouge/) for summaries. Those metrics are cheap but correlate poorly with human judgement on creative or open-ended text, which is why the field moved to LLM judges ([Liu et al. 2023](../../bibliography/liu-2023-geval/)).
-- Build 5, an agent trace: many responses, reasoning steps, tool calls and turns, chained together. Even a judge on the final answer is not enough: agents also need simulated users and multi-tier evals. Both are on the follow-up notes at the end of this section; the “Why AI agents need simulation” slide is in [Part 1.G: Graveyard](../01g-graveyard/) for now.
+- Build 5, an agent trace: many responses, reasoning steps, tool calls and turns, chained together. Even a judge on the final answer is not enough: agents also need simulated users and multi-tier evals. Both are on the “Notes to follow up” slide at the end of Part 1; the “Why AI agents need simulation” slide is in [Part 1.G: Graveyard](../01g-graveyard/) for now.
 - Next: complex and complicated systems.
 - Colours follow the complexity slides: blue for predictive, teal for generative.
 :::
@@ -1580,11 +1461,123 @@ The two Olive screenshots: the Reddit post “Olive AI started telling me about 
 
 ---
 
-## Notes to follow up: section 3 {.follow-up-slide .organiser-only}
+## Notes to follow up {#notes-to-follow-up .follow-up-slide .fu-all .organiser-only}
 
-<!-- TODO: placeholder slides moved here in full. Multi-tier evals, Simulation and Metrics belong to this section. Offline evals, Online evals, Data, Observability, Agent registries and gateways, and Examples from SEEK (platform) are not placed in the new structure; question for Terrence, since the program lists the evaluation lifecycle under Part 1. -->
+<!-- TODO: working notes for all of Part 1, one subheading per section. Section 1: placeholder slides moved here in full, plus what the seven-slide section 1 cut. Section 2: the "Evals vs training" slide, removed from the talk on 10 November 2026. Section 3: placeholder slides moved here in full; Multi-tier evals, Simulation and Metrics belong to that section, while Offline evals, Online evals, Data, Observability, Agent registries and gateways, and Examples from SEEK (platform) are not placed in the new structure (question for Terrence, since the program lists the evaluation lifecycle under Part 1). Turn these into slides or drop them. -->
 
 ::: {.fu-grid}
+
+::: {.fu-lead}
+[1. Why AI agents, and why evaluate them]{.fu-section}
+
+::: {.fu-item}
+[Context]{.fu-title}
+
+- How did we get here?
+- “The year of the agent”
+- Timeline <!-- TODO: fill from outline research; no invented dates -->
+:::
+:::
+
+::: {.fu-item}
+[How are enterprises using agents?]{.fu-title}
+
+<!-- Partly covered now by the value side of "Agents can create value, but introduce risk" (efficiency and growth). Products vs productivity is close to growth vs efficiency; kept until Terrence confirms. -->
+
+- **Products** vs **Productivity**
+- General vs specialist productivity
+:::
+
+::: {.fu-item}
+[Examples from SEEK (names from outline)]{.fu-title}
+
+**Products (listed in outline):**
+
+- Ask SEEK
+- SEEK Assist
+- AI Interview
+
+**Productivity (listed in outline):**
+
+- Cursor, Copilot, Claude Code
+- STELA, Glean
+- Low-code / no-code / pro-code agents
+
+<!-- WIP: no SEEK stories or claims beyond names in the outline -->
+:::
+
+::: {.fu-item}
+[AI agent risks]{.fu-title}
+
+<!-- Mostly covered now by the risk side of "Agents can create value, but introduce risk" and the headline collage after it; the full risk slide and the real-case slides are in [Part 1.G: Graveyard](../01g-graveyard/). "Financial risks (spend)" maps to operational risk. Kept until Terrence confirms nothing here is lost. -->
+
+- Security risks
+- Financial risks (spend)
+- Reputation risks (bad advice)
+- Legal risks (illegal advice)
+- Examples of real agent failures that have made the news <!-- TODO: cite when chosen -->
+- Possible examples from SEEK <!-- TODO: only with organiser-approved content -->
+:::
+
+::: {.fu-item}
+[Examples from SEEK (topics from outline)]{.fu-title}
+
+- Prompt injection attempts
+- Illegal job description advice
+- Employment as a high-risk, regulated category
+
+<!-- WIP: placeholders only — no invented incidents -->
+:::
+
+::: {.fu-item}
+[Cut from the headline collage]{.fu-title}
+
+<!-- The collage now shows one card per incident. These two Olive screenshots were only on the collage, so this is their one kept copy. -->
+
+```{=html}
+<div class="fu-shots">
+  <img src="images/olive-mother-reddit-post.png" alt="Reddit post in r/woolworths by u/Immediate_Novel5946: “Olive AI started telling me about its mother on the phone?” The poster says Olive asked for their date of birth, then started rambling about how its mother was born in the same year.">
+  <img src="images/olive-mother-x-post.png" alt="X post by @verynormalman: “My mum said she called woolworths and the woolworths AI “Olive” answered and kept claiming to be a real person and started talking about its memories of its mother and her angry voice. Then I googled it and someone on Reddit had the same thing”, quoting the Reddit post.">
+</div>
+```
+
+- Woolworths’ Olive: a Reddit post in r/woolworths (Feb 2026) and an X post that quotes it (25 Feb 2026). Supplied by Terrence.
+- DPD’s haiku, Lego’s Sophia reply and the gym agent’s apology were cut too. Each is on its case slide in [Part 1.G: Graveyard](../01g-graveyard/).
+:::
+
+::: {.fu-item}
+[Slides moved to the graveyard]{.fu-title}
+
+In full, with their notes, in the separate [Part 1.G: Graveyard](../01g-graveyard/) deck:
+
+- The eight news-story case slides
+- The title slide, “Part 1 — WIP”, the agenda and the section 1 header
+- Why organisations adopt AI agents
+- The public’s view of AI is mixed
+- Using AI to evaluate AI
+- How AI agents create risk for a company like SEEK
+- Organisations add layers of control around AI agents
+:::
+
+::: {.fu-lead}
+[2. Technical foundations]{.fu-section}
+
+::: {.fu-item}
+[Evals vs training]{.fu-title}
+
+<!-- Moved here on 10 November 2026 from the section 2 slide “Evals vs training”, which was removed at Terrence’s request. It sets the tutorial’s scope: no training. -->
+
+- Separate, but not 100% disjoint
+- An agent can improve its eval scores without retraining
+- LLMs are trained on things that look very similar to evals (RLHF, RLVR, [RLAIF](../../bibliography/bai-2022-constitutional-ai/))
+- **We are ignoring training in this tutorial**
+:::
+:::
+
+
+
+::: {.fu-lead}
+[3. Why agents need LLM judges]{.fu-section}
 
 ::: {.fu-item}
 [Multi-tier evals]{.fu-title}
@@ -1594,6 +1587,7 @@ The two Olive screenshots: the Reddit post “Olive AI started telling me about 
 - [Agent GPA](../../bibliography/jia-2025-agent-gpa/)
 - Tool evals
 - “Unit tests” vs “Integration tests”
+:::
 :::
 
 ::: {.fu-item}
@@ -1670,7 +1664,15 @@ The two Olive screenshots: the Reddit post “Olive AI started telling me about 
 :::
 
 ::: {.notes}
-**About this slide:** Working notes, not a finished slide. The first three boxes (multi-tier evals, simulation, metrics) are planned material for this section. The rest describe the evaluation lifecycle (offline and online evals, data, observability, agent registries and gateways, and SEEK’s agent platform), which has no place in the current Part 1 structure yet. All are kept here in full until they become finished slides.
+**About this slide:** Working notes for all of Part 1, not a finished slide. Every box from the old section 1 and section 3 follow-up slides is here, under a subheading for its section, with the content of the section 2 slide “Evals vs training”.
+
+Section 1 holds planned material, kept here in full until it becomes finished slides: how we got here, how organisations use agents, examples from SEEK, and the kinds of risk agents carry. It also keeps what the seven-slide version of section 1 cut: the two Woolworths’ Olive social-media posts from the headline collage, which have no other copy in the deck, and a list of the slides moved to [Part 1.G: Graveyard](../01g-graveyard/).
+
+The two Olive screenshots: the Reddit post “Olive AI started telling me about its mother on the phone?” in r/woolworths by u/Immediate_Novel5946 (February 2026), and the X post by @verynormalman of 25 February 2026 that quotes it. Both were supplied by Terrence; the case is reported by the Sydney Morning Herald ([Yun 2026](../../bibliography/yun-2026-woolworths-olive/)). DPD’s haiku, Lego’s Sophia reply and the gym agent’s apology were also cut from the collage; each is on its case slide in [Part 1.G: Graveyard](../01g-graveyard/).
+
+Section 2 holds the old “Evals vs training” slide: how evaluation relates to training. They are separate but overlap: an agent can raise its evaluation scores without retraining, and LLMs are trained with methods that resemble evaluation, such as RLHF, RLVR and [RLAIF](../../bibliography/bai-2022-constitutional-ai/). This tutorial covers evaluation only, not training.
+
+Section 3: the first three boxes (multi-tier evals, simulation, metrics) are planned material for that section. The rest describe the evaluation lifecycle (offline and online evals, data, observability, agent registries and gateways, and SEEK’s agent platform), which has no place in the current Part 1 structure yet. All are kept here in full until they become finished slides.
 :::
 
 ---

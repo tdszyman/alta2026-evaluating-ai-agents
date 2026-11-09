@@ -19,7 +19,6 @@ The deck now follows this order. The detailed outline below is the earlier plan 
     5. “Building well-governed agents”: Google Cloud’s Gemini Enterprise Agent Platform view of agent architecture (identity, runtime, registry, gateway, policies and AI protection, observability). Three clicks highlight where an LLM judge can work in it: input and output guardrails (Policies and AI protection), the two Agent Gateways, and observability metrics.
     6. The SEEK job-ad mock-up.
     7. The SEEK multi-turn attack mock-up.
-    8. “Notes to follow up”, which keeps the section 1 material that would otherwise have been deleted.
 
     Kept in Part 1.G, after the news-story cases: why organisations adopt AI agents, the public’s view of AI, “Using AI to evaluate AI”, the full six-risk slide, and the layers-of-control slide. The single-case slides (Air Canada, DPD, MyCity, Bunnings, EchoLeak, the Lego order, the gym booking agent, Woolworths’ Olive) are the first group in Part 1.G.
 2. **Technical foundations.** What an LLM is, generative AI, AI agents; the building-block terminology.
@@ -32,11 +31,12 @@ The deck now follows this order. The detailed outline below is the earlier plan 
     3. “AI Agents are complicated *and* complex systems”: both figures small; why agents are evaluated with a mix of deterministic checks and LLM-as-judge; test the components and the whole system, because the whole is more than the sum of its parts.
 
     The three slides they replaced (the two-figure slide, the complicated-vs-complex spectrum, and “The whole is more than the sum of its parts” with its parts-vs-whole figure) are kept unchanged at the end of Part 1.G.
-4. **Hand-off to Part 2** (LLM-as-a-judge methods in depth).
+4. **“Notes to follow up”** (10 Nov 2026, Terrence’s request): one organiser-only slide for all of Part 1, just before the hand-off, replacing the section 1 and section 3 follow-up slides. It has a subheading per section and keeps every box: section 1’s planned material and what the seven-slide section 1 cut; section 2’s “Evals vs training”, removed from the talk on 10 Nov 2026; and section 3’s planned material and evaluation-lifecycle stubs.
+5. **Hand-off to Part 2** (LLM-as-a-judge methods in depth).
 
 Open questions for Terrence:
 
-- [ ] The program lists the industry evaluation lifecycle (prompts, test cases, datasets, rubrics, code; versioning; offline vs production monitoring) under Part 1. The new order has no place for it, so those stubs sit on the section 3 follow-up slide. Keep it in Part 1, move it to another part, or ask to change the program text?
+- [ ] The program lists the industry evaluation lifecycle (prompts, test cases, datasets, rubrics, code; versioning; offline vs production monitoring) under Part 1. The new order has no place for it, so those stubs sit under section 3 on the “Notes to follow up” slide. Keep it in Part 1, move it to another part, or ask to change the program text?
 - [ ] Step 3 (why other methods fall short) overlaps Part 2’s program topics: deterministic vs non-deterministic evaluation, and when teams choose rules vs judges vs humans. Where is the line between Part 1 and Part 2?
 - [ ] Section 1 now covers why organisations adopt agents in half a slide (efficiency and growth, beside the risks), with a light note for students and researchers. Is that enough, or does it need examples, and which ones speak to students and researchers as well as businesses?
 - [ ] Regulatory has two candidate cases: NYC’s MyCity chatbot (wrong legal answers) and the Bunnings AI Assistant (Queensland electrical advice, Inside Retail, 8 December 2025). Keep one or both?
@@ -47,13 +47,13 @@ Open questions for Terrence:
 - [ ] “About me, and SEEK” now shows official icons for Michigan, UCD and ANZ beside their names (Terrence’s request, 5 Nov 2026). Their brand guidelines restrict outside use; ask for permission before the deck is published?
 - [ ] The headline collage stays in the main flow (coordinator decision). Terrence can move it to Part 1.G too.
 - [ ] Part 1.G is a working deck for organisers (5 Nov 2026). Delete it, or move anything worth keeping back into Part 1, before the tutorial on 30 November 2026.
-- [ ] The collage now shows one headline per incident. The two Woolworths’ Olive social-media screenshots it dropped are kept on the section 1 “Notes to follow up” slide; DPD’s haiku, Lego’s Sophia reply and the gym agent’s apology are on their case slides. Bring any back?
+- [ ] The collage now shows one headline per incident. The two Woolworths’ Olive social-media screenshots it dropped are kept under section 1 on the “Notes to follow up” slide; DPD’s haiku, Lego’s Sophia reply and the gym agent’s apology are on their case slides. Bring any back?
 - [ ] “Building well-governed agents” is Google’s view, with Google’s component names, until Terrence reworks it into a SEEK view. Which components should a SEEK view keep? The older layers-of-control slide (identity and registry, runtime, gateway, access control, observability, and evals, guardrails and judges) is in Part 1.G.
 - [ ] “Agent platforms layer protections” lists four platforms (AWS, Google, Arize, LangChain), as Terrence named them. Add others, such as Microsoft’s, or keep it to four?
 - [ ] Check permission to use the AWS, Google Cloud, Arize and LangChain logos on that slide. Sources are in its speaker notes.
 - [ ] “Using AI to evaluate AI” (Terrence’s opening line) is now in Part 1.G, and LLM-as-a-judge is first defined on “Agent platforms layer protections”, just before “Building well-governed agents”. Does the opening line come back, on that slide or only in the talk?
 - [ ] “Agentic”: the “What is an agent?” slide asks what it means but has no sourced definition. Terrence to add one with a source, or drop the word.
-- [ ] “Why AI agents need simulation” is in Part 1.G (6 Nov 2026). Does it come back into Part 1, move to another part, or stay cut? The section 3 follow-up slide still lists simulation as planned material.
+- [ ] “Why AI agents need simulation” is in Part 1.G (6 Nov 2026). Does it come back into Part 1, move to another part, or stay cut? The “Notes to follow up” slide still lists simulation as planned material under section 3.
 - [ ] “The whole is more than the sum of its parts” had a placeholder for a Tim Sullivan quotation, never filled. The slide is in Part 1.G. Which quotation, and should it come back on “AI Agents are complicated *and* complex systems”?
 - [ ] Most real cases (Air Canada, DPD, NYC MyCity, Bunnings, Woolworths) are AI chatbot or assistant failures. EchoLeak is described by its finders as an attack on an AI agent, and the gym case is an agent taking actions for its user. Is that balance close enough?
 
