@@ -17,8 +17,9 @@ The deck now follows this order. The detailed outline below is the earlier plan 
     3. The headline collage, one headline per incident.
     4. “Agent platforms layer protections to mitigate these risks”: four example platforms with their logos (Amazon Bedrock AgentCore, Gemini Enterprise Agent Platform, Arize AX, LangSmith); then, revealed in two steps, the protections: complicated systems need deterministic checks, and complex systems need non-deterministic checks, the most common being LLM-as-a-judge, with its definition. This is where the term is first introduced.
     5. “AI agents in production need multi-layer protection” (retitled from “Building well-governed agents” on 10 Nov 2026, Terrence’s note), with the subtitle “LLM-as-a-judge methods can be applied at various points across the platform.” It shows Google Cloud’s Gemini Enterprise Agent Platform view of agent architecture (identity, runtime, registry, gateway, policies and AI protection, observability). Three clicks highlight where an LLM judge can work in it: input and output guardrails (Policies and AI protection), the two Agent Gateways, and observability metrics. The credit line is now one short sentence: the diagram is adapted from Google Cloud’s Agent Platform overview.
-    6. The SEEK job-ad mock-up.
-    7. The SEEK multi-turn attack mock-up.
+    6. “Two examples” (10 Nov 2026, Terrence’s note): a light breather, not a section divider, before the two example slides. The title, “What this looks like in practice”, and two simple drawn tiles (a document and a conversation, each with a judge’s magnifier). The narrative is in the speaker notes, in Terrence’s words.
+    7. The SEEK job-ad mock-up.
+    8. The SEEK multi-turn attack mock-up.
 
     Kept in Part 1.G, after the news-story cases: why organisations adopt AI agents, the public’s view of AI, “Using AI to evaluate AI”, the full six-risk slide, and the layers-of-control slide. The single-case slides (Air Canada, DPD, MyCity, Bunnings, EchoLeak, the Lego order, the gym booking agent, Woolworths’ Olive) are the first group in Part 1.G.
 2. **Technical foundations.** What an LLM is, generative AI, AI agents; the building-block terminology.

@@ -910,6 +910,89 @@ html[data-deck-theme="nyfw-ss26"] .reveal .platforms-slide {
   color: var(--deck-soft);
 }
 
+/* "Two examples": a light breather before the two judge examples, kept
+   visibly lighter than a section divider. Centred title, one muted line, a
+   short accent bar and two tinted tiles drawn in SVG; no card or gradient
+   background. */
+
+.reveal .examples-break-slide {
+  --xb-radius: 22px;
+  text-align: center;
+}
+
+html[data-deck-theme="original"] .reveal .examples-break-slide,
+html[data-deck-theme="nyfw-ss26"] .reveal .examples-break-slide {
+  --xb-radius: 2px;
+}
+
+.reveal .examples-break-slide h2 {
+  margin-top: 138px;
+  text-align: center;
+}
+
+.reveal .examples-break-slide .xb-line {
+  display: block;
+  font-size: 26px;
+  color: var(--deck-soft);
+}
+
+.reveal .examples-break-slide .xb-line::after {
+  content: "";
+  display: block;
+  width: 72px;
+  height: 6px;
+  margin: 22px auto 0;
+  background: var(--deck-accent-fill);
+  border-radius: 3px;
+}
+
+.reveal .examples-break-slide .xb-art {
+  display: flex;
+  justify-content: center;
+  gap: 64px;
+  margin-top: 44px;
+}
+
+.reveal .examples-break-slide .xb-tile {
+  width: 288px;
+  height: 216px;
+  border-radius: var(--xb-radius);
+  overflow: hidden;
+}
+
+.reveal .examples-break-slide .xb-tile-a { --xb-tint: var(--series-a-tint); --xb-ink: var(--series-a); }
+.reveal .examples-break-slide .xb-tile-b { --xb-tint: var(--series-b-tint); --xb-ink: var(--series-b); }
+
+.reveal .examples-break-slide .xb-bg { fill: var(--xb-tint); }
+
+.reveal .examples-break-slide .xb-sheet {
+  fill: var(--deck-paper);
+  stroke: var(--deck-line);
+  stroke-width: 1.5;
+}
+
+.reveal .examples-break-slide .xb-ink {
+  fill: none;
+  stroke: var(--xb-ink);
+  stroke-width: 6;
+  stroke-linecap: round;
+  opacity: 0.55;
+}
+
+.reveal .examples-break-slide .xb-judge {
+  fill: var(--chat-judge-edge);
+  stroke: var(--deck-paper);
+  stroke-width: 4;
+}
+
+.reveal .examples-break-slide .xb-lens,
+.reveal .examples-break-slide .xb-tick {
+  fill: none;
+  stroke: var(--deck-on-accent);
+  stroke-width: 4;
+  stroke-linecap: round;
+}
+
 /* "How AI agents create risk": a numbered list laid out as rows of
    risk, example and mitigation. The header and each item share one grid. */
 

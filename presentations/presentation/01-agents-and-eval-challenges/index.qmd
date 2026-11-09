@@ -521,7 +521,7 @@ Three clicks then highlight, one at a time, the levels in this figure where an L
 2. **At the gateway:** both Agent Gateways apply policies to all traffic that passes through them, so a judge there can check requests coming in and the agent’s calls out to tools and other agents.
 3. **Observability metrics:** a judge scores the traces that agent observability logs. Google’s launch post says its agent anomaly detection “uses statistical models and an LLM-as-a-judge framework to flag unusual reasoning” ([Gerstenhaber and Bachman 2026](../../bibliography/gerstenhaber-2026-agent-platform/)).
 
-The next two slides are illustrative SEEK mock-ups of judges catching agent failures. How an LLM, an agent and a judge work comes in section 2.
+After a short breather slide, “Two examples”, the next two slides are illustrative SEEK mock-ups of judges catching agent failures. How an LLM, an agent and a judge work comes in section 2.
 
 **Presenter notes:**
 
@@ -531,10 +531,46 @@ The next two slides are illustrative SEEK mock-ups of judges catching agent fail
 - Walk the figure left to right first: people and apps, the gateway in, the agent in its runtime with its own identity, the gateway out to other agents and tools. Governance sits over the whole path, and observability under it.
 - Then three clicks, one per level where a judge can work. Only the highlighted parts are claims about judges. Google’s documentation does not say Model Armor or the gateway uses an LLM judge; the highlights show where one can be placed. The anomaly detection quote is the one place Google says it uses LLM-as-a-judge.
 - Policies define the guardrails and the gateways enforce them, so steps 1 and 2 overlap; the point is that a judge can sit on the content (step 1) or on the traffic (step 2).
-- “Guardrails” here means checks that run while the agent works, such as Model Armor on the gateway. Some guardrails are themselves LLM judges, as in the next two slides.
+- “Guardrails” here means checks that run while the agent works, such as Model Armor on the gateway. Some guardrails are themselves LLM judges, as in the two example slides that follow the breather.
 - The definition of LLM-as-a-judge is on the previous slide.
 - This replaces the earlier layers-of-control slide, which is kept in [Part 1.G: Graveyard](../01g-graveyard/).
 - Sources: [Google Cloud 2026a](../../bibliography/google-cloud-2026-agent-platform-overview/), the platform overview with the figure; [Google Cloud 2026b](../../bibliography/google-cloud-2026-agent-gateway-overview/), the Agent Gateway overview, for identity, registry, policies and observability; [Gerstenhaber and Bachman 2026](../../bibliography/gerstenhaber-2026-agent-platform/), the launch post.
+:::
+
+---
+
+## Two examples {#two-examples .examples-break-slide}
+
+[What this looks like in practice]{.xb-line}
+
+```{=html}
+<div class="xb-art" aria-hidden="true">
+  <svg class="xb-tile xb-tile-a" viewBox="0 0 240 180">
+    <rect class="xb-bg" x="0" y="0" width="240" height="180"/>
+    <rect class="xb-sheet" x="74" y="28" width="92" height="124" rx="6"/>
+    <path class="xb-ink" d="M90,52 H150 M90,70 H150 M90,88 H138 M90,106 H150 M90,124 H126"/>
+    <circle class="xb-judge" cx="166" cy="140" r="24"/>
+    <circle class="xb-lens" cx="163" cy="137" r="9"/><path class="xb-tick" d="M170,144 l8,8"/>
+  </svg>
+  <svg class="xb-tile xb-tile-b" viewBox="0 0 240 180">
+    <rect class="xb-bg" x="0" y="0" width="240" height="180"/>
+    <path class="xb-sheet" d="M52,34 h92 a8,8 0 0 1 8,8 v34 a8,8 0 0 1 -8,8 h-70 l-14,14 v-14 h-8 a8,8 0 0 1 -8,-8 v-34 a8,8 0 0 1 8,-8 z"/>
+    <path class="xb-sheet" d="M96,96 h84 a8,8 0 0 1 8,8 v30 a8,8 0 0 1 -8,8 h-8 v14 l-14,-14 h-62 a8,8 0 0 1 -8,-8 v-30 a8,8 0 0 1 8,-8 z"/>
+    <path class="xb-ink" d="M62,52 H134 M62,66 H112 M106,114 H170 M106,128 H150"/>
+    <circle class="xb-judge" cx="188" cy="140" r="24"/>
+    <circle class="xb-lens" cx="185" cy="137" r="9"/><path class="xb-tick" d="M192,144 l8,8"/>
+  </svg>
+</div>
+```
+
+::: {.notes}
+**About this slide:** A breather between the platform architecture and the two example slides. It is deliberately light, not a section divider: the title, one line and two simple tiles, a document and a conversation, each with a judge’s magnifier. The tiles hint at the next two slides without telling their story.
+
+**Presenter notes:**
+
+- What Terrence wants to say here: “Ok, I’ve told you a lot about how agents have risks and how agent platforms enable enterprises like SEEK to implement LLM-as-judge to mitigate agent risks. Next I’m going to show you two realistic examples of what this might look like.”
+- No reveals. Pause briefly, then move on.
+- The next two slides are illustrative SEEK mock-ups: a judge stopping an unlawful job ad, then a judge spotting a multi-turn attack in a chat.
 :::
 
 ---
