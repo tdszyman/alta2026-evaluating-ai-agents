@@ -106,10 +106,13 @@ format:
 <div class="ab-part ab-part-seek fragment">
   <h3 class="ab-label">About SEEK</h3>
   <div class="ab-seek">
-    <div class="ab-where">
-      <figure class="ab-map">
-        <img src="images/seek-apac-markets-map.jpg" alt="Map of Asia Pacific from SEEK’s About page, with pins on Australia, New Zealand, Hong Kong, Indonesia, Malaysia, the Philippines, Singapore and Thailand.">
-      </figure>
+    <figure class="ab-map">
+      <img src="images/seek-apac-markets-map.jpg" alt="Map of Asia Pacific from SEEK’s About page, with pins on Australia, New Zealand, Hong Kong, Indonesia, Malaysia, the Philippines, Singapore and Thailand.">
+    </figure>
+    <div class="ab-facts">
+      <p class="ab-fact"><b>Melbourne &amp; KL</b>Founded in Melbourne in 1997. Secondary hub in KL.</p>
+      <p class="ab-fact"><b>APAC wide</b>8 markets: Australia, New Zealand, Hong Kong, Indonesia, Malaysia, Philippines, Singapore, Thailand</p>
+      <p class="ab-fact"><b>4 official languages</b>English, Indonesian, Thai, Chinese</p>
     </div>
     <div class="ab-numbers">
       <p class="ab-big"><b>60<small> million+</small></b> candidate profiles</p>
@@ -118,11 +121,6 @@ format:
       <p class="ab-big ab-mine"><b>17<small> people</small></b> in the Generative AI team</p>
       <p class="ab-src">Source: <a href="../../bibliography/seek-2026-about/">SEEK, About page</a></p>
     </div>
-  </div>
-  <div class="ab-facts">
-    <p class="ab-fact"><b>Melbourne &amp; KL</b>Founded in Melbourne in 1997. Secondary hub in KL.</p>
-    <p class="ab-fact ab-fact-wrap"><b>APAC wide</b>8 markets: Australia, New Zealand, Hong Kong, Indonesia, Malaysia, Philippines, Singapore, Thailand</p>
-    <p class="ab-fact"><b>4 official languages</b>English, Indonesian, Thai, Chinese</p>
   </div>
 </div>
 ```

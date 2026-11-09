@@ -234,10 +234,12 @@
   border-radius: 2px;
 }
 
+/* Three columns: the map, the SEEK facts, then the hero numbers. The numbers
+   column stays the widest; the facts column is narrow and wraps. */
 .reveal .about-slide .ab-seek {
   display: grid;
-  grid-template-columns: 460px 1fr;
-  gap: 40px;
+  grid-template-columns: 384px 188px minmax(0, 1fr);
+  column-gap: 28px;
   align-items: start;
 }
 
@@ -251,28 +253,27 @@
   border-radius: 2px;
 }
 
+/* The image is mostly white either side of the map, so the frame crops to the
+   map itself (pixels 300 to 1046 of 1280) and the map reads larger. */
 .reveal .about-slide .ab-map img {
   display: block;
   width: 100%;
   height: auto;
+  aspect-ratio: 760 / 671;
+  object-fit: cover;
+  object-position: 56% 50%;
   margin: 0;
 }
 
 .reveal .about-slide .ab-facts {
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr) auto;
-  column-gap: 36px;
-  margin-top: 16px;
-}
-
-.reveal .about-slide .ab-fact.ab-fact-wrap {
-  white-space: normal;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
 .reveal .about-slide .ab-fact {
   font-size: 16px;
-  line-height: 1.2;
-  white-space: nowrap;
+  line-height: 1.25;
   color: var(--deck-soft);
 }
 
@@ -287,7 +288,7 @@
 .reveal .about-slide .ab-numbers {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  column-gap: 28px;
+  column-gap: 20px;
   row-gap: 22px;
   align-content: start;
 }
