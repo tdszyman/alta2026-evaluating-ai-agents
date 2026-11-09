@@ -4707,6 +4707,106 @@
       "note": "Read on 9 November 2026. The figure is the four companies’ total capital expenditure, in US dollars. It is not spending on AI agents.",
       "featured_rank": null,
       "abstract": null
+    },
+    {
+      "id": "tarre-2026-genesys-anz-agentic-ai",
+      "type": "website",
+      "authors": [
+        "Mark Tarre"
+      ],
+      "year": "2026",
+      "title": "Australia & New Zealand lead in agentic AI adoption",
+      "venue": "IT Brief New Zealand, 16 July 2026.",
+      "url": "https://itbrief.co.nz/story/australia-new-zealand-lead-in-agentic-ai-adoption",
+      "links": [
+        {
+          "label": "IT Brief NZ",
+          "href": "https://itbrief.co.nz/story/australia-new-zealand-lead-in-agentic-ai-adoption"
+        }
+      ],
+      "groups": [
+        "industry"
+      ],
+      "mentions": [],
+      "summary": "Report on a Genesys customer experience study. “Among customer experience leaders in Australia and New Zealand, 39% said deploying agentic AI is critical, compared with 22% globally and 21% across Asia Pacific. The study also found that 48% of organisations in the region already use agentic AI virtual agents for customer interactions.” Part 1 uses the 48% as an example of customer-facing agents in the region.",
+      "note": "Read on 10 November 2026. Genesys is a vendor of customer experience software, and the article does not give the study’s sample size.",
+      "featured_rank": null,
+      "abstract": null
+    },
+    {
+      "id": "gupta-2026-australian-startups-funding",
+      "type": "website",
+      "authors": [
+        "Yajush Gupta"
+      ],
+      "year": "2026",
+      "title": "Five Australian startups that raised funding last week",
+      "venue": "Dynamic Business, 8 November 2026.",
+      "url": "https://dynamicbusiness.com/news/five-australian-startups-that-raised-funding-last-week",
+      "links": [
+        {
+          "label": "Dynamic Business",
+          "href": "https://dynamicbusiness.com/news/five-australian-startups-that-raised-funding-last-week"
+        }
+      ],
+      "groups": [
+        "industry"
+      ],
+      "mentions": [],
+      "summary": "A weekly funding round-up. It reports that “Sydney-born startup Future Secure AI raised US$80 million (A$115.3 million) via convertible notes, in a round valuing the business at $1.7 billion and making it Australia's newest tech unicorn, according to the Australian Financial Review”, and that the company builds AI “co-workers” for large organisations, “assembling teams of AI agents, each given a name and face”. Part 1 uses it as an Australian business whose product is AI agents.",
+      "note": "Read on 10 November 2026. Second-hand: the figures come from an Australian Financial Review story that was not opened. The article says the company “is reportedly targeting annual recurring revenue approaching $100 million by the end of 2026”.",
+      "featured_rank": null,
+      "abstract": null
+    },
+    {
+      "id": "altman-2025-reflections",
+      "type": "website",
+      "authors": [
+        "Sam Altman"
+      ],
+      "year": "2025",
+      "title": "Reflections",
+      "venue": "Sam Altman’s blog, January 2025.",
+      "url": "https://blog.samaltman.com/reflections",
+      "links": [
+        {
+          "label": "Blog post",
+          "href": "https://blog.samaltman.com/reflections"
+        }
+      ],
+      "groups": [
+        "industry"
+      ],
+      "mentions": [],
+      "summary": "OpenAI’s CEO looks back on the company’s history and ahead. He writes: “We believe that, in 2025, we may see the first AI agents “join the workforce” and materially change the output of companies.” Part 1 quotes it as the prediction that 2026 has caught up with.",
+      "note": "Read on 10 November 2026. The post itself is undated; The Guardian dates it Monday 6 January 2025.",
+      "featured_rank": null,
+      "abstract": null
+    },
+    {
+      "id": "gartner-2025-task-specific-agents",
+      "type": "website",
+      "authors": [
+        "Gartner"
+      ],
+      "year": "2025",
+      "title": "Gartner Predicts 40% of Enterprise Apps Will Feature Task-Specific AI Agents by 2026, Up from Less Than 5% in 2025",
+      "venue": "Gartner press release, 26 August 2025 (updated 5 September 2025).",
+      "url": "https://www.gartner.com/en/newsroom/press-releases/2025-08-26-gartner-predicts-40-percent-of-enterprise-apps-will-feature-task-specific-ai-agents-by-2026-up-from-less-than-5-percent-in-2025",
+      "links": [
+        {
+          "label": "Gartner",
+          "href": "https://www.gartner.com/en/newsroom/press-releases/2025-08-26-gartner-predicts-40-percent-of-enterprise-apps-will-feature-task-specific-ai-agents-by-2026-up-from-less-than-5-percent-in-2025"
+        }
+      ],
+      "groups": [
+        "industry"
+      ],
+      "mentions": [],
+      "summary": "Gartner’s prediction that “Forty percent of enterprise applications will be integrated with task-specific AI agents by the end of 2026, up from less than 5% today”. Its best-case projection is that “agentic AI could drive approximately 30% of enterprise application software revenue by 2035, surpassing $450 billion, up from 2% in 2025.” Part 1 uses the 40% as a global example of agents built into products.",
+      "note": "A prediction, not a measurement. Gartner’s site refused automated requests on 10 November 2026; the title and quotes were checked against the release text returned by a web search that day, and against the research report compiled on 9 November 2026.",
+      "featured_rank": null,
+      "abstract": null
     }
   ]
 }

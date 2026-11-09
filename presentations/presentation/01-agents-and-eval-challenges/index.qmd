@@ -167,45 +167,46 @@ format:
   <div role="group" class="hy-band hy-band-region fragment" data-fragment-index="1" aria-label="Australia and New Zealand">
     <p class="hy-eyebrow">Australia and New Zealand</p>
     <div class="hy-tiles">
-      <div class="hy-tile hy-tile-quote">
-        <p class="hy-who">Commonwealth Bank</p>
-        <p class="hy-quote">“We believe AI could be the most significant technology shift we have seen.”</p>
-        <p class="hy-src">Matt Comyn, CEO, at the 2026 AGM · <a href="../../bibliography/comyn-2026-cba-agm-address/">Comyn 2026</a></p>
-      </div>
-      <div class="hy-tile">
-        <p class="hy-who">Westpac</p>
+      <div class="hy-tile hy-productivity">
+        <p class="hy-who">Westpac <span class="hy-p hy-p-productivity">Productivity</span></p>
         <p class="hy-num hy-num-words"><small>about</small> four-to-six weeks</p>
         <p class="hy-label">to get an agent into production, down “from an initial six months”</p>
         <p class="hy-src"><a href="../../bibliography/crozier-2026-westpac-aws-agents/">Crozier 2026</a></p>
       </div>
-      <div class="hy-tile">
-        <p class="hy-who">New Zealand boardrooms</p>
-        <p class="hy-num">55%</p>
-        <p class="hy-label">of New Zealand CEOs surveyed say they are already using AI agents; “a further 38% are considering doing so”</p>
-        <p class="hy-src">NZ Herald, <i>Mood of the Boardroom</i> · <a href="../../bibliography/mccready-2026-mood-of-the-boardroom/">McCready 2026</a></p>
-      </div>
-      <div class="hy-tile">
-        <p class="hy-who">Atlassian</p>
+      <div class="hy-tile hy-productivity">
+        <p class="hy-who">Atlassian <span class="hy-p hy-p-productivity">Productivity</span></p>
         <p class="hy-num">7x</p>
         <p class="hy-label">increase in agentic automations across Atlassian’s customers, “in just the last six months”</p>
         <p class="hy-src">Mike Cannon-Brookes, CEO · <a href="../../bibliography/cannon-brookes-2026-team-26/">Cannon-Brookes 2026</a></p>
+      </div>
+      <div class="hy-tile hy-products">
+        <p class="hy-who">Customer service <span class="hy-p hy-p-products">Products</span></p>
+        <p class="hy-num">48%</p>
+        <p class="hy-label">of organisations in Australia and New Zealand surveyed by Genesys “already use agentic AI virtual agents for customer interactions”</p>
+        <p class="hy-src">IT Brief NZ · <a href="../../bibliography/tarre-2026-genesys-anz-agentic-ai/">Tarre 2026</a></p>
+      </div>
+      <div class="hy-tile hy-products">
+        <p class="hy-who">Future Secure AI <span class="hy-p hy-p-products">Products</span></p>
+        <p class="hy-num">$1.7 billion</p>
+        <p class="hy-label">valuation for a Sydney-born startup that builds AI “co-workers” for large organisations: “Australia’s newest tech unicorn”</p>
+        <p class="hy-src">Dynamic Business, reporting the AFR · <a href="../../bibliography/gupta-2026-australian-startups-funding/">Gupta 2026</a></p>
       </div>
     </div>
   </div>
   <div role="group" class="hy-band hy-band-world fragment" data-fragment-index="2" aria-label="Around the world">
     <p class="hy-eyebrow">Around the world</p>
+    <p class="hy-hype">Gartner: “Agentic AI sits at the Peak of Inflated Expectations” · <a href="../../bibliography/kandaswamy-2026-hype-cycle-agentic-ai/">Kandaswamy 2026</a></p>
     <div class="hy-tiles">
-      <div class="hy-tile hy-tile-quote">
-        <p class="hy-who">Gartner</p>
-        <p class="hy-quote">“Agentic AI sits at the Peak of Inflated Expectations”</p>
-        <p class="hy-label">“only 17% of organizations have deployed AI agents to date, yet more than 60% expect to do so within the next two years”, in its 2026 survey of CIOs and technology executives</p>
-        <p class="hy-src"><a href="../../bibliography/kandaswamy-2026-hype-cycle-agentic-ai/">Kandaswamy 2026</a></p>
+      <div class="hy-tile hy-productivity hy-tile-quote">
+        <p class="hy-who">OpenAI <span class="hy-p hy-p-productivity">Productivity</span></p>
+        <p class="hy-quote">“We believe that, in 2025, we may see the first AI agents ‘join the workforce’ and materially change the output of companies.”</p>
+        <p class="hy-src">Sam Altman, CEO, January 2025 · <a href="../../bibliography/altman-2025-reflections/">Altman 2025</a></p>
       </div>
-      <div class="hy-tile">
-        <p class="hy-who">Amazon, Microsoft, Alphabet and Meta</p>
-        <p class="hy-num"><small>at least</small> $720 billion</p>
-        <p class="hy-label">of capex planned “this year alone”, in US dollars. “Most of that will go toward AI infrastructure.”</p>
-        <p class="hy-src"><a href="../../bibliography/thomas-2026-big-tech-ai-buildout/">Thomas 2026</a></p>
+      <div class="hy-tile hy-products">
+        <p class="hy-who">Enterprise software <span class="hy-p hy-p-products">Products</span></p>
+        <p class="hy-num">40%</p>
+        <p class="hy-label">of enterprise applications “will be integrated with task-specific AI agents by the end of 2026, up from less than 5%”, Gartner predicted in 2025</p>
+        <p class="hy-src"><a href="../../bibliography/gartner-2025-task-specific-agents/">Gartner 2025</a></p>
       </div>
     </div>
   </div>
@@ -215,23 +216,32 @@ format:
 ::: {.notes}
 **About this slide:** The first claim of the tutorial: 2026 is the year of the AI agent. It is meant to grab attention, not to be deep. Through 2026, companies have hyped AI agents intensely and invested heavily in adopting them. That is true in Australia and New Zealand, and it is a global phenomenon too. Everyone has been talking about AI agents, and that is why we are running this tutorial.
 
-Three steps. The slide opens on the hero stat: in Deloitte’s survey, 69% of Australian organisations are now using agentic AI, alongside three-quarters of global respondents ([Deloitte 2026](../../bibliography/deloitte-2026-australian-ai-survey/)). Click 1 brings in Australia and New Zealand: Commonwealth Bank’s CEO ([Comyn 2026](../../bibliography/comyn-2026-cba-agm-address/)), Westpac ([Crozier 2026](../../bibliography/crozier-2026-westpac-aws-agents/)), New Zealand CEOs ([McCready 2026](../../bibliography/mccready-2026-mood-of-the-boardroom/)) and Atlassian ([Cannon-Brookes 2026](../../bibliography/cannon-brookes-2026-team-26/)). Click 2 brings in the rest of the world: Gartner’s hype cycle ([Kandaswamy 2026](../../bibliography/kandaswamy-2026-hype-cycle-agentic-ai/)) and Big Tech’s capex ([Thomas 2026](../../bibliography/thomas-2026-big-tech-ai-buildout/)).
+Each tile is tagged with one of the two kinds of value on the next slide, “Agents can create value, but introduce risk”, in the same colour: **Productivity**, doing the same work faster and cheaper, and **Products**, new and better things for customers. On the next slide, point back to these tiles as the examples.
+
+Three steps. The slide opens on the hero stat: in Deloitte’s survey, 69% of Australian organisations are now using agentic AI, alongside three-quarters of global respondents ([Deloitte 2026](../../bibliography/deloitte-2026-australian-ai-survey/)). Click 1 brings in Australia and New Zealand: Westpac ([Crozier 2026](../../bibliography/crozier-2026-westpac-aws-agents/)) and Atlassian ([Cannon-Brookes 2026](../../bibliography/cannon-brookes-2026-team-26/)) for productivity, and customer-service agents ([Tarre 2026](../../bibliography/tarre-2026-genesys-anz-agentic-ai/)) and Future Secure AI ([Gupta 2026](../../bibliography/gupta-2026-australian-startups-funding/)) for products. Click 2 brings in the rest of the world, under Gartner’s hype-cycle line ([Kandaswamy 2026](../../bibliography/kandaswamy-2026-hype-cycle-agentic-ai/)): Sam Altman for productivity ([Altman 2025](../../bibliography/altman-2025-reflections/)) and Gartner’s prediction for enterprise software for products ([Gartner 2025](../../bibliography/gartner-2025-task-specific-agents/)).
 
 **Presenter notes:**
 
 - Keep it quick and energetic. The point is the volume of noise, not any one number.
+- The two Ps. Productivity: Westpac, Atlassian, OpenAI. Products: customer service, Future Secure AI, enterprise software. Say the words now, so the next slide can name them.
 - The hero stat. Deloitte: “Autonomous AI agents are racing into the enterprise, transforming AI from a source of information and insights into a system that can do real work”. Deloitte also found that “only 22% of Australian companies report having a highly advanced model for agent governance”, which sets up the risk slides that follow.
-- Commonwealth Bank. Matt Comyn, at the 2026 AGM in October. CBA also says it was “ranked the #1 bank in Asia Pacific and #4 globally for AI maturity in the 2026 Evident AI Index.”
 - Westpac. Andrew McMullan, Chief Data, Digital and AI Officer: “Agentic operations are about reducing the distance between intent and outcome.” The four-to-six weeks is for Westpac’s agentic work with AWS. The Australian Financial Review ran the story as “Westpac deploys swarm of AI agents to assess loan applications”, but that article is paywalled, so the slide cites iTnews.
-- New Zealand. The NZ Herald’s Mood of the Boardroom survey of chief executives: “AI agents — software that can carry out entire workflows rather than assisting with individual tasks — are moving quickly into business.”
 - Atlassian. Mike Cannon-Brookes at Team ’26: “Together, we’re facing the most significant reimagining of work in our lifetime”.
-- Gartner. The hype cycle names the hype directly: agentic AI is at the peak, and few organisations have deployed agents yet. Hype ahead of readiness is why evaluation matters, which is where this tutorial comes in.
-- Big Tech. Andy Jassy, Amazon’s CEO, as The Verge quotes him: “Would it be more convenient if this type of acceleration and opportunity happened over 25 years and you could spread the CapEx over 25 years? Yeah, it might be more convenient. But that’s not the world we live in, and that’s not the opportunity.”
+- Customer service. From a Genesys study of customer experience leaders, as IT Brief NZ reports it: “Among customer experience leaders in Australia and New Zealand, 39% said deploying agentic AI is critical, compared with 22% globally and 21% across Asia Pacific.” These are agents in front of customers.
+- Future Secure AI. It assembles “teams of AI agents, each given a name and face”, and “is reportedly targeting annual recurring revenue approaching $100 million by the end of 2026”. A business whose product is the agents.
+- Gartner’s hype cycle names the hype directly: agentic AI is at the peak, and “only 17% of organizations have deployed AI agents to date, yet more than 60% expect to do so within the next two years”. Hype ahead of readiness is why evaluation matters, which is where this tutorial comes in.
+- Sam Altman wrote this in January 2025, about 2025. Use it as the prediction that 2026 has caught up with.
+- Gartner, on products: its best-case projection is that “agentic AI could drive approximately 30% of enterprise application software revenue by 2035, surpassing $450 billion, up from 2% in 2025.”
+- More, if there is time:
+  - Commonwealth Bank. Matt Comyn, at the 2026 AGM in October: “We believe AI could be the most significant technology shift we have seen.” CBA also says it was “ranked the #1 bank in Asia Pacific and #4 globally for AI maturity in the 2026 Evident AI Index” ([Comyn 2026](../../bibliography/comyn-2026-cba-agm-address/)).
+  - New Zealand. The NZ Herald’s Mood of the Boardroom survey of chief executives: “AI agents — software that can carry out entire workflows rather than assisting with individual tasks — are moving quickly into business. Just over half (55%) of respondents say they are already using them, and a further 38% are considering doing so.” ([McCready 2026](../../bibliography/mccready-2026-mood-of-the-boardroom/))
+  - Big Tech’s spending. Amazon, Microsoft, Alphabet and Meta “told investors they’re planning to spend at least $720 billion on CapEx this year alone. Most of that will go toward AI infrastructure.” Andy Jassy, Amazon’s CEO, as The Verge quotes him: “Would it be more convenient if this type of acceleration and opportunity happened over 25 years and you could spread the CapEx over 25 years? Yeah, it might be more convenient. But that’s not the world we live in, and that’s not the opportunity.” ([Thomas 2026](../../bibliography/thomas-2026-big-tech-ai-buildout/))
 - Caveats, if asked:
-  - The adoption figures come from different surveys of different people, so do not compare them. Deloitte surveyed “over 3,000 director to C-suite-level leaders … who have direct involvement in their companies’ AI initiatives”, which skews towards adopters; its 69% is of organisations surveyed, not of all Australian businesses. The NZ Herald does not give its sample size. Gartner’s 17% is from its own survey of CIOs and technology executives.
+  - The adoption figures come from different surveys of different people, so do not compare them. Deloitte surveyed “over 3,000 director to C-suite-level leaders … who have direct involvement in their companies’ AI initiatives”, which skews towards adopters; its 69% is of organisations surveyed, not of all Australian businesses. The Genesys study is a vendor’s, and IT Brief NZ does not give its sample size. The NZ Herald does not give its sample size either, and its article is marked premium and may be paywalled. Gartner’s 17% is from its own survey of CIOs and technology executives.
+  - Gartner’s 40% is a prediction made in August 2025, not a measurement, and it counts applications, not organisations.
+  - The Future Secure AI figures are second-hand: Dynamic Business is reporting an Australian Financial Review story. The article gives the valuation as “$1.7 billion” without naming the currency.
   - The $720 billion is the four companies’ total capex, in US dollars, for the AI build-out. It is not spending on agents.
   - The Westpac and Atlassian figures are the companies’ own. Atlassian was founded in Australia but is listed on Nasdaq, not the ASX.
-  - The NZ Herald article is marked premium and may be paywalled.
 - The Google Trends chart that used to be on this slide is in the Part 1.G graveyard.
 :::
 
@@ -246,14 +256,16 @@ Three steps. The slide opens on the hero stat: in Deloitte’s survey, 69% of Au
 ::: {.vr-side}
 [Value]{.vr-label}
 
-::: {.vr-card}
-[Efficiency]{.vr-name}
+::: {.vr-card .vr-productivity}
+[Productivity]{.vr-name}
+[Do the same work faster and cheaper]{.vr-sub}
 
 Deliver outcomes with less effort, greater speed or better consistency.
 :::
 
-::: {.vr-card}
-[Growth]{.vr-name}
+::: {.vr-card .vr-products}
+[Products]{.vr-name}
+[New and better things for customers]{.vr-sub}
 
 Create better customer experiences, new offerings or additional revenue.
 :::
@@ -273,7 +285,7 @@ Create better customer experiences, new offerings or additional revenue.
 ::::
 
 ::: {.notes}
-**About this slide:** Why organisations want AI agents, and what they risk by using them. On the value side, efficiency means delivering outcomes with less effort, greater speed or better consistency, and growth means creating better customer experiences, new offerings or additional revenue. Nearly every organisation, whether a company, a university or a research lab, has internal work where an agent could help, so efficiency applies widely. Growth applies to fewer: only some organisations sell agents or put them in front of customers, and these tend to be startups working out how to build new products on them.
+**About this slide:** Why organisations want AI agents, and what they risk by using them. On the value side, **productivity** means doing the same work faster and cheaper: delivering outcomes with less effort, greater speed or better consistency. **Products** means new and better things for customers: better customer experiences, new offerings or additional revenue. It is more than product features. Nearly every organisation, whether a company, a university or a research lab, has internal work where an agent could help, so productivity applies widely. Products applies to fewer: only some organisations sell agents or put them in front of customers, and these tend to be startups working out how to build new products on them.
 
 On the risk side are six ways an AI agent can create risk for a company like SEEK, an online employment marketplace that connects hirers and candidates. The examples are hypothetical:
 
@@ -290,8 +302,9 @@ The first four are about a single failure: a bad decision, a bad comment, an ill
 
 - The slide builds in two steps: the Value side first, then one click reveals all six risks.
 - The Risk side is labelled “Illustrative, not definitive”: the six are a way to organise the risks, not a complete or standard list.
-- Terrence’s framing. Efficiency: deliver business outcomes with less effort, greater speed or better consistency. Growth: create better customer experiences, new offerings or additional revenue.
-- Nearly all organisations can benefit from some element of efficiency, by adopting AI agents for some type of internal business operations.
+- Terrence’s framing. Productivity: deliver business outcomes with less effort, greater speed or better consistency. Products: create better customer experiences, new offerings or additional revenue.
+- Point back to the previous slide, “2026 is the year of the AI Agent”: its tiles carry the same two badges in the same colours. Productivity: Westpac, Atlassian and OpenAI. Products: customer-service agents in Australia and New Zealand, Future Secure AI and Gartner’s enterprise software prediction.
+- Nearly all organisations can benefit from some element of productivity, by adopting AI agents for some type of internal business operations.
 - Some, but not all, businesses can also “sell” AI agents in some way, or use them in the customer experience. This does not apply to all businesses, and may skew towards startups figuring out how to create new products and value out of AI agents.
 - For the students and researchers in the room: both motives raise the same question this tutorial is about, which is how you know the agent is doing the job well.
 - Talk down the risks: for each one, what could go wrong at a company like SEEK.
@@ -1482,7 +1495,7 @@ End the chat if risk ≥ 0.8.</pre>
 ::: {.fu-item}
 [How are enterprises using agents?]{.fu-title}
 
-<!-- Partly covered now by the value side of "Agents can create value, but introduce risk" (efficiency and growth). Products vs productivity is close to growth vs efficiency; kept until Terrence confirms. -->
+<!-- Partly covered now by the value side of "Agents can create value, but introduce risk", whose two pillars were renamed Productivity and Products on 10 November 2026. Kept until Terrence confirms. -->
 
 - **Products** vs **Productivity**
 - General vs specialist productivity

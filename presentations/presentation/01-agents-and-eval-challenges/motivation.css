@@ -31,9 +31,10 @@
   color: var(--deck-soft);
 }
 
-/* "2026 is the year of the AI Agent": a gradient hero stat, then two bands
-   revealed in turn, Australia and New Zealand in the violet series and the
-   rest of the world in the blue series. */
+/* "2026 is the year of the AI Agent": a gradient hero stat, then two
+   neutral bands revealed in turn, Australia and New Zealand and the rest of
+   the world. Colour marks the value pillar from the next slide instead:
+   Productivity tiles in the blue series, Products tiles in the violet. */
 
 .reveal .hype-slide {
   --hy-radius: 18px;
@@ -52,22 +53,22 @@ html[data-deck-theme="nyfw-ss26"] .reveal .hype-slide {
   display: flex;
   align-items: center;
   gap: 30px;
-  margin-top: 14px;
-  padding: 14px 32px;
+  margin-top: 12px;
+  padding: 10px 32px;
   color: var(--deck-on-accent);
   background: var(--deck-accent-fill);
   border-radius: var(--hy-radius);
 }
 
 .reveal .hype-slide .hy-hero-num {
-  font-size: 128px;
+  font-size: 116px;
   font-weight: 800;
   line-height: 1;
   letter-spacing: -0.03em;
 }
 
 .reveal .hype-slide .hy-hero-label {
-  font-size: 32px;
+  font-size: 30px;
   font-weight: 700;
   line-height: 1.15;
   text-wrap: balance;
@@ -104,20 +105,22 @@ html[data-deck-theme="nyfw-ss26"] .reveal .hype-slide {
   border-radius: var(--hy-radius);
 }
 
-.reveal .hype-slide .hy-band-region {
-  --hy-ink: var(--series-b-ink);
-  --hy-edge: var(--series-b);
-  background: var(--series-b-tint);
+.reveal .hype-slide .hy-band {
+  background: var(--deck-surface);
 }
 
-html[data-deck-theme="original"] .reveal .hype-slide .hy-band-region {
-  --hy-ink: color-mix(in srgb, var(--series-b-ink), var(--deck-ink) 30%);
-}
-
-.reveal .hype-slide .hy-band-world {
+.reveal .hype-slide .hy-productivity {
   --hy-ink: var(--series-a-ink);
   --hy-edge: var(--series-a);
-  background: var(--series-a-tint);
+}
+
+.reveal .hype-slide .hy-products {
+  --hy-ink: var(--series-b-ink);
+  --hy-edge: var(--series-b);
+}
+
+html[data-deck-theme="original"] .reveal .hype-slide .hy-products {
+  --hy-ink: color-mix(in srgb, var(--series-b-ink), var(--deck-ink) 30%);
 }
 
 .reveal .hype-slide .hy-eyebrow {
@@ -128,6 +131,30 @@ html[data-deck-theme="original"] .reveal .hype-slide .hy-band-region {
   font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: uppercase;
+  color: var(--deck-on-accent);
+  background: var(--deck-ink);
+  border-radius: 999px;
+}
+
+.reveal .hype-slide .hy-hype {
+  margin: -2px 0 10px;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--deck-ink);
+}
+
+.reveal .hype-slide .hy-hype a {
+  font-size: 13px;
+  font-weight: 400;
+}
+
+.reveal .hype-slide .hy-p {
+  flex: none;
+  padding: 1px 9px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
   color: var(--deck-on-accent);
   background: var(--hy-ink);
   border-radius: 999px;
@@ -154,6 +181,10 @@ html[data-deck-theme="original"] .reveal .hype-slide .hy-band-region {
 }
 
 .reveal .hype-slide .hy-who {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
   padding-top: 2px;
   font-size: 14px;
   font-weight: 700;
@@ -192,6 +223,10 @@ html[data-deck-theme="original"] .reveal .hype-slide .hy-band-region {
   font-size: 15px;
   line-height: 1.3;
   color: var(--deck-ink);
+}
+
+.reveal .hype-slide .hy-band-world .hy-quote {
+  font-size: 19px;
 }
 
 .reveal .hype-slide .hy-src {
@@ -279,7 +314,9 @@ html[data-deck-theme="original"] .reveal .hype-slide .hy-band-region {
 }
 
 /* "Agents can create value, but introduce risk": the two value cards on
-   the left, the six risks as numbered rows on the right. */
+   the left, the six risks as numbered rows on the right. Each pillar name
+   is a pill in its series colour, matching the badges on the tiles of
+   "2026 is the year of the AI Agent": Productivity blue, Products violet. */
 
 .reveal .value-risk-slide .vr-grid {
   display: grid;
@@ -316,8 +353,22 @@ html[data-deck-theme="original"] .reveal .hype-slide .hy-band-region {
   margin: 0 0 18px;
   padding: 18px 22px 16px;
   background: var(--deck-surface);
-  border-left: 2px solid var(--deck-line);
+  border-left: 4px solid var(--vr-p, var(--deck-line));
   border-radius: 2px;
+}
+
+.reveal .value-risk-slide .vr-productivity {
+  --vr-p: var(--series-a);
+  --vr-p-ink: var(--series-a-ink);
+}
+
+.reveal .value-risk-slide .vr-products {
+  --vr-p: var(--series-b);
+  --vr-p-ink: var(--series-b-ink);
+}
+
+html[data-deck-theme="original"] .reveal .value-risk-slide .vr-products {
+  --vr-p-ink: color-mix(in srgb, var(--series-b-ink), var(--deck-ink) 30%);
 }
 
 .reveal .value-risk-slide .vr-card p {
@@ -327,11 +378,24 @@ html[data-deck-theme="original"] .reveal .hype-slide .hy-band-region {
 }
 
 .reveal .value-risk-slide .vr-card .vr-name {
-  display: block;
+  display: inline-block;
   margin-bottom: 8px;
-  font-size: 32px;
-  font-weight: 600;
-  color: var(--deck-accent);
+  padding: 2px 16px 3px;
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--deck-on-accent);
+  background: var(--vr-p-ink, var(--deck-accent));
+  border-radius: 999px;
+}
+
+.reveal .value-risk-slide .vr-card .vr-sub {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 23px;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--vr-p-ink, var(--deck-ink));
 }
 
 /* Six rows of equal height (1fr rows size to the tallest), each with its
