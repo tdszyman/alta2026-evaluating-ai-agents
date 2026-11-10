@@ -1,7 +1,8 @@
 /* Section 1 motivation slides. */
 
-/* "Interest in AI agents": a live Google Trends chart, which draws its own
-   card. Widths match the embed so the caption lines up with it. */
+/* The Google Trends version of "2026 is the year of the AI Agent", now in
+   the Part 1.G graveyard: a live chart, which draws its own card. Widths
+   match the embed so the caption lines up with it. */
 
 .reveal .trends-slide .gt-frame {
   width: 1000px;
@@ -27,6 +28,211 @@
   margin: 10px auto 0;
   font-size: 16px;
   line-height: 1.4;
+  color: var(--deck-soft);
+}
+
+/* "2026 is the year of the AI Agent": a gradient hero stat, then two
+   neutral bands revealed in turn, Australia and New Zealand and the rest of
+   the world. Colour marks the value pillar from the next slide instead:
+   Productivity tiles in the blue series, Products tiles in the violet. */
+
+.reveal .hype-slide {
+  --hy-radius: 18px;
+}
+
+html[data-deck-theme="original"] .reveal .hype-slide,
+html[data-deck-theme="nyfw-ss26"] .reveal .hype-slide {
+  --hy-radius: 2px;
+}
+
+.reveal .hype-slide p {
+  margin: 0;
+}
+
+.reveal .hype-slide .hy-hero {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  margin-top: 12px;
+  padding: 10px 32px;
+  color: var(--deck-on-accent);
+  background: var(--deck-accent-fill);
+  border-radius: var(--hy-radius);
+}
+
+.reveal .hype-slide .hy-hero-num {
+  font-size: 116px;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.reveal .hype-slide .hy-hero-label {
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 1.15;
+  text-wrap: balance;
+}
+
+.reveal .hype-slide .hy-hero-sub {
+  margin-top: 6px;
+  font-size: 22px;
+  font-weight: 500;
+}
+
+.reveal .hype-slide .hy-hero-src {
+  margin-top: 8px;
+  font-size: 14px;
+  opacity: 0.92;
+}
+
+.reveal .hype-slide .hy-hero-src a {
+  color: inherit;
+  text-decoration: underline;
+}
+
+.reveal .hype-slide .hy-split {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.reveal .hype-slide .hy-band {
+  display: flex;
+  flex-direction: column;
+  padding: 12px 16px 16px;
+  border-radius: var(--hy-radius);
+}
+
+.reveal .hype-slide .hy-band {
+  background: var(--deck-surface);
+}
+
+.reveal .hype-slide .hy-productivity {
+  --hy-ink: var(--series-a-ink);
+  --hy-edge: var(--series-a);
+}
+
+.reveal .hype-slide .hy-products {
+  --hy-ink: var(--series-b-ink);
+  --hy-edge: var(--series-b);
+}
+
+html[data-deck-theme="original"] .reveal .hype-slide .hy-products {
+  --hy-ink: color-mix(in srgb, var(--series-b-ink), var(--deck-ink) 30%);
+}
+
+.reveal .hype-slide .hy-eyebrow {
+  align-self: flex-start;
+  margin-bottom: 10px;
+  padding: 3px 12px;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--deck-on-accent);
+  background: var(--deck-ink);
+  border-radius: 999px;
+}
+
+.reveal .hype-slide .hy-hype {
+  margin: -2px 0 10px;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--deck-ink);
+}
+
+.reveal .hype-slide .hy-hype a {
+  font-size: 13px;
+  font-weight: 400;
+}
+
+.reveal .hype-slide .hy-p {
+  flex: none;
+  padding: 1px 9px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--deck-on-accent);
+  background: var(--hy-ink);
+  border-radius: 999px;
+}
+
+.reveal .hype-slide .hy-tiles {
+  display: grid;
+  flex: 1;
+  gap: 12px;
+}
+
+.reveal .hype-slide .hy-band-region .hy-tiles {
+  grid-template-columns: 1fr 1fr;
+}
+
+.reveal .hype-slide .hy-tile {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 10px 14px 10px;
+  background: var(--deck-paper);
+  border-radius: calc(var(--hy-radius) * 0.7);
+  box-shadow: inset 0 4px 0 var(--hy-edge);
+}
+
+.reveal .hype-slide .hy-who {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  padding-top: 2px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--hy-ink);
+}
+
+.reveal .hype-slide .hy-num {
+  font-size: 40px;
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--hy-ink);
+}
+
+.reveal .hype-slide .hy-num small {
+  display: block;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 0;
+}
+
+.reveal .hype-slide .hy-num-words {
+  font-size: 32px;
+}
+
+.reveal .hype-slide .hy-quote {
+  font-size: 21px;
+  font-weight: 700;
+  line-height: 1.25;
+  text-wrap: balance;
+  color: var(--deck-ink);
+}
+
+.reveal .hype-slide .hy-label {
+  font-size: 15px;
+  line-height: 1.3;
+  color: var(--deck-ink);
+}
+
+.reveal .hype-slide .hy-band-world .hy-quote {
+  font-size: 19px;
+}
+
+.reveal .hype-slide .hy-src {
+  margin-top: auto;
+  padding-top: 2px;
+  font-size: 13px;
   color: var(--deck-soft);
 }
 
@@ -108,7 +314,9 @@
 }
 
 /* "Agents can create value, but introduce risk": the two value cards on
-   the left, the six risks as numbered rows on the right. */
+   the left, the six risks as numbered rows on the right. Each pillar name
+   is a pill in its series colour, matching the badges on the tiles of
+   "2026 is the year of the AI Agent": Productivity blue, Products violet. */
 
 .reveal .value-risk-slide .vr-grid {
   display: grid;
@@ -145,8 +353,22 @@
   margin: 0 0 18px;
   padding: 18px 22px 16px;
   background: var(--deck-surface);
-  border-left: 2px solid var(--deck-line);
+  border-left: 4px solid var(--vr-p, var(--deck-line));
   border-radius: 2px;
+}
+
+.reveal .value-risk-slide .vr-productivity {
+  --vr-p: var(--series-a);
+  --vr-p-ink: var(--series-a-ink);
+}
+
+.reveal .value-risk-slide .vr-products {
+  --vr-p: var(--series-b);
+  --vr-p-ink: var(--series-b-ink);
+}
+
+html[data-deck-theme="original"] .reveal .value-risk-slide .vr-products {
+  --vr-p-ink: color-mix(in srgb, var(--series-b-ink), var(--deck-ink) 30%);
 }
 
 .reveal .value-risk-slide .vr-card p {
@@ -156,11 +378,24 @@
 }
 
 .reveal .value-risk-slide .vr-card .vr-name {
-  display: block;
+  display: inline-block;
   margin-bottom: 8px;
-  font-size: 32px;
-  font-weight: 600;
-  color: var(--deck-accent);
+  padding: 2px 16px 3px;
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--deck-on-accent);
+  background: var(--vr-p-ink, var(--deck-accent));
+  border-radius: 999px;
+}
+
+.reveal .value-risk-slide .vr-card .vr-sub {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 23px;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--vr-p-ink, var(--deck-ink));
 }
 
 /* Six rows of equal height (1fr rows size to the tallest), each with its
@@ -202,136 +437,232 @@
   font-weight: 600;
 }
 
-/* "Agent platforms": the overview before
-   the governance figure. Static, no fragments. */
+/* "Agent platforms layer protections": two bands, the four
+   platforms and then the protections. Fragments reveal the protections
+   band with its first chain, complicated to deterministic, and then the
+   second, complex to non-deterministic to judge.
+   Chain columns are shared so the two check cards stack. */
+
+.reveal .platforms-slide {
+  --pf-radius: 16px;
+  --pf-gap: 14px;
+}
+
+html[data-deck-theme="original"] .reveal .platforms-slide,
+html[data-deck-theme="nyfw-ss26"] .reveal .platforms-slide {
+  --pf-radius: 2px;
+}
+
+.reveal .platforms-slide h2 {
+  font-size: 44px;
+}
 
 .reveal .platforms-slide p {
   margin: 0;
 }
 
-.reveal .platforms-slide .pf-lead {
-  margin-top: 6px;
-  font-size: 30px;
-  font-weight: 600;
-  line-height: 1.25;
-  color: var(--deck-ink);
+.reveal .platforms-slide .pf-band {
+  padding: 18px 22px 22px;
+  border-radius: var(--pf-radius);
 }
 
-.reveal .platforms-slide .pf-platforms {
+.reveal .platforms-slide .pf-band + .pf-band {
   margin-top: 22px;
 }
 
-.reveal .platforms-slide .pf-label {
-  margin-bottom: 8px;
-  font-size: 17px;
-  font-weight: 600;
-  color: var(--deck-soft);
+.reveal .platforms-slide .pf-band-platforms {
+  margin-top: 18px;
+  background: var(--series-a-tint);
 }
 
-.reveal .platforms-slide .pf-platforms ul {
+.reveal .platforms-slide .pf-band-checks {
+  background: var(--series-b-tint);
+}
+
+.reveal .platforms-slide .pf-lead {
+  margin-bottom: 12px;
+  font-size: 21px;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--deck-ink);
+}
+
+.reveal .platforms-slide .pf-cards {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 14px;
+  gap: var(--pf-gap);
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
-.reveal .platforms-slide .pf-platforms li {
+.reveal .platforms-slide .pf-cards li {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   gap: 4px;
   margin: 0;
-  padding: 10px 14px;
-  font-size: 20px;
+  padding: 12px 16px;
+  font-size: 19px;
   line-height: 1.2;
-  background: var(--deck-surface);
-  border-left: 3px solid var(--deck-accent);
-  border-radius: 2px;
+  background: var(--deck-paper);
+  border-radius: calc(var(--pf-radius) * 0.75);
 }
 
-.reveal .platforms-slide .pf-platforms li b {
+.reveal .platforms-slide .pf-logo {
+  display: flex;
+  align-items: center;
+  height: 40px;
+  margin-bottom: 6px;
+}
+
+.reveal .platforms-slide .pf-logo img {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  height: 28px;
+  margin: 0;
+  border: 0;
+  box-shadow: none;
+}
+
+.reveal .platforms-slide .pf-logo img.pf-logo-aws {
+  height: 40px;
+}
+
+.reveal .platforms-slide .pf-cards b {
   font-weight: 600;
   color: var(--deck-ink);
 }
 
-.reveal .platforms-slide .pf-platforms li span {
+.reveal .platforms-slide .pf-cite {
+  margin-top: auto;
   font-size: 14px;
   color: var(--deck-soft);
 }
 
-.reveal .platforms-slide .pf-row {
+.reveal .platforms-slide .pf-flow {
   display: grid;
-  grid-template-columns: 1.45fr 1fr;
-  gap: 36px;
-  margin-top: 24px;
-  align-items: start;
+  gap: 16px;
 }
 
-.reveal .platforms-slide .pf-text {
-  font-size: 22px;
-  line-height: 1.35;
-  color: var(--deck-ink);
-}
-
-.reveal .platforms-slide .pf-pair {
+.reveal .platforms-slide .pf-chain {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 14px;
-  margin-top: 12px;
+  grid-template-columns: 262px 48px 292px 48px minmax(0, 1fr);
+  align-items: stretch;
 }
 
-.reveal .platforms-slide .pf-kind {
-  padding: 9px 14px;
-  font-size: 16px;
+.reveal .platforms-slide .pf-node {
+  padding: 10px 14px;
+  font-size: 17px;
   line-height: 1.3;
   color: var(--deck-ink);
-  border: 1px solid var(--deck-line);
+  background: var(--deck-paper);
+  border-radius: calc(var(--pf-radius) * 0.75);
+}
+
+.reveal .platforms-slide .pf-node > b {
+  display: block;
+  margin-bottom: 3px;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.reveal .platforms-slide .pf-chain-rules .pf-node {
+  box-shadow: inset 4px 0 0 var(--series-a);
+}
+
+.reveal .platforms-slide .pf-chain-rules .pf-node > b {
+  color: var(--series-a-ink);
+}
+
+.reveal .platforms-slide .pf-chain-judge .pf-node {
+  box-shadow: inset 4px 0 0 var(--series-b);
+}
+
+.reveal .platforms-slide .pf-chain-judge .pf-node > b {
+  color: var(--series-b-ink);
+}
+
+.reveal .platforms-slide .pf-arrow {
+  position: relative;
+  align-self: center;
+  justify-self: start;
+  width: 26px;
+  height: 4px;
+  margin-left: 6px;
+  font-size: 0;
+  background: currentColor;
   border-radius: 2px;
 }
 
-.reveal .platforms-slide .pf-kind b {
-  display: block;
-  margin-bottom: 2px;
-  font-size: 18px;
-  font-weight: 600;
+.reveal .platforms-slide .pf-arrow::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 22px;
+  transform: translateY(-50%);
+  border-top: 9px solid transparent;
+  border-bottom: 9px solid transparent;
+  border-left: 13px solid currentColor;
 }
 
-.reveal .platforms-slide .pf-kind-judge {
-  background: var(--chat-judge-tint);
-  border-color: transparent;
-  box-shadow: inset 3px 0 0 var(--chat-judge-edge);
+.reveal .platforms-slide .pf-chain-rules .pf-arrow {
+  color: var(--series-a-ink);
 }
 
-.reveal .platforms-slide .pf-kind-judge b {
-  color: var(--chat-judge-label);
+.reveal .platforms-slide .pf-chain-judge .pf-arrow {
+  color: var(--series-b-ink);
 }
 
-.reveal .platforms-slide .pf-complex {
-  padding-left: 16px;
-  border-left: 2px solid var(--deck-line);
+.reveal .platforms-slide .pf-chain-judge .pf-node.pf-judge {
+  padding: 0;
+  overflow: hidden;
+  box-shadow: inset 0 0 0 2px var(--chat-judge-box-edge);
+}
+
+.reveal .platforms-slide .pf-judge-head {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding: 7px 14px;
+  font-size: 15px;
+  color: var(--chat-judge-head-ink);
+  background: var(--chat-judge-head-bg);
+}
+
+.reveal .platforms-slide .pf-judge-head b {
+  font-size: 20px;
+  font-weight: 700;
 }
 
 .reveal .platforms-slide .pf-def {
-  margin-top: 24px;
-  padding: 10px 16px;
-  font-size: 21px;
+  padding: 8px 14px 10px;
+  font-size: 17px;
   line-height: 1.35;
   color: var(--deck-ink);
-  background: var(--chat-judge-tint);
-  box-shadow: inset 3px 0 0 var(--chat-judge-edge);
-  border-radius: 2px;
 }
 
-.reveal .platforms-slide .pf-def b {
+/* "AI agents in production need multi-layer protection": Google's agent
+   architecture figure, redrawn on a fixed 1100 x 420 board. Boxes sit at
+   inline positions over one SVG of connectors and gateway diamonds. Neutral
+   colours, except the runtime in the accent and the judge point in the
+   judge colour. */
+
+.reveal .governed-slide .gv-sub {
+  display: block;
+  width: 1100px;
+  margin: 0 auto;
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 1.3;
+  color: var(--deck-ink);
+}
+
+.reveal .governed-slide .gv-term {
+  font-weight: 700;
   color: var(--chat-judge-label);
 }
-
-/* "Building well-governed agents": Google's agent architecture figure,
-   redrawn on a fixed 1100 x 420 board. Boxes sit at inline positions over
-   one SVG of connectors and gateway diamonds. Neutral colours, except the
-   runtime in the accent and the judge point in the judge colour. */
 
 .reveal .governed-slide .gv-fig {
   position: relative;
@@ -577,6 +908,84 @@
   font-size: 14px;
   line-height: 1.35;
   color: var(--deck-soft);
+}
+
+/* "Two examples": a light breather before the two judge examples, kept
+   visibly lighter than a section divider. The title keeps its normal place;
+   .centre-body centres one muted line, a short accent bar and two tinted
+   tiles drawn in SVG. No card or gradient background. */
+
+.reveal .examples-break-slide {
+  --xb-radius: 22px;
+}
+
+html[data-deck-theme="original"] .reveal .examples-break-slide,
+html[data-deck-theme="nyfw-ss26"] .reveal .examples-break-slide {
+  --xb-radius: 2px;
+}
+
+.reveal .examples-break-slide .xb-line {
+  display: block;
+  font-size: 26px;
+  text-align: center;
+  color: var(--deck-soft);
+}
+
+.reveal .examples-break-slide .xb-line::after {
+  content: "";
+  display: block;
+  width: 72px;
+  height: 6px;
+  margin: 22px auto 0;
+  background: var(--deck-accent-fill);
+  border-radius: 3px;
+}
+
+.reveal .examples-break-slide .xb-art {
+  display: flex;
+  justify-content: center;
+  gap: 64px;
+  margin-top: 44px;
+}
+
+.reveal .examples-break-slide .xb-tile {
+  width: 288px;
+  height: 216px;
+  border-radius: var(--xb-radius);
+  overflow: hidden;
+}
+
+.reveal .examples-break-slide .xb-tile-a { --xb-tint: var(--series-a-tint); --xb-ink: var(--series-a); }
+.reveal .examples-break-slide .xb-tile-b { --xb-tint: var(--series-b-tint); --xb-ink: var(--series-b); }
+
+.reveal .examples-break-slide .xb-bg { fill: var(--xb-tint); }
+
+.reveal .examples-break-slide .xb-sheet {
+  fill: var(--deck-paper);
+  stroke: var(--deck-line);
+  stroke-width: 1.5;
+}
+
+.reveal .examples-break-slide .xb-ink {
+  fill: none;
+  stroke: var(--xb-ink);
+  stroke-width: 6;
+  stroke-linecap: round;
+  opacity: 0.55;
+}
+
+.reveal .examples-break-slide .xb-judge {
+  fill: var(--chat-judge-edge);
+  stroke: var(--deck-paper);
+  stroke-width: 4;
+}
+
+.reveal .examples-break-slide .xb-lens,
+.reveal .examples-break-slide .xb-tick {
+  fill: none;
+  stroke: var(--deck-on-accent);
+  stroke-width: 4;
+  stroke-linecap: round;
 }
 
 /* "How AI agents create risk": a numbered list laid out as rows of

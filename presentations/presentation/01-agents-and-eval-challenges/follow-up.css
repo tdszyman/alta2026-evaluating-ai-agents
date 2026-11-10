@@ -71,3 +71,52 @@
 .reveal .follow-up-slide.fu-dense .fu-title {
   font-size: 16px;
 }
+
+/* The single follow-up slide for all of Part 1: five columns at about
+   13.5px. A section subheading and its section's first box are wrapped
+   together so a subheading never ends a column on its own. */
+
+.reveal .follow-up-slide.fu-all .fu-grid {
+  column-count: 5;
+  column-gap: 14px;
+  margin-top: 4px;
+  font-size: 13.5px;
+  line-height: 1.25;
+}
+
+.reveal .follow-up-slide.fu-all .fu-lead {
+  break-inside: avoid;
+}
+
+.reveal .follow-up-slide.fu-all .fu-section {
+  display: block;
+  margin: 0 0 6px;
+  padding-top: 4px;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--deck-ink);
+  border-top: 3px solid var(--deck-soft);
+}
+
+.reveal .follow-up-slide.fu-all .fu-lead:not(:first-child) .fu-section {
+  margin-top: 6px;
+}
+
+.reveal .follow-up-slide.fu-all .fu-item {
+  margin-bottom: 8px;
+  padding: 6px 9px 4px;
+}
+
+.reveal .follow-up-slide.fu-all .fu-title {
+  margin-bottom: 3px;
+  font-size: 14.5px;
+}
+
+.reveal .follow-up-slide.fu-all .fu-item p {
+  margin: 2px 0;
+}
+
+.reveal .follow-up-slide.fu-all .fu-item li {
+  margin: 0 0 1px;
+}

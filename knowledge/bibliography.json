@@ -4530,6 +4530,283 @@
       "note": "Read on 6 November 2026 from Internet Archive captures, because the live sites refused automated requests. The languages are each page’s own locale list (availableLocales in its app config) and its language switcher. SEEK does not call them official languages.",
       "featured_rank": null,
       "abstract": null
+    },
+    {
+      "id": "deloitte-2026-australian-ai-survey",
+      "type": "website",
+      "authors": [
+        "Deloitte Australia"
+      ],
+      "year": "2026",
+      "title": "Australian organisations lag global peers in realising AI’s transformational potential, reveals Deloitte survey",
+      "venue": "Deloitte Australia press release, 12 February 2026.",
+      "url": "https://www.deloitte.com/au/en/about/press-room/australian-organisations-lag-global-peers-realising-ai-transformational-potential-120226.html",
+      "links": [
+        {
+          "label": "Deloitte Australia",
+          "href": "https://www.deloitte.com/au/en/about/press-room/australian-organisations-lag-global-peers-realising-ai-transformational-potential-120226.html"
+        }
+      ],
+      "groups": [
+        "industry"
+      ],
+      "mentions": [
+        "69% of Australian organisations"
+      ],
+      "summary": "Deloitte Australia’s release on its State of AI in the Enterprise survey, The Untapped Edge. It reports that “three-quarters of global respondents and 69% of Australian organisations” are “now using agentic AI”, and that “only 22% of Australian companies report having a highly advanced model for agent governance.” Part 1 uses the 69% as the headline figure for how widely agents are being adopted.",
+      "note": "Read on 9 November 2026. The survey covered “over 3,000 director to C-suite-level leaders … who have direct involvement in their companies’ AI initiatives”, which skews towards adopters, so the 69% is of organisations surveyed, not of all Australian businesses.",
+      "featured_rank": null,
+      "abstract": null
+    },
+    {
+      "id": "comyn-2026-cba-agm-address",
+      "type": "website",
+      "authors": [
+        "Matt Comyn"
+      ],
+      "year": "2026",
+      "title": "2026 Commonwealth Bank AGM: CEO’s address",
+      "venue": "CommBank Newsroom, Commonwealth Bank of Australia, 14 October 2026.",
+      "url": "https://www.commbank.com.au/articles/newsroom/2026/10/agm-ceo-address.html",
+      "links": [
+        {
+          "label": "CommBank Newsroom",
+          "href": "https://www.commbank.com.au/articles/newsroom/2026/10/agm-ceo-address.html"
+        }
+      ],
+      "groups": [
+        "industry"
+      ],
+      "mentions": [],
+      "summary": "The CEO’s address to Commonwealth Bank’s 2026 annual general meeting. Matt Comyn says “We believe AI could be the most significant technology shift we have seen”, and that CBA was “ranked the #1 bank in Asia Pacific and #4 globally for AI maturity in the 2026 Evident AI Index.” Part 1 uses the quote as an example of how Australia’s largest companies talk about AI.",
+      "note": "Read on 9 November 2026. The address is about AI in general, not agents specifically.",
+      "featured_rank": null,
+      "abstract": null
+    },
+    {
+      "id": "crozier-2026-westpac-aws-agents",
+      "type": "website",
+      "authors": [
+        "Ry Crozier"
+      ],
+      "year": "2026",
+      "title": "Westpac plugs five AWS AI agents into core lending processes",
+      "venue": "iTnews, 4 August 2026.",
+      "url": "https://www.itnews.com.au/news/westpac-plugs-five-aws-ai-agents-into-core-lending-processes-627914",
+      "links": [
+        {
+          "label": "iTnews",
+          "href": "https://www.itnews.com.au/news/westpac-plugs-five-aws-ai-agents-into-core-lending-processes-627914"
+        }
+      ],
+      "groups": [
+        "industry"
+      ],
+      "mentions": [],
+      "summary": "Report on Westpac putting AI agents built with AWS into its lending processes. Andrew McMullan, Westpac’s Chief Data, Digital and AI Officer, says “Agentic operations are about reducing the distance between intent and outcome”, and the bank says it has cut the time to get an agent into production “from an initial six months, to ‘about four-to-six weeks’”. Part 1 uses it as an Australian bank adopting agents at speed.",
+      "note": "Read on 9 November 2026. The figures are Westpac’s own. The Australian Financial Review covered the same rollout as “Westpac deploys swarm of AI agents to assess loan applications” (5 August 2026), but that article is paywalled, so the slide cites iTnews.",
+      "featured_rank": null,
+      "abstract": null
+    },
+    {
+      "id": "mccready-2026-mood-of-the-boardroom",
+      "type": "website",
+      "authors": [
+        "Tim McCready"
+      ],
+      "year": "2026",
+      "title": "AI adoption is NZ chief executives’ second-biggest concern",
+      "venue": "NZ Herald, Mood of the Boardroom, 22 October 2026.",
+      "url": "https://www.nzherald.co.nz/business/business-reports/mood-of-the-boardroom/mood-of-the-boardroom-survey-ai-ranks-second-among-ceos-concerns/premium/TS4JRDB36BH2LOXBAZLD3YG56M/",
+      "links": [
+        {
+          "label": "NZ Herald",
+          "href": "https://www.nzherald.co.nz/business/business-reports/mood-of-the-boardroom/mood-of-the-boardroom-survey-ai-ranks-second-among-ceos-concerns/premium/TS4JRDB36BH2LOXBAZLD3YG56M/"
+        }
+      ],
+      "groups": [
+        "industry"
+      ],
+      "mentions": [],
+      "summary": "The NZ Herald’s Mood of the Boardroom survey of New Zealand chief executives. It says AI agents “are moving quickly into business. Just over half (55%) of respondents say they are already using them, and a further 38% are considering doing so.” Part 1 uses it as the New Zealand figure for agent adoption.",
+      "note": "Read on 9 November 2026. The URL is marked premium, so the article may be paywalled. It does not give the sample size.",
+      "featured_rank": null,
+      "abstract": null
+    },
+    {
+      "id": "cannon-brookes-2026-team-26",
+      "type": "website",
+      "authors": [
+        "Mike Cannon-Brookes"
+      ],
+      "year": "2026",
+      "title": "Atlassian Team ’26: Meet the AI-Native Organization",
+      "venue": "Inside Atlassian blog, 6 May 2026.",
+      "url": "https://www.atlassian.com/blog/company-news/founder-update-team-26",
+      "links": [
+        {
+          "label": "Atlassian blog",
+          "href": "https://www.atlassian.com/blog/company-news/founder-update-team-26"
+        }
+      ],
+      "groups": [
+        "industry"
+      ],
+      "mentions": [],
+      "summary": "Atlassian’s CEO and co-founder on the company’s AI products at its Team ’26 conference. He writes “In just the last six months, we’ve seen a 7x increase in agentic automations across our customers”, and “Together, we’re facing the most significant reimagining of work in our lifetime”. Part 1 uses the 7x figure as an Australian-founded company’s view of agent growth.",
+      "note": "Read on 9 November 2026. The figures are Atlassian’s own. Atlassian was founded in Australia but is listed on Nasdaq, not the ASX.",
+      "featured_rank": null,
+      "abstract": null
+    },
+    {
+      "id": "kandaswamy-2026-hype-cycle-agentic-ai",
+      "type": "website",
+      "authors": [
+        "Rajesh Kandaswamy"
+      ],
+      "year": "2026",
+      "title": "What the 2026 Hype Cycle for Agentic AI Reveals",
+      "venue": "Gartner, 15 April 2026.",
+      "url": "https://www.gartner.com/en/articles/hype-cycle-for-agentic-ai",
+      "links": [
+        {
+          "label": "Gartner",
+          "href": "https://www.gartner.com/en/articles/hype-cycle-for-agentic-ai"
+        }
+      ],
+      "groups": [
+        "industry"
+      ],
+      "mentions": [],
+      "summary": "Gartner’s article on its 2026 Hype Cycle for Agentic AI. It says “Agentic AI sits at the Peak of Inflated Expectations”, and that in the 2026 Gartner CIO and Technology Executive Survey “only 17% of organizations have deployed AI agents to date, yet more than 60% expect to do so within the next two years”. Part 1 uses it to name the hype directly.",
+      "note": "The quotes come from a research report compiled on 9 November 2026; Gartner’s site refused automated requests when this entry was written. The article is free; the full Hype Cycle report needs a Gartner login.",
+      "featured_rank": null,
+      "abstract": null
+    },
+    {
+      "id": "thomas-2026-big-tech-ai-buildout",
+      "type": "website",
+      "authors": [
+        "Ellen Thomas"
+      ],
+      "year": "2026",
+      "title": "Big Tech’s big AI buildout will not end until someone stops it",
+      "venue": "The Verge, 5 November 2026.",
+      "url": "https://www.theverge.com/ai-artificial-intelligence/1027344/amazon-microsoft-alphabet-google-meta-data-centers-earnings-q3",
+      "links": [
+        {
+          "label": "The Verge",
+          "href": "https://www.theverge.com/ai-artificial-intelligence/1027344/amazon-microsoft-alphabet-google-meta-data-centers-earnings-q3"
+        }
+      ],
+      "groups": [
+        "industry"
+      ],
+      "mentions": [],
+      "summary": "Report on the third-quarter earnings of Amazon, Microsoft, Alphabet and Meta, which “told investors they’re planning to spend at least $720 billion on CapEx this year alone. Most of that will go toward AI infrastructure.” Part 1 uses the figure for the scale of investment in AI.",
+      "note": "Read on 9 November 2026. The figure is the four companies’ total capital expenditure, in US dollars. It is not spending on AI agents.",
+      "featured_rank": null,
+      "abstract": null
+    },
+    {
+      "id": "tarre-2026-genesys-anz-agentic-ai",
+      "type": "website",
+      "authors": [
+        "Mark Tarre"
+      ],
+      "year": "2026",
+      "title": "Australia & New Zealand lead in agentic AI adoption",
+      "venue": "IT Brief New Zealand, 16 July 2026.",
+      "url": "https://itbrief.co.nz/story/australia-new-zealand-lead-in-agentic-ai-adoption",
+      "links": [
+        {
+          "label": "IT Brief NZ",
+          "href": "https://itbrief.co.nz/story/australia-new-zealand-lead-in-agentic-ai-adoption"
+        }
+      ],
+      "groups": [
+        "industry"
+      ],
+      "mentions": [],
+      "summary": "Report on a Genesys customer experience study. “Among customer experience leaders in Australia and New Zealand, 39% said deploying agentic AI is critical, compared with 22% globally and 21% across Asia Pacific. The study also found that 48% of organisations in the region already use agentic AI virtual agents for customer interactions.” Part 1 uses the 48% as an example of customer-facing agents in the region.",
+      "note": "Read on 10 November 2026. Genesys is a vendor of customer experience software, and the article does not give the study’s sample size.",
+      "featured_rank": null,
+      "abstract": null
+    },
+    {
+      "id": "gupta-2026-australian-startups-funding",
+      "type": "website",
+      "authors": [
+        "Yajush Gupta"
+      ],
+      "year": "2026",
+      "title": "Five Australian startups that raised funding last week",
+      "venue": "Dynamic Business, 8 November 2026.",
+      "url": "https://dynamicbusiness.com/news/five-australian-startups-that-raised-funding-last-week",
+      "links": [
+        {
+          "label": "Dynamic Business",
+          "href": "https://dynamicbusiness.com/news/five-australian-startups-that-raised-funding-last-week"
+        }
+      ],
+      "groups": [
+        "industry"
+      ],
+      "mentions": [],
+      "summary": "A weekly funding round-up. It reports that “Sydney-born startup Future Secure AI raised US$80 million (A$115.3 million) via convertible notes, in a round valuing the business at $1.7 billion and making it Australia's newest tech unicorn, according to the Australian Financial Review”, and that the company builds AI “co-workers” for large organisations, “assembling teams of AI agents, each given a name and face”. Part 1 uses it as an Australian business whose product is AI agents.",
+      "note": "Read on 10 November 2026. Second-hand: the figures come from an Australian Financial Review story that was not opened. The article says the company “is reportedly targeting annual recurring revenue approaching $100 million by the end of 2026”.",
+      "featured_rank": null,
+      "abstract": null
+    },
+    {
+      "id": "altman-2025-reflections",
+      "type": "website",
+      "authors": [
+        "Sam Altman"
+      ],
+      "year": "2025",
+      "title": "Reflections",
+      "venue": "Sam Altman’s blog, January 2025.",
+      "url": "https://blog.samaltman.com/reflections",
+      "links": [
+        {
+          "label": "Blog post",
+          "href": "https://blog.samaltman.com/reflections"
+        }
+      ],
+      "groups": [
+        "industry"
+      ],
+      "mentions": [],
+      "summary": "OpenAI’s CEO looks back on the company’s history and ahead. He writes: “We believe that, in 2025, we may see the first AI agents “join the workforce” and materially change the output of companies.” Part 1 quotes it as the prediction that 2026 has caught up with.",
+      "note": "Read on 10 November 2026. The post itself is undated; The Guardian dates it Monday 6 January 2025.",
+      "featured_rank": null,
+      "abstract": null
+    },
+    {
+      "id": "gartner-2025-task-specific-agents",
+      "type": "website",
+      "authors": [
+        "Gartner"
+      ],
+      "year": "2025",
+      "title": "Gartner Predicts 40% of Enterprise Apps Will Feature Task-Specific AI Agents by 2026, Up from Less Than 5% in 2025",
+      "venue": "Gartner press release, 26 August 2025 (updated 5 September 2025).",
+      "url": "https://www.gartner.com/en/newsroom/press-releases/2025-08-26-gartner-predicts-40-percent-of-enterprise-apps-will-feature-task-specific-ai-agents-by-2026-up-from-less-than-5-percent-in-2025",
+      "links": [
+        {
+          "label": "Gartner",
+          "href": "https://www.gartner.com/en/newsroom/press-releases/2025-08-26-gartner-predicts-40-percent-of-enterprise-apps-will-feature-task-specific-ai-agents-by-2026-up-from-less-than-5-percent-in-2025"
+        }
+      ],
+      "groups": [
+        "industry"
+      ],
+      "mentions": [],
+      "summary": "Gartner’s prediction that “Forty percent of enterprise applications will be integrated with task-specific AI agents by the end of 2026, up from less than 5% today”. Its best-case projection is that “agentic AI could drive approximately 30% of enterprise application software revenue by 2035, surpassing $450 billion, up from 2% in 2025.” Part 1 uses the 40% as a global example of agents built into products.",
+      "note": "A prediction, not a measurement. Gartner’s site refused automated requests on 10 November 2026; the title and quotes were checked against the release text returned by a web search that day, and against the research report compiled on 9 November 2026.",
+      "featured_rank": null,
+      "abstract": null
     }
   ]
 }

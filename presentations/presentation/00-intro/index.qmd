@@ -64,7 +64,7 @@ format:
     <p>LLM access is built in; no setup needed.</p>
   </div>
 </div>
-<p class="tl-src">Draft times, 6 November 2026. Session lengths: ALTA 2026 programme. <span class="tbc">Dotted underline</span>: to be confirmed.</p>
+<p class="tl-src slide-foot">Draft times, 6 November 2026. Session lengths: ALTA 2026 programme. <span class="tbc">Dotted underline</span>: to be confirmed.</p>
 ```
 
 ::: {.notes}
@@ -136,7 +136,7 @@ format:
     <p class="pc-part">Presents Part 4</p>
   </article>
 </div>
-<div class="pc-foot">
+<div class="pc-foot slide-foot">
   <p class="pc-src">Roles: ALTA 2026 programme. Bios: sources in the notes.</p>
   <a class="next-deck" data-next-deck href="../01-agents-and-eval-challenges/">Next: Part 1 · AI Agents and Evaluation Challenges →</a>
 </div>
