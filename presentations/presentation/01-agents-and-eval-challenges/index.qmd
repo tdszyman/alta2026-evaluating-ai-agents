@@ -28,7 +28,7 @@ format:
 
 ---
 
-## Would you use an AI agent to… {.vote-slide}
+## Would you use an AI agent to… {.vote-slide .centre-body}
 
 <!-- TODO: The poll figures are from press coverage, not the surveys' own reports, and none asks Terrence's four questions. Replace them if the full Indeed or Greenhouse reports give closer questions or Australian figures. -->
 
@@ -247,7 +247,7 @@ Three steps. The slide opens on the hero stat: in Deloitte’s survey, 69% of Au
 
 ---
 
-## Agents can create value, but introduce risk {.value-risk-slide}
+## Agents can create value, but introduce risk {.value-risk-slide .centre-body}
 
 <!-- The full risk slide, with an example at SEEK and how evals help for each row, is kept in the Part 1.G graveyard deck (../01g-graveyard/). -->
 
@@ -501,7 +501,7 @@ This is the first place the tutorial uses the term. **LLM-as-a-judge** means an 
 
 [Where an LLM judge can check the agent in this architecture]{.gv-legend}
 
-[Diagram adapted from Google Cloud’s Agent Platform overview ([Google Cloud 2026a](../../bibliography/google-cloud-2026-agent-platform-overview/)).]{.gv-credit}
+[Diagram adapted from Google Cloud’s Agent Platform overview ([Google Cloud 2026a](../../bibliography/google-cloud-2026-agent-platform-overview/)).]{.gv-credit .slide-foot}
 
 ::: {.notes}
 **About this slide:** An AI agent in production is protected by several layers, not one safeguard. The slide shows them in Google Cloud’s own view of the parts, and its subtitle sets up the point of the three clicks: LLM-as-a-judge methods can be applied at various points across the platform. Google describes its Gemini Enterprise Agent Platform as “a unified platform to build, deploy, govern, and optimize enterprise-grade AI agents” ([Google Cloud 2026a](../../bibliography/google-cloud-2026-agent-platform-overview/)), launched on 22 April 2026 as the evolution of Vertex AI ([Gerstenhaber and Bachman 2026](../../bibliography/gerstenhaber-2026-agent-platform/)). The diagram is adapted from the architecture figure in the platform overview: the component names are Google’s, and the short descriptions in the boxes summarise Google’s documentation. Each part, as Google’s documentation describes it:
@@ -539,7 +539,7 @@ After a short breather slide, “Two examples”, the next two slides are illust
 
 ---
 
-## Two examples {#two-examples .examples-break-slide}
+## Two examples {#two-examples .examples-break-slide .centre-body}
 
 [What this looks like in practice]{.xb-line}
 
@@ -668,7 +668,7 @@ action:  block; agent rewrites</pre>
 
 </div>
 
-<div class="jad-caption">Illustrative mock-up: not a real ad, hirer or incident.</div>
+<div class="jad-caption slide-foot">Illustrative mock-up: not a real ad, hirer or incident.</div>
 ```
 
 ::: {.notes}
@@ -785,7 +785,7 @@ End the chat if risk ≥ 0.8.</pre>
 
 </div>
 
-<div class="cat-caption">Illustrative mock-up: not a real conversation, user or incident. Risk scores are made up.</div>
+<div class="cat-caption slide-foot">Illustrative mock-up: not a real conversation, user or incident. Risk scores are made up.</div>
 ```
 
 ::: {.notes}
@@ -823,7 +823,7 @@ End the chat if risk ≥ 0.8.</pre>
   <div class="tg-arrow" aria-hidden="true">›</div>
   <div class="tg-col"><a class="tg-head" href="#/llm-as-judge-evaluating-the-trace"><span class="tg-num">4</span>LLM-as-judge</a><p class="tg-gloss">Another LLM reads part of the trace and gives a verdict. Then we check the judge.</p><ul><li>LLM judge</li><li>Input guardrail</li><li>Call-level eval</li><li>Output guardrail</li><li>Multi-step eval</li><li>Multi-turn eval</li><li>Trace-level eval</li><li>Meta-evaluation</li></ul></div>
 </div>
-<p class="tg-caption">Four ideas, each built on the last. Each heading links to the slide where its idea starts.</p>
+<p class="tg-caption slide-foot">Four ideas, each built on the last. Each heading links to the slide where its idea starts.</p>
 ```
 
 ::: {.notes}
@@ -869,7 +869,7 @@ End the chat if risk ≥ 0.8.</pre>
   <span class="fragment tm-overview" data-fragment-index="4"></span>
 </div>
 
-<div class="tm-sources">Simplified: each column is one token position passing up through the model’s layers. Illustrative example.</div>
+<div class="tm-sources slide-foot">Simplified: each column is one token position passing up through the model’s layers. Illustrative example.</div>
 
 <script>
 (function () {
@@ -1137,7 +1137,7 @@ End the chat if risk ≥ 0.8.</pre>
   <svg class="tm-links" aria-hidden="true"></svg>
 </div>
 
-<div class="tm-sources">Message roles as in the common chat APIs. Illustrative conversation.</div>
+<div class="tm-sources slide-foot">Message roles as in the common chat APIs. Illustrative conversation.</div>
 ```
 
 ::: {.notes}
@@ -1175,7 +1175,7 @@ End the chat if risk ≥ 0.8.</pre>
   <div class="ag-op">=</div>
   <div class="ag-tile ag-result"><b>Agent</b>The whole system, not just the assistant role.</div>
 </div>
-<div class="tm-sources">Working definition: LLM + tools + ReAct loop (<a href="../../bibliography/yao-2023-react/">Yao et al. 2023</a>).</div>
+<div class="tm-sources slide-foot">Working definition: LLM + tools + ReAct loop (<a href="../../bibliography/yao-2023-react/">Yao et al. 2023</a>).</div>
 ```
 
 ::: {.notes}
@@ -1241,7 +1241,7 @@ End the chat if risk ≥ 0.8.</pre>
   <svg class="tm-links" aria-hidden="true"></svg>
 </div>
 
-<div class="tm-sources">Illustrative conversation. The user sees only the user and assistant messages.</div>
+<div class="tm-sources slide-foot">Illustrative conversation. The user sees only the user and assistant messages.</div>
 ```
 
 ::: {.notes}
@@ -1312,7 +1312,7 @@ End the chat if risk ≥ 0.8.</pre>
   <svg class="tm-links" aria-hidden="true"></svg>
 </div>
 
-<div class="tm-sources">Evaluation levels follow observability practice (<a href="../../bibliography/dong-2024-agentops/">Dong et al. 2024</a>). Illustrative conversation.</div>
+<div class="tm-sources slide-foot">Evaluation levels follow observability practice (<a href="../../bibliography/dong-2024-agentops/">Dong et al. 2024</a>). Illustrative conversation.</div>
 ```
 
 ::: {.notes}
@@ -1335,7 +1335,7 @@ End the chat if risk ≥ 0.8.</pre>
 
 ---
 
-## Why generative AI needs LLM-as-a-judge {.output-space-slide}
+## Why generative AI needs LLM-as-a-judge {.output-space-slide .centre-body}
 
 ```{=html}
 <div class="osp">
@@ -1376,7 +1376,7 @@ End the chat if risk ≥ 0.8.</pre>
     </div>
   </div>
   <div class="osp-takeaway fragment" data-fragment-index="6">Once outputs can’t be enumerated, there is no label to match. Something has to read the output and decide whether it is good.</div>
-  <div class="osp-sources">
+  <div class="osp-sources slide-foot">
     <div>Before LLM judges: reference overlap, e.g. <a href="../../bibliography/papineni-2002-bleu/">BLEU (Papineni et al. 2002)</a> and <a href="../../bibliography/lin-2004-rouge/">ROUGE (Lin 2004)</a>, which correlate poorly with human judgements on open-ended text (<a href="../../bibliography/liu-2023-geval/">Liu et al. 2023</a>).</div>
     <div>LLM-as-a-judge: <a href="../../bibliography/zheng-2023-mt-bench/">Zheng et al. 2023</a>.</div>
   </div>
@@ -1421,7 +1421,7 @@ End the chat if risk ≥ 0.8.</pre>
 
 ::::
 
-[Contrasts and examples: [Complex versus complicated](../../bibliography/finegood-complex-versus-complicated/) (Frameworks Collection, CC BY-NC-ND). Figure illustrative.]{.attribution}
+[Contrasts and examples: [Complex versus complicated](../../bibliography/finegood-complex-versus-complicated/) (Frameworks Collection, CC BY-NC-ND). Figure illustrative.]{.attribution .slide-foot}
 
 ::: {.notes}
 **About this slide:** A complex system has many parts entangled through feedback loops, so the behaviour of the whole emerges from how the parts interact, and the same input gives a distribution of outputs that cannot be traced back to individual parts. Complex systems are unpredictable, self-organising and emergent. The weather is the example: air, heat and moisture feed back on each other, so similar mornings can end in different afternoons. The economy, ant colonies and human brains are complex too. As a field, the study of complex systems goes back at least to Warren Weaver’s 1948 essay “Science and Complexity”, which separated problems of simplicity, problems of “disorganized complexity” (many variables, handled by statistics) and problems of “organized complexity”: problems “which involve dealing simultaneously with a sizable number of factors which are interrelated into an organic whole” ([Weaver 1948](../../bibliography/weaver-1948-science-complexity/)). Complexity science is now studied across the natural and social sciences, but, as a review puts it, “there is no concise definition of a complex system, let alone a definition on which all scientists agree” ([Ladyman et al. 2013](../../bibliography/ladyman-2013-complex-system/)).
@@ -1457,7 +1457,7 @@ End the chat if risk ≥ 0.8.</pre>
 
 ::::
 
-[Contrasts and examples: [Complex versus complicated](../../bibliography/finegood-complex-versus-complicated/) (Frameworks Collection, CC BY-NC-ND). Figure illustrative.]{.attribution}
+[Contrasts and examples: [Complex versus complicated](../../bibliography/finegood-complex-versus-complicated/) (Frameworks Collection, CC BY-NC-ND). Figure illustrative.]{.attribution .slide-foot}
 
 ::: {.notes}
 **About this slide:** A complicated system also has many parts, but every connection is designed and can be traced, so the behaviour of the whole is dictated by the behaviour of its parts, and the same input always gives the same output. Complicated systems are predictable, controllable and designable. A jet engine is the example: every part is designed and every path can be traced. Mechanical watches, traditional software, ETL pipelines and workflows are complicated too.

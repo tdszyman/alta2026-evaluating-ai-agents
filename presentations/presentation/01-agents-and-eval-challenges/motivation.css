@@ -911,13 +911,12 @@ html[data-deck-theme="nyfw-ss26"] .reveal .platforms-slide {
 }
 
 /* "Two examples": a light breather before the two judge examples, kept
-   visibly lighter than a section divider. Centred title, one muted line, a
-   short accent bar and two tinted tiles drawn in SVG; no card or gradient
-   background. */
+   visibly lighter than a section divider. The title keeps its normal place;
+   .centre-body centres one muted line, a short accent bar and two tinted
+   tiles drawn in SVG. No card or gradient background. */
 
 .reveal .examples-break-slide {
   --xb-radius: 22px;
-  text-align: center;
 }
 
 html[data-deck-theme="original"] .reveal .examples-break-slide,
@@ -925,14 +924,10 @@ html[data-deck-theme="nyfw-ss26"] .reveal .examples-break-slide {
   --xb-radius: 2px;
 }
 
-.reveal .examples-break-slide h2 {
-  margin-top: 138px;
-  text-align: center;
-}
-
 .reveal .examples-break-slide .xb-line {
   display: block;
   font-size: 26px;
+  text-align: center;
   color: var(--deck-soft);
 }
 

@@ -356,6 +356,61 @@ html.deck-idle .reveal .controls .navigate-right:focus {
   .reveal .controls { display: none !important; }
 }
 
+/* Slide footnotes. A source, credit or caption line that belongs to the
+   whole slide carries .slide-foot and sits at the foot of the 1280 x 720
+   canvas, whatever the content height. The fixed page number lands below
+   the canvas at every window shape (13px of canvas or more), so the inset
+   keeps them apart. Deck classes keep the type; this sets only the box.
+   Captions that belong to one figure, card or tile stay with it. */
+:root {
+  --slide-foot-inset: 8px;
+  --slide-foot-space: 52px;
+}
+
+.reveal .slides section .slide-foot {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: var(--slide-foot-inset);
+  width: auto;
+  max-width: none;
+  margin: 0;
+}
+
+/* Opt-in body centring for sparse slides. .centre-body centres everything
+   below the title in the space between the title and the footnote area.
+   The title keeps its normal place, which Reveal's own .center does not
+   do. Reveal sets an inline display on slides, hence the !important. */
+.reveal .slides section.centre-body.present {
+  display: flex !important;
+  flex-direction: column;
+  box-sizing: border-box;
+  height: 100%;
+  padding-bottom: var(--slide-foot-space);
+}
+
+.reveal .slides section.centre-body > * {
+  flex-shrink: 0;
+}
+
+.reveal .slides section.centre-body > h2 {
+  order: -2;
+}
+
+.reveal .slides section.centre-body::before,
+.reveal .slides section.centre-body::after {
+  content: "";
+  flex: 1 1 0;
+}
+
+.reveal .slides section.centre-body::before {
+  order: -1;
+}
+
+.reveal .slides section.centre-body::after {
+  order: 1;
+}
+
 /* "Next: Part n" hand-off link on a deck's last slide (data-next-deck).
    Right-aligned under the slide content, accent text, no underline until
    hover. */
