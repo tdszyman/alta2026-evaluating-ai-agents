@@ -1,0 +1,1551 @@
+/* Part 2 deck. Diagrams, a trace mock-up, bar charts and judge boxes, all
+   in HTML. Template tokens only (--deck-*, --chat-*, --verdict-*,
+   --series-*); no new colours. The trace uses Part 1's chat roles. */
+
+.reveal .j2-slide {
+  font-family: var(--deck-font-sans);
+  color: var(--deck-ink);
+}
+
+.reveal .j2-slide h2 {
+  margin-bottom: 0.45em;
+}
+
+.reveal .j2-slide p {
+  margin: 0;
+}
+
+.reveal .j2-slide a {
+  white-space: normal;
+}
+
+.reveal .j2-slide .j2-src,
+.reveal .slides section .src {
+  margin-top: 14px;
+  font-size: 16px;
+  line-height: 1.4;
+  color: var(--deck-soft);
+}
+
+.reveal .j2-slide .j2-colhead {
+  margin-bottom: 12px;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--deck-soft);
+}
+
+.reveal .j2-slide .j2-note {
+  margin-top: 22px;
+  padding: 12px 16px;
+  font-size: 20px;
+  line-height: 1.4;
+  background: var(--deck-surface);
+  border-left: 3px solid var(--deck-accent);
+  border-radius: 2px;
+}
+
+.reveal .j2-slide .j2-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 34px;
+  height: 34px;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--deck-on-accent);
+  background: var(--deck-accent);
+  border-radius: 50%;
+}
+
+.reveal .j2-slide .j2-split {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 36px;
+  align-items: start;
+}
+
+.reveal .j2-slide .j2-split-even {
+  grid-template-columns: 1fr 1fr;
+}
+
+/* Judge flow: rubric + trace -> judge -> verdict */
+
+.reveal .j2-slide .j2-flow {
+  display: flex;
+  align-items: stretch;
+  gap: 12px;
+  margin-top: 40px;
+}
+
+.reveal .j2-slide .j2-node {
+  flex: 1;
+  padding: 16px 16px 18px;
+  font-size: 18px;
+  line-height: 1.35;
+  color: var(--deck-soft);
+  background: var(--deck-paper);
+  border: 1px solid var(--deck-line);
+  border-radius: 2px;
+}
+
+.reveal .j2-slide .j2-node b {
+  display: block;
+  margin: 4px 0 6px;
+  font-size: 28px;
+  color: var(--deck-ink);
+}
+
+.reveal .j2-slide .j2-k {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.reveal .j2-slide .j2-judge {
+  background: var(--chat-judge-tint);
+  border-color: var(--chat-judge-box-edge);
+}
+
+.reveal .j2-slide .j2-judge .j2-k,
+.reveal .j2-slide .j2-judge b {
+  color: var(--chat-judge-label);
+}
+
+.reveal .j2-slide .j2-out {
+  border-top: 4px solid var(--deck-accent);
+}
+
+.reveal .j2-slide .j2-plus,
+.reveal .j2-slide .j2-arrow {
+  align-self: center;
+  font-size: 32px;
+  color: var(--deck-soft);
+}
+
+.reveal .j2-slide .j2-flow + .j2-colhead {
+  margin-top: 28px;
+}
+
+/* Running example: one line drawing with the request inside it, coloured by
+   role like the trace on the next slides: the job seeker and the request in
+   the user colours, the career assistant in the agent colours, and its tools
+   in the action colours. */
+
+.reveal .j2-slide .j2-ex {
+  margin-top: 80px;
+}
+
+.reveal .j2-slide .j2-art {
+  display: block;
+  width: 100%;
+  height: auto;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.reveal .j2-slide .j2-art-ground,
+.reveal .j2-slide .j2-art-input {
+  fill: none;
+  stroke: var(--deck-line);
+  stroke-width: 2;
+}
+
+.reveal .j2-slide .j2-art-dark { fill: var(--deck-soft); }
+
+.reveal .j2-slide .j2-art-pale { fill: var(--deck-line); }
+
+.reveal .j2-slide .j2-art-tint { fill: var(--deck-surface); }
+
+.reveal .j2-slide .j2-art-paper {
+  fill: var(--deck-paper);
+  stroke: var(--deck-line);
+}
+
+.reveal .j2-slide .j2-art-fill {
+  fill: var(--deck-surface);
+  stroke: var(--deck-line);
+}
+
+.reveal .j2-slide .j2-art-hair {
+  fill: var(--deck-soft);
+  stroke: var(--deck-soft);
+}
+
+.reveal .j2-slide .j2-art-line {
+  fill: none;
+  stroke: var(--deck-line);
+}
+
+.reveal .j2-slide .j2-art-thin { stroke-width: 2; }
+
+.reveal .j2-slide .j2-art-wire,
+.reveal .j2-slide .j2-art-steam {
+  fill: none;
+  stroke: var(--deck-line);
+  stroke-width: 2;
+}
+
+.reveal .j2-slide .j2-art-dots {
+  fill: none;
+  stroke: var(--deck-line);
+  stroke-dasharray: 0 7;
+}
+
+.reveal .j2-slide .j2-art-user .j2-art-paper,
+.reveal .j2-slide .j2-art-user .j2-art-line {
+  stroke: var(--chat-user-edge);
+}
+
+.reveal .j2-slide .j2-art-user .j2-art-fill {
+  fill: var(--chat-user-bg);
+  stroke: var(--chat-user-edge);
+}
+
+.reveal .j2-slide .j2-art-agent .j2-art-paper,
+.reveal .j2-slide .j2-art-agent .j2-art-line {
+  stroke: var(--chat-agent-edge);
+}
+
+.reveal .j2-slide .j2-art-agent .j2-art-fill {
+  fill: var(--chat-agent-bg);
+  stroke: var(--chat-agent-edge);
+}
+
+.reveal .j2-slide .j2-art-tool .j2-art-paper,
+.reveal .j2-slide .j2-art-tool .j2-art-wire {
+  stroke: var(--chat-action-edge);
+}
+
+.reveal .j2-slide .j2-art-tool .j2-art-tint { fill: var(--chat-action-bg); }
+
+/* Small icons are drawn in the muted text colour so they stay legible. */
+.reveal .j2-slide .j2-art-icon .j2-art-paper,
+.reveal .j2-slide .j2-art-icon .j2-art-line,
+.reveal .j2-slide .j2-art-icon .j2-art-steam,
+.reveal .j2-slide .j2-art-icon .j2-art-dots {
+  stroke: var(--deck-soft);
+}
+
+.reveal .j2-slide .j2-art-label {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  fill: var(--deck-soft);
+}
+
+.reveal .j2-slide .j2-art-who-user { fill: var(--chat-user-label); }
+
+.reveal .j2-slide .j2-art-who-agent { fill: var(--chat-agent-label); }
+
+.reveal .j2-slide .j2-art-say {
+  font-size: 32px;
+  font-weight: 500;
+  fill: var(--deck-ink);
+}
+
+.reveal .j2-slide .j2-art-key { font-weight: 700; }
+
+.reveal .j2-slide .j2-art-code {
+  font-family: var(--deck-font-mono);
+  font-size: 20px;
+  fill: var(--deck-ink);
+}
+
+.reveal .j2-slide .j2-art-what {
+  font-size: 16px;
+  fill: var(--deck-soft);
+}
+
+.reveal .j2-slide .j2-ex-src {
+  margin-top: 18px;
+}
+
+/* Part 3 pages and running-example asides */
+
+.reveal .j2-slide .j2-use {
+  margin-top: auto;
+  padding-top: 10px;
+  font-size: 15px;
+  color: var(--chat-judge-label);
+  border-top: 1px solid var(--deck-line);
+}
+
+.reveal .j2-slide .j2-running {
+  margin-top: 26px;
+  padding: 14px 18px;
+  font-size: 22px;
+  background: var(--deck-accent-tint);
+  border-left: 4px solid var(--deck-accent);
+  border-radius: 2px;
+}
+
+/* Trace mock-up, Part 1 chat roles */
+
+.reveal .j2-slide .j2-trace {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  padding: 14px;
+  font-size: 18px;
+  line-height: 1.35;
+  background: var(--deck-paper);
+  border: 1px solid var(--deck-line);
+  border-radius: 2px;
+}
+
+.reveal .j2-slide .j2-trace code {
+  font-family: var(--deck-font-mono);
+  font-size: 16px;
+  color: var(--deck-ink);
+  background: none;
+}
+
+.reveal .j2-slide .j2-msg,
+.reveal .j2-slide .j2-step {
+  padding: 7px 12px;
+  border-radius: 2px;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.reveal .j2-slide .j2-sys {
+  font-size: 15px;
+  color: var(--deck-soft);
+  background: var(--chat-system-bg);
+  border: 1px dashed var(--chat-system-edge);
+}
+
+.reveal .j2-slide .j2-user {
+  align-self: flex-end;
+  max-width: 84%;
+  background: var(--chat-user-bg);
+  box-shadow: inset calc(-1 * var(--chat-edge-width)) 0 0 var(--chat-user-edge);
+}
+
+.reveal .j2-slide .j2-asst {
+  align-self: flex-start;
+  max-width: 92%;
+  background: var(--chat-agent-bg);
+  box-shadow: inset var(--chat-edge-width) 0 0 var(--chat-agent-edge);
+}
+
+.reveal .j2-slide .j2-step {
+  margin-left: 26px;
+  background: var(--chat-action-bg);
+  box-shadow: inset var(--chat-edge-width) 0 0 var(--chat-action-edge);
+}
+
+.reveal .j2-slide .j2-step.j2-obs {
+  background: var(--chat-observation-bg);
+  box-shadow: inset var(--chat-edge-width) 0 0 var(--chat-observation-edge);
+  border: 1px solid var(--chat-observation-edge);
+}
+
+.reveal .j2-slide .j2-role,
+.reveal .j2-slide .j2-kind {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--deck-soft);
+}
+
+.reveal .j2-slide .j2-user .j2-role { color: var(--chat-user-label); }
+
+.reveal .j2-slide .j2-asst .j2-role { color: var(--chat-agent-label); }
+
+.reveal .j2-slide .j2-trace-sm {
+  font-size: 17px;
+}
+
+.reveal .j2-slide .j2-whole {
+  margin-top: 2px;
+  padding-top: 6px;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--deck-soft);
+  border-top: 1px dashed var(--deck-line);
+}
+
+/* "fragment custom" stays visible; .visible turns on the highlight. */
+
+.reveal .j2-slide .j2-flag.visible {
+  background: var(--verdict-fail-tint);
+  box-shadow: 0 0 0 3px var(--verdict-fail);
+}
+
+.reveal .j2-slide .j2-ev.visible {
+  background: var(--chat-judge-tint);
+  box-shadow: 0 0 0 3px var(--chat-judge-edge);
+}
+
+/* You be the judge */
+
+.reveal .j2-slide .j2-ask {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.reveal .j2-slide .j2-kicker {
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--deck-accent);
+}
+
+.reveal .j2-slide .j2-q {
+  font-size: 34px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.reveal .j2-slide .j2-vote {
+  display: flex;
+  gap: 10px;
+}
+
+.reveal .j2-slide .j2-vote span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 58px;
+  height: 58px;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--deck-accent);
+  background: var(--deck-accent-tint);
+  border: 2px solid var(--deck-accent);
+  border-radius: 2px;
+}
+
+.reveal .j2-slide .j2-reveal {
+  padding: 10px 14px;
+  font-size: 19px;
+  line-height: 1.4;
+  background: var(--deck-surface);
+  border-left: 3px solid var(--deck-accent);
+  border-radius: 2px;
+}
+
+.reveal .j2-slide .j2-reveal.j2-bad {
+  background: var(--verdict-fail-tint);
+  border-left-color: var(--verdict-fail);
+}
+
+/* Pass/fail checks */
+
+.reveal .j2-slide .j2-checks {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 36px;
+  margin-top: 6px;
+}
+
+.reveal .j2-slide .j2-check {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  margin-bottom: 12px;
+  padding: 11px 14px;
+  font-size: 21px;
+  line-height: 1.35;
+  background: var(--deck-paper);
+  border: 1px solid var(--deck-line);
+  border-radius: 2px;
+}
+
+.reveal .j2-slide .j2-check code {
+  font-size: 18px;
+}
+
+.reveal .j2-slide .j2-mark {
+  flex: none;
+  width: 58px;
+  padding: 2px 0;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-align: center;
+  color: var(--verdict-on);
+  border-radius: 2px;
+}
+
+.reveal .j2-slide .j2-pass .j2-mark { background: var(--verdict-pass); }
+
+.reveal .j2-slide .j2-fail .j2-mark { background: var(--verdict-fail); }
+
+.reveal .j2-slide .j2-fail {
+  background: var(--verdict-fail-tint);
+  border-color: var(--verdict-fail);
+}
+
+/* Three tiles */
+
+.reveal .j2-slide .j2-three {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.reveal .j2-slide .j2-tile {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 16px 18px;
+  background: var(--deck-paper);
+  border: 1px solid var(--deck-line);
+  border-top: 4px solid var(--deck-line);
+  border-radius: 2px;
+}
+
+.reveal .j2-slide .j2-t-code { border-top-color: var(--series-a); }
+
+.reveal .j2-slide .j2-t-judge { border-top-color: var(--chat-judge-edge); background: var(--chat-judge-tint); }
+
+.reveal .j2-slide .j2-t-person { border-top-color: var(--chat-user-edge); }
+
+.reveal .j2-slide .j2-tile .j2-tq {
+  font-size: 17px;
+  color: var(--deck-soft);
+}
+
+.reveal .j2-slide .j2-tile .j2-tw {
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.reveal .j2-slide .j2-tile ul {
+  margin: 0 0 0 1em;
+  padding: 0;
+  font-size: 20px;
+  line-height: 1.4;
+}
+
+.reveal .j2-slide .j2-tile p {
+  font-size: 19px;
+  line-height: 1.35;
+}
+
+.reveal .j2-slide .j2-tile .j2-tev {
+  margin-top: auto;
+  padding-top: 8px;
+  font-size: 15px;
+  color: var(--deck-soft);
+  border-top: 1px solid var(--deck-line);
+}
+
+/* Bars, always with a printed value */
+
+.reveal .j2-slide .j2-bar {
+  display: grid;
+  grid-template-columns: 200px 1fr 84px;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+.reveal .j2-slide .j2-bar b {
+  font-size: 22px;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.reveal .j2-slide .j2-bt {
+  position: relative;
+  height: 26px;
+  background: var(--deck-surface);
+  border-radius: 2px;
+}
+
+.reveal .j2-slide .j2-bf {
+  display: block;
+  height: 100%;
+  background: var(--series-a);
+  border-radius: 2px;
+}
+
+.reveal .j2-slide .j2-bf-ref {
+  background: var(--series-b);
+}
+
+.reveal .j2-slide .j2-bf-bad {
+  background: var(--verdict-fail);
+}
+
+.reveal .j2-slide .j2-bt-line {
+  background: repeating-linear-gradient(90deg, var(--deck-surface) 0 8px, var(--deck-paper) 8px 12px);
+}
+
+.reveal .j2-slide .j2-line {
+  position: absolute;
+  top: -6px;
+  bottom: -6px;
+  width: 3px;
+  background: var(--verdict-fail);
+}
+
+.reveal .j2-slide .j2-side {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  font-size: 21px;
+  line-height: 1.4;
+}
+
+.reveal .j2-slide .j2-strong {
+  padding: 12px 16px;
+  font-weight: 600;
+  background: var(--deck-accent-tint);
+  border-left: 4px solid var(--deck-accent);
+  border-radius: 2px;
+}
+
+.reveal .j2-slide .j2-panels {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.reveal .j2-slide .j2-panel {
+  padding: 14px 16px;
+  background: var(--deck-paper);
+  border: 1px solid var(--deck-line);
+  border-radius: 2px;
+}
+
+.reveal .j2-slide .j2-panel p {
+  font-size: 19px;
+  line-height: 1.4;
+}
+
+.reveal .j2-slide .j2-panels .j2-bar {
+  grid-template-columns: 1fr 64px;
+  gap: 4px 10px;
+  margin-bottom: 14px;
+}
+
+.reveal .j2-slide .j2-panels .j2-bl {
+  grid-column: 1 / -1;
+}
+
+.reveal .j2-slide .j2-panel .j2-colhead {
+  font-size: 15px;
+}
+
+.reveal .j2-slide .j2-panel p + .j2-colhead {
+  margin-top: 18px;
+}
+
+.reveal .j2-slide .j2-panel .j2-src {
+  font-size: 16px;
+}
+
+.reveal .j2-slide .j2-metric {
+  margin-bottom: 14px;
+  font-size: 16px !important;
+  color: var(--deck-soft);
+}
+
+/* Judge prompt and output boxes, as in Part 1 */
+
+.reveal .j2-slide .j2-box {
+  background: var(--deck-paper);
+  border: 1px solid var(--chat-judge-box-edge);
+  border-radius: 2px;
+}
+
+.reveal .j2-slide .j2-box-head {
+  padding: 5px 14px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--chat-judge-head-ink);
+  background: var(--chat-judge-head-bg);
+  border-bottom: 1px solid var(--chat-judge-box-edge);
+}
+
+.reveal .j2-slide .j2-box pre {
+  width: auto;
+  margin: 0;
+  padding: 14px 16px;
+  font-family: var(--deck-font-mono);
+  font-size: 19px;
+  line-height: 1.5;
+  white-space: pre;
+  color: var(--deck-ink);
+  background: none;
+  box-shadow: none;
+}
+
+.reveal .j2-slide .j2-box-fail {
+  margin-bottom: 14px;
+  border-color: var(--verdict-fail);
+}
+
+.reveal .j2-slide .j2-box-fail .j2-box-head {
+  color: var(--verdict-fail);
+  background: var(--verdict-fail-tint);
+  border-bottom-color: var(--verdict-fail);
+}
+
+.reveal .j2-slide .j2-box-fail pre {
+  font-size: 16px;
+  padding: 10px 14px;
+}
+
+.reveal .j2-slide .j2-no { font-weight: 700; color: var(--verdict-fail); }
+
+.reveal .j2-slide .j2-verdict {
+  padding: 10px 14px;
+  font-size: 21px;
+  color: var(--verdict-on);
+  background: var(--verdict-fail);
+  border-radius: 2px;
+}
+
+/* Criteria pinned to the trace */
+
+.reveal .j2-slide .j2-pin {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  margin-left: 4px;
+  font-size: 14px;
+  font-weight: 700;
+  font-style: normal;
+  vertical-align: middle;
+  color: var(--deck-on-accent);
+  background: var(--chat-judge-edge);
+  border-radius: 50%;
+}
+
+.reveal .j2-slide .j2-crit {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.reveal .j2-slide .j2-ci {
+  display: grid;
+  grid-template-columns: 34px 1fr;
+  column-gap: 8px;
+  padding: 10px 14px;
+  background: var(--chat-judge-tint);
+  border-left: 3px solid var(--chat-judge-edge);
+  border-radius: 2px;
+}
+
+.reveal .j2-slide .j2-ci .j2-pin {
+  grid-row: span 2;
+  margin: 2px 0 0;
+  width: 28px;
+  height: 28px;
+  font-size: 15px;
+}
+
+.reveal .j2-slide .j2-ci b {
+  font-size: 23px;
+  color: var(--chat-judge-label);
+}
+
+.reveal .j2-slide .j2-ci span:not(.j2-pin) {
+  font-size: 18px;
+  line-height: 1.35;
+  color: var(--deck-ink);
+}
+
+/* Scale ladder */
+
+.reveal .j2-slide .j2-ladder {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.reveal .j2-slide .j2-rung {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 7px 12px;
+  font-size: 20px;
+  background: var(--deck-paper);
+  border: 1px solid var(--deck-line);
+  border-radius: 2px;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.reveal .j2-slide .j2-sc {
+  flex: none;
+  width: 34px;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--deck-accent);
+}
+
+.reveal .j2-slide .j2-rung-hit.visible {
+  background: var(--verdict-fail-tint);
+  box-shadow: 0 0 0 3px var(--verdict-fail);
+}
+
+.reveal .j2-slide .j2-rung-hit.visible::after {
+  content: "running example";
+  margin-left: auto;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--verdict-fail);
+}
+
+.reveal .j2-slide .j2-rule {
+  margin-top: 12px;
+  padding: 10px 14px;
+  font-size: 18px;
+  line-height: 1.4;
+  background: var(--deck-surface);
+  border-left: 3px solid var(--deck-accent);
+  border-radius: 2px;
+}
+
+.reveal .j2-slide .j2-scales {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.reveal .j2-slide .j2-sc-row {
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  gap: 10px;
+  padding: 10px 12px;
+  font-size: 18px;
+  line-height: 1.3;
+  background: var(--deck-paper);
+  border: 1px solid var(--deck-line);
+  border-radius: 2px;
+}
+
+.reveal .j2-slide .j2-sc-row b {
+  font-size: 20px;
+}
+
+.reveal .j2-slide .j2-sc-row span {
+  color: var(--deck-soft);
+}
+
+.reveal .j2-slide .j2-sc-on {
+  background: var(--deck-accent-tint);
+  border-color: var(--deck-accent);
+}
+
+/* Prompt parts, keyed by a left rule */
+
+.reveal .j2-slide .j2-split-prompt {
+  grid-template-columns: 1.35fr 1fr;
+  gap: 26px;
+}
+
+.reveal .j2-slide .j2-box-wide pre {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  font-size: 18px;
+  line-height: 1.45;
+  padding: 14px;
+  white-space: normal;
+}
+
+.reveal .j2-slide .j2-box pre span[class^="j2-p"] {
+  display: block;
+  padding-left: 10px;
+  white-space: pre-wrap;
+  border-left: 4px solid var(--deck-line);
+}
+
+.reveal .j2-slide .j2-parts {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.reveal .j2-slide .j2-part {
+  padding: 8px 12px;
+  font-size: 17px;
+  line-height: 1.35;
+  color: var(--deck-soft);
+  background: var(--deck-paper);
+  border: 1px solid var(--deck-line);
+  border-left: 4px solid var(--deck-line);
+  border-radius: 2px;
+}
+
+.reveal .j2-slide .j2-part b {
+  display: block;
+  font-size: 20px;
+  color: var(--deck-ink);
+}
+
+.reveal .j2-slide .j2-p1 { border-left-color: var(--series-a) !important; }
+
+.reveal .j2-slide .j2-p2 { border-left-color: var(--chat-judge-edge) !important; }
+
+.reveal .j2-slide .j2-p3 { border-left-color: var(--verdict-warn) !important; }
+
+.reveal .j2-slide .j2-p4 { border-left-color: var(--chat-observation-edge) !important; }
+
+.reveal .j2-slide .j2-p5 { border-left-color: var(--verdict-pass) !important; }
+
+.reveal .j2-slide .j2-outs {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Checklist */
+
+.reveal .j2-slide .j2-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.reveal .j2-slide .j2-li {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 10px 16px;
+  font-size: 21px;
+  line-height: 1.4;
+  background: var(--deck-paper);
+  border: 1px solid var(--deck-line);
+  border-radius: 2px;
+}
+
+/* Section dividers name the learning goal they serve */
+
+.reveal .j2-slide .j2-sec-goal {
+  max-width: 900px;
+  margin-top: 22px;
+  font-size: 26px;
+  line-height: 1.35;
+  color: var(--deck-soft);
+}
+
+.reveal .j2-slide .j2-sec-goal span {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--deck-accent);
+}
+
+/* Recap cards */
+
+.reveal .j2-slide .j2-recap {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.reveal .j2-slide .j2-rc {
+  display: grid;
+  grid-template-columns: 34px 1fr;
+  grid-template-rows: auto 1fr auto;
+  column-gap: 12px;
+  align-items: start;
+  align-content: start;
+  padding: 14px 16px;
+  background: var(--deck-paper);
+  border: 1px solid var(--deck-line);
+  border-top: 4px solid var(--deck-accent);
+  border-radius: 2px;
+}
+
+.reveal .j2-slide .j2-rc .j2-num {
+  grid-row: span 2;
+}
+
+.reveal .j2-slide .j2-rc b {
+  font-size: 23px;
+  line-height: 1.25;
+}
+
+.reveal .j2-slide .j2-rc p {
+  margin-top: 6px;
+  font-size: 18px;
+  line-height: 1.4;
+  color: var(--deck-soft);
+}
+
+.reveal .j2-slide .j2-rc .j2-use {
+  grid-column: 2;
+  margin-top: 10px;
+}
+
+/* Lecture structure: where a slide sits in its section */
+
+.reveal .j2-slide .j2-strip {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 4px;
+  margin: -10px 0 18px;
+  font-size: 13px;
+  line-height: 1.2;
+}
+
+.reveal .j2-slide .j2-strip a {
+  padding: 3px 8px 4px;
+  white-space: nowrap;
+  text-decoration: none;
+  color: var(--deck-soft);
+  border-bottom: 2px solid var(--deck-line);
+}
+
+.reveal .j2-slide .j2-strip a span {
+  margin-right: 5px;
+  font-weight: 700;
+}
+
+.reveal .j2-slide .j2-strip .j2-strip-sec {
+  padding-left: 0;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--deck-accent);
+  border-bottom-color: transparent;
+}
+
+.reveal .j2-slide .j2-strip .is-on {
+  font-weight: 700;
+  color: var(--deck-ink);
+  border-bottom-color: var(--deck-accent);
+}
+
+.reveal .j2-slide .j2-strip a:hover {
+  color: var(--deck-accent-strong);
+}
+
+/* Section dividers list their subsections */
+
+.reveal .j2-slide .j2-sec-head {
+  margin: 30px 0 8px;
+  color: var(--deck-accent);
+}
+
+.reveal .j2-slide .j2-sec-list {
+  display: flex;
+  flex-direction: column;
+  max-width: 760px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.reveal .j2-slide .j2-sec-list li {
+  margin: 0;
+  font-size: 23px;
+  line-height: 1.3;
+}
+
+.reveal .j2-slide .j2-sec-list a {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  padding: 8px 0;
+  text-decoration: none;
+  color: var(--deck-ink);
+  border-bottom: 1px solid var(--deck-line);
+}
+
+.reveal .j2-slide .j2-sec-list a:hover {
+  color: var(--deck-accent-strong);
+}
+
+.reveal .j2-slide .j2-sec-list span {
+  flex: none;
+  width: 44px;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--deck-accent);
+}
+
+/* Card grids */
+
+.reveal .j2-slide .j2-grid {
+  display: grid;
+  gap: 16px;
+}
+
+.reveal .j2-slide .j2-g3 { grid-template-columns: repeat(3, 1fr); }
+
+.reveal .j2-slide .j2-g4 { grid-template-columns: repeat(4, 1fr); }
+
+.reveal .j2-slide .j2-cd {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 13px 16px 14px;
+  background: var(--deck-paper);
+  border: 1px solid var(--deck-line);
+  border-top: 4px solid var(--deck-line);
+  border-radius: 2px;
+}
+
+.reveal .j2-slide .j2-cd > b {
+  font-size: 21px;
+  line-height: 1.25;
+}
+
+.reveal .j2-slide .j2-cd p {
+  font-size: 18px;
+  line-height: 1.4;
+}
+
+.reveal .j2-slide .j2-cd-k {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--deck-soft);
+}
+
+.reveal .j2-slide .j2-cd-judge {
+  background: var(--chat-judge-tint);
+  border-color: var(--chat-judge-box-edge);
+  border-top-color: var(--chat-judge-edge);
+}
+
+/* Short lists and facts */
+
+.reveal .j2-slide .j2-list-sm {
+  gap: 8px;
+}
+
+.reveal .j2-slide .j2-list-sm .j2-li {
+  padding: 8px 14px;
+  font-size: 18px;
+  line-height: 1.38;
+}
+
+.reveal .j2-slide .j2-list-sm .j2-num {
+  width: 28px;
+  height: 28px;
+  font-size: 15px;
+}
+
+.reveal .j2-slide .j2-facts {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.reveal .j2-slide .j2-facts li {
+  position: relative;
+  margin: 0;
+  padding-left: 16px;
+  font-size: 17px;
+  line-height: 1.38;
+}
+
+.reveal .j2-slide .j2-facts li::before {
+  content: "";
+  position: absolute;
+  top: 0.6em;
+  left: 0;
+  width: 6px;
+  height: 6px;
+  background: var(--deck-accent);
+  border-radius: 50%;
+}
+
+/* Tables */
+
+.reveal .j2-slide table.j2-tbl {
+  width: 100%;
+  margin: 0;
+  border-collapse: collapse;
+  font-size: 17px;
+  line-height: 1.3;
+}
+
+.reveal .j2-slide .j2-tbl th {
+  padding: 6px 10px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-align: left;
+  text-transform: uppercase;
+  color: var(--deck-soft);
+  border-bottom: 2px solid var(--deck-line);
+}
+
+.reveal .j2-slide .j2-tbl td {
+  padding: 6px 10px;
+  vertical-align: top;
+  border-bottom: 1px solid var(--deck-line);
+}
+
+.reveal .j2-slide .j2-tbl td:first-child {
+  font-weight: 700;
+}
+
+.reveal .j2-slide .j2-tbl td code {
+  font-size: 15px;
+}
+
+/* Agreement: a confusion matrix */
+
+.reveal .j2-slide .j2-cm {
+  display: grid;
+  grid-template-columns: 120px 1fr 1fr;
+  gap: 6px;
+  margin: 4px 0 14px;
+}
+
+.reveal .j2-slide .j2-cm-h {
+  align-self: center;
+  font-size: 14px;
+  font-weight: 700;
+  text-align: center;
+  color: var(--deck-soft);
+}
+
+.reveal .j2-slide .j2-cm-c {
+  padding: 8px 0;
+  font-size: 28px;
+  font-weight: 700;
+  text-align: center;
+  background: var(--deck-surface);
+  border: 1px solid var(--deck-line);
+  border-radius: 2px;
+}
+
+.reveal .j2-slide .j2-cm-bad {
+  color: var(--verdict-fail);
+  background: var(--verdict-fail-tint);
+  border-color: var(--verdict-fail);
+}
+
+/* Counting judge calls */
+
+.reveal .j2-slide .j2-formula {
+  display: flex;
+  align-items: stretch;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.reveal .j2-slide .j2-fx {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 4px;
+  padding: 10px 12px;
+  background: var(--deck-paper);
+  border: 1px solid var(--deck-line);
+  border-top: 3px solid var(--series-a);
+  border-radius: 2px;
+}
+
+.reveal .j2-slide .j2-fx b {
+  font-size: 18px;
+  line-height: 1.2;
+}
+
+.reveal .j2-slide .j2-fx span {
+  font-size: 14px;
+  line-height: 1.3;
+  color: var(--deck-soft);
+}
+
+.reveal .j2-slide .j2-fx-out {
+  flex: 1.4;
+  background: var(--deck-accent-tint);
+  border-color: var(--deck-accent);
+}
+
+.reveal .j2-slide .j2-times {
+  align-self: center;
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--deck-soft);
+}
+
+/* Small check rows under a trace */
+
+.reveal .j2-slide .j2-check-sm {
+  gap: 12px;
+  margin: 10px 0 0;
+  padding: 7px 12px;
+  font-size: 18px;
+}
+
+/* One tool call above the checks on it */
+
+.reveal .j2-slide .j2-box-call {
+  margin-bottom: 14px;
+}
+
+.reveal .j2-slide .j2-box-call pre {
+  padding: 10px 14px;
+  font-size: 18px;
+}
+
+/* Failure-mode table */
+
+.reveal .j2-slide table.j2-tbl-fail {
+  font-size: 16px;
+}
+
+.reveal .j2-slide .j2-tbl-fail td:first-child {
+  width: 140px;
+}
+
+.reveal .j2-slide .j2-tbl-fail td:last-child {
+  width: 30%;
+  color: var(--deck-soft);
+}
+
+/* Prompt-pattern table */
+
+.reveal .j2-slide table.j2-tbl-pat {
+  font-size: 16px;
+}
+
+.reveal .j2-slide .j2-tbl-pat td:first-child {
+  width: 190px;
+}
+
+.reveal .j2-slide .j2-tbl-pat td:last-child {
+  width: 46%;
+  color: var(--deck-soft);
+}
+
+/* Four-card row: policy, precedent, judge, calibration */
+
+.reveal .j2-slide .j2-sage .j2-cd > b {
+  font-size: 19px;
+}
+
+.reveal .j2-slide .j2-sage .j2-cd p {
+  font-size: 16px;
+}
+
+/* Code or a model: side-by-side table */
+
+.reveal .j2-slide table.j2-tbl-cmp {
+  font-size: 16px;
+}
+
+.reveal .j2-slide .j2-tbl-cmp td:first-child {
+  width: 150px;
+}
+
+.reveal .j2-slide .j2-tbl-cmp td:nth-child(n + 2) {
+  width: 41%;
+}
+
+/* Where the judge runs: four contexts */
+
+.reveal .j2-slide .j2-cmp dl {
+  display: grid;
+  grid-template-columns: 1fr;
+  margin: 0;
+}
+
+.reveal .j2-slide .j2-cmp dt {
+  margin-top: 10px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--deck-soft);
+}
+
+.reveal .j2-slide .j2-cmp dd {
+  margin: 2px 0 0;
+  font-size: 20px;
+  line-height: 1.35;
+}
+
+.reveal .j2-slide .j2-g4.j2-cmp dt {
+  margin-top: 7px;
+}
+
+.reveal .j2-slide .j2-g4.j2-cmp dd {
+  font-size: 17px;
+}
+
+/* Cheaper judges: one large judge against a jury */
+
+.reveal .j2-slide .j2-jury {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 10px 0 18px;
+}
+
+.reveal .j2-slide .j2-juror,
+.reveal .j2-slide .j2-jurors span {
+  padding: 10px 12px;
+  font-size: 17px;
+  font-weight: 600;
+  text-align: center;
+  color: var(--chat-judge-head-ink);
+  background: var(--chat-judge-head-bg);
+  border-radius: 2px;
+}
+
+.reveal .j2-slide .j2-juror.j2-big {
+  padding: 26px 16px;
+  font-size: 20px;
+}
+
+.reveal .j2-slide .j2-jurors {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.reveal .j2-slide .j2-vs {
+  font-size: 18px;
+  color: var(--deck-soft);
+}
+
+/* Method tags: code, judge, person */
+
+.reveal .j2-slide .j2-m {
+  display: inline-block;
+  padding: 2px 7px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  line-height: 1.4;
+  text-transform: uppercase;
+  white-space: nowrap;
+  border: 1px solid var(--deck-line);
+  border-radius: 2px;
+}
+
+.reveal .j2-slide .j2-m-code {
+  color: var(--series-a-ink);
+  background: var(--series-a-tint);
+  border-color: var(--series-a);
+}
+
+.reveal .j2-slide .j2-m-judge {
+  color: var(--chat-judge-label);
+  background: var(--chat-judge-tint);
+  border-color: var(--chat-judge-box-edge);
+}
+
+.reveal .j2-slide .j2-m-person {
+  color: var(--chat-user-label);
+  background: var(--chat-user-bg);
+  border-color: var(--chat-user-edge);
+}
+
+/* Quality, latency and cost, method by method */
+
+.reveal .j2-slide table.j2-tbl-qlc {
+  font-size: 16px;
+}
+
+.reveal .j2-slide .j2-tbl-qlc td:first-child {
+  width: 170px;
+}
+
+/* Layered evaluation: code, judges, people */
+
+.reveal .j2-slide .j2-layers {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.reveal .j2-slide .j2-ly {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  padding: 11px 16px;
+  background: var(--deck-paper);
+  border: 1px solid var(--deck-line);
+  border-left: 4px solid var(--series-a);
+  border-radius: 2px;
+}
+
+.reveal .j2-slide .j2-ly-judge {
+  width: 88%;
+  background: var(--chat-judge-tint);
+  border-color: var(--chat-judge-box-edge);
+  border-left-color: var(--chat-judge-edge);
+}
+
+.reveal .j2-slide .j2-ly-person {
+  width: 76%;
+  border-left-color: var(--chat-user-edge);
+}
+
+.reveal .j2-slide .j2-ly .j2-m {
+  flex: none;
+  width: 70px;
+  text-align: center;
+}
+
+.reveal .j2-slide .j2-ly b {
+  display: block;
+  font-size: 20px;
+  line-height: 1.25;
+}
+
+.reveal .j2-slide .j2-ly div span {
+  display: block;
+  font-size: 16px;
+  line-height: 1.35;
+  color: var(--deck-soft);
+}
+
+.reveal .j2-slide .j2-fb {
+  margin-top: 10px;
+  font-size: 16px;
+  line-height: 1.35;
+  text-align: center;
+  color: var(--chat-judge-label);
+}
+
+/* Builds: the newest list item or table row keeps the accent tint until the next click */
+.reveal .j2-slide .j2-li.current-fragment {
+  background: var(--deck-accent-tint);
+  border-color: var(--deck-accent);
+}
+
+.reveal .j2-slide .j2-tbl tr.current-fragment td {
+  background: var(--deck-accent-tint);
+}
+
+/* Collapsed table borders still draw for rows hidden by visibility */
+.reveal .j2-slide .j2-tbl tr.fragment:not(.visible) td {
+  border-bottom-color: transparent;
+}
