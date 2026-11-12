@@ -5,6 +5,7 @@ format:
     css:
       - ../../_shared/chrome.css
       - ../../_shared/section-divider.css
+      - hands-on-intro.css
 ---
 
 # Hands-on Agent Evaluation Exercise {#part-3-title .section-divider .part-title .sd-5}
@@ -19,40 +20,390 @@ format:
 
 ---
 
-## Hands-on session
+## Goal: build and test a judge for a career assistant {.h3-slide}
 
-Participants design a rubric, create an LLM-as-a-judge prompt, and apply it to a practical tool-using agent scenario.
+```{=html}
+<p class="h3-lead">In the next 50 minutes, you will design a rubric and an LLM judge to evaluate an AI career assistant across 10 recorded cases.</p>
 
-Workshop materials live in the repo under `workshop/`.
+<div class="h3-flow" aria-label="Hands-on evaluation pipeline">
+  <div class="h3-node">
+    <span class="h3-node-k">Fixed input</span>
+    <b>Recorded trace</b>
+    <span>User request, tool calls, tool results, and final reply</span>
+  </div>
+  <div class="h3-op">+</div>
+  <div class="h3-node h3-node-judge">
+    <span class="h3-node-k">What you edit</span>
+    <b>Rubric &amp; prompt</b>
+    <span>Criteria, evaluation targets, 1–5 anchors, and pass marks</span>
+  </div>
+  <div class="h3-op">→</div>
+  <div class="h3-node h3-node-judge">
+    <span class="h3-node-k">Live model call</span>
+    <b>LLM judge</b>
+    <span>Scores each criterion and cites message IDs as evidence</span>
+  </div>
+  <div class="h3-op">→</div>
+  <div class="h3-node h3-node-out">
+    <span class="h3-node-k">What you inspect</span>
+    <b>Evaluation report</b>
+    <span>Pass/fail verdicts, explanations, and cited trace messages</span>
+  </div>
+</div>
 
-[Open the hands-on page](../../hands-on/index.qmd)
+<div class="h3-grid-3">
+  <div class="h3-card">
+    <div class="h3-kicker"><span>1 · Controlled setup</span><span class="h3-badge">10 fixtures</span></div>
+    <h3>Isolate the judge</h3>
+    <p>Agent traces are pre-recorded synthetic fixtures. Only your judge calls the LLM, so score changes come from your rubric, prompt, or model choice.</p>
+  </div>
 
-Use your own OpenRouter API key. It stays in this browser, and judge calls go directly to OpenRouter.
+  <div class="h3-card">
+    <div class="h3-kicker"><span>2 · Neutral labels</span><span class="h3-badge">Trace A, B, C</span></div>
+    <h3>No spoilers in the case names</h3>
+    <p>Cases are labelled neutrally so the title never gives away the flaw. You read the trace first, form your own view, and test whether your judge agrees.</p>
+  </div>
 
-<!-- TODO: section owner; concrete scenario TBD when agenda/assets land -->
+  <div class="h3-card h3-card-judge">
+    <div class="h3-kicker"><span>3 · Your role</span><span class="h3-badge">No answer key</span></div>
+    <h3>You are the domain expert</h3>
+    <p>Starter criteria are editable drafts, not ground truth. Grading real cases often sharpens the criteria (<a href="../../bibliography/shankar-2024-validators/">Shankar et al. 2024</a>).</p>
+  </div>
+</div>
+```
 
----
+::: {.notes}
+**About this slide:** The big picture of the hands-on exercise: participants take recorded career-assistant traces, edit a rubric and judge instructions, run a live LLM judge, and inspect the resulting scores and cited evidence.
 
-## Expected flow (from ALTA program)
+**Presenter notes:**
 
-::: {.incremental}
-1. Develop evaluation rubric for the scenario
-2. Write / adapt an LLM judge prompt
-3. Run the judge over test cases
-4. Analyse tool choice, parameters, and response quality
+- Walk the top pipeline from left to right: the agent trace is fixed, your rubric and judge instructions are what you edit, the LLM judge is the only live model call, and the evaluation report is where you check whether the judge got it right.
+- Why pre-recorded traces? If the agent ran live, every run would change both the agent and the judge. Fixed traces isolate your judge so you can see the effect of changing a criterion, threshold, prompt rule, or model.
+- Browsing cases and editing your rubric work without an API key; only running the judge requires a key.
 :::
 
 ---
 
-## Materials checklist
+## Why look inside the trace? A polite reply can hide a failure {.h3-slide}
 
-| Asset | Location |
-|-------|----------|
-| Prompts | `workshop/prompts/` |
-| Sample / fixture data | `workshop/data/` |
-| Dataset links | `workshop/datasets.md` |
+```{=html}
+<div class="h3-split">
+  <div class="h3-trace" aria-label="Example career assistant trace with hidden tool and grounding failures">
+    <div class="h3-msg h3-user">
+      <span class="h3-role">User · id: user-1</span>
+      Find junior data analyst jobs in <b>Melbourne</b>, <b>part-time (max 24 hrs/week)</b>, starting within a month.
+    </div>
+    <div class="h3-step h3-flag">
+      <div class="h3-step-head">
+        <span class="h3-kind">Action · id: call-1</span>
+        <span class="h3-err-tag">Wrong city &amp; hours</span>
+      </div>
+      <code>search_jobs(query="data analyst", location="Sydney", max_hours=40)</code>
+    </div>
+    <div class="h3-step h3-obs">
+      <span class="h3-kind">Observation · id: result-1</span>
+      2 listings returned · 20–24 hrs/week · AUD 68,000 pro-rata · requires SQL &amp; Excel
+    </div>
+    <div class="h3-msg h3-asst h3-flag">
+      <div class="h3-step-head">
+        <span class="h3-role">Assistant · id: assistant-2</span>
+        <span class="h3-err-tag">Invented pay &amp; promise</span>
+      </div>
+      Great news! I found roles paying <b>AUD 105,000</b> that <b>waive the first interview</b> if you apply tonight.
+    </div>
+  </div>
 
-<!-- Do not invent datasets or prompts here — add real assets under workshop/. -->
+  <div class="h3-checks-col">
+    <p class="h3-colhead">What different checks see on this trace</p>
+
+    <div class="h3-eval-box">
+      <div class="h3-eval-top">
+        <b>Surface check on the final reply alone</b>
+        <span class="h3-verdict-pill h3-pill-pass">PASS</span>
+      </div>
+      <p>The reply is polite, structured, and confident — a judge that only reads <code>assistant-2</code> for helpfulness can pass it.</p>
+    </div>
+
+    <div class="h3-eval-box">
+      <div class="h3-eval-top">
+        <b>Deterministic schema check in code</b>
+        <span class="h3-verdict-pill h3-pill-pass">PASS</span>
+      </div>
+      <p><code>search_jobs</code> is a valid tool name and the arguments match the JSON schema. Code cannot tell that <code>"Sydney"</code> contradicts the user’s request.</p>
+    </div>
+
+    <div class="h3-eval-box h3-eval-fail">
+      <div class="h3-eval-top">
+        <b>Trace-aware LLM judge (what you build)</b>
+        <span class="h3-verdict-pill h3-pill-fail">FAIL</span>
+      </div>
+      <ul class="h3-eval-list">
+        <li><b>Tool call (<code>call-1</code>):</b> dropped <i>Melbourne</i> and <i>max 24 hrs/week</i>.</li>
+        <li><b>Use of tool results (<code>result-1</code> → <code>assistant-2</code>):</b> invented salary and guaranteed interview not in <code>result-1</code>.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+```
+
+::: {.notes}
+**About this slide:** Concrete motivation for trace-level agent evaluation. A single interaction can look polite and pass basic schema validation while calling a tool with the wrong filters and inventing facts that contradict the tool output.
+
+**Presenter notes:**
+
+- Left side: walk through the four messages (`user-1`, `call-1`, `result-1`, `assistant-2`). Point out the two distinct failure modes: an argument failure in `call-1` (searching Sydney and 40 hours instead of Melbourne and 24 hours) and a grounding failure in `assistant-2` (claiming AUD 105,000 and waived interviews).
+- Right side: contrast three evaluators. Scoring only the final text for tone/helpfulness misses the tool call; checking JSON schema in code misses the semantic mismatch; a trace-aware judge with separate criteria for tool calls and tool-result grounding catches both and points to the exact message IDs.
+:::
+
+---
+
+## One career assistant across three rounds {.h3-slide}
+
+```{=html}
+<p class="h3-lead">Follow the same Australian career assistant as its task grows from plain advice to single-tool search and multi-tool chaining.</p>
+
+<div class="h3-grid-3">
+  <div class="h3-card">
+    <div class="h3-kicker"><span>Round 1</span><span class="h3-badge">0 tools · 4 cases</span></div>
+    <h3>Career advice</h3>
+    <div class="h3-trace-mini">
+      <span class="h3-chip h3-chip-user">User</span>
+      <span>→</span>
+      <span class="h3-chip h3-chip-asst">Assistant</span>
+    </div>
+    <ul class="h3-round-list">
+      <li>Barista pivoting into data analytics</li>
+      <li>Following up after a silent interview</li>
+      <li>Student visa work-hour rules</li>
+      <li>Quitting tomorrow without savings</li>
+    </ul>
+    <div class="h3-meta"><b>Focus:</b> calibrate your answer rubric (<i>Soundness</i>, <i>Tone</i>, <i>Compliance</i>).</div>
+  </div>
+
+  <div class="h3-card">
+    <div class="h3-kicker"><span>Round 2</span><span class="h3-badge h3-badge-tool">1 tool · 3 traces</span></div>
+    <h3>Find suitable jobs</h3>
+    <div class="h3-trace-mini">
+      <span class="h3-chip h3-chip-user">User</span>
+      <span>→</span>
+      <span class="h3-chip h3-chip-tool">search_jobs</span>
+      <span>→</span>
+      <span class="h3-chip h3-chip-asst">Assistant</span>
+    </div>
+    <p>One Melbourne part-time job request with <b>three recorded traces (A, B, C)</b> that vary the search call and the final answer.</p>
+    <div class="h3-meta"><b>Focus:</b> distinguish a grounded search from wrong tool filters or invented job details.</div>
+  </div>
+
+  <div class="h3-card">
+    <div class="h3-kicker"><span>Round 3</span><span class="h3-badge h3-badge-tool">2 tools · 3 traces</span></div>
+    <h3>Connect jobs and training</h3>
+    <div class="h3-trace-mini">
+      <span class="h3-chip h3-chip-user">User</span>
+      <span>→</span>
+      <span class="h3-chip h3-chip-tool">search_jobs</span>
+      <span>→</span>
+      <span class="h3-chip h3-chip-tool">find_courses</span>
+      <span>→</span>
+      <span class="h3-chip h3-chip-asst">Assistant</span>
+    </div>
+    <p>Recommend a suitable job <b>and</b> a course for the missing skill within <b>AUD 200</b> and <b>6 hrs/week</b> across <b>Traces A, B, C</b>.</p>
+    <div class="h3-meta"><b>Focus:</b> add tool-use criteria and check whether call 2 follows the skill gap from call 1.</div>
+  </div>
+</div>
+
+<div class="h3-note">
+  <span><b>One evolving judge:</b> your rubric and judge instructions carry forward automatically from Round 1 → Round 2 → Round 3.</span>
+</div>
+```
+
+::: {.notes}
+**About this slide:** How the 10 recorded cases are organised into three progressive rounds around one career-assistant story.
+
+**Presenter notes:**
+
+- Round 1 starts without tools so everyone can get comfortable with the app, inspect four short advice questions, and tune the three starter criteria (*Soundness of advice*, *Respectful and constructive tone*, *Safe and compliant guidance*).
+- Round 2 keeps the same user prompt across Trace A, Trace B, and Trace C and adds one tool (`search_jobs`). Notice whether your answer-only rubric from Round 1 is enough, or where it struggles when a tool call goes wrong.
+- Round 3 chains two tools (`search_jobs` → `find_courses`): the assistant has to inspect the job listings from call 1, identify the missing skill (such as SQL or Power BI), and pass the user's budget (AUD 200) and time limit (6 hours/week) into call 2.
+:::
+
+---
+
+## Four places in the trace to attach a criterion {.h3-slide}
+
+```{=html}
+<div class="h3-split">
+  <div class="h3-trace h3-trace-compact" aria-label="Trace showing where the four evaluation targets attach">
+    <div class="h3-msg h3-user">
+      <span class="h3-role">User · id: user-1</span>
+      Find a junior data job in Melbourne and a course for any missing skill (≤ AUD 200, ≤ 6 hrs/week).
+    </div>
+    <div class="h3-step">
+      <div class="h3-step-head">
+        <span class="h3-kind">Action · id: call-1</span>
+        <span class="h3-pin">B</span>
+      </div>
+      <code>search_jobs(query="junior data", location="Melbourne")</code>
+    </div>
+    <div class="h3-step h3-obs">
+      <div class="h3-step-head">
+        <span class="h3-kind">Observation · id: result-1</span>
+        <span class="h3-pin">C</span>
+      </div>
+      Listings require SQL (user has Excel; missing SQL / Power BI)
+    </div>
+    <div class="h3-step">
+      <div class="h3-step-head">
+        <span class="h3-kind">Action · id: call-2</span>
+        <span class="h3-pin">B</span>
+      </div>
+      <code>find_courses(skill="Power BI", max_cost_aud=200, max_hours_per_week=6)</code>
+    </div>
+    <div class="h3-step h3-obs">
+      <div class="h3-step-head">
+        <span class="h3-kind">Observation · id: result-2</span>
+        <span class="h3-pin">C</span>
+      </div>
+      Course listings with provider, fee, and weekly hours
+    </div>
+    <div class="h3-msg h3-asst">
+      <div class="h3-step-head">
+        <span class="h3-role">Assistant · id: assistant-3</span>
+        <span><span class="h3-pin">A</span><span class="h3-pin">C</span></span>
+      </div>
+      Recommends the matching job and course with accurate details.
+    </div>
+    <div class="h3-whole">
+      <span>End-to-end interaction across all messages</span>
+      <span class="h3-pin">D</span>
+    </div>
+  </div>
+
+  <div class="h3-targets">
+    <p class="h3-colhead">The “Evaluates” field in the Rubric Builder (<a href="../../bibliography/winston-2026-production-judges/">Winston 2026</a>; <a href="../../bibliography/jia-2025-agent-gpa/">Jia et al. 2025</a>)</p>
+
+    <div class="h3-tcard">
+      <span class="h3-pin">A</span>
+      <div>
+        <div class="h3-thead"><b>Final answer</b><span class="h3-badge">1 score / trace</span></div>
+        <p>Evaluates the assistant’s reply to the user — soundness of advice, tone, and policy compliance.</p>
+      </div>
+    </div>
+
+    <div class="h3-tcard">
+      <span class="h3-pin">B</span>
+      <div>
+        <div class="h3-thead"><b>Each tool call</b><span class="h3-badge h3-badge-tool">1 score / call</span></div>
+        <p>Scores tool choice and arguments for every call, restricted to messages available <b>up to that call</b>.</p>
+      </div>
+    </div>
+
+    <div class="h3-tcard">
+      <span class="h3-pin">C</span>
+      <div>
+        <div class="h3-thead"><b>Use of tool results</b><span class="h3-badge h3-badge-tool">1 score / trace</span></div>
+        <p>Checks whether the final reply stays faithful to returned listings without inventing facts.</p>
+      </div>
+    </div>
+
+    <div class="h3-tcard">
+      <span class="h3-pin">D</span>
+      <div>
+        <div class="h3-thead"><b>Whole trace</b><span class="h3-badge">1 score / trace</span></div>
+        <p>Assesses whether the complete interaction solved the user’s task once all steps are taken together.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="h3-note">
+  <span><b>1–5 scale (default pass ≥ 4):</b> every score requires an explanation and valid message IDs (<a href="../../bibliography/hong-2026-rulers/">Hong et al. 2026</a>). Invalid IDs flag an <b>evaluation error</b>, not a low score.</span>
+</div>
+```
+
+::: {.notes}
+**About this slide:** How the four evaluation targets in the app’s Rubric Builder map onto a trace, and how the 1–5 scoring and evidence contract works.
+
+**Presenter notes:**
+
+- Each criterion in the app has an **Evaluates** dropdown with four choices: *Final answer* (`A`), *Each tool call* (`B`), *Use of tool results* (`C`), and *Whole trace* (`D`).
+- Highlight target `B` (*Each tool call*): in Round 3 there are two tool calls (`call-1` and `call-2`), so a tool-call criterion produces two separate scores per trace — and each call may only cite messages up to that point in the trace, so a later result cannot excuse an earlier tool call.
+- Highlight the scoring rule at the bottom: a trace passes only if every applicable criterion meets its pass threshold (default 4 on the 1–5 scale). If a tool-specific criterion is run in Round 1 (where there are no tools), the app marks it *Not applicable* rather than failing the case.
+:::
+
+---
+
+## Five steps in every round {.h3-slide}
+
+```{=html}
+<div class="h3-steps" aria-label="Five steps in the hands-on app">
+  <div class="h3-step-card">
+    <span class="h3-step-num">1</span>
+    <b>Inspect cases</b>
+    <span>Read the user prompt, tool calls, tool outputs, and reply.</span>
+  </div>
+  <div class="h3-step-arrow">›</div>
+  <div class="h3-step-card">
+    <span class="h3-step-num">2</span>
+    <b>Design rubric</b>
+    <span>Edit criteria, choose what each evaluates, and set pass marks (1–5).</span>
+  </div>
+  <div class="h3-step-arrow">›</div>
+  <div class="h3-step-card">
+    <span class="h3-step-num">3</span>
+    <b>Write judge</b>
+    <span>Refine judge instructions and 1–5 scale anchors; preview the JSON contract.</span>
+  </div>
+  <div class="h3-step-arrow">›</div>
+  <div class="h3-step-card">
+    <span class="h3-step-num">4</span>
+    <b>Run evaluation</b>
+    <span>Enter your API key, pick a judge model, and score the round’s cases.</span>
+  </div>
+  <div class="h3-step-arrow">›</div>
+  <div class="h3-step-card h3-step-card-out">
+    <span class="h3-step-num">5</span>
+    <b>Review report</b>
+    <span>Compare verdicts, read explanations, and verify cited message IDs.</span>
+  </div>
+</div>
+
+<div class="h3-grid-2">
+  <div class="h3-card">
+    <div class="h3-kicker"><span>First pass</span><span class="h3-badge">Rounds 1 → 3</span></div>
+    <h3>What to do in each round</h3>
+    <ul class="h3-round-list">
+      <li><b>Form your own view first:</b> on Step 1, decide which traces should pass or fail before running the judge.</li>
+      <li><b>Add tool criteria in Round 3:</b> use <i>Add suggested tool criteria</i> on the Rubric page, or write your own.</li>
+      <li><b>Audit the evidence:</b> in the Report, check whether the cited message IDs actually prove the judge’s explanation.</li>
+    </ul>
+  </div>
+
+  <div class="h3-card h3-card-judge">
+    <div class="h3-kicker"><span>Go further</span><span class="h3-badge">Experiments to try</span></div>
+    <h3>Challenge your judge</h3>
+    <ul class="h3-round-list">
+      <li><b>Shift pass thresholds:</b> raise <i>Compliance</i> to <code>5</code> or lower <i>Tone</i> to <code>3</code> and see which verdicts flip.</li>
+      <li><b>Test repeatability:</b> open <i>Advanced run settings</i> on Step 4 to increase <b>Repeat count</b> or adjust <b>Temperature</b>.</li>
+      <li><b>Compare judge models:</b> run the same rubric with a smaller model versus a larger model and compare failure modes.</li>
+    </ul>
+  </div>
+</div>
+
+<div class="h3-note">
+  <span><b>Ready to start:</b> Steps 1–3 work without an API key; Step 4 uses your key in the browser only.</span>
+  <a class="h3-launch" href="../../hands-on/index.qmd">Open the hands-on page →</a>
+</div>
+```
+
+::: {.notes}
+**About this slide:** The five-page workflow inside the hands-on app for every round, practical guidance for the first pass, experiments to try once a run completes, and the link to open the hands-on page.
+
+**Presenter notes:**
+
+- Point out the top bar: every round in the app has these exact five numbered tabs (`1. Cases`, `2. Rubric`, `3. Judge`, `4. Run`, `5. Report`), plus round switcher pills at the top so you can jump between Round 1, Round 2, and Round 3 at any time without losing your edits.
+- Encourage participants to form their own intuition on the cases in Step 1 before running the judge in Step 4 — the most interesting moments happen when the judge passes a trace you thought should fail, or cites the wrong message ID for the right score.
+- Click “Open the hands-on page →” (or go to `/hands-on/` in the navbar) and click **Start exercise** to launch the app.
+:::
 
 ---
 
