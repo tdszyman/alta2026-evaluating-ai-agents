@@ -60,10 +60,7 @@ format:
     # links as external and open them in a new tab.
     link-external-newwindow: false
   revealjs:
-    # Slide template: the middle entry, and the look a fresh load shows.
-    # Others: _shared/themes/original.scss, _shared/themes/nyfw-ss26.scss.
-    # The theme picker in the deck top bar switches live without a rebuild.
-    # See _shared/style-brief.md.
+    # Slide template: the middle entry. See _shared/style-brief.md.
     theme:
       - default
       - _shared/themes/canva.scss

@@ -1,4 +1,4 @@
-/* Shared slide rules. Colours and type come from the selected template in
+/* Shared slide rules. Colours and type come from the Canva template in
    _shared/themes/ (see format.revealjs.theme in _quarto.yml and
    _shared/style-brief.md). Decks stay light. The website appearance toggle
    does not restyle them. */
@@ -6,8 +6,7 @@
 
 /*-- scss:rules --*/
 
-/* Reveal's own properties read the template tokens, so the theme picker in
-   chrome.html can swap templates live by replacing the tokens alone. */
+/* Reveal's own properties read the template tokens. */
 :root {
   --r-background-color: var(--deck-bg);
   --r-main-font: var(--deck-font-sans);
