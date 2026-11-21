@@ -17,6 +17,7 @@ project:
   resources:
     - robots.txt
     - _shared/fonts/**
+    - _shared/presenters/**
 
 website:
   title: "ALTA 2026"
