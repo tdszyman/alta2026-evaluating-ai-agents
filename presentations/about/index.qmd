@@ -8,7 +8,7 @@ This site is the public companion to **Evaluating AI Agents with LLM-as-a-Judge*
 
 ## Contributors
 
-Roles below are the ones published on the ALTA program. Terrence Szymanski presents Part 1, Parvin Zarei Eskikand Part 2, Yelaman Abdullin Part 3, and Sara Mirabi Part 4.
+Roles below are the ones published on the ALTA program. Terrence Szymanski presents Part 1, Parvin Zarei Eskikand Part 2, Yelaman Abdullin Part 3, and Sara Mirabi Part 4. Longer bios are written by each person; those still to come are marked.
 
 <div class="person-grid">
 
@@ -19,9 +19,10 @@ Roles below are the ones published on the ALTA program. Terrence Szymanski prese
 </article>
 
 <article class="person">
+<img class="person-photo" src="../_shared/presenters/terrence-szymanski.jpg" alt="Terrence Szymanski" width="400" height="400">
 <h3>Terrence Szymanski</h3>
 <p>Head of Generative AI, SEEK</p>
-<p class="note">Bio to be added by this contributor.</p>
+<p class="bio">Terrence is currently Head of Generative AI at SEEK, where he has been leading the development of user-facing generative and agentic AI products. He has worked in industry as a data scientist for over a decade, applying NLP and ML techniques to solve business problems in domains ranging from news media, banking/finance, and employment marketplaces. Before moving into industry, Terrence earned his PhD in Linguistics from the University of Michigan and performed postdoctoral research at University College Dublin, with research interests in computational linguistics and NLP covering morphology, historical linguistics, and computational semantics.</p>
 </article>
 
 <article class="person">
