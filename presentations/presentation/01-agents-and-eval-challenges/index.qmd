@@ -1603,7 +1603,7 @@ End the chat if risk ≥ 0.8.</pre>
 In full, with their notes, in the separate Part 1.G: Graveyard deck, which is kept in the repository but not published:
 
 - The eight news-story case slides
-- The title slide, “Part 1 — WIP”, the agenda and the section 1 header
+- The old title slide and status notice, the agenda and the section 1 header
 - Why organisations adopt AI agents
 - The public’s view of AI is mixed
 - Using AI to evaluate AI

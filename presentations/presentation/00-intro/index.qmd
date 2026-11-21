@@ -42,7 +42,7 @@ format:
 
 ## This afternoon: two sessions, four parts {#the-afternoon .intro-slide .timeline-slide}
 
-<!-- Draft schedule from Terrence, 6 Nov 2026. Items he marked "??" are wrapped in <span class="tbc">; when one is confirmed, remove its span, and when none are left, remove the legend from the source line. -->
+<!-- Schedule from Terrence, 6 Nov 2026. Items he marked "??" are wrapped in <span class="tbc">; when one is confirmed, remove its span, and when none are left, remove the legend from the source line. -->
 
 ```{=html}
 <div class="tl-grid">
@@ -80,8 +80,8 @@ format:
 - LLM access is built into the hands-on site, so participants do not need to set anything up (Terrence, 6 November 2026). The programme had said “Access to the required LLM will be arranged and confirmed before the tutorial.”
 - TODO: what to say to people without a laptop. The programme says “Participants should bring a laptop for the hands-on exercises.” The organisers’ working direction from 23 October is to assume laptops are optional.
 - Sources for every time on the slide:
-  - Start times and lengths of Parts 1–4, afternoon tea and the end: Terrence’s draft schedule, 6 November 2026. Not final, so not in `knowledge/`.
-  - Session 1 (Parts 1 and 2) is 1.5 hours and Session 2 (Parts 3 and 4) is 1.5 hours: ALTA 2026 programme page, “Tutorial Overview” for the afternoon tutorial (https://alta2026.alta.asn.au/program#afternoon-tutorial, read 6 November 2026), recorded in `knowledge/tutorial-overview.md`. The draft agrees: 1:00–2:30 and 3:00–4:30.
+  - Start times and lengths of Parts 1–4, afternoon tea and the end: Terrence’s schedule as planned on 6 November 2026. Not confirmed, so not in `knowledge/`.
+  - Session 1 (Parts 1 and 2) is 1.5 hours and Session 2 (Parts 3 and 4) is 1.5 hours: ALTA 2026 programme page, “Tutorial Overview” for the afternoon tutorial (https://alta2026.alta.asn.au/program#afternoon-tutorial, read 6 November 2026), recorded in `knowledge/tutorial-overview.md`. That schedule agrees: 1:00–2:30 and 3:00–4:30.
   - The programme page itself gives no clock times and no break; it says “The full conference program with a detailed schedule will be released at a later date.”
 - The Part 3 description is the programme’s: “Participants develop a rubric and LLM judge for a practical tool-using agent scenario, run the judge over test cases, and analyse outcomes”.
 :::

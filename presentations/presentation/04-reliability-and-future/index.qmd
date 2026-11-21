@@ -22,7 +22,7 @@ format:
 
 ## Back from Part 3: how far did you trust your judge? {.j2-slide}
 
-<!-- TODO: Part 4 has 30 minutes (4:00 to 4:30, Terrence’s draft schedule in the Intro deck). Whether to leave time for the room to reflect on Part 3 is an open question; this slide is that reflection, and can shrink to one question if time is short. Laptops are optional for Part 4. Part 4 reuses Part 2's slide components (judge-methods.css) so the two decks look the same. -->
+<!-- TODO: Part 4 has 30 minutes (4:00 to 4:30, Terrence’s schedule in the Intro deck). Whether to leave time for the room to reflect on Part 3 is an open question; this slide is that reflection, and can shrink to one question if time is short. Laptops are optional for Part 4. Part 4 reuses Part 2's slide components (judge-methods.css) so the two decks look the same. -->
 
 ```{=html}
 <p class="j2-colhead">Four questions about the judge you built in Part 3</p>
