@@ -454,7 +454,7 @@ toc: false
 ::: {{.ai-summary}}
 <p class="ai-label">AI-generated summary</p>
 {provenance_html(src)}
-Draft for organiser review. A coding agent wrote this note. It is not a substitute for the abstract or the source.
+A coding agent wrote this note. It is not a substitute for the abstract or the source.
 
 {summary_body}
 :::
