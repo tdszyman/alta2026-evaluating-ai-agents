@@ -312,12 +312,12 @@ format:
     <tr><td>10 synthetic traces, with recorded tool results</td><td>how the judge does on real, varied traffic</td><td>a sample of real traces</td></tr>
     <tr class="fragment" data-fragment-index="1"><td>No human labels in the app</td><td>agreement with people, beyond chance</td><td>label a sample; report κ per criterion</td></tr>
     <tr class="fragment" data-fragment-index="2"><td>All targets scored in one request</td><td>that a tool-call score ignored later messages</td><td>one request per target</td></tr>
-    <tr class="fragment" data-fragment-index="3"><td>A draft pass mark of 4</td><td>that 4 is the right line for a decision</td><td>set it from labelled cases</td></tr>
+    <tr class="fragment" data-fragment-index="3"><td>A starter pass mark of 4</td><td>that 4 is the right line for a decision</td><td>set it from labelled cases</td></tr>
     <tr class="fragment" data-fragment-index="4"><td>One judge model per run</td><td>whether the result holds on another judge</td><td>rerun with a second model family</td></tr>
   </tbody>
 </table>
 <p class="j2-strong fragment" data-fragment-index="5">Your Part 3 numbers demonstrate the method. They are not evidence about the agent or the judge.</p>
-<p class="j2-src">Exercise design from the workshop README. The scenarios and draft criteria are proposed workshop materials, not an answer key.</p>
+<p class="j2-src">Exercise design from the workshop README. The scenarios and starter criteria are examples to edit, not an answer key.</p>
 ```
 
 ::: {.notes}

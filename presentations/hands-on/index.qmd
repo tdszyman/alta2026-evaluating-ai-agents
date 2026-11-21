@@ -17,7 +17,7 @@ Each round follows five steps:
 4. Run evaluation.
 5. Review report.
 
-Your rubric and judge instructions carry forward between rounds. Start with an editable draft or a blank rubric, and add tool-use criteria when you reach the tool examples. Back and Next links let you revisit each stage. Your work and reports are saved in this browser.
+Your rubric and judge instructions carry forward between rounds. Start with the editable starter rubric or a blank one, and add tool-use criteria when you reach the tool examples. Back and Next links let you revisit each stage. Your work and reports are saved in this browser.
 
 [Start exercise](app/index.html?round=advice){.app-launch target="_blank" rel="noopener"}
 

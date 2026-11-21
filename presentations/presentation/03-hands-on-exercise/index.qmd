@@ -67,7 +67,7 @@ format:
   <div class="h3-card h3-card-judge">
     <div class="h3-kicker"><span>3 · Your role</span><span class="h3-badge">No answer key</span></div>
     <h3>You are the domain expert</h3>
-    <p>Starter criteria are editable drafts, not ground truth. Grading real cases often sharpens the criteria (<a href="../../bibliography/shankar-2024-validators/">Shankar et al. 2024</a>).</p>
+    <p>Starter criteria are editable starting points, not ground truth. Grading real cases often sharpens the criteria (<a href="../../bibliography/shankar-2024-validators/">Shankar et al. 2024</a>).</p>
   </div>
 </div>
 ```

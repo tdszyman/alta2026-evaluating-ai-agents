@@ -64,7 +64,7 @@ format:
     <p>LLM access is built in; no setup needed.</p>
   </div>
 </div>
-<p class="tl-src slide-foot">Draft times, 6 November 2026. Session lengths: ALTA 2026 programme. <span class="tbc">Dotted underline</span>: to be confirmed.</p>
+<p class="tl-src slide-foot">Times as planned on 6 November 2026. Session lengths: ALTA 2026 programme. <span class="tbc">Dotted underline</span>: to be confirmed.</p>
 ```
 
 ::: {.notes}
@@ -74,7 +74,7 @@ format:
 
 **Presenter notes:**
 
-- The times are Terrence’s draft schedule (6 November 2026). Three items are not confirmed and have a dotted underline on the slide: the 1:00 start, the 30-minute afternoon tea and the 4:30 end. Check them with the ALTA organisers before the day.
+- The times are Terrence’s schedule as planned on 6 November 2026. Three items are not confirmed and have a dotted underline on the slide: the 1:00 start, the 30-minute afternoon tea and the 4:30 end. Check them with the ALTA organisers before the day.
 - There is no separate slot for this Intro, so it comes out of Part 1’s 1:00–1:45. TODO: confirm that, and how long the Intro may take.
 - Presenters (Terrence, 6 November 2026): Part 1 Terrence, Part 2 Parvin, Part 3 Yelaman, Part 4 Sara. Part 3 starts with a 10-minute intro presentation from Yelaman, then the hands-on exercise, within its 60 minutes.
 - LLM access is built into the hands-on site, so participants do not need to set anything up (Terrence, 6 November 2026). The programme had said “Access to the required LLM will be arranged and confirmed before the tutorial.”

@@ -161,11 +161,11 @@ h1, h2, h3, h4, .h1, .h2, .h3, .h4 {
 
 /* Each deck's title slide gradient. The presentation landing loads
    section-divider.css for the --sd-* tokens; the --card-* fallbacks apply elsewhere. */
-#intro.part-card { --card-bg: var(--sd-7-bg, var(--card-brand)); }
+#intro.part-card { --card-bg: var(--sd-7-bg, var(--card-violet)); }
 #part-1.part-card { --card-bg: var(--sd-3-bg, var(--card-blue)); }
 #part-2.part-card { --card-bg: var(--sd-4-bg, var(--card-green)); }
-#part-3.part-card { --card-bg: var(--sd-5-bg, var(--card-indigo)); }
-#part-4.part-card { --card-bg: var(--sd-6-bg, var(--card-teal)); }
+#part-3.part-card { --card-bg: var(--sd-5-bg, var(--card-magenta)); }
+#part-4.part-card { --card-bg: var(--sd-6-bg, var(--card-sunset)); }
 
 .person-grid > .person:nth-child(4n + 1) { --card-bg: var(--card-blue); }
 .person-grid > .person:nth-child(4n + 2) { --card-bg: var(--card-sunset); }

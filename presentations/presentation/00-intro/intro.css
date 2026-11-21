@@ -22,8 +22,8 @@
   white-space: nowrap;
 }
 
-/* A draft time or length that is not confirmed yet: a dotted underline, so
-   it reads as provisional without drawing the eye. Remove the span once the
+/* A time or length that is not confirmed yet: a dotted underline, so
+   it reads as unconfirmed without drawing the eye. Remove the span once the
    item is confirmed. */
 .reveal .tbc {
   text-decoration-line: underline;
