@@ -83,36 +83,6 @@ PY
   fi
 }
 
-# The deck theme picker (_shared/chrome.html) loads a template's tokens from
-# _site/_shared/themes/<id>.css. Compile every template with the Dart Sass
-# that ships with Quarto, so no other tool is needed.
-find_sass() {
-  local bin
-  bin="$(quarto --paths 2>/dev/null | head -n 1)"
-  for candidate in "$bin"/tools/*/dart-sass/sass "$bin"/tools/dart-sass/sass; do
-    if [[ -x "$candidate" ]]; then
-      echo "$candidate"
-      return
-    fi
-  done
-  command -v sass || true
-}
-
-compile_slide_themes() {
-  local sass out
-  sass="$(find_sass)"
-  if [[ -z "$sass" ]]; then
-    echo "error: no Dart Sass found (expected Quarto's bundled copy)." >&2
-    exit 1
-  fi
-  out="$PRES/_site/_shared/themes"
-  mkdir -p "$out"
-  echo "==> Compiling slide templates for the theme picker → _site/_shared/themes/"
-  for theme in "$PRES"/_shared/themes/*.scss; do
-    "$sass" --quiet --no-source-map --style=compressed "$theme" "$out/$(basename "$theme" .scss).css"
-  done
-}
-
 render_all() {
   prepare_site
   echo "==> Rendering site → presentations/_site"
@@ -146,7 +116,6 @@ case "$PART" in
     ;;
 esac
 
-compile_slide_themes
 publish_app
 
 echo "Done. Build is in presentations/_site"
