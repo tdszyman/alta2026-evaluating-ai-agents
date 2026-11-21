@@ -22,7 +22,7 @@ format:
 
 ## Our running example: a career assistant {.j2-slide}
 
-<!-- TODO: section owner and timing are not set (Sara drafts Part 2 per organisation/decisions.md). Session 1 is 1.5 h for Parts 1 and 2 together (knowledge/tutorial-overview.md). This draft has 36 slides with one main point each; the detail is in the presenter notes and the bibliography. Outline and open questions: organisation/outlines/part-02.md. -->
+<!-- TODO: section owner and timing are not set (Sara drafts Part 2). Session 1 is 1.5 h for Parts 1 and 2 together (knowledge/tutorial-overview.md). This draft has 36 slides with one main point each; the detail is in the presenter notes and the bibliography. -->
 
 ```{=html}
 <div class="j2-ex">
@@ -171,7 +171,7 @@ format:
 ::: {.notes}
 **About this slide:** The deterministic side of the program topic "deterministic vs non-deterministic evaluation": checks a program computes, so the same input always gets the same verdict. The section ends where code stops, then sets code beside model-based evaluation (1.5): what each checks, how each errs, and what each costs. Section 2 builds the judge.
 
-<!-- TODO: Part 1 section 3 ("Why agents need LLM judges") already argues that rules fall short for generative output. organisation/outlines/part-01.md asks where the line between Part 1 and Part 2 is. This section stays on agent checks and the running example rather than repeating that argument. -->
+<!-- TODO: Part 1 section 3 ("Why agents need LLM judges") already argues that rules fall short for generative output. Where the line between Part 1 and Part 2 falls is still open. This section stays on agent checks and the running example rather than repeating that argument. -->
 :::
 
 ---
@@ -653,7 +653,7 @@ format:
 - PoLL (Command R, Claude-3 Haiku, GPT-3.5): the highest Cohen's κ with human annotators on Natural Questions (0.763) and TriviaQA (0.906), second on HotpotQA (0.867, behind Haiku's 0.873), and the highest rank correlation with the human [Chatbot Arena](../../bibliography/zheng-2023-mt-bench/) leaderboard on Arena Hard. The panel cost US\$1.25 and US\$4.25 per million input and output tokens, against US\$10 and US\$30 for GPT-4 Turbo ([Verga et al. 2024](../../bibliography/verga-2024-juries/)). Hard reasoning was not tested, where small models may not be able to verify the answer at all.
 - Prometheus: Pearson correlation with human evaluators on 45 customised unseen rubrics, 0.897 against GPT-4's 0.882 ([Kim et al. 2024a](../../bibliography/kim-2024-prometheus/)). It needs a rubric and a reference answer, and it was trained on single text responses, not agent traces.
 - Open-weight judges can make local judging viable when cost, privacy or version stability rules out an API judge ([Kim et al. 2024b](../../bibliography/kim-2024-prometheus-2/)).
-- Organiser working note: the judge should usually be the strongest model you can afford, and stronger than the model that generated the output (organisation/notes/llm-as-judge.md). The two views can be reconciled: check a cheaper judge against people before relying on it.
+- Organiser working note: the judge should usually be the strongest model you can afford, and stronger than the model that generated the output. The two views can be reconciled: check a cheaper judge against people before relying on it.
 :::
 
 # 3. Rubrics, scales and prompt patterns {.j2-slide}

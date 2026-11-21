@@ -485,22 +485,6 @@ a.app-launch:focus {
   text-underline-offset: 0.12em;
 }
 
-.org-banner {
-  margin-bottom: 1.25rem;
-  padding: 1rem 1.35rem;
-  background: var(--card-magenta);
-  border-radius: 24px;
-  color: var(--card-ink);
-}
-
-.org-banner p { margin: 0; }
-
-.org-banner code,
-.org-banner p code:not(.sourceCode) {
-  background: rgb(0 0 0 / 0.22);
-  color: var(--card-ink);
-}
-
 a:focus-visible,
 button:focus-visible,
 input:focus-visible,

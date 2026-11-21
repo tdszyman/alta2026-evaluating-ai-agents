@@ -3,7 +3,7 @@
 
 Source: knowledge/bibliography.json
 Output: presentations/bibliography/
-Scans:  presentations/presentation/**/*.qmd
+Scans:  presentations/presentation/*/*.qmd, except UNPUBLISHED decks
 
 A citation is any markdown link whose target contains bibliography/<id>/.
 Run this before quarto render (scripts/render-slides.sh does).
@@ -26,11 +26,17 @@ OUT = ROOT / "presentations" / "bibliography"
 
 PARTS = {
     "01-agents-and-eval-challenges": "Part 1",
-    "01g-graveyard": "Part 1.G",
     "02-llm-as-judge-methods": "Part 2",
     "03-hands-on-exercise": "Part 3",
     "04-reliability-and-future": "Part 4",
 }
+
+# Decks excluded from the render by project.render in presentations/_quarto.yml.
+UNPUBLISHED = {"01g-graveyard"}
+
+
+def published_decks() -> list[Path]:
+    return [p for p in sorted(DECKS.glob("*/*.qmd")) if p.parent.name not in UNPUBLISHED]
 
 # Printed as "Skill version N". Version 2 notes were rewritten under a162f8f,
 # before this file had a version field. Version 3 is the commit that set
@@ -204,7 +210,7 @@ def scan_decks(ids: set[str]) -> tuple[dict[str, list[dict]], list[str]]:
     cited: dict[str, list[dict]] = {i: [] for i in ids}
     broken: list[str] = []
     link_re = re.compile(r"bibliography/([a-z0-9-]+)/?")
-    for path in sorted(DECKS.glob("*/*.qmd")):
+    for path in published_decks():
         part_key = path.parent.name
         part = PARTS.get(part_key, part_key)
         text = path.read_text(encoding="utf-8")
@@ -232,7 +238,7 @@ def scan_decks(ids: set[str]) -> tuple[dict[str, list[dict]], list[str]]:
 
 def mention_report(sources: list[dict]) -> list[str]:
     notes = []
-    for path in sorted(DECKS.glob("*/*.qmd")):
+    for path in published_decks():
         lines = path.read_text(encoding="utf-8").splitlines()
         rel = path.relative_to(ROOT)
         for src in sources:
