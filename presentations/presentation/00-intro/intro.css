@@ -333,18 +333,25 @@
   color: var(--deck-ink);
 }
 
-/* Ink text with an accent underline, so a link reads as one without a run
-   of accent colour inside the bio. */
+/* A bio link is a quiet accent tint with no underline, so the card reads as
+   text; the underline comes on hover and focus. */
 .reveal .presenters-slide .pc-bio a {
-  color: inherit;
-  text-decoration: underline;
-  text-decoration-color: var(--deck-accent);
+  color: color-mix(in srgb, var(--deck-accent), var(--deck-ink) 25%);
+  text-decoration: none;
   text-decoration-thickness: 1.5px;
   text-underline-offset: 0.16em;
 }
 
-.reveal .presenters-slide .pc-bio a:hover {
-  color: var(--deck-accent-strong);
+.reveal .presenters-slide .pc-bio a:hover,
+.reveal .presenters-slide .pc-bio a:focus-visible {
+  color: var(--deck-accent);
+  text-decoration: underline;
+}
+
+.reveal .presenters-slide .pc-bio a:focus-visible {
+  outline: 2px solid var(--deck-accent);
+  outline-offset: 2px;
+  border-radius: 2px;
 }
 
 .reveal .presenters-slide .pc-part {
