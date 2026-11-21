@@ -276,6 +276,16 @@ h1, h2, h3, h4, .h1, .h2, .h3, .h4 {
 .person h3 { margin: 0 0 0.3rem; font-size: 1.3rem; color: var(--card-ink); }
 .person p { margin: 0.2rem 0; }
 .person p.note { font-size: 0.92rem; font-style: italic; }
+.person p.bio { margin-top: 0.75rem; font-size: 0.95rem; line-height: 1.55; }
+.person-photo {
+  display: block;
+  width: 96px;
+  height: 96px;
+  margin: 0 0 0.9rem;
+  object-fit: cover;
+  border: 3px solid var(--card-ink);
+  border-radius: 16px;
+}
 
 .note { font-size: 0.95rem; }
 

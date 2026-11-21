@@ -287,6 +287,17 @@
   color: var(--deck-soft);
 }
 
+.reveal .presenters-slide img.pc-photo {
+  display: block;
+  max-width: none;
+  max-height: none;
+  margin: 0 0 14px;
+  padding: 0;
+  object-fit: cover;
+  border: 0;
+  box-shadow: none;
+}
+
 .reveal .presenters-slide .pc-photo .todo {
   margin-top: 6px;
   font-size: 10px;
