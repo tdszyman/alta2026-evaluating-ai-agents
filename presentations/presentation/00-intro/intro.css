@@ -327,10 +327,24 @@
 
 .reveal .presenters-slide .pc-bio li,
 .reveal .presenters-slide .pc-bio p {
-  margin: 0 0 8px;
-  font-size: 17px;
+  margin: 0 0 10px;
+  font-size: 19px;
   line-height: 1.3;
   color: var(--deck-ink);
+}
+
+/* Ink text with an accent underline, so a link reads as one without a run
+   of accent colour inside the bio. */
+.reveal .presenters-slide .pc-bio a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: var(--deck-accent);
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 0.16em;
+}
+
+.reveal .presenters-slide .pc-bio a:hover {
+  color: var(--deck-accent-strong);
 }
 
 .reveal .presenters-slide .pc-part {
