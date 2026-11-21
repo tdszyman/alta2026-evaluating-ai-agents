@@ -162,7 +162,6 @@ h1, h2, h3, h4, .h1, .h2, .h3, .h4 {
 /* Same colours as each deck's title slide (.sd-3 to .sd-7 in section-divider.css). */
 #intro.part-card { --card-bg: var(--card-brand); }
 #part-1.part-card { --card-bg: var(--card-blue); }
-#part-1g.part-card { --card-bg: var(--card-slate); }
 #part-2.part-card { --card-bg: var(--card-green); }
 #part-3.part-card { --card-bg: var(--card-indigo); }
 #part-4.part-card { --card-bg: var(--card-teal); }
@@ -470,22 +469,6 @@ a.app-launch:focus {
   color: inherit;
   text-decoration: underline;
   text-underline-offset: 0.12em;
-}
-
-.org-banner {
-  margin-bottom: 1.25rem;
-  padding: 1rem 1.35rem;
-  background: var(--card-magenta);
-  border-radius: 24px;
-  color: var(--card-ink);
-}
-
-.org-banner p { margin: 0; }
-
-.org-banner code,
-.org-banner p code:not(.sourceCode) {
-  background: rgb(0 0 0 / 0.22);
-  color: var(--card-ink);
 }
 
 a:focus-visible,

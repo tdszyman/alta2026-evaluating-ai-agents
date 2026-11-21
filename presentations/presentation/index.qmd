@@ -26,14 +26,6 @@ The afternoon's plan and the four presenters, before Part 1.
 Agents, tool use, and why scoring only the final answer falls short.
 :::
 
-::: {#part-1g .part-card}
-<span class="index">Part 1.G · Not in the talk</span>
-
-[Graveyard](01g-graveyard/){.card-title}
-
-Slides cut from Part 1, kept in full for organisers. To be deleted before the tutorial.
-:::
-
 ::: {#part-2 .part-card}
 <span class="index">Part 2 · Session 1</span>
 

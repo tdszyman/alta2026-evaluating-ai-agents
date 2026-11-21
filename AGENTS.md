@@ -6,21 +6,17 @@ This repository holds materials for **Evaluating AI Agents with LLM-as-a-Judge**
 
 1. Read [`knowledge/tutorial-overview.md`](knowledge/tutorial-overview.md) for title, speakers, and the four official parts.
 2. Read [`knowledge/sources.md`](knowledge/sources.md) for what is known vs unknown (e.g. detailed agenda).
-3. For planning, decisions, lit review, and WIP outlines, use [`organisation/`](organisation/README.md) — living docs for organisers and agents.
-4. Do **not** invent agenda timings, slide narratives, rubrics, or workshop answers. Prefer checkboxes and open questions in `organisation/` over inventing resolutions.
+3. Do **not** invent agenda timings, slide narratives, rubrics, or workshop answers. Prefer `TODO:` markers and open questions over inventing resolutions.
 
 ## Layout
 
 | Area | Use |
 |------|-----|
-| `organisation/` | Living planning: meetings, actions, decisions, literature, notes, outlines. Mirrored to `/organisation/` until tutorial day, then the build drops it |
 | `presentations/` | Quarto website: home, about, presentation decks, generated bibliography pages |
 | `workshop/` | Hands-on prompts, sample data, dataset link list. The app is published at `/hands-on/app/` |
 | `knowledge/` | Stable tutorial facts, plus `bibliography.json` for the public bibliography |
-| `skills/` | Follow the matching `SKILL.md` before building slides, citations, or meeting notes |
+| `skills/` | Follow the matching `SKILL.md` before building slides, citations, or source summaries |
 | `scripts/` | Prefer these helpers over ad-hoc render commands |
-
-`organisation/` = living planning; `knowledge/` = stable facts and the bibliography. Cross-link; do not duplicate the same document in both.
 
 ## Public site
 
@@ -32,7 +28,6 @@ Published from `main` to GitHub Pages. Routes:
 | `/presentation/` | Presentation landing | `presentations/presentation/index.qmd` |
 | `/presentation/00-intro/` | Intro deck: welcome, the afternoon’s timeline, the presenters. Comes before Part 1 and hands over to it; its breadcrumb reads “Intro” | that folder’s `index.qmd` |
 | `/presentation/01-agents-and-eval-challenges/` | Part 1 deck | that folder’s `index.qmd` |
-| `/presentation/01g-graveyard/` | Part 1.G: Graveyard. Slides cut from Part 1, kept for organisers; delete before tutorial day | that folder’s `index.qmd` |
 | `/presentation/02-llm-as-judge-methods/` | Part 2 deck | that folder’s `index.qmd` |
 | `/presentation/03-hands-on-exercise/` | Part 3 deck | that folder’s `index.qmd` |
 | `/presentation/04-reliability-and-future/` | Part 4 deck | that folder’s `index.qmd` |
@@ -40,7 +35,8 @@ Published from `main` to GitHub Pages. Routes:
 | `/hands-on/app/` | Hands-on app. Leave it independent; do not fold it into a deck | `workshop/app/` |
 | `/bibliography/` | Bibliography, then one page per source | `knowledge/bibliography.json` via `scripts/build-knowledge.py` |
 | `/about/` | Tutorial, contributors, how the site is built and run | `presentations/about/index.qmd` |
-| `/organisation/` | Organiser mirror only. Not in the navbar, `noindex`, omitted from the sitemap | generated from `organisation/` |
+
+Part 1.G: Graveyard (`presentations/presentation/01g-graveyard/`) holds slides cut from Part 1. Its source stays in the repo, but it is not published: `project.render` in `presentations/_quarto.yml` excludes it, and `scripts/build-knowledge.py` skips it (`UNPUBLISHED`), so bibliography pages do not link to it. Do not link to it from the site or the decks.
 
 Home, presentation landing, bibliography, about, and the hands-on page share the site theme (`presentations/site.scss` and `presentations/site-dark.scss`). The hands-on app at `/hands-on/app/` keeps its own page and uses the same light tokens. Visual changes go through [`presentations/_shared/style-brief.md`](presentations/_shared/style-brief.md) first. Do not restyle around that file. The human brief is the source of truth; the “Implementation decisions” section at the end is AI-generated and must stay labelled that way.
 
@@ -69,7 +65,7 @@ Default slide chrome:
 - Page number at the bottom, same `n / total` count.
 - Edge previous/next controls that fade after the pointer is still.
 - Every page needs a next action, even when there is no next slide. A deck’s last slide ends on a `.next-deck` link with `data-next-deck`: the next deck, or, at the end of the talk or outside it, a page of the site (use a relative link so the site's base path holds). A website page ends on a link to where the reader goes next.
-- Deck chain: if a deck’s last slide has a link with `data-next-deck`, going forward from the end (right arrow, space, page down, or the top bar’s next button) opens it. Going back from a deck’s first slide opens the deck named by `prev` in the `PARTS` map in `chrome.html`, at its last slide with every build shown (`?at=end`). The talk runs Intro → Part 1 → Part 2 → Part 3 → Part 4. Part 4's last slide links back to the site home (`../../`), and Part 1.G, which is outside the chain, ends on a link to the presentation landing (`../`). The speaker view (S) follows each hop and can drive it. The fading edge arrows stop at a deck’s ends.
+- Deck chain: if a deck’s last slide has a link with `data-next-deck`, going forward from the end (right arrow, space, page down, or the top bar’s next button) opens it. Going back from a deck’s first slide opens the deck named by `prev` in the `PARTS` map in `chrome.html`, at its last slide with every build shown (`?at=end`). The talk runs Intro → Part 1 → Part 2 → Part 3 → Part 4. Part 4's last slide links back to the site home (`../../`). The speaker view (S) follows each hop and can drive it. The fading edge arrows stop at a deck’s ends.
 
 Bibliography:
 
@@ -80,20 +76,12 @@ Bibliography:
 - A processed source also has `summary_md` (the reading note), `figures`, and sometimes `access_note`. Follow [`skills/source-summaries/SKILL.md`](skills/source-summaries/SKILL.md). The short `summary` stays as the fallback when `summary_md` is absent.
 - A slide cites a source by linking to `bibliography/<id>/`. Run `python3 scripts/build-knowledge.py` so the source page lists every slide that links to it. Follow [`skills/citation-links/SKILL.md`](skills/citation-links/SKILL.md) when editing decks or the bibliography.
 
-Organisation:
-
-- Hidden from the public navbar and from the sitemap. Pages send `noindex`.
-- `scripts/stage-organisation.py` stops publishing the mirror on **30 November 2026** (tutorial day). Remove it earlier if organising is finished.
-- Do not link `/organisation/` from home, about, or the decks.
-
 ## Skills
 
-- [`skills/meeting-cycle/`](skills/meeting-cycle/SKILL.md) — draft Friday agendas; process minutes into action-items/decisions
 - [`skills/quarto-reveal-slides/`](skills/quarto-reveal-slides/SKILL.md) — author Reveal decks; local render; when asked to open or view the site, run `./scripts/preview-site.sh` and open the page; publish to GitHub Pages from `main`
 - [`skills/citation-links/`](skills/citation-links/SKILL.md) — keep slide citations and bibliography-page backlinks in sync
 - [`skills/source-summaries/`](skills/source-summaries/SKILL.md) — write the reading summary and figure captures on a bibliography source page
 
-Collaboration workflow (Markdown source of truth, Issues, PRs): [`organisation/README.md`](organisation/README.md).  
 Slides publish target: `https://tdszyman.github.io/alta2026-evaluating-ai-agents/` (Actions on `main` only — see the Quarto skill).
 
 ## Conventions
@@ -102,4 +90,3 @@ Slides publish target: `https://tdszyman.github.io/alta2026-evaluating-ai-agents
 - Workshop code and prompts stay under `workshop/`; do not bury them inside slide folders.
 - Prefer editing existing stubs over creating parallel structures.
 - Mark unfinished material with `TODO:` or HTML/Markdown comments so humans can find gaps.
-- Meeting agendas/minutes commit on the planning branch; PRs only when tutorial content also changes.

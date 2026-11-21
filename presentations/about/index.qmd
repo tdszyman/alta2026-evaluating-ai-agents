@@ -40,7 +40,7 @@ Roles below are the ones published on the ALTA program. Longer bios are still to
 
 ## Built with coding agents
 
-The repository is the shared notebook for the organisers and for coding agents. `AGENTS.md` tells an agent what is fixed (the program title, the four parts, the date) and what must not be invented (agenda timings, slide claims, rubrics, workshop answers). Skills in `skills/` describe repeatable jobs: the Friday meeting cycle, rendering these decks, and checking that slide citations link to the bibliography pages.
+The repository is the shared notebook for the organisers and for coding agents. `AGENTS.md` tells an agent what is fixed (the program title, the four parts, the date) and what must not be invented (agenda timings, slide claims, rubrics, workshop answers). Skills in `skills/` describe repeatable jobs: rendering these decks, checking that slide citations link to the bibliography pages, and writing the reading summaries on those pages.
 
 Agents drafted the summaries in the bibliography. Each of those pages says so. Organisers review them before the tutorial. Abstracts, when a page has one, are copied from the source rather than rewritten.
 

@@ -422,11 +422,10 @@ ALTA 2026 Tutorial 2 — Afternoon · WIP
 
 **AI Agents and Evaluation Challenges**
 
-Source outline: `organisation/outlines/part-01.md`  
 Placeholder slides only — not final narrative. Do not treat examples as complete case studies.
 
 ::: {.notes}
-**About this slide:** A status notice. This deck is still being written from the Part 1 outline (`organisation/outlines/part-01.md` in the tutorial repository). The examples in it are illustrative, not complete case studies.
+**About this slide:** A status notice. This deck is still being written. The examples in it are illustrative, not complete case studies.
 :::
 
 ---
