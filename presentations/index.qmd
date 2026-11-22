@@ -4,11 +4,7 @@ subtitle: "ALTA 2026 Tutorial 2 · Monday 30 November 2026"
 format: html
 ---
 
-<p class="eyebrow">Afternoon tutorial · materials in progress</p>
-
-<p class="lede">AI agents plan, use tools, and act over time, so a single final answer is a weak test. This tutorial covers why agent evaluation is hard, how LLM-as-a-judge methods work, a hands-on exercise, and the reliability limits of model-based judges.</p>
-
-The public site has four places to start. Slide decks are still drafts. The bibliography is a reading list with labelled AI-written summaries waiting for organiser review.
+<p class="lede">This is the website for the <a href="https://alta2026.alta.asn.au/">ALTA 2026</a> afternoon tutorial on AI agent evaluation and LLM-as-judge methods.</p>
 
 ::: {.jump-grid}
 
@@ -17,7 +13,7 @@ The public site has four places to start. Slide decks are still drafts. The bibl
 
 [Presentation](presentation/){.card-title}
 
-Four slide sections. Each part has its own URL and the same default slide chrome.
+The intro and the four parts, each its own slide deck.
 :::
 
 ::: {.jump-card}
@@ -25,7 +21,7 @@ Four slide sections. Each part has its own URL and the same default slide chrome
 
 [Hands-on](hands-on/index.qmd){.card-title}
 
-A browser exercise: edit a judge prompt and score a few career-advice replies with your own OpenRouter key.
+A browser exercise: write a rubric and an LLM judge, then score a career assistant's recorded replies and tool calls over three rounds.
 :::
 
 ::: {.jump-card}
@@ -48,12 +44,17 @@ Presenters, how this site was built with coding agents, and the tools that publi
 
 ## What the tutorial covers
 
-From the [ALTA 2026 program](https://alta2026.alta.asn.au/program#afternoon-tutorial):
+The afternoon opens with a short [intro](presentation/00-intro/), then four parts in two sessions. Part descriptions from the [ALTA 2026 program](https://alta2026.alta.asn.au/program#afternoon-tutorial):
 
-1. **AI Agents and Evaluation Challenges** — agents, tool use, and why final-answer scoring is not enough.
-2. **LLM-as-a-Judge Methods** — criteria, rubrics, scales, prompts, and the trade-offs with rules and human review.
-3. **Hands-on Agent Evaluation Exercise** — build a rubric and a judge, then look at tool choice, parameters, and response quality.
-4. **Reliability, Limitations, and Future Directions** — consistency, cost, failure modes, and open research.
+**Session 1: Foundations of AI Agent Evaluation**
+
+1. **AI Agents and Evaluation Challenges** (Terrence Szymanski) — agents, tool use, and why final-answer scoring is not enough.
+2. **LLM-as-a-Judge Methods** (Parvin Zarei Eskikand) — criteria, rubrics, scales, prompts, and the trade-offs with rules and human review.
+
+**Session 2: Practical Evaluation of AI Agents**
+
+3. **Hands-on Agent Evaluation Exercise** (Yelaman Abdullin) — build a rubric and a judge, then look at tool choice, parameters, and response quality.
+4. **Reliability, Limitations, and Future Directions** (Sara Mirabi) — consistency, cost, failure modes, and open research.
 
 Presenters: Parvin Zarei Eskikand (SEEK), Terrence Szymanski (SEEK), Sara Mirabi (Deakin University), and Yelaman Abdullin (Macquarie University).
 

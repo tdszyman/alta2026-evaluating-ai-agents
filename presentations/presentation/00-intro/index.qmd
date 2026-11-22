@@ -42,7 +42,7 @@ format:
 
 ## This afternoon: two sessions, four parts {#the-afternoon .intro-slide .timeline-slide}
 
-<!-- Draft schedule from Terrence, 6 Nov 2026 (organisation/outlines/intro.md). Items he marked "??" are wrapped in <span class="tbc">; when one is confirmed, remove its span, and when none are left, remove the legend from the source line. -->
+<!-- Schedule from Terrence, 6 Nov 2026. Items he marked "??" are wrapped in <span class="tbc">; when one is confirmed, remove its span, and when none are left, remove the legend from the source line. -->
 
 ```{=html}
 <div class="tl-grid">
@@ -64,7 +64,7 @@ format:
     <p>LLM access is built in; no setup needed.</p>
   </div>
 </div>
-<p class="tl-src slide-foot">Draft times, 6 November 2026. Session lengths: ALTA 2026 programme. <span class="tbc">Dotted underline</span>: to be confirmed.</p>
+<p class="tl-src slide-foot">Times as planned on 6 November 2026. Session lengths: ALTA 2026 programme. <span class="tbc">Dotted underline</span>: to be confirmed.</p>
 ```
 
 ::: {.notes}
@@ -74,14 +74,14 @@ format:
 
 **Presenter notes:**
 
-- The times are Terrence’s draft schedule (6 November 2026). Three items are not confirmed and have a dotted underline on the slide: the 1:00 start, the 30-minute afternoon tea and the 4:30 end. Check them with the ALTA organisers before the day.
+- The times are Terrence’s schedule as planned on 6 November 2026. Three items are not confirmed and have a dotted underline on the slide: the 1:00 start, the 30-minute afternoon tea and the 4:30 end. Check them with the ALTA organisers before the day.
 - There is no separate slot for this Intro, so it comes out of Part 1’s 1:00–1:45. TODO: confirm that, and how long the Intro may take.
 - Presenters (Terrence, 6 November 2026): Part 1 Terrence, Part 2 Parvin, Part 3 Yelaman, Part 4 Sara. Part 3 starts with a 10-minute intro presentation from Yelaman, then the hands-on exercise, within its 60 minutes.
 - LLM access is built into the hands-on site, so participants do not need to set anything up (Terrence, 6 November 2026). The programme had said “Access to the required LLM will be arranged and confirmed before the tutorial.”
-- TODO: what to say to people without a laptop. The programme says “Participants should bring a laptop for the hands-on exercises.” The organisers’ working direction from 23 October is to assume laptops are optional (`organisation/decisions.md`).
+- TODO: what to say to people without a laptop. The programme says “Participants should bring a laptop for the hands-on exercises.” The organisers’ working direction from 23 October is to assume laptops are optional.
 - Sources for every time on the slide:
-  - Start times and lengths of Parts 1–4, afternoon tea and the end: Terrence’s draft schedule, 6 November 2026, recorded in `organisation/outlines/intro.md`. Not final, so not in `knowledge/`.
-  - Session 1 (Parts 1 and 2) is 1.5 hours and Session 2 (Parts 3 and 4) is 1.5 hours: ALTA 2026 programme page, “Tutorial Overview” for the afternoon tutorial (https://alta2026.alta.asn.au/program#afternoon-tutorial, read 6 November 2026), recorded in `knowledge/tutorial-overview.md`. The draft agrees: 1:00–2:30 and 3:00–4:30.
+  - Start times and lengths of Parts 1–4, afternoon tea and the end: Terrence’s schedule as planned on 6 November 2026. Not confirmed, so not in `knowledge/`.
+  - Session 1 (Parts 1 and 2) is 1.5 hours and Session 2 (Parts 3 and 4) is 1.5 hours: ALTA 2026 programme page, “Tutorial Overview” for the afternoon tutorial (https://alta2026.alta.asn.au/program#afternoon-tutorial, read 6 November 2026), recorded in `knowledge/tutorial-overview.md`. That schedule agrees: 1:00–2:30 and 3:00–4:30.
   - The programme page itself gives no clock times and no break; it says “The full conference program with a detailed schedule will be released at a later date.”
 - The Part 3 description is the programme’s: “Participants develop a rubric and LLM judge for a practical tool-using agent scenario, run the judge over test cases, and analyse outcomes”.
 :::

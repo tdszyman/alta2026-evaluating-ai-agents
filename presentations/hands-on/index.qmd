@@ -3,18 +3,22 @@ title: "Hands-on"
 format: html
 ---
 
-Build an LLM judge and evaluate recorded career-assistant interactions in three rounds: advice without tools, a job search with one tool call, then a job search and course lookup with two tool calls.
+Build an LLM judge and evaluate recorded career-assistant interactions in three rounds. Yelaman Abdullin introduces the exercise in [Part 3](../presentation/03-hands-on-exercise/).
 
-Each round follows five pages:
+1. **Career advice**: advice without tools.
+2. **Find suitable jobs**: a job search with one tool call.
+3. **Connect jobs and training**: a job search and course lookup with two tool calls.
 
-1. Inspect the recorded cases.
-2. Design your rubric.
-3. Write judge instructions.
-4. Run the evaluation.
-5. Review scores, explanations, and evidence.
+Each round follows five steps:
 
-Your rubric and judge instructions carry forward between rounds. Start with an editable draft or a blank rubric, and add tool-use criteria when you reach the tool examples. Back and Next links let you revisit each stage. Your work and reports are saved in this browser.
+1. Inspect cases.
+2. Design rubric.
+3. Write judge.
+4. Run evaluation.
+5. Review report.
+
+Your rubric and judge instructions carry forward between rounds. Start with the editable starter rubric or a blank one, and add tool-use criteria when you reach the tool examples. Back and Next links let you revisit each stage. Your work and reports are saved in this browser.
 
 [Start exercise](app/index.html?round=advice){.app-launch target="_blank" rel="noopener"}
 
-You can inspect cases and design your judge without an API key. Running it requires a key for OpenRouter or another supported endpoint. Only the judge makes model calls; agent traces and tools are recorded, synthetic fixtures. API settings stay in the browser, and reports do not include your key. The scenarios and draft criteria are proposed workshop materials, not an answer key.
+You can inspect cases and design your judge without an API key. Running it requires a key for OpenRouter or another supported endpoint. Only the judge makes model calls; agent traces and tools are recorded, synthetic fixtures. API settings stay in the browser, and reports do not include your key. The scenarios and starter criteria are examples to edit, not an answer key.

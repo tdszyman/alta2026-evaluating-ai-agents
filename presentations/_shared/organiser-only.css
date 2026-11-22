@@ -1,4 +1,4 @@
-/* Organisers-only slides: working material to remove before the final draft.
+/* Organisers-only slides: working material to remove before the tutorial.
    Add .organiser-only to the slide heading: ## Notes to follow up {.organiser-only}
    The slide's text and accents drop to the theme's muted colours, images go grey,
    and a tag names the slide as temporary.
@@ -21,7 +21,7 @@
 }
 
 .reveal .slides section.organiser-only::before {
-  content: "To be removed prior to final draft";
+  content: "To be removed before the tutorial";
   position: absolute;
   top: 4px;
   right: 0;

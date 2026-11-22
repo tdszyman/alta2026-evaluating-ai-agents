@@ -43,12 +43,10 @@ Basic familiarity with machine learning, NLP, and large language models. No prio
 
 ## Mapping to this repo
 
-| Part | Presentations | Workshop | Organisation (planning) |
-|------|---------------|----------|---------------------------|
-| Intro (not an official part) | `presentations/presentation/00-intro/` | — | [`organisation/outlines/intro.md`](../organisation/outlines/intro.md) |
-| 1 | `presentations/presentation/01-agents-and-eval-challenges/` | — | [`organisation/outlines/part-01.md`](../organisation/outlines/part-01.md) |
-| 2 | `presentations/presentation/02-llm-as-judge-methods/` | — | [`organisation/notes/llm-as-judge.md`](../organisation/notes/llm-as-judge.md) |
-| 3 | `presentations/presentation/03-hands-on-exercise/` | `workshop/` (primary) | [`organisation/decisions.md`](../organisation/decisions.md) (open questions) |
-| 4 | `presentations/presentation/04-reliability-and-future/` | optional follow-ups | — |
-
-See also [`organisation/`](../organisation/README.md) for meetings, action items, and literature.
+| Part | Presentations | Workshop |
+|------|---------------|----------|
+| Intro (not an official part) | `presentations/presentation/00-intro/` | — |
+| 1 | `presentations/presentation/01-agents-and-eval-challenges/` | — |
+| 2 | `presentations/presentation/02-llm-as-judge-methods/` | — |
+| 3 | `presentations/presentation/03-hands-on-exercise/` | `workshop/` (primary) |
+| 4 | `presentations/presentation/04-reliability-and-future/` | optional follow-ups |

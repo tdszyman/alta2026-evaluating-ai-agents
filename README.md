@@ -28,25 +28,23 @@ Pre-requisite (program): basic familiarity with ML, NLP, and LLMs; laptop for ha
 ## Repository layout
 
 ```
-organisation/      Living planning (meetings, decisions, lit, outlines)
 presentations/     Quarto site: home, about, four decks, generated bibliography pages
 workshop/          Hands-on app, prompts, data, and dataset links
 knowledge/         Stable tutorial facts and bibliography.json
-skills/            Agent skills (slides, citations, meeting cycle)
-scripts/           Render the site, rebuild bibliography pages, stage the organiser mirror
+skills/            Agent skills (slides, citations, source summaries)
+scripts/           Render the site, rebuild bibliography pages
 AGENTS.md          Entry point for coding agents working in this repo
 ```
 
 | Path | Purpose |
 |------|---------|
-| [`organisation/`](organisation/) | Organiser planning. Published at `/organisation/` until tutorial day, not linked from the public nav |
 | [`presentations/`](presentations/) | Public site source. Parts 1–4 live in `presentations/presentation/` |
 | [`workshop/`](workshop/) | Hands-on materials. The page is `/hands-on/`; the app is `/hands-on/app/` |
 | [`knowledge/`](knowledge/) | Tutorial facts and `bibliography.json`, which generates `/bibliography/` |
 | [`skills/`](skills/) | Reusable agent skills |
 | [`scripts/`](scripts/) | Render and citation helpers |
 
-Prefer **`organisation/`** for living planning docs; keep **`knowledge/`** for stable tutorial knowledge. Cross-link — do not duplicate the same file in both places.
+Keep **`knowledge/`** for stable tutorial knowledge.
 
 ## Quick start
 
@@ -65,22 +63,20 @@ Published from **`main`** via GitHub Actions → GitHub Pages:
 <https://tdszyman.github.io/alta2026-evaluating-ai-agents/>  
 (see [`skills/quarto-reveal-slides/SKILL.md`](skills/quarto-reveal-slides/SKILL.md)).
 
-Public routes: `/` home, `/presentation/` and one URL per part, `/hands-on/`, `/bibliography/`, `/about/`. `/organisation/` is an unlisted organiser mirror and is left out of the build on tutorial day.
+Public routes: `/` home, `/presentation/` and one URL per part, `/hands-on/`, `/bibliography/`, `/about/`.
 
 See [`presentations/README.md`](presentations/README.md).
 
 ### Workshop
 
-Hands-on assets live under [`workshop/`](workshop/). The original starter in [`workshop/app/`](workshop/app/) stays at `/hands-on/app/`, with four replies and inline scores/chart. The separate advanced workshop in [`workshop/app/advanced/`](workshop/app/advanced/) adds a custom judge builder, ten draft traces with zero, one, or two tool calls, and detailed reports at `/hands-on/app/advanced/`. The `/hands-on/` page links to both. Dataset URLs and access notes go in [`workshop/datasets.md`](workshop/datasets.md).
+Hands-on assets live under [`workshop/`](workshop/). The original starter in [`workshop/app/`](workshop/app/) stays at `/hands-on/app/`, with four replies and inline scores/chart. The separate advanced workshop in [`workshop/app/advanced/`](workshop/app/advanced/) adds a custom judge builder, ten synthetic traces with zero, one, or two tool calls, and detailed reports at `/hands-on/app/advanced/`. The `/hands-on/` page links to both. Dataset URLs and access notes go in [`workshop/datasets.md`](workshop/datasets.md).
 
 ## Status / next steps
 
 - [x] Repo scaffolding (structure, READMEs, Quarto stubs, agent skill)
-- [x] Organiser planning tree (`organisation/` — meetings, actions, lit, Part 1 outline)
-- [ ] Confirm whether collaboration moves fully from Notion → GitHub (see [`organisation/README.md`](organisation/README.md))
-- [ ] Confirm section owners for Parts 1–4 ([`organisation/decisions.md`](organisation/decisions.md))
+- [ ] Confirm section owners for Parts 1–4
 - [ ] Resolve hands-on open questions; fill workshop prompts/data
-- [ ] Confirm LLM / token budget for participants ([`organisation/action-items.md`](organisation/action-items.md))
+- [ ] Confirm LLM / token budget for participants
 
 ## Contributing
 

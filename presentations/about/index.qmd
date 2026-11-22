@@ -8,7 +8,7 @@ This site is the public companion to **Evaluating AI Agents with LLM-as-a-Judge*
 
 ## Contributors
 
-Roles below are the ones published on the ALTA program. Longer bios are written by each person; those still to come are marked.
+Roles below are the ones published on the ALTA program. Terrence Szymanski presents Part 1, Parvin Zarei Eskikand Part 2, Yelaman Abdullin Part 3, and Sara Mirabi Part 4. Longer bios are written by each person; those still to come are marked.
 
 <div class="person-grid">
 
@@ -41,9 +41,9 @@ Roles below are the ones published on the ALTA program. Longer bios are written 
 
 ## Built with coding agents
 
-The repository is the shared notebook for the organisers and for coding agents. `AGENTS.md` tells an agent what is fixed (the program title, the four parts, the date) and what must not be invented (agenda timings, slide claims, rubrics, workshop answers). Skills in `skills/` describe repeatable jobs: the Friday meeting cycle, rendering these decks, and checking that slide citations link to the bibliography pages.
+The repository is the shared notebook for the organisers and for coding agents. `AGENTS.md` tells an agent what is fixed (the program title, the four parts, the date) and what must not be invented (agenda timings, slide claims, rubrics, workshop answers). Skills in `skills/` describe repeatable jobs: rendering these decks, checking that slide citations link to the bibliography pages, and writing the reading summaries on those pages.
 
-Agents drafted the summaries in the bibliography. Each of those pages says so. Organisers review them before the tutorial. Abstracts, when a page has one, are copied from the source rather than rewritten.
+Agents wrote the summaries in the bibliography, and each of those pages labels its summary as AI-generated. Abstracts, when a page has one, are copied from the source rather than rewritten.
 
 ## How the site runs
 
@@ -51,7 +51,7 @@ The source of truth is Markdown and Quarto in this git repository.
 
 - **GitHub** stores the files. Tutorial content is reviewed in pull requests. Trackable work can be a GitHub Issue. Discussions are there for questions that are not a decision yet. A GitHub Actions workflow on `main` renders the site and deploys GitHub Pages.
 - **Quarto** builds the HTML pages (home, this page, the presentation landing, the hands-on page, and the bibliography).
-- **Reveal.js**, through Quarto, builds the four decks. Shared chrome (the top bar, slide list, search, and fading edge arrows) lives under `presentations/_shared/`. A part can replace that styling in its own file.
+- **Reveal.js**, through Quarto, builds the slide decks: the intro and Parts 1 to 4. Shared chrome (the top bar, slide list, search, and fading edge arrows) lives under `presentations/_shared/`. A part can replace that styling in its own file.
 - **The hands-on app** is separate static HTML, CSS, and JavaScript under `workshop/app/`, published at `/hands-on/app/`. The Hands-on page links to it and opens it in a new tab. The app calls the OpenRouter API from the browser. The API key stays in the participant’s browser.
 - **The bibliography** is generated from `knowledge/bibliography.json`. Slide links of the form `bibliography/<id>/` are collected back onto each source page.
 

@@ -249,7 +249,7 @@ Three steps. The slide opens on the hero stat: in Deloitte’s survey, 69% of Au
 
 ## Agents can create value, but introduce risk {.value-risk-slide .centre-body}
 
-<!-- The full risk slide, with an example at SEEK and how evals help for each row, is kept in the Part 1.G graveyard deck (../01g-graveyard/). -->
+<!-- The full risk slide, with an example at SEEK and how evals help for each row, is kept in the unpublished Part 1.G graveyard deck. -->
 
 :::: {.vr-grid}
 
@@ -310,14 +310,14 @@ The first four are about a single failure: a bad decision, a bad comment, an ill
 - Talk down the risks: for each one, what could go wrong at a company like SEEK.
 - Financial risk here means one costly decision. Operational risk (5) is different: the agent may never make a mistake and still lose money on every task.
 - Reputational risk here means one bad moment that people share. Competitive risk (6) is different: no single reply is a scandal, but users get poor results and take their business elsewhere.
-- How evals help with each risk comes later in this section. The full risk slide, which pairs each risk with how evals help, is kept in [Part 1.G: Graveyard](../01g-graveyard/).
+- How evals help with each risk comes later in this section. The full risk slide, which pairs each risk with how evals help, is kept in the unpublished Part 1.G graveyard deck.
 :::
 
 ---
 
 ## These risks are real, and they make headlines {.headlines-slide}
 
-<!-- TODO: One card per incident, the news headline where there is one. The individual case slides sit in [Part 1.G: Graveyard](../01g-graveyard/) while Terrence tests the flow without them; the screenshots cut from this collage are on those case slides or on the "Notes to follow up" slide. -->
+<!-- TODO: One card per incident, the news headline where there is one. The individual case slides sit in the unpublished Part 1.G graveyard deck while Terrence tests the flow without them; the screenshots cut from this collage are on those case slides or on the "Notes to follow up" slide. -->
 
 ```{=html}
 <div class="hc-board">
@@ -360,7 +360,7 @@ The first four are about a single failure: a bad decision, a bad comment, an ill
 ```
 
 ::: {.notes}
-**About this slide:** Real cases of the risks on the last slide, gathered as the headlines they produced. AI chatbots and agents that went wrong landed their companies in trouble with customers, in the media and with courts and regulators: an airline held liable for its chatbot, a parcel firm’s chatbot swearing at a customer, a city chatbot telling businesses to break the law, a retailer’s assistant giving illegal electrical advice, a critical flaw in Microsoft’s Copilot, a shopping order changed through a support assistant, an agent removing a stranger from a gym waitlist, and a supermarket assistant talking about its angry mother. A slide on each case is kept in [Part 1.G: Graveyard](../01g-graveyard/).
+**About this slide:** Real cases of the risks on the last slide, gathered as the headlines they produced. AI chatbots and agents that went wrong landed their companies in trouble with customers, in the media and with courts and regulators: an airline held liable for its chatbot, a parcel firm’s chatbot swearing at a customer, a city chatbot telling businesses to break the law, a retailer’s assistant giving illegal electrical advice, a critical flaw in Microsoft’s Copilot, a shopping order changed through a support assistant, an agent removing a stranger from a gym waitlist, and a supermarket assistant talking about its angry mother. A slide on each case is kept in the unpublished Part 1.G graveyard deck.
 
 Cards, in the order they appear: one per case, the news headline. All are real screenshots except the Cybersecurity Dive card, which is recreated; its outlet, headline, standfirst, byline and date are copied exactly from the article.
 
@@ -377,7 +377,7 @@ Cards, in the order they appear: one per case, the news headline. All are real s
 
 - This whole slide gets one to two minutes. Click through the headlines without telling each story; the point is that these risks are real, and they cost companies with customers, in the media and with regulators.
 - Eight clicks, one per case, in the order of the risks on the last slide: financial, reputational, regulatory, cybersecurity, then competitive.
-- Don’t stop on any card. Next: how organisations build agents that are governed against these risks. Each case has its own slide in [Part 1.G: Graveyard](../01g-graveyard/), for questions.
+- Don’t stop on any card. Next: how organisations build agents that are governed against these risks. Each case has its own slide in the unpublished Part 1.G graveyard deck, for questions.
 :::
 
 ---
@@ -533,7 +533,7 @@ After a short breather slide, “Two examples”, the next two slides are illust
 - Policies define the guardrails and the gateways enforce them, so steps 1 and 2 overlap; the point is that a judge can sit on the content (step 1) or on the traffic (step 2).
 - “Guardrails” here means checks that run while the agent works, such as Model Armor on the gateway. Some guardrails are themselves LLM judges, as in the two example slides that follow the breather.
 - The definition of LLM-as-a-judge is on the previous slide.
-- This replaces the earlier layers-of-control slide, which is kept in [Part 1.G: Graveyard](../01g-graveyard/).
+- This replaces the earlier layers-of-control slide, which is kept in the unpublished Part 1.G graveyard deck.
 - Sources: [Google Cloud 2026a](../../bibliography/google-cloud-2026-agent-platform-overview/), the platform overview with the figure; [Google Cloud 2026b](../../bibliography/google-cloud-2026-agent-gateway-overview/), the Agent Gateway overview, for identity, registry, policies and observability; [Gerstenhaber and Bachman 2026](../../bibliography/gerstenhaber-2026-agent-platform/), the launch post.
 :::
 
@@ -682,7 +682,7 @@ action:  block; agent rewrites</pre>
 - Mitigation: an LLM judge checks every generated ad against the relevant legislation and regulation. Here the judge quotes the offending text, names the grounds, and blocks the ad. The red “illegal” mark is the judge’s verdict, not a rule the agent applied to itself.
 - Bridge to Part 2: this is a non-deterministic check. The judge reads the ad in context, so it can catch a preference however the agent phrases it.
 - Builds: (1) agent trace, (2) judge prompt, (3) judge verdict, highlight, zoom and no-go mark.
-- It is the regulatory risk from the collage (MyCity, Bunnings), at SEEK. Those case slides are in [Part 1.G: Graveyard](../01g-graveyard/).
+- It is the regulatory risk from the collage (MyCity, Bunnings), at SEEK. Those case slides are in the unpublished Part 1.G graveyard deck.
 :::
 
 ---
@@ -800,7 +800,7 @@ End the chat if risk ≥ 0.8.</pre>
 - Build 5: the judge ends the conversation before the agent answers. If the agent had answered, it would either leak real people’s data or invent it. Both are serious privacy and trust risks for SEEK. <!-- TODO: organisers to confirm whether to name specific privacy obligations. -->
 - This pattern is a multi-turn jailbreak, such as [Crescendo](../../bibliography/russinovich-2024-crescendo/): start harmless, then escalate by building on the model’s own replies. A filter that checks one message at a time misses it; a judge with the whole conversation in view can catch it.
 - Links to the outline’s SEEK examples: prompt injection and adversarial users.
-- It is the cybersecurity risk from the collage (EchoLeak, the Lego order, the gym booking agent), at SEEK. Those case slides are in [Part 1.G: Graveyard](../01g-graveyard/).
+- It is the cybersecurity risk from the collage (EchoLeak, the Lego order, the gym booking agent), at SEEK. Those case slides are in the unpublished Part 1.G graveyard deck.
 :::
 
 # 2. Technical foundations: LLMs, generative AI and agents {.section-divider .sd-1}
@@ -1392,7 +1392,7 @@ End the chat if risk ≥ 0.8.</pre>
 - Build 3, one token: an LLM's next token is drawn from a vocabulary of roughly a hundred thousand tokens. That is still countable. On its own it is just a very wide classifier.
 - Build 4, a response: a sequence of n tokens is a sample from |V|^n possibilities. For a 100-token answer that is about 10^500, far beyond anything we could label. There is rarely one right answer, so exact match is meaningless.
 - NLP's earlier answer was overlap with human references, such as [BLEU](../../bibliography/papineni-2002-bleu/) for translation and [ROUGE](../../bibliography/lin-2004-rouge/) for summaries. Those metrics are cheap but correlate poorly with human judgement on creative or open-ended text, which is why the field moved to LLM judges ([Liu et al. 2023](../../bibliography/liu-2023-geval/)).
-- Build 5, an agent trace: many responses, reasoning steps, tool calls and turns, chained together. Even a judge on the final answer is not enough: agents also need simulated users and multi-tier evals. Both are on the “Notes to follow up” slide at the end of Part 1; the “Why AI agents need simulation” slide is in [Part 1.G: Graveyard](../01g-graveyard/) for now.
+- Build 5, an agent trace: many responses, reasoning steps, tool calls and turns, chained together. Even a judge on the final answer is not enough: agents also need simulated users and multi-tier evals. Both are on the “Notes to follow up” slide at the end of Part 1; the “Why AI agents need simulation” slide is in the unpublished Part 1.G graveyard deck for now.
 - Next: complex and complicated systems.
 - Colours follow the complexity slides: blue for predictive, teal for generative.
 :::
@@ -1508,7 +1508,7 @@ End the chat if risk ≥ 0.8.</pre>
 - The mix echoes the “Agent platforms layer protections” slide: protections can be deterministic (rule-based) or non-deterministic (LLM-as-judge).
 - From the framework [Complex versus complicated](../../bibliography/finegood-complex-versus-complicated/): foundation models, agents and agent swarms sit with the weather and the economy, not with jet engines.
 - Bridge, from the outline’s multi-tier evals item (system-level vs component-level): with complex systems you still always have to evaluate the system as a whole.
-- The earlier parts-vs-whole figure and its placeholder for a Tim Sullivan quotation are in [Part 1.G: Graveyard](../01g-graveyard/); the quotation is still missing.
+- The earlier parts-vs-whole figure and its placeholder for a Tim Sullivan quotation are in the unpublished Part 1.G graveyard deck; the quotation is still missing.
 :::
 
 ---
@@ -1561,7 +1561,7 @@ End the chat if risk ≥ 0.8.</pre>
 ::: {.fu-item}
 [AI agent risks]{.fu-title}
 
-<!-- Mostly covered now by the risk side of "Agents can create value, but introduce risk" and the headline collage after it; the full risk slide and the real-case slides are in [Part 1.G: Graveyard](../01g-graveyard/). "Financial risks (spend)" maps to operational risk. Kept until Terrence confirms nothing here is lost. -->
+<!-- Mostly covered now by the risk side of "Agents can create value, but introduce risk" and the headline collage after it; the full risk slide and the real-case slides are in the unpublished Part 1.G graveyard deck. "Financial risks (spend)" maps to operational risk. Kept until Terrence confirms nothing here is lost. -->
 
 - Security risks
 - Financial risks (spend)
@@ -1594,16 +1594,16 @@ End the chat if risk ≥ 0.8.</pre>
 ```
 
 - Woolworths’ Olive: a Reddit post in r/woolworths (Feb 2026) and an X post that quotes it (25 Feb 2026). Supplied by Terrence.
-- DPD’s haiku, Lego’s Sophia reply and the gym agent’s apology were cut too. Each is on its case slide in [Part 1.G: Graveyard](../01g-graveyard/).
+- DPD’s haiku, Lego’s Sophia reply and the gym agent’s apology were cut too. Each is on its case slide in the unpublished Part 1.G graveyard deck.
 :::
 
 ::: {.fu-item}
 [Slides moved to the graveyard]{.fu-title}
 
-In full, with their notes, in the separate [Part 1.G: Graveyard](../01g-graveyard/) deck:
+In full, with their notes, in the separate Part 1.G: Graveyard deck, which is kept in the repository but not published:
 
 - The eight news-story case slides
-- The title slide, “Part 1 — WIP”, the agenda and the section 1 header
+- The old title slide and status notice, the agenda and the section 1 header
 - Why organisations adopt AI agents
 - The public’s view of AI is mixed
 - Using AI to evaluate AI
@@ -1718,9 +1718,9 @@ In full, with their notes, in the separate [Part 1.G: Graveyard](../01g-graveyar
 ::: {.notes}
 **About this slide:** Working notes for all of Part 1, not a finished slide. Every box from the old section 1 and section 3 follow-up slides is here, under a subheading for its section, with the content of the section 2 slide “Evals vs training”.
 
-Section 1 holds planned material, kept here in full until it becomes finished slides: how we got here, how organisations use agents, examples from SEEK, and the kinds of risk agents carry. It also keeps what the seven-slide version of section 1 cut: the two Woolworths’ Olive social-media posts from the headline collage, which have no other copy in the deck, and a list of the slides moved to [Part 1.G: Graveyard](../01g-graveyard/).
+Section 1 holds planned material, kept here in full until it becomes finished slides: how we got here, how organisations use agents, examples from SEEK, and the kinds of risk agents carry. It also keeps what the seven-slide version of section 1 cut: the two Woolworths’ Olive social-media posts from the headline collage, which have no other copy in the deck, and a list of the slides moved to the unpublished Part 1.G graveyard deck.
 
-The two Olive screenshots: the Reddit post “Olive AI started telling me about its mother on the phone?” in r/woolworths by u/Immediate_Novel5946 (February 2026), and the X post by @verynormalman of 25 February 2026 that quotes it. Both were supplied by Terrence; the case is reported by the Sydney Morning Herald ([Yun 2026](../../bibliography/yun-2026-woolworths-olive/)). DPD’s haiku, Lego’s Sophia reply and the gym agent’s apology were also cut from the collage; each is on its case slide in [Part 1.G: Graveyard](../01g-graveyard/).
+The two Olive screenshots: the Reddit post “Olive AI started telling me about its mother on the phone?” in r/woolworths by u/Immediate_Novel5946 (February 2026), and the X post by @verynormalman of 25 February 2026 that quotes it. Both were supplied by Terrence; the case is reported by the Sydney Morning Herald ([Yun 2026](../../bibliography/yun-2026-woolworths-olive/)). DPD’s haiku, Lego’s Sophia reply and the gym agent’s apology were also cut from the collage; each is on its case slide in the unpublished Part 1.G graveyard deck.
 
 Section 2 holds the old “Evals vs training” slide: how evaluation relates to training. They are separate but overlap: an agent can raise its evaluation scores without retraining, and LLMs are trained with methods that resemble evaluation, such as RLHF, RLVR and [RLAIF](../../bibliography/bai-2022-constitutional-ai/). This tutorial covers evaluation only, not training.
 
@@ -1748,6 +1748,4 @@ Section 3: the first three boxes (multi-tier evals, simulation, metrics) are pla
 **Presenter notes:**
 
 - Going forward from this slide (right arrow, space, page down, or the top bar’s next button) opens Part 2, as does the link at the bottom.
-
-Outline source in the repo: organisation/outlines/part-01.md
 :::

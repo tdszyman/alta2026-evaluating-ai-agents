@@ -40,11 +40,6 @@
   --hy-radius: 18px;
 }
 
-html[data-deck-theme="original"] .reveal .hype-slide,
-html[data-deck-theme="nyfw-ss26"] .reveal .hype-slide {
-  --hy-radius: 2px;
-}
-
 .reveal .hype-slide p {
   margin: 0;
 }
@@ -117,10 +112,6 @@ html[data-deck-theme="nyfw-ss26"] .reveal .hype-slide {
 .reveal .hype-slide .hy-products {
   --hy-ink: var(--series-b-ink);
   --hy-edge: var(--series-b);
-}
-
-html[data-deck-theme="original"] .reveal .hype-slide .hy-products {
-  --hy-ink: color-mix(in srgb, var(--series-b-ink), var(--deck-ink) 30%);
 }
 
 .reveal .hype-slide .hy-eyebrow {
@@ -367,10 +358,6 @@ html[data-deck-theme="original"] .reveal .hype-slide .hy-products {
   --vr-p-ink: var(--series-b-ink);
 }
 
-html[data-deck-theme="original"] .reveal .value-risk-slide .vr-products {
-  --vr-p-ink: color-mix(in srgb, var(--series-b-ink), var(--deck-ink) 30%);
-}
-
 .reveal .value-risk-slide .vr-card p {
   margin: 0;
   font-size: 25px;
@@ -446,11 +433,6 @@ html[data-deck-theme="original"] .reveal .value-risk-slide .vr-products {
 .reveal .platforms-slide {
   --pf-radius: 16px;
   --pf-gap: 14px;
-}
-
-html[data-deck-theme="original"] .reveal .platforms-slide,
-html[data-deck-theme="nyfw-ss26"] .reveal .platforms-slide {
-  --pf-radius: 2px;
 }
 
 .reveal .platforms-slide h2 {
@@ -917,11 +899,6 @@ html[data-deck-theme="nyfw-ss26"] .reveal .platforms-slide {
 
 .reveal .examples-break-slide {
   --xb-radius: 22px;
-}
-
-html[data-deck-theme="original"] .reveal .examples-break-slide,
-html[data-deck-theme="nyfw-ss26"] .reveal .examples-break-slide {
-  --xb-radius: 2px;
 }
 
 .reveal .examples-break-slide .xb-line {
