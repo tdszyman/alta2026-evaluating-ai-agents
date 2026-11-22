@@ -115,7 +115,7 @@ format:
     <p class="pc-part">Presents Part 2</p>
   </article>
   <article class="pc-card fragment" data-fragment-index="3">
-    <div class="pc-photo" aria-hidden="true">PZE<span class="todo">Photo</span></div>
+    <div class="pc-photo" aria-hidden="true">YA<span class="todo">Photo</span></div>
     <p class="pc-name">Yelaman Abdullin</p>
     <p class="pc-role">Macquarie University <span class="todo">Title</span></p>
     <ul class="pc-bio">
@@ -125,7 +125,7 @@ format:
     <p class="pc-part">Presents Part 3</p>
   </article>
   <article class="pc-card fragment" data-fragment-index="4">
-    <img class="pc-photo" src="../../_shared/presenters/sara-mirabi.jpg" alt="" width="104" height="104">
+    <img class="pc-photo" src="../../_shared/presenters/sara-mirabi.jpeg" alt="" width="104" height="104">
     <p class="pc-name">Sara Mirabi</p>
     <p class="pc-role">PhD Candidate, School of Information Technology, Deakin University</p>
     <ul class="pc-bio">
