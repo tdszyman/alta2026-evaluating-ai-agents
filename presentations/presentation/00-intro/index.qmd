@@ -115,7 +115,7 @@ format:
     <p class="pc-part">Presents Part 2</p>
   </article>
   <article class="pc-card fragment" data-fragment-index="3">
-    <div class="pc-photo" aria-hidden="true">YA<span class="todo">Photo</span></div>
+    <img class="pc-photo" src="../../_shared/presenters/sara-mirabi.jpg" alt="" width="104" height="104">
     <p class="pc-name">Yelaman Abdullin</p>
     <p class="pc-role">Macquarie University <span class="todo">Title</span></p>
     <ul class="pc-bio">
