@@ -127,10 +127,9 @@ format:
   <article class="pc-card fragment" data-fragment-index="4">
     <div class="pc-photo" aria-hidden="true">SM<span class="todo">Photo</span></div>
     <p class="pc-name">Sara Mirabi</p>
-    <p class="pc-role">Graduate Researcher, School of Information Technology, Deakin University</p>
+    <p class="pc-role">PhD Candidate, School of Information Technology, Deakin University</p>
     <ul class="pc-bio">
-      <li>Natural language processing and speech recognition; machine learning and deep learning</li>
-      <li>Detecting and classifying noisy user answers in LLM-based goal-oriented dialogues (ICAART 2025)</li>
+      <li>10+ years of industry experience as a software programmer and technology solution provider, with expertise in systems integration, automation, and applied machine learning</li>
     </ul>
     <p class="pc-part">Presents Part 4</p>
   </article>
