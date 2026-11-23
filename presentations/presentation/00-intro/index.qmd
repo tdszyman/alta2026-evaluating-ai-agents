@@ -40,7 +40,7 @@ format:
 
 ---
 
-## This afternoon: two sessions, four parts {#the-afternoon .intro-slide .timeline-slide}
+## Tutorial 2 schedule {#the-afternoon .intro-slide .timeline-slide}
 
 <!-- Schedule from Terrence, 6 Nov 2026. Items he marked "??" are wrapped in <span class="tbc">; when one is confirmed, remove its span, and when none are left, remove the legend from the source line. -->
 
@@ -52,31 +52,25 @@ format:
     <li class="tl-part"><span class="tl-time">1:45</span><span class="tl-what"><b>Part 2</b> LLM-as-a-Judge Methods<span class="tl-who">Parvin Zarei Eskikand</span></span><span class="tl-len">45 min</span></li>
     <li class="tl-break"><span class="tl-time">2:30</span><span class="tl-what">Afternoon tea</span><span class="tl-len"><span class="tbc">30 min</span></span></li>
     <li class="tl-session"><span class="tl-time"></span><span class="tl-what"><b>Session 2</b> · Practical Evaluation of AI Agents</span><span class="tl-len">1.5 h</span></li>
-    <li class="tl-part tl-hands"><span class="tl-time">3:00</span><span class="tl-what"><b>Part 3</b> Hands-on Agent Evaluation Exercise <span class="tl-tag">Laptop</span><span class="tl-who">Yelaman Abdullin · 10-minute intro, then the hands-on exercise</span></span><span class="tl-len">60 min</span></li>
+    <li class="tl-part tl-hands"><span class="tl-time">3:00</span><span class="tl-what"><b>Part 3</b> Hands-on Agent Evaluation Exercise<span class="tl-who">Yelaman Abdullin · 10-minute intro, then the hands-on exercise</span></span><span class="tl-len">60 min</span><span class="tl-note"><b>Hands-on.</b> Use your laptop if you brought one.</span></li>
     <li class="tl-part"><span class="tl-time">4:00</span><span class="tl-what"><b>Part 4</b> Reliability, Limitations, and Future Directions<span class="tl-who">Sara Mirabi</span></span><span class="tl-len">30 min</span></li>
     <li class="tl-break"><span class="tl-time"><span class="tbc">4:30</span></span><span class="tl-what">End</span><span class="tl-len"></span></li>
   </ol>
-  <div class="tl-callout">
-    <p class="tl-kicker">Part 3 is hands-on</p>
-    <p class="tl-big">Bring a laptop</p>
-    <p>You will write a rubric and an LLM judge for a tool-using agent, then run it over test cases.</p>
-    <p>It runs in a web browser. Open it from <b>Hands-on</b> on the tutorial site.</p>
-    <p>LLM access is built in; no setup needed.</p>
-  </div>
 </div>
 <p class="tl-src slide-foot">Times as planned on 6 November 2026. Session lengths: ALTA 2026 programme. <span class="tbc">Dotted underline</span>: to be confirmed.</p>
 ```
 
 ::: {.notes}
-**About this slide:** The plan for the afternoon, from 1:00 to 4:30. Session 1, Foundations of AI Agent Evaluation, has Part 1, AI Agents and Evaluation Challenges, at 1:00, and Part 2, LLM-as-a-Judge Methods, at 1:45, 45 minutes each. Afternoon tea is at 2:30. Session 2, Practical Evaluation of AI Agents, has Part 3, the hands-on exercise, at 3:00 for an hour, starting with a 10-minute intro, and Part 4, Reliability, Limitations, and Future Directions, at 4:00 for half an hour. Part 3 is hands-on: participants write a rubric and an LLM judge for a tool-using agent and run it over test cases, so bring a laptop.
+**About this slide:** The plan for the afternoon, from 1:00 to 4:30. Session 1, Foundations of AI Agent Evaluation, has Part 1, AI Agents and Evaluation Challenges, at 1:00, and Part 2, LLM-as-a-Judge Methods, at 1:45, 45 minutes each. Afternoon tea is at 2:30. Session 2, Practical Evaluation of AI Agents, has Part 3, the hands-on exercise, at 3:00 for an hour, starting with a 10-minute intro, and Part 4, Reliability, Limitations, and Future Directions, at 4:00 for half an hour. Part 3 is hands-on: participants write a rubric and an LLM judge for a tool-using agent and run it over test cases, on their laptop if they brought one.
 
-**What to take away:** When the break is, and that Part 3 needs a laptop with a web browser.
+**What to take away:** When the break is, and that Part 3 is hands-on.
 
 **Presenter notes:**
 
 - The times are Terrence’s schedule as planned on 6 November 2026. Three items are not confirmed and have a dotted underline on the slide: the 1:00 start, the 30-minute afternoon tea and the 4:30 end. Check them with the ALTA organisers before the day.
 - There is no separate slot for this Intro, so it comes out of Part 1’s 1:00–1:45. TODO: confirm that, and how long the Intro may take.
 - Presenters (Terrence, 6 November 2026): Part 1 Terrence, Part 2 Parvin, Part 3 Yelaman, Part 4 Sara. Part 3 starts with a 10-minute intro presentation from Yelaman, then the hands-on exercise, within its 60 minutes.
+- The sidebar next to Part 3 is deliberately short (Terrence, 24 November 2026). Say the rest aloud if needed: the exercise runs in a web browser, from **Hands-on** on the tutorial site.
 - LLM access is built into the hands-on site, so participants do not need to set anything up (Terrence, 6 November 2026). The programme had said “Access to the required LLM will be arranged and confirmed before the tutorial.”
 - TODO: what to say to people without a laptop. The programme says “Participants should bring a laptop for the hands-on exercises.” The organisers’ working direction from 23 October is to assume laptops are optional.
 - Sources for every time on the slide:
@@ -94,7 +88,7 @@ format:
 
 ```{=html}
 <div class="pc-grid">
-  <article class="pc-card fragment" data-fragment-index="1">
+  <article class="pc-card">
     <img class="pc-photo" src="../../_shared/presenters/terrence-szymanski.jpg" alt="" width="104" height="104">
     <p class="pc-name">Terrence Szymanski</p>
     <p class="pc-role">Head of Generative AI, SEEK</p>
@@ -104,7 +98,7 @@ format:
     </div>
     <p class="pc-part">Presents Part 1</p>
   </article>
-  <article class="pc-card fragment" data-fragment-index="2">
+  <article class="pc-card">
     <div class="pc-photo" aria-hidden="true">PZE<span class="todo">Photo</span></div>
     <p class="pc-name">Parvin Zarei Eskikand</p>
     <p class="pc-role">Senior Data Scientist, SEEK</p>
@@ -114,7 +108,7 @@ format:
     </ul>
     <p class="pc-part">Presents Part 2</p>
   </article>
-  <article class="pc-card fragment" data-fragment-index="3">
+  <article class="pc-card">
     <div class="pc-photo" aria-hidden="true">YA<span class="todo">Photo</span></div>
     <p class="pc-name">Yelaman Abdullin</p>
     <p class="pc-role">Macquarie University <span class="todo">Title</span></p>
@@ -124,7 +118,7 @@ format:
     </ul>
     <p class="pc-part">Presents Part 3</p>
   </article>
-  <article class="pc-card fragment" data-fragment-index="4">
+  <article class="pc-card">
     <img class="pc-photo" src="../../_shared/presenters/sara-mirabi.jpeg" alt="" width="104" height="104">
     <p class="pc-name">Sara Mirabi</p>
     <p class="pc-role">PhD Candidate, School of Information Technology, Deakin University</p>
@@ -147,8 +141,8 @@ format:
 
 **Presenter notes:**
 
-- Each click shows one presenter. That presenter stands up and waves, and can add a sentence; the current card is highlighted. Order is presenting order (Terrence, 6 November 2026): Terrence (Part 1), Parvin (Part 2), Yelaman (Part 3), Sara (Part 4).
-- After the last card, the link at the bottom right goes to Part 1. Going forward from the end of this deck (right arrow, space or the top bar’s next button) also opens Part 1, which Terrence presents. From the speaker view, click the link.
+- All four cards show at once (Terrence, 24 November 2026). Introduce each presenter in turn, left to right; each can stand up, wave and add a sentence. Order is presenting order (Terrence, 6 November 2026): Terrence (Part 1), Parvin (Part 2), Yelaman (Part 3), Sara (Part 4).
+- The link at the bottom right goes to Part 1. Going forward from the end of this deck (right arrow, space or the top bar’s next button) also opens Part 1, which Terrence presents. From the speaker view, click the link.
 - Terrence’s photo is the one on the ALTA 2023 keynotes page (https://alta2023.alta.asn.au/assets/images/keynotes/Terry.jpg), added at his request on 21 November 2026. The same file is on the About page.
 - TODO: photos. The other three cards have a placeholder. Ask each presenter for a photo and for permission to publish it, because the deck is on the public site.
 - TODO: logos. None are used. Part 1’s “About me, and SEEK” slide shows official University of Michigan, UCD and ANZ marks, and its notes say those institutions restrict outside use. Check permission with SEEK, Deakin University and Macquarie University before adding theirs.
