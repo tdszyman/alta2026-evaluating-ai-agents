@@ -342,7 +342,7 @@ This is the first place the tutorial uses the term. **LLM-as-a-judge** means an 
   - Arize AX: Arize’s managed agent observability and evaluation platform, beside its open-source Phoenix ([Arize](../../bibliography/arize/)).
   - LangSmith: LangChain’s agent observability and evaluation platform ([LangChain 2026](../../bibliography/langchain-2026-langsmith/)).
 - The two kinds of protection, from the platforms’ own pages. Deterministic: AWS describes AgentCore Policy as “deterministic control” over which tools an agent can call, and under what conditions. Non-deterministic: LangSmith lists “Online LLM-as-judge and code evals”, so judges and fixed code checks run side by side ([LangChain 2026](../../bibliography/langchain-2026-langsmith/)).
-- Complicated and complex: a one-line nod here. The “Complex system”, “Complicated system” and “AI Agents are complicated *and* complex systems” slides at the end of section 3 explain the difference.
+- Complicated and complex: a one-line nod here. The “AI Agents are complex *and* complicated systems” and “How to evaluate complex and complicated systems” slides at the start of section 2 explain the difference.
 - Keep the definition non-technical. Judge methods come in Part 2.
 - The list is short on purpose and is not a ranking. Other clouds and vendors offer similar platforms.
 - Logo sources, all saved in this deck’s `images/` folder. TODO: check permission to use each logo before the slides are shared.
@@ -712,10 +712,151 @@ End the chat if risk ≥ 0.8.</pre>
 - It is the cybersecurity risk from the collage (EchoLeak, the Lego order, the gym booking agent), at SEEK. Those case slides are in the unpublished Part 1.G graveyard deck.
 :::
 
-# 2. Technical foundations: LLMs, generative AI and agents {.section-divider .sd-1}
+# 2. Why agents need LLM judges {.section-divider .sd-2}
 
 ::: {.notes}
-**About this slide:** Section 2 covers the technical foundations: what an LLM does when it generates text, how conversations are fed to it, and what turns it into an AI agent. It ends with the terms for where an LLM judge can check an agent, and how evaluation relates to training.
+**About this slide:** Section 2 shows why LLM judges are needed to evaluate AI agents, then the technical foundations behind them. An AI agent is both a complex and a complicated system, whose behaviour comes from the whole system rather than any single part, and generative outputs cannot be matched against a label. Then the deeper dives: what an LLM does when it generates text, how conversations are fed to it, what turns it into an AI agent, and where an LLM judge can check an agent.
+:::
+
+---
+
+## AI Agents are complex *and* complicated systems {#complex-and-complicated .complexity-slide .cx-duo-slide}
+
+:::: {.cx-duo}
+
+::: {.cx-col}
+[Complex]{.sys-label .complex}
+
+![](images/complex-system.svg){fig-alt="A complex system: a dense network of interconnected parts with feedback loops. Signals wander different routes and runs land on a spread-out distribution of outputs."}
+
+[Many parts, entangled through feedback loops, so the behaviour of the whole emerges from how they interact. **Same input → a distribution of outputs.**]{.cx-lead}
+
+[Unpredictable]{.cx-chip .complex} [Self-organising]{.cx-chip .complex} [Emergent]{.cx-chip .complex}
+
+[**Example: the weather.**]{.cx-examples}
+
+[In an agent: foundation models, agents and agent swarms]{.cx-agent .complex}
+:::
+
+::: {.cx-col .fragment}
+[Complicated]{.sys-label .complicated}
+
+![](images/complicated-system.svg){fig-alt="A complicated system: subsystems of components wired together. Signals follow fixed, traceable routes and every run lands on the same single output."}
+
+[Many parts, intricately wired, but every connection is designed and can be traced, so the parts dictate the behaviour of the whole. **Same input → same output.**]{.cx-lead}
+
+[Predictable]{.cx-chip .complicated} [Controllable]{.cx-chip .complicated} [Designable]{.cx-chip .complicated}
+
+[**Example: a jet engine.**]{.cx-examples}
+
+[In an agent: the code, tools and workflows around the model]{.cx-agent .complicated}
+:::
+
+::::
+
+[Contrasts and examples: [Complex versus complicated](../../bibliography/finegood-complex-versus-complicated/) (Frameworks Collection, CC BY-NC-ND). Figures illustrative.]{.attribution .slide-foot}
+
+::: {.notes}
+**About this slide:** An AI agent is both a complex and a complicated system. The slide opens on complex, then one click reveals complicated beside it.
+
+A complex system has many parts entangled through feedback loops, so the behaviour of the whole emerges from how the parts interact, and the same input gives a distribution of outputs that cannot be traced back to individual parts. Complex systems are unpredictable, self-organising and emergent. The weather is the example: air, heat and moisture feed back on each other, so similar mornings can end in different afternoons. The economy, ant colonies and human brains are complex too. In an agent, the model, the agent built on it, and swarms of agents are complex.
+
+A complicated system also has many parts, but every connection is designed and can be traced, so the behaviour of the whole is dictated by the behaviour of its parts, and the same input always gives the same output. Complicated systems are predictable, controllable and designable. A jet engine is the example: every part is designed and every path can be traced, so it behaves the same way every time. Mechanical watches, traditional software, ETL pipelines and workflows are complicated too. In an agent, the code, tools, workflows and pipelines around the model are complicated.
+
+**Presenter notes:**
+
+- Complex first. The figure: lots of parts, intertwined, with feedback loops and long-range links. Each signal wanders a different route, and runs land on a distribution of outputs. You can’t easily trace an output back to the parts that produced it. The histogram comes from simulated random walks over the drawn network: illustrative, not data.
+- Then click for complicated. The figure: lots of components and subsystems connected in intricate ways, but every connection was designed and can be traced. The orange signals take the same routes every time and arrive together, so all runs land on one point on the output axis.
+- Complicated is not the same as simple: a jet engine is hard to build. The difference from a complex system is that you can trace why it did what it did.
+- The keywords and the examples are from the framework [Complex versus complicated](../../bibliography/finegood-complex-versus-complicated/), the same contrasts and examples as the AIPS Showcase slide. From the same framework: foundation models, agents and agent swarms sit with the weather and the economy, not with jet engines.
+- History, if asked, in one breath. Warren Weaver’s 1948 essay “Science and Complexity” separated problems of simplicity, problems of “disorganized complexity” (many variables, handled by statistics) and problems of “organized complexity”: problems “which involve dealing simultaneously with a sizable number of factors which are interrelated into an organic whole” ([Weaver 1948](../../bibliography/weaver-1948-science-complexity/)). Complexity science is now studied across the natural and social sciences, but, as a review puts it, “there is no concise definition of a complex system, let alone a definition on which all scientists agree” ([Ladyman et al. 2013](../../bibliography/ladyman-2013-complex-system/)). The point is that “complex” has a meaning beyond “hard”.
+- Point at the two figures together: the complicated one is the agent’s plumbing, the complex one is its behaviour.
+- Next: what that means for evaluation.
+:::
+
+---
+
+## How to evaluate complex and complicated systems {#evaluate-complex-and-complicated .complexity-slide .cx-eval-slide .centre-body}
+
+::: {.cx-eval}
+- **Evaluate with a mix** [Deterministic, rule-based checks suit the complicated parts. LLM-as-judge suits the complex behaviour.]{.cx-eval-sub}
+- **Test the components and the whole system** [Each part can pass its own checks while the agent as a whole misbehaves.]{.cx-eval-sub}
+:::
+
+::: {.notes}
+**About this slide:** What being both complex and complicated means for evaluating an agent. Agents are evaluated with a mix of methods. Deterministic, rule-based checks such as tests, exact matches and schema checks suit the complicated parts. Non-deterministic checks, LLM-as-a-judge, suit the complex behaviour. And because the whole is more than the sum of its parts, testing each component is not enough: each part can pass its own checks while the system as a whole misbehaves, because once the parts interact, feedback loops appear that belong to no single part. The whole system has to be evaluated too.
+
+**Presenter notes:**
+
+- Keep it short: two points, then move on.
+- The mix echoes the “Agent platforms layer protections” slide: protections can be deterministic (rule-based) or non-deterministic (LLM-as-judge).
+- Bridge, from the outline’s multi-tier evals item (system-level vs component-level): with complex systems you still always have to evaluate the system as a whole.
+- The earlier parts-vs-whole figure and its placeholder for a Tim Sullivan quotation are in the unpublished Part 1.G graveyard deck; the quotation is still missing.
+- Next: why generative AI needs LLM-as-a-judge.
+:::
+
+---
+
+## Why generative AI needs LLM-as-a-judge {.output-space-slide .centre-body}
+
+```{=html}
+<div class="osp">
+  <div class="osp-groups">
+    <div class="osp-group pred">Predictive AI</div>
+    <div class="osp-group gen">Generative AI</div>
+  </div>
+  <div class="osp-cols">
+    <div class="osp-col pred fragment" data-fragment-index="1">
+      <div class="osp-name">Regression</div>
+      <img src="images/output-space-regression.svg" alt="A number line from 0 to 100. The prediction sits close to the label; the gap is the error.">
+      <div class="osp-size"><b>One number</b> in a range</div>
+      <div class="osp-eval"><span>Evaluate by</span>Error against a label: MAE, RMSE</div>
+    </div>
+    <div class="osp-col pred fragment" data-fragment-index="2">
+      <div class="osp-name">Classification</div>
+      <img src="images/output-space-classes.svg" alt="Five job categories. The model picks Technology, which matches the label.">
+      <div class="osp-size"><b>One of <i>k</i></b> classes</div>
+      <div class="osp-eval"><span>Evaluate by</span>Match against a label: accuracy, F1</div>
+    </div>
+    <div class="osp-col gen fragment" data-fragment-index="3">
+      <div class="osp-name">One token</div>
+      <img src="images/output-space-vocab.svg" alt="A dense grid of cells stands for the vocabulary. One cell, the chosen token, is filled.">
+      <div class="osp-size"><b>One of |<i>V</i>| ≈ 10<sup>5</sup></b> tokens</div>
+      <div class="osp-eval"><span>Evaluate by</span>Still a match: it is a very wide classifier</div>
+    </div>
+    <div class="osp-col gen fragment" data-fragment-index="4">
+      <div class="osp-name">A response</div>
+      <img src="images/output-space-sequences.svg" alt="A tree that fans out at every token. One highlighted path is the response the model produced.">
+      <div class="osp-size"><b>|<i>V</i>|<sup><i>n</i></sup></b>: 100 tokens ≈ 10<sup>500</sup></div>
+      <div class="osp-eval"><span>Evaluate by</span>No single right answer. Overlap with a reference, then an LLM judge</div>
+    </div>
+    <div class="osp-col gen fragment" data-fragment-index="5">
+      <div class="osp-name">An agent trace</div>
+      <img src="images/output-space-agent.svg" alt="Three response trees in a row, joined by tool calls drawn as squares.">
+      <div class="osp-size"><b>Responses × steps × turns</b></div>
+      <div class="osp-eval"><span>Evaluate by</span>LLM judges, plus multi-tier evals and simulation</div>
+    </div>
+  </div>
+  <div class="osp-takeaway fragment" data-fragment-index="6">Once outputs can’t be enumerated, there is no label to match. Something has to read the output and decide whether it is good.</div>
+  <div class="osp-sources slide-foot">
+    <div>Before LLM judges: reference overlap, e.g. <a href="../../bibliography/papineni-2002-bleu/">BLEU (Papineni et al. 2002)</a> and <a href="../../bibliography/lin-2004-rouge/">ROUGE (Lin 2004)</a>, which correlate poorly with human judgements on open-ended text (<a href="../../bibliography/liu-2023-geval/">Liu et al. 2023</a>).</div>
+    <div>LLM-as-a-judge: <a href="../../bibliography/zheng-2023-mt-bench/">Zheng et al. 2023</a>.</div>
+  </div>
+</div>
+```
+
+::: {.notes}
+**About this slide:** Why generative AI cannot be evaluated like predictive AI. Regression and classification produce one number or one class, which can be scored against a label. An LLM’s next token is still one choice from a large vocabulary, but a full response is one of an astronomically large number of possible sequences, and an agent trace chains many responses, tool calls and turns. With no single right answer to match, something has to read the output and judge whether it is good: an LLM judge ([Zheng et al. 2023](../../bibliography/zheng-2023-mt-bench/)). The builds step through the five output types from left to right.
+
+**Presenter notes:**
+
+- Builds 1–2, regression then classification: predictive AI has a narrow output space. A regression model returns one number in a range; a classifier picks one or more classes from a finite set. Both come with a label, so evaluation is arithmetic: error, accuracy, F1.
+- Build 3, one token: an LLM's next token is drawn from a vocabulary of roughly a hundred thousand tokens. That is still countable. On its own it is just a very wide classifier.
+- Build 4, a response: a sequence of n tokens is a sample from |V|^n possibilities. For a 100-token answer that is about 10^500, far beyond anything we could label. There is rarely one right answer, so exact match is meaningless.
+- NLP's earlier answer was overlap with human references, such as [BLEU](../../bibliography/papineni-2002-bleu/) for translation and [ROUGE](../../bibliography/lin-2004-rouge/) for summaries. Those metrics are cheap but correlate poorly with human judgement on creative or open-ended text, which is why the field moved to LLM judges ([Liu et al. 2023](../../bibliography/liu-2023-geval/)).
+- Build 5, an agent trace: many responses, reasoning steps, tool calls and turns, chained together. Even a judge on the final answer is not enough: agents also need simulated users and multi-tier evals. Both are on the “Notes to follow up” slide at the end of Part 1; the “Why AI agents need simulation” slide is in the unpublished Part 1.G graveyard deck for now.
+- Next: the terms the rest of this section defines, then one idea per slide: LLM text generation, conversations, agent traces and LLM-as-judge.
+- Colours follow the complexity slides: blue for predictive, teal for generative.
 :::
 
 ---
@@ -1236,195 +1377,11 @@ End the chat if risk ≥ 0.8.</pre>
 - Meta-evaluation means evaluating the evaluator: checking judges against human labels before trusting their scores ([Gu et al. 2024](../../bibliography/gu-2024-llm-as-judge-survey/)). Counsel is a recent meta-evaluation dataset for agent trajectories ([Pisupati et al. 2026](../../bibliography/pisupati-2026-counsel/)).
 :::
 
-# 3. Why agents need LLM judges {.section-divider .sd-2}
-
-::: {.notes}
-**About this slide:** Section 3 builds on those foundations to show why LLM judges are needed to evaluate AI agents, and why other methods fall short: generative outputs cannot be matched against a label, and an AI agent is both a complicated and a complex system, whose behaviour comes from the whole system rather than any single part.
-:::
-
----
-
-## Why generative AI needs LLM-as-a-judge {.output-space-slide .centre-body}
-
-```{=html}
-<div class="osp">
-  <div class="osp-groups">
-    <div class="osp-group pred">Predictive AI</div>
-    <div class="osp-group gen">Generative AI</div>
-  </div>
-  <div class="osp-cols">
-    <div class="osp-col pred fragment" data-fragment-index="1">
-      <div class="osp-name">Regression</div>
-      <img src="images/output-space-regression.svg" alt="A number line from 0 to 100. The prediction sits close to the label; the gap is the error.">
-      <div class="osp-size"><b>One number</b> in a range</div>
-      <div class="osp-eval"><span>Evaluate by</span>Error against a label: MAE, RMSE</div>
-    </div>
-    <div class="osp-col pred fragment" data-fragment-index="2">
-      <div class="osp-name">Classification</div>
-      <img src="images/output-space-classes.svg" alt="Five job categories. The model picks Technology, which matches the label.">
-      <div class="osp-size"><b>One of <i>k</i></b> classes</div>
-      <div class="osp-eval"><span>Evaluate by</span>Match against a label: accuracy, F1</div>
-    </div>
-    <div class="osp-col gen fragment" data-fragment-index="3">
-      <div class="osp-name">One token</div>
-      <img src="images/output-space-vocab.svg" alt="A dense grid of cells stands for the vocabulary. One cell, the chosen token, is filled.">
-      <div class="osp-size"><b>One of |<i>V</i>| ≈ 10<sup>5</sup></b> tokens</div>
-      <div class="osp-eval"><span>Evaluate by</span>Still a match: it is a very wide classifier</div>
-    </div>
-    <div class="osp-col gen fragment" data-fragment-index="4">
-      <div class="osp-name">A response</div>
-      <img src="images/output-space-sequences.svg" alt="A tree that fans out at every token. One highlighted path is the response the model produced.">
-      <div class="osp-size"><b>|<i>V</i>|<sup><i>n</i></sup></b>: 100 tokens ≈ 10<sup>500</sup></div>
-      <div class="osp-eval"><span>Evaluate by</span>No single right answer. Overlap with a reference, then an LLM judge</div>
-    </div>
-    <div class="osp-col gen fragment" data-fragment-index="5">
-      <div class="osp-name">An agent trace</div>
-      <img src="images/output-space-agent.svg" alt="Three response trees in a row, joined by tool calls drawn as squares.">
-      <div class="osp-size"><b>Responses × steps × turns</b></div>
-      <div class="osp-eval"><span>Evaluate by</span>LLM judges, plus multi-tier evals and simulation</div>
-    </div>
-  </div>
-  <div class="osp-takeaway fragment" data-fragment-index="6">Once outputs can’t be enumerated, there is no label to match. Something has to read the output and decide whether it is good.</div>
-  <div class="osp-sources slide-foot">
-    <div>Before LLM judges: reference overlap, e.g. <a href="../../bibliography/papineni-2002-bleu/">BLEU (Papineni et al. 2002)</a> and <a href="../../bibliography/lin-2004-rouge/">ROUGE (Lin 2004)</a>, which correlate poorly with human judgements on open-ended text (<a href="../../bibliography/liu-2023-geval/">Liu et al. 2023</a>).</div>
-    <div>LLM-as-a-judge: <a href="../../bibliography/zheng-2023-mt-bench/">Zheng et al. 2023</a>.</div>
-  </div>
-</div>
-```
-
-::: {.notes}
-**About this slide:** Why generative AI cannot be evaluated like predictive AI. Regression and classification produce one number or one class, which can be scored against a label. An LLM’s next token is still one choice from a large vocabulary, but a full response is one of an astronomically large number of possible sequences, and an agent trace chains many responses, tool calls and turns. With no single right answer to match, something has to read the output and judge whether it is good: an LLM judge ([Zheng et al. 2023](../../bibliography/zheng-2023-mt-bench/)). The builds step through the five output types from left to right.
-
-**Presenter notes:**
-
-- Builds 1–2, regression then classification: predictive AI has a narrow output space. A regression model returns one number in a range; a classifier picks one or more classes from a finite set. Both come with a label, so evaluation is arithmetic: error, accuracy, F1.
-- Build 3, one token: an LLM's next token is drawn from a vocabulary of roughly a hundred thousand tokens. That is still countable. On its own it is just a very wide classifier.
-- Build 4, a response: a sequence of n tokens is a sample from |V|^n possibilities. For a 100-token answer that is about 10^500, far beyond anything we could label. There is rarely one right answer, so exact match is meaningless.
-- NLP's earlier answer was overlap with human references, such as [BLEU](../../bibliography/papineni-2002-bleu/) for translation and [ROUGE](../../bibliography/lin-2004-rouge/) for summaries. Those metrics are cheap but correlate poorly with human judgement on creative or open-ended text, which is why the field moved to LLM judges ([Liu et al. 2023](../../bibliography/liu-2023-geval/)).
-- Build 5, an agent trace: many responses, reasoning steps, tool calls and turns, chained together. Even a judge on the final answer is not enough: agents also need simulated users and multi-tier evals. Both are on the “Notes to follow up” slide at the end of Part 1; the “Why AI agents need simulation” slide is in the unpublished Part 1.G graveyard deck for now.
-- Next: complex and complicated systems.
-- Colours follow the complexity slides: blue for predictive, teal for generative.
-:::
-
----
-
-## Complex system {.complexity-slide .cx-slide}
-
-:::: {.cx-grid}
-
-::: {.cx-text}
-[Many parts, entangled through feedback loops, so the behaviour of the whole emerges from how they interact. **Same input → a distribution of outputs.**]{.cx-lead}
-
-[Unpredictable]{.cx-chip .complex} [Self-organising]{.cx-chip .complex} [Emergent]{.cx-chip .complex}
-
-[**Example: the weather.** Air, heat and moisture feed back on each other, so similar mornings can end in different afternoons.]{.cx-examples}
-
-[Also: the economy, ant colonies, human brains]{.cx-also}
-
-[Weaver called these problems of “organized complexity”: “a sizable number of factors which are interrelated into an organic whole” ([Weaver 1948](../../bibliography/weaver-1948-science-complexity/)). Complexity science now spans the natural and social sciences, with no single agreed definition ([Ladyman et al. 2013](../../bibliography/ladyman-2013-complex-system/)).]{.cx-history}
-:::
-
-::: {.cx-figure}
-![](images/complex-system.svg){fig-alt="A complex system: a dense network of interconnected parts with feedback loops. Signals wander different routes and runs land on a spread-out distribution of outputs."}
-:::
-
-::::
-
-[Contrasts and examples: [Complex versus complicated](../../bibliography/finegood-complex-versus-complicated/) (Frameworks Collection, CC BY-NC-ND). Figure illustrative.]{.attribution .slide-foot}
-
-::: {.notes}
-**About this slide:** A complex system has many parts entangled through feedback loops, so the behaviour of the whole emerges from how the parts interact, and the same input gives a distribution of outputs that cannot be traced back to individual parts. Complex systems are unpredictable, self-organising and emergent. The weather is the example: air, heat and moisture feed back on each other, so similar mornings can end in different afternoons. The economy, ant colonies and human brains are complex too. As a field, the study of complex systems goes back at least to Warren Weaver’s 1948 essay “Science and Complexity”, which separated problems of simplicity, problems of “disorganized complexity” (many variables, handled by statistics) and problems of “organized complexity”: problems “which involve dealing simultaneously with a sizable number of factors which are interrelated into an organic whole” ([Weaver 1948](../../bibliography/weaver-1948-science-complexity/)). Complexity science is now studied across the natural and social sciences, but, as a review puts it, “there is no concise definition of a complex system, let alone a definition on which all scientists agree” ([Ladyman et al. 2013](../../bibliography/ladyman-2013-complex-system/)).
-
-**Presenter notes:**
-
-- The figure: lots of parts, intertwined, with feedback loops and long-range links. Each signal wanders a different route, and runs land on a distribution of outputs. You can’t easily trace an output back to the parts that produced it.
-- The histogram comes from simulated random walks over the drawn network: illustrative, not data.
-- The three keywords and the examples are from the framework [Complex versus complicated](../../bibliography/finegood-complex-versus-complicated/), the same contrasts and examples as the AIPS Showcase slide.
-- History, in one breath: Weaver 1948 names organized complexity; Ladyman et al. 2013 review attempts to define a complex system and find no agreed definition. Don’t go further; the point is that “complex” has a meaning beyond “hard”.
-- Next: the other kind of system, which looks similar from outside.
-:::
-
----
-
-## Complicated system {.complexity-slide .cx-slide}
-
-:::: {.cx-grid}
-
-::: {.cx-text}
-[Many parts, intricately wired, but every connection is designed and can be traced, so the parts dictate the behaviour of the whole. **Same input → same output.**]{.cx-lead}
-
-[Predictable]{.cx-chip .complicated} [Controllable]{.cx-chip .complicated} [Designable]{.cx-chip .complicated}
-
-[**Example: a jet engine.** Every part is designed and every path can be traced, so it behaves the same way every time.]{.cx-examples}
-
-[Also: mechanical watches, traditional software, ETL pipelines, workflows]{.cx-also}
-:::
-
-::: {.cx-figure}
-![](images/complicated-system.svg){fig-alt="A complicated system: subsystems of components wired together. Signals follow fixed, traceable routes and every run lands on the same single output."}
-:::
-
-::::
-
-[Contrasts and examples: [Complex versus complicated](../../bibliography/finegood-complex-versus-complicated/) (Frameworks Collection, CC BY-NC-ND). Figure illustrative.]{.attribution .slide-foot}
-
-::: {.notes}
-**About this slide:** A complicated system also has many parts, but every connection is designed and can be traced, so the behaviour of the whole is dictated by the behaviour of its parts, and the same input always gives the same output. Complicated systems are predictable, controllable and designable. A jet engine is the example: every part is designed and every path can be traced. Mechanical watches, traditional software, ETL pipelines and workflows are complicated too.
-
-**Presenter notes:**
-
-- The figure: lots of components and subsystems connected in intricate ways, but every connection was designed and can be traced. The orange signals take the same routes every time and arrive together, so all runs land on one point on the output axis.
-- Complicated is not the same as simple: a jet engine is hard to build. The difference from a complex system is that you can trace why it did what it did.
-- Keywords and examples from [Complex versus complicated](../../bibliography/finegood-complex-versus-complicated/).
-- Next: where AI agents sit.
-:::
-
----
-
-## AI Agents are complicated *and* complex systems {.complexity-slide .cx-both-slide}
-
-:::: {.cx-pair}
-
-::: {.cx-mini}
-[Complicated]{.sys-label .complicated}
-
-![](images/complicated-system.svg){fig-alt="Small version of the complicated-system figure: fixed, traceable routes and one output."}
-
-[The code, tools and workflows around the model]{.cx-mini-caption}
-:::
-
-::: {.cx-mini}
-[Complex]{.sys-label .complex}
-
-![](images/complex-system.svg){fig-alt="Small version of the complex-system figure: wandering routes and a distribution of outputs."}
-
-[Foundation models, agents and agent swarms]{.cx-mini-caption}
-:::
-
-::::
-
-::: {.cx-points}
-- **Evaluate with a mix.** Deterministic, rule-based checks (tests, exact matches, schemas) suit the complicated parts. Non-deterministic checks (LLM-as-judge) suit the complex behaviour.
-- **Test the components, and the whole system.** Each part can pass its own checks while the agent as a whole misbehaves: the whole is more than the sum of its parts.
-:::
-
-::: {.notes}
-**About this slide:** An AI agent is both. The code, tools, workflows and pipelines around the model are complicated: designed, traceable and predictable. The model, the agent built on it, and swarms of agents are complex: the same input gives a distribution of outputs. So agents are evaluated with a mix of methods. Deterministic, rule-based checks such as tests, exact matches and schema checks suit the complicated parts. Non-deterministic checks, LLM-as-a-judge, suit the complex behaviour. And because the whole is more than the sum of its parts, testing each component is not enough: each part can pass its own checks while the system as a whole misbehaves, because once the parts interact, feedback loops appear that belong to no single part. The whole system has to be evaluated too.
-
-**Presenter notes:**
-
-- Point at the two mini figures: the left one is the agent’s plumbing, the right one is its behaviour.
-- The mix echoes the “Agent platforms layer protections” slide: protections can be deterministic (rule-based) or non-deterministic (LLM-as-judge).
-- From the framework [Complex versus complicated](../../bibliography/finegood-complex-versus-complicated/): foundation models, agents and agent swarms sit with the weather and the economy, not with jet engines.
-- Bridge, from the outline’s multi-tier evals item (system-level vs component-level): with complex systems you still always have to evaluate the system as a whole.
-- The earlier parts-vs-whole figure and its placeholder for a Tim Sullivan quotation are in the unpublished Part 1.G graveyard deck; the quotation is still missing.
-:::
-
 ---
 
 ## Notes to follow up {#notes-to-follow-up .follow-up-slide .fu-all .organiser-only}
 
-<!-- TODO: working notes for all of Part 1, one subheading per section. Section 1: placeholder slides moved here in full, plus what the seven-slide section 1 cut. Section 2: the "Evals vs training" slide, removed from the talk on 10 November 2026. Section 3: placeholder slides moved here in full; Multi-tier evals, Simulation and Metrics belong to that section, while Offline evals, Online evals, Data, Observability, Agent registries and gateways, and Examples from SEEK (platform) are not placed in the new structure (question for Terrence, since the program lists the evaluation lifecycle under Part 1). Turn these into slides or drop them. -->
+<!-- TODO: working notes for all of Part 1, one subheading per section. Section 1: placeholder slides moved here in full, plus what the seven-slide section 1 cut. Section 2 (old sections 2 and 3, merged on 24 November 2026): placeholder slides moved here in full, and the "Evals vs training" slide, removed from the talk on 10 November 2026; Multi-tier evals, Simulation, Metrics and Evals vs training belong to that section, while Offline evals, Online evals, Data, Observability, Agent registries and gateways, and Examples from SEEK (platform) are not placed in the new structure (question for Terrence, since the program lists the evaluation lifecycle under Part 1). Turn these into slides or drop them. -->
 
 ::: {.fu-grid}
 
@@ -1521,24 +1478,7 @@ In full, with their notes, in the separate Part 1.G: Graveyard deck, which is ke
 :::
 
 ::: {.fu-lead}
-[2. Technical foundations]{.fu-section}
-
-::: {.fu-item}
-[Evals vs training]{.fu-title}
-
-<!-- Moved here on 10 November 2026 from the section 2 slide “Evals vs training”, which was removed at Terrence’s request. It sets the tutorial’s scope: no training. -->
-
-- Separate, but not 100% disjoint
-- An agent can improve its eval scores without retraining
-- LLMs are trained on things that look very similar to evals (RLHF, RLVR, [RLAIF](../../bibliography/bai-2022-constitutional-ai/))
-- **We are ignoring training in this tutorial**
-:::
-:::
-
-
-
-::: {.fu-lead}
-[3. Why agents need LLM judges]{.fu-section}
+[2. Why agents need LLM judges]{.fu-section}
 
 ::: {.fu-item}
 [Multi-tier evals]{.fu-title}
@@ -1564,6 +1504,17 @@ In full, with their notes, in the separate Part 1.G: Graveyard deck, which is ke
 - Deterministic vs non-deterministic (LLM-as-a-judge; [Zheng et al. 2023](../../bibliography/zheng-2023-mt-bench/))
 - Verifiable tasks vs unverifiable tasks
 - Samples and significance
+:::
+
+::: {.fu-item}
+[Evals vs training]{.fu-title}
+
+<!-- Moved here on 10 November 2026 from the section 2 slide “Evals vs training”, which was removed at Terrence’s request. It sets the tutorial’s scope: no training. -->
+
+- Separate, but not 100% disjoint
+- An agent can improve its eval scores without retraining
+- LLMs are trained on things that look very similar to evals (RLHF, RLVR, [RLAIF](../../bibliography/bai-2022-constitutional-ai/))
+- **We are ignoring training in this tutorial**
 :::
 
 ::: {.fu-item}
@@ -1625,7 +1576,7 @@ In full, with their notes, in the separate Part 1.G: Graveyard deck, which is ke
 :::
 
 ::: {.notes}
-**About this slide:** Working notes for all of Part 1, not a finished slide. Every box from the old section 1 and section 3 follow-up slides is here, under a subheading for its section, with the content of the section 2 slide “Evals vs training”.
+**About this slide:** Working notes for all of Part 1, not a finished slide. Every box from the old section 1 and section 3 follow-up slides is here, under a subheading for its section, with the content of the old section 2 slide “Evals vs training”. Sections 2 and 3 were merged into one section 2 on 24 November 2026.
 
 Section 1 holds planned material, kept here in full until it becomes finished slides: how we got here, how organisations use agents, examples from SEEK, and the kinds of risk agents carry. It also keeps what the seven-slide version of section 1 cut: the two Woolworths’ Olive social-media posts from the headline collage, which have no other copy in the deck, and a list of the slides moved to the unpublished Part 1.G graveyard deck.
 
@@ -1633,7 +1584,7 @@ The two Olive screenshots: the Reddit post “Olive AI started telling me about 
 
 Section 2 holds the old “Evals vs training” slide: how evaluation relates to training. They are separate but overlap: an agent can raise its evaluation scores without retraining, and LLMs are trained with methods that resemble evaluation, such as RLHF, RLVR and [RLAIF](../../bibliography/bai-2022-constitutional-ai/). This tutorial covers evaluation only, not training.
 
-Section 3: the first three boxes (multi-tier evals, simulation, metrics) are planned material for that section. The rest describe the evaluation lifecycle (offline and online evals, data, observability, agent registries and gateways, and SEEK’s agent platform), which has no place in the current Part 1 structure yet. All are kept here in full until they become finished slides.
+Section 2 also holds three boxes of planned material (multi-tier evals, simulation, metrics), from the old section 3. The rest describe the evaluation lifecycle (offline and online evals, data, observability, agent registries and gateways, and SEEK’s agent platform), which has no place in the current Part 1 structure yet. All are kept here in full until they become finished slides.
 :::
 
 ---
