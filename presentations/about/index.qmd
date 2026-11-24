@@ -33,8 +33,8 @@ Roles below are the ones published on the ALTA program. Terrence Szymanski prese
 
 <article class="person">
 <h3>Yelaman Abdullin</h3>
-<p>Macquarie University</p>
-<p class="note">Bio to be added by this contributor.</p>
+<p>Senior AI Engineer, StarRez · Macquarie University</p>
+<p class="bio">Yelaman is a Senior AI Engineer at StarRez and a recent PhD graduate from Macquarie University, with interests in NLP, machine learning, and AI. Before his PhD, he spent a decade in industry working across engineering and technical leadership roles. At StarRez, he works on integrating AI features into the product, focusing on agent harnesses, evaluations, and AI engineering.</p>
 </article>
 
 </div>
