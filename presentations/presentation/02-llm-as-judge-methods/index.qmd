@@ -22,7 +22,7 @@ format:
 
 ## Our running example: a career assistant {.j2-slide}
 
-<!-- TODO: section owner and timing are not set (Sara drafts Part 2). Session 1 is 1.5 h for Parts 1 and 2 together (knowledge/tutorial-overview.md). This deck has 36 slides with one main point each; the detail is in the presenter notes and the bibliography. -->
+<!-- TODO: section owner is not set (Sara drafts Part 2). Part 2 has 35 minutes, questions included (1:35 to 2:10, Terrence’s schedule in the Intro deck). This deck has 36 slides with one main point each; the detail is in the presenter notes and the bibliography. -->
 
 ```{=html}
 <div class="j2-ex">
@@ -171,7 +171,7 @@ format:
 ::: {.notes}
 **About this slide:** The deterministic side of the program topic "deterministic vs non-deterministic evaluation": checks a program computes, so the same input always gets the same verdict. The section ends where code stops, then sets code beside model-based evaluation (1.5): what each checks, how each errs, and what each costs. Section 2 builds the judge.
 
-<!-- TODO: Part 1 section 3 ("Why agents need LLM judges") already argues that rules fall short for generative output. Where the line between Part 1 and Part 2 falls is still open. This section stays on agent checks and the running example rather than repeating that argument. -->
+<!-- TODO: Part 1 section 2 ("Why agents need LLM judges") already argues that rules fall short for generative output. Where the line between Part 1 and Part 2 falls is still open. This section stays on agent checks and the running example rather than repeating that argument. -->
 :::
 
 ---

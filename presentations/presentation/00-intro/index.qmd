@@ -42,41 +42,42 @@ format:
 
 ## Tutorial 2 schedule {#the-afternoon .intro-slide .timeline-slide}
 
-<!-- Schedule from Terrence, 6 Nov 2026. Items he marked "??" are wrapped in <span class="tbc">; when one is confirmed, remove its span, and when none are left, remove the legend from the source line. -->
+<!-- Schedule from Terrence, 24 Nov 2026. Items not yet confirmed are wrapped in <span class="tbc">; when one is confirmed, remove its span, and when none are left, remove the legend from the source line. -->
 
 ```{=html}
 <div class="tl-grid">
   <ol class="tl-rows">
-    <li class="tl-session"><span class="tl-time"></span><span class="tl-what"><b>Session 1</b> · Foundations of AI Agent Evaluation</span><span class="tl-len">1.5 h</span></li>
-    <li class="tl-part"><span class="tl-time"><span class="tbc">1:00</span></span><span class="tl-what"><b>Part 1</b> AI Agents and Evaluation Challenges<span class="tl-who">Terrence Szymanski</span></span><span class="tl-len">45 min</span></li>
-    <li class="tl-part"><span class="tl-time">1:45</span><span class="tl-what"><b>Part 2</b> LLM-as-a-Judge Methods<span class="tl-who">Parvin Zarei Eskikand</span></span><span class="tl-len">45 min</span></li>
-    <li class="tl-break"><span class="tl-time">2:30</span><span class="tl-what">Afternoon tea</span><span class="tl-len"><span class="tbc">30 min</span></span></li>
-    <li class="tl-session"><span class="tl-time"></span><span class="tl-what"><b>Session 2</b> · Practical Evaluation of AI Agents</span><span class="tl-len">1.5 h</span></li>
-    <li class="tl-part tl-hands"><span class="tl-time">3:00</span><span class="tl-what"><b>Part 3</b> Hands-on Agent Evaluation Exercise<span class="tl-who">Yelaman Abdullin · 10-minute intro, then the hands-on exercise</span></span><span class="tl-len">60 min</span><span class="tl-note"><b>Hands-on.</b> Use your laptop if you brought one.</span></li>
-    <li class="tl-part"><span class="tl-time">4:00</span><span class="tl-what"><b>Part 4</b> Reliability, Limitations, and Future Directions<span class="tl-who">Sara Mirabi</span></span><span class="tl-len">30 min</span></li>
-    <li class="tl-break"><span class="tl-time"><span class="tbc">4:30</span></span><span class="tl-what">End</span><span class="tl-len"></span></li>
+    <li class="tl-session"><span class="tl-time"></span><span class="tl-what"><b>Session 1</b> · Foundations of AI Agent Evaluation</span><span class="tl-len">70 min</span></li>
+    <li class="tl-part"><span class="tl-time">1:00</span><span class="tl-what"><b>Part 1</b> AI Agents and Evaluation Challenges<span class="tl-who">Terrence Szymanski</span></span><span class="tl-len">35 min</span></li>
+    <li class="tl-part"><span class="tl-time">1:35</span><span class="tl-what"><b>Part 2</b> LLM-as-a-Judge Methods<span class="tl-who">Parvin Zarei Eskikand</span></span><span class="tl-len">35 min</span></li>
+    <li class="tl-break"><span class="tl-time"><span class="tbc">2:10</span></span><span class="tl-what">Afternoon tea</span><span class="tl-len">30 min</span></li>
+    <li class="tl-session"><span class="tl-time"></span><span class="tl-what"><b>Session 2</b> · Practical Evaluation of AI Agents</span><span class="tl-len">80 min</span></li>
+    <li class="tl-part tl-hands"><span class="tl-time"><span class="tbc">2:40</span></span><span class="tl-what"><b>Part 3</b> Hands-on Agent Evaluation Exercise<span class="tl-who">Yelaman Abdullin · 10-minute intro, then the hands-on exercise</span></span><span class="tl-len">50 min</span><span class="tl-note"><b>Hands-on.</b> Use your laptop if you brought one.</span></li>
+    <li class="tl-part"><span class="tl-time">3:30</span><span class="tl-what"><b>Part 4</b> Reliability, Limitations, and Future Directions<span class="tl-who">Sara Mirabi</span></span><span class="tl-len">30 min</span></li>
+    <li class="tl-break"><span class="tl-time">4:00</span><span class="tl-what">End</span><span class="tl-len"></span></li>
   </ol>
 </div>
-<p class="tl-src slide-foot">Times as planned on 6 November 2026. Session lengths: ALTA 2026 programme. <span class="tbc">Dotted underline</span>: to be confirmed.</p>
+<p class="tl-src slide-foot">Times as planned on 24 November 2026. <span class="tbc">Dotted underline</span>: to be confirmed.</p>
 ```
 
 ::: {.notes}
-**About this slide:** The plan for the afternoon, from 1:00 to 4:30. Session 1, Foundations of AI Agent Evaluation, has Part 1, AI Agents and Evaluation Challenges, at 1:00, and Part 2, LLM-as-a-Judge Methods, at 1:45, 45 minutes each. Afternoon tea is at 2:30. Session 2, Practical Evaluation of AI Agents, has Part 3, the hands-on exercise, at 3:00 for an hour, starting with a 10-minute intro, and Part 4, Reliability, Limitations, and Future Directions, at 4:00 for half an hour. Part 3 is hands-on: participants write a rubric and an LLM judge for a tool-using agent and run it over test cases, on their laptop if they brought one.
+**About this slide:** The plan for the afternoon, from 1:00 to 4:00. Session 1, Foundations of AI Agent Evaluation, has Part 1, AI Agents and Evaluation Challenges, at 1:00, and Part 2, LLM-as-a-Judge Methods, at 1:35, 35 minutes each. Afternoon tea is at 2:10 for 30 minutes. Session 2, Practical Evaluation of AI Agents, has Part 3, the hands-on exercise, at 2:40 for 50 minutes, starting with a 10-minute intro, and Part 4, Reliability, Limitations, and Future Directions, at 3:30 for half an hour. Part 3 is hands-on: participants write a rubric and an LLM judge for a tool-using agent and run it over test cases, on their laptop if they brought one.
 
 **What to take away:** When the break is, and that Part 3 is hands-on.
 
 **Presenter notes:**
 
-- The times are Terrence’s schedule as planned on 6 November 2026. Three items are not confirmed and have a dotted underline on the slide: the 1:00 start, the 30-minute afternoon tea and the 4:30 end. Check them with the ALTA organisers before the day.
-- There is no separate slot for this Intro, so it comes out of Part 1’s 1:00–1:45. TODO: confirm that, and how long the Intro may take.
-- Presenters (Terrence, 6 November 2026): Part 1 Terrence, Part 2 Parvin, Part 3 Yelaman, Part 4 Sara. Part 3 starts with a 10-minute intro presentation from Yelaman, then the hands-on exercise, within its 60 minutes.
+- The times are Terrence’s schedule as planned on 24 November 2026: 2.5 hours of content between 1:00 and 4:00, with a 30-minute afternoon tea. Each part’s slot includes its questions; the slide does not show Q&A separately.
+- The conference site lists 13:00–14:00 Session 1, 14:00–14:30 afternoon tea and 14:30–16:00 Session 2 (as relayed by Terrence, 24 November 2026). The organisers are shifting afternoon tea slightly, and this plan puts it at 2:10–2:40. Two times depend on that shift and have a dotted underline on the slide: afternoon tea at 2:10 and Part 3 at 2:40. Check them with the ALTA organisers before the day.
+- There is no separate slot for this Intro, so it comes out of Part 1’s 1:00–1:35. TODO: confirm that, and how long the Intro may take.
+- Presenters (Terrence, 6 November 2026): Part 1 Terrence, Part 2 Parvin, Part 3 Yelaman, Part 4 Sara. Part 3 starts with a 10-minute intro presentation from Yelaman, then the hands-on exercise, within its 50 minutes.
 - The sidebar next to Part 3 is deliberately short (Terrence, 24 November 2026). Say the rest aloud if needed: the exercise runs in a web browser, from **Hands-on** on the tutorial site.
 - LLM access is built into the hands-on site, so participants do not need to set anything up (Terrence, 6 November 2026). The programme had said “Access to the required LLM will be arranged and confirmed before the tutorial.”
 - TODO: what to say to people without a laptop. The programme says “Participants should bring a laptop for the hands-on exercises.” The organisers’ working direction from 23 October is to assume laptops are optional.
 - Sources for every time on the slide:
-  - Start times and lengths of Parts 1–4, afternoon tea and the end: Terrence’s schedule as planned on 6 November 2026. Not confirmed, so not in `knowledge/`.
-  - Session 1 (Parts 1 and 2) is 1.5 hours and Session 2 (Parts 3 and 4) is 1.5 hours: ALTA 2026 programme page, “Tutorial Overview” for the afternoon tutorial (https://alta2026.alta.asn.au/program#afternoon-tutorial, read 6 November 2026), recorded in `knowledge/tutorial-overview.md`. That schedule agrees: 1:00–2:30 and 3:00–4:30.
-  - The programme page itself gives no clock times and no break; it says “The full conference program with a detailed schedule will be released at a later date.”
+  - Start times and lengths of Parts 1–4, afternoon tea and the end: Terrence’s schedule as planned on 24 November 2026. Session lengths follow from it: Session 1 (Parts 1 and 2) 70 minutes, Session 2 (Parts 3 and 4) 80 minutes.
+  - The 1:00 start and 4:00 end match the conference site’s listing; the tea break does not yet. Recorded in `knowledge/sources.md`.
+  - The programme’s “Tutorial Overview” for the afternoon tutorial (https://alta2026.alta.asn.au/program#afternoon-tutorial, read 6 November 2026) gave each session as 1.5 hours, recorded in `knowledge/tutorial-overview.md`. The 24 November plan replaces that.
 - The Part 3 description is the programme’s: “Participants develop a rubric and LLM judge for a practical tool-using agent scenario, run the judge over test cases, and analyse outcomes”.
 :::
 

@@ -16,12 +16,14 @@ AI agents extend LLMs by planning, using tools, and interacting with users and s
 
 From the [ALTA 2026 program](https://alta2026.alta.asn.au/program#afternoon-tutorial):
 
-1. **Session 1 — Foundations of AI Agent Evaluation** (1.5h)
+1. **Session 1 — Foundations of AI Agent Evaluation** (1:00–2:10)
    - **Part 1:** AI Agents and Evaluation Challenges  
    - **Part 2:** LLM-as-a-Judge Methods
-2. **Session 2 — Practical Evaluation of AI Agents** (1.5h)
+2. **Session 2 — Practical Evaluation of AI Agents** (2:40–4:00)
    - **Part 3:** Hands-on Agent Evaluation Exercise  
    - **Part 4:** Reliability, Limitations, and Future Directions
+
+Times are Terrence’s plan of 24 November 2026: 1:00 to 4:00 pm, afternoon tea 2:10–2:40 (see [`knowledge/sources.md`](knowledge/sources.md)).
 
 Pre-requisite (program): basic familiarity with ML, NLP, and LLMs; laptop for hands-on; LLM access to be arranged before the tutorial.
 

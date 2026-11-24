@@ -72,32 +72,36 @@
   color: var(--deck-soft);
 }
 
+/* One survey card; its two figures stack large so the card runs the height
+   of the four questions. */
 .reveal .vote-slide .vt-card {
-  margin-bottom: 18px;
-  padding: 16px 20px;
+  padding: 22px 28px 20px;
   background: var(--deck-surface);
   border-left: 3px solid var(--deck-accent);
   border-radius: 2px;
 }
 
 .reveal .vote-slide .vt-who {
-  font-size: 17px;
+  font-size: 18px;
   font-weight: 600;
   color: var(--deck-accent-strong);
-  margin-bottom: 6px;
+  margin-bottom: 14px;
 }
 
 .reveal .vote-slide .vt-stats p {
-  font-size: 22px;
-  line-height: 1.3;
+  margin-bottom: 22px;
+  font-size: 28px;
+  line-height: 1.25;
   color: var(--deck-ink);
 }
 
 .reveal .vote-slide .vt-stats b {
-  display: inline-block;
-  min-width: 2.6em;
-  font-size: 36px;
+  display: block;
+  margin-bottom: 4px;
+  font-size: 88px;
   font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.02em;
   color: var(--deck-accent);
   font-variant-numeric: tabular-nums;
 }
@@ -107,15 +111,15 @@
 }
 
 .reveal .vote-slide .vt-src {
-  margin-top: 8px;
+  margin-top: 4px;
   font-size: 14px;
   line-height: 1.35;
   color: var(--deck-soft);
 }
 
-/* "About me, and SEEK": career path above, SEEK infographic below. The two
-   part labels are the visible titles; the slide heading stays in the DOM for
-   the top bar, search and the slide's anchor. */
+/* "About me, and SEEK": a narrow serpentine timeline on the left, SEEK on the
+   right. The two part labels are the visible titles; the slide heading stays
+   in the DOM for the top bar, search and the slide's anchor. */
 
 .reveal .about-slide > h2 {
   position: absolute;
@@ -133,14 +137,20 @@
   margin: 0;
 }
 
-.reveal .about-slide .ab-part-seek {
-  margin-top: 20px;
-  padding-top: 18px;
-  border-top: 1px solid var(--deck-line);
+.reveal .about-slide .ab-cols {
+  display: grid;
+  grid-template-columns: 420px minmax(0, 1fr);
+  align-items: stretch;
 }
 
-.reveal .about-slide .ab-part-me {
+.reveal .about-slide .ab-part {
   padding-top: 18px;
+}
+
+.reveal .about-slide .ab-part-seek {
+  padding-left: 36px;
+  border-left: 1px solid var(--deck-line);
+  box-sizing: border-box;
 }
 
 .reveal .about-slide h3.ab-label {
@@ -154,42 +164,81 @@
   color: var(--deck-ink);
 }
 
-.reveal .about-slide .ab-me {
-  display: grid;
-  grid-template-columns: 1fr 380px;
-  gap: 32px;
+/* Timeline: five 116px rows. The dots sit on one axis (x 230, so the
+   left-hand labels, the longer ones, get more room) and the rail (viewBox
+   80 × 580, axis at x 40) joins them with half-ellipse arcs that bulge 36px
+   right, then left, in turn. Labels alternate sides and start 46px from the
+   axis, clear of the arcs. */
+.reveal .about-slide .ab-tl {
+  position: relative;
+  width: 420px;
+  height: 580px;
 }
 
-.reveal .about-slide .ab-path {
+.reveal .about-slide .ab-tl-rail {
+  position: absolute;
+  left: 190px;
+  top: 0;
+  width: 80px;
+  height: 580px;
+  overflow: visible;
+}
+
+.reveal .about-slide .ab-tl-rail path {
+  fill: none;
+  stroke: var(--deck-accent);
+  stroke-opacity: 0.4;
+  stroke-width: 3px;
+  stroke-linecap: round;
+}
+
+.reveal .about-slide .ab-stops {
+  position: relative;
   list-style: none;
   margin: 0;
   padding: 0;
-  border-left: 2px solid var(--deck-line);
 }
 
-.reveal .about-slide .ab-path li {
+.reveal .about-slide .ab-stop {
   position: relative;
-  margin: 0 0 10px;
-  padding-left: 20px;
-  font-size: 19px;
-  line-height: 1.3;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 116px;
+  margin: 0;
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1.2;
   color: var(--deck-ink);
-}
-
-.reveal .about-slide .ab-path li::before {
-  content: "";
-  position: absolute;
-  left: -8px;
-  top: 4px;
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  background: var(--deck-paper);
-  border: 2px solid var(--deck-accent);
   box-sizing: border-box;
 }
 
-.reveal .about-slide .ab-path li.ab-now::before {
+.reveal .about-slide .ab-stop.ab-l {
+  align-items: flex-end;
+  padding-right: 236px;
+  text-align: right;
+}
+
+.reveal .about-slide .ab-stop.ab-r {
+  align-items: flex-start;
+  padding-left: 276px;
+}
+
+.reveal .about-slide .ab-stop::before {
+  content: "";
+  position: absolute;
+  top: 50px;
+  left: 222px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--deck-paper);
+  border: 3px solid var(--deck-accent);
+  box-sizing: border-box;
+}
+
+
+.reveal .about-slide .ab-stop.ab-now::before {
   background: var(--deck-accent);
 }
 
@@ -197,9 +246,9 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  min-height: 22px;
-  margin-bottom: 2px;
-  font-size: 14px;
+  min-height: 24px;
+  margin-bottom: 3px;
+  font-size: 15px;
   font-weight: 700;
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -211,35 +260,18 @@
 .reveal .about-slide .ab-logo {
   display: block;
   flex: none;
-  height: 20px;
+  height: 22px;
   width: auto;
   margin: 0;
 }
 
-.reveal .about-slide .ab-now {
-  font-weight: 600;
-}
-
-.reveal .about-slide .ab-tag {
-  display: inline-block;
-  margin-left: 6px;
-  padding: 1px 7px;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  vertical-align: 2px;
-  color: var(--deck-on-accent);
-  background: var(--deck-accent-fill);
-  border-radius: 2px;
-}
-
-/* Three columns: the map, the SEEK facts, then the hero numbers. The numbers
-   column stays the widest; the facts column is narrow and wraps. */
+/* SEEK: the map beside the scale cluster (users and languages, in accent);
+   below, the AI team cluster in the second series colour. */
 .reveal .about-slide .ab-seek {
   display: grid;
-  grid-template-columns: 384px 188px minmax(0, 1fr);
-  column-gap: 28px;
+  grid-template-columns: 440px minmax(0, 1fr);
+  column-gap: 32px;
+  row-gap: 22px;
   align-items: start;
 }
 
@@ -265,36 +297,27 @@
   margin: 0;
 }
 
-.reveal .about-slide .ab-facts {
+.reveal .about-slide .ab-scale {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  justify-content: space-between;
+  align-self: stretch;
+  padding: 6px 0;
 }
 
-.reveal .about-slide .ab-fact {
-  font-size: 16px;
-  line-height: 1.25;
-  color: var(--deck-soft);
-}
-
-.reveal .about-slide .ab-fact b {
-  display: block;
-  font-size: 22px;
-  font-weight: 700;
-  line-height: 1.15;
-  color: var(--deck-ink);
-}
-
-.reveal .about-slide .ab-numbers {
+.reveal .about-slide .ab-team {
+  grid-column: 1 / -1;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  column-gap: 20px;
-  row-gap: 22px;
-  align-content: start;
+  column-gap: 32px;
+  padding: 18px 28px;
+  background: var(--series-a-tint);
+  border-left: 3px solid var(--series-a);
+  border-radius: 2px;
 }
 
 .reveal .about-slide .ab-big {
-  font-size: 18px;
+  font-size: 20px;
   line-height: 1.3;
   color: var(--deck-soft);
 }
@@ -302,7 +325,7 @@
 .reveal .about-slide .ab-big b {
   display: block;
   margin-bottom: 4px;
-  font-size: 70px;
+  font-size: 72px;
   font-weight: 700;
   line-height: 1;
   letter-spacing: -0.02em;
@@ -318,14 +341,21 @@
   vertical-align: baseline;
 }
 
-.reveal .about-slide .ab-mine b {
-  color: var(--deck-accent-strong);
+.reveal .about-slide .ab-team .ab-big b {
+  color: var(--series-a);
+}
+
+.reveal .about-slide .ab-team .ab-mine b {
+  color: var(--series-a-ink);
+}
+
+.reveal .about-slide .ab-team .ab-big {
+  color: var(--deck-ink);
 }
 
 .reveal .about-slide .ab-src {
   grid-column: 1 / -1;
-  margin-top: 2px;
-  font-size: 13px;
+  font-size: 14px;
   line-height: 1.3;
   color: var(--deck-soft);
 }

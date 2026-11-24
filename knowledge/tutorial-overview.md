@@ -10,7 +10,7 @@ Source: [ALTA 2026 Conference Program — Afternoon tutorial](https://alta2026.a
 | Event | ALTA 2026 Tutorial Day |
 | Date | Monday 30 November 2026 |
 | Slot | Afternoon tutorial (Tutorial 2) |
-| Length | Two sessions × 1.5h (per program overview) |
+| Time | 1:00–4:00 pm: 2.5 hours of content and a 30-minute afternoon tea (plan of 24 November 2026; see [Schedule](#schedule)) |
 
 ## Presenters
 
@@ -21,7 +21,7 @@ Source: [ALTA 2026 Conference Program — Afternoon tutorial](https://alta2026.a
 
 ## Sessions and parts
 
-### Session 1: Foundations of AI Agent Evaluation (1.5h)
+### Session 1: Foundations of AI Agent Evaluation
 
 1. **Part 1 — AI Agents and Evaluation Challenges**  
    Agents, tool use, why final-answer scoring is insufficient; industry evaluation lifecycle (prompts, test cases, datasets, rubrics, code; versioning; offline vs production monitoring).
@@ -29,13 +29,27 @@ Source: [ALTA 2026 Conference Program — Afternoon tutorial](https://alta2026.a
 2. **Part 2 — LLM-as-a-Judge Methods**  
    Deterministic vs non-deterministic evaluation; LLM-as-a-judge; criteria, rubrics, scales, prompting; when teams choose rules vs judges vs humans; quality / latency / reliability / cost trade-offs.
 
-### Session 2: Practical Evaluation of AI Agents (1.5h)
+### Session 2: Practical Evaluation of AI Agents
 
 3. **Part 3 — Hands-on Agent Evaluation Exercise**  
    Build a rubric and LLM judge for a tool-using agent scenario; run over test cases; analyse tool choice, parameters, and response quality.
 
 4. **Part 4 — Reliability, Limitations, and Future Directions**  
    Judge consistency, robustness, cost, failure modes; good practice; industry lessons; open research.
+
+## Schedule
+
+Terrence’s plan of 24 November 2026. Each part’s slot includes its questions. The program overview first gave each session as 1.5h; this plan replaces that. [`sources.md`](sources.md) records how it differs from the conference site’s listing.
+
+| Time | Item | Length |
+|------|------|--------|
+| 1:00–1:35 | Session 1, Part 1 | 35 min |
+| 1:35–2:10 | Session 1, Part 2 | 35 min |
+| 2:10–2:40 | Afternoon tea (to be confirmed) | 30 min |
+| 2:40–3:30 | Session 2, Part 3 | 50 min |
+| 3:30–4:00 | Session 2, Part 4 | 30 min |
+
+The Intro (`00-intro`) has no slot of its own and comes out of Part 1.
 
 ## Prerequisites (program text)
 
