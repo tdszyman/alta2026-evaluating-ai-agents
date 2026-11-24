@@ -81,8 +81,8 @@ format:
 <div class="ab-part ab-part-me">
   <h3 class="ab-label">About me</h3>
   <div class="ab-tl">
-    <svg class="ab-tl-rail" viewBox="0 0 80 500" aria-hidden="true">
-      <path d="M40 50 A36 50 0 0 1 40 150 A36 50 0 0 0 40 250 A36 50 0 0 1 40 350 A36 50 0 0 0 40 450"/>
+    <svg class="ab-tl-rail" viewBox="0 0 80 580" aria-hidden="true">
+      <path d="M40 58 A36 58 0 0 1 40 174 A36 58 0 0 0 40 290 A36 58 0 0 1 40 406 A36 58 0 0 0 40 522"/>
     </svg>
     <ol class="ab-stops">
       <li class="ab-stop ab-l"><span class="ab-org"><img class="ab-icon" src="images/umich-block-m-maize.svg" alt="">Michigan</span>PhD Linguistics</li>

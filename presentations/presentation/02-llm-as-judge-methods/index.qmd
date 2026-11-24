@@ -22,7 +22,7 @@ format:
 
 ## Our running example: a career assistant {.j2-slide}
 
-<!-- TODO: section owner and timing are not set (Sara drafts Part 2). Session 1 is 1.5 h for Parts 1 and 2 together (knowledge/tutorial-overview.md). This deck has 36 slides with one main point each; the detail is in the presenter notes and the bibliography. -->
+<!-- TODO: section owner is not set (Sara drafts Part 2). Part 2 has 35 minutes, questions included (1:35 to 2:10, Terrence’s schedule in the Intro deck). This deck has 36 slides with one main point each; the detail is in the presenter notes and the bibliography. -->
 
 ```{=html}
 <div class="j2-ex">
