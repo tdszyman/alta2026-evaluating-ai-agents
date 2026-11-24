@@ -31,202 +31,6 @@
   color: var(--deck-soft);
 }
 
-/* "2026 is the year of the AI Agent": a gradient hero stat, then two
-   neutral bands revealed in turn, Australia and New Zealand and the rest of
-   the world. Colour marks the value pillar from the next slide instead:
-   Productivity tiles in the blue series, Products tiles in the violet. */
-
-.reveal .hype-slide {
-  --hy-radius: 18px;
-}
-
-.reveal .hype-slide p {
-  margin: 0;
-}
-
-.reveal .hype-slide .hy-hero {
-  display: flex;
-  align-items: center;
-  gap: 30px;
-  margin-top: 12px;
-  padding: 10px 32px;
-  color: var(--deck-on-accent);
-  background: var(--deck-accent-fill);
-  border-radius: var(--hy-radius);
-}
-
-.reveal .hype-slide .hy-hero-num {
-  font-size: 116px;
-  font-weight: 800;
-  line-height: 1;
-  letter-spacing: -0.03em;
-}
-
-.reveal .hype-slide .hy-hero-label {
-  font-size: 30px;
-  font-weight: 700;
-  line-height: 1.15;
-  text-wrap: balance;
-}
-
-.reveal .hype-slide .hy-hero-sub {
-  margin-top: 6px;
-  font-size: 22px;
-  font-weight: 500;
-}
-
-.reveal .hype-slide .hy-hero-src {
-  margin-top: 8px;
-  font-size: 14px;
-  opacity: 0.92;
-}
-
-.reveal .hype-slide .hy-hero-src a {
-  color: inherit;
-  text-decoration: underline;
-}
-
-.reveal .hype-slide .hy-split {
-  display: grid;
-  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
-  gap: 16px;
-  margin-top: 16px;
-}
-
-.reveal .hype-slide .hy-band {
-  display: flex;
-  flex-direction: column;
-  padding: 12px 16px 16px;
-  border-radius: var(--hy-radius);
-}
-
-.reveal .hype-slide .hy-band {
-  background: var(--deck-surface);
-}
-
-.reveal .hype-slide .hy-productivity {
-  --hy-ink: var(--series-a-ink);
-  --hy-edge: var(--series-a);
-}
-
-.reveal .hype-slide .hy-products {
-  --hy-ink: var(--series-b-ink);
-  --hy-edge: var(--series-b);
-}
-
-.reveal .hype-slide .hy-eyebrow {
-  align-self: flex-start;
-  margin-bottom: 10px;
-  padding: 3px 12px;
-  font-size: 15px;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--deck-on-accent);
-  background: var(--deck-ink);
-  border-radius: 999px;
-}
-
-.reveal .hype-slide .hy-hype {
-  margin: -2px 0 10px;
-  font-size: 16px;
-  font-weight: 700;
-  line-height: 1.25;
-  color: var(--deck-ink);
-}
-
-.reveal .hype-slide .hy-hype a {
-  font-size: 13px;
-  font-weight: 400;
-}
-
-.reveal .hype-slide .hy-p {
-  flex: none;
-  padding: 1px 9px;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.02em;
-  color: var(--deck-on-accent);
-  background: var(--hy-ink);
-  border-radius: 999px;
-}
-
-.reveal .hype-slide .hy-tiles {
-  display: grid;
-  flex: 1;
-  gap: 12px;
-}
-
-.reveal .hype-slide .hy-band-region .hy-tiles {
-  grid-template-columns: 1fr 1fr;
-}
-
-.reveal .hype-slide .hy-tile {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  padding: 10px 14px 10px;
-  background: var(--deck-paper);
-  border-radius: calc(var(--hy-radius) * 0.7);
-  box-shadow: inset 0 4px 0 var(--hy-edge);
-}
-
-.reveal .hype-slide .hy-who {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 8px;
-  padding-top: 2px;
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--hy-ink);
-}
-
-.reveal .hype-slide .hy-num {
-  font-size: 40px;
-  font-weight: 800;
-  line-height: 1.05;
-  letter-spacing: -0.02em;
-  color: var(--hy-ink);
-}
-
-.reveal .hype-slide .hy-num small {
-  display: block;
-  font-size: 16px;
-  font-weight: 600;
-  line-height: 1.2;
-  letter-spacing: 0;
-}
-
-.reveal .hype-slide .hy-num-words {
-  font-size: 32px;
-}
-
-.reveal .hype-slide .hy-quote {
-  font-size: 21px;
-  font-weight: 700;
-  line-height: 1.25;
-  text-wrap: balance;
-  color: var(--deck-ink);
-}
-
-.reveal .hype-slide .hy-label {
-  font-size: 15px;
-  line-height: 1.3;
-  color: var(--deck-ink);
-}
-
-.reveal .hype-slide .hy-band-world .hy-quote {
-  font-size: 19px;
-}
-
-.reveal .hype-slide .hy-src {
-  margin-top: auto;
-  padding-top: 2px;
-  font-size: 13px;
-  color: var(--deck-soft);
-}
-
 /* "The public's view of AI is mixed": a Google autocomplete screenshot
    beside one sentence. */
 
@@ -304,16 +108,16 @@
   border-top: 1px solid var(--deck-line);
 }
 
-/* "Agents can create value, but introduce risk": the two value cards on
-   the left, the six risks as numbered rows on the right. Each pillar name
-   is a pill in its series colour, matching the badges on the tiles of
-   "2026 is the year of the AI Agent": Productivity blue, Products violet. */
+/* "Agents can create value, but introduce risk": the two value cards and
+   the adoption figure on the left, the six risks as numbered rows on the
+   right. Each pillar name is a pill in its series colour: Productivity blue,
+   Products violet. */
 
 .reveal .value-risk-slide .vr-grid {
   display: grid;
   grid-template-columns: 0.85fr 1.15fr;
   gap: 44px;
-  margin-top: 20px;
+  margin-top: 12px;
   color: var(--deck-ink);
 }
 
@@ -341,8 +145,8 @@
 }
 
 .reveal .value-risk-slide .vr-card {
-  margin: 0 0 18px;
-  padding: 18px 22px 16px;
+  margin: 0 0 14px;
+  padding: 14px 22px 12px;
   background: var(--deck-surface);
   border-left: 4px solid var(--vr-p, var(--deck-line));
   border-radius: 2px;
@@ -385,8 +189,59 @@
   color: var(--vr-p-ink, var(--deck-ink));
 }
 
+/* Adoption: a small kicker over the 69% headline, in the accent, so it
+   reads apart from the two series-coloured pillars above it. */
+.reveal .value-risk-slide .vr-adopt {
+  padding: 12px 22px 10px;
+  background: var(--deck-accent-tint);
+  border-left: 4px solid var(--deck-accent);
+  border-radius: 2px;
+}
+
+.reveal .value-risk-slide .vr-adopt p {
+  margin: 0;
+}
+
+.reveal .value-risk-slide .vr-kicker {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--deck-accent-strong);
+}
+
+.reveal .value-risk-slide .vr-adopt-row {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-top: 2px;
+}
+
+.reveal .value-risk-slide .vr-adopt-num {
+  flex: none;
+  font-size: 76px;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: var(--deck-accent);
+}
+
+.reveal .value-risk-slide .vr-adopt-label {
+  font-size: 21px;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--deck-ink);
+}
+
+.reveal .value-risk-slide .vr-adopt-src {
+  margin-top: 6px;
+  font-size: 14px;
+  color: var(--deck-soft);
+}
+
 /* Six rows of equal height (1fr rows size to the tallest), each with its
-   number, name and description centred vertically. */
+   number, name and description centred vertically. The padding brings the
+   list close to the height of the value column beside it. */
 .reveal .value-risk-slide .vr-risks ol {
   display: grid;
   grid-auto-rows: 1fr;
@@ -402,7 +257,7 @@
   column-gap: 0;
   align-items: center;
   margin: 0;
-  padding: 9px 0;
+  padding: 15px 0;
   font-size: 21px;
   line-height: 1.3;
   border-bottom: 1px solid var(--deck-line);
