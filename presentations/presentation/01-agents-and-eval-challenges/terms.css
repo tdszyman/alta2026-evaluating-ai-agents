@@ -253,7 +253,11 @@
 
 /* LLM text generation, drawn unrolled: one 52px column per token position
    on a 56px pitch, after a 64px row name. Sixteen token columns plus one on
-   the right for the stop token. Labels sit below on brackets. */
+   the right for the stop token. Labels sit below on brackets. Every column
+   box sets width as well as flex-basis, and the token spans do not flex:
+   Firefox sizes a nested flex container from its items' width, not their
+   basis, and would shrink the spans to their text and pull the columns out
+   of line. */
 
 .reveal .tu-slide .tm-figure.tm-flow {
   height: auto;
@@ -282,6 +286,7 @@
 
 .reveal .tu-slide .tu-name {
   flex: 0 0 64px;
+  width: 64px;
   font-size: 10.5px;
   font-weight: 700;
   letter-spacing: 0.04em;
@@ -295,10 +300,11 @@
   line-height: 1;
 }
 
-.reveal .tu-slide .tu-slot { flex: 0 0 52px; }
+.reveal .tu-slide .tu-slot { flex: 0 0 52px; width: 52px; }
 
 .reveal .tu-slide .tu-cell {
   flex: 0 0 40px;
+  width: 40px;
   height: 24px;
   margin: 0 6px;
   box-sizing: border-box;
@@ -308,12 +314,14 @@
 }
 
 .reveal .tu-slide .tu-span {
+  flex: none;
   display: flex;
   gap: 4px;
 }
 
 .reveal .tu-slide .tu-tok {
   flex: 0 0 52px;
+  width: 52px;
   height: 30px;
   box-sizing: border-box;
   font-size: 15px;
