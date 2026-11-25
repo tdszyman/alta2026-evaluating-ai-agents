@@ -125,7 +125,7 @@ format:
     <p class="pc-role">PhD Candidate, School of Information Technology, Deakin University</p>
     <ul class="pc-bio">
       <p>Research interests in NLP, conversational AI, and agentic AI, particularly the reliability of dialogue systems, with applications in business process automation, healthcare, and decision support.</p>
-      <p>10+ years of industry experience as a software programmer and technology solution provider, with expertise in systems integration, automation, and applied machine learning</p>
+      <p>10+ years of industry experience as a senior solution developer, with expertise in systems integration, automation, and applied machine learning</p>
     </ul>
     <p class="pc-part">Presents Part 4</p>
   </article>
