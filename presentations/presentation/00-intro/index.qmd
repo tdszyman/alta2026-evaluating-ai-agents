@@ -125,7 +125,7 @@ format:
     <p class="pc-role">PhD Candidate, School of Information Technology, Deakin University</p>
     <ul class="pc-bio">
       <p>Research interests in NLP and agentic AI with applications in business process automation and healthcare.</p>
-      <p>10+ years of industry experience as a senior solution developer, with expertise in systems integration, automation, and applied machine learning</p>
+      <p>10+ years of industry experience, most recently as a Senior Solution Developer, with expertise in systems automation and applied machine learning</p>
     </ul>
     <p class="pc-part">Presents Part 4</p>
   </article>
