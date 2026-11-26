@@ -245,6 +245,14 @@
     drawer.querySelector("[data-deck-close]").addEventListener("click", closeDrawer);
     backdrop.addEventListener("click", closeDrawer);
 
+    /* Going forward off the end of a section, Reveal enters the next section
+       at the slide it was last left on, so after a jump back through the
+       slide list or search the next click can skip slides. A start index
+       makes it enter every section at its first slide. */
+    document.querySelectorAll(".reveal .slides > section.stack").forEach(function (stack) {
+      stack.setAttribute("data-start-indexv", "0");
+    });
+
     /* Decks chain into one talk. A link with data-next-deck on a deck's last
        slide is followed when the presenter goes forward from the end; going
        back from the first slide opens the deck named in PARTS[...].prev at its
