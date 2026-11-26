@@ -225,136 +225,9 @@ format:
 - Column 1, text completion: autoregressive next-token prediction, tokens in, tokens out. The model predicts the next token, appends it, and goes again until it stops. Each run is one LLM call; Part 2 counts judge calls, and the hands-on app reports input and output tokens.
 - Column 2, chat completion: the system and user prompts are separate, and the input is now the chat history. The system message holds the developer’s instructions, the user message is what the person types, and the assistant message is the model’s reply. A turn is one user message and the reply; multi-turn means several. The model keeps no memory between calls, so each call re-sends the whole history.
 - Column 3, AI agents: the LLM is wrapped in a harness with tools, and works towards a goal over several steps of reasoning and action. Before replying, the agent loops. Thought: the model decides what to do (here, it needs the user’s suburb). Action: it calls a tool, `get_profile()`. Observation: the tool’s result goes back into the input. One pass is a step; several are multi-step. The whole record, messages plus LLM calls plus tool calls, is the trace, which papers also call the trajectory.
-- Takeaway: the LLM calls are non-deterministic; the harness and the tool calls are deterministic code (tools usually, not always). The next slide, “What are AI Agents?”, draws that split as a picture, and the slide after it names it complex and complicated.
+- Takeaway: the LLM calls are non-deterministic; the harness and the tool calls are deterministic code (tools usually, not always). “AI Agents are complex *and* complicated systems”, after the risks and headlines, names that split.
 - The words in the key-term lists are the ones Parts 2 to 4 and the hands-on app use: LLM call, tokens, messages and roles, turn, tool call and result, step, trace. Next-token prediction is now in column 1’s description, so it is no longer listed as a key term.
-- Next: what the agent around the model is made of.
-:::
-
----
-
-## What are AI Agents? {#what-are-ai-agents .harness-slide}
-
-<!-- TODO (Terrence): the layout follows a reference diagram you supplied (Harness, Loop, Model, Capabilities), with Voice dropped. If it comes from a published source, add that source to the bibliography and credit it here. -->
-
-```{=html}
-<div class="wa-board">
-  <div class="wa-harness fragment" data-fragment-index="3">
-    <p class="wa-harness-name"><b>The Harness</b> the code wrapped around the model</p>
-  </div>
-
-  <div class="wa-part wa-loop fragment" data-fragment-index="1">
-    <span class="wa-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4.5 11a7.5 7.5 0 0 1 13-4.6L19.5 8.5"/><path d="M19.5 3.5v5h-5"/><path d="M19.5 13a7.5 7.5 0 0 1-13 4.6L4.5 15.5"/><path d="M4.5 20.5v-5h5"/></svg></span>
-    <div class="wa-text">
-      <p class="wa-name">The Loop <span class="wa-steps"><span>Think</span>→<span>Act</span>→<span>Observe</span><span class="wa-again" aria-label="repeat">↻</span></span></p>
-      <p class="wa-sub">Calls the model, runs its tools, and repeats until the task is done</p>
-    </div>
-    <span class="wa-tag wa-det fragment" data-fragment-index="4">Deterministic</span>
-  </div>
-
-  <div class="wa-part wa-model">
-    <span class="wa-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="1.5" y="8.5" width="5.5" height="7" rx="1.5"/><rect x="9.25" y="8.5" width="5.5" height="7" rx="1.5"/><rect class="wa-next" x="17" y="8.5" width="5.5" height="7" rx="1.5"/></svg></span>
-    <div class="wa-text">
-      <p class="wa-name">The Model</p>
-      <p class="wa-sub">An LLM: predicts one token at a time</p>
-    </div>
-    <span class="wa-tag wa-sto fragment" data-fragment-index="4">Stochastic</span>
-  </div>
-
-  <p class="wa-caps fragment" data-fragment-index="2">Capabilities</p>
-
-  <div class="wa-part wa-memory fragment" data-fragment-index="2">
-    <span class="wa-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="5.5" rx="7.5" ry="3"/><path d="M4.5 5.5v13c0 1.66 3.36 3 7.5 3s7.5-1.34 7.5-3v-13"/><path d="M4.5 12c0 1.66 3.36 3 7.5 3s7.5-1.34 7.5-3"/></svg></span>
-    <div class="wa-text">
-      <p class="wa-name">Memory <span class="wa-tag wa-det fragment" data-fragment-index="4">Deterministic</span></p>
-      <p class="wa-sub">Stores context and looks it up later</p>
-    </div>
-  </div>
-
-  <div class="wa-part wa-tools fragment" data-fragment-index="2">
-    <span class="wa-icon wa-fn" aria-hidden="true">f(x)</span>
-    <div class="wa-text">
-      <p class="wa-name">Tools <span class="wa-tag wa-mostly fragment" data-fragment-index="4">Usually deterministic, not always</span></p>
-      <p class="wa-sub">Functions it can call, such as <code>search_jobs</code></p>
-    </div>
-  </div>
-</div>
-
-<p class="wa-takeaway fragment" data-fragment-index="4">An agent is <span class="wa-det-ink">deterministic</span> code wrapped around a <span class="wa-sto-ink">stochastic</span> model.</p>
-```
-
-::: {.notes}
-**About this slide:** A non-technical picture of an AI agent as a whole, after “From LLMs to agents” built up the ideas. At its centre is the model, an LLM, which predicts one token at a time. Around it runs the loop: ordinary code that calls the model, reads what it wants to do, runs that action, feeds the result back, and goes round again (think, act, observe) until the task is done. The loop draws on capabilities such as memory and tools. Together, the loop and its capabilities are the harness: the code wrapped around the model. Some parts are deterministic and some are stochastic. The loop and memory are code: give them the same input and they do the same thing. The model is stochastic: the same input can give different outputs. Tools are usually deterministic function calls, but not always.
-
-**What to take away:** An agent is a bunch of code wrapped around an LLM. Most of the parts are deterministic; the model at the centre is stochastic, and some tools are too. That mix is why the next slide calls agents complex *and* complicated.
-
-**Presenter notes:**
-
-- Builds: the slide opens on the model alone. Click 1 wraps the loop around it; click 2 adds the capabilities, memory and tools; click 3 draws the harness around everything; click 4 labels each part deterministic or stochastic and shows the takeaway.
-- The model: an LLM. Given the text so far, it predicts the next token, then the next, one at a time. Section 2 opens this up on “LLM text generation”.
-- The loop: think, act, observe. The model thinks and picks an action; the code runs the action and hands the result back as the next observation. This is the pattern ReAct named ([Yao et al. 2023](../../bibliography/yao-2023-react/)); section 2 defines it properly on “What is an agent?” and “Agent traces: think, act, observe”.
-- The harness is everything that isn’t the model: the loop, the prompts it builds, memory, tools, and the rules about when to stop. An agent is a bunch of code wrapped around an LLM.
-- Memory: the store and the look-up are code, so they are marked deterministic. What gets written into memory often comes from the model.
-- Tools: usually plain function calls, such as `search_jobs`: same arguments, same result. Not always: a tool can call another model, search the web, or return data that changes from one run to the next.
-- Drill the split: deterministic means same input, same output; stochastic means the same input can give a range of outputs. That is the difference the next slide names: the code is complicated, the model is complex.
-- Voice, in the reference diagram, is left out on purpose.
-- Next: why that mix makes agents complex *and* complicated.
-:::
-
----
-
-## AI Agents are complex *and* complicated systems {#complex-and-complicated .complexity-slide .cx-duo-slide}
-
-:::: {.cx-duo}
-
-::: {.cx-col}
-[Complex]{.sys-label .complex}
-
-![](images/complex-system.svg){fig-alt="A complex system: a dense network of interconnected parts with feedback loops. Signals wander different routes and runs land on a spread-out distribution of outputs."}
-
-[Many parts, entangled through feedback loops, so the behaviour of the whole emerges from how they interact. **Same input → a distribution of outputs.**]{.cx-lead}
-
-[Unpredictable]{.cx-chip .complex} [Self-organising]{.cx-chip .complex} [Emergent]{.cx-chip .complex}
-
-[**Example: the weather.**]{.cx-examples}
-
-[In an agent: foundation models, agents and agent swarms]{.cx-agent .complex}
-:::
-
-::: {.cx-col .fragment}
-[Complicated]{.sys-label .complicated}
-
-![](images/complicated-system.svg){fig-alt="A complicated system: subsystems of components wired together. Signals follow fixed, traceable routes and every run lands on the same single output."}
-
-[Many parts, intricately wired, but every connection is designed and can be traced, so the parts dictate the behaviour of the whole. **Same input → same output.**]{.cx-lead}
-
-[Predictable]{.cx-chip .complicated} [Controllable]{.cx-chip .complicated} [Designable]{.cx-chip .complicated}
-
-[**Example: a jet engine.**]{.cx-examples}
-
-[In an agent: the code, tools and workflows around the model]{.cx-agent .complicated}
-:::
-
-::::
-
-[Contrasts and examples: [Complex versus complicated](../../bibliography/finegood-complex-versus-complicated/) (Frameworks Collection, CC BY-NC-ND). Figures illustrative.]{.attribution .slide-foot}
-
-::: {.notes}
-**About this slide:** An AI agent is both a complex and a complicated system. It follows “What are AI Agents?”: the stochastic model is the complex part, and the deterministic code around it is the complicated part. This is the split the takeaway on “From LLMs to agents” put in words. The slide opens on complex, then one click reveals complicated beside it.
-
-A complex system has many parts entangled through feedback loops, so the behaviour of the whole emerges from how the parts interact, and the same input gives a distribution of outputs that cannot be traced back to individual parts. Complex systems are unpredictable, self-organising and emergent. The weather is the example: air, heat and moisture feed back on each other, so similar mornings can end in different afternoons. The economy, ant colonies and human brains are complex too. In an agent, the model, the agent built on it, and swarms of agents are complex.
-
-A complicated system also has many parts, but every connection is designed and can be traced, so the behaviour of the whole is dictated by the behaviour of its parts, and the same input always gives the same output. Complicated systems are predictable, controllable and designable. A jet engine is the example: every part is designed and every path can be traced, so it behaves the same way every time. Mechanical watches, traditional software, ETL pipelines and workflows are complicated too. In an agent, the code, tools, workflows and pipelines around the model are complicated.
-
-**Presenter notes:**
-
-- Complex first. The figure: lots of parts, intertwined, with feedback loops and long-range links. Each signal wanders a different route, and runs land on a distribution of outputs. You can’t easily trace an output back to the parts that produced it. The histogram comes from simulated random walks over the drawn network: illustrative, not data.
-- Then click for complicated. The figure: lots of components and subsystems connected in intricate ways, but every connection was designed and can be traced. The orange signals take the same routes every time and arrive together, so all runs land on one point on the output axis.
-- Complicated is not the same as simple: a jet engine is hard to build. The difference from a complex system is that you can trace why it did what it did.
-- The keywords and the examples are from the framework [Complex versus complicated](../../bibliography/finegood-complex-versus-complicated/), the same contrasts and examples as the AIPS Showcase slide. From the same framework: foundation models, agents and agent swarms sit with the weather and the economy, not with jet engines.
-- History, if asked, in one breath. Warren Weaver’s 1948 essay “Science and Complexity” separated problems of simplicity, problems of “disorganized complexity” (many variables, handled by statistics) and problems of “organized complexity”: problems “which involve dealing simultaneously with a sizable number of factors which are interrelated into an organic whole” ([Weaver 1948](../../bibliography/weaver-1948-science-complexity/)). Complexity science is now studied across the natural and social sciences, but, as a review puts it, “there is no concise definition of a complex system, let alone a definition on which all scientists agree” ([Ladyman et al. 2013](../../bibliography/ladyman-2013-complex-system/)). The point is that “complex” has a meaning beyond “hard”.
-- Point at the two figures together: the complicated one is the agent’s plumbing, the complex one is its behaviour.
-- Link back to the last slide: the loop, memory and most tools are the complicated part; the model, and anything that behaves like it, is the complex part.
-- Next: why organisations want agents anyway, and what they risk. What complex and complicated means for evaluation opens section 2, on “How to evaluate complex and complicated systems”.
+- Next: why organisations want agents anyway, and what they risk.
 :::
 
 ---
@@ -505,7 +378,64 @@ Cards, in the order they appear, which is the order the stories were published, 
 
 - This whole slide gets one to two minutes. Click through the headlines without telling each story; the point is that these risks are real, and they cost companies with customers, in the media and with regulators.
 - Eight clicks, one per case, in the order the stories were published, from January 2024 to October 2026.
-- Don’t stop on any card. Next: how organisations build agents that are governed against these risks. Each case has its own slide in the unpublished Part 1.G graveyard deck, for questions.
+- Don’t stop on any card. Next: why these failures are hard to rule out, because agents are complex *and* complicated systems; then how organisations build agents that are governed against these risks. Each case has its own slide in the unpublished Part 1.G graveyard deck, for questions.
+:::
+
+---
+
+## AI Agents are complex *and* complicated systems {#complex-and-complicated .complexity-slide .cx-duo-slide}
+
+:::: {.cx-duo}
+
+::: {.cx-col}
+[Complex]{.sys-label .complex}
+
+![](images/complex-system.svg){fig-alt="A complex system: a dense network of interconnected parts with feedback loops. Signals wander different routes and runs land on a spread-out distribution of outputs."}
+
+[Many parts, entangled through feedback loops, so the behaviour of the whole emerges from how they interact. **Same input → a distribution of outputs.**]{.cx-lead}
+
+[Unpredictable]{.cx-chip .complex} [Self-organising]{.cx-chip .complex} [Emergent]{.cx-chip .complex}
+
+[**Example: the weather.**]{.cx-examples}
+
+[In an agent: foundation models, agents and agent swarms]{.cx-agent .complex}
+:::
+
+::: {.cx-col .fragment}
+[Complicated]{.sys-label .complicated}
+
+![](images/complicated-system.svg){fig-alt="A complicated system: subsystems of components wired together. Signals follow fixed, traceable routes and every run lands on the same single output."}
+
+[Many parts, intricately wired, but every connection is designed and can be traced, so the parts dictate the behaviour of the whole. **Same input → same output.**]{.cx-lead}
+
+[Predictable]{.cx-chip .complicated} [Controllable]{.cx-chip .complicated} [Designable]{.cx-chip .complicated}
+
+[**Example: a jet engine.**]{.cx-examples}
+
+[In an agent: the code, tools and workflows around the model]{.cx-agent .complicated}
+:::
+
+::::
+
+[Contrasts and examples: [Complex versus complicated](../../bibliography/finegood-complex-versus-complicated/) (Frameworks Collection, CC BY-NC-ND). Figures illustrative.]{.attribution .slide-foot}
+
+::: {.notes}
+**About this slide:** An AI agent is both a complex and a complicated system. It follows the headlines: those failures came from real systems, and this slide says what kind of system an agent is. It names the split from the takeaway on “From LLMs to agents”: the non-deterministic LLM calls are the complex part, and the deterministic harness and tool calls are the complicated part. The slide opens on complex, then one click reveals complicated beside it.
+
+A complex system has many parts entangled through feedback loops, so the behaviour of the whole emerges from how the parts interact, and the same input gives a distribution of outputs that cannot be traced back to individual parts. Complex systems are unpredictable, self-organising and emergent. The weather is the example: air, heat and moisture feed back on each other, so similar mornings can end in different afternoons. The economy, ant colonies and human brains are complex too. In an agent, the model, the agent built on it, and swarms of agents are complex.
+
+A complicated system also has many parts, but every connection is designed and can be traced, so the behaviour of the whole is dictated by the behaviour of its parts, and the same input always gives the same output. Complicated systems are predictable, controllable and designable. A jet engine is the example: every part is designed and every path can be traced, so it behaves the same way every time. Mechanical watches, traditional software, ETL pipelines and workflows are complicated too. In an agent, the code, tools, workflows and pipelines around the model are complicated.
+
+**Presenter notes:**
+
+- Complex first. The figure: lots of parts, intertwined, with feedback loops and long-range links. Each signal wanders a different route, and runs land on a distribution of outputs. You can’t easily trace an output back to the parts that produced it. The histogram comes from simulated random walks over the drawn network: illustrative, not data.
+- Then click for complicated. The figure: lots of components and subsystems connected in intricate ways, but every connection was designed and can be traced. The orange signals take the same routes every time and arrive together, so all runs land on one point on the output axis.
+- Complicated is not the same as simple: a jet engine is hard to build. The difference from a complex system is that you can trace why it did what it did.
+- The keywords and the examples are from the framework [Complex versus complicated](../../bibliography/finegood-complex-versus-complicated/), the same contrasts and examples as the AIPS Showcase slide. From the same framework: foundation models, agents and agent swarms sit with the weather and the economy, not with jet engines.
+- History, if asked, in one breath. Warren Weaver’s 1948 essay “Science and Complexity” separated problems of simplicity, problems of “disorganized complexity” (many variables, handled by statistics) and problems of “organized complexity”: problems “which involve dealing simultaneously with a sizable number of factors which are interrelated into an organic whole” ([Weaver 1948](../../bibliography/weaver-1948-science-complexity/)). Complexity science is now studied across the natural and social sciences, but, as a review puts it, “there is no concise definition of a complex system, let alone a definition on which all scientists agree” ([Ladyman et al. 2013](../../bibliography/ladyman-2013-complex-system/)). The point is that “complex” has a meaning beyond “hard”.
+- Point at the two figures together: the complicated one is the agent’s plumbing, the complex one is its behaviour.
+- Link back to “From LLMs to agents”: the harness and most tool calls are the complicated part; the LLM calls, and anything that behaves like them, are the complex part.
+- Next: the agent platforms, which protect both parts: deterministic checks for the complicated part, non-deterministic checks such as LLM-as-a-judge for the complex part. What complex and complicated means for evaluation opens section 2, on “How to evaluate complex and complicated systems”.
 :::
 
 ---
@@ -515,24 +445,15 @@ Cards, in the order they appear, which is the order the stories were published, 
 <!-- TODO: Check permission to use the AWS, Google Cloud, Arize and LangChain logos on this slide; their sources are in the speaker notes. -->
 
 ```{=html}
-<div role="group" class="pf-band pf-band-platforms" aria-label="Agent platforms">
-  <p class="pf-lead">There are many agent platforms organisations can choose from, including but not limited to:</p>
-  <ul class="pf-cards">
-    <li><span class="pf-logo"><img class="pf-logo-aws" src="images/logo-aws.svg" alt="AWS"></span><b>Amazon Bedrock AgentCore</b><span class="pf-cite">AWS · <a href="../../bibliography/aws-2026-bedrock-agentcore/">AWS 2026</a></span></li>
-    <li><span class="pf-logo"><img src="images/logo-google-cloud.svg" alt="Google Cloud"></span><b>Gemini Enterprise Agent Platform</b><span class="pf-cite">Google Cloud · <a href="../../bibliography/google-cloud-2026-agent-platform-overview/">Google Cloud 2026a</a></span></li>
-    <li><span class="pf-logo"><img src="images/logo-arize.svg" alt="Arize"></span><b>Arize AX</b><span class="pf-cite">Arize · <a href="../../bibliography/arize/">Arize</a></span></li>
-    <li><span class="pf-logo"><img src="images/logo-langchain.svg" alt="LangChain"></span><b>LangSmith</b><span class="pf-cite">LangChain · <a href="../../bibliography/langchain-2026-langsmith/">LangChain 2026</a></span></li>
-  </ul>
-</div>
-<div role="group" class="pf-band pf-band-checks fragment" data-fragment-index="1" aria-label="Protections">
-  <p class="pf-lead">They include many protections, in multiple layers, using multiple methods. AI agents are both:</p>
+<div role="group" class="pf-band pf-band-checks" aria-label="Protections">
+  <p class="pf-lead">Protections come in multiple layers, using multiple methods, because AI agents are both:</p>
   <div class="pf-flow">
     <div class="pf-chain pf-chain-rules">
       <p class="pf-node pf-system"><b>Complicated systems</b>many designed parts</p>
       <span class="pf-arrow" aria-hidden="true">→</span>
       <p class="pf-node pf-check"><b>Deterministic checks</b>rule-based tests and checks, such as a policy that blocks a tool call</p>
     </div>
-    <div class="pf-chain pf-chain-judge fragment" data-fragment-index="2">
+    <div class="pf-chain pf-chain-judge fragment" data-fragment-index="1">
       <p class="pf-node pf-system"><b>Complex systems</b>behaviour that emerges from how the parts interact</p>
       <span class="pf-arrow" aria-hidden="true">→</span>
       <p class="pf-node pf-check"><b>Non-deterministic checks</b>model-based checks, where the result can vary from run to run</p>
@@ -544,24 +465,33 @@ Cards, in the order they appear, which is the order the stories were published, 
     </div>
   </div>
 </div>
+<div role="group" class="pf-band pf-band-platforms fragment" data-fragment-index="2" aria-label="Agent platforms">
+  <p class="pf-lead">Agent platforms provide these protections. Many are available, including but not limited to:</p>
+  <ul class="pf-cards">
+    <li><span class="pf-logo"><img class="pf-logo-aws" src="images/logo-aws.svg" alt="AWS"></span><b>Amazon Bedrock AgentCore</b><span class="pf-cite">AWS · <a href="../../bibliography/aws-2026-bedrock-agentcore/">AWS 2026</a></span></li>
+    <li><span class="pf-logo"><img src="images/logo-google-cloud.svg" alt="Google Cloud"></span><b>Gemini Enterprise Agent Platform</b><span class="pf-cite">Google Cloud · <a href="../../bibliography/google-cloud-2026-agent-platform-overview/">Google Cloud 2026a</a></span></li>
+    <li><span class="pf-logo"><img src="images/logo-arize.svg" alt="Arize"></span><b>Arize AX</b><span class="pf-cite">Arize · <a href="../../bibliography/arize/">Arize</a></span></li>
+    <li><span class="pf-logo"><img src="images/logo-langchain.svg" alt="LangChain"></span><b>LangSmith</b><span class="pf-cite">LangChain · <a href="../../bibliography/langchain-2026-langsmith/">LangChain 2026</a></span></li>
+  </ul>
+</div>
 ```
 
 ::: {.notes}
-**About this slide:** Agent platforms are the answer to the risks on the previous slide. Organisations rarely build every safeguard for an agent themselves: agent platforms provide multiple levels of protections to mitigate agent risks. Four examples: Amazon Bedrock AgentCore from AWS ([AWS 2026](../../bibliography/aws-2026-bedrock-agentcore/)), Gemini Enterprise Agent Platform from Google Cloud ([Google Cloud 2026a](../../bibliography/google-cloud-2026-agent-platform-overview/)), Arize AX from Arize ([Arize](../../bibliography/arize/)) and LangSmith from LangChain ([LangChain 2026](../../bibliography/langchain-2026-langsmith/)). These platforms include many protections, in multiple layers, using multiple methods. AI agents are both complicated systems, which need deterministic tests and checks, and complex systems, which need non-deterministic checks. LLM-as-a-judge is one of the most commonly used non-deterministic checks, and a key focus of this tutorial.
+**About this slide:** How organisations protect against the risks in the headlines, two slides back. The top of the slide follows on from the previous slide: protections come in multiple layers, using multiple methods, because AI agents are both complicated systems, which need deterministic tests and checks, and complex systems, which need non-deterministic checks. LLM-as-a-judge is one of the most commonly used non-deterministic checks, and a key focus of this tutorial. The bottom of the slide says who provides these protections. Organisations rarely build every safeguard for an agent themselves: agent platforms provide multiple levels of protections to mitigate agent risks. Four examples: Amazon Bedrock AgentCore from AWS ([AWS 2026](../../bibliography/aws-2026-bedrock-agentcore/)), Gemini Enterprise Agent Platform from Google Cloud ([Google Cloud 2026a](../../bibliography/google-cloud-2026-agent-platform-overview/)), Arize AX from Arize ([Arize](../../bibliography/arize/)) and LangSmith from LangChain ([LangChain 2026](../../bibliography/langchain-2026-langsmith/)).
 
 This is the first place the tutorial uses the term. **LLM-as-a-judge** means an LLM, the judge, reads what an agent did and checks it against criteria that people write down. Evals and guardrails use judges to check agents before launch and while they run. Using AI to check AI can sound circular; the rest of Part 1 explains why it is the best approach available today.
 
 **Presenter notes:**
 
 - Terrence’s framing: agent platforms provide multiple levels of protections to mitigate agent risks. The next slide shows the levels in one platform’s architecture.
-- Two reveals. The slide opens on the four platforms. Click 1 adds the protections band with its first chain: complicated systems need deterministic checks. Click 2 adds the second: complex systems need non-deterministic checks, and the most common of these is LLM-as-a-judge, with its definition.
+- Two reveals, top to bottom. The slide opens on the protections band with its first chain: complicated systems need deterministic checks. Click 1 adds the second: complex systems need non-deterministic checks, and the most common of these is LLM-as-a-judge, with its definition. Click 2 adds the four platforms at the bottom, which provide these protections.
 - The four platforms, as their makers describe them:
   - Amazon Bedrock AgentCore: AWS calls it “an agentic platform for building, deploying, and operating highly effective agents securely at scale”. Its services include Gateway, Identity, Observability, Evaluations, Registry and Policy ([AWS 2026](../../bibliography/aws-2026-bedrock-agentcore/)).
   - Gemini Enterprise Agent Platform: Google Cloud’s “unified platform to build, deploy, govern, and optimize enterprise-grade AI agents” ([Google Cloud 2026a](../../bibliography/google-cloud-2026-agent-platform-overview/)). Its architecture is on the next slide.
   - Arize AX: Arize’s managed agent observability and evaluation platform, beside its open-source Phoenix ([Arize](../../bibliography/arize/)).
   - LangSmith: LangChain’s agent observability and evaluation platform ([LangChain 2026](../../bibliography/langchain-2026-langsmith/)).
 - The two kinds of protection, from the platforms’ own pages. Deterministic: AWS describes AgentCore Policy as “deterministic control” over which tools an agent can call, and under what conditions. Non-deterministic: LangSmith lists “Online LLM-as-judge and code evals”, so judges and fixed code checks run side by side ([LangChain 2026](../../bibliography/langchain-2026-langsmith/)).
-- Complicated and complex: a one-line nod here. “AI Agents are complex *and* complicated systems”, near the start of this part, explained the difference; “How to evaluate complex and complicated systems”, at the start of section 2, comes back to it.
+- Complicated and complex: a one-line nod here. “AI Agents are complex *and* complicated systems”, the previous slide, explained the difference; “How to evaluate complex and complicated systems”, at the start of section 2, comes back to it.
 - Keep the definition non-technical. Judge methods come in Part 2.
 - The list is short on purpose and is not a ranking. Other clouds and vendors offer similar platforms.
 - Logo sources, all saved in this deck’s `images/` folder. TODO: check permission to use each logo before the slides are shared.
@@ -1024,7 +954,7 @@ End the chat if risk ≥ 0.8.</pre>
 **Presenter notes:**
 
 - Keep it short: two points, then move on.
-- Recap first, in a sentence: “AI Agents are complex *and* complicated systems” came near the start of this part, straight after “What are AI Agents?”. The code is complicated; the model is complex.
+- Recap first, in a sentence: “AI Agents are complex *and* complicated systems” came in section 1, after the headlines. The code is complicated; the model is complex.
 - The mix echoes the “Agent platforms layer protections” slide: protections can be deterministic (rule-based) or non-deterministic (LLM-as-judge).
 - Bridge, from the outline’s multi-tier evals item (system-level vs component-level): with complex systems you still always have to evaluate the system as a whole.
 - The earlier parts-vs-whole figure and its placeholder for a Tim Sullivan quotation are in the unpublished Part 1.G graveyard deck; the quotation is still missing.
@@ -1490,7 +1420,7 @@ End the chat if risk ≥ 0.8.</pre>
 - What is an agent? “Agent” and “agentic” have theoretical definitions and practical ones. In practice, this tutorial’s working definition is an LLM plus tools, run in a ReAct loop ([Yao et al. 2023](../../bibliography/yao-2023-react/)).
 - The LLM is the model from idea 1; the tools are the functions in the next slide’s system message (get_profile, search_jobs, apply); the next slide unpacks the loop.
 - “Agent” means the whole system. “Assistant” stays the name of the message role.
-- Link back to “What are AI Agents?” near the start of this part: the LLM is the model, the [ReAct](../../bibliography/yao-2023-react/) loop is the loop, and the tools are the capabilities in the harness.
+- Link back to column 3 of “From LLMs to agents” near the start of this part: an LLM wrapped in a harness with tools, running the [ReAct](../../bibliography/yao-2023-react/) loop.
 - TODO (Terrence): what “agentic” means, with a source. No sourced definition yet.
 :::
 

@@ -20,6 +20,7 @@ Kept slides that are not in the talk. They were cut from [Part 1](../01-agents-a
 3. Complex-systems slides: the three slides replaced by the new complex, complicated and “complicated and complex” slides
 4. Agent simulation: “Why AI agents need simulation”, moved out of Part 1 section 3
 5. Google Trends chart: the first version of “2026 is the year of the AI Agent”
+6. Harness figure: “What are AI Agents?”, cut from Part 1 section 1
 
 ::: {.notes}
 **About this slide:** Not part of the tutorial. This deck keeps the slides cut from Part 1, so the Part 1 deck shows only the talk. The slides and their notes are unchanged, so notes that say “next”, “the last slide” or “section 1” describe their old place in Part 1. The styles come from Part 1’s `motivation.css`, `complexity.css` and `generative-eval.css`. Delete the deck before the tutorial on 30 November 2026.
@@ -873,6 +874,88 @@ The first version of “2026 is the year of the AI Agent”, a live Google Trend
 - Use it to set the scene, not as a finding: search interest is not a measure of adoption or capability.
 - The data updates, so the shape may differ from the last rehearsal.
 - The chart is a stand-in. Terrence may replace it with other evidence for the claim in the title.
+:::
+
+---
+
+# Graveyard: harness figure {.graveyard-slide}
+
+“What are AI Agents?”, the harness picture, cut from Part 1 section 1 (26 November 2026), kept unchanged.
+
+::: {.notes}
+**About this slide:** The sixth group in this deck. “What are AI Agents?” sat between “From LLMs to agents” and “AI Agents are complex *and* complicated systems”. It drew an agent as a model inside a loop, with memory and tools, all wrapped in a harness, and tagged each part deterministic or stochastic. Part 1 now makes that split with the takeaway on “From LLMs to agents”. The slide is kept with its builds and notes, and its styles come from Part 1’s `motivation.css` (classes prefixed `wa-`), so it can go back into Part 1 unchanged. Its notes’ “the next slide” is “AI Agents are complex *and* complicated systems”.
+:::
+
+---
+
+## What are AI Agents? {#what-are-ai-agents .harness-slide}
+
+<!-- Cut from Part 1 on 26 November 2026, where it sat between “From LLMs to agents” and “AI Agents are complex and complicated systems”. Kept unchanged. -->
+
+<!-- TODO (Terrence): the layout follows a reference diagram you supplied (Harness, Loop, Model, Capabilities), with Voice dropped. If it comes from a published source, add that source to the bibliography and credit it here. -->
+
+```{=html}
+<div class="wa-board">
+  <div class="wa-harness fragment" data-fragment-index="3">
+    <p class="wa-harness-name"><b>The Harness</b> the code wrapped around the model</p>
+  </div>
+
+  <div class="wa-part wa-loop fragment" data-fragment-index="1">
+    <span class="wa-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4.5 11a7.5 7.5 0 0 1 13-4.6L19.5 8.5"/><path d="M19.5 3.5v5h-5"/><path d="M19.5 13a7.5 7.5 0 0 1-13 4.6L4.5 15.5"/><path d="M4.5 20.5v-5h5"/></svg></span>
+    <div class="wa-text">
+      <p class="wa-name">The Loop <span class="wa-steps"><span>Think</span>→<span>Act</span>→<span>Observe</span><span class="wa-again" aria-label="repeat">↻</span></span></p>
+      <p class="wa-sub">Calls the model, runs its tools, and repeats until the task is done</p>
+    </div>
+    <span class="wa-tag wa-det fragment" data-fragment-index="4">Deterministic</span>
+  </div>
+
+  <div class="wa-part wa-model">
+    <span class="wa-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="1.5" y="8.5" width="5.5" height="7" rx="1.5"/><rect x="9.25" y="8.5" width="5.5" height="7" rx="1.5"/><rect class="wa-next" x="17" y="8.5" width="5.5" height="7" rx="1.5"/></svg></span>
+    <div class="wa-text">
+      <p class="wa-name">The Model</p>
+      <p class="wa-sub">An LLM: predicts one token at a time</p>
+    </div>
+    <span class="wa-tag wa-sto fragment" data-fragment-index="4">Stochastic</span>
+  </div>
+
+  <p class="wa-caps fragment" data-fragment-index="2">Capabilities</p>
+
+  <div class="wa-part wa-memory fragment" data-fragment-index="2">
+    <span class="wa-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="5.5" rx="7.5" ry="3"/><path d="M4.5 5.5v13c0 1.66 3.36 3 7.5 3s7.5-1.34 7.5-3v-13"/><path d="M4.5 12c0 1.66 3.36 3 7.5 3s7.5-1.34 7.5-3"/></svg></span>
+    <div class="wa-text">
+      <p class="wa-name">Memory <span class="wa-tag wa-det fragment" data-fragment-index="4">Deterministic</span></p>
+      <p class="wa-sub">Stores context and looks it up later</p>
+    </div>
+  </div>
+
+  <div class="wa-part wa-tools fragment" data-fragment-index="2">
+    <span class="wa-icon wa-fn" aria-hidden="true">f(x)</span>
+    <div class="wa-text">
+      <p class="wa-name">Tools <span class="wa-tag wa-mostly fragment" data-fragment-index="4">Usually deterministic, not always</span></p>
+      <p class="wa-sub">Functions it can call, such as <code>search_jobs</code></p>
+    </div>
+  </div>
+</div>
+
+<p class="wa-takeaway fragment" data-fragment-index="4">An agent is <span class="wa-det-ink">deterministic</span> code wrapped around a <span class="wa-sto-ink">stochastic</span> model.</p>
+```
+
+::: {.notes}
+**About this slide:** A non-technical picture of an AI agent as a whole, after “From LLMs to agents” built up the ideas. At its centre is the model, an LLM, which predicts one token at a time. Around it runs the loop: ordinary code that calls the model, reads what it wants to do, runs that action, feeds the result back, and goes round again (think, act, observe) until the task is done. The loop draws on capabilities such as memory and tools. Together, the loop and its capabilities are the harness: the code wrapped around the model. Some parts are deterministic and some are stochastic. The loop and memory are code: give them the same input and they do the same thing. The model is stochastic: the same input can give different outputs. Tools are usually deterministic function calls, but not always.
+
+**What to take away:** An agent is a bunch of code wrapped around an LLM. Most of the parts are deterministic; the model at the centre is stochastic, and some tools are too. That mix is why the next slide calls agents complex *and* complicated.
+
+**Presenter notes:**
+
+- Builds: the slide opens on the model alone. Click 1 wraps the loop around it; click 2 adds the capabilities, memory and tools; click 3 draws the harness around everything; click 4 labels each part deterministic or stochastic and shows the takeaway.
+- The model: an LLM. Given the text so far, it predicts the next token, then the next, one at a time. Section 2 opens this up on “LLM text generation”.
+- The loop: think, act, observe. The model thinks and picks an action; the code runs the action and hands the result back as the next observation. This is the pattern ReAct named ([Yao et al. 2023](../../bibliography/yao-2023-react/)); section 2 defines it properly on “What is an agent?” and “Agent traces: think, act, observe”.
+- The harness is everything that isn’t the model: the loop, the prompts it builds, memory, tools, and the rules about when to stop. An agent is a bunch of code wrapped around an LLM.
+- Memory: the store and the look-up are code, so they are marked deterministic. What gets written into memory often comes from the model.
+- Tools: usually plain function calls, such as `search_jobs`: same arguments, same result. Not always: a tool can call another model, search the web, or return data that changes from one run to the next.
+- Drill the split: deterministic means same input, same output; stochastic means the same input can give a range of outputs. That is the difference the next slide names: the code is complicated, the model is complex.
+- Voice, in the reference diagram, is left out on purpose.
+- Next: why that mix makes agents complex *and* complicated.
 :::
 
 ---

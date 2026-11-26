@@ -279,10 +279,11 @@
   font-weight: 600;
 }
 
-/* "Agent platforms layer protections": two bands, the four
-   platforms and then the protections. Fragments reveal the protections
-   band with its first chain, complicated to deterministic, and then the
-   second, complex to non-deterministic to judge.
+/* "Agent platforms layer protections": two bands, the protections
+   and then the four platforms. The slide opens on the protections band
+   with its first chain, complicated to deterministic; fragments reveal
+   the second, complex to non-deterministic to judge, and then the
+   platforms band.
    Chain columns are shared so the two check cards stack. */
 
 .reveal .platforms-slide {
@@ -308,11 +309,11 @@
 }
 
 .reveal .platforms-slide .pf-band-platforms {
-  margin-top: 18px;
   background: var(--series-a-tint);
 }
 
 .reveal .platforms-slide .pf-band-checks {
+  margin-top: 18px;
   background: var(--series-b-tint);
 }
 
