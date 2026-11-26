@@ -1846,21 +1846,26 @@ Section 2 also holds three boxes of planned material (multi-tier evals, simulati
 
 ## Next: LLM-as-a-judge methods
 
-<!-- TODO: placeholder kept. Hand-off slide. The Part 2 topics are from the ALTA program text; add the bridge from the Part 1 argument when the deck is final. -->
+<!-- TODO: add the bridge from the Part 1 argument when the deck is final. The bullets are Part 2's four section titles, verbatim. -->
 
-**Part 2** covers LLM-as-a-judge methods in depth:
-
-- Deterministic vs non-deterministic evaluation
-- Criteria, rubrics, scales and prompting
-- When teams choose rules, judges or humans
-- Quality, latency, reliability and cost trade-offs
+1. Deterministic evaluation
+2. LLM as a judge: the idea and its failure modes
+3. Rubrics, scales and prompt patterns
+4. Domain-specific criteria and human review
 
 [Next: Part 2 · LLM-as-a-Judge Methods →](../02-llm-as-judge-methods/){.next-deck data-next-deck="true"}
 
 ::: {.notes}
-**About this slide:** The end of Part 1 and the hand-off to Part 2, which covers LLM-as-a-judge methods in depth. The topics listed are from the ALTA 2026 program description of Part 2.
+**About this slide:** The end of Part 1 and the hand-off to Part 2, LLM-as-a-judge methods. The four bullets are Part 2’s four section titles, in order.
 
 **Presenter notes:**
 
+- Part 2’s learning goals, one per section:
+  1. Use deterministic checks for what code can verify in an agent, such as tools, parameters and task completion, know where they stop, and compare them with model-based evaluation.
+  2. Explain the LLM-as-a-judge idea, and recognise its failure modes, its costs and its latency.
+  3. Design rubrics, scales and judge prompts for agent scenarios, using tested prompt patterns and practical tips.
+  4. Write domain-specific criteria with experts, decide when and how people review, and weigh quality, latency and cost when choosing a method.
+- Part 2 opens with its running example, a career assistant in Part 1’s setting.
+- The earlier version of this slide listed the topics from the ALTA 2026 program description: deterministic vs non-deterministic evaluation; criteria, rubrics, scales and prompting; when teams choose rules, judges or humans; quality, latency, reliability and cost trade-offs. Part 2’s own section titles replace that list.
 - Going forward from this slide (right arrow, space, page down, or the top bar’s next button) opens Part 2, as does the link at the bottom.
 :::
