@@ -387,7 +387,81 @@ Cards, in the order they appear, which is the order the stories were published, 
 
 - This whole slide gets one to two minutes. Click through the headlines without telling each story; the point is that these risks are real, and they cost companies with customers, in the media and with regulators.
 - Nine clicks. The first eight drop one case each, in the order the stories were published, from January 2024 to October 2026. The ninth shows the takeaway line under the cards.
-- Don’t stop on any card. Pause on the takeaway: it is the question the rest of the tutorial answers. Next: why these failures are hard to rule out, because agents are complex *and* complicated systems; then how organisations build agents that are governed against these risks. Each case has its own slide in the unpublished Part 1.G graveyard deck, for questions.
+- Don’t stop on any card. Pause on the takeaway: it is the question the rest of the tutorial answers. Next: the tutorial’s central idea, an LLM judge that checks what the agent did; then why these failures are hard to rule out, because agents are complex *and* complicated systems, and how organisations build agents that are governed against these risks. Each case has its own slide in the unpublished Part 1.G graveyard deck, for questions.
+:::
+
+---
+
+## An LLM judge checks the agent {#llm-judge-concept .overview-slide .judge-concept-slide}
+
+```{=html}
+<div class="jc-grid">
+  <div class="ov-col jc-agent">
+    <p class="ov-head">AI agent</p>
+    <p class="ov-gloss">Does the task: answers the user with an LLM and tools.</p>
+    <div class="jc-fig">
+      <div class="ov-msg ov-user"><b>User</b>What is a good salary for a barista?</div>
+      <span class="ov-down" aria-hidden="true">↓</span>
+      <div class="ov-loop">
+        <span class="ov-loop-name"><a href="../../bibliography/yao-2023-react/">ReAct</a> loop <span class="ov-again" aria-label="repeat">↻</span></span>
+        <div class="ov-loop-row">
+          <div class="ov-llm ov-llm-mini"><span class="ov-llm-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="1.5" y="8.5" width="5.5" height="7" rx="1.5"/><rect x="9.25" y="8.5" width="5.5" height="7" rx="1.5"/><rect class="ov-next" x="17" y="8.5" width="5.5" height="7" rx="1.5"/></svg></span><span class="ov-llm-text">LLM</span><span class="ov-llm-thought">Thought: where are they?</span></div>
+          <span class="ov-sides" aria-hidden="true"><span>→</span><span>←</span></span>
+          <div class="ov-steps">
+            <div class="ov-step ov-action"><b>Action</b><code>get_location()</code></div>
+            <div class="ov-step ov-obs"><b>Observation</b>location: Fitzroy</div>
+          </div>
+        </div>
+      </div>
+      <span class="ov-down" aria-hidden="true">↓</span>
+      <div class="ov-msg ov-asst"><b>Assistant</b>In Fitzroy, around $34 per hour.</div>
+    </div>
+  </div>
+
+  <div class="jc-link fragment" data-fragment-index="1" aria-hidden="true">
+    <span class="jc-link-label">Trace</span>
+    <svg viewBox="0 0 100 20"><line x1="2" y1="10" x2="86" y2="10"/><path d="M84,3 L98,10 L84,17 z"/></svg>
+  </div>
+
+  <div class="ov-col jc-judge fragment" data-fragment-index="1">
+    <p class="ov-head">LLM judge</p>
+    <p class="ov-gloss">Checks the work: reads the agent’s trace against criteria that people write.</p>
+    <div class="jc-fig">
+      <div class="jc-box">
+        <div class="jc-box-head">Criteria</div>
+        <ul>
+          <li>Answers the question the user asked</li>
+          <li>Uses the location the tool returned</li>
+        </ul>
+      </div>
+      <span class="ov-down" aria-hidden="true">↓</span>
+      <div class="ov-llm"><span class="ov-llm-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="1.5" y="8.5" width="5.5" height="7" rx="1.5"/><rect x="9.25" y="8.5" width="5.5" height="7" rx="1.5"/><rect class="ov-next" x="17" y="8.5" width="5.5" height="7" rx="1.5"/></svg></span>LLM</div>
+      <span class="ov-down fragment" data-fragment-index="2" aria-hidden="true">↓</span>
+      <div class="jc-verdict fragment" data-fragment-index="2">
+        <p class="jc-verdict-head">Verdict <span class="jc-pass">Pass</span></p>
+        <p class="jc-reason">Answers the salary question, using the location that <code>get_location()</code> returned.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<p class="jc-takeaway fragment" data-fragment-index="2"><b>LLM-as-a-judge:</b> use an LLM to check what an agent did.</p>
+```
+
+::: {.notes}
+**About this slide:** The tutorial’s central idea, introduced straight after the headlines asked how to build agents that stay off the front page. On the left is the agent from “From LLMs to agents”, answering the barista question with its [ReAct](../../bibliography/yao-2023-react/) loop. On the right is an **LLM judge**: one more LLM call, given criteria that people write down. It reads the agent’s trace (the question, the tool call and its result, and the answer) and returns a verdict with a short reason. Here the verdict is a pass. The example, its criteria and its pay figure are illustrative.
+
+**Presenter notes:**
+
+- Builds: the slide opens on the agent; click 1 adds the judge, reading the agent’s trace; click 2 adds the verdict and the takeaway line.
+- The agent is the one from column 3 of “From LLMs to agents”: same question, same `get_location()` call, same answer.
+- The judge is an LLM too, the same kind of model as the one inside the agent, given a different job. It does not do the task; it checks it.
+- What it reads: here, the whole trace, not just the final answer, so it can see that “Fitzroy” came from the tool. A judge can also read only the output, or a single step. “LLM-as-judge: evaluating the trace”, in section 2, shows the places a judge can check.
+- The criteria are written by people. The two here are made up for this example. The judge checks only what its criteria ask: it did not check whether $34 an hour is right, and that figure is illustrative, not wage data.
+- The verdict here is a pass or fail with a reason. Judges can also give scores. Part 2 covers how to write the criteria: rubrics, scales and prompt patterns.
+- Using an LLM to check an LLM can sound circular. Keep that question open; the rest of Part 1 explains why it is still the best approach available today.
+- For further reading, there is a survey of the approach: [Gu et al. 2024](../../bibliography/gu-2024-llm-as-judge-survey/).
+- Next: why agents need this kind of check, because they are complex *and* complicated systems; then the platforms that run judges alongside other protections.
 :::
 
 ---
@@ -429,7 +503,7 @@ Cards, in the order they appear, which is the order the stories were published, 
 [Contrasts and examples: [Complex versus complicated](../../bibliography/finegood-complex-versus-complicated/) (Frameworks Collection, CC BY-NC-ND). Figures illustrative.]{.attribution .slide-foot}
 
 ::: {.notes}
-**About this slide:** An AI agent is both a complex and a complicated system. It follows the headlines: those failures came from real systems, and this slide says what kind of system an agent is. It names the split from the takeaway on “From LLMs to agents”: the non-deterministic LLM calls are the complex part, and the deterministic harness and tool calls are the complicated part. The slide opens on complex, then one click reveals complicated beside it.
+**About this slide:** An AI agent is both a complex and a complicated system. It follows the headlines and the first look at an LLM judge: those failures came from real systems, and this slide says what kind of system an agent is, and so why a judge is needed. It names the split from the takeaway on “From LLMs to agents”: the non-deterministic LLM calls are the complex part, and the deterministic harness and tool calls are the complicated part. The slide opens on complex, then one click reveals complicated beside it.
 
 A complex system has many parts entangled through feedback loops, so the behaviour of the whole emerges from how the parts interact, and the same input gives a distribution of outputs that cannot be traced back to individual parts. Complex systems are unpredictable, self-organising and emergent. The weather is the example: air, heat and moisture feed back on each other, so similar mornings can end in different afternoons. The economy, ant colonies and human brains are complex too. In an agent, the model, the agent built on it, and swarms of agents are complex.
 
@@ -487,9 +561,9 @@ A complicated system also has many parts, but every connection is designed and c
 ```
 
 ::: {.notes}
-**About this slide:** How organisations protect against the risks in the headlines, two slides back. The top of the slide follows on from the previous slide: protections come in multiple layers, using multiple methods, because AI agents are both complicated systems, which need deterministic tests and checks, and complex systems, which need non-deterministic checks. LLM-as-a-judge is one of the most commonly used non-deterministic checks, and a key focus of this tutorial. The bottom of the slide says who provides these protections. Organisations rarely build every safeguard for an agent themselves: agent platforms provide multiple levels of protections to mitigate agent risks. Four examples: Amazon Bedrock AgentCore from AWS ([AWS 2026](../../bibliography/aws-2026-bedrock-agentcore/)), Gemini Enterprise Agent Platform from Google Cloud ([Google Cloud 2026a](../../bibliography/google-cloud-2026-agent-platform-overview/)), Arize AX from Arize ([Arize](../../bibliography/arize/)) and LangSmith from LangChain ([LangChain 2026](../../bibliography/langchain-2026-langsmith/)).
+**About this slide:** How organisations protect against the risks in the headlines, three slides back. The top of the slide follows on from the previous slide: protections come in multiple layers, using multiple methods, because AI agents are both complicated systems, which need deterministic tests and checks, and complex systems, which need non-deterministic checks. LLM-as-a-judge is one of the most commonly used non-deterministic checks, and a key focus of this tutorial. The bottom of the slide says who provides these protections. Organisations rarely build every safeguard for an agent themselves: agent platforms provide multiple levels of protections to mitigate agent risks. Four examples: Amazon Bedrock AgentCore from AWS ([AWS 2026](../../bibliography/aws-2026-bedrock-agentcore/)), Gemini Enterprise Agent Platform from Google Cloud ([Google Cloud 2026a](../../bibliography/google-cloud-2026-agent-platform-overview/)), Arize AX from Arize ([Arize](../../bibliography/arize/)) and LangSmith from LangChain ([LangChain 2026](../../bibliography/langchain-2026-langsmith/)).
 
-This is the first place the tutorial uses the term. **LLM-as-a-judge** means an LLM, the judge, reads what an agent did and checks it against criteria that people write down. Evals and guardrails use judges to check agents before launch and while they run. Using AI to check AI can sound circular; the rest of Part 1 explains why it is the best approach available today.
+“An LLM judge checks the agent”, two slides back, introduced the idea; this slide gives the definition and puts it among the other protections. **LLM-as-a-judge** means an LLM, the judge, reads what an agent did and checks it against criteria that people write down. Evals and guardrails use judges to check agents before launch and while they run. Using AI to check AI can sound circular; the rest of Part 1 explains why it is the best approach available today.
 
 **Presenter notes:**
 

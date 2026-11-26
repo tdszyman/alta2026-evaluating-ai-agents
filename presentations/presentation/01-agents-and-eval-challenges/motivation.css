@@ -1690,3 +1690,158 @@
 
 .reveal .overview-slide .ov-det-ink { font-weight: 700; }
 .reveal .overview-slide .ov-sto-ink { font-weight: 700; color: var(--series-b-ink); }
+
+/* "An LLM judge checks the agent": the agent column from "From LLMs to agents"
+   beside a judge panel. The slide also carries .overview-slide, so the bubbles,
+   loop and LLM box are the overview's own components. The judge panel takes the
+   judge tint and edge from "LLM-as-judge: evaluating the trace", its criteria
+   box the judge header gradient, and the verdict the pass colour. The grid is
+   zoomed so the reused overview components read at this slide's larger scale. */
+
+.reveal .judge-concept-slide .jc-grid {
+  display: grid;
+  grid-template-columns: 1fr 104px 1fr;
+  align-items: stretch;
+  width: 990px;
+  margin: 8px auto 0;
+  zoom: 1.17;
+}
+
+.reveal .judge-concept-slide .jc-grid p { margin: 0; }
+
+.reveal .judge-concept-slide .ov-col { padding: 14px 22px 16px; }
+
+.reveal .judge-concept-slide .ov-head { font-size: 26px; }
+
+.reveal .judge-concept-slide .ov-gloss {
+  min-height: 0;
+  font-size: 17px;
+}
+
+.reveal .judge-concept-slide .jc-judge {
+  background: var(--chat-judge-tint);
+  border-color: var(--chat-judge-box-edge);
+}
+
+.reveal .judge-concept-slide .jc-judge .ov-head { color: var(--chat-judge-label); }
+
+.reveal .judge-concept-slide .jc-fig {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  margin-top: 12px;
+}
+
+.reveal .judge-concept-slide .ov-msg { font-size: 18px; }
+
+.reveal .judge-concept-slide .jc-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-self: center;
+  gap: 4px;
+  padding: 0 8px;
+}
+
+.reveal .judge-concept-slide .jc-link-label {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--chat-judge-label);
+}
+
+.reveal .judge-concept-slide .jc-link svg {
+  width: 100%;
+  height: 20px;
+  overflow: visible;
+}
+
+.reveal .judge-concept-slide .jc-link line {
+  stroke: var(--chat-judge-edge);
+  stroke-width: 3;
+}
+
+.reveal .judge-concept-slide .jc-link path { fill: var(--chat-judge-edge); }
+
+.reveal .judge-concept-slide .jc-box {
+  overflow: hidden;
+  background: var(--deck-paper);
+  border: 1px solid var(--chat-judge-box-edge);
+  border-radius: 6px;
+}
+
+.reveal .judge-concept-slide .jc-box-head {
+  padding: 4px 12px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--chat-judge-head-ink);
+  background: var(--chat-judge-head-bg);
+}
+
+.reveal .judge-concept-slide .jc-box ul {
+  margin: 0;
+  padding: 8px 14px 8px 32px;
+  font-size: 18px;
+  line-height: 1.35;
+  color: var(--deck-ink);
+}
+
+.reveal .judge-concept-slide .jc-box li { margin: 0; }
+
+.reveal .judge-concept-slide .jc-verdict {
+  padding: 8px 14px 10px;
+  background: var(--deck-paper);
+  border: 2px solid var(--verdict-pass);
+  border-radius: 6px;
+}
+
+.reveal .judge-concept-slide .jc-verdict-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--deck-soft);
+}
+
+.reveal .judge-concept-slide .jc-pass {
+  padding: 2px 12px;
+  font-size: 15px;
+  letter-spacing: 0.08em;
+  color: var(--verdict-on);
+  background: var(--verdict-pass);
+  border-radius: 999px;
+}
+
+.reveal .judge-concept-slide .jc-reason {
+  margin-top: 6px !important;
+  font-size: 18px;
+  line-height: 1.35;
+  color: var(--deck-ink);
+}
+
+.reveal .judge-concept-slide .jc-reason code {
+  font-family: var(--deck-font-mono);
+  font-size: 16px;
+  color: var(--deck-ink);
+  background: none;
+}
+
+.reveal .judge-concept-slide .jc-takeaway {
+  width: 1160px;
+  margin: 16px auto 0;
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 1.3;
+  text-align: center;
+  color: var(--deck-ink);
+}
+
+.reveal .judge-concept-slide .jc-takeaway b { color: var(--chat-judge-label); }
