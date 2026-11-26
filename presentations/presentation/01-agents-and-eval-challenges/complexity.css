@@ -154,14 +154,15 @@
 
 .reveal .cx-duo-slide .cx-name {
   display: block;
-  font-size: 22px;
-  font-weight: 700;
+  font-size: 30px;
+  font-weight: 600;
 }
 
 .reveal .cx-duo-slide .cx-tagline {
   display: block;
-  font-size: 30px;
-  font-weight: 700;
+  margin-top: 2px;
+  font-size: 22px;
+  font-weight: 500;
   color: var(--deck-ink);
 }
 
