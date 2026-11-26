@@ -20,19 +20,19 @@ format:
 
 ---
 
-## Back from Part 3: how far did you trust your judge? {.j2-slide}
+## Back from Part 3: can you trust your judge? {#back-from-part-3-how-far-did-you-trust-your-judge .j2-slide}
 
 <!-- TODO: Part 4 has 30 minutes, questions included (3:30 to 4:00, Terrence’s schedule in the Intro deck). Whether to leave time for the room to reflect on Part 3 is an open question; this slide is that reflection, and can shrink to one question if time is short. Laptops are optional for Part 4. Part 4 reuses Part 2's slide components (judge-methods.css) so the two decks look the same. -->
 
 ```{=html}
 <p class="j2-colhead">Four questions about the judge you built in Part 3</p>
 <div class="j2-list">
-  <div class="j2-li"><span class="j2-num">1</span><div><b>Did a repeat change a score?</b> Same trace, same judge, another verdict. <a href="#/the-same-case-can-get-a-different-verdict">Section 1.1</a></div></div>
-  <div class="j2-li fragment" data-fragment-index="1"><span class="j2-num">2</span><div><b>Did the evidence it cited support its score?</b> A message ID shows where the judge looked, not that it was right. <a href="#/a-fluent-explanation-is-not-proof">Section 1.4</a></div></div>
-  <div class="j2-li fragment" data-fragment-index="2"><span class="j2-num">3</span><div><b>Did editing the rubric move the pass rate more than the agent did?</b> Then the rubric is part of what you measured. <a href="#/a-rubric-is-a-measurement-and-it-can-make-things-worse">Section 2.2</a></div></div>
-  <div class="j2-li fragment" data-fragment-index="3"><span class="j2-num">4</span><div><b>Would you ship an agent on these scores?</b> If not, what would you need first? <a href="#/before-you-trust-a-judge-a-checklist">Section 3.1</a></div></div>
+  <div class="j2-li"><span class="j2-num">1</span><div><b>Did you run the judge twice and get a different score?</b> Same trace, same judge, different score. <a href="#/the-same-case-can-get-a-different-verdict">Section 1.1</a></div></div>
+  <div class="j2-li fragment" data-fragment-index="1"><span class="j2-num">2</span><div><b>Your judge gave you evidence, a message ID. Did that message really support the score?</b> <a href="#/a-fluent-explanation-is-not-proof">Section 1.4</a></div></div>
+  <div class="j2-li fragment" data-fragment-index="2"><span class="j2-num">3</span><div><b>You changed the rubric, and the pass rate changed. But the agent did not change. So who changed the result?</b> <a href="#/a-rubric-is-a-measurement-and-it-can-make-things-worse">Section 2.2</a></div></div>
+  <div class="j2-li fragment" data-fragment-index="3"><span class="j2-num">4</span><div><b>Would you ship this agent tomorrow, based on these scores?</b> If not, what do you need first? <a href="#/before-you-trust-a-judge-a-checklist">Section 3.1</a></div></div>
 </div>
-<div class="j2-note fragment" data-fragment-index="4"><b>This part:</b> how reliable a judge is, what its score cannot tell you, and what to do about both, now and in research.</div>
+<div class="j2-note fragment" data-fragment-index="4"><b>In this part, we look at three things.</b> One: how reliable is the judge? Two: what can't the score tell us? Three: what can we do about it?</div>
 ```
 
 ::: {.notes}
@@ -46,16 +46,16 @@ format:
 - Part 4 has three sections: reliability (is the judge a stable instrument?), limitations (what a judge score cannot tell you, including in our own exercise), and good practice and future directions. Part 2 introduced the failure modes in one table (its section 2.3); this part goes deeper and adds the evidence that Parts 2 and 3 did not use.
 :::
 
-# 1. Reliability: can you trust the instrument? {.j2-slide}
+# 1. Reliability: can you trust the judge? {#reliability-can-you-trust-the-instrument .j2-slide}
 
 ```{=html}
-<p class="j2-sec-goal"><span>Learning goal 1</span>Recognise how consistent and robust LLM judges are, and why their agreement with people on one task does not carry to the next</p>
+<p class="j2-sec-goal"><span>Learning goal 1</span>Before we trust a judge, we test it. We ask four things.</p>
 <p class="j2-colhead j2-sec-head">In this section</p>
 <ol class="j2-sec-list">
-  <li><a href="#/the-same-case-can-get-a-different-verdict"><span>1.1</span>Consistency</a></li>
-  <li><a href="#/verdicts-move-with-things-that-should-not-matter"><span>1.2</span>Robustness</a></li>
-  <li><a href="#/agreement-with-people-does-not-transfer"><span>1.3</span>Transfer</a></li>
-  <li><a href="#/a-fluent-explanation-is-not-proof"><span>1.4</span>Explanations</a></li>
+  <li><a href="#/the-same-case-can-get-a-different-verdict"><span>1.1</span>Does it give the same answer twice?</a></li>
+  <li><a href="#/verdicts-move-with-things-that-should-not-matter"><span>1.2</span>Does it ignore things that don't matter?</a></li>
+  <li><a href="#/agreement-with-people-does-not-transfer"><span>1.3</span>Does it agree with people?</a></li>
+  <li><a href="#/a-fluent-explanation-is-not-proof"><span>1.4</span>Are its reasons good?</a></li>
 </ol>
 ```
 
@@ -65,27 +65,27 @@ format:
 
 ---
 
-## The same case can get a different verdict {.j2-slide}
+## Does it give the same answer twice? {#the-same-case-can-get-a-different-verdict .j2-slide}
 
 ```{=html}
 <nav class="j2-strip" aria-label="Section 1, Reliability: where this slide sits"><a class="j2-strip-sec" href="#/reliability-can-you-trust-the-instrument"><span>1</span>Reliability</a><a class="is-on" aria-current="true" href="#/the-same-case-can-get-a-different-verdict"><span>1.1</span>Consistency</a><a href="#/verdicts-move-with-things-that-should-not-matter"><span>1.2</span>Robustness</a><a href="#/agreement-with-people-does-not-transfer"><span>1.3</span>Transfer</a><a href="#/a-fluent-explanation-is-not-proof"><span>1.4</span>Explanations</a></nav>
 <div class="j2-split j2-split-even">
   <div class="j2-panel">
-    <p class="j2-colhead">Close cases flip; clear ones do not</p>
-    <p class="j2-metric">Pairwise verdicts that changed when the two answers were swapped</p>
-    <div class="j2-bar"><span class="j2-bl">Close pairs</span><span class="j2-bt"><span class="j2-bf j2-bf-bad" style="width:71.4%"></span></span><b>25 of 35</b></div>
-    <div class="j2-bar"><span class="j2-bl">Clear pairs</span><span class="j2-bt"><span class="j2-bf" style="width:2.6%"></span></span><b>1 of 39</b></div>
+    <p class="j2-colhead">Same answers, different order</p>
+    <p class="j2-metric">How often the judge changed its mind when the two answers were swapped</p>
+    <div class="j2-bar"><span class="j2-bl">Close cases</span><span class="j2-bt"><span class="j2-bf j2-bf-bad" style="width:71.4%"></span></span><b>25 of 35</b></div>
+    <div class="j2-bar"><span class="j2-bl">Clear cases</span><span class="j2-bt"><span class="j2-bf" style="width:2.6%"></span></span><b>1 of 39</b></div>
     <p class="j2-src"><a href="../../bibliography/wang-2024-not-fair/">Wang et al. 2024</a></p>
   </div>
   <div class="j2-panel fragment" data-fragment-index="1">
-    <p class="j2-colhead">Repeats help, up to a point</p>
-    <p class="j2-metric">Comparisons a one-integer judge scored as a tie</p>
-    <div class="j2-bar"><span class="j2-bl">1 pass</span><span class="j2-bt"><span class="j2-bf j2-bf-ref" style="width:26.7%"></span></span><b>26.7%</b></div>
-    <div class="j2-bar"><span class="j2-bl">16 passes</span><span class="j2-bt"><span class="j2-bf" style="width:5.5%"></span></span><b>5.5%</b></div>
-    <p class="j2-src"><a href="../../bibliography/kwok-2026-llm-as-verifier/">Kwok et al. 2026</a>. Accuracy rose only from 74.7% to 77.5%.</p>
+    <p class="j2-colhead">Can we fix it by running the judge many times? A little.</p>
+    <p class="j2-metric">Ties, with 1 run and with 16 runs</p>
+    <div class="j2-bar"><span class="j2-bl">1 run</span><span class="j2-bt"><span class="j2-bf j2-bf-ref" style="width:26.7%"></span></span><b>26.7%</b></div>
+    <div class="j2-bar"><span class="j2-bl">16 runs</span><span class="j2-bt"><span class="j2-bf" style="width:5.5%"></span></span><b>5.5%</b></div>
+    <p class="j2-src"><a href="../../bibliography/kwok-2026-llm-as-verifier/">Kwok et al. 2026</a>. Accuracy goes up by less than three points (74.7% to 77.5%).</p>
   </div>
 </div>
-<div class="j2-note fragment" data-fragment-index="2"><b>Report the spread, not one run.</b> The cases a judge is unsure about are the ones you most need it for. Part 3's repeats setting is how you see them.</div>
+<div class="j2-note fragment" data-fragment-index="2"><b>Don't report one run. Report the spread.</b> The spread shows you where the judge is unsure, and that's where you should look.</div>
 ```
 
 ::: {.notes}
@@ -102,20 +102,20 @@ format:
 
 ---
 
-## Verdicts move with things that should not matter {.j2-slide}
+## Does it ignore things that don't matter? {#verdicts-move-with-things-that-should-not-matter .j2-slide}
 
 ```{=html}
 <nav class="j2-strip" aria-label="Section 1, Reliability: where this slide sits"><a class="j2-strip-sec" href="#/reliability-can-you-trust-the-instrument"><span>1</span>Reliability</a><a href="#/the-same-case-can-get-a-different-verdict"><span>1.1</span>Consistency</a><a class="is-on" aria-current="true" href="#/verdicts-move-with-things-that-should-not-matter"><span>1.2</span>Robustness</a><a href="#/agreement-with-people-does-not-transfer"><span>1.3</span>Transfer</a><a href="#/a-fluent-explanation-is-not-proof"><span>1.4</span>Explanations</a></nav>
 <table class="j2-tbl j2-tbl-fail">
-  <thead><tr><th>Change one thing</th><th>What happened</th><th>Source</th></tr></thead>
+  <thead><tr><th>Change one small thing</th><th>What happened</th><th>Source</th></tr></thead>
   <tbody>
-    <tr><td>Add answers to compare</td><td>With three or four answers in place of two, most judges' position robustness fell below 0.5</td><td><a href="../../bibliography/ye-2024-justice-or-prejudice/">Ye et al. 2024</a></td></tr>
-    <tr class="fragment" data-fragment-index="1"><td>Make the wrong answer read well</td><td>GPT-4 picked the instruction-following answer 88% of the time on natural pairs, and 37% when the other answer was a close, fluent miss</td><td><a href="../../bibliography/zhou-2024-mitigating-bias/">Zhou et al. 2024</a></td></tr>
-    <tr class="fragment" data-fragment-index="2"><td>Answer with nothing</td><td>Several small judges marked “Yes” or “Sure” as a correct answer</td><td><a href="../../bibliography/thakur-2024-judging-the-judges/">Thakur et al. 2024</a></td></tr>
-    <tr class="fragment" data-fragment-index="3"><td>Leave the judge unsure</td><td>Almost every judge leaned to “correct” when it did not follow the reference</td><td><a href="../../bibliography/thakur-2024-judging-the-judges/">Thakur et al. 2024</a></td></tr>
+    <tr><td>Give the judge more answers to compare</td><td>With 3 or 4 answers instead of 2, most judges got confused by the order (position robustness below 0.5)</td><td><a href="../../bibliography/ye-2024-justice-or-prejudice/">Ye et al. 2024</a></td></tr>
+    <tr class="fragment" data-fragment-index="1"><td>Write the wrong answer in fluent English</td><td>GPT-4 picked the right answer 88% of the time on normal pairs, but only 37% when the wrong answer was fluent</td><td><a href="../../bibliography/zhou-2024-mitigating-bias/">Zhou et al. 2024</a></td></tr>
+    <tr class="fragment" data-fragment-index="2"><td>Give an empty answer, just “Yes”</td><td>Some small judges said: correct!</td><td><a href="../../bibliography/thakur-2024-judging-the-judges/">Thakur et al. 2024</a></td></tr>
+    <tr class="fragment" data-fragment-index="3"><td>The judge is not sure</td><td>Almost every judge said “correct”</td><td><a href="../../bibliography/thakur-2024-judging-the-judges/">Thakur et al. 2024</a></td></tr>
   </tbody>
 </table>
-<div class="j2-note fragment" data-fragment-index="4"><b>No judge was robust to all 12 biases tested,</b> and the best judge overall was not the best on every bias (<a href="../../bibliography/ye-2024-justice-or-prejudice/">Ye et al. 2024</a>). Choose a judge by its bias profile for your use, not its reputation.</div>
+<div class="j2-note fragment" data-fragment-index="4"><b>Researchers tested twelve biases. No judge passed all twelve,</b> and the best judge overall was not the best on every test (<a href="../../bibliography/ye-2024-justice-or-prejudice/">Ye et al. 2024</a>). Don't choose a judge by its famous name. Choose it by how it behaves on your task.</div>
 ```
 
 ::: {.notes}
@@ -133,14 +133,14 @@ format:
 
 ---
 
-## Agreement with people does not transfer {.j2-slide}
+## Does it agree with people? {#agreement-with-people-does-not-transfer .j2-slide}
 
 ```{=html}
 <nav class="j2-strip" aria-label="Section 1, Reliability: where this slide sits"><a class="j2-strip-sec" href="#/reliability-can-you-trust-the-instrument"><span>1</span>Reliability</a><a href="#/the-same-case-can-get-a-different-verdict"><span>1.1</span>Consistency</a><a href="#/verdicts-move-with-things-that-should-not-matter"><span>1.2</span>Robustness</a><a class="is-on" aria-current="true" href="#/agreement-with-people-does-not-transfer"><span>1.3</span>Transfer</a><a href="#/a-fluent-explanation-is-not-proof"><span>1.4</span>Explanations</a></nav>
 <div class="j2-split j2-split-even">
   <div class="j2-panel">
-    <p class="j2-colhead">Even on trivia, the best judges trail people</p>
-    <p class="j2-metric">Scott's π with human labels, TriviaQA, correct or not</p>
+    <p class="j2-colhead">An easy task, simple trivia questions. Judges are still below people.</p>
+    <p class="j2-metric">Agreement with people (Scott's π), TriviaQA, correct or not</p>
     <div class="j2-bar"><span class="j2-bl">People with people</span><span class="j2-bt"><span class="j2-bf j2-bf-ref" style="width:96%"></span></span><b>96</b></div>
     <div class="j2-bar"><span class="j2-bl">Llama-3 70B</span><span class="j2-bt"><span class="j2-bf" style="width:88%"></span></span><b>88</b></div>
     <div class="j2-bar"><span class="j2-bl">GPT-4 Turbo</span><span class="j2-bt"><span class="j2-bf" style="width:87%"></span></span><b>87</b></div>
@@ -149,9 +149,9 @@ format:
     <p class="j2-src"><a href="../../bibliography/thakur-2024-judging-the-judges/">Thakur et al. 2024</a></p>
   </div>
   <div class="j2-side">
-    <p class="fragment" data-fragment-index="1"><b>It varies by task.</b> Across 20 annotated datasets, 11 judges were reliable on some properties and not others; it depended on what was rated, the raters' expertise and who wrote the text (<a href="../../bibliography/bavaresco-2025-human-judges/">Bavaresco et al. 2025</a>).</p>
-    <p class="fragment" data-fragment-index="2"><b>It tracks what the judge knows.</b> Without a reference, judges agreed with finance experts mainly on questions they could answer themselves. Expert-written references largely fixed this (<a href="../../bibliography/krumdick-2025-no-free-labels/">Krumdick et al. 2025</a>).</p>
-    <p class="j2-strong fragment" data-fragment-index="3">A published agreement figure is evidence about that task. Validate on yours, with your people.</p>
+    <p class="fragment" data-fragment-index="1"><b>Agreement changes from task to task.</b> It depends on what you rate, who rates it, and who wrote the text (<a href="../../bibliography/bavaresco-2025-human-judges/">Bavaresco et al. 2025</a>).</p>
+    <p class="fragment" data-fragment-index="2"><b>Judges agree with experts mostly on questions they can answer themselves.</b> In finance, a reference answer mostly fixed this. Give your judge something to check against (<a href="../../bibliography/krumdick-2025-no-free-labels/">Krumdick et al. 2025</a>).</p>
+    <p class="j2-strong fragment" data-fragment-index="3">A paper says “our judge agrees with people”. On which task? Test it on your task, with your people.</p>
   </div>
 </div>
 ```
@@ -170,24 +170,24 @@ format:
 
 ---
 
-## A fluent explanation is not proof {.j2-slide}
+## Are its reasons good? {#a-fluent-explanation-is-not-proof .j2-slide}
 
 ```{=html}
 <nav class="j2-strip" aria-label="Section 1, Reliability: where this slide sits"><a class="j2-strip-sec" href="#/reliability-can-you-trust-the-instrument"><span>1</span>Reliability</a><a href="#/the-same-case-can-get-a-different-verdict"><span>1.1</span>Consistency</a><a href="#/verdicts-move-with-things-that-should-not-matter"><span>1.2</span>Robustness</a><a href="#/agreement-with-people-does-not-transfer"><span>1.3</span>Transfer</a><a class="is-on" aria-current="true" href="#/a-fluent-explanation-is-not-proof"><span>1.4</span>Explanations</a></nav>
 <div class="j2-split j2-split-even">
   <div class="j2-panel">
-    <p class="j2-colhead">When an agent judge flags a step, is it right about where and why?</p>
-    <p class="j2-metric">Flags that people rated right place, right reason</p>
+    <p class="j2-colhead">Did the judge point to the right step, for the right reason?</p>
+    <p class="j2-metric">Right step and right reason, as checked by people</p>
     <div class="j2-bar"><span class="j2-bl">GPT-OSS-120B, τ-bench retail</span><span class="j2-bt"><span class="j2-bf" style="width:58%"></span></span><b>58%</b></div>
     <div class="j2-bar"><span class="j2-bl">GPT-OSS-120B, DA-Code</span><span class="j2-bt"><span class="j2-bf" style="width:60%"></span></span><b>60%</b></div>
     <div class="j2-bar"><span class="j2-bl">Qwen3-235B, τ-bench retail</span><span class="j2-bt"><span class="j2-bf" style="width:63%"></span></span><b>63%</b></div>
     <div class="j2-bar"><span class="j2-bl">Qwen3-235B, DA-Code</span><span class="j2-bt"><span class="j2-bf j2-bf-bad" style="width:43%"></span></span><b>43%</b></div>
-    <p class="j2-src">1,131 human labels on judge critiques (<a href="../../bibliography/pisupati-2026-counsel/">Pisupati et al. 2026</a>). GPT-OSS at high reasoning effort.</p>
+    <p class="j2-src">Only about half the time. 1,131 human labels on judge explanations (<a href="../../bibliography/pisupati-2026-counsel/">Pisupati et al. 2026</a>). GPT-OSS at high reasoning effort.</p>
   </div>
   <div class="j2-side">
-    <p class="fragment" data-fragment-index="1"><b>More reasoning cut false alarms, not bad reasons.</b> At high effort, flags that should not have been raised fell from 187 to 68; flags with the right place and a poor reason did not fall (109 and 112).</p>
-    <p class="fragment" data-fragment-index="2"><b>This is precision only.</b> Nobody checked the steps the judges passed over.</p>
-    <p class="j2-strong fragment" data-fragment-index="3">In Part 3, an evidence ID shows where the judge looked. Whether the message supports the score is still your call.</p>
+    <p class="fragment" data-fragment-index="1"><b>More thinking gave fewer false alarms, but the bad reasons stayed the same.</b> False alarms fell from 187 to 68. Right step with a bad reason did not fall (109 and 112).</p>
+    <p class="fragment" data-fragment-index="2"><b>Nobody checked what the judges missed.</b> So the real picture may be worse.</p>
+    <p class="j2-strong fragment" data-fragment-index="3">In Part 3, your evidence ID shows where the judge looked. It doesn't prove the judge was right. That part is still your job.</p>
   </div>
 </div>
 ```
@@ -204,16 +204,16 @@ format:
 - Part 1 defined meta-evaluation with this paper: judging the judges. The Part 3 app requires valid evidence message IDs, and counts a malformed result as an evaluation error; it does not check that the evidence supports the claim (workshop/README.md).
 :::
 
-# 2. Limitations: what a judge score cannot tell you {.j2-slide}
+# 2. Limitations: what can a judge not see? {#limitations-what-a-judge-score-cannot-tell-you .j2-slide}
 
 ```{=html}
-<p class="j2-sec-goal"><span>Learning goal 2</span>Name what a judge score leaves out, in the trajectory, the rubric, the cost and the test set, and what our own exercise could not show</p>
+<p class="j2-sec-goal"><span>Learning goal 2</span>Even if the judge is a perfect tool, what can it not see?</p>
 <p class="j2-colhead j2-sec-head">In this section</p>
 <ol class="j2-sec-list">
-  <li><a href="#/a-good-final-answer-can-hide-a-bad-trajectory"><span>2.1</span>The trajectory</a></li>
-  <li><a href="#/a-rubric-is-a-measurement-and-it-can-make-things-worse"><span>2.2</span>The rubric</a></li>
-  <li><a href="#/a-score-without-cost-variance-and-a-holdout-is-not-a-result"><span>2.3</span>Cost and validity</a></li>
-  <li><a href="#/what-the-part-3-exercise-could-not-show"><span>2.4</span>Our exercise</a></li>
+  <li><a href="#/a-good-final-answer-can-hide-a-bad-trajectory"><span>2.1</span>A good final answer can hide a bad path</a></li>
+  <li><a href="#/a-rubric-is-a-measurement-and-it-can-make-things-worse"><span>2.2</span>The rubric is part of the measurement</a></li>
+  <li><a href="#/a-score-without-cost-variance-and-a-holdout-is-not-a-result"><span>2.3</span>A score alone is not a result</a></li>
+  <li><a href="#/what-the-part-3-exercise-could-not-show"><span>2.4</span>Our own exercise</a></li>
 </ol>
 ```
 
@@ -223,16 +223,16 @@ format:
 
 ---
 
-## A good final answer can hide a bad trajectory {.j2-slide}
+## A good final answer can hide a bad path {#a-good-final-answer-can-hide-a-bad-trajectory .j2-slide}
 
 ```{=html}
-<nav class="j2-strip" aria-label="Section 2, Limitations: where this slide sits"><a class="j2-strip-sec" href="#/limitations-what-a-judge-score-cannot-tell-you"><span>2</span>Limitations</a><a class="is-on" aria-current="true" href="#/a-good-final-answer-can-hide-a-bad-trajectory"><span>2.1</span>The trajectory</a><a href="#/a-rubric-is-a-measurement-and-it-can-make-things-worse"><span>2.2</span>The rubric</a><a href="#/a-score-without-cost-variance-and-a-holdout-is-not-a-result"><span>2.3</span>Cost and validity</a><a href="#/what-the-part-3-exercise-could-not-show"><span>2.4</span>Our exercise</a></nav>
+<nav class="j2-strip" aria-label="Section 2, Limitations: where this slide sits"><a class="j2-strip-sec" href="#/limitations-what-a-judge-score-cannot-tell-you"><span>2</span>Limitations</a><a class="is-on" aria-current="true" href="#/a-good-final-answer-can-hide-a-bad-trajectory"><span>2.1</span>The path</a><a href="#/a-rubric-is-a-measurement-and-it-can-make-things-worse"><span>2.2</span>The rubric</a><a href="#/a-score-without-cost-variance-and-a-holdout-is-not-a-result"><span>2.3</span>The score</a><a href="#/what-the-part-3-exercise-could-not-show"><span>2.4</span>Our exercise</a></nav>
 <div class="j2-grid j2-g3">
-  <div class="j2-cd"><span class="j2-cd-k">Shortcut</span><b>The outcome says success</b><p>In a constructed log, an agent opened the benchmark's answers and reported them. The outcome line cannot show it (<a href="../../bibliography/chen-2026-emerging-trends/">Chen et al. 2026</a>).</p></div>
-  <div class="j2-cd fragment" data-fragment-index="1"><span class="j2-cd-k">Hidden step</span><b>The error is at step 14</b><p>A judge pointed at the final answer never sees a stale argument passed to a tool mid-run (<a href="../../bibliography/voss-2026-agent-as-judge/">Voss 2026</a>).</p></div>
-  <div class="j2-cd fragment" data-fragment-index="2"><span class="j2-cd-k">Many turns</span><b>No single turn fails</b><p>Context drift, overwritten memory and compounding tool errors appear only across a conversation (<a href="../../bibliography/guan-2025-multiturn-survey/">Guan et al. 2025</a>).</p></div>
+  <div class="j2-cd"><span class="j2-cd-k">Shortcut</span><b>The result said: success</b><p>An agent found the benchmark's answers and just reported them. The final answer cannot show this (<a href="../../bibliography/chen-2026-emerging-trends/">Chen et al. 2026</a>).</p></div>
+  <div class="j2-cd fragment" data-fragment-index="1"><span class="j2-cd-k">Hidden error</span><b>The error is at step 14</b><p>The agent passes a wrong value to a tool. If the judge only reads the final answer, it never sees step 14 (<a href="../../bibliography/voss-2026-agent-as-judge/">Voss 2026</a>).</p></div>
+  <div class="j2-cd fragment" data-fragment-index="2"><span class="j2-cd-k">Many turns</span><b>No single turn fails. The conversation fails.</b><p>Over many turns, the agent slowly forgets things or mixes them up (<a href="../../bibliography/guan-2025-multiturn-survey/">Guan et al. 2025</a>).</p></div>
 </div>
-<div class="j2-note fragment" data-fragment-index="3"><b>Give the judge the trace, score the steps, and read a sample of the cases it passed.</b> Outcome-only grading cannot tell which behaviour it measured (<a href="../../bibliography/chen-2026-emerging-trends/">Chen et al. 2026</a>).</div>
+<div class="j2-note fragment" data-fragment-index="3"><b>Don't just check the final answer.</b> Give the judge the whole path, score each step, and read some cases that passed, not only the ones that failed (<a href="../../bibliography/chen-2026-emerging-trends/">Chen et al. 2026</a>).</div>
 ```
 
 ::: {.notes}
@@ -249,17 +249,17 @@ format:
 
 ---
 
-## A rubric is a measurement, and it can make things worse {.j2-slide}
+## The rubric is part of the measurement {#a-rubric-is-a-measurement-and-it-can-make-things-worse .j2-slide}
 
 ```{=html}
-<nav class="j2-strip" aria-label="Section 2, Limitations: where this slide sits"><a class="j2-strip-sec" href="#/limitations-what-a-judge-score-cannot-tell-you"><span>2</span>Limitations</a><a href="#/a-good-final-answer-can-hide-a-bad-trajectory"><span>2.1</span>The trajectory</a><a class="is-on" aria-current="true" href="#/a-rubric-is-a-measurement-and-it-can-make-things-worse"><span>2.2</span>The rubric</a><a href="#/a-score-without-cost-variance-and-a-holdout-is-not-a-result"><span>2.3</span>Cost and validity</a><a href="#/what-the-part-3-exercise-could-not-show"><span>2.4</span>Our exercise</a></nav>
+<nav class="j2-strip" aria-label="Section 2, Limitations: where this slide sits"><a class="j2-strip-sec" href="#/limitations-what-a-judge-score-cannot-tell-you"><span>2</span>Limitations</a><a href="#/a-good-final-answer-can-hide-a-bad-trajectory"><span>2.1</span>The path</a><a class="is-on" aria-current="true" href="#/a-rubric-is-a-measurement-and-it-can-make-things-worse"><span>2.2</span>The rubric</a><a href="#/a-score-without-cost-variance-and-a-holdout-is-not-a-result"><span>2.3</span>The score</a><a href="#/what-the-part-3-exercise-could-not-show"><span>2.4</span>Our exercise</a></nav>
 <div class="j2-list">
-  <div class="j2-li"><span class="j2-num">1</span><div><b>More criteria is not a better judge.</b> A rubric discovered from data scored below using no rubric at all, on every direct-verdict judge tested (<a href="../../bibliography/roy-2026-premise/">Roy et al. 2026</a>).</div></div>
-  <div class="j2-li fragment" data-fragment-index="1"><span class="j2-num">2</span><div><b>Stable is not valid.</b> High agreement among judges shows the rubric is applied consistently, not that it matches what people mean by quality (<a href="../../bibliography/roy-2026-premise/">Roy et al. 2026</a>).</div></div>
-  <div class="j2-li fragment" data-fragment-index="2"><span class="j2-num">3</span><div><b>Fixes pull in different directions.</b> The repair that raised preference accuracy narrowed where the criteria apply; the repair against exploits cut the fool rate and did not raise accuracy (<a href="../../bibliography/roy-2026-premise/">Roy et al. 2026</a>).</div></div>
-  <div class="j2-li fragment" data-fragment-index="3"><span class="j2-num">4</span><div><b>A vague criterion lets style in.</b> Asked for “quality”, a judge rewards fluency, length and tone (<a href="../../bibliography/zhou-2024-mitigating-bias/">Zhou et al. 2024</a>).</div></div>
+  <div class="j2-li"><span class="j2-num">1</span><div><b>More rules do not make a better judge.</b> In one study, a rubric learned from data did worse than no rubric at all (<a href="../../bibliography/roy-2026-premise/">Roy et al. 2026</a>).</div></div>
+  <div class="j2-li fragment" data-fragment-index="1"><span class="j2-num">2</span><div><b>If all the judges agree with each other, it doesn't mean they agree with people.</b> They can all be wrong together (<a href="../../bibliography/roy-2026-premise/">Roy et al. 2026</a>).</div></div>
+  <div class="j2-li fragment" data-fragment-index="2"><span class="j2-num">3</span><div><b>When you fix one problem in a rubric, another problem can appear.</b> One fix raised accuracy. Another fix stopped tricks, but did not raise accuracy (<a href="../../bibliography/roy-2026-premise/">Roy et al. 2026</a>).</div></div>
+  <div class="j2-li fragment" data-fragment-index="3"><span class="j2-num">4</span><div><b>If your rule just says “quality”, the judge rewards long and beautiful answers,</b> not correct ones (<a href="../../bibliography/zhou-2024-mitigating-bias/">Zhou et al. 2024</a>).</div></div>
 </div>
-<div class="j2-note fragment" data-fragment-index="4"><b>Treat a rubric edit like a model change:</b> say which property it should improve, and check it again against people.</div>
+<div class="j2-note fragment" data-fragment-index="4"><b>Every time you change the rubric, treat it like changing the model.</b> Ask: what should this improve? Then test it again with people.</div>
 ```
 
 ::: {.notes}
@@ -276,16 +276,16 @@ format:
 
 ---
 
-## A score without cost, variance and a holdout is not a result {.j2-slide}
+## A score alone is not a result {#a-score-without-cost-variance-and-a-holdout-is-not-a-result .j2-slide}
 
 ```{=html}
-<nav class="j2-strip" aria-label="Section 2, Limitations: where this slide sits"><a class="j2-strip-sec" href="#/limitations-what-a-judge-score-cannot-tell-you"><span>2</span>Limitations</a><a href="#/a-good-final-answer-can-hide-a-bad-trajectory"><span>2.1</span>The trajectory</a><a href="#/a-rubric-is-a-measurement-and-it-can-make-things-worse"><span>2.2</span>The rubric</a><a class="is-on" aria-current="true" href="#/a-score-without-cost-variance-and-a-holdout-is-not-a-result"><span>2.3</span>Cost and validity</a><a href="#/what-the-part-3-exercise-could-not-show"><span>2.4</span>Our exercise</a></nav>
+<nav class="j2-strip" aria-label="Section 2, Limitations: where this slide sits"><a class="j2-strip-sec" href="#/limitations-what-a-judge-score-cannot-tell-you"><span>2</span>Limitations</a><a href="#/a-good-final-answer-can-hide-a-bad-trajectory"><span>2.1</span>The path</a><a href="#/a-rubric-is-a-measurement-and-it-can-make-things-worse"><span>2.2</span>The rubric</a><a class="is-on" aria-current="true" href="#/a-score-without-cost-variance-and-a-holdout-is-not-a-result"><span>2.3</span>The score</a><a href="#/what-the-part-3-exercise-could-not-show"><span>2.4</span>Our exercise</a></nav>
 <div class="j2-grid j2-g3">
-  <div class="j2-cd"><span class="j2-cd-k">Cost</span><b>Accuracy alone picks the expensive system</b><p>On HumanEval, agents with similar accuracy differed in cost by almost two orders of magnitude, and simple retry baselines matched complex agents (<a href="../../bibliography/kapoor-2024-agents-that-matter/">Kapoor et al. 2024</a>).</p></div>
-  <div class="j2-cd fragment" data-fragment-index="1"><span class="j2-cd-k">Variance</span><b>One run is one sample</b><p>Small early differences compound over a long trajectory, and a change in score may come from the model, the scaffold, the tools or the environment (<a href="../../bibliography/chen-2026-emerging-trends/">Chen et al. 2026</a>).</p></div>
-  <div class="j2-cd fragment" data-fragment-index="2"><span class="j2-cd-k">Holdout</span><b>The test set has to stay unseen</b><p>Of 17 agent benchmarks, 7 had no holdout set and no plan for one (<a href="../../bibliography/kapoor-2024-agents-that-matter/">Kapoor et al. 2024</a>).</p></div>
+  <div class="j2-cd"><span class="j2-cd-k">Cost</span><b>Same accuracy, very different cost</b><p>On a coding test, agents with similar accuracy had costs up to about 100 times different. Just trying again did as well as complex agents (<a href="../../bibliography/kapoor-2024-agents-that-matter/">Kapoor et al. 2024</a>).</p></div>
+  <div class="j2-cd fragment" data-fragment-index="1"><span class="j2-cd-k">Spread</span><b>One run is just one sample</b><p>Small changes early in a long task can grow into big differences at the end (<a href="../../bibliography/chen-2026-emerging-trends/">Chen et al. 2026</a>).</p></div>
+  <div class="j2-cd fragment" data-fragment-index="2"><span class="j2-cd-k">Holdout</span><b>A test set the system has never seen</b><p>Out of 17 agent benchmarks, 7 had no holdout at all (<a href="../../bibliography/kapoor-2024-agents-that-matter/">Kapoor et al. 2024</a>).</p></div>
 </div>
-<div class="j2-note fragment" data-fragment-index="3"><b>Report the score with its cost, its spread over runs, and a holdout at the level you claim:</b> new cases, new tasks or a new domain.</div>
+<div class="j2-note fragment" data-fragment-index="3"><b>Report the score with its cost, its spread and a holdout:</b> new cases, new tasks or a new domain.</div>
 ```
 
 ::: {.notes}
@@ -302,21 +302,21 @@ format:
 
 ---
 
-## What the Part 3 exercise could not show {.j2-slide}
+## Our own exercise: five limits {#what-the-part-3-exercise-could-not-show .j2-slide}
 
 ```{=html}
-<nav class="j2-strip" aria-label="Section 2, Limitations: where this slide sits"><a class="j2-strip-sec" href="#/limitations-what-a-judge-score-cannot-tell-you"><span>2</span>Limitations</a><a href="#/a-good-final-answer-can-hide-a-bad-trajectory"><span>2.1</span>The trajectory</a><a href="#/a-rubric-is-a-measurement-and-it-can-make-things-worse"><span>2.2</span>The rubric</a><a href="#/a-score-without-cost-variance-and-a-holdout-is-not-a-result"><span>2.3</span>Cost and validity</a><a class="is-on" aria-current="true" href="#/what-the-part-3-exercise-could-not-show"><span>2.4</span>Our exercise</a></nav>
+<nav class="j2-strip" aria-label="Section 2, Limitations: where this slide sits"><a class="j2-strip-sec" href="#/limitations-what-a-judge-score-cannot-tell-you"><span>2</span>Limitations</a><a href="#/a-good-final-answer-can-hide-a-bad-trajectory"><span>2.1</span>The path</a><a href="#/a-rubric-is-a-measurement-and-it-can-make-things-worse"><span>2.2</span>The rubric</a><a href="#/a-score-without-cost-variance-and-a-holdout-is-not-a-result"><span>2.3</span>The score</a><a class="is-on" aria-current="true" href="#/what-the-part-3-exercise-could-not-show"><span>2.4</span>Our exercise</a></nav>
 <table class="j2-tbl">
-  <thead><tr><th>In Part 3</th><th>So it could not show</th><th>To get there</th></tr></thead>
+  <thead><tr><th>In Part 3</th><th>So we can't say</th><th>To fix it</th></tr></thead>
   <tbody>
-    <tr><td>10 synthetic traces, with recorded tool results</td><td>how the judge does on real, varied traffic</td><td>a sample of real traces</td></tr>
-    <tr class="fragment" data-fragment-index="1"><td>No human labels in the app</td><td>agreement with people, beyond chance</td><td>label a sample; report κ per criterion</td></tr>
-    <tr class="fragment" data-fragment-index="2"><td>All targets scored in one request</td><td>that a tool-call score ignored later messages</td><td>one request per target</td></tr>
-    <tr class="fragment" data-fragment-index="3"><td>A starter pass mark of 4</td><td>that 4 is the right line for a decision</td><td>set it from labelled cases</td></tr>
-    <tr class="fragment" data-fragment-index="4"><td>One judge model per run</td><td>whether the result holds on another judge</td><td>rerun with a second model family</td></tr>
+    <tr><td>1. The traces were synthetic, not real (10 traces)</td><td>how the judge does on real data</td><td>use a sample of real traces</td></tr>
+    <tr class="fragment" data-fragment-index="1"><td>2. We had no human labels</td><td>whether the judge agrees with people</td><td>label a sample; report κ per criterion</td></tr>
+    <tr class="fragment" data-fragment-index="2"><td>3. The judge scored everything in one request</td><td>whether it ignored later messages when scoring an earlier step</td><td>one request per step</td></tr>
+    <tr class="fragment" data-fragment-index="3"><td>4. The pass mark of 4 was just a starting point</td><td>whether 4 is the right line</td><td>set it from labelled examples</td></tr>
+    <tr class="fragment" data-fragment-index="4"><td>5. We used only one judge model</td><td>whether another model gives the same result</td><td>rerun with a second model family</td></tr>
   </tbody>
 </table>
-<p class="j2-strong fragment" data-fragment-index="5">Your Part 3 numbers demonstrate the method. They are not evidence about the agent or the judge.</p>
+<p class="j2-strong fragment" data-fragment-index="5">Your Part 3 numbers show how the method works. They are not proof that the agent or the judge is good.</p>
 <p class="j2-src">Exercise design from the workshop README. The scenarios and starter criteria are examples to edit, not an answer key.</p>
 ```
 
@@ -332,15 +332,15 @@ format:
 - The fixes are the checklist in section 3.1. The people who want to go further can take the app's report JSON and label a sample themselves.
 :::
 
-# 3. Good practice and future directions {.j2-slide}
+# 3. Good practice and future: what can we do today, and what comes next? {#good-practice-and-future-directions .j2-slide}
 
 ```{=html}
-<p class="j2-sec-goal"><span>Learning goal 3</span>Apply a short checklist before trusting a judge, and identify the open research directions for trustworthy agent evaluation</p>
+<p class="j2-sec-goal"><span>Learning goal 3</span>Use a short checklist before you trust a judge, and see the open questions for research</p>
 <p class="j2-colhead j2-sec-head">In this section</p>
 <ol class="j2-sec-list">
-  <li><a href="#/before-you-trust-a-judge-a-checklist"><span>3.1</span>A checklist</a></li>
+  <li><a href="#/before-you-trust-a-judge-a-checklist"><span>3.1</span>Eight steps before you trust a judge</a></li>
   <li><a href="#/agent-as-a-judge-promising-and-not-yet-proven"><span>3.2</span>Agent-as-a-judge</a></li>
-  <li><a href="#/open-research-questions"><span>3.3</span>Open questions</a></li>
+  <li><a href="#/open-research-questions"><span>3.3</span>Six open questions</a></li>
 </ol>
 ```
 
@@ -350,24 +350,24 @@ format:
 
 ---
 
-## Before you trust a judge: a checklist {.j2-slide}
+## Eight steps before you trust a judge {#before-you-trust-a-judge-a-checklist .j2-slide}
 
 ```{=html}
-<nav class="j2-strip" aria-label="Section 3, Good practice, future: where this slide sits"><a class="j2-strip-sec" href="#/good-practice-and-future-directions"><span>3</span>Good practice, future</a><a class="is-on" aria-current="true" href="#/before-you-trust-a-judge-a-checklist"><span>3.1</span>A checklist</a><a href="#/agent-as-a-judge-promising-and-not-yet-proven"><span>3.2</span>Agent-as-a-judge</a><a href="#/open-research-questions"><span>3.3</span>Open questions</a></nav>
+<nav class="j2-strip" aria-label="Section 3, Good practice, future: where this slide sits"><a class="j2-strip-sec" href="#/good-practice-and-future-directions"><span>3</span>Good practice, future</a><a class="is-on" aria-current="true" href="#/before-you-trust-a-judge-a-checklist"><span>3.1</span>Eight steps</a><a href="#/agent-as-a-judge-promising-and-not-yet-proven"><span>3.2</span>Agent-as-a-judge</a><a href="#/open-research-questions"><span>3.3</span>Open questions</a></nav>
 <div class="j2-split j2-split-even">
   <div class="j2-list j2-list-sm">
-    <p class="j2-colhead">Check the instrument</p>
-    <div class="j2-li"><span class="j2-num">1</span><div><b>Label a sample.</b> Report chance-corrected agreement beside how well people agree (<a href="../../bibliography/thakur-2024-judging-the-judges/">Thakur et al. 2024</a>; <a href="../../bibliography/le-2026-sage/">Le et al. 2026</a>).</div></div>
-    <div class="j2-li fragment" data-fragment-index="1"><span class="j2-num">2</span><div><b>Run negative controls.</b> An empty answer, “Yes”, the question repeated (<a href="../../bibliography/thakur-2024-judging-the-judges/">Thakur et al. 2024</a>).</div></div>
-    <div class="j2-li fragment" data-fragment-index="2"><span class="j2-num">3</span><div><b>Probe one bias at a time.</b> Order, length, a citation (<a href="../../bibliography/ye-2024-justice-or-prejudice/">Ye et al. 2024</a>).</div></div>
+    <p class="j2-colhead">Test the tool</p>
+    <div class="j2-li"><span class="j2-num">1</span><div><b>Label a sample.</b> Compare with people using agreement corrected for chance (<a href="../../bibliography/thakur-2024-judging-the-judges/">Thakur et al. 2024</a>; <a href="../../bibliography/le-2026-sage/">Le et al. 2026</a>).</div></div>
+    <div class="j2-li fragment" data-fragment-index="1"><span class="j2-num">2</span><div><b>Run negative controls.</b> Give an empty answer, or just “Yes” (<a href="../../bibliography/thakur-2024-judging-the-judges/">Thakur et al. 2024</a>).</div></div>
+    <div class="j2-li fragment" data-fragment-index="2"><span class="j2-num">3</span><div><b>Test one bias at a time.</b> Change the order. Change the length (<a href="../../bibliography/ye-2024-justice-or-prejudice/">Ye et al. 2024</a>).</div></div>
     <div class="j2-li fragment" data-fragment-index="3"><span class="j2-num">4</span><div><b>Repeat, and report the spread</b> (<a href="../../bibliography/wang-2024-not-fair/">Wang et al. 2024</a>).</div></div>
   </div>
   <div class="j2-list j2-list-sm">
-    <p class="j2-colhead">Run it like production code</p>
-    <div class="j2-li fragment" data-fragment-index="4"><span class="j2-num">5</span><div><b>Give it a reference</b> where correctness matters (<a href="../../bibliography/krumdick-2025-no-free-labels/">Krumdick et al. 2025</a>).</div></div>
-    <div class="j2-li fragment" data-fragment-index="5"><span class="j2-num">6</span><div><b>Read the evidence, and sample the passes,</b> not only the failures (<a href="../../bibliography/pisupati-2026-counsel/">Pisupati et al. 2026</a>; <a href="../../bibliography/chen-2026-emerging-trends/">Chen et al. 2026</a>).</div></div>
-    <div class="j2-li fragment" data-fragment-index="6"><span class="j2-num">7</span><div><b>Version the judge,</b> and rerun a canary set when the model, prompt or rubric changes (<a href="../../bibliography/winston-2026-production-judges/">Winston 2026</a>; <a href="../../bibliography/hong-2026-rulers/">Hong et al. 2026</a>).</div></div>
-    <div class="j2-li fragment" data-fragment-index="7"><span class="j2-num">8</span><div><b>Report cost and latency</b> with every score (<a href="../../bibliography/kapoor-2024-agents-that-matter/">Kapoor et al. 2024</a>).</div></div>
+    <p class="j2-colhead">Run it like real software</p>
+    <div class="j2-li fragment" data-fragment-index="4"><span class="j2-num">5</span><div><b>Give the judge a reference answer</b> when correctness matters (<a href="../../bibliography/krumdick-2025-no-free-labels/">Krumdick et al. 2025</a>).</div></div>
+    <div class="j2-li fragment" data-fragment-index="5"><span class="j2-num">6</span><div><b>Read the evidence,</b> and check some passes, not only the failures (<a href="../../bibliography/pisupati-2026-counsel/">Pisupati et al. 2026</a>; <a href="../../bibliography/chen-2026-emerging-trends/">Chen et al. 2026</a>).</div></div>
+    <div class="j2-li fragment" data-fragment-index="6"><span class="j2-num">7</span><div><b>Version your judge.</b> When the model, the prompt or the rubric changes, run your test set again (<a href="../../bibliography/winston-2026-production-judges/">Winston 2026</a>; <a href="../../bibliography/hong-2026-rulers/">Hong et al. 2026</a>).</div></div>
+    <div class="j2-li fragment" data-fragment-index="7"><span class="j2-num">8</span><div><b>Report the cost</b> with every score (<a href="../../bibliography/kapoor-2024-agents-that-matter/">Kapoor et al. 2024</a>).</div></div>
   </div>
 </div>
 ```
@@ -391,29 +391,29 @@ format:
 
 ---
 
-## Agent-as-a-judge: promising, and not yet proven {.j2-slide}
+## Agent-as-a-judge: promising, but not yet proven {#agent-as-a-judge-promising-and-not-yet-proven .j2-slide}
 
 ```{=html}
-<nav class="j2-strip" aria-label="Section 3, Good practice, future: where this slide sits"><a class="j2-strip-sec" href="#/good-practice-and-future-directions"><span>3</span>Good practice, future</a><a href="#/before-you-trust-a-judge-a-checklist"><span>3.1</span>A checklist</a><a class="is-on" aria-current="true" href="#/agent-as-a-judge-promising-and-not-yet-proven"><span>3.2</span>Agent-as-a-judge</a><a href="#/open-research-questions"><span>3.3</span>Open questions</a></nav>
+<nav class="j2-strip" aria-label="Section 3, Good practice, future: where this slide sits"><a class="j2-strip-sec" href="#/good-practice-and-future-directions"><span>3</span>Good practice, future</a><a href="#/before-you-trust-a-judge-a-checklist"><span>3.1</span>Eight steps</a><a class="is-on" aria-current="true" href="#/agent-as-a-judge-promising-and-not-yet-proven"><span>3.2</span>Agent-as-a-judge</a><a href="#/open-research-questions"><span>3.3</span>Open questions</a></nav>
 <div class="j2-split j2-split-even">
   <div class="j2-panel">
-    <p class="j2-colhead">A judge that can inspect the work, step by step</p>
-    <p class="j2-metric">Alignment with expert consensus, 55 AI development tasks</p>
+    <p class="j2-colhead">An agent judge can open files, run tests, and check each step</p>
+    <p class="j2-metric">Agreement with experts, 55 coding tasks</p>
     <div class="j2-bar"><span class="j2-bl">Majority of 3 experts</span><span class="j2-bt"><span class="j2-bf j2-bf-ref" style="width:94.3%"></span></span><b>94.3%</b></div>
     <div class="j2-bar"><span class="j2-bl">Agent judge</span><span class="j2-bt"><span class="j2-bf" style="width:90.2%"></span></span><b>90.2%</b></div>
-    <div class="j2-bar"><span class="j2-bl">Average single expert</span><span class="j2-bt"><span class="j2-bf j2-bf-ref" style="width:85.7%"></span></span><b>85.7%</b></div>
-    <div class="j2-bar"><span class="j2-bl">LLM judge</span><span class="j2-bt"><span class="j2-bf j2-bf-bad" style="width:70.8%"></span></span><b>70.8%</b></div>
+    <div class="j2-bar"><span class="j2-bl">A single expert</span><span class="j2-bt"><span class="j2-bf j2-bf-ref" style="width:85.7%"></span></span><b>85.7%</b></div>
+    <div class="j2-bar"><span class="j2-bl">Normal LLM judge</span><span class="j2-bt"><span class="j2-bf j2-bf-bad" style="width:70.8%"></span></span><b>70.8%</b></div>
     <p class="j2-src"><a href="../../bibliography/zhuge-2025-agent-as-judge/">Zhuge et al. 2025</a>, as reported by <a href="../../bibliography/voss-2026-agent-as-judge/">Voss 2026</a></p>
   </div>
   <div class="j2-side">
-    <p class="j2-colhead fragment" data-fragment-index="1">Open questions</p>
+    <p class="j2-colhead fragment" data-fragment-index="1">But, it's early</p>
     <ul class="j2-facts">
-      <li class="fragment" data-fragment-index="1"><b>One benchmark.</b> 55 coding tasks; other domains are untested.</li>
-      <li class="fragment" data-fragment-index="2"><b>Memory hurt.</b> Reusing past judgements spread an early mistake.</li>
-      <li class="fragment" data-fragment-index="3"><b>It varies, and may favour long runs.</b> The same judge differs across runs; later work reports a bias toward longer trajectories.</li>
-      <li class="fragment" data-fragment-index="4"><b>A full agent per evaluation</b> costs more than one call, so sampling is a decision.</li>
+      <li class="fragment" data-fragment-index="1"><b>Only one benchmark.</b> 55 coding tasks.</li>
+      <li class="fragment" data-fragment-index="2"><b>Memory spread mistakes.</b> One early mistake spread to later cases.</li>
+      <li class="fragment" data-fragment-index="3"><b>Results change from run to run,</b> and it may prefer longer runs.</li>
+      <li class="fragment" data-fragment-index="4"><b>It costs more.</b> Running a full agent for every evaluation costs more than one call.</li>
     </ul>
-    <p class="j2-strong fragment" data-fragment-index="5">A new instrument: check it against people like any other judge.</p>
+    <p class="j2-strong fragment" data-fragment-index="5">A new tool: test it against people, like any other judge.</p>
   </div>
 </div>
 ```
@@ -432,17 +432,17 @@ format:
 
 ---
 
-## Open research questions {.j2-slide}
+## Six open questions {#open-research-questions .j2-slide}
 
 ```{=html}
-<nav class="j2-strip" aria-label="Section 3, Good practice, future: where this slide sits"><a class="j2-strip-sec" href="#/good-practice-and-future-directions"><span>3</span>Good practice, future</a><a href="#/before-you-trust-a-judge-a-checklist"><span>3.1</span>A checklist</a><a href="#/agent-as-a-judge-promising-and-not-yet-proven"><span>3.2</span>Agent-as-a-judge</a><a class="is-on" aria-current="true" href="#/open-research-questions"><span>3.3</span>Open questions</a></nav>
+<nav class="j2-strip" aria-label="Section 3, Good practice, future: where this slide sits"><a class="j2-strip-sec" href="#/good-practice-and-future-directions"><span>3</span>Good practice, future</a><a href="#/before-you-trust-a-judge-a-checklist"><span>3.1</span>Eight steps</a><a href="#/agent-as-a-judge-promising-and-not-yet-proven"><span>3.2</span>Agent-as-a-judge</a><a class="is-on" aria-current="true" href="#/open-research-questions"><span>3.3</span>Open questions</a></nav>
 <div class="j2-grid j2-g3">
-  <div class="j2-cd"><span class="j2-cd-k">Trajectories</span><b>How good are judges of agent traces?</b><p>Meta-evaluation sets for agent judges are new, and each covers a few environments (<a href="../../bibliography/lu-2025-agentrewardbench/">Lù et al. 2025</a>; <a href="../../bibliography/peng-2026-ruverbench/">Peng et al. 2026</a>; <a href="../../bibliography/pisupati-2026-counsel/">Pisupati et al. 2026</a>).</p></div>
-  <div class="j2-cd fragment" data-fragment-index="1"><span class="j2-cd-k">Conversations</span><b>Memory, re-planning and multi-turn safety</b><p>Few benchmarks test memory across sessions, re-planning when a tool fails, or attacks spread over turns (<a href="../../bibliography/guan-2025-multiturn-survey/">Guan et al. 2025</a>).</p></div>
-  <div class="j2-cd fragment" data-fragment-index="2"><span class="j2-cd-k">Production</span><b>Judging without gold labels</b><p>Live traffic has no expert consensus, and offline sets are cheaper and less faithful (<a href="../../bibliography/voss-2026-agent-as-judge/">Voss 2026</a>; <a href="../../bibliography/mohammadi-2025-benchmark-survey/">Mohammadi et al. 2025</a>).</p></div>
-  <div class="j2-cd fragment" data-fragment-index="3"><span class="j2-cd-k">Validity</span><b>Rubrics as measurement specifications</b><p>Agreement, fit to preferences and resistance to exploits are different properties (<a href="../../bibliography/roy-2026-premise/">Roy et al. 2026</a>; <a href="../../bibliography/hong-2026-rulers/">Hong et al. 2026</a>).</p></div>
-  <div class="j2-cd fragment" data-fragment-index="4"><span class="j2-cd-k">Benchmarks</span><b>Scores that mean what they claim</b><p>Holdouts at the right level, contamination, and which component caused a change (<a href="../../bibliography/kapoor-2024-agents-that-matter/">Kapoor et al. 2024</a>; <a href="../../bibliography/chen-2026-emerging-trends/">Chen et al. 2026</a>).</p></div>
-  <div class="j2-cd fragment" data-fragment-index="5"><span class="j2-cd-k">Cost</span><b>Cheap judges that stay calibrated</b><p>Juries, distilled judges, and when to send a case to a person (<a href="../../bibliography/verga-2024-juries/">Verga et al. 2024</a>; <a href="../../bibliography/le-2026-sage/">Le et al. 2026</a>; <a href="../../bibliography/wang-2024-not-fair/">Wang et al. 2024</a>).</p></div>
+  <div class="j2-cd"><span class="j2-cd-k">Agent traces</span><b>How good are judges at checking agent traces?</b><p>We have only a few test sets so far (<a href="../../bibliography/lu-2025-agentrewardbench/">Lù et al. 2025</a>; <a href="../../bibliography/peng-2026-ruverbench/">Peng et al. 2026</a>; <a href="../../bibliography/pisupati-2026-counsel/">Pisupati et al. 2026</a>).</p></div>
+  <div class="j2-cd fragment" data-fragment-index="1"><span class="j2-cd-k">Conversations</span><b>How do we test memory and long conversations?</b><p>Very few benchmarks do this (<a href="../../bibliography/guan-2025-multiturn-survey/">Guan et al. 2025</a>).</p></div>
+  <div class="j2-cd fragment" data-fragment-index="2"><span class="j2-cd-k">Real products</span><b>How do we judge real traffic without labels?</b><p>In real products, there is no answer key (<a href="../../bibliography/voss-2026-agent-as-judge/">Voss 2026</a>; <a href="../../bibliography/mohammadi-2025-benchmark-survey/">Mohammadi et al. 2025</a>).</p></div>
+  <div class="j2-cd fragment" data-fragment-index="3"><span class="j2-cd-k">Rubrics</span><b>How do we design rubrics as real measurement tools?</b><p>Not just lists of nice words (<a href="../../bibliography/roy-2026-premise/">Roy et al. 2026</a>; <a href="../../bibliography/hong-2026-rulers/">Hong et al. 2026</a>).</p></div>
+  <div class="j2-cd fragment" data-fragment-index="4"><span class="j2-cd-k">Benchmarks</span><b>How do we build benchmarks whose scores really mean what they say?</b><p>Right holdouts, no leaked answers, and knowing what caused a change (<a href="../../bibliography/kapoor-2024-agents-that-matter/">Kapoor et al. 2024</a>; <a href="../../bibliography/chen-2026-emerging-trends/">Chen et al. 2026</a>).</p></div>
+  <div class="j2-cd fragment" data-fragment-index="5"><span class="j2-cd-k">Cost</span><b>How do we make cheap judges that stay accurate over time?</b><p>Juries of small models, smaller trained judges, and sending hard cases to people (<a href="../../bibliography/verga-2024-juries/">Verga et al. 2024</a>; <a href="../../bibliography/le-2026-sage/">Le et al. 2026</a>; <a href="../../bibliography/wang-2024-not-fair/">Wang et al. 2024</a>).</p></div>
 </div>
 ```
 
@@ -463,16 +463,16 @@ format:
 
 ---
 
-## Recap: what to take home {.j2-slide}
+## Four things to take home {#recap-what-to-take-home .j2-slide}
 
 ```{=html}
 <div class="j2-recap">
-  <div class="j2-rc"><span class="j2-num">1</span><b>Reliability</b><p>Judges flip on close cases, move with irrelevant changes, and agree with people only on the task they were checked on. Their explanations need checking too.</p><span class="j2-use">Try: repeat, swap, and run a dummy answer</span></div>
-  <div class="j2-rc fragment" data-fragment-index="1"><span class="j2-num">2</span><b>Limitations</b><p>A final-answer score misses the trajectory. A rubric is a measurement choice. A score needs its cost, spread and holdout. Part 3 shows the method, not the evidence.</p><span class="j2-use">Try: label a sample of your own traces</span></div>
-  <div class="j2-rc fragment" data-fragment-index="2"><span class="j2-num">3</span><b>Good practice</b><p>Check the judge against people beyond chance, version it, read its evidence, sample its passes, and report cost with every score.</p><span class="j2-use">Try: the eight-point checklist</span></div>
-  <div class="j2-rc fragment" data-fragment-index="3"><span class="j2-num">4</span><b>Future directions</b><p>Agent judges, meta-evaluation of trajectory judges, multi-turn and production evaluation, and rubrics treated as measurement specifications.</p><span class="j2-use">Read: one open question that fits your work</span></div>
+  <div class="j2-rc"><span class="j2-num">1</span><b>Reliability</b><p>Your judge can change its mind, can be fooled by small things, and agrees with people only on the task it was tested on.</p><span class="j2-use">Try: repeat it, swap the answers, and try a silly answer like “Yes”</span></div>
+  <div class="j2-rc fragment" data-fragment-index="1"><span class="j2-num">2</span><b>Limitations</b><p>A good final answer can hide a bad path. The rubric is part of the measurement. A score needs cost, spread and a holdout.</p><span class="j2-use">Try: label some of your own traces</span></div>
+  <div class="j2-rc fragment" data-fragment-index="2"><span class="j2-num">3</span><b>Good practice</b><p>Compare with people, version your judge, read the evidence, check some passes, and report the cost.</p><span class="j2-use">Try: the eight-step checklist</span></div>
+  <div class="j2-rc fragment" data-fragment-index="3"><span class="j2-num">4</span><b>The future</b><p>Agent judges, checking agent traces, long conversations, real traffic, and better rubrics.</p><span class="j2-use">Pick: one open question that fits your work</span></div>
 </div>
-<div class="j2-running fragment" data-fragment-index="4"><b>The judge is a measurement instrument.</b> Check it before you trust its numbers, and keep checking when anything changes.</div>
+<div class="j2-running fragment" data-fragment-index="4"><b>The judge is a measuring tool.</b> Check it before you trust the number, and keep checking every time something changes.</div>
 <p class="j2-src">To read further, start with <a href="../../bibliography/thakur-2024-judging-the-judges/">Thakur et al. 2024</a>, <a href="../../bibliography/ye-2024-justice-or-prejudice/">Ye et al. 2024</a>, <a href="../../bibliography/kapoor-2024-agents-that-matter/">Kapoor et al. 2024</a> and <a href="../../bibliography/chen-2026-emerging-trends/">Chen et al. 2026</a>, or the full <a href="../../bibliography/">bibliography</a>. The <a href="../../hands-on/">hands-on app</a> stays online after today.</p>
 ```
 
