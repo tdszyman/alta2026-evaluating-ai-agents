@@ -708,5 +708,15 @@ html.print-pdf .reveal .terms-slide .tm-conn { opacity: 1; }
 
 .reveal .trace-parts-slide .tm-term b { font-size: 18px; }
 
+/* Room for the stepped brackets on the right: the chat moves left, and the
+   labels on both sides are only as wide as their names. */
+.reveal .trace-parts-slide .tm-chat { left: 300px; }
+.reveal .trace-parts-slide .tm-term[data-side="left"] { left: 74px; width: 190px; }
+.reveal .trace-parts-slide .tm-term[data-side="right"] {
+  width: auto;
+  padding: 4px 6px;
+  white-space: nowrap;
+}
+
 /* It sits in section 1, so its title matches the slides around it. */
 .reveal .trace-parts-slide.terms-slide h2 { font-size: var(--r-heading2-size); }

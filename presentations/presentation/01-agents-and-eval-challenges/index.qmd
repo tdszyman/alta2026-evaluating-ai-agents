@@ -233,7 +233,7 @@ format:
 ## The parts of an agent trace {#parts-of-an-agent-trace .terms-slide .trace-parts-slide}
 
 ```{=html}
-<div class="tm-figure">
+<div class="tm-figure" data-brackets="steps">
 
   <div class="tm-chat" aria-label="An agent conversation in two turns, with the parts of the trace labelled">
     <div class="tm-msg tm-sys tm-dim" id="tp-sys"><span class="tm-role">System</span>You are a career assistant. Tools: get_profile, search_jobs, apply.</div>
@@ -242,7 +242,7 @@ format:
     <div class="tm-msg tm-user tm-dim" id="tp-u1"><span class="tm-role">User</span>Find me barista jobs.</div>
     <div class="tm-step" id="tp-s1">
       <div class="tm-call" id="tp-s1-call">
-        <div class="tm-dim tm-thought"><span class="tm-kind">Thought</span>No location given. Check their profile.</div>
+        <div class="tm-dim tm-thought" id="tp-s1-th"><span class="tm-kind">Thought</span>No location given. Check their profile.</div>
         <div class="tm-dim tm-action" id="tp-s1-ac"><span class="tm-kind">Action</span><code>get_profile()</code></div>
       </div>
       <div class="tm-dim tm-obs" id="tp-s1-ob"><span class="tm-kind">Observation</span>suburb: Fitzroy · recent searches: café, barista</div>
@@ -269,16 +269,15 @@ format:
   </div>
 
   <div class="tm-term fragment" data-fragment-index="1" data-side="left" data-type="point" data-target="tp-sys"><b>System message</b></div>
-  <div class="tm-term fragment" data-fragment-index="1" data-side="left" data-type="point" data-target="tp-u1"><b>User message</b></div>
-  <div class="tm-term fragment" data-fragment-index="1" data-side="left" data-type="point" data-target="tp-a1"><b>Assistant message</b></div>
-  <div class="tm-term fragment" data-fragment-index="2" data-side="left" data-type="point" data-target="tp-s1-ac"><b>Tool call</b></div>
-  <div class="tm-term fragment" data-fragment-index="2" data-side="left" data-type="point" data-target="tp-s1-ob"><b>Observation</b></div>
-  <div class="tm-term fragment" data-fragment-index="3" data-side="right" data-type="bracket" data-depth="0" data-target="tp-s1"><b>Step</b></div>
-  <div class="tm-term fragment" data-fragment-index="3" data-side="right" data-type="bracket" data-depth="1" data-target="tp-s1" data-to="tp-s2"><b>Multi-step</b></div>
-  <div class="tm-term fragment" data-fragment-index="4" data-side="right" data-type="bracket" data-depth="2" data-target="tp-u1" data-to="tp-a1"><b>Turn</b></div>
-  <div class="tm-term fragment" data-fragment-index="4" data-side="right" data-type="bracket" data-depth="3" data-target="tp-u1" data-to="tp-a2"><b>Multi-turn</b></div>
-  <div class="tm-term fragment" data-fragment-index="5" data-side="right" data-type="bracket" data-depth="4" data-anchor="end" data-target="tp-sys" data-to="tp-a2"><b>Trace</b></div>
-  <span class="fragment tm-overview" data-fragment-index="6"></span>
+  <div class="tm-term fragment" data-fragment-index="2" data-side="left" data-type="point" data-target="tp-u1"><b>User message</b></div>
+  <div class="tm-term fragment" data-fragment-index="3" data-side="left" data-type="point" data-target="tp-a1"><b>Assistant message</b></div>
+  <div class="tm-term fragment" data-fragment-index="4" data-side="left" data-type="point" data-target="tp-s1-th"><b>Reasoning</b></div>
+  <div class="tm-term fragment" data-fragment-index="5" data-side="left" data-type="point" data-target="tp-s1-ac"><b>Tool call</b></div>
+  <div class="tm-term fragment" data-fragment-index="6" data-side="right" data-type="bracket" data-depth="0" data-target="tp-s1"><b>Step</b></div>
+  <div class="tm-term fragment" data-fragment-index="7" data-side="right" data-type="bracket" data-depth="1" data-target="tp-s1" data-to="tp-s2"><b>Multi-step</b></div>
+  <div class="tm-term fragment" data-fragment-index="8" data-side="right" data-type="bracket" data-depth="2" data-target="tp-u1" data-to="tp-a1"><b>Turn</b></div>
+  <div class="tm-term fragment" data-fragment-index="9" data-side="right" data-type="bracket" data-depth="3" data-target="tp-u1" data-to="tp-a2"><b>Multi-turn</b></div>
+  <div class="tm-term fragment" data-fragment-index="10" data-side="right" data-type="bracket" data-depth="4" data-anchor="end" data-target="tp-sys" data-to="tp-a2"><b>Trace</b></div>
 
   <svg class="tm-links" aria-hidden="true"></svg>
 </div>
@@ -287,13 +286,14 @@ format:
 ```
 
 ::: {.notes}
-**About this slide:** The same example agent conversation as on “LLM-as-judge: evaluating the trace”, with the parts of a trace named on it and no judges yet. It names the three kinds of message, a tool call and its observation, a step and multi-step, a turn and multi-turn, and the trace as a whole. The conversation is illustrative.
+**About this slide:** The same example agent conversation as on “LLM-as-judge: evaluating the trace”, with the parts of a trace named on it and no judges yet. It names the three kinds of message, the agent’s reasoning and a tool call, a step and multi-step, a turn and multi-turn, and the trace as a whole. The conversation is illustrative.
 
 **Presenter notes:**
 
-- Builds: click 1 names the messages; click 2 the tool call and observation; click 3 step and multi-step; click 4 turn and multi-turn; click 5 the trace. Click 6 shows every label at full strength.
+- Builds: one label per click, in this order: (1) system message, (2) user message, (3) assistant message, (4) reasoning, (5) tool call, (6) step, (7) multi-step, (8) turn, (9) multi-turn, (10) trace. The last click lights the whole chat, so there is no extra build at the end.
 - System message: the developer’s instructions, set before any user input. User message: what the person types. Assistant message: the model’s reply, which goes back into the input for the next call.
-- Tool call: the action. Here the agent calls `get_profile()`. Observation: the tool’s result, fed back to the model for the next step.
+- Reasoning: the thought, where the model works out what to do next before it acts. Here: no location given, so check the profile.
+- Tool call: the action. Here the agent calls `get_profile()`. Its result, the observation, is fed back to the model for the next step.
 - Step: one pass of the loop, thought, action, observation ([Yao et al. 2023](../../bibliography/yao-2023-react/)). Multi-step: several steps before a reply. Step 2 needs what step 1 found, the user’s suburb.
 - Turn: one user message and the assistant’s reply to it. Multi-turn: several turns. The model keeps no memory between calls, so each call re-sends the whole history.
 - Trace: the end-to-end record of an agent run: messages, LLM calls and tool calls ([Dong et al. 2024](../../bibliography/dong-2024-agentops/)). Also called a trajectory. This is what an LLM judge reads, in Part 2 and in the hands-on app.
@@ -1243,8 +1243,14 @@ End the chat if risk ≥ 0.8.</pre>
       var first = free.filter(function (t) { return t.dataset.place === "top"; });
       var last = free.filter(function (t) { return t.dataset.place !== "top"; });
       var floor = 0;
+      var stepped = side === "right" && fig.dataset.brackets === "steps";
       first.concat(col, last).forEach(function (t) {
         var h = t.offsetHeight;
+        if (stepped) {
+          t.style.top = t._want - h / 2 + "px";
+          t._cy = t._want;
+          return;
+        }
         var want = t._want === undefined ? floor + h / 2 : t._want;
         var top = Math.max(want - h / 2, floor);
         t.style.top = top + "px";
@@ -1261,6 +1267,18 @@ End the chat if risk ≥ 0.8.</pre>
     svg.style.height = fig.offsetHeight + "px";
 
     var gutterL = chat.x - 6, gutterR = chat.x + chat.w + 6;
+    // Stepped brackets: each bracket sits just outside the previous one's
+    // label, so no lead line crosses another bracket.
+    if (fig.dataset.brackets === "steps") {
+      var stepX = gutterR + 4;
+      terms.filter(function (t) { return t.dataset.side === "right" && t.dataset.type === "bracket"; })
+        .sort(function (p, q) { return p.dataset.depth - q.dataset.depth; })
+        .forEach(function (t) {
+          t._bx = stepX;
+          t.style.left = stepX + 8 + "px";
+          stepX += 8 + t.offsetWidth + 12;
+        });
+    }
     terms.forEach(function (t) {
       var g = document.createElementNS(NS, "g");
       g.setAttribute("class", "tm-conn" + (t.classList.contains("tm-judge") ? " tm-conn-judge" : ""));
@@ -1285,7 +1303,7 @@ End the chat if risk ≥ 0.8.</pre>
         }
       } else if (type === "bracket") {
         var d = +t.dataset.depth;
-        var bx = left ? gutterL - 4 - d * 11 : gutterR + 4 + d * 11;
+        var bx = t._bx !== undefined ? t._bx : left ? gutterL - 4 - d * 11 : gutterR + 4 + d * 11;
         var tick = left ? 6 : -6;
         path(g, "M" + (bx + tick) + "," + (t._top + 1) + " L" + bx + "," + (t._top + 1) + " L" + bx + "," + (t._bot - 1) + " L" + (bx + tick) + "," + (t._bot - 1), "tm-bracket");
         var yy = Math.min(Math.max(y, t._top + 6), t._bot - 6);
