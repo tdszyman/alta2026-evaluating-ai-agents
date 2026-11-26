@@ -392,29 +392,29 @@ Cards, in the order they appear, which is the order the stories were published, 
 :::: {.cx-duo}
 
 ::: {.cx-col}
-[Complex]{.sys-label .complex}
+[[Complex:]{.cx-name .complex} [Same input, a distribution of outputs]{.cx-tagline}]{.cx-head}
 
 ![](images/complex-system.svg){fig-alt="A complex system: a dense network of interconnected parts with feedback loops. Signals wander different routes and runs land on a spread-out distribution of outputs."}
 
-[Many parts, entangled through feedback loops, so the behaviour of the whole emerges from how they interact. **Same input → a distribution of outputs.**]{.cx-lead}
-
 [Unpredictable]{.cx-chip .complex} [Self-organising]{.cx-chip .complex} [Emergent]{.cx-chip .complex}
 
-[**Example: the weather.**]{.cx-examples}
+[Many parts, entangled through feedback loops, so the behaviour of the whole emerges from how they interact.]{.cx-lead}
+
+[**Example:** the weather.]{.cx-examples}
 
 [In an agent: foundation models, agents and agent swarms]{.cx-agent .complex}
 :::
 
 ::: {.cx-col .fragment}
-[Complicated]{.sys-label .complicated}
+[[Complicated:]{.cx-name .complicated} [Same input, same output]{.cx-tagline}]{.cx-head}
 
 ![](images/complicated-system.svg){fig-alt="A complicated system: subsystems of components wired together. Signals follow fixed, traceable routes and every run lands on the same single output."}
 
-[Many parts, intricately wired, but every connection is designed and can be traced, so the parts dictate the behaviour of the whole. **Same input → same output.**]{.cx-lead}
-
 [Predictable]{.cx-chip .complicated} [Controllable]{.cx-chip .complicated} [Designable]{.cx-chip .complicated}
 
-[**Example: a jet engine.**]{.cx-examples}
+[Many parts, intricately wired, but every connection is designed and can be traced, so the parts dictate the behaviour of the whole.]{.cx-lead}
+
+[**Example:** a jet engine.]{.cx-examples}
 
 [In an agent: the code, tools and workflows around the model]{.cx-agent .complicated}
 :::
@@ -432,6 +432,7 @@ A complicated system also has many parts, but every connection is designed and c
 
 **Presenter notes:**
 
+- Layout: each column leads with a subheading, the system’s name and its tagline (“Same input, a distribution of outputs”; “Same input, same output”), then the figure, then the three keywords. The definition, the example and where it sits in an agent are smaller and muted, for anyone who wants more context; say the tagline and the keywords, and let the rest be read.
 - Complex first. The figure: lots of parts, intertwined, with feedback loops and long-range links. Each signal wanders a different route, and runs land on a distribution of outputs. You can’t easily trace an output back to the parts that produced it. The histogram comes from simulated random walks over the drawn network: illustrative, not data.
 - Then click for complicated. The figure: lots of components and subsystems connected in intricate ways, but every connection was designed and can be traced. The orange signals take the same routes every time and arrive together, so all runs land on one point on the output axis.
 - Complicated is not the same as simple: a jet engine is hard to build. The difference from a complex system is that you can trace why it did what it did.
