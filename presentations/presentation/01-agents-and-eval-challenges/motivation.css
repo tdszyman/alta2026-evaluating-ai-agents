@@ -1350,8 +1350,10 @@
    harness frame, with a small figure over a key-terms list. The LLM box is
    the harness slide's Model (series b); messages, thought, action and
    observation take the chat tokens the trace slides use; the ReAct loop
-   takes the agent colours, like the harness Loop. Figures share one fixed
-   height, so the term lists start level. */
+   takes the agent colours, like the harness Loop, and holds a small LLM box
+   beside the tool call. Figures share one fixed height, so the term lists
+   start level. The takeaway sits in a second grid row under column 3 and
+   arrives with it. */
 
 .reveal .overview-slide .ov-grid {
   display: grid;
@@ -1417,14 +1419,14 @@
   flex-direction: column;
   align-items: stretch;
   justify-content: center;
-  gap: 5px;
-  height: 256px;
+  gap: 3px;
+  height: 228px;
   margin: 6px 0;
 }
 
 .reveal .overview-slide .ov-down {
   align-self: center;
-  font-size: 18px;
+  font-size: 16px;
   line-height: 1;
   color: var(--deck-soft);
 }
@@ -1434,6 +1436,13 @@
   align-items: center;
   justify-content: center;
   gap: 6px;
+}
+
+.reveal .overview-slide .ov-toks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  max-width: 250px;
 }
 
 .reveal .overview-slide .ov-io {
@@ -1460,7 +1469,6 @@
   border-color: var(--series-b);
 }
 
-.reveal .overview-slide .ov-more { border-style: dashed; }
 
 .reveal .overview-slide .ov-llm {
   display: flex;
@@ -1497,6 +1505,66 @@
 }
 
 .reveal .overview-slide .ov-llm-icon .ov-next { stroke-dasharray: 2 1.6; }
+
+.reveal .overview-slide .ov-loop-row {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.reveal .overview-slide .ov-llm-mini {
+  flex: none;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: flex-start;
+  gap: 2px 6px;
+  width: 104px;
+  height: auto;
+  padding: 5px 6px;
+  font-size: 16px;
+  border-radius: 9px;
+}
+
+.reveal .overview-slide .ov-llm-mini .ov-llm-icon {
+  width: 26px;
+  height: 26px;
+  border-radius: 7px;
+}
+
+.reveal .overview-slide .ov-llm-mini .ov-llm-icon svg { width: 18px; height: 18px; }
+
+.reveal .overview-slide .ov-llm-thought {
+  flex-basis: 100%;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.2;
+  font-style: var(--chat-thought-style);
+  color: var(--chat-thought-ink);
+}
+
+.reveal .overview-slide .ov-sides {
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  gap: 14px;
+  font-size: 16px;
+  line-height: 1;
+  color: var(--deck-soft);
+}
+
+.reveal .overview-slide .ov-steps {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.reveal .overview-slide .ov-steps .ov-step { padding: 2px 6px 2px 9px; line-height: 1.25; }
+
+.reveal .overview-slide .ov-steps .ov-step b { display: block; margin: 0; font-size: 11px; }
+
+.reveal .overview-slide .ov-steps code { font-size: 13px; }
 
 .reveal .overview-slide .ov-msg,
 .reveal .overview-slide .ov-step {
@@ -1537,36 +1605,33 @@
 .reveal .overview-slide .ov-asst b { color: var(--chat-agent-label); }
 
 .reveal .overview-slide .ov-loop {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  padding: 6px 8px 8px;
+  position: relative;
+  margin-top: 3px;
+  padding: 10px 8px 6px;
   background: var(--chat-agent-bg);
   border: 2px solid var(--chat-agent-edge);
   border-radius: 12px;
 }
 
 .reveal .overview-slide .ov-loop-name {
-  font-size: 15px;
+  position: absolute;
+  top: -11px;
+  left: 10px;
+  padding: 0 6px;
+  line-height: 20px;
+  background: var(--chat-agent-bg);
+  border: 2px solid var(--chat-agent-edge);
+  border-radius: 999px;
+  font-size: 14px;
   font-weight: 700;
   color: var(--chat-agent-label);
 }
 
 .reveal .overview-slide .ov-loop-name a { color: inherit; font-weight: inherit; }
 
-.reveal .overview-slide .ov-again { font-size: 19px; }
+.reveal .overview-slide .ov-again { font-size: 16px; }
 
 .reveal .overview-slide .ov-step { padding: 3px 10px; font-size: 15px; }
-
-.reveal .overview-slide .ov-thought {
-  font-style: var(--chat-thought-style);
-  color: var(--chat-thought-ink);
-  background: var(--deck-paper);
-  border-left: var(--chat-edge-width) var(--chat-thought-line) var(--chat-thought-edge);
-  border-radius: 0 6px 6px 0;
-}
-
-.reveal .overview-slide .ov-thought b { font-style: normal; }
 
 .reveal .overview-slide .ov-action {
   background: var(--chat-action-bg);
@@ -1602,7 +1667,7 @@
 }
 
 .reveal .overview-slide .ov-terms li {
-  padding: 3px 0;
+  padding: 2px 0;
   font-size: 19px;
   line-height: 1.25;
   color: var(--deck-ink);
@@ -1612,9 +1677,11 @@
 .reveal .overview-slide .ov-terms li:last-child { border-bottom: 0; }
 
 .reveal .overview-slide .ov-takeaway {
-  width: 1160px;
-  margin: 8px auto 0;
-  font-size: 24px;
+  grid-column: 5;
+  grid-row: 2;
+  margin: 6px 4px 0;
+  font-size: 20px;
+  line-height: 1.25;
   font-weight: 500;
   text-align: center;
   color: var(--deck-ink);
