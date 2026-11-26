@@ -273,7 +273,6 @@ format:
   <div class="tm-term fragment" data-fragment-index="1" data-side="left" data-type="point" data-target="tp-a1"><b>Assistant message</b></div>
   <div class="tm-term fragment" data-fragment-index="2" data-side="left" data-type="point" data-target="tp-s1-ac"><b>Tool call</b></div>
   <div class="tm-term fragment" data-fragment-index="2" data-side="left" data-type="point" data-target="tp-s1-ob"><b>Observation</b></div>
-  <div class="tm-term fragment" data-fragment-index="2" data-side="left" data-type="point" data-target="tp-s2-call"><b>LLM call</b></div>
   <div class="tm-term fragment" data-fragment-index="3" data-side="right" data-type="bracket" data-depth="0" data-target="tp-s1"><b>Step</b></div>
   <div class="tm-term fragment" data-fragment-index="3" data-side="right" data-type="bracket" data-depth="1" data-target="tp-s1" data-to="tp-s2"><b>Multi-step</b></div>
   <div class="tm-term fragment" data-fragment-index="4" data-side="right" data-type="bracket" data-depth="2" data-target="tp-u1" data-to="tp-a1"><b>Turn</b></div>
@@ -288,14 +287,13 @@ format:
 ```
 
 ::: {.notes}
-**About this slide:** The same example agent conversation as on “LLM-as-judge: evaluating the trace”, with the parts of a trace named on it and no judges yet. It names the three kinds of message, an LLM call, a tool call and its observation, a step and multi-step, a turn and multi-turn, and the trace as a whole. The conversation is illustrative.
+**About this slide:** The same example agent conversation as on “LLM-as-judge: evaluating the trace”, with the parts of a trace named on it and no judges yet. It names the three kinds of message, a tool call and its observation, a step and multi-step, a turn and multi-turn, and the trace as a whole. The conversation is illustrative.
 
 **Presenter notes:**
 
-- Builds: click 1 names the messages; click 2 the LLM call, tool call and observation; click 3 step and multi-step; click 4 turn and multi-turn; click 5 the trace. Click 6 shows every label at full strength.
+- Builds: click 1 names the messages; click 2 the tool call and observation; click 3 step and multi-step; click 4 turn and multi-turn; click 5 the trace. Click 6 shows every label at full strength.
 - System message: the developer’s instructions, set before any user input. User message: what the person types. Assistant message: the model’s reply, which goes back into the input for the next call.
-- LLM call: one run of the model. In each step, the thought and the action come from one LLM call.
-- Tool call: the action. Here the agent calls `get_profile()`. Observation: the tool’s result, added to the input for the next LLM call.
+- Tool call: the action. Here the agent calls `get_profile()`. Observation: the tool’s result, fed back to the model for the next step.
 - Step: one pass of the loop, thought, action, observation ([Yao et al. 2023](../../bibliography/yao-2023-react/)). Multi-step: several steps before a reply. Step 2 needs what step 1 found, the user’s suburb.
 - Turn: one user message and the assistant’s reply to it. Multi-turn: several turns. The model keeps no memory between calls, so each call re-sends the whole history.
 - Trace: the end-to-end record of an agent run: messages, LLM calls and tool calls ([Dong et al. 2024](../../bibliography/dong-2024-agentops/)). Also called a trajectory. This is what an LLM judge reads, in Part 2 and in the hands-on app.
