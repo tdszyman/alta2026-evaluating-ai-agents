@@ -22,7 +22,7 @@ format:
 
 ## Our running example: a career assistant {.j2-slide}
 
-<!-- TODO: section owner and timing are not set (Sara drafts Part 2 per organisation/decisions.md). Session 1 is 1.5 h for Parts 1 and 2 together (knowledge/tutorial-overview.md). This draft has 36 slides with one main point each; the detail is in the presenter notes and the bibliography. Outline and open questions: organisation/outlines/part-02.md. -->
+<!-- TODO: section owner and timing are not set (Sara drafts Part 2 per organisation/decisions.md). Session 1 is 1.5 h for Parts 1 and 2 together (knowledge/tutorial-overview.md). This draft has 34 slides with one main point each; the detail is in the presenter notes and the bibliography. Outline and open questions: organisation/outlines/part-02.md. -->
 
 ```{=html}
 <div class="j2-ex">
@@ -114,7 +114,7 @@ format:
 
 - Walk the picture from left to right: the job seeker, the request, the career assistant and its two tools. Their colours are the ones the trace uses on the next slides for the user, the assistant and tool calls. Read the request aloud and point at its three conditions in the speech bubble: weekend, barista, near me. Keep the reply for the next slide, where the room scores it.
 - Where it comes back: code checks it in section 1, a judge is built for it in section 3, and people check that judge in section 4.
-- Part 2 has four sections: deterministic evaluation; LLM as a judge; rubrics, scales and prompt patterns; and domain criteria and human review. Together they cover the program's Part 2 topics: deterministic vs non-deterministic evaluation (sections 1 and 2); criteria, rubrics, scales and prompting (section 3); rules vs judges vs humans (1.5 and 4.4); and quality, latency, reliability and cost (2.4 and 4.5). Each section opens with a divider that lists its parts, and the strip under each slide title shows where you are.
+- Part 2 has four sections: deterministic evaluation; LLM as a judge; rubrics, scales and prompt patterns; and domain criteria and human review. Together they cover the program's Part 2 topics: deterministic vs non-deterministic evaluation (sections 1 and 2); criteria, rubrics, scales and prompting (section 3); rules vs judges vs humans (1.5 and 4.4); and quality, latency, reliability and cost (2.3 and 4.5). Each section opens with a divider that lists its parts, and the strip under each slide title shows where you are.
 - The running example uses Part 1's career-assistant setting, not the hands-on traces, so the exercise is not spoiled.
 :::
 
@@ -224,30 +224,17 @@ format:
 
 ```{=html}
 <nav class="j2-strip" aria-label="Section 1, Deterministic evaluation: where this slide sits"><a class="j2-strip-sec" href="#/deterministic-evaluation"><span>1</span>Deterministic evaluation</a><a href="#/deterministic-checks-are-exact-cheap-and-repeatable"><span>1.1</span>What code checks</a><a class="is-on" aria-current="true" href="#/tool-calls-the-right-tool-valid-parameters"><span>1.2</span>Tool calls</a><a href="#/task-completion-check-the-system-not-the-reply"><span>1.3</span>Task completion</a><a href="#/every-code-check-passes-and-the-answer-is-still-wrong"><span>1.4</span>Where code stops</a><a href="#/deterministic-or-model-based-side-by-side"><span>1.5</span>Code or a model</a></nav>
-<div class="j2-split">
-  <div>
-    <div class="j2-box j2-box-call">
-      <div class="j2-box-head">One tool call from the running example</div>
-      <pre>search_jobs(role="barista", near="Fitzroy")</pre>
-    </div>
-    <div class="j2-list j2-list-sm">
-      <div class="j2-li"><span class="j2-num">1</span><div><b>The tool.</b> It exists and is the one expected, or there is no call when no tool fits.</div></div>
-      <div class="j2-li"><span class="j2-num">2</span><div><b>The parameters.</b> Required keys present, right types, allowed values.</div></div>
-      <div class="j2-li"><span class="j2-num">3</span><div><b>The values.</b> Equal to a reference call's, after normalising.</div></div>
-    </div>
-  </div>
-  <div class="j2-panel fragment" data-fragment-index="1">
-    <p class="j2-colhead">What single calls hide</p>
-    <p class="j2-metric">Accuracy of the top model, by kind of case (%)</p>
-    <div class="j2-bar"><span class="j2-bl">Simple, single-turn</span><span class="j2-bt"><span class="j2-bf" style="width:95.5%"></span></span><b>≥ 95.5</b></div>
-    <div class="j2-bar"><span class="j2-bl">No tool fits</span><span class="j2-bt"><span class="j2-bf" style="width:83.8%"></span></span><b>83.8</b></div>
-    <div class="j2-bar"><span class="j2-bl">Multi-turn</span><span class="j2-bt"><span class="j2-bf j2-bf-ref" style="width:59%"></span></span><b>59.0</b></div>
-    <div class="j2-bar"><span class="j2-bl">Multi-turn, a value missing</span><span class="j2-bt"><span class="j2-bf j2-bf-bad" style="width:35.5%"></span></span><b>35.5</b></div>
-    <p class="j2-src">gpt-4o, the top model overall on BFCL (<a href="../../bibliography/patil-2025-bfcl/">Patil et al. 2025</a>).</p>
-    <p class="j2-strong fragment" data-fragment-index="2">Test multi-turn cases, and cases where the right move is not to call.</p>
-  </div>
+<div class="j2-box j2-box-call">
+  <div class="j2-box-head">One tool call from the running example</div>
+  <pre>search_jobs(role="barista", near="Fitzroy")</pre>
+</div>
+<div class="j2-list j2-list-sm">
+  <div class="j2-li"><span class="j2-num">1</span><div><b>The tool.</b> It exists and is the one expected, or there is no call when no tool fits.</div></div>
+  <div class="j2-li"><span class="j2-num">2</span><div><b>The parameters.</b> Required keys present, right types, allowed values.</div></div>
+  <div class="j2-li"><span class="j2-num">3</span><div><b>The values.</b> Equal to a reference call's, after normalising.</div></div>
 </div>
 <p class="j2-src">Running example: all three checks pass. <code>days</code> is optional, so dropping “weekend” still makes a valid call.</p>
+<div class="j2-note fragment" data-fragment-index="1">Test multi-turn cases, and cases where the right move is not to call.</div>
 ```
 
 ::: {.notes}
@@ -255,7 +242,7 @@ format:
 
 **Presenter notes:**
 
-- Builds: opens on the call and its three checks, then (1) what single calls hide, and (2) what to test.
+- Builds: opens on the call and its three checks, then (1) what to test.
 - BFCL checks each call by parsing it and comparing the function name, parameter keys, types and allowed values; on executable cases these checks tracked live execution closely ([Patil et al. 2025](../../bibliography/patil-2025-bfcl/)).
 - gpt-4o in prompt mode, the top overall model: 95.5–100% on simple single-turn calls, 83.8% when no tool fits, 59.0% on multi-turn, 35.5% when a value is missing and must be asked for ([Patil et al. 2025](../../bibliography/patil-2025-bfcl/)).
 - Part 3 judges each tool call, because whether a value captures the request is a question of meaning, not of the schema.
@@ -352,9 +339,9 @@ format:
   <tbody>
     <tr><td>What it checks</td><td>Form, IDs, the final state, exact answers</td><td>Meaning: intent, grounding in the tool results, tone, policy</td></tr>
     <tr><td>What it needs</td><td>The right answer, fixed in advance</td><td>Criteria, anchors, and something to check against</td></tr>
-    <tr class="fragment" data-fragment-index="1"><td>Repeatability</td><td>Same input, same verdict</td><td>Varies with repeats, answer order, wording and model (2.3)</td></tr>
+    <tr class="fragment" data-fragment-index="1"><td>Repeatability</td><td>Same input, same verdict</td><td>Varies with repeats, answer order, wording and model (2.2)</td></tr>
     <tr class="fragment" data-fragment-index="1"><td>How it errs</td><td>Too strict: rejects valid paths and misses successes</td><td>Too lenient: passes failures, and favours some answers</td></tr>
-    <tr class="fragment" data-fragment-index="2"><td>Cost per check</td><td>Close to zero, though the run it checks may not be: about US$0.38 per τ-bench retail task (<a href="../../bibliography/yao-2024-tau-bench/">Yao et al. 2024</a>)</td><td>A model call priced by tokens; repeats and longer traces multiply it (2.4)</td></tr>
+    <tr class="fragment" data-fragment-index="2"><td>Cost per check</td><td>Close to zero, though the run it checks may not be: about US$0.38 per τ-bench retail task (<a href="../../bibliography/yao-2024-tau-bench/">Yao et al. 2024</a>)</td><td>A model call priced by tokens; repeats and longer traces multiply it (2.3)</td></tr>
     <tr class="fragment" data-fragment-index="2"><td>Latency</td><td>Fast enough to run inline, on every trace</td><td>A model call per check, added to the user's wait if it runs inline</td></tr>
     <tr class="fragment" data-fragment-index="2"><td>Upkeep</td><td>Update the references when tools or data change</td><td>Re-check against people when the model or the prompt changes</td></tr>
   </tbody>
@@ -395,23 +382,20 @@ format:
     <p class="j2-src">AgentRewardBench: 1,302 trajectories from four agents on five web benchmarks (<a href="../../bibliography/lu-2025-agentrewardbench/">Lù et al. 2025</a>).</p>
   </div>
   <div class="j2-side">
-    <p class="fragment" data-fragment-index="2">On WebArena, experts put one agent's success rate at <b>42.3%</b>. The benchmark's rules said <b>25.6%</b> (<a href="../../bibliography/lu-2025-agentrewardbench/">Lù et al. 2025</a>).</p>
-    <p class="fragment" data-fragment-index="3">A stronger model is not always a better check. On one QA set, plain exact match agreed with people better than a GPT-4 judge: κ <b>0.651</b> against <b>0.627</b> (<a href="../../bibliography/verga-2024-juries/">Verga et al. 2024</a>).</p>
-    <p class="j2-strong fragment" data-fragment-index="4">Rules are precise and miss successes. Judges find more successes and pass more failures. Use both, and check both against people.</p>
+    <p class="j2-strong fragment" data-fragment-index="2">Rules are precise and miss successes. Judges find more successes and pass more failures. Use both, and check both against people.</p>
   </div>
 </div>
 ```
 
 ::: {.notes}
-**About this slide:** The evidence for using more than one instrument. On the same web-agent trajectories, the benchmarks' own rules and LLM judges were both scored against expert labels, and they fail in opposite directions. A judge is not automatically better than a rule either.
+**About this slide:** The evidence for using more than one instrument. On the same web-agent trajectories, the benchmarks' own rules and LLM judges were both scored against expert labels, and they fail in opposite directions.
 
 **Presenter notes:**
 
-- Builds: opens on precision, then (1) recall, (2) the WebArena undercount, (3) exact match against a GPT-4 judge, and (4) use both.
+- Builds: opens on precision, then (1) recall, and (2) use both.
 - AgentRewardBench: 351 tasks across WebArena, VisualWebArena, AssistantBench, WorkArena and WorkArena++, four agents, 1,302 trajectories. Six experts answered three yes/no questions per trajectory: success, side effects, and looping ([Lù et al. 2025](../../bibliography/lu-2025-agentrewardbench/)).
 - Rule-based checks: precision 83.8, recall 55.9. Best judge (GPT-4o with the accessibility tree): precision 69.8, recall 83.1. No model judge reached 70% precision on success, so about three in ten trajectories a judge calls successful are not ([Lù et al. 2025](../../bibliography/lu-2025-agentrewardbench/)).
-- WebArena, GPT-4o agent: experts 42.3% success, rules 25.6%, an undercount of 16.7 points. Side effects were the hardest label: the best judge's F1 was 21.4 ([Lù et al. 2025](../../bibliography/lu-2025-agentrewardbench/)).
-- Verga et al., Natural Questions: GPT-4 was the weakest judge (κ 0.627), below exact match (0.651). It "over-reasoned", bringing in outside knowledge instead of checking the answer against the reference; an instruction not to overthink raised it to 0.722 ([Verga et al. 2024](../../bibliography/verga-2024-juries/)).
+- Side effects were the hardest label: the best judge's F1 was 21.4 ([Lù et al. 2025](../../bibliography/lu-2025-agentrewardbench/)).
 :::
 
 # 2. LLM as a judge: the idea and its failure modes {.j2-slide}
@@ -421,14 +405,13 @@ format:
 <p class="j2-colhead j2-sec-head">In this section</p>
 <ol class="j2-sec-list">
   <li><a href="#/an-llm-judge-reads-meaning-at-the-cost-of-a-model-call"><span>2.1</span>The idea</a></li>
-  <li><a href="#/judges-match-people-on-some-tasks-not-all"><span>2.2</span>Agreement with people</a></li>
-  <li><a href="#/how-judges-fail-and-the-design-response"><span>2.3</span>Failure modes</a></li>
-  <li><a href="#/count-the-calls-before-you-run"><span>2.4</span>Cost and latency</a></li>
+  <li><a href="#/how-judges-fail-and-the-design-response"><span>2.2</span>Failure modes</a></li>
+  <li><a href="#/count-the-calls-before-you-run"><span>2.3</span>Cost and latency</a></li>
 </ol>
 ```
 
 ::: {.notes}
-**About this slide:** The non-deterministic side, and the method that names this part: what a judge is, how far it agrees with people, how it fails, and what it costs to run: the calls, where the judge runs, and cheaper judges (2.4). Part 4 goes deeper on reliability and failure modes.
+**About this slide:** The non-deterministic side, and the method that names this part: what a judge is, how it fails, and what it costs to run: the calls, where the judge runs, and cheaper judges (2.3). Part 4 goes deeper on reliability and failure modes.
 :::
 
 ---
@@ -436,7 +419,7 @@ format:
 ## An LLM judge reads meaning, at the cost of a model call {.j2-slide}
 
 ```{=html}
-<nav class="j2-strip" aria-label="Section 2, LLM as a judge: where this slide sits"><a class="j2-strip-sec" href="#/llm-as-a-judge-the-idea-and-its-failure-modes"><span>2</span>LLM as a judge</a><a class="is-on" aria-current="true" href="#/an-llm-judge-reads-meaning-at-the-cost-of-a-model-call"><span>2.1</span>The idea</a><a href="#/judges-match-people-on-some-tasks-not-all"><span>2.2</span>Agreement with people</a><a href="#/how-judges-fail-and-the-design-response"><span>2.3</span>Failure modes</a><a href="#/count-the-calls-before-you-run"><span>2.4</span>Cost and latency</a></nav>
+<nav class="j2-strip" aria-label="Section 2, LLM as a judge: where this slide sits"><a class="j2-strip-sec" href="#/llm-as-a-judge-the-idea-and-its-failure-modes"><span>2</span>LLM as a judge</a><a class="is-on" aria-current="true" href="#/an-llm-judge-reads-meaning-at-the-cost-of-a-model-call"><span>2.1</span>The idea</a><a href="#/how-judges-fail-and-the-design-response"><span>2.2</span>Failure modes</a><a href="#/count-the-calls-before-you-run"><span>2.3</span>Cost and latency</a></nav>
 <div class="j2-flow">
   <div class="j2-node j2-in"><span class="j2-k">Input</span><b>Criteria</b>scale and anchors</div>
   <div class="j2-plus">+</div>
@@ -470,53 +453,10 @@ format:
 
 ---
 
-## Judges match people on some tasks, not all {.j2-slide}
-
-```{=html}
-<nav class="j2-strip" aria-label="Section 2, LLM as a judge: where this slide sits"><a class="j2-strip-sec" href="#/llm-as-a-judge-the-idea-and-its-failure-modes"><span>2</span>LLM as a judge</a><a href="#/an-llm-judge-reads-meaning-at-the-cost-of-a-model-call"><span>2.1</span>The idea</a><a class="is-on" aria-current="true" href="#/judges-match-people-on-some-tasks-not-all"><span>2.2</span>Agreement with people</a><a href="#/how-judges-fail-and-the-design-response"><span>2.3</span>Failure modes</a><a href="#/count-the-calls-before-you-run"><span>2.4</span>Cost and latency</a></nav>
-<div class="j2-panels">
-  <div class="j2-panel">
-    <p class="j2-colhead">Chat answers</p>
-    <p class="j2-metric">Agreement on non-tie votes</p>
-    <div class="j2-bar"><span class="j2-bl">GPT-4 with experts</span><span class="j2-bt"><span class="j2-bf" style="width:85%"></span></span><b>85%</b></div>
-    <div class="j2-bar"><span class="j2-bl">Expert with expert</span><span class="j2-bt"><span class="j2-bf j2-bf-ref" style="width:81%"></span></span><b>81%</b></div>
-    <p class="j2-src"><a href="../../bibliography/zheng-2023-mt-bench/">Zheng et al. 2023</a></p>
-  </div>
-  <div class="j2-panel fragment" data-fragment-index="1">
-    <p class="j2-colhead">Coding agent traces</p>
-    <p class="j2-metric">Balanced accuracy on one rubric item (random = 50)</p>
-    <div class="j2-bar"><span class="j2-bl">Best of 18 judges</span><span class="j2-bt"><span class="j2-bf" style="width:89.4%"></span></span><b>89.4</b></div>
-    <div class="j2-bar"><span class="j2-bl">Human reference</span><span class="j2-bt"><span class="j2-bf j2-bf-ref" style="width:90.5%"></span></span><b>90.5</b></div>
-    <p class="j2-src"><a href="../../bibliography/peng-2026-ruverbench/">Peng et al. 2026</a></p>
-  </div>
-  <div class="j2-panel fragment" data-fragment-index="2">
-    <p class="j2-colhead">Web agent traces</p>
-    <p class="j2-metric">Precision when a judge says “success”</p>
-    <div class="j2-bar"><span class="j2-bl">Every LLM judge tested</span><span class="j2-bt j2-bt-line"><span class="j2-line" style="left:70%"></span></span><b>&lt; 70%</b></div>
-    <p class="j2-src"><a href="../../bibliography/lu-2025-agentrewardbench/">Lù et al. 2025</a></p>
-  </div>
-</div>
-<div class="j2-note fragment" data-fragment-index="3">Agreement on one task does not carry over to the next (<a href="../../bibliography/bavaresco-2025-human-judges/">Bavaresco et al. 2025</a>). Check your judge against people on your own data: section 4.3, and meta-evaluation in Part 4.</div>
-```
-
-::: {.notes}
-**About this slide:** Why judges are worth using, and why each one has to be checked. On chat answers, a strong judge reached human-level agreement. On agent traces, results depend on the domain. Each panel has its own metric, so compare within a panel, not across panels.
-
-**Presenter notes:**
-
-- Builds: opens on chat answers, then (1) coding-agent traces, (2) web-agent traces, and (3) agreement on one task does not carry over.
-- Zheng et al., MT-bench setup S2 (non-tie votes): GPT-4 pairwise 85% with humans, human–human 81% ([Zheng et al. 2023](../../bibliography/zheng-2023-mt-bench/)). One proprietary judge, chat answers, 2023.
-- RuVerBench: yes/no rubric checks on agentic coding trajectories. Balanced accuracy ×100. The best model (GPT-5.4) scored 89.4 against a human-reference average of 90.50; on research reports the best judge sat next to the human reference ([Peng et al. 2026](../../bibliography/peng-2026-ruverbench/)).
-- AgentRewardBench: web-agent trajectories, expert labels; no LLM judge reached 70% precision on success ([Lù et al. 2025](../../bibliography/lu-2025-agentrewardbench/)). The bar shows the 70% line, not a measured value.
-- Bavaresco et al. compare LLM and human judges across 20 NLP evaluation tasks ([Bavaresco et al. 2025](../../bibliography/bavaresco-2025-human-judges/)).
-:::
-
----
-
 ## How judges fail, and the design response {.j2-slide}
 
 ```{=html}
-<nav class="j2-strip" aria-label="Section 2, LLM as a judge: where this slide sits"><a class="j2-strip-sec" href="#/llm-as-a-judge-the-idea-and-its-failure-modes"><span>2</span>LLM as a judge</a><a href="#/an-llm-judge-reads-meaning-at-the-cost-of-a-model-call"><span>2.1</span>The idea</a><a href="#/judges-match-people-on-some-tasks-not-all"><span>2.2</span>Agreement with people</a><a class="is-on" aria-current="true" href="#/how-judges-fail-and-the-design-response"><span>2.3</span>Failure modes</a><a href="#/count-the-calls-before-you-run"><span>2.4</span>Cost and latency</a></nav>
+<nav class="j2-strip" aria-label="Section 2, LLM as a judge: where this slide sits"><a class="j2-strip-sec" href="#/llm-as-a-judge-the-idea-and-its-failure-modes"><span>2</span>LLM as a judge</a><a href="#/an-llm-judge-reads-meaning-at-the-cost-of-a-model-call"><span>2.1</span>The idea</a><a class="is-on" aria-current="true" href="#/how-judges-fail-and-the-design-response"><span>2.2</span>Failure modes</a><a href="#/count-the-calls-before-you-run"><span>2.3</span>Cost and latency</a></nav>
 <table class="j2-tbl j2-tbl-fail">
   <thead><tr><th>Failure mode</th><th>What it looks like</th><th>Design response</th></tr></thead>
   <tbody>
@@ -551,7 +491,7 @@ format:
 ## Count the calls before you run {.j2-slide}
 
 ```{=html}
-<nav class="j2-strip" aria-label="Section 2, LLM as a judge: where this slide sits"><a class="j2-strip-sec" href="#/llm-as-a-judge-the-idea-and-its-failure-modes"><span>2</span>LLM as a judge</a><a href="#/an-llm-judge-reads-meaning-at-the-cost-of-a-model-call"><span>2.1</span>The idea</a><a href="#/judges-match-people-on-some-tasks-not-all"><span>2.2</span>Agreement with people</a><a href="#/how-judges-fail-and-the-design-response"><span>2.3</span>Failure modes</a><a class="is-on" aria-current="true" href="#/count-the-calls-before-you-run"><span>2.4</span>Cost and latency</a></nav>
+<nav class="j2-strip" aria-label="Section 2, LLM as a judge: where this slide sits"><a class="j2-strip-sec" href="#/llm-as-a-judge-the-idea-and-its-failure-modes"><span>2</span>LLM as a judge</a><a href="#/an-llm-judge-reads-meaning-at-the-cost-of-a-model-call"><span>2.1</span>The idea</a><a href="#/how-judges-fail-and-the-design-response"><span>2.2</span>Failure modes</a><a class="is-on" aria-current="true" href="#/count-the-calls-before-you-run"><span>2.3</span>Cost and latency</a></nav>
 <div class="j2-formula">
   <div class="j2-fx"><b>Traces</b><span>cases in the set</span></div><span class="j2-times">×</span>
   <div class="j2-fx"><b>Calls per trace</b><span>one, or one per criterion</span></div><span class="j2-times">×</span>
@@ -593,7 +533,8 @@ format:
 ## Where the judge runs sets the budget {.j2-slide}
 
 ```{=html}
-<nav class="j2-strip" aria-label="Section 2, LLM as a judge: where this slide sits"><a class="j2-strip-sec" href="#/llm-as-a-judge-the-idea-and-its-failure-modes"><span>2</span>LLM as a judge</a><a href="#/an-llm-judge-reads-meaning-at-the-cost-of-a-model-call"><span>2.1</span>The idea</a><a href="#/judges-match-people-on-some-tasks-not-all"><span>2.2</span>Agreement with people</a><a href="#/how-judges-fail-and-the-design-response"><span>2.3</span>Failure modes</a><a class="is-on" aria-current="true" href="#/count-the-calls-before-you-run"><span>2.4</span>Cost and latency</a></nav>
+<nav class="j2-strip" aria-label="Section 2, LLM as a judge: where this slide sits"><a class="j2-strip-sec" href="#/llm-as-a-judge-the-idea-and-its-failure-modes"><span>2</span>LLM as a judge</a><a href="#/an-llm-judge-reads-meaning-at-the-cost-of-a-model-call"><span>2.1</span>The idea</a><a href="#/how-judges-fail-and-the-design-response"><span>2.2</span>Failure modes</a><a class="is-on" aria-current="true" href="#/count-the-calls-before-you-run"><span>2.3</span>Cost and latency</a></nav>
+<p class="j2-lead">Where you use a judge decides how much time and money each check can cost.</p>
 <div class="j2-grid j2-g4 j2-cmp">
   <div class="j2-cd"><span class="j2-cd-k">Offline</span><b>Development</b><dl><dt>Runs</dt><dd>on every change, with repeats</dd><dt>Latency</dt><dd>minutes are fine</dd><dt>Cost</dt><dd>grows with runs × repeats</dd><dt>Fits</dt><dd>code, cheaper judges, repeated runs</dd></dl></div>
   <div class="j2-cd fragment" data-fragment-index="1"><span class="j2-cd-k">Offline</span><b>Release gate</b><dl><dt>Runs</dt><dd>on a fixed test set before shipping</dd><dt>Latency</dt><dd>can be slow</dd><dt>Cost</dt><dd>bounded by the test set</dd><dt>Fits</dt><dd>a careful judge, a pass mark per criterion</dd></dl></div>
@@ -609,7 +550,7 @@ format:
 
 **Presenter notes:**
 
-- Builds: opens on development, then (1) the release gate, (2) monitoring, (3) the guardrail, and (4) the same judge can be right in one place and wrong in another.
+- Builds: opens on the line about time and money, and on development, then (1) the release gate, (2) monitoring, (3) the guardrail, and (4) the same judge can be right in one place and wrong in another.
 - Winston: cost is part of the choice; a judge that gains a little agreement and doubles latency can be wrong for monitoring and right for a release gate. Measure agreement, latency, tokens and cost, and re-run a canary set when the judge model changes ([Winston 2026](../../bibliography/winston-2026-production-judges/)).
 - Development at scale: one team ran a coding agent on SWE-bench more than 200,000 times, about 100 billion tokens, with a peak of 35,000 runs in a day ([Sternbach 2026](../../bibliography/sternbach-2026-swebench-scale/)). That is the volume a development-time judge has to keep up with.
 - Offline and online are different evaluations: a fixed dataset is the cheaper and less faithful of the two, though the survey shows no table of the gap ([Mohammadi et al. 2025](../../bibliography/mohammadi-2025-benchmark-survey/)).
@@ -622,7 +563,7 @@ format:
 ## Cheaper judges can still be good judges {.j2-slide}
 
 ```{=html}
-<nav class="j2-strip" aria-label="Section 2, LLM as a judge: where this slide sits"><a class="j2-strip-sec" href="#/llm-as-a-judge-the-idea-and-its-failure-modes"><span>2</span>LLM as a judge</a><a href="#/an-llm-judge-reads-meaning-at-the-cost-of-a-model-call"><span>2.1</span>The idea</a><a href="#/judges-match-people-on-some-tasks-not-all"><span>2.2</span>Agreement with people</a><a href="#/how-judges-fail-and-the-design-response"><span>2.3</span>Failure modes</a><a class="is-on" aria-current="true" href="#/count-the-calls-before-you-run"><span>2.4</span>Cost and latency</a></nav>
+<nav class="j2-strip" aria-label="Section 2, LLM as a judge: where this slide sits"><a class="j2-strip-sec" href="#/llm-as-a-judge-the-idea-and-its-failure-modes"><span>2</span>LLM as a judge</a><a href="#/an-llm-judge-reads-meaning-at-the-cost-of-a-model-call"><span>2.1</span>The idea</a><a href="#/how-judges-fail-and-the-design-response"><span>2.2</span>Failure modes</a><a class="is-on" aria-current="true" href="#/count-the-calls-before-you-run"><span>2.3</span>Cost and latency</a></nav>
 <div class="j2-split j2-split-even">
   <div class="j2-panel">
     <p class="j2-colhead">One large judge, or a jury of three small ones?</p>
@@ -671,7 +612,7 @@ format:
 ```
 
 ::: {.notes}
-**About this slide:** A short lecture first: what a rubric holds and what makes a criterion usable (3.1), how to choose a scale and define its levels (3.2), and the judge prompt patterns with the evidence behind each (3.3), then tips for criteria, scales and judge prompts (3.4). Then the worked example (3.5): a judge for the running example in four steps, each a page of the Part 3 app. Step 5, checking the judge against people, is in section 4.
+**About this slide:** A short lecture first: what a rubric holds (3.1), how to choose a scale and define its levels (3.2), and the judge prompt patterns with the evidence behind each (3.3), then tips for criteria and scales (3.4). Then the worked example (3.5): a judge for the running example in four steps, each a page of the Part 3 app. Step 5, checking the judge against people, is in section 4.
 :::
 
 ---
@@ -680,38 +621,23 @@ format:
 
 ```{=html}
 <nav class="j2-strip" aria-label="Section 3, Rubrics, scales, prompts: where this slide sits"><a class="j2-strip-sec" href="#/rubrics-scales-and-prompt-patterns"><span>3</span>Rubrics, scales, prompts</a><a class="is-on" aria-current="true" href="#/a-rubric-spells-out-what-good-means"><span>3.1</span>Rubrics</a><a href="#/pick-the-simplest-scale-then-define-every-level"><span>3.2</span>Scales</a><a href="#/prompt-patterns-and-the-evidence-behind-each"><span>3.3</span>Prompt patterns</a><a href="#/tips-for-criteria-and-scales"><span>3.4</span>Tips</a><a href="#/step-1.-replace-helpful-with-criteria-tied-to-the-trace"><span>3.5</span>Worked example</a></nav>
-<div class="j2-split j2-split-even">
-  <div>
-    <p class="j2-colhead">What a rubric holds</p>
-    <div class="j2-list j2-list-sm">
-      <div class="j2-li"><span class="j2-num">1</span><div><b>One quality to judge.</b> “The booking matches the dates the user gave”, not “helpful”.</div></div>
-      <div class="j2-li"><span class="j2-num">2</span><div><b>The evidence it may use.</b> A tool call, the reply, or the whole trace.</div></div>
-      <div class="j2-li"><span class="j2-num">3</span><div><b>The allowed labels.</b> A scale with every level defined: section 3.2.</div></div>
-      <div class="j2-li"><span class="j2-num">4</span><div><b>Decision rules.</b> Edge cases settled before judging, not during.</div></div>
-      <div class="j2-li"><span class="j2-num">5</span><div><b>An example of each label.</b></div></div>
-    </div>
-    <p class="j2-src">The five parts in <a href="../../bibliography/winston-2026-production-judges/">Winston 2026</a>, where “Rate helpfulness from 1 to 5” is the weak prompt.</p>
-  </div>
-  <div class="j2-list">
-    <div class="j2-cd fragment" data-fragment-index="1"><b>Broad ratings, or specific behaviours?</b><p>People rated whole dialogues on 1–5 scales in 2.8 minutes each, and labelled yes/no behaviours on every turn in 15.2. Most behaviour labels were more reliable (<a href="../../bibliography/finch-2023-abc/">Finch et al. 2023</a>).</p></div>
-    <div class="j2-cd fragment" data-fragment-index="2"><b>One rubric for every case, or one per case?</b><p>RULERS locks one rubric for a whole task (<a href="../../bibliography/hong-2026-rulers/">Hong et al. 2026</a>). HealthBench physicians wrote criteria for each conversation (<a href="../../bibliography/arora-2025-healthbench/">Arora et al. 2025</a>). Part 3 uses one shared rubric.</p></div>
-    <div class="j2-cd j2-cd-judge fragment" data-fragment-index="3"><b>Is each criterion usable?</b><p>One property (<a href="../../bibliography/li-2024-generation-to-judgment/">Li et al. 2024</a>), visible in the trace (<a href="../../bibliography/jia-2025-agent-gpa/">Jia et al. 2025</a>), and decided the same way by someone else: RuVerBench dropped about 6% of its rubric items as ambiguous or unverifiable (<a href="../../bibliography/peng-2026-ruverbench/">Peng et al. 2026</a>).</p></div>
-  </div>
+<p class="j2-colhead">What a rubric holds</p>
+<div class="j2-list j2-list-sm">
+  <div class="j2-li"><span class="j2-num">1</span><div><b>One quality to judge.</b> “The booking matches the dates the user gave”, not “helpful”.</div></div>
+  <div class="j2-li"><span class="j2-num">2</span><div><b>The evidence it may use.</b> A tool call, the reply, or the whole trace.</div></div>
+  <div class="j2-li"><span class="j2-num">3</span><div><b>The allowed labels.</b> A scale with every level defined: section 3.2.</div></div>
+  <div class="j2-li"><span class="j2-num">4</span><div><b>Decision rules.</b> Edge cases settled before judging, not during.</div></div>
+  <div class="j2-li"><span class="j2-num">5</span><div><b>An example of each label.</b></div></div>
 </div>
+<p class="j2-src">The five parts in <a href="../../bibliography/winston-2026-production-judges/">Winston 2026</a>, where “Rate helpfulness from 1 to 5” is the weak prompt.</p>
 ```
 
 ::: {.notes}
-**About this slide:** What a rubric is, before we write one. A rubric turns "good" into parts a judge can apply: one quality, the evidence it may use, the allowed labels, rules for edge cases and an example of each label. Two design choices sit on top: how specific the labels are, and whether one rubric serves every case. Each criterion should then pass three tests.
+**About this slide:** What a rubric is, before we write one. A rubric turns "good" into parts a judge can apply: one quality, the evidence it may use, the allowed labels, rules for edge cases and an example of each label.
 
 **Presenter notes:**
 
-- Builds: opens on what a rubric holds, then one design question per click: (1) broad or specific, (2) one rubric or one per case, and (3) is each criterion usable.
 - Winston: the rubric is the evaluator and the model only applies it. "Rate helpfulness from 1 to 5" is the weak prompt, because helpful is not defined ([Winston 2026](../../bibliography/winston-2026-production-judges/)).
-- ABC-Eval: dialogue-level 1–5 ratings on eight dimensions took a median 2.8 minutes per dialogue; yes/no labels for 16 behaviours on every turn took 15.2; most behaviour labels had higher agreement between annotators. The annotators were people and the chatbots pre-LLM ([Finch et al. 2023](../../bibliography/finch-2023-abc/)).
-- RULERS locks one rubric bundle for the whole task and makes each checklist decision cite evidence ([Hong et al. 2026](../../bibliography/hong-2026-rulers/)). HealthBench is the other end: physicians wrote criteria for each conversation, each marked met or not met ([Arora et al. 2025](../../bibliography/arora-2025-healthbench/)). Part 3 uses one shared rubric with a score per criterion.
-- One property: helpfulness, safety and security, reliability, relevance, logic and overall quality are different attributes ([Li et al. 2024](../../bibliography/li-2024-generation-to-judgment/)).
-- Visible in the trace: Agent GPA drops its plan judges when the trace has no plan, as on its coding traces ([Jia et al. 2025](../../bibliography/jia-2025-agent-gpa/)).
-- Decided the same way by someone else: RuVerBench removed about 6% of rubric items as ambiguous or unverifiable before building the benchmark ([Peng et al. 2026](../../bibliography/peng-2026-ruverbench/)).
 - Pair criteria so an agent cannot score well by doing nothing: ToolEmu reports safety together with helpfulness ([Ruan et al. 2024](../../bibliography/ruan-2024-toolemu/)).
 :::
 
@@ -721,41 +647,25 @@ format:
 
 ```{=html}
 <nav class="j2-strip" aria-label="Section 3, Rubrics, scales, prompts: where this slide sits"><a class="j2-strip-sec" href="#/rubrics-scales-and-prompt-patterns"><span>3</span>Rubrics, scales, prompts</a><a href="#/a-rubric-spells-out-what-good-means"><span>3.1</span>Rubrics</a><a class="is-on" aria-current="true" href="#/pick-the-simplest-scale-then-define-every-level"><span>3.2</span>Scales</a><a href="#/prompt-patterns-and-the-evidence-behind-each"><span>3.3</span>Prompt patterns</a><a href="#/tips-for-criteria-and-scales"><span>3.4</span>Tips</a><a href="#/step-1.-replace-helpful-with-criteria-tied-to-the-trace"><span>3.5</span>Worked example</a></nav>
-<div class="j2-split">
-  <div>
-    <p class="j2-colhead">Four kinds of scale, simplest first</p>
-    <div class="j2-scales">
-      <div class="j2-sc-row"><b>Pass / fail</b><span>a gate, such as “confirmed before booking”; needs a clear rule</span></div>
-      <div class="j2-sc-row"><b>Categories</b><span>a few distinct states, each defined, such as resolved, escalated or refused</span></div>
-      <div class="j2-sc-row j2-sc-on"><b>1–5</b><span>degrees of quality; every level needs an anchor. Used in Part 3</span></div>
-      <div class="j2-sc-row"><b>Continuous</b><span>a real continuum, such as confidence that an answer is right; needs a calibration set</span></div>
-    </div>
-    <p class="j2-src">Kinds of scale from <a href="../../bibliography/winston-2026-production-judges/">Winston 2026</a>; the examples are illustrative.</p>
-    <div class="j2-rule fragment" data-fragment-index="1"><b>From scores to a verdict:</b> set a pass mark for each criterion, strict for safety and privacy, looser for style (<a href="../../bibliography/shankar-2024-validators/">Shankar et al. 2024</a>).</div>
-  </div>
-  <div class="j2-panel fragment" data-fragment-index="2">
-    <p class="j2-colhead">Define every level</p>
-    <p>Prometheus learns from rubrics that describe each score from 1 to 5 (<a href="../../bibliography/kim-2024-prometheus/">Kim et al. 2024a</a>). In Arize's testing, numeric scores plateaued and changed shape when the scale changed (<a href="../../bibliography/winston-2026-production-judges/">Winston 2026</a>).</p>
-    <p class="j2-colhead fragment" data-fragment-index="3">Whole-number scores tie close cases</p>
-    <p class="j2-metric fragment" data-fragment-index="3">Pairwise comparisons left tied (%)</p>
-    <div class="j2-bar fragment" data-fragment-index="3"><span class="j2-bl">One integer score</span><span class="j2-bt"><span class="j2-bf j2-bf-bad" style="width:26.7%"></span></span><b>26.7</b></div>
-    <div class="j2-bar fragment" data-fragment-index="3"><span class="j2-bl">Repeated 16 times</span><span class="j2-bt"><span class="j2-bf j2-bf-bad" style="width:5.5%"></span></span><b>5.5</b></div>
-    <div class="j2-bar fragment" data-fragment-index="3"><span class="j2-bl">Probability-weighted</span><span class="j2-bt"><span class="j2-bf" style="width:0%"></span></span><b>0</b></div>
-    <p class="j2-src fragment" data-fragment-index="3"><a href="../../bibliography/kwok-2026-llm-as-verifier/">Kwok et al. 2026</a>.</p>
-  </div>
+<p class="j2-colhead">Four kinds of scale, simplest first</p>
+<div class="j2-scales">
+  <div class="j2-sc-row"><b>Pass / fail</b><span>a gate, such as “confirmed before booking”; needs a clear rule</span></div>
+  <div class="j2-sc-row"><b>Categories</b><span>a few distinct states, each defined, such as resolved, escalated or refused</span></div>
+  <div class="j2-sc-row j2-sc-on"><b>1–5</b><span>degrees of quality; every level needs an anchor. Used in Part 3</span></div>
+  <div class="j2-sc-row"><b>Continuous</b><span>a real continuum, such as confidence that an answer is right; needs a calibration set</span></div>
 </div>
+<p class="j2-src">Kinds of scale from <a href="../../bibliography/winston-2026-production-judges/">Winston 2026</a>; the examples are illustrative.</p>
+<div class="j2-rule fragment" data-fragment-index="1"><b>From scores to a verdict:</b> set a pass mark for each criterion, strict for safety and privacy, looser for style (<a href="../../bibliography/shankar-2024-validators/">Shankar et al. 2024</a>).</div>
 ```
 
 ::: {.notes}
-**About this slide:** Choose the simplest scale that fits the criterion, then say what every level means. The four kinds run from a pass/fail gate to a continuous score, and each needs something different: a clear rule, defined states, an anchor per level, or a calibration set. Whole-number scores are coarse, so close cases tie. Last, decide how criterion scores become a verdict.
+**About this slide:** Choose the simplest scale that fits the criterion, then say what every level means. The four kinds run from a pass/fail gate to a continuous score, and each needs something different: a clear rule, defined states, an anchor per level, or a calibration set. Last, decide how criterion scores become a verdict.
 
 **Presenter notes:**
 
-- Builds: opens on four kinds of scale, then (1) from scores to a verdict, (2) define every level, and (3) whole-number scores tie close cases.
-- Winston's output spectrum: boolean labels for a gate, categories for a failure with a few distinct states, an ordered scale with an anchor on every level, and a continuous number only with a real continuum and a calibration set. In Arize's own testing, numeric scores plateaued and changed shape when the scale changed, without becoming a better measurement; Arize is the post's publisher ([Winston 2026](../../bibliography/winston-2026-production-judges/)).
+- Builds: opens on four kinds of scale, then (1) from scores to a verdict.
+- Winston's output spectrum: boolean labels for a gate, categories for a failure with a few distinct states, an ordered scale with an anchor on every level, and a continuous number only with a real continuum and a calibration set ([Winston 2026](../../bibliography/winston-2026-production-judges/)).
 - Pass/fail per criterion at scale: HealthBench marks each physician-written criterion met or not met, then sums points with penalties ([Arora et al. 2025](../../bibliography/arora-2025-healthbench/)).
-- Prometheus: 50 human-written seed rubrics, each defining a criterion and a description for every score from 1 to 5, expanded by GPT-4 to 1,000 rubrics ([Kim et al. 2024a](../../bibliography/kim-2024-prometheus/)).
-- Kwok et al.: at one pass a judge that prints one integer tied 26.7% of comparisons, and 5.5% at 16 passes; the probability-weighted verifier tied none. It needs token probabilities, which not every API returns ([Kwok et al. 2026](../../bibliography/kwok-2026-llm-as-verifier/)).
 - Shankar et al.: practitioners wanted strict, zero-tolerance thresholds on safety or privacy checks and looser ones on style, rather than one global score ([Shankar et al. 2024](../../bibliography/shankar-2024-validators/)).
 - Verdict rules differ: [HealthBench](../../bibliography/arora-2025-healthbench/) sums points with penalties; [SAGE](../../bibliography/le-2026-sage/) maps grades to actions, keeping a result graded 3 or 4. The Part 3 rule is on the step 2 slide.
 :::
@@ -769,7 +679,7 @@ format:
 <table class="j2-tbl j2-tbl-pat">
   <thead><tr><th>Pattern</th><th>What the prompt does</th><th>Evidence</th></tr></thead>
   <tbody>
-    <tr><td>Task framing</td><td>Says who judges what, and treats the trace as evidence, not instructions</td><td>Text inside an answer can steer a judge (<a href="../../bibliography/raina-2024-robust-judge/">Raina et al. 2024</a>; section 2.3)</td></tr>
+    <tr><td>Task framing</td><td>Says who judges what, and treats the trace as evidence, not instructions</td><td>Text inside an answer can steer a judge (<a href="../../bibliography/raina-2024-robust-judge/">Raina et al. 2024</a>; section 2.2)</td></tr>
     <tr><td>One criterion at a time</td><td>A separate score, or a separate call, for each criterion</td><td>With four or five rubric items in one call, judges lost score on coding traces, often by tens of points (<a href="../../bibliography/peng-2026-ruverbench/">Peng et al. 2026</a>)</td></tr>
     <tr class="fragment" data-fragment-index="1"><td>Anchored levels</td><td>Says what every level of the scale means</td><td>Prometheus is given a description of each score (<a href="../../bibliography/kim-2024-prometheus/">Kim et al. 2024a</a>); UMBRELA's prompt states each grade twice (<a href="../../bibliography/upadhyay-2024-umbrela/">Upadhyay et al. 2024</a>)</td></tr>
     <tr class="fragment" data-fragment-index="1"><td>Decision rules</td><td>Settles edge cases in advance, and allows “insufficient evidence” rather than a forced pass or fail</td><td>Both in Winston's rubric checklist (<a href="../../bibliography/winston-2026-production-judges/">Winston 2026</a>)</td></tr>
@@ -845,49 +755,6 @@ format:
 
 ---
 
-## Tips for judge prompts {.j2-slide}
-
-```{=html}
-<nav class="j2-strip" aria-label="Section 3, Rubrics, scales, prompts: where this slide sits"><a class="j2-strip-sec" href="#/rubrics-scales-and-prompt-patterns"><span>3</span>Rubrics, scales, prompts</a><a href="#/a-rubric-spells-out-what-good-means"><span>3.1</span>Rubrics</a><a href="#/pick-the-simplest-scale-then-define-every-level"><span>3.2</span>Scales</a><a href="#/prompt-patterns-and-the-evidence-behind-each"><span>3.3</span>Prompt patterns</a><a class="is-on" aria-current="true" href="#/tips-for-criteria-and-scales"><span>3.4</span>Tips</a><a href="#/step-1.-replace-helpful-with-criteria-tied-to-the-trace"><span>3.5</span>Worked example</a></nav>
-<div class="j2-split j2-split-even">
-  <div>
-    <p class="j2-colhead">Writing the prompt</p>
-    <div class="j2-list j2-list-sm">
-      <div class="j2-li"><span class="j2-num">1</span><div><b>Rubric first, trace last, clearly fenced.</b> Mark the trace as data, as the Part 3 judge does: text inside it can steer a verdict (2.3).</div></div>
-      <div class="j2-li fragment" data-fragment-index="1"><span class="j2-num">2</span><div><b>Give it the facts.</b> For an agent, the tool results as well as the reply: something to check against (2.1).</div></div>
-      <div class="j2-li fragment" data-fragment-index="2"><span class="j2-num">3</span><div><b>Ask for evidence that code can check.</b> In the Part 3 app, a result citing an invalid message ID is an evaluation error, not a low score.</div></div>
-      <div class="j2-li fragment" data-fragment-index="3"><span class="j2-num">4</span><div><b>Do not let a model rank its own output.</b> In pairs, GPT-4 preferred its own summaries over people's almost every time; scored one at a time, it was close to neutral (<a href="../../bibliography/panickssery-2024-self-preference/">Panickssery et al. 2024</a>).</div></div>
-    </div>
-  </div>
-  <div>
-    <p class="j2-colhead fragment" data-fragment-index="4">Running the judge</p>
-    <div class="j2-list j2-list-sm">
-      <div class="j2-li fragment" data-fragment-index="4"><span class="j2-num">5</span><div><b>Pin the model and the prompt.</b> Store both with every score, and re-run a fixed set of cases when either changes (<a href="../../bibliography/winston-2026-production-judges/">Winston 2026</a>).</div></div>
-      <div class="j2-li fragment" data-fragment-index="5"><span class="j2-num">6</span><div><b>Temperature 0 is not reliability.</b> It makes the output more repeatable, not more right: UMBRELA ran at 0 and agreed only fairly with assessors (<a href="../../bibliography/upadhyay-2024-umbrela/">Upadhyay et al. 2024</a>).</div></div>
-      <div class="j2-li fragment" data-fragment-index="6"><span class="j2-num">7</span><div><b>Tune on one set, report on another.</b> Repeat the check on a holdout, so the prompt is not fitted to the cases you tuned it on (<a href="../../bibliography/winston-2026-production-judges/">Winston 2026</a>).</div></div>
-      <div class="j2-li fragment" data-fragment-index="7"><span class="j2-num">8</span><div><b>Log tokens and latency with every score.</b> Cost is part of the choice (<a href="../../bibliography/winston-2026-production-judges/">Winston 2026</a>); Part 3 reports record both when the provider returns them.</div></div>
-    </div>
-  </div>
-</div>
-```
-
-::: {.notes}
-**About this slide:** Practical tips for writing and running a judge prompt, each tied to a source or to the Part 3 app. Tips 1–4 are about the prompt; tips 5–8 are about running it as a measurement.
-
-**Presenter notes:**
-
-- Builds: one tip per click: writing the prompt first (tips 1 to 4), then running the judge (tips 5 to 8).
-- "Treat the trace as evidence, not as instructions" is in the draft workshop judge (workshop/prompts/judges.json). A short phrase added to an answer can steer a judge ([Raina et al. 2024](../../bibliography/raina-2024-robust-judge/)).
-- With a reference answer, GPT-4 accepted a wrong maths answer far less often ([Zheng et al. 2023](../../bibliography/zheng-2023-mt-bench/)). For an agent, the tool results play that role.
-- The app requires an integer score, a concise explanation and valid evidence message IDs; missing, duplicate, invalid or out-of-scope results are an evaluation error, not a low agent score (workshop/README.md).
-- Self-preference depends on the format: in pairwise comparisons GPT-4 preferred its own summaries nearly 100% of the time over human ones, about 95% over GPT-3.5 and 85% over Llama-2; in individual scoring it was near the neutral 0.5 ([Panickssery et al. 2024](../../bibliography/panickssery-2024-self-preference/)). Winston's fix is a judge from another model family ([Winston 2026](../../bibliography/winston-2026-production-judges/)).
-- Winston: version the prompt and keep a canary set; calibrate in a loop and repeat on a holdout; measure agreement, latency, tokens and cost ([Winston 2026](../../bibliography/winston-2026-production-judges/)). Kapoor et al. make the same holdout point for agent benchmarks ([Kapoor et al. 2024](../../bibliography/kapoor-2024-agents-that-matter/)).
-- UMBRELA ran at temperature 0, top-p 1, and still had Cohen's κ of only 0.31–0.37 with human assessors on four grades ([Upadhyay et al. 2024](../../bibliography/upadhyay-2024-umbrela/)).
-- Part 3 reports contain scores, explanations, raw judge replies and available token usage and latency (workshop/README.md).
-:::
-
----
-
 ## Step 1. Replace “helpful” with criteria tied to the trace {.j2-slide}
 
 ```{=html}
@@ -907,7 +774,7 @@ format:
     <div class="j2-ci fragment" data-fragment-index="2"><span class="j2-pin">B</span><b>Use of tool results</b><span>the reply: does it match what the tools returned?</span></div>
     <div class="j2-ci fragment" data-fragment-index="3"><span class="j2-pin">C</span><b>Tone</b><span>the final answer: is it clear and polite?</span></div>
     <div class="j2-ci fragment" data-fragment-index="4"><span class="j2-pin">D</span><b>Task completed</b><span>the whole trace: did the user get what they asked for?</span></div>
-    <div class="j2-note fragment" data-fragment-index="5"><b>Not “Rate how helpful this reply is”:</b> each criterion is one property, visible in the trace, that someone else would decide the same way, the tests from 3.1.</div>
+    <div class="j2-note fragment" data-fragment-index="5"><b>Not “Rate how helpful this reply is”:</b> each criterion is one property, visible in the trace, that someone else would decide the same way.</div>
   </div>
 </div>
 <p class="j2-src">The four targets in the Part 3 app. Separate scores show which part failed (<a href="../../bibliography/winston-2026-production-judges/">Winston 2026</a>; <a href="../../bibliography/jia-2025-agent-gpa/">Jia et al. 2025</a>).</p>
@@ -919,7 +786,7 @@ format:
 **Presenter notes:**
 
 - Builds: opens on the trace, then one criterion per click, with its pins in the trace: (1) tool arguments, (2) use of tool results, (3) tone, (4) task completed, and (5) not “rate how helpful”.
-- Each criterion applies the tests from 3.1: one property, visible in the trace, decided the same way by someone else.
+- Each criterion passes three tests. One property: helpfulness, safety and security, reliability, relevance, logic and overall quality are different attributes ([Li et al. 2024](../../bibliography/li-2024-generation-to-judgment/)). Visible in the trace: Agent GPA drops its plan judges when the trace has no plan, as on its coding traces ([Jia et al. 2025](../../bibliography/jia-2025-agent-gpa/)). Decided the same way by someone else: RuVerBench removed about 6% of rubric items as ambiguous or unverifiable before building the benchmark ([Peng et al. 2026](../../bibliography/peng-2026-ruverbench/)).
 - Agent GPA scores goal, plan and actions with separate judges rather than one score on the final answer ([Jia et al. 2025](../../bibliography/jia-2025-agent-gpa/)). Winston splits an agent's grade the same way, into the final answer, tool selection, tool arguments, use of the tool result, trajectory efficiency and session outcome ([Winston 2026](../../bibliography/winston-2026-production-judges/)).
 - Tone alone would reward a polite reply that does nothing useful, so it sits beside task completion, as ToolEmu reports safety together with helpfulness ([Ruan et al. 2024](../../bibliography/ruan-2024-toolemu/)).
 - In the app, a tool-call criterion gives one score per call, judged on evidence up to that call, so a later result cannot excuse an earlier decision.
@@ -1121,9 +988,7 @@ evidence: ["result-2", "answer"]</pre>
   <div class="j2-cd j2-cd-judge fragment" data-fragment-index="2"><span class="j2-cd-k">Applies both</span><b>The judge</b><p>Title, seniority and location scored separately, each on an anchored scale from 0 to 4. Recency stays in code.</p></div>
   <div class="j2-cd fragment" data-fragment-index="3"><span class="j2-cd-k">Checked against experts</span><b>Calibration</b><p>Four passes raised agreement with experts from κ 0.67 to 0.77; experts agree with each other at 0.83.</p></div>
 </div>
-<div class="j2-note fragment" data-fragment-index="4"><b>Used for:</b> offline, it caught a 16% drop in good recall before users saw a new variant. In production, enforcing the policy cut poor matches at rank 10 by 28.9%, then 50.9%.</div>
 <p class="j2-src">SAGE, at LinkedIn, for People Search and Job Search (<a href="../../bibliography/le-2026-sage/">Le et al. 2026</a>). Search relevance, not agent traces: the design is what carries over.</p>
-<div class="j2-running fragment" data-fragment-index="5"><b>For the career assistant:</b> a written policy for a good job recommendation, plus example cases that career experts have labelled.</div>
 ```
 
 ::: {.notes}
@@ -1131,12 +996,10 @@ evidence: ["result-2", "answer"]</pre>
 
 **Presenter notes:**
 
-- Builds: opens on the policy, then (1) precedent, (2) the judge, (3) calibration, (4) what it was used for, and (5) the same design for the career assistant.
+- Builds: opens on the policy, then (1) precedent, (2) the judge, and (3) calibration.
 - SAGE: policy plus precedent plus a surrogate judge. Precedent is a few hundred examples labelled by product experts, not a crowd ([Le et al. 2026](../../bibliography/le-2026-sage/)).
 - The four calibration passes on People Search were each a named fix: the judge caught human labelling errors (0.71), people rewrote a policy they could not apply consistently (0.73), the judge had invented a constraint the policy did not state (0.75), and people standardised how non-human profiles are scored (0.77) ([Le et al. 2026](../../bibliography/le-2026-sage/)). The loop runs both ways.
 - Agreement is linear weighted Cohen's κ on the 0–4 scale; expert versus expert is 0.83 on People Search and 0.78 on Job Search ([Le et al. 2026](../../bibliography/le-2026-sage/)).
-- In production, two job-alert experiments that enforced the policy cut the poor-match rate at rank 10 by 28.9% and then 50.9%, and a distilled 8B model labels more than 10 million cases a day ([Le et al. 2026](../../bibliography/le-2026-sage/)).
-- The running-example line is a design suggestion, not a published system.
 :::
 
 ---
@@ -1160,6 +1023,7 @@ evidence: ["result-2", "answer"]</pre>
       <span class="j2-cm-h">Judge: fail</span><span class="j2-cm-c">0</span><span class="j2-cm-c">0</span>
     </div>
     <p>A judge that passes all 100 traces agrees with people on <b>90%</b> of them and catches none of the 10 failures. Cohen's κ, which corrects for chance, is <b>0</b>. Illustration, not data.</p>
+    <p class="j2-eq"><b>κ</b> = (actual agreement − agreement expected by chance) ÷&nbsp;(1&nbsp;−&nbsp;agreement expected by chance)</p>
     <p class="j2-strong fragment" data-fragment-index="5">Report κ per criterion, next to how well people agree with each other: SAGE reached 0.77, where experts agree at 0.83 (<a href="../../bibliography/le-2026-sage/">Le et al. 2026</a>).</p>
   </div>
 </div>
@@ -1170,9 +1034,10 @@ evidence: ["result-2", "answer"]</pre>
 
 **Presenter notes:**
 
-- Builds: one step per click (steps 2 to 4 on clicks 1 to 3), then (4) why raw agreement misleads, and (5) report κ per criterion.
+- Builds: one step per click (steps 2 to 4 on clicks 1 to 3), then (4) why raw agreement misleads, with how κ is calculated, and (5) report κ per criterion.
 - Szymanski et al.: registered dietitians and clinical psychologists made pairwise comparisons alongside LLM judges; agreement on overall preference was 68% and 64%, and it varied across the domain-specific questions ([Szymanski et al. 2025](../../bibliography/szymanski-2025-expert-tasks/)).
-- Judges with over 80–90% raw agreement still misjudged accuracy by 10–20 points; a chance-corrected measure, Scott's π, told them apart ([Thakur et al. 2024](../../bibliography/thakur-2024-judging-the-judges/)). The matrix is made up: κ = (0.90 − 0.90) / (1 − 0.90) = 0.
+- Judges with over 80–90% raw agreement still misjudged accuracy by 10–20 points; a chance-corrected measure, Scott's π, told them apart ([Thakur et al. 2024](../../bibliography/thakur-2024-judging-the-judges/)).
+- How κ is calculated, on this matrix: actual agreement is the share of traces where the judge and the person give the same label, 90 of 100, so 0.90. Agreement expected by chance is how often they would agree if each gave its labels at random, keeping its own share of passes: the judge passes 100% of traces and people pass 90%, so 1 × 0.90 + 0 × 0.10 = 0.90. Then κ = (0.90 − 0.90) ÷ (1 − 0.90) = 0, no better than chance. κ is 1 when they agree on every trace. The matrix is made up.
 - Criteria drift: 5 of 9 EvalGen participants added or reinterpreted criteria after grading outputs ([Shankar et al. 2024](../../bibliography/shankar-2024-validators/)). RULERS locks the rubric into one versioned bundle reused for every case ([Hong et al. 2026](../../bibliography/hong-2026-rulers/)).
 - Run a small meta-evaluation before choosing a judge ([Gu et al. 2024](../../bibliography/gu-2024-llm-as-judge-survey/)). Part 3 runs this loop over three rounds; Part 4 goes deeper on meta-evaluation.
 :::
@@ -1229,9 +1094,9 @@ evidence: ["result-2", "answer"]</pre>
   <thead><tr><th>Method</th><th>Quality</th><th>Latency</th><th>Cost</th></tr></thead>
   <tbody>
     <tr><td>Code</td><td>Exact where a program can compute the answer; blind to meaning</td><td>Fastest; runs inline on every trace</td><td>Close to zero per check</td></tr>
-    <tr class="fragment" data-fragment-index="1"><td>Large LLM judge</td><td>Close to people on some tasks, not all (2.2)</td><td>A model call per check; repeats and juries multiply it</td><td>Priced by tokens. HealthBench chose a grader that matched physicians without a reasoning model's cost (<a href="../../bibliography/arora-2025-healthbench/">Arora et al. 2025</a>)</td></tr>
+    <tr class="fragment" data-fragment-index="1"><td>Large LLM judge</td><td>Close to people on some tasks, not all (4.3)</td><td>A model call per check; repeats and juries multiply it</td><td>Priced by tokens</td></tr>
     <tr class="fragment" data-fragment-index="2"><td>Small, distilled judge</td><td>Close to its teacher once checked: κ 0.73 with experts, against the teacher's 0.77 (<a href="../../bibliography/le-2026-sage/">Le et al. 2026</a>)</td><td>Fast enough for live traffic: more than 10 million labels a day</td><td>Relative cost 1, against 92 for the teacher and 154 for crowd labels (<a href="../../bibliography/le-2026-sage/">Le et al. 2026</a>)</td></tr>
-    <tr class="fragment" data-fragment-index="3"><td>People</td><td>The reference, though people disagree too (2.2)</td><td>Slowest: minutes per item (3.1)</td><td>Highest: a teacher US$140 per 200 stories, a model under US$5 (<a href="../../bibliography/chiang-2023-llm-human-eval/">Chiang and Lee 2023</a>)</td></tr>
+    <tr class="fragment" data-fragment-index="3"><td>People</td><td>The reference, though people disagree too (4.4)</td><td>Slowest: minutes per item (<a href="../../bibliography/finch-2023-abc/">Finch et al. 2023</a>)</td><td>Highest: a teacher US$140 per 200 stories, a model under US$5 (<a href="../../bibliography/chiang-2023-llm-human-eval/">Chiang and Lee 2023</a>)</td></tr>
   </tbody>
 </table>
 <div class="j2-note fragment" data-fragment-index="4"><b>Accuracy alone can rank the wrong option first.</b> Simple agents matched complex ones at almost two orders of magnitude lower cost, so report cost and latency beside accuracy (<a href="../../bibliography/kapoor-2024-agents-that-matter/">Kapoor et al. 2024</a>).</div>
@@ -1244,9 +1109,8 @@ evidence: ["result-2", "answer"]</pre>
 **Presenter notes:**
 
 - Builds: one method per click: opens on code, then (1) a large judge, (2) a small, distilled judge, (3) people, and (4) accuracy alone can rank the wrong option first.
-- HealthBench chose its model grader because, on the consensus criteria, it matched physician agreement without the cost of a reasoning model ([Arora et al. 2025](../../bibliography/arora-2025-healthbench/)).
 - SAGE's teacher is a frontier model, too expensive for all traffic, so it is distilled into an 8-billion-parameter student on 312,000 teacher labels; the student reaches linear-weighted κ 0.73 and 0.72 with experts, against 0.77 and 0.76 for the teacher. Relative cost: student 1, teacher 92, a lower-bound crowdwork judge 154. That makes more than 10 million labels a day possible, and a smaller online model serves more than 10,000 queries a second ([Le et al. 2026](../../bibliography/le-2026-sage/)).
-- People: Chiang and Lee paid each teacher US\$140 per 200 stories, against under US\$5 for text-davinci-003, and argue for models alongside people, not instead of them ([Chiang and Lee 2023](../../bibliography/chiang-2023-llm-human-eval/)). That people disagree too is in 2.2 and 4.4.
+- People: Chiang and Lee paid each teacher US\$140 per 200 stories, against under US\$5 for text-davinci-003, and argue for models alongside people, not instead of them ([Chiang and Lee 2023](../../bibliography/chiang-2023-llm-human-eval/)). That people disagree too is in 4.4. Labelling takes minutes: people took a median 2.8 minutes to rate a whole dialogue on 1–5 scales, and 15.2 to label yes/no behaviours on every turn ([Finch et al. 2023](../../bibliography/finch-2023-abc/)).
 - Kapoor et al.: on HumanEval, simple baselines matched complex agents while costs differed by almost two orders of magnitude; they recommend optimising accuracy and cost together ([Kapoor et al. 2024](../../bibliography/kapoor-2024-agents-that-matter/)). Accuracy alone leaves out cost, latency and reliability ([Chen et al. 2026](../../bibliography/chen-2026-emerging-trends/)).
 - No source here times the methods on the same task, so the latency column is relative, apart from the distilled judge's throughput ([Le et al. 2026](../../bibliography/le-2026-sage/)).
 :::
@@ -1299,8 +1163,8 @@ evidence: ["result-2", "answer"]</pre>
 ```{=html}
 <div class="j2-recap">
   <div class="j2-rc"><span class="j2-num">1</span><b>Deterministic evaluation</b><p>Check tools, parameters and the final state by code, and run each case more than once. Code is exact but blind to meaning, so pair it with a judge.</p><span class="j2-use">Part 3, inspect cases: which checks need meaning?</span></div>
-  <div class="j2-rc fragment" data-fragment-index="1"><span class="j2-num">2</span><b>LLM as a judge</b><p>It reads meaning, best with something to check against. Agreement with people depends on the task. Design against its failure modes, count the calls, and fit the judge to where it runs.</p><span class="j2-use">Part 3, run: model, temperature and repeats</span></div>
-  <div class="j2-rc fragment" data-fragment-index="2"><span class="j2-num">3</span><b>Rubrics, scales and prompt patterns</b><p>One property per criterion, tied to the trace. Pick the simplest scale and anchor every level. Use tested patterns, pin the model and prompt, and ask for a score, an explanation and evidence.</p><span class="j2-use">Part 3, design rubric and judge instructions</span></div>
+  <div class="j2-rc fragment" data-fragment-index="1"><span class="j2-num">2</span><b>LLM as a judge</b><p>It reads meaning, best with something to check against. Design against its failure modes, count the calls, and fit the judge to where it runs.</p><span class="j2-use">Part 3, run: model, temperature and repeats</span></div>
+  <div class="j2-rc fragment" data-fragment-index="2"><span class="j2-num">3</span><b>Rubrics, scales and prompt patterns</b><p>One property per criterion, tied to the trace. Pick the simplest scale and anchor every level. Use tested patterns and ask for a score, an explanation and evidence.</p><span class="j2-use">Part 3, design rubric and judge instructions</span></div>
   <div class="j2-rc fragment" data-fragment-index="3"><span class="j2-num">4</span><b>Domain criteria and human review</b><p>Experts shape the criteria. People check the judge per criterion, beyond chance. Use the cheapest method that can see each failure, and layer code, judges and people by quality, latency and cost.</p><span class="j2-use">Part 3, review: check the cited evidence</span></div>
 </div>
 <div class="j2-running fragment" data-fragment-index="4"><b>Back to the warm-up:</b> the reply reads well, yet it fails two criteria, and the judge's evidence shows why.</div>

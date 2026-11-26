@@ -36,6 +36,14 @@
   color: var(--deck-soft);
 }
 
+.reveal .j2-slide .j2-lead {
+  margin-bottom: 18px;
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 1.35;
+  color: var(--deck-accent);
+}
+
 .reveal .j2-slide .j2-note {
   margin-top: 22px;
   padding: 12px 16px;
@@ -1243,6 +1251,16 @@
   color: var(--verdict-fail);
   background: var(--verdict-fail-tint);
   border-color: var(--verdict-fail);
+}
+
+.reveal .j2-slide .j2-panel .j2-eq {
+  margin: 10px 0 12px;
+  padding: 8px 12px;
+  font-size: 17px;
+  line-height: 1.4;
+  background: var(--deck-surface);
+  border: 1px solid var(--deck-line);
+  border-radius: 2px;
 }
 
 /* Counting judge calls */
