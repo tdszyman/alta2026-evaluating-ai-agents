@@ -1089,3 +1089,243 @@
   font-size: 12px;
   color: var(--deck-ink);
 }
+
+/* "What are AI Agents?": the harness figure. The model sits inside the
+   loop, and the loop and capabilities sit inside the harness, on a fixed
+   1100 x 520 board, so each build lands in place. Each part keeps its own
+   hue from the existing tokens (loop = agent, model = series b, memory =
+   series a, tools = action); the deterministic / stochastic split is said
+   in text tags, never by hue alone. */
+
+.reveal .harness-slide .wa-board {
+  position: relative;
+  width: 1100px;
+  height: 520px;
+  margin: 8px auto 0;
+}
+
+.reveal .harness-slide .wa-board p { margin: 0; }
+
+.reveal .harness-slide .wa-harness {
+  position: absolute;
+  inset: 0;
+  background: var(--deck-surface);
+  border: 2px solid var(--deck-soft);
+  border-radius: 20px;
+}
+
+.reveal .harness-slide .wa-harness-name {
+  position: absolute;
+  left: 26px;
+  top: 14px;
+  font-size: 19px;
+  line-height: 1.2;
+  color: var(--deck-soft);
+}
+
+.reveal .harness-slide .wa-harness-name b {
+  margin-right: 10px;
+  font-size: 24px;
+  color: var(--deck-ink);
+}
+
+.reveal .harness-slide .wa-part {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  box-sizing: border-box;
+  padding: 0 22px;
+  border: 2px solid;
+  border-radius: 14px;
+}
+
+.reveal .harness-slide .wa-loop {
+  left: 24px;
+  top: 56px;
+  width: 1052px;
+  height: 262px;
+  align-items: flex-start;
+  padding-top: 20px;
+  background: var(--chat-agent-bg);
+  border-color: var(--chat-agent-edge);
+  --wa-ink: var(--chat-agent-label);
+  --wa-edge: var(--chat-agent-edge);
+}
+
+.reveal .harness-slide .wa-model {
+  left: 64px;
+  top: 162px;
+  width: 972px;
+  height: 136px;
+  background: var(--series-b-tint);
+  border-color: var(--series-b);
+  --wa-ink: var(--series-b-ink);
+  --wa-edge: var(--series-b);
+}
+
+.reveal .harness-slide .wa-memory,
+.reveal .harness-slide .wa-tools {
+  top: 368px;
+  width: 514px;
+  height: 130px;
+}
+
+.reveal .harness-slide .wa-memory {
+  left: 24px;
+  background: var(--series-a-tint);
+  border-color: var(--series-a);
+  --wa-ink: var(--series-a-ink);
+  --wa-edge: var(--series-a);
+}
+
+.reveal .harness-slide .wa-tools {
+  left: 562px;
+  background: var(--chat-action-bg);
+  border-color: var(--chat-action-edge);
+  --wa-ink: color-mix(in srgb, var(--chat-action-edge), var(--deck-ink) 45%);
+  --wa-edge: var(--chat-action-edge);
+}
+
+.reveal .harness-slide .wa-icon {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 60px;
+  height: 60px;
+  color: var(--wa-ink);
+  background: var(--deck-paper);
+  border: 2px solid var(--wa-edge);
+  border-radius: 12px;
+}
+
+.reveal .harness-slide .wa-icon svg {
+  width: 34px;
+  height: 34px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.reveal .harness-slide .wa-icon .wa-next { stroke-dasharray: 2 1.6; }
+
+.reveal .harness-slide .wa-fn {
+  font-family: var(--deck-font-mono);
+  font-size: 19px;
+  font-weight: 700;
+}
+
+.reveal .harness-slide .wa-text { flex: 1; min-width: 0; }
+
+.reveal .harness-slide .wa-name {
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--wa-ink);
+}
+
+.reveal .harness-slide .wa-sub {
+  margin-top: 6px;
+  font-size: 20px;
+  line-height: 1.3;
+  color: var(--deck-ink);
+}
+
+.reveal .harness-slide .wa-memory .wa-name,
+.reveal .harness-slide .wa-tools .wa-name { font-size: 28px; }
+
+.reveal .harness-slide .wa-memory .wa-sub,
+.reveal .harness-slide .wa-tools .wa-sub { font-size: 18px; }
+
+.reveal .harness-slide .wa-steps {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: 18px;
+  font-size: 18px;
+  font-weight: 600;
+  vertical-align: 4px;
+  color: var(--wa-ink);
+}
+
+.reveal .harness-slide .wa-steps span {
+  padding: 2px 12px;
+  color: var(--deck-ink);
+  background: var(--deck-paper);
+  border: 1.5px solid var(--wa-edge);
+  border-radius: 999px;
+}
+
+.reveal .harness-slide .wa-steps .wa-again {
+  padding: 0;
+  font-size: 26px;
+  line-height: 1;
+  color: var(--wa-ink);
+  background: none;
+  border: 0;
+}
+
+.reveal .harness-slide .wa-caps {
+  position: absolute;
+  left: 28px;
+  top: 336px;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--deck-soft);
+}
+
+/* Deterministic / stochastic tags: solid ink, solid series b, or an ink
+   outline for "usually deterministic". */
+.reveal .harness-slide .wa-tag {
+  flex: none;
+  align-self: center;
+  padding: 5px 14px;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.2;
+  white-space: nowrap;
+  border: 2px solid;
+  border-radius: 999px;
+}
+
+.reveal .harness-slide .wa-loop .wa-tag { align-self: flex-start; margin-top: 6px; }
+
+.reveal .harness-slide .wa-name .wa-tag {
+  margin-left: 12px;
+  vertical-align: 5px;
+}
+
+.reveal .harness-slide .wa-det {
+  color: var(--deck-paper);
+  background: var(--deck-ink);
+  border-color: var(--deck-ink);
+}
+
+.reveal .harness-slide .wa-sto {
+  color: var(--deck-paper);
+  background: var(--series-b-ink);
+  border-color: var(--series-b-ink);
+}
+
+.reveal .harness-slide .wa-mostly {
+  color: var(--deck-ink);
+  background: var(--deck-paper);
+  border-color: var(--deck-ink);
+  border-style: dashed;
+}
+
+.reveal .harness-slide .wa-takeaway {
+  width: 1100px;
+  margin: 18px auto 0;
+  font-size: 26px;
+  font-weight: 500;
+  text-align: center;
+  color: var(--deck-ink);
+}
+
+.reveal .harness-slide .wa-det-ink { font-weight: 700; }
+.reveal .harness-slide .wa-sto-ink { font-weight: 700; color: var(--series-b-ink); }
