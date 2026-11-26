@@ -140,6 +140,170 @@ format:
 
 ---
 
+## From LLMs to agents {#from-llms-to-agents .overview-slide}
+
+<!-- TODO (Terrence): this overview is meant to replace the background slides in section 2 (“Terms this section defines”, “LLM text generation”, “Conversations: messages and turns”, “What is an agent?”, “Agent traces: think, act, observe”). They are kept, unchanged, until you decide how far to cut them. -->
+
+```{=html}
+<div class="ov-grid">
+  <div class="ov-col">
+    <p class="ov-head"><span class="ov-num">1</span>LLM text completion</p>
+    <p class="ov-gloss">Text tokens in, text tokens out</p>
+    <div class="ov-fig">
+      <div class="ov-row"><span class="ov-io">In</span><span class="ov-tok">Find</span><span class="ov-tok">me</span><span class="ov-tok">barista</span><span class="ov-tok">jobs</span></div>
+      <span class="ov-down" aria-hidden="true">↓</span>
+      <div class="ov-llm"><span class="ov-llm-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="1.5" y="8.5" width="5.5" height="7" rx="1.5"/><rect x="9.25" y="8.5" width="5.5" height="7" rx="1.5"/><rect class="ov-next" x="17" y="8.5" width="5.5" height="7" rx="1.5"/></svg></span>LLM</div>
+      <span class="ov-down" aria-hidden="true">↓</span>
+      <div class="ov-row"><span class="ov-io">Out</span><span class="ov-tok ov-out">Here</span><span class="ov-tok ov-out">are</span><span class="ov-tok ov-out">three</span><span class="ov-tok ov-out ov-more">…</span></div>
+    </div>
+    <p class="ov-terms-label">Key terms</p>
+    <ul class="ov-terms">
+      <li>Input tokens, output tokens</li>
+      <li>Next-token prediction</li>
+      <li>LLM call</li>
+    </ul>
+  </div>
+
+  <div class="ov-arrow fragment" data-fragment-index="1" aria-hidden="true">›</div>
+
+  <div class="ov-col fragment" data-fragment-index="1">
+    <p class="ov-head"><span class="ov-num">2</span>Chat completion</p>
+    <p class="ov-gloss">History in, an assistant turn out</p>
+    <div class="ov-fig">
+      <div class="ov-msg ov-sys"><b>System</b>You are a career assistant.</div>
+      <div class="ov-msg ov-user"><b>User</b>Find me barista jobs.</div>
+      <span class="ov-down" aria-hidden="true">↓</span>
+      <div class="ov-llm"><span class="ov-llm-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="1.5" y="8.5" width="5.5" height="7" rx="1.5"/><rect x="9.25" y="8.5" width="5.5" height="7" rx="1.5"/><rect class="ov-next" x="17" y="8.5" width="5.5" height="7" rx="1.5"/></svg></span>LLM</div>
+      <span class="ov-down" aria-hidden="true">↓</span>
+      <div class="ov-msg ov-asst"><b>Assistant</b>Here are three near you.</div>
+    </div>
+    <p class="ov-terms-label">Key terms</p>
+    <ul class="ov-terms">
+      <li>Messages</li>
+      <li>System, user and assistant roles</li>
+      <li>Turn, multi-turn</li>
+    </ul>
+  </div>
+
+  <div class="ov-arrow fragment" data-fragment-index="2" aria-hidden="true">›</div>
+
+  <div class="ov-col fragment" data-fragment-index="2">
+    <p class="ov-head"><span class="ov-num">3</span>Agent traces</p>
+    <p class="ov-gloss">Steps with tool calls, then a reply</p>
+    <div class="ov-fig">
+      <div class="ov-msg ov-user"><b>User</b>Find me barista jobs.</div>
+      <span class="ov-down" aria-hidden="true">↓</span>
+      <div class="ov-loop">
+        <span class="ov-loop-name"><a href="../../bibliography/yao-2023-react/">ReAct</a> loop <span class="ov-again" aria-label="repeat">↻</span></span>
+        <div class="ov-step ov-thought"><b>Thought</b>Where do they live?</div>
+        <div class="ov-step ov-action"><b>Action</b><code>get_profile()</code></div>
+        <div class="ov-step ov-obs"><b>Observation</b>suburb: Fitzroy</div>
+      </div>
+      <span class="ov-down" aria-hidden="true">↓</span>
+      <div class="ov-msg ov-asst"><b>Assistant</b>3 barista jobs in Fitzroy.</div>
+    </div>
+    <p class="ov-terms-label">Key terms</p>
+    <ul class="ov-terms">
+      <li>Thought, action, observation</li>
+      <li>Tool call, tool result</li>
+      <li>Step, multi-step</li>
+      <li>Trace, also called trajectory</li>
+    </ul>
+  </div>
+</div>
+```
+
+::: {.notes}
+**About this slide:** The three ideas that build up from an LLM to an agent, on one slide, each the one before with something added. (1) LLM text completion: text tokens go in, and the model predicts the next token, one at a time, until it stops; one run of this is an LLM call. (2) Chat completion: the same model, given the conversation so far as a list of messages with roles (system, user, assistant), returns the next assistant message. (3) Agent traces: between the user’s message and the reply, the agent runs a ReAct loop ([Yao et al. 2023](../../bibliography/yao-2023-react/)) of thought, action and observation. The action is a tool call, and the observation is the tool’s result. The full record of the run is the trace. The example is illustrative.
+
+**What to take away:** An agent is still an LLM producing tokens. Chat adds roles and history; an agent adds a loop of tool calls. The trace is what an LLM judge reads, from Part 2 on.
+
+**Presenter notes:**
+
+- Builds: the slide opens on column 1; click 1 adds chat completion; click 2 adds agent traces.
+- Column 1, text completion: tokens in, tokens out. The model predicts the next token, appends it, and goes again until it stops. Each run is one LLM call; Part 2 counts judge calls, and the hands-on app reports input and output tokens.
+- Column 2, chat completion: the input is now a conversation. The system message holds the developer’s instructions, the user message is what the person types, and the assistant message is the model’s reply. A turn is one user message and the reply; multi-turn means several. The model keeps no memory between calls, so each call re-sends the whole history.
+- Column 3, agent traces: before replying, the agent loops. Thought: the model decides what to do (here, it needs the user’s suburb). Action: it calls a tool, `get_profile()`. Observation: the tool’s result goes back into the input. One pass is a step; several are multi-step. The whole record, messages plus LLM calls plus tool calls, is the trace, which papers also call the trajectory.
+- The words in the key-term lists are the ones Parts 2 to 4 and the hands-on app use: LLM call, tokens, messages and roles, turn, tool call and result, step, trace.
+- Next: the same parts, named on one example trace.
+:::
+
+---
+
+## The parts of an agent trace {#parts-of-an-agent-trace .terms-slide .trace-parts-slide}
+
+```{=html}
+<div class="tm-figure">
+
+  <div class="tm-chat" aria-label="An agent conversation in two turns, with the parts of the trace labelled">
+    <div class="tm-msg tm-sys tm-dim" id="tp-sys"><span class="tm-role">System</span>You are a career assistant. Tools: get_profile, search_jobs, apply.</div>
+
+    <div class="tm-turn-tag tm-dim">Turn 1</div>
+    <div class="tm-msg tm-user tm-dim" id="tp-u1"><span class="tm-role">User</span>Find me barista jobs.</div>
+    <div class="tm-step" id="tp-s1">
+      <div class="tm-call" id="tp-s1-call">
+        <div class="tm-dim tm-thought"><span class="tm-kind">Thought</span>No location given. Check their profile.</div>
+        <div class="tm-dim tm-action" id="tp-s1-ac"><span class="tm-kind">Action</span><code>get_profile()</code></div>
+      </div>
+      <div class="tm-dim tm-obs" id="tp-s1-ob"><span class="tm-kind">Observation</span>suburb: Fitzroy · recent searches: café, barista</div>
+    </div>
+    <div class="tm-step" id="tp-s2">
+      <div class="tm-call" id="tp-s2-call">
+        <div class="tm-dim tm-thought"><span class="tm-kind">Thought</span>They live in Fitzroy. Search there.</div>
+        <div class="tm-dim tm-action"><span class="tm-kind">Action</span><code>search_jobs(role="barista", near="Fitzroy")</code></div>
+      </div>
+      <div class="tm-dim tm-obs"><span class="tm-kind">Observation</span>3 jobs: Café Lune, Bean Bar, Hill St Coffee</div>
+    </div>
+    <div class="tm-msg tm-asst tm-dim" id="tp-a1"><span class="tm-role">Assistant</span>I found 3 barista jobs near you in Fitzroy: Café Lune, Bean Bar and Hill St Coffee.</div>
+
+    <div class="tm-turn-tag tm-dim">Turn 2</div>
+    <div class="tm-msg tm-user tm-dim" id="tp-u2"><span class="tm-role">User</span>Apply to Café Lune with my profile.</div>
+    <div class="tm-step" id="tp-s3">
+      <div class="tm-call">
+        <div class="tm-dim tm-thought"><span class="tm-kind">Thought</span>The user chose Café Lune. Apply.</div>
+        <div class="tm-dim tm-action"><span class="tm-kind">Action</span><code>apply(job="cafe-lune")</code></div>
+      </div>
+      <div class="tm-dim tm-obs"><span class="tm-kind">Observation</span>status: submitted</div>
+    </div>
+    <div class="tm-msg tm-asst tm-dim" id="tp-a2"><span class="tm-role">Assistant</span>Done. Your application to Café Lune has been sent.</div>
+  </div>
+
+  <div class="tm-term fragment" data-fragment-index="1" data-side="left" data-type="point" data-target="tp-sys"><b>System message</b></div>
+  <div class="tm-term fragment" data-fragment-index="1" data-side="left" data-type="point" data-target="tp-u1"><b>User message</b></div>
+  <div class="tm-term fragment" data-fragment-index="1" data-side="left" data-type="point" data-target="tp-a1"><b>Assistant message</b></div>
+  <div class="tm-term fragment" data-fragment-index="2" data-side="left" data-type="point" data-target="tp-s1-ac"><b>Tool call</b></div>
+  <div class="tm-term fragment" data-fragment-index="2" data-side="left" data-type="point" data-target="tp-s1-ob"><b>Observation</b></div>
+  <div class="tm-term fragment" data-fragment-index="2" data-side="left" data-type="point" data-target="tp-s2-call"><b>LLM call</b></div>
+  <div class="tm-term fragment" data-fragment-index="3" data-side="right" data-type="bracket" data-depth="0" data-target="tp-s1"><b>Step</b></div>
+  <div class="tm-term fragment" data-fragment-index="3" data-side="right" data-type="bracket" data-depth="1" data-target="tp-s1" data-to="tp-s2"><b>Multi-step</b></div>
+  <div class="tm-term fragment" data-fragment-index="4" data-side="right" data-type="bracket" data-depth="2" data-target="tp-u1" data-to="tp-a1"><b>Turn</b></div>
+  <div class="tm-term fragment" data-fragment-index="4" data-side="right" data-type="bracket" data-depth="3" data-target="tp-u1" data-to="tp-a2"><b>Multi-turn</b></div>
+  <div class="tm-term fragment" data-fragment-index="5" data-side="right" data-type="bracket" data-depth="4" data-anchor="end" data-target="tp-sys" data-to="tp-a2"><b>Trace</b></div>
+  <span class="fragment tm-overview" data-fragment-index="6"></span>
+
+  <svg class="tm-links" aria-hidden="true"></svg>
+</div>
+
+<div class="tm-sources slide-foot">Illustrative conversation, the same one as on “LLM-as-judge: evaluating the trace”.</div>
+```
+
+::: {.notes}
+**About this slide:** The same example agent conversation as on “LLM-as-judge: evaluating the trace”, with the parts of a trace named on it and no judges yet. It names the three kinds of message, an LLM call, a tool call and its observation, a step and multi-step, a turn and multi-turn, and the trace as a whole. The conversation is illustrative.
+
+**Presenter notes:**
+
+- Builds: click 1 names the messages; click 2 the LLM call, tool call and observation; click 3 step and multi-step; click 4 turn and multi-turn; click 5 the trace. Click 6 shows every label at full strength.
+- System message: the developer’s instructions, set before any user input. User message: what the person types. Assistant message: the model’s reply, which goes back into the input for the next call.
+- LLM call: one run of the model. In each step, the thought and the action come from one LLM call.
+- Tool call: the action. Here the agent calls `get_profile()`. Observation: the tool’s result, added to the input for the next LLM call.
+- Step: one pass of the loop, thought, action, observation ([Yao et al. 2023](../../bibliography/yao-2023-react/)). Multi-step: several steps before a reply. Step 2 needs what step 1 found, the user’s suburb.
+- Turn: one user message and the assistant’s reply to it. Multi-turn: several turns. The model keeps no memory between calls, so each call re-sends the whole history.
+- Trace: the end-to-end record of an agent run: messages, LLM calls and tool calls ([Dong et al. 2024](../../bibliography/dong-2024-agentops/)). Also called a trajectory. This is what an LLM judge reads, in Part 2 and in the hands-on app.
+- Next: what the agent around the model is made of.
+:::
+
+---
+
 ## What are AI Agents? {#what-are-ai-agents .harness-slide}
 
 <!-- TODO (Terrence): the layout follows a reference diagram you supplied (Harness, Loop, Model, Capabilities), with Voice dropped. If it comes from a published source, add that source to the bibliography and credit it here. -->
@@ -191,7 +355,7 @@ format:
 ```
 
 ::: {.notes}
-**About this slide:** A first, non-technical picture of an AI agent. At its centre is the model, an LLM, which predicts one token at a time. Around it runs the loop: ordinary code that calls the model, reads what it wants to do, runs that action, feeds the result back, and goes round again (think, act, observe) until the task is done. The loop draws on capabilities such as memory and tools. Together, the loop and its capabilities are the harness: the code wrapped around the model. Some parts are deterministic and some are stochastic. The loop and memory are code: give them the same input and they do the same thing. The model is stochastic: the same input can give different outputs. Tools are usually deterministic function calls, but not always.
+**About this slide:** A non-technical picture of an AI agent as a whole, after “From LLMs to agents” and “The parts of an agent trace” built up the ideas. At its centre is the model, an LLM, which predicts one token at a time. Around it runs the loop: ordinary code that calls the model, reads what it wants to do, runs that action, feeds the result back, and goes round again (think, act, observe) until the task is done. The loop draws on capabilities such as memory and tools. Together, the loop and its capabilities are the harness: the code wrapped around the model. Some parts are deterministic and some are stochastic. The loop and memory are code: give them the same input and they do the same thing. The model is stochastic: the same input can give different outputs. Tools are usually deterministic function calls, but not always.
 
 **What to take away:** An agent is a bunch of code wrapped around an LLM. Most of the parts are deterministic; the model at the centre is stochastic, and some tools are too. That mix is why the next slide calls agents complex *and* complicated.
 

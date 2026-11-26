@@ -702,3 +702,11 @@ html.print-pdf .reveal .terms-slide .tm-conn { opacity: 1; }
   font-weight: 700;
   color: var(--deck-accent);
 }
+
+/* "The parts of an agent trace": the judge slide's example with name-only
+   labels, so the names can be larger than on the term slides. */
+
+.reveal .trace-parts-slide .tm-term b { font-size: 18px; }
+
+/* It sits in section 1, so its title matches the slides around it. */
+.reveal .trace-parts-slide.terms-slide h2 { font-size: var(--r-heading2-size); }

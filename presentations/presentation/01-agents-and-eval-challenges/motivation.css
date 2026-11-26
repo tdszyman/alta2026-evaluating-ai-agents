@@ -1329,3 +1329,268 @@
 
 .reveal .harness-slide .wa-det-ink { font-weight: 700; }
 .reveal .harness-slide .wa-sto-ink { font-weight: 700; color: var(--series-b-ink); }
+
+/* "From LLMs to agents": three columns, each a quiet-surface panel like the
+   harness frame, with a small figure over a key-terms list. The LLM box is
+   the harness slide's Model (series b); messages, thought, action and
+   observation take the chat tokens the trace slides use; the ReAct loop
+   takes the agent colours, like the harness Loop. Figures share one fixed
+   height, so the term lists start level. */
+
+.reveal .overview-slide .ov-grid {
+  display: grid;
+  grid-template-columns: 1fr 28px 1fr 28px 1fr;
+  align-items: stretch;
+  width: 1160px;
+  margin: 10px auto 0;
+}
+
+.reveal .overview-slide .ov-grid p { margin: 0; }
+
+.reveal .overview-slide .ov-col {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: 16px 18px 12px;
+  background: var(--deck-surface);
+  border: 2px solid var(--deck-line);
+  border-radius: 20px;
+}
+
+.reveal .overview-slide .ov-arrow {
+  align-self: center;
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+  color: var(--deck-soft);
+}
+
+.reveal .overview-slide .ov-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--deck-ink);
+}
+
+.reveal .overview-slide .ov-num {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  font-size: 17px;
+  color: var(--deck-paper);
+  background: var(--deck-ink);
+  border-radius: 999px;
+}
+
+.reveal .overview-slide .ov-gloss {
+  margin-top: 6px;
+  font-size: 17px;
+  line-height: 1.3;
+  white-space: nowrap;
+  color: var(--deck-soft);
+}
+
+.reveal .overview-slide .ov-fig {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+  gap: 5px;
+  height: 256px;
+  margin: 10px 0 10px;
+}
+
+.reveal .overview-slide .ov-down {
+  align-self: center;
+  font-size: 18px;
+  line-height: 1;
+  color: var(--deck-soft);
+}
+
+.reveal .overview-slide .ov-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.reveal .overview-slide .ov-io {
+  width: 34px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--deck-soft);
+}
+
+.reveal .overview-slide .ov-tok {
+  padding: 3px 9px;
+  font-size: 17px;
+  line-height: 1.3;
+  color: var(--deck-ink);
+  background: var(--deck-paper);
+  border: 1.5px solid var(--deck-line);
+  border-radius: 6px;
+}
+
+.reveal .overview-slide .ov-out {
+  background: var(--series-b-tint);
+  border-color: var(--series-b);
+}
+
+.reveal .overview-slide .ov-more { border-style: dashed; }
+
+.reveal .overview-slide .ov-llm {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  height: 50px;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--series-b-ink);
+  background: var(--series-b-tint);
+  border: 2px solid var(--series-b);
+  border-radius: 12px;
+}
+
+.reveal .overview-slide .ov-llm-icon {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  background: var(--deck-paper);
+  border: 2px solid var(--series-b);
+  border-radius: 9px;
+}
+
+.reveal .overview-slide .ov-llm-icon svg {
+  width: 24px;
+  height: 24px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.reveal .overview-slide .ov-llm-icon .ov-next { stroke-dasharray: 2 1.6; }
+
+.reveal .overview-slide .ov-msg,
+.reveal .overview-slide .ov-step {
+  padding: 5px 10px 5px 12px;
+  font-size: 16px;
+  line-height: 1.3;
+  color: var(--deck-ink);
+  border-radius: 6px;
+}
+
+.reveal .overview-slide .ov-msg b,
+.reveal .overview-slide .ov-step b {
+  display: inline-block;
+  margin-right: 8px;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.reveal .overview-slide .ov-sys {
+  color: var(--deck-soft);
+  background: var(--chat-system-bg);
+  border: 1px dashed var(--chat-system-edge);
+}
+
+.reveal .overview-slide .ov-user {
+  background: var(--chat-user-bg);
+  box-shadow: inset calc(-1 * var(--chat-edge-width)) 0 0 var(--chat-user-edge);
+}
+
+.reveal .overview-slide .ov-user b { color: var(--chat-user-label); }
+
+.reveal .overview-slide .ov-asst {
+  background: var(--chat-agent-bg);
+  box-shadow: inset var(--chat-edge-width) 0 0 var(--chat-agent-edge);
+}
+
+.reveal .overview-slide .ov-asst b { color: var(--chat-agent-label); }
+
+.reveal .overview-slide .ov-loop {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 6px 8px 8px;
+  background: var(--chat-agent-bg);
+  border: 2px solid var(--chat-agent-edge);
+  border-radius: 12px;
+}
+
+.reveal .overview-slide .ov-loop-name {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--chat-agent-label);
+}
+
+.reveal .overview-slide .ov-loop-name a { color: inherit; font-weight: inherit; }
+
+.reveal .overview-slide .ov-again { font-size: 19px; }
+
+.reveal .overview-slide .ov-step { padding: 3px 10px; font-size: 15px; }
+
+.reveal .overview-slide .ov-thought {
+  font-style: var(--chat-thought-style);
+  color: var(--chat-thought-ink);
+  background: var(--deck-paper);
+  border-left: var(--chat-edge-width) var(--chat-thought-line) var(--chat-thought-edge);
+  border-radius: 0 6px 6px 0;
+}
+
+.reveal .overview-slide .ov-thought b { font-style: normal; }
+
+.reveal .overview-slide .ov-action {
+  background: var(--chat-action-bg);
+  box-shadow: inset var(--chat-edge-width) 0 0 var(--chat-action-edge);
+}
+
+.reveal .overview-slide .ov-obs {
+  background: var(--chat-observation-bg);
+  box-shadow: inset var(--chat-edge-width) 0 0 var(--chat-observation-edge);
+}
+
+.reveal .overview-slide .ov-step code {
+  font-family: var(--deck-font-mono);
+  font-size: 14px;
+  color: var(--deck-ink);
+  background: none;
+}
+
+.reveal .overview-slide .ov-terms-label {
+  padding-top: 10px;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--deck-soft);
+  border-top: 1px solid var(--deck-line);
+}
+
+.reveal .overview-slide .ov-terms {
+  margin: 6px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.reveal .overview-slide .ov-terms li {
+  padding: 4px 0;
+  font-size: 19px;
+  line-height: 1.25;
+  color: var(--deck-ink);
+  border-bottom: 1px solid var(--deck-line);
+}
+
+.reveal .overview-slide .ov-terms li:last-child { border-bottom: 0; }
