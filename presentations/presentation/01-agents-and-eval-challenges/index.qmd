@@ -358,10 +358,14 @@ The first four are about a single failure: a bad decision, a bad comment, an ill
     <figcaption>WIRED · 12 Oct 2026</figcaption>
   </figure>
 </div>
+
+<p class="hc-takeaway fragment" data-fragment-index="9">The big question for orgs is: how can we build AI agents that don’t end up on the <b>front page of the news</b>?</p>
 ```
 
 ::: {.notes}
 **About this slide:** Real cases of the risks on the last slide, gathered as the headlines they produced. AI chatbots and agents that went wrong landed their companies in trouble with customers, in the media and with courts and regulators: a parcel firm’s chatbot swearing at a customer, an airline held liable for its chatbot, a city chatbot telling businesses to break the law, a critical flaw in Microsoft’s Copilot, a retailer’s assistant giving illegal electrical advice, a supermarket assistant talking about its angry mother, an agent removing a stranger from a gym waitlist, and a shopping order changed through a support assistant. A slide on each case is kept in the unpublished Part 1.G graveyard deck.
+
+After the last card, a takeaway line closes the slide with Terrence’s question: “The big question for orgs is: how can we build AI agents that don’t end up on the front page of the news?”
 
 Cards, in the order they appear, which is the order the stories were published, oldest first: one per case, the news headline. All are real screenshots except the Cybersecurity Dive card, which is recreated; its outlet, headline, standfirst, byline and date are copied exactly from the article.
 
@@ -377,8 +381,8 @@ Cards, in the order they appear, which is the order the stories were published, 
 **Presenter notes:**
 
 - This whole slide gets one to two minutes. Click through the headlines without telling each story; the point is that these risks are real, and they cost companies with customers, in the media and with regulators.
-- Eight clicks, one per case, in the order the stories were published, from January 2024 to October 2026.
-- Don’t stop on any card. Next: why these failures are hard to rule out, because agents are complex *and* complicated systems; then how organisations build agents that are governed against these risks. Each case has its own slide in the unpublished Part 1.G graveyard deck, for questions.
+- Nine clicks. The first eight drop one case each, in the order the stories were published, from January 2024 to October 2026. The ninth shows the takeaway line under the cards.
+- Don’t stop on any card. Pause on the takeaway: it is the question the rest of the tutorial answers. Next: why these failures are hard to rule out, because agents are complex *and* complicated systems; then how organisations build agents that are governed against these risks. Each case has its own slide in the unpublished Part 1.G graveyard deck, for questions.
 :::
 
 ---

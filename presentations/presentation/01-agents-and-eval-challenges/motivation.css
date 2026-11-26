@@ -1013,14 +1013,29 @@
 /* "These risks are real, and they make headlines": cards dropped one case
    per click into a loose, overlapping stack. Each card sets its position,
    width and tilt inline; later cards sit on top. Flat cards with a hairline
-   border, no shadows, per the style brief. */
+   border, no shadows, per the style brief. The board is scaled down as a
+   whole, and its negative bottom margin gives back the space the scale
+   frees, to leave room for the takeaway line under it. */
 
 .reveal .headlines-slide .hc-board {
   position: relative;
   width: 1140px;
   height: 575px;
-  margin: 4px auto 0;
+  margin: 4px auto -29px;
+  transform: scale(0.95);
+  transform-origin: top center;
 }
+
+.reveal .headlines-slide .hc-takeaway {
+  width: 1240px;
+  margin: 8px auto 0;
+  font-size: 24px;
+  font-weight: 500;
+  text-align: center;
+  color: var(--deck-ink);
+}
+
+.reveal .headlines-slide .hc-takeaway b { font-weight: 700; }
 
 .reveal .headlines-slide .hc-card {
   position: absolute;
