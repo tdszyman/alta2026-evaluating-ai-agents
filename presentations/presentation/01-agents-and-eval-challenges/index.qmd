@@ -230,62 +230,62 @@ The first four are about a single failure: a bad decision, a bad comment, an ill
 
 ```{=html}
 <div class="hc-board">
-  <figure class="hc-card fragment" data-fragment-index="1" style="left:0px; top:0px; width:400px; --r:-3deg;">
-    <img src="images/headline-air-canada-cbc.png" alt="CBC News headline: “Air Canada found liable for chatbot's bad advice on plane tickets”. Standfirst: “Airline's claim that online helper was responsible for its own actions was 'remarkable': small claims court”. Jason Proctor, CBC News, posted Feb 15, 2024.">
-    <figcaption>CBC News · 15 Feb 2024</figcaption>
-  </figure>
-  <figure class="hc-card fragment" data-fragment-index="2" style="left:420px; top:22px; width:360px; --r:2deg;">
+  <figure class="hc-card fragment" data-fragment-index="1" style="left:0px; top:14px; width:360px; --r:-3deg;">
     <img src="images/headline-dpd-bbc.png" alt="BBC News headline: “DPD error caused chatbot to swear at customer”. 19 January 2024, Tom Gerken, Technology reporter.">
     <figcaption>BBC News · 19 Jan 2024</figcaption>
+  </figure>
+  <figure class="hc-card fragment" data-fragment-index="2" style="left:395px; top:0px; width:400px; --r:2deg;">
+    <img src="images/headline-air-canada-cbc.png" alt="CBC News headline: “Air Canada found liable for chatbot's bad advice on plane tickets”. Standfirst: “Airline's claim that online helper was responsible for its own actions was 'remarkable': small claims court”. Jason Proctor, CBC News, posted Feb 15, 2024.">
+    <figcaption>CBC News · 15 Feb 2024</figcaption>
   </figure>
   <figure class="hc-card fragment" data-fragment-index="3" style="left:825px; top:0px; width:300px; --r:3deg;">
     <img src="images/headline-mycity-markup.png" alt="The Markup headline: “NYC’s AI Chatbot Tells Businesses to Break the Law”. Standfirst: “The Microsoft-powered bot says bosses can take workers’ tips and that landlords can discriminate based on source of income”. By Colin Lecher, March 29, 2024.">
     <figcaption>The Markup · 29 Mar 2024</figcaption>
   </figure>
-  <figure class="hc-card fragment" data-fragment-index="4" style="left:0px; top:192px; width:420px; --r:-2deg;">
-    <img src="images/headline-bunnings-inside-retail.png" alt="Inside Retail headline: “Bunnings addresses ‘illegal advice’ from its AI chatbot”.">
-    <figcaption>Inside Retail Australia · 8 Dec 2025</figcaption>
-  </figure>
-  <div class="hc-card hc-recreated fragment" data-fragment-index="5" style="left:445px; top:178px; width:330px; --r:-3deg;">
+  <div class="hc-card hc-recreated fragment" data-fragment-index="4" style="left:0px; top:172px; width:330px; --r:-2deg;">
     <span class="hc-outlet">Cybersecurity Dive</span>
     <span class="hc-head">Critical flaw in Microsoft Copilot could have allowed zero-click attack</span>
     <span class="hc-dek">Researchers said the vulnerability, dubbed “EchoLeak,” could allow a hacker to access data without any specific user interaction.</span>
     <span class="hc-by">David Jones · Reporter · Published June 11, 2025</span>
     <span class="hc-caption">Recreated from Cybersecurity Dive · 11 Jun 2025</span>
   </div>
-  <figure class="hc-card fragment" data-fragment-index="6" style="left:805px; top:238px; width:320px; --r:3deg;">
-    <img src="images/headline-lego-wired.png" alt="WIRED headline: “Elon Musk Bragged About His Grok Lego Star Wars Haul. Then X Users Punked Him”. Jeremy White, Gear, Oct 12, 2026.">
-    <figcaption>WIRED · 12 Oct 2026</figcaption>
+  <figure class="hc-card fragment" data-fragment-index="5" style="left:375px; top:196px; width:390px; --r:-2deg;">
+    <img src="images/headline-bunnings-inside-retail.png" alt="Inside Retail headline: “Bunnings addresses ‘illegal advice’ from its AI chatbot”.">
+    <figcaption>Inside Retail Australia · 8 Dec 2025</figcaption>
   </figure>
-  <figure class="hc-card fragment" data-fragment-index="7" style="left:30px; top:322px; width:380px; --r:2deg;">
+  <figure class="hc-card fragment" data-fragment-index="6" style="left:795px; top:232px; width:330px; --r:3deg;">
+    <img src="images/headline-olive-smh.png" alt="The Sydney Morning Herald headline: “Woolworths forced to rein in chatbot that claimed to have angry mother”. Jessica Yun, February 26, 2026.">
+    <figcaption>The Sydney Morning Herald · 26 Feb 2026</figcaption>
+  </figure>
+  <figure class="hc-card fragment" data-fragment-index="7" style="left:370px; top:328px; width:370px; --r:2deg;">
     <img src="images/headline-gym-abc.png" alt="ABC News headline: “AI assistant hacks gym website in first known Australian autonomous cyber attack”. By national AI reporter Cam Wilson and the Specialist Reporting Team's Rhiannon Hobbins. Posted 10 Aug 2026.">
     <figcaption>ABC News · 10 Aug 2026</figcaption>
   </figure>
-  <figure class="hc-card fragment" data-fragment-index="8" style="left:560px; top:414px; width:360px; --r:-1.5deg;">
-    <img src="images/headline-olive-smh.png" alt="The Sydney Morning Herald headline: “Woolworths forced to rein in chatbot that claimed to have angry mother”. Jessica Yun, February 26, 2026.">
-    <figcaption>The Sydney Morning Herald · 26 Feb 2026</figcaption>
+  <figure class="hc-card fragment" data-fragment-index="8" style="left:790px; top:408px; width:315px; --r:-1.5deg;">
+    <img src="images/headline-lego-wired.png" alt="WIRED headline: “Elon Musk Bragged About His Grok Lego Star Wars Haul. Then X Users Punked Him”. Jeremy White, Gear, Oct 12, 2026.">
+    <figcaption>WIRED · 12 Oct 2026</figcaption>
   </figure>
 </div>
 ```
 
 ::: {.notes}
-**About this slide:** Real cases of the risks on the last slide, gathered as the headlines they produced. AI chatbots and agents that went wrong landed their companies in trouble with customers, in the media and with courts and regulators: an airline held liable for its chatbot, a parcel firm’s chatbot swearing at a customer, a city chatbot telling businesses to break the law, a retailer’s assistant giving illegal electrical advice, a critical flaw in Microsoft’s Copilot, a shopping order changed through a support assistant, an agent removing a stranger from a gym waitlist, and a supermarket assistant talking about its angry mother. A slide on each case is kept in the unpublished Part 1.G graveyard deck.
+**About this slide:** Real cases of the risks on the last slide, gathered as the headlines they produced. AI chatbots and agents that went wrong landed their companies in trouble with customers, in the media and with courts and regulators: a parcel firm’s chatbot swearing at a customer, an airline held liable for its chatbot, a city chatbot telling businesses to break the law, a critical flaw in Microsoft’s Copilot, a retailer’s assistant giving illegal electrical advice, a supermarket assistant talking about its angry mother, an agent removing a stranger from a gym waitlist, and a shopping order changed through a support assistant. A slide on each case is kept in the unpublished Part 1.G graveyard deck.
 
-Cards, in the order they appear: one per case, the news headline. All are real screenshots except the Cybersecurity Dive card, which is recreated; its outlet, headline, standfirst, byline and date are copied exactly from the article.
+Cards, in the order they appear, which is the order the stories were published, oldest first: one per case, the news headline. All are real screenshots except the Cybersecurity Dive card, which is recreated; its outlet, headline, standfirst, byline and date are copied exactly from the article.
 
-1. CBC News, “Air Canada found liable for chatbot's bad advice on plane tickets”, Jason Proctor, 15 February 2024 ([Proctor 2024](../../bibliography/proctor-2024-air-canada-cbc/)).
-2. BBC News, “DPD error caused chatbot to swear at customer”, Tom Gerken, 19 January 2024 ([Gerken 2024](../../bibliography/gerken-2024-dpd-chatbot/)).
+1. BBC News, “DPD error caused chatbot to swear at customer”, Tom Gerken, 19 January 2024 ([Gerken 2024](../../bibliography/gerken-2024-dpd-chatbot/)).
+2. CBC News, “Air Canada found liable for chatbot's bad advice on plane tickets”, Jason Proctor, 15 February 2024 ([Proctor 2024](../../bibliography/proctor-2024-air-canada-cbc/)).
 3. The Markup, “NYC’s AI Chatbot Tells Businesses to Break the Law”, Colin Lecher, 29 March 2024 ([Lecher 2024](../../bibliography/lecher-2024-nyc-chatbot/)).
-4. Inside Retail Australia, “Bunnings addresses ‘illegal advice’ from its AI chatbot”, Harry Booth, 8 December 2025 ([Booth 2025](../../bibliography/booth-2025-bunnings-chatbot/)).
-5. Cybersecurity Dive, “Critical flaw in Microsoft Copilot could have allowed zero-click attack”, David Jones, 11 June 2025 ([Jones 2025](../../bibliography/jones-2025-echoleak/)). Recreated, because the site blocked capture.
-6. WIRED, “Elon Musk Bragged About His Grok Lego Star Wars Haul. Then X Users Punked Him”, Jeremy White, 12 October 2026 ([White 2026](../../bibliography/white-2026-musk-lego/)). The order changes are claims; Lego has not confirmed them.
+4. Cybersecurity Dive, “Critical flaw in Microsoft Copilot could have allowed zero-click attack”, David Jones, 11 June 2025 ([Jones 2025](../../bibliography/jones-2025-echoleak/)). Recreated, because the site blocked capture.
+5. Inside Retail Australia, “Bunnings addresses ‘illegal advice’ from its AI chatbot”, Harry Booth, 8 December 2025 ([Booth 2025](../../bibliography/booth-2025-bunnings-chatbot/)).
+6. The Sydney Morning Herald, “Woolworths forced to rein in chatbot that claimed to have angry mother”, Jessica Yun, 26 February 2026 ([Yun 2026](../../bibliography/yun-2026-woolworths-olive/)). The screenshot was supplied by Terrence.
 7. ABC News, “AI assistant hacks gym website in first known Australian autonomous cyber attack”, Cam Wilson and Rhiannon Hobbins, 10 August 2026 ([Wilson and Hobbins 2026](../../bibliography/wilson-2026-gym-agent/)).
-8. The Sydney Morning Herald, “Woolworths forced to rein in chatbot that claimed to have angry mother”, Jessica Yun, 26 February 2026 ([Yun 2026](../../bibliography/yun-2026-woolworths-olive/)). The screenshot was supplied by Terrence.
+8. WIRED, “Elon Musk Bragged About His Grok Lego Star Wars Haul. Then X Users Punked Him”, Jeremy White, 12 October 2026 ([White 2026](../../bibliography/white-2026-musk-lego/)). The order changes are claims; Lego has not confirmed them.
 
 **Presenter notes:**
 
 - This whole slide gets one to two minutes. Click through the headlines without telling each story; the point is that these risks are real, and they cost companies with customers, in the media and with regulators.
-- Eight clicks, one per case, in the order of the risks on the last slide: financial, reputational, regulatory, cybersecurity, then competitive.
+- Eight clicks, one per case, in the order the stories were published, from January 2024 to October 2026.
 - Don’t stop on any card. Next: how organisations build agents that are governed against these risks. Each case has its own slide in the unpublished Part 1.G graveyard deck, for questions.
 :::
 
