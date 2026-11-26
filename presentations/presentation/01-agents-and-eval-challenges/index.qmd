@@ -30,7 +30,7 @@ format:
 
 ## Would you use an AI agent to… {.vote-slide .centre-body}
 
-<!-- TODO: The poll figures are from press coverage, not the surveys' own reports, and none asks Terrence's four questions. Replace them if the full Indeed or Greenhouse reports give closer questions or Australian figures. -->
+<!-- TODO: The poll figures are from a press release, not the survey's own report, and it does not ask Terrence's four questions. Replace them if the full Greenhouse report gives closer questions or Australian figures. -->
 
 ```{=html}
 <div class="vt-grid">
@@ -44,16 +44,8 @@ format:
     </ol>
   </div>
   <div class="vt-polls">
-    <p class="vt-kicker fragment" data-fragment-index="5">What surveys found <span class="vt-caveat">Their questions, not ours</span></p>
+    <p class="vt-kicker fragment" data-fragment-index="5">What a survey found <span class="vt-caveat">Their questions, not ours</span></p>
     <div class="vt-card fragment" data-fragment-index="5">
-      <p class="vt-who">Australia · use AI to…</p>
-      <div class="vt-stats">
-        <p><b>37%</b> rewrite their CV</p>
-        <p><b>41%</b> write or refine cover letters</p>
-      </div>
-      <p class="vt-src">Indeed with YouGov, 1,000+ working-age Australians, March 2026, as reported by <a href="../../bibliography/campbell-2026-artificial-applicant/">Campbell 2026</a></p>
-    </div>
-    <div class="vt-card fragment" data-fragment-index="6">
       <p class="vt-who">US job seekers · an AI agent</p>
       <div class="vt-stats">
         <p><b>69%</b> would feel comfortable using one</p>
@@ -66,20 +58,17 @@ format:
 ```
 
 ::: {.notes}
-**About this slide:** An opening vote. Four questions about using an AI agent in a job search, from help (proofreading a CV) to acting alone (applying for jobs automatically). Then two surveys. They asked different questions from ours, of different people, so their numbers are not answers to our four questions. In Australia, many job seekers already use AI for parts of a job search: 37% to rewrite their CV and 41% to write or refine cover letters. In a US survey of job seekers, 69% would feel comfortable using an AI agent, but only 5% would let one apply to jobs on its own.
+**About this slide:** An opening vote. Four questions about using an AI agent in a job search, from help (proofreading a CV) to acting alone (applying for jobs automatically). Then a survey. It asked different questions from ours, so its numbers are not answers to our four questions. In a US survey of job seekers, 69% would feel comfortable using an AI agent, but only 5% would let one apply to jobs on its own.
 
 **What to take away:** Most of us already use AI for some things and would use it for more. Trust in an agent acting on its own has a ceiling, partly because we worry it will do the wrong thing.
 
 **Presenter notes:**
 
 - Vote mechanics. Each click shows one question. Ask for hands, give it two or three seconds, and say roughly how many (“about half”, “a few”). The current question has a coloured bar; earlier ones fade.
-- Expect hands to drop from question 1 to question 4. If they don’t, say so; it is still a useful contrast with the surveys.
-- Clicks 5 and 6 show the surveys one at a time. Say each population out loud: Australians, then US job seekers.
-- Do not read the numbers as answers to our questions. The Australian figures are what people do now; the US figures are what people say they would be comfortable with.
-- The two surveys asked differently worded questions of different people, and the releases do not give the exact questions or answer options. That is a small example of why how you measure matters, which is the theme of the tutorial.
-- Sources:
-  - The Australian figures are from Indeed’s report *The Artificial Applicant*, a study of more than 1,000 working-age Australians with YouGov in March 2026, as reported by HRD Australia ([Campbell 2026](../../bibliography/campbell-2026-artificial-applicant/)). The article calls the base “candidates”.
-  - The Greenhouse figures are for its 1,200 US respondents, from the release for its 2026 Future of Hiring Candidate Report ([Greenhouse 2026](../../bibliography/greenhouse-2026-candidate-report/)).
+- Expect hands to drop from question 1 to question 4. If they don’t, say so; it is still a useful contrast with the survey.
+- Click 5 shows the survey. Say the population out loud: US job seekers.
+- Do not read the numbers as answers to our questions. They are what people say they would be comfortable with.
+- Source: the figures are for Greenhouse’s 1,200 US respondents, from the release for its 2026 Future of Hiring Candidate Report ([Greenhouse 2026](../../bibliography/greenhouse-2026-candidate-report/)).
 - Greenhouse sells hiring software.
 :::
 
@@ -88,18 +77,19 @@ format:
 ## About me, and SEEK {#about-me-and-seek .about-slide}
 
 ```{=html}
+<div class="ab-cols">
 <div class="ab-part ab-part-me">
   <h3 class="ab-label">About me</h3>
-  <div class="ab-me">
-    <ol class="ab-path ab-academic">
-      <li><span class="ab-org"><img class="ab-icon" src="images/umich-block-m-maize.svg" alt="">University of Michigan</span>BSE Electrical Engineering; BA Classical Languages and Literature</li>
-      <li><span class="ab-org"><img class="ab-icon" src="images/umich-block-m-maize.svg" alt="">University of Michigan</span>PhD Linguistics: computational historical linguistics, ML for morphology</li>
-      <li><span class="ab-org"><img class="ab-icon" src="images/ucd-crest.svg" alt="">Insight Centre for Data Analytics, University College Dublin</span>Postdoc: news text analytics with the Irish Farmers Journal and The Irish Times</li>
-    </ol>
-    <ol class="ab-path ab-industry">
-      <li><span class="ab-org"><img class="ab-icon" src="images/anz-mark.png" alt="">ANZ</span>Data Scientist (Institutional Banking)</li>
-      <li><span class="ab-org"><img class="ab-logo" src="images/seek-logo.svg" alt="SEEK"></span>Data Scientist (Candidate Quality)</li>
-      <li class="ab-now"><span class="ab-org"><img class="ab-logo" src="images/seek-logo.svg" alt="SEEK"></span>Head of Generative AI <span class="ab-tag">Now</span></li>
+  <div class="ab-tl">
+    <svg class="ab-tl-rail" viewBox="0 0 80 580" aria-hidden="true">
+      <path d="M40 58 A36 58 0 0 1 40 174 A36 58 0 0 0 40 290 A36 58 0 0 1 40 406 A36 58 0 0 0 40 522"/>
+    </svg>
+    <ol class="ab-stops">
+      <li class="ab-stop ab-l"><span class="ab-org"><img class="ab-icon" src="images/umich-block-m-maize.svg" alt="">Michigan</span>PhD Linguistics</li>
+      <li class="ab-stop ab-r"><span class="ab-org"><img class="ab-icon" src="images/ucd-crest.svg" alt="">UCD</span>Postdoc</li>
+      <li class="ab-stop ab-l"><span class="ab-org"><img class="ab-icon" src="images/anz-mark.png" alt="">ANZ</span>Data Scientist</li>
+      <li class="ab-stop ab-r"><span class="ab-org"><img class="ab-logo" src="images/seek-logo.svg" alt="SEEK"></span>Senior Data Scientist</li>
+      <li class="ab-stop ab-l ab-now"><span class="ab-org"><img class="ab-logo" src="images/seek-logo.svg" alt="SEEK"></span>Head of GenAI</li>
     </ol>
   </div>
 </div>
@@ -109,24 +99,23 @@ format:
     <figure class="ab-map">
       <img src="images/seek-apac-markets-map.jpg" alt="Map of Asia Pacific from SEEK’s About page, with pins on Australia, New Zealand, Hong Kong, Indonesia, Malaysia, the Philippines, Singapore and Thailand.">
     </figure>
-    <div class="ab-facts">
-      <p class="ab-fact"><b>Melbourne &amp; KL</b>Founded in Melbourne in 1997. Secondary hub in KL.</p>
-      <p class="ab-fact"><b>APAC wide</b>8 markets: Australia, New Zealand, Hong Kong, Indonesia, Malaysia, Philippines, Singapore, Thailand</p>
-      <p class="ab-fact"><b>4 official languages</b>English, Indonesian, Thai, Chinese</p>
-    </div>
-    <div class="ab-numbers">
+    <div class="ab-scale">
       <p class="ab-big"><b>60<small> million+</small></b> candidate profiles</p>
       <p class="ab-big"><b>360<small> thousand+</small></b> hirer relationships</p>
+      <p class="ab-big"><b>4<small> official languages</small></b> English, Indonesian, Thai, Chinese</p>
+    </div>
+    <div class="ab-team">
       <p class="ab-big"><b>250+<small> people</small></b> in AI and Analytics</p>
       <p class="ab-big ab-mine"><b>17<small> people</small></b> in the Generative AI team</p>
-      <p class="ab-src">Source: <a href="../../bibliography/seek-2026-about/">SEEK, About page</a></p>
     </div>
+    <p class="ab-src">Source: <a href="../../bibliography/seek-2026-about/">SEEK, About page</a></p>
   </div>
+</div>
 </div>
 ```
 
 ::: {.notes}
-**About this slide:** Who is presenting, and the company the tutorial’s examples come from. Terrence Szymanski trained in electrical engineering, classical languages and linguistics at the University of Michigan, with a PhD in computational historical linguistics and machine learning for morphology. He was a postdoctoral researcher at the Insight Centre for Data Analytics at University College Dublin, working on text analytics for news with the Irish Farmers Journal and The Irish Times. He then worked as a data scientist at ANZ, in Institutional Banking, and at SEEK, in Candidate Quality, and now leads generative AI at SEEK. SEEK was founded in Melbourne in 1997, has a secondary hub in Kuala Lumpur, and runs online employment marketplaces in eight markets across Asia Pacific: Australia, New Zealand, Hong Kong, Indonesia, Malaysia, the Philippines, Singapore and Thailand. Its sites run in four languages: English everywhere, plus Indonesian in Indonesia, Thai in Thailand and Chinese in Hong Kong. SEEK says it has more than 60 million candidate profiles and more than 360,000 hirer relationships. Its AI and Analytics team has more than 250 people, and its Generative AI team has 17.
+**About this slide:** Who is presenting, and the company the tutorial’s examples come from. Terrence Szymanski trained in electrical engineering, classical languages and linguistics at the University of Michigan, with a PhD in computational historical linguistics and machine learning for morphology. He was a postdoctoral researcher at the Insight Centre for Data Analytics at University College Dublin, working on text analytics for news with the Irish Farmers Journal and The Irish Times. He then worked as a data scientist at ANZ, in Institutional Banking, and as a senior data scientist at SEEK, in Candidate Quality, and now leads generative AI at SEEK. SEEK was founded in Melbourne in 1997, has a secondary hub in Kuala Lumpur, and runs online employment marketplaces in eight markets across Asia Pacific: Australia, New Zealand, Hong Kong, Indonesia, Malaysia, the Philippines, Singapore and Thailand. Its sites run in four languages: English everywhere, plus Indonesian in Indonesia, Thai in Thailand and Chinese in Hong Kong. SEEK says it has more than 60 million candidate profiles and more than 360,000 hirer relationships. Its AI and Analytics team has more than 250 people, and its Generative AI team has 17.
 
 **What to take away:** The examples in this tutorial come from a large employment marketplace that builds and evaluates AI agents across several countries and languages, and from a presenter who came to industry from research.
 
@@ -135,145 +124,61 @@ format:
 - Keep it short; the academic path is there because most of the audience are graduate students.
 - The slide builds in two steps: “About me” shows first, and one click reveals the whole “About SEEK” half.
 - The slide has no visible title; its two parts are labelled “About me” and “About SEEK”. The heading “About me, and SEEK” is kept for the top bar, search and the `#/about-me-and-seek` link, but hidden on the slide.
-- The timeline is shortened to one line per entry. In full: a BSE in Electrical Engineering and a BA in Classical Languages and Literature, then a PhD in Linguistics on computational historical linguistics and machine learning for morphology, all at the University of Michigan. A postdoc at the Insight Centre for Data Analytics, University College Dublin, on text analytics for news with the Irish Farmers Journal and The Irish Times. Then Data Scientist at ANZ (Institutional Banking), Data Scientist at SEEK (Candidate Quality), and now Head of Generative AI at SEEK.
+- The timeline shows five stops: Michigan (PhD Linguistics), UCD (Postdoc), ANZ (Data Scientist), SEEK (Senior Data Scientist) and SEEK (Head of GenAI). In full: a BSE in Electrical Engineering and a BA in Classical Languages and Literature, then a PhD in Linguistics on computational historical linguistics and machine learning for morphology, all at the University of Michigan. A postdoc at the Insight Centre for Data Analytics, University College Dublin, on text analytics for news with the Irish Farmers Journal and The Irish Times. Then Data Scientist at ANZ (Institutional Banking), Senior Data Scientist at SEEK (Candidate Quality), and now Head of Generative AI at SEEK.
 - The four numbers: SEEK has more than 60 million candidate profiles and more than 360,000 hirer relationships (SEEK’s About page; the slide writes the second as “360 thousand+”); SEEK’s AI and Analytics team has more than 250 people, and the Generative AI team has 17 (both from Terrence).
-- Sources: the slide face links only SEEK’s About page. The background, the two team sizes and the teams at ANZ and SEEK are supplied by Terrence. The Kuala Lumpur (KL) secondary hub is also Terrence’s; SEEK’s About page does not state it. Melbourne, 1997, the eight markets and the map are from SEEK’s About page ([SEEK 2026](../../bibliography/seek-2026-about/)), read from the Internet Archive capture of 2 October 2026, because the live page blocks automated requests.
-- Markets and languages: the eight markets are the ones SEEK’s About page lists ([SEEK 2026](../../bibliography/seek-2026-about/)); the slide drops “the” from the Philippines to save space. The four languages are the ones SEEK’s own job sites offer in those markets, read from each site’s language settings ([SEEK, Jobstreet and Jobsdb sites](../../bibliography/seek-2026-market-sites/), Internet Archive captures of September and October 2026): English on all eight, Indonesian on Jobstreet Indonesia, Thai on Jobsdb Thailand and Chinese (中文) on Jobsdb Hong Kong. Jobstreet Malaysia is English only. “Official” is Terrence’s word; SEEK does not call them official languages.
+- Sources: the slide face links only SEEK’s About page. The background, the two team sizes and the teams at ANZ and SEEK are supplied by Terrence. The Kuala Lumpur (KL) secondary hub is also Terrence’s; SEEK’s About page does not state it. Melbourne, KL and the eight markets are no longer written on the slide; talk to them from the map. Melbourne, 1997, the eight markets and the map are from SEEK’s About page ([SEEK 2026](../../bibliography/seek-2026-about/)), read from the Internet Archive capture of 2 October 2026, because the live page blocks automated requests.
+- Markets and languages: the eight markets are the ones SEEK’s About page lists ([SEEK 2026](../../bibliography/seek-2026-about/)). The four languages are the ones SEEK’s own job sites offer in those markets, read from each site’s language settings ([SEEK, Jobstreet and Jobsdb sites](../../bibliography/seek-2026-market-sites/), Internet Archive captures of September and October 2026): English on all eight, Indonesian on Jobstreet Indonesia, Thai on Jobsdb Thailand and Chinese (中文) on Jobsdb Hong Kong. Jobstreet Malaysia is English only. “Official” is Terrence’s word; SEEK does not call them official languages.
 - The two scale figures are as the About page states them: “SEEK has more than 60 million candidate profiles and more than 360,000 hirer relationships”. The page gives no date, period or region for them, so read them as SEEK’s company-wide figures as of the October 2026 capture. Candidate profiles are not active users, and hirer relationships are not job ads. The page’s third figure, more than 750 million data points of employment activity every day, is left off to keep the slide clear.
 - Logos, all official files, none recreated, added beside the text names at Terrence’s request:
   - University of Michigan: the maize Block M, `Block_M-Hex.svg` from the university’s Block M kit (brand.umich.edu/assets/brand/downloads/um-logos/block_m_kit/block_m-hex.svg.zip), linked from its logo downloads page.
   - University College Dublin: the UCD crest, `crest-ucd.svg` from ucd.ie (www.ucd.ie/t4media/crest-ucd.svg), the crest in UCD’s own site header.
   - ANZ: the person mark, ANZ’s 196 × 196 site icon (www.anz.com.au/apps/settings/wcm/designs/commons/images/appicons/favicon-196x196.png). It is the mark alone, without the ANZ wordmark.
   - SEEK: the SEEK logo from SEEK’s own image host.
-  - Insight has no icon; its line shows the UCD crest, because the postdoc was at UCD.
   - Michigan’s and UCD’s brand guidelines restrict use of their marks outside the university, and ANZ’s Australian brand library is private. Terrence asked for the logos anyway; check with the institutions if the deck is published.
   - The maize M is light on a white slide; the text name beside it carries the meaning.
 :::
 
 ---
 
-## 2026 is the year of the AI Agent {#year-of-the-ai-agent .hype-slide}
-
-```{=html}
-<div class="hy-hero">
-  <p class="hy-hero-num">69%</p>
-  <div class="hy-hero-text">
-    <p class="hy-hero-label">of Australian organisations surveyed are now using agentic AI</p>
-    <p class="hy-hero-sub">alongside “three-quarters of global respondents”</p>
-    <p class="hy-hero-src">Deloitte, <i>State of AI in the Enterprise</i>, February 2026 · <a href="../../bibliography/deloitte-2026-australian-ai-survey/">Deloitte 2026</a></p>
-  </div>
-</div>
-<div class="hy-split">
-  <div role="group" class="hy-band hy-band-region fragment" data-fragment-index="1" aria-label="Australia and New Zealand">
-    <p class="hy-eyebrow">Australia and New Zealand</p>
-    <div class="hy-tiles">
-      <div class="hy-tile hy-productivity">
-        <p class="hy-who">Westpac <span class="hy-p hy-p-productivity">Productivity</span></p>
-        <p class="hy-num hy-num-words"><small>about</small> four-to-six weeks</p>
-        <p class="hy-label">to get an agent into production, down “from an initial six months”</p>
-        <p class="hy-src"><a href="../../bibliography/crozier-2026-westpac-aws-agents/">Crozier 2026</a></p>
-      </div>
-      <div class="hy-tile hy-productivity">
-        <p class="hy-who">Atlassian <span class="hy-p hy-p-productivity">Productivity</span></p>
-        <p class="hy-num">7x</p>
-        <p class="hy-label">increase in agentic automations across Atlassian’s customers, “in just the last six months”</p>
-        <p class="hy-src">Mike Cannon-Brookes, CEO · <a href="../../bibliography/cannon-brookes-2026-team-26/">Cannon-Brookes 2026</a></p>
-      </div>
-      <div class="hy-tile hy-products">
-        <p class="hy-who">Customer service <span class="hy-p hy-p-products">Products</span></p>
-        <p class="hy-num">48%</p>
-        <p class="hy-label">of organisations in Australia and New Zealand surveyed by Genesys “already use agentic AI virtual agents for customer interactions”</p>
-        <p class="hy-src">IT Brief NZ · <a href="../../bibliography/tarre-2026-genesys-anz-agentic-ai/">Tarre 2026</a></p>
-      </div>
-      <div class="hy-tile hy-products">
-        <p class="hy-who">Future Secure AI <span class="hy-p hy-p-products">Products</span></p>
-        <p class="hy-num">$1.7 billion</p>
-        <p class="hy-label">valuation for a Sydney-born startup that builds AI “co-workers” for large organisations: “Australia’s newest tech unicorn”</p>
-        <p class="hy-src">Dynamic Business, reporting the AFR · <a href="../../bibliography/gupta-2026-australian-startups-funding/">Gupta 2026</a></p>
-      </div>
-    </div>
-  </div>
-  <div role="group" class="hy-band hy-band-world fragment" data-fragment-index="2" aria-label="Around the world">
-    <p class="hy-eyebrow">Around the world</p>
-    <p class="hy-hype">Gartner: “Agentic AI sits at the Peak of Inflated Expectations” · <a href="../../bibliography/kandaswamy-2026-hype-cycle-agentic-ai/">Kandaswamy 2026</a></p>
-    <div class="hy-tiles">
-      <div class="hy-tile hy-productivity hy-tile-quote">
-        <p class="hy-who">OpenAI <span class="hy-p hy-p-productivity">Productivity</span></p>
-        <p class="hy-quote">“We believe that, in 2025, we may see the first AI agents ‘join the workforce’ and materially change the output of companies.”</p>
-        <p class="hy-src">Sam Altman, CEO, January 2025 · <a href="../../bibliography/altman-2025-reflections/">Altman 2025</a></p>
-      </div>
-      <div class="hy-tile hy-products">
-        <p class="hy-who">Enterprise software <span class="hy-p hy-p-products">Products</span></p>
-        <p class="hy-num">40%</p>
-        <p class="hy-label">of enterprise applications “will be integrated with task-specific AI agents by the end of 2026, up from less than 5%”, Gartner predicted in 2025</p>
-        <p class="hy-src"><a href="../../bibliography/gartner-2025-task-specific-agents/">Gartner 2025</a></p>
-      </div>
-    </div>
-  </div>
-</div>
-```
-
-::: {.notes}
-**About this slide:** The first claim of the tutorial: 2026 is the year of the AI agent. It is meant to grab attention, not to be deep. Through 2026, companies have hyped AI agents intensely and invested heavily in adopting them. That is true in Australia and New Zealand, and it is a global phenomenon too. Everyone has been talking about AI agents, and that is why we are running this tutorial.
-
-Each tile is tagged with one of the two kinds of value on the next slide, “Agents can create value, but introduce risk”, in the same colour: **Productivity**, doing the same work faster and cheaper, and **Products**, new and better things for customers. On the next slide, point back to these tiles as the examples.
-
-Three steps. The slide opens on the hero stat: in Deloitte’s survey, 69% of Australian organisations are now using agentic AI, alongside three-quarters of global respondents ([Deloitte 2026](../../bibliography/deloitte-2026-australian-ai-survey/)). Click 1 brings in Australia and New Zealand: Westpac ([Crozier 2026](../../bibliography/crozier-2026-westpac-aws-agents/)) and Atlassian ([Cannon-Brookes 2026](../../bibliography/cannon-brookes-2026-team-26/)) for productivity, and customer-service agents ([Tarre 2026](../../bibliography/tarre-2026-genesys-anz-agentic-ai/)) and Future Secure AI ([Gupta 2026](../../bibliography/gupta-2026-australian-startups-funding/)) for products. Click 2 brings in the rest of the world, under Gartner’s hype-cycle line ([Kandaswamy 2026](../../bibliography/kandaswamy-2026-hype-cycle-agentic-ai/)): Sam Altman for productivity ([Altman 2025](../../bibliography/altman-2025-reflections/)) and Gartner’s prediction for enterprise software for products ([Gartner 2025](../../bibliography/gartner-2025-task-specific-agents/)).
-
-**Presenter notes:**
-
-- Keep it quick and energetic. The point is the volume of noise, not any one number.
-- The two Ps. Productivity: Westpac, Atlassian, OpenAI. Products: customer service, Future Secure AI, enterprise software. Say the words now, so the next slide can name them.
-- The hero stat. Deloitte: “Autonomous AI agents are racing into the enterprise, transforming AI from a source of information and insights into a system that can do real work”. Deloitte also found that “only 22% of Australian companies report having a highly advanced model for agent governance”, which sets up the risk slides that follow.
-- Westpac. Andrew McMullan, Chief Data, Digital and AI Officer: “Agentic operations are about reducing the distance between intent and outcome.” The four-to-six weeks is for Westpac’s agentic work with AWS. The Australian Financial Review ran the story as “Westpac deploys swarm of AI agents to assess loan applications”, but that article is paywalled, so the slide cites iTnews.
-- Atlassian. Mike Cannon-Brookes at Team ’26: “Together, we’re facing the most significant reimagining of work in our lifetime”.
-- Customer service. From a Genesys study of customer experience leaders, as IT Brief NZ reports it: “Among customer experience leaders in Australia and New Zealand, 39% said deploying agentic AI is critical, compared with 22% globally and 21% across Asia Pacific.” These are agents in front of customers.
-- Future Secure AI. It assembles “teams of AI agents, each given a name and face”, and “is reportedly targeting annual recurring revenue approaching $100 million by the end of 2026”. A business whose product is the agents.
-- Gartner’s hype cycle names the hype directly: agentic AI is at the peak, and “only 17% of organizations have deployed AI agents to date, yet more than 60% expect to do so within the next two years”. Hype ahead of readiness is why evaluation matters, which is where this tutorial comes in.
-- Sam Altman wrote this in January 2025, about 2025. Use it as the prediction that 2026 has caught up with.
-- Gartner, on products: its best-case projection is that “agentic AI could drive approximately 30% of enterprise application software revenue by 2035, surpassing $450 billion, up from 2% in 2025.”
-- More, if there is time:
-  - Commonwealth Bank. Matt Comyn, at the 2026 AGM in October: “We believe AI could be the most significant technology shift we have seen.” CBA also says it was “ranked the #1 bank in Asia Pacific and #4 globally for AI maturity in the 2026 Evident AI Index” ([Comyn 2026](../../bibliography/comyn-2026-cba-agm-address/)).
-  - New Zealand. The NZ Herald’s Mood of the Boardroom survey of chief executives: “AI agents — software that can carry out entire workflows rather than assisting with individual tasks — are moving quickly into business. Just over half (55%) of respondents say they are already using them, and a further 38% are considering doing so.” ([McCready 2026](../../bibliography/mccready-2026-mood-of-the-boardroom/))
-  - Big Tech’s spending. Amazon, Microsoft, Alphabet and Meta “told investors they’re planning to spend at least $720 billion on CapEx this year alone. Most of that will go toward AI infrastructure.” Andy Jassy, Amazon’s CEO, as The Verge quotes him: “Would it be more convenient if this type of acceleration and opportunity happened over 25 years and you could spread the CapEx over 25 years? Yeah, it might be more convenient. But that’s not the world we live in, and that’s not the opportunity.” ([Thomas 2026](../../bibliography/thomas-2026-big-tech-ai-buildout/))
-- Caveats, if asked:
-  - The adoption figures come from different surveys of different people, so do not compare them. Deloitte surveyed “over 3,000 director to C-suite-level leaders … who have direct involvement in their companies’ AI initiatives”, which skews towards adopters; its 69% is of organisations surveyed, not of all Australian businesses. The Genesys study is a vendor’s, and IT Brief NZ does not give its sample size. The NZ Herald does not give its sample size either, and its article is marked premium and may be paywalled. Gartner’s 17% is from its own survey of CIOs and technology executives.
-  - Gartner’s 40% is a prediction made in August 2025, not a measurement, and it counts applications, not organisations.
-  - The Future Secure AI figures are second-hand: Dynamic Business is reporting an Australian Financial Review story. The article gives the valuation as “$1.7 billion” without naming the currency.
-  - The $720 billion is the four companies’ total capex, in US dollars, for the AI build-out. It is not spending on agents.
-  - The Westpac and Atlassian figures are the companies’ own. Atlassian was founded in Australia but is listed on Nasdaq, not the ASX.
-- The Google Trends chart that used to be on this slide is in the Part 1.G graveyard.
-:::
-
----
-
 ## Agents can create value, but introduce risk {.value-risk-slide .centre-body}
 
-<!-- The full risk slide, with an example at SEEK and how evals help for each row, is kept in the Part 1.G graveyard deck (../01g-graveyard/). -->
+<!-- The full risk slide, with an example at SEEK and how evals help for each row, is kept in the unpublished Part 1.G graveyard deck. -->
 
 :::: {.vr-grid}
 
 ::: {.vr-side}
 [Value]{.vr-label}
 
-::: {.vr-card .vr-productivity}
+::: {.vr-card .vr-productivity .fragment}
 [Productivity]{.vr-name}
 [Do the same work faster and cheaper]{.vr-sub}
 
 Deliver outcomes with less effort, greater speed or better consistency.
 :::
 
-::: {.vr-card .vr-products}
+::: {.vr-card .vr-products .fragment}
 [Products]{.vr-name}
 [New and better things for customers]{.vr-sub}
 
 Create better customer experiences, new offerings or additional revenue.
 :::
+
+```{=html}
+<div class="vr-adopt fragment">
+  <p class="vr-kicker">2026 is the year of the AI Agent</p>
+  <div class="vr-adopt-row">
+    <p class="vr-adopt-num">69%</p>
+    <p class="vr-adopt-label">of Australian organisations surveyed are now using agentic AI</p>
+  </div>
+  <p class="vr-adopt-src">Deloitte, <i>State of AI in the Enterprise</i>, February 2026 · <a href="../../bibliography/deloitte-2026-australian-ai-survey/">Deloitte 2026</a></p>
+</div>
+```
 :::
 
-::: {.vr-side .vr-risks .fragment}
-[Risk [Illustrative, not definitive]{.vr-tag}]{.vr-label}
+::: {.vr-side .vr-risks}
+[Risk [Illustrative, not definitive]{.vr-tag}]{.vr-label .fragment}
 
+::: {.fragment}
 1. [Financial]{.vr-name} [One bad decision, such as a refund that policy does not allow.]{.vr-desc}
 2. [Reputational]{.vr-name} [An off-brand or offensive comment to a user.]{.vr-desc}
 3. [Regulatory]{.vr-name} [Illegal behaviour, such as discriminatory content in a job ad.]{.vr-desc}
@@ -281,11 +186,14 @@ Create better customer experiences, new offerings or additional revenue.
 5. [Operational]{.vr-name} [The agent costs more to run than its work is worth.]{.vr-desc}
 6. [Competitive]{.vr-name} [The agent does a poor job, and users take their business elsewhere.]{.vr-desc}
 :::
+:::
 
 ::::
 
 ::: {.notes}
 **About this slide:** Why organisations want AI agents, and what they risk by using them. On the value side, **productivity** means doing the same work faster and cheaper: delivering outcomes with less effort, greater speed or better consistency. **Products** means new and better things for customers: better customer experiences, new offerings or additional revenue. It is more than product features. Nearly every organisation, whether a company, a university or a research lab, has internal work where an agent could help, so productivity applies widely. Products applies to fewer: only some organisations sell agents or put them in front of customers, and these tend to be startups working out how to build new products on them.
+
+Adoption is high: 2026 is the year of the AI agent. In Deloitte’s survey, 69% of Australian organisations are now using agentic AI, alongside three-quarters of global respondents ([Deloitte 2026](../../bibliography/deloitte-2026-australian-ai-survey/)).
 
 On the risk side are six ways an AI agent can create risk for a company like SEEK, an online employment marketplace that connects hirers and candidates. The examples are hypothetical:
 
@@ -300,24 +208,25 @@ The first four are about a single failure: a bad decision, a bad comment, an ill
 
 **Presenter notes:**
 
-- The slide builds in two steps: the Value side first, then one click reveals all six risks.
+- The slide builds in six steps, left to right and top to bottom: the Value heading, Productivity, Products, the adoption figure, the Risk heading, then all six risks.
+- The adoption figure. Deloitte: “Autonomous AI agents are racing into the enterprise, transforming AI from a source of information and insights into a system that can do real work”. Deloitte also found that “only 22% of Australian companies report having a highly advanced model for agent governance”, which leads into the risks.
+- If asked about the 69%: Deloitte surveyed “over 3,000 director to C-suite-level leaders … who have direct involvement in their companies’ AI initiatives”, which skews towards adopters; its 69% is of organisations surveyed, not of all Australian businesses.
 - The Risk side is labelled “Illustrative, not definitive”: the six are a way to organise the risks, not a complete or standard list.
 - Terrence’s framing. Productivity: deliver business outcomes with less effort, greater speed or better consistency. Products: create better customer experiences, new offerings or additional revenue.
-- Point back to the previous slide, “2026 is the year of the AI Agent”: its tiles carry the same two badges in the same colours. Productivity: Westpac, Atlassian and OpenAI. Products: customer-service agents in Australia and New Zealand, Future Secure AI and Gartner’s enterprise software prediction.
 - Nearly all organisations can benefit from some element of productivity, by adopting AI agents for some type of internal business operations.
 - Some, but not all, businesses can also “sell” AI agents in some way, or use them in the customer experience. This does not apply to all businesses, and may skew towards startups figuring out how to create new products and value out of AI agents.
 - For the students and researchers in the room: both motives raise the same question this tutorial is about, which is how you know the agent is doing the job well.
 - Talk down the risks: for each one, what could go wrong at a company like SEEK.
 - Financial risk here means one costly decision. Operational risk (5) is different: the agent may never make a mistake and still lose money on every task.
 - Reputational risk here means one bad moment that people share. Competitive risk (6) is different: no single reply is a scandal, but users get poor results and take their business elsewhere.
-- How evals help with each risk comes later in this section. The full risk slide, which pairs each risk with how evals help, is kept in [Part 1.G: Graveyard](../01g-graveyard/).
+- How evals help with each risk comes later in this section. The full risk slide, which pairs each risk with how evals help, is kept in the unpublished Part 1.G graveyard deck.
 :::
 
 ---
 
 ## These risks are real, and they make headlines {.headlines-slide}
 
-<!-- TODO: One card per incident, the news headline where there is one. The individual case slides sit in [Part 1.G: Graveyard](../01g-graveyard/) while Terrence tests the flow without them; the screenshots cut from this collage are on those case slides or on the "Notes to follow up" slide. -->
+<!-- TODO: One card per incident, the news headline where there is one. The individual case slides sit in the unpublished Part 1.G graveyard deck while Terrence tests the flow without them; the screenshots cut from this collage are on those case slides or on the "Notes to follow up" slide. -->
 
 ```{=html}
 <div class="hc-board">
@@ -360,7 +269,7 @@ The first four are about a single failure: a bad decision, a bad comment, an ill
 ```
 
 ::: {.notes}
-**About this slide:** Real cases of the risks on the last slide, gathered as the headlines they produced. AI chatbots and agents that went wrong landed their companies in trouble with customers, in the media and with courts and regulators: an airline held liable for its chatbot, a parcel firm’s chatbot swearing at a customer, a city chatbot telling businesses to break the law, a retailer’s assistant giving illegal electrical advice, a critical flaw in Microsoft’s Copilot, a shopping order changed through a support assistant, an agent removing a stranger from a gym waitlist, and a supermarket assistant talking about its angry mother. A slide on each case is kept in [Part 1.G: Graveyard](../01g-graveyard/).
+**About this slide:** Real cases of the risks on the last slide, gathered as the headlines they produced. AI chatbots and agents that went wrong landed their companies in trouble with customers, in the media and with courts and regulators: an airline held liable for its chatbot, a parcel firm’s chatbot swearing at a customer, a city chatbot telling businesses to break the law, a retailer’s assistant giving illegal electrical advice, a critical flaw in Microsoft’s Copilot, a shopping order changed through a support assistant, an agent removing a stranger from a gym waitlist, and a supermarket assistant talking about its angry mother. A slide on each case is kept in the unpublished Part 1.G graveyard deck.
 
 Cards, in the order they appear: one per case, the news headline. All are real screenshots except the Cybersecurity Dive card, which is recreated; its outlet, headline, standfirst, byline and date are copied exactly from the article.
 
@@ -377,7 +286,7 @@ Cards, in the order they appear: one per case, the news headline. All are real s
 
 - This whole slide gets one to two minutes. Click through the headlines without telling each story; the point is that these risks are real, and they cost companies with customers, in the media and with regulators.
 - Eight clicks, one per case, in the order of the risks on the last slide: financial, reputational, regulatory, cybersecurity, then competitive.
-- Don’t stop on any card. Next: how organisations build agents that are governed against these risks. Each case has its own slide in [Part 1.G: Graveyard](../01g-graveyard/), for questions.
+- Don’t stop on any card. Next: how organisations build agents that are governed against these risks. Each case has its own slide in the unpublished Part 1.G graveyard deck, for questions.
 :::
 
 ---
@@ -433,7 +342,7 @@ This is the first place the tutorial uses the term. **LLM-as-a-judge** means an 
   - Arize AX: Arize’s managed agent observability and evaluation platform, beside its open-source Phoenix ([Arize](../../bibliography/arize/)).
   - LangSmith: LangChain’s agent observability and evaluation platform ([LangChain 2026](../../bibliography/langchain-2026-langsmith/)).
 - The two kinds of protection, from the platforms’ own pages. Deterministic: AWS describes AgentCore Policy as “deterministic control” over which tools an agent can call, and under what conditions. Non-deterministic: LangSmith lists “Online LLM-as-judge and code evals”, so judges and fixed code checks run side by side ([LangChain 2026](../../bibliography/langchain-2026-langsmith/)).
-- Complicated and complex: a one-line nod here. The “Complex system”, “Complicated system” and “AI Agents are complicated *and* complex systems” slides at the end of section 3 explain the difference.
+- Complicated and complex: a one-line nod here. The “AI Agents are complex *and* complicated systems” and “How to evaluate complex and complicated systems” slides at the start of section 2 explain the difference.
 - Keep the definition non-technical. Judge methods come in Part 2.
 - The list is short on purpose and is not a ranking. Other clouds and vendors offer similar platforms.
 - Logo sources, all saved in this deck’s `images/` folder. TODO: check permission to use each logo before the slides are shared.
@@ -533,7 +442,7 @@ After a short breather slide, “Two examples”, the next two slides are illust
 - Policies define the guardrails and the gateways enforce them, so steps 1 and 2 overlap; the point is that a judge can sit on the content (step 1) or on the traffic (step 2).
 - “Guardrails” here means checks that run while the agent works, such as Model Armor on the gateway. Some guardrails are themselves LLM judges, as in the two example slides that follow the breather.
 - The definition of LLM-as-a-judge is on the previous slide.
-- This replaces the earlier layers-of-control slide, which is kept in [Part 1.G: Graveyard](../01g-graveyard/).
+- This replaces the earlier layers-of-control slide, which is kept in the unpublished Part 1.G graveyard deck.
 - Sources: [Google Cloud 2026a](../../bibliography/google-cloud-2026-agent-platform-overview/), the platform overview with the figure; [Google Cloud 2026b](../../bibliography/google-cloud-2026-agent-gateway-overview/), the Agent Gateway overview, for identity, registry, policies and observability; [Gerstenhaber and Bachman 2026](../../bibliography/gerstenhaber-2026-agent-platform/), the launch post.
 :::
 
@@ -682,7 +591,7 @@ action:  block; agent rewrites</pre>
 - Mitigation: an LLM judge checks every generated ad against the relevant legislation and regulation. Here the judge quotes the offending text, names the grounds, and blocks the ad. The red “illegal” mark is the judge’s verdict, not a rule the agent applied to itself.
 - Bridge to Part 2: this is a non-deterministic check. The judge reads the ad in context, so it can catch a preference however the agent phrases it.
 - Builds: (1) agent trace, (2) judge prompt, (3) judge verdict, highlight, zoom and no-go mark.
-- It is the regulatory risk from the collage (MyCity, Bunnings), at SEEK. Those case slides are in [Part 1.G: Graveyard](../01g-graveyard/).
+- It is the regulatory risk from the collage (MyCity, Bunnings), at SEEK. Those case slides are in the unpublished Part 1.G graveyard deck.
 :::
 
 ---
@@ -800,13 +709,154 @@ End the chat if risk ≥ 0.8.</pre>
 - Build 5: the judge ends the conversation before the agent answers. If the agent had answered, it would either leak real people’s data or invent it. Both are serious privacy and trust risks for SEEK. <!-- TODO: organisers to confirm whether to name specific privacy obligations. -->
 - This pattern is a multi-turn jailbreak, such as [Crescendo](../../bibliography/russinovich-2024-crescendo/): start harmless, then escalate by building on the model’s own replies. A filter that checks one message at a time misses it; a judge with the whole conversation in view can catch it.
 - Links to the outline’s SEEK examples: prompt injection and adversarial users.
-- It is the cybersecurity risk from the collage (EchoLeak, the Lego order, the gym booking agent), at SEEK. Those case slides are in [Part 1.G: Graveyard](../01g-graveyard/).
+- It is the cybersecurity risk from the collage (EchoLeak, the Lego order, the gym booking agent), at SEEK. Those case slides are in the unpublished Part 1.G graveyard deck.
 :::
 
-# 2. Technical foundations: LLMs, generative AI and agents {.section-divider .sd-1}
+# 2. Why agents need LLM judges {.section-divider .sd-2}
 
 ::: {.notes}
-**About this slide:** Section 2 covers the technical foundations: what an LLM does when it generates text, how conversations are fed to it, and what turns it into an AI agent. It ends with the terms for where an LLM judge can check an agent, and how evaluation relates to training.
+**About this slide:** Section 2 shows why LLM judges are needed to evaluate AI agents, then the technical foundations behind them. An AI agent is both a complex and a complicated system, whose behaviour comes from the whole system rather than any single part, and generative outputs cannot be matched against a label. Then the deeper dives: what an LLM does when it generates text, how conversations are fed to it, what turns it into an AI agent, and where an LLM judge can check an agent.
+:::
+
+---
+
+## AI Agents are complex *and* complicated systems {#complex-and-complicated .complexity-slide .cx-duo-slide}
+
+:::: {.cx-duo}
+
+::: {.cx-col}
+[Complex]{.sys-label .complex}
+
+![](images/complex-system.svg){fig-alt="A complex system: a dense network of interconnected parts with feedback loops. Signals wander different routes and runs land on a spread-out distribution of outputs."}
+
+[Many parts, entangled through feedback loops, so the behaviour of the whole emerges from how they interact. **Same input → a distribution of outputs.**]{.cx-lead}
+
+[Unpredictable]{.cx-chip .complex} [Self-organising]{.cx-chip .complex} [Emergent]{.cx-chip .complex}
+
+[**Example: the weather.**]{.cx-examples}
+
+[In an agent: foundation models, agents and agent swarms]{.cx-agent .complex}
+:::
+
+::: {.cx-col .fragment}
+[Complicated]{.sys-label .complicated}
+
+![](images/complicated-system.svg){fig-alt="A complicated system: subsystems of components wired together. Signals follow fixed, traceable routes and every run lands on the same single output."}
+
+[Many parts, intricately wired, but every connection is designed and can be traced, so the parts dictate the behaviour of the whole. **Same input → same output.**]{.cx-lead}
+
+[Predictable]{.cx-chip .complicated} [Controllable]{.cx-chip .complicated} [Designable]{.cx-chip .complicated}
+
+[**Example: a jet engine.**]{.cx-examples}
+
+[In an agent: the code, tools and workflows around the model]{.cx-agent .complicated}
+:::
+
+::::
+
+[Contrasts and examples: [Complex versus complicated](../../bibliography/finegood-complex-versus-complicated/) (Frameworks Collection, CC BY-NC-ND). Figures illustrative.]{.attribution .slide-foot}
+
+::: {.notes}
+**About this slide:** An AI agent is both a complex and a complicated system. The slide opens on complex, then one click reveals complicated beside it.
+
+A complex system has many parts entangled through feedback loops, so the behaviour of the whole emerges from how the parts interact, and the same input gives a distribution of outputs that cannot be traced back to individual parts. Complex systems are unpredictable, self-organising and emergent. The weather is the example: air, heat and moisture feed back on each other, so similar mornings can end in different afternoons. The economy, ant colonies and human brains are complex too. In an agent, the model, the agent built on it, and swarms of agents are complex.
+
+A complicated system also has many parts, but every connection is designed and can be traced, so the behaviour of the whole is dictated by the behaviour of its parts, and the same input always gives the same output. Complicated systems are predictable, controllable and designable. A jet engine is the example: every part is designed and every path can be traced, so it behaves the same way every time. Mechanical watches, traditional software, ETL pipelines and workflows are complicated too. In an agent, the code, tools, workflows and pipelines around the model are complicated.
+
+**Presenter notes:**
+
+- Complex first. The figure: lots of parts, intertwined, with feedback loops and long-range links. Each signal wanders a different route, and runs land on a distribution of outputs. You can’t easily trace an output back to the parts that produced it. The histogram comes from simulated random walks over the drawn network: illustrative, not data.
+- Then click for complicated. The figure: lots of components and subsystems connected in intricate ways, but every connection was designed and can be traced. The orange signals take the same routes every time and arrive together, so all runs land on one point on the output axis.
+- Complicated is not the same as simple: a jet engine is hard to build. The difference from a complex system is that you can trace why it did what it did.
+- The keywords and the examples are from the framework [Complex versus complicated](../../bibliography/finegood-complex-versus-complicated/), the same contrasts and examples as the AIPS Showcase slide. From the same framework: foundation models, agents and agent swarms sit with the weather and the economy, not with jet engines.
+- History, if asked, in one breath. Warren Weaver’s 1948 essay “Science and Complexity” separated problems of simplicity, problems of “disorganized complexity” (many variables, handled by statistics) and problems of “organized complexity”: problems “which involve dealing simultaneously with a sizable number of factors which are interrelated into an organic whole” ([Weaver 1948](../../bibliography/weaver-1948-science-complexity/)). Complexity science is now studied across the natural and social sciences, but, as a review puts it, “there is no concise definition of a complex system, let alone a definition on which all scientists agree” ([Ladyman et al. 2013](../../bibliography/ladyman-2013-complex-system/)). The point is that “complex” has a meaning beyond “hard”.
+- Point at the two figures together: the complicated one is the agent’s plumbing, the complex one is its behaviour.
+- Next: what that means for evaluation.
+:::
+
+---
+
+## How to evaluate complex and complicated systems {#evaluate-complex-and-complicated .complexity-slide .cx-eval-slide .centre-body}
+
+::: {.cx-eval}
+- **Evaluate with a mix** [Deterministic, rule-based checks suit the complicated parts. LLM-as-judge suits the complex behaviour.]{.cx-eval-sub}
+- **Test the components and the whole system** [Each part can pass its own checks while the agent as a whole misbehaves.]{.cx-eval-sub}
+:::
+
+::: {.notes}
+**About this slide:** What being both complex and complicated means for evaluating an agent. Agents are evaluated with a mix of methods. Deterministic, rule-based checks such as tests, exact matches and schema checks suit the complicated parts. Non-deterministic checks, LLM-as-a-judge, suit the complex behaviour. And because the whole is more than the sum of its parts, testing each component is not enough: each part can pass its own checks while the system as a whole misbehaves, because once the parts interact, feedback loops appear that belong to no single part. The whole system has to be evaluated too.
+
+**Presenter notes:**
+
+- Keep it short: two points, then move on.
+- The mix echoes the “Agent platforms layer protections” slide: protections can be deterministic (rule-based) or non-deterministic (LLM-as-judge).
+- Bridge, from the outline’s multi-tier evals item (system-level vs component-level): with complex systems you still always have to evaluate the system as a whole.
+- The earlier parts-vs-whole figure and its placeholder for a Tim Sullivan quotation are in the unpublished Part 1.G graveyard deck; the quotation is still missing.
+- Next: why generative AI needs LLM-as-a-judge.
+:::
+
+---
+
+## Why generative AI needs LLM-as-a-judge {.output-space-slide .centre-body}
+
+```{=html}
+<div class="osp">
+  <div class="osp-groups">
+    <div class="osp-group pred">Predictive AI</div>
+    <div class="osp-group gen">Generative AI</div>
+  </div>
+  <div class="osp-cols">
+    <div class="osp-col pred fragment" data-fragment-index="1">
+      <div class="osp-name">Regression</div>
+      <img src="images/output-space-regression.svg" alt="A number line from 0 to 100. The prediction sits close to the label; the gap is the error.">
+      <div class="osp-size"><b>One number</b> in a range</div>
+      <div class="osp-eval"><span>Evaluate by</span>Error against a label: MAE, RMSE</div>
+    </div>
+    <div class="osp-col pred fragment" data-fragment-index="2">
+      <div class="osp-name">Classification</div>
+      <img src="images/output-space-classes.svg" alt="Five job categories. The model picks Technology, which matches the label.">
+      <div class="osp-size"><b>One of <i>k</i></b> classes</div>
+      <div class="osp-eval"><span>Evaluate by</span>Match against a label: accuracy, F1</div>
+    </div>
+    <div class="osp-col gen fragment" data-fragment-index="3">
+      <div class="osp-name">One token</div>
+      <img src="images/output-space-vocab.svg" alt="A dense grid of cells stands for the vocabulary. One cell, the chosen token, is filled.">
+      <div class="osp-size"><b>One of |<i>V</i>| ≈ 10<sup>5</sup></b> tokens</div>
+      <div class="osp-eval"><span>Evaluate by</span>Still a match: it is a very wide classifier</div>
+    </div>
+    <div class="osp-col gen fragment" data-fragment-index="4">
+      <div class="osp-name">A response</div>
+      <img src="images/output-space-sequences.svg" alt="A tree that fans out at every token. One highlighted path is the response the model produced.">
+      <div class="osp-size"><b>|<i>V</i>|<sup><i>n</i></sup></b>: 100 tokens ≈ 10<sup>500</sup></div>
+      <div class="osp-eval"><span>Evaluate by</span>No single right answer. Overlap with a reference, then an LLM judge</div>
+    </div>
+    <div class="osp-col gen fragment" data-fragment-index="5">
+      <div class="osp-name">An agent trace</div>
+      <img src="images/output-space-agent.svg" alt="Three response trees in a row, joined by tool calls drawn as squares.">
+      <div class="osp-size"><b>Responses × steps × turns</b></div>
+      <div class="osp-eval"><span>Evaluate by</span>LLM judges, plus multi-tier evals and simulation</div>
+    </div>
+  </div>
+  <div class="osp-takeaway fragment" data-fragment-index="6">Once outputs can’t be enumerated, there is no label to match. Something has to read the output and decide whether it is good.</div>
+  <div class="osp-sources slide-foot">
+    <div>Before LLM judges: reference overlap, e.g. <a href="../../bibliography/papineni-2002-bleu/">BLEU (Papineni et al. 2002)</a> and <a href="../../bibliography/lin-2004-rouge/">ROUGE (Lin 2004)</a>, which correlate poorly with human judgements on open-ended text (<a href="../../bibliography/liu-2023-geval/">Liu et al. 2023</a>).</div>
+    <div>LLM-as-a-judge: <a href="../../bibliography/zheng-2023-mt-bench/">Zheng et al. 2023</a>.</div>
+  </div>
+</div>
+```
+
+::: {.notes}
+**About this slide:** Why generative AI cannot be evaluated like predictive AI. Regression and classification produce one number or one class, which can be scored against a label. An LLM’s next token is still one choice from a large vocabulary, but a full response is one of an astronomically large number of possible sequences, and an agent trace chains many responses, tool calls and turns. With no single right answer to match, something has to read the output and judge whether it is good: an LLM judge ([Zheng et al. 2023](../../bibliography/zheng-2023-mt-bench/)). The builds step through the five output types from left to right.
+
+**Presenter notes:**
+
+- Builds 1–2, regression then classification: predictive AI has a narrow output space. A regression model returns one number in a range; a classifier picks one or more classes from a finite set. Both come with a label, so evaluation is arithmetic: error, accuracy, F1.
+- Build 3, one token: an LLM's next token is drawn from a vocabulary of roughly a hundred thousand tokens. That is still countable. On its own it is just a very wide classifier.
+- Build 4, a response: a sequence of n tokens is a sample from |V|^n possibilities. For a 100-token answer that is about 10^500, far beyond anything we could label. There is rarely one right answer, so exact match is meaningless.
+- NLP's earlier answer was overlap with human references, such as [BLEU](../../bibliography/papineni-2002-bleu/) for translation and [ROUGE](../../bibliography/lin-2004-rouge/) for summaries. Those metrics are cheap but correlate poorly with human judgement on creative or open-ended text, which is why the field moved to LLM judges ([Liu et al. 2023](../../bibliography/liu-2023-geval/)).
+- Build 5, an agent trace: many responses, reasoning steps, tool calls and turns, chained together. Even a judge on the final answer is not enough: agents also need simulated users and multi-tier evals. Both are on the “Notes to follow up” slide at the end of Part 1; the “Why AI agents need simulation” slide is in the unpublished Part 1.G graveyard deck for now.
+- Next: the terms the rest of this section defines, then one idea per slide: LLM text generation, conversations, agent traces and LLM-as-judge.
+- Colours follow the complexity slides: blue for predictive, teal for generative.
 :::
 
 ---
@@ -1327,195 +1377,11 @@ End the chat if risk ≥ 0.8.</pre>
 - Meta-evaluation means evaluating the evaluator: checking judges against human labels before trusting their scores ([Gu et al. 2024](../../bibliography/gu-2024-llm-as-judge-survey/)). Counsel is a recent meta-evaluation dataset for agent trajectories ([Pisupati et al. 2026](../../bibliography/pisupati-2026-counsel/)).
 :::
 
-# 3. Why agents need LLM judges {.section-divider .sd-2}
-
-::: {.notes}
-**About this slide:** Section 3 builds on those foundations to show why LLM judges are needed to evaluate AI agents, and why other methods fall short: generative outputs cannot be matched against a label, and an AI agent is both a complicated and a complex system, whose behaviour comes from the whole system rather than any single part.
-:::
-
----
-
-## Why generative AI needs LLM-as-a-judge {.output-space-slide .centre-body}
-
-```{=html}
-<div class="osp">
-  <div class="osp-groups">
-    <div class="osp-group pred">Predictive AI</div>
-    <div class="osp-group gen">Generative AI</div>
-  </div>
-  <div class="osp-cols">
-    <div class="osp-col pred fragment" data-fragment-index="1">
-      <div class="osp-name">Regression</div>
-      <img src="images/output-space-regression.svg" alt="A number line from 0 to 100. The prediction sits close to the label; the gap is the error.">
-      <div class="osp-size"><b>One number</b> in a range</div>
-      <div class="osp-eval"><span>Evaluate by</span>Error against a label: MAE, RMSE</div>
-    </div>
-    <div class="osp-col pred fragment" data-fragment-index="2">
-      <div class="osp-name">Classification</div>
-      <img src="images/output-space-classes.svg" alt="Five job categories. The model picks Technology, which matches the label.">
-      <div class="osp-size"><b>One of <i>k</i></b> classes</div>
-      <div class="osp-eval"><span>Evaluate by</span>Match against a label: accuracy, F1</div>
-    </div>
-    <div class="osp-col gen fragment" data-fragment-index="3">
-      <div class="osp-name">One token</div>
-      <img src="images/output-space-vocab.svg" alt="A dense grid of cells stands for the vocabulary. One cell, the chosen token, is filled.">
-      <div class="osp-size"><b>One of |<i>V</i>| ≈ 10<sup>5</sup></b> tokens</div>
-      <div class="osp-eval"><span>Evaluate by</span>Still a match: it is a very wide classifier</div>
-    </div>
-    <div class="osp-col gen fragment" data-fragment-index="4">
-      <div class="osp-name">A response</div>
-      <img src="images/output-space-sequences.svg" alt="A tree that fans out at every token. One highlighted path is the response the model produced.">
-      <div class="osp-size"><b>|<i>V</i>|<sup><i>n</i></sup></b>: 100 tokens ≈ 10<sup>500</sup></div>
-      <div class="osp-eval"><span>Evaluate by</span>No single right answer. Overlap with a reference, then an LLM judge</div>
-    </div>
-    <div class="osp-col gen fragment" data-fragment-index="5">
-      <div class="osp-name">An agent trace</div>
-      <img src="images/output-space-agent.svg" alt="Three response trees in a row, joined by tool calls drawn as squares.">
-      <div class="osp-size"><b>Responses × steps × turns</b></div>
-      <div class="osp-eval"><span>Evaluate by</span>LLM judges, plus multi-tier evals and simulation</div>
-    </div>
-  </div>
-  <div class="osp-takeaway fragment" data-fragment-index="6">Once outputs can’t be enumerated, there is no label to match. Something has to read the output and decide whether it is good.</div>
-  <div class="osp-sources slide-foot">
-    <div>Before LLM judges: reference overlap, e.g. <a href="../../bibliography/papineni-2002-bleu/">BLEU (Papineni et al. 2002)</a> and <a href="../../bibliography/lin-2004-rouge/">ROUGE (Lin 2004)</a>, which correlate poorly with human judgements on open-ended text (<a href="../../bibliography/liu-2023-geval/">Liu et al. 2023</a>).</div>
-    <div>LLM-as-a-judge: <a href="../../bibliography/zheng-2023-mt-bench/">Zheng et al. 2023</a>.</div>
-  </div>
-</div>
-```
-
-::: {.notes}
-**About this slide:** Why generative AI cannot be evaluated like predictive AI. Regression and classification produce one number or one class, which can be scored against a label. An LLM’s next token is still one choice from a large vocabulary, but a full response is one of an astronomically large number of possible sequences, and an agent trace chains many responses, tool calls and turns. With no single right answer to match, something has to read the output and judge whether it is good: an LLM judge ([Zheng et al. 2023](../../bibliography/zheng-2023-mt-bench/)). The builds step through the five output types from left to right.
-
-**Presenter notes:**
-
-- Builds 1–2, regression then classification: predictive AI has a narrow output space. A regression model returns one number in a range; a classifier picks one or more classes from a finite set. Both come with a label, so evaluation is arithmetic: error, accuracy, F1.
-- Build 3, one token: an LLM's next token is drawn from a vocabulary of roughly a hundred thousand tokens. That is still countable. On its own it is just a very wide classifier.
-- Build 4, a response: a sequence of n tokens is a sample from |V|^n possibilities. For a 100-token answer that is about 10^500, far beyond anything we could label. There is rarely one right answer, so exact match is meaningless.
-- NLP's earlier answer was overlap with human references, such as [BLEU](../../bibliography/papineni-2002-bleu/) for translation and [ROUGE](../../bibliography/lin-2004-rouge/) for summaries. Those metrics are cheap but correlate poorly with human judgement on creative or open-ended text, which is why the field moved to LLM judges ([Liu et al. 2023](../../bibliography/liu-2023-geval/)).
-- Build 5, an agent trace: many responses, reasoning steps, tool calls and turns, chained together. Even a judge on the final answer is not enough: agents also need simulated users and multi-tier evals. Both are on the “Notes to follow up” slide at the end of Part 1; the “Why AI agents need simulation” slide is in [Part 1.G: Graveyard](../01g-graveyard/) for now.
-- Next: complex and complicated systems.
-- Colours follow the complexity slides: blue for predictive, teal for generative.
-:::
-
----
-
-## Complex system {.complexity-slide .cx-slide}
-
-:::: {.cx-grid}
-
-::: {.cx-text}
-[Many parts, entangled through feedback loops, so the behaviour of the whole emerges from how they interact. **Same input → a distribution of outputs.**]{.cx-lead}
-
-[Unpredictable]{.cx-chip .complex} [Self-organising]{.cx-chip .complex} [Emergent]{.cx-chip .complex}
-
-[**Example: the weather.** Air, heat and moisture feed back on each other, so similar mornings can end in different afternoons.]{.cx-examples}
-
-[Also: the economy, ant colonies, human brains]{.cx-also}
-
-[Weaver called these problems of “organized complexity”: “a sizable number of factors which are interrelated into an organic whole” ([Weaver 1948](../../bibliography/weaver-1948-science-complexity/)). Complexity science now spans the natural and social sciences, with no single agreed definition ([Ladyman et al. 2013](../../bibliography/ladyman-2013-complex-system/)).]{.cx-history}
-:::
-
-::: {.cx-figure}
-![](images/complex-system.svg){fig-alt="A complex system: a dense network of interconnected parts with feedback loops. Signals wander different routes and runs land on a spread-out distribution of outputs."}
-:::
-
-::::
-
-[Contrasts and examples: [Complex versus complicated](../../bibliography/finegood-complex-versus-complicated/) (Frameworks Collection, CC BY-NC-ND). Figure illustrative.]{.attribution .slide-foot}
-
-::: {.notes}
-**About this slide:** A complex system has many parts entangled through feedback loops, so the behaviour of the whole emerges from how the parts interact, and the same input gives a distribution of outputs that cannot be traced back to individual parts. Complex systems are unpredictable, self-organising and emergent. The weather is the example: air, heat and moisture feed back on each other, so similar mornings can end in different afternoons. The economy, ant colonies and human brains are complex too. As a field, the study of complex systems goes back at least to Warren Weaver’s 1948 essay “Science and Complexity”, which separated problems of simplicity, problems of “disorganized complexity” (many variables, handled by statistics) and problems of “organized complexity”: problems “which involve dealing simultaneously with a sizable number of factors which are interrelated into an organic whole” ([Weaver 1948](../../bibliography/weaver-1948-science-complexity/)). Complexity science is now studied across the natural and social sciences, but, as a review puts it, “there is no concise definition of a complex system, let alone a definition on which all scientists agree” ([Ladyman et al. 2013](../../bibliography/ladyman-2013-complex-system/)).
-
-**Presenter notes:**
-
-- The figure: lots of parts, intertwined, with feedback loops and long-range links. Each signal wanders a different route, and runs land on a distribution of outputs. You can’t easily trace an output back to the parts that produced it.
-- The histogram comes from simulated random walks over the drawn network: illustrative, not data.
-- The three keywords and the examples are from the framework [Complex versus complicated](../../bibliography/finegood-complex-versus-complicated/), the same contrasts and examples as the AIPS Showcase slide.
-- History, in one breath: Weaver 1948 names organized complexity; Ladyman et al. 2013 review attempts to define a complex system and find no agreed definition. Don’t go further; the point is that “complex” has a meaning beyond “hard”.
-- Next: the other kind of system, which looks similar from outside.
-:::
-
----
-
-## Complicated system {.complexity-slide .cx-slide}
-
-:::: {.cx-grid}
-
-::: {.cx-text}
-[Many parts, intricately wired, but every connection is designed and can be traced, so the parts dictate the behaviour of the whole. **Same input → same output.**]{.cx-lead}
-
-[Predictable]{.cx-chip .complicated} [Controllable]{.cx-chip .complicated} [Designable]{.cx-chip .complicated}
-
-[**Example: a jet engine.** Every part is designed and every path can be traced, so it behaves the same way every time.]{.cx-examples}
-
-[Also: mechanical watches, traditional software, ETL pipelines, workflows]{.cx-also}
-:::
-
-::: {.cx-figure}
-![](images/complicated-system.svg){fig-alt="A complicated system: subsystems of components wired together. Signals follow fixed, traceable routes and every run lands on the same single output."}
-:::
-
-::::
-
-[Contrasts and examples: [Complex versus complicated](../../bibliography/finegood-complex-versus-complicated/) (Frameworks Collection, CC BY-NC-ND). Figure illustrative.]{.attribution .slide-foot}
-
-::: {.notes}
-**About this slide:** A complicated system also has many parts, but every connection is designed and can be traced, so the behaviour of the whole is dictated by the behaviour of its parts, and the same input always gives the same output. Complicated systems are predictable, controllable and designable. A jet engine is the example: every part is designed and every path can be traced. Mechanical watches, traditional software, ETL pipelines and workflows are complicated too.
-
-**Presenter notes:**
-
-- The figure: lots of components and subsystems connected in intricate ways, but every connection was designed and can be traced. The orange signals take the same routes every time and arrive together, so all runs land on one point on the output axis.
-- Complicated is not the same as simple: a jet engine is hard to build. The difference from a complex system is that you can trace why it did what it did.
-- Keywords and examples from [Complex versus complicated](../../bibliography/finegood-complex-versus-complicated/).
-- Next: where AI agents sit.
-:::
-
----
-
-## AI Agents are complicated *and* complex systems {.complexity-slide .cx-both-slide}
-
-:::: {.cx-pair}
-
-::: {.cx-mini}
-[Complicated]{.sys-label .complicated}
-
-![](images/complicated-system.svg){fig-alt="Small version of the complicated-system figure: fixed, traceable routes and one output."}
-
-[The code, tools and workflows around the model]{.cx-mini-caption}
-:::
-
-::: {.cx-mini}
-[Complex]{.sys-label .complex}
-
-![](images/complex-system.svg){fig-alt="Small version of the complex-system figure: wandering routes and a distribution of outputs."}
-
-[Foundation models, agents and agent swarms]{.cx-mini-caption}
-:::
-
-::::
-
-::: {.cx-points}
-- **Evaluate with a mix.** Deterministic, rule-based checks (tests, exact matches, schemas) suit the complicated parts. Non-deterministic checks (LLM-as-judge) suit the complex behaviour.
-- **Test the components, and the whole system.** Each part can pass its own checks while the agent as a whole misbehaves: the whole is more than the sum of its parts.
-:::
-
-::: {.notes}
-**About this slide:** An AI agent is both. The code, tools, workflows and pipelines around the model are complicated: designed, traceable and predictable. The model, the agent built on it, and swarms of agents are complex: the same input gives a distribution of outputs. So agents are evaluated with a mix of methods. Deterministic, rule-based checks such as tests, exact matches and schema checks suit the complicated parts. Non-deterministic checks, LLM-as-a-judge, suit the complex behaviour. And because the whole is more than the sum of its parts, testing each component is not enough: each part can pass its own checks while the system as a whole misbehaves, because once the parts interact, feedback loops appear that belong to no single part. The whole system has to be evaluated too.
-
-**Presenter notes:**
-
-- Point at the two mini figures: the left one is the agent’s plumbing, the right one is its behaviour.
-- The mix echoes the “Agent platforms layer protections” slide: protections can be deterministic (rule-based) or non-deterministic (LLM-as-judge).
-- From the framework [Complex versus complicated](../../bibliography/finegood-complex-versus-complicated/): foundation models, agents and agent swarms sit with the weather and the economy, not with jet engines.
-- Bridge, from the outline’s multi-tier evals item (system-level vs component-level): with complex systems you still always have to evaluate the system as a whole.
-- The earlier parts-vs-whole figure and its placeholder for a Tim Sullivan quotation are in [Part 1.G: Graveyard](../01g-graveyard/); the quotation is still missing.
-:::
-
 ---
 
 ## Notes to follow up {#notes-to-follow-up .follow-up-slide .fu-all .organiser-only}
 
-<!-- TODO: working notes for all of Part 1, one subheading per section. Section 1: placeholder slides moved here in full, plus what the seven-slide section 1 cut. Section 2: the "Evals vs training" slide, removed from the talk on 10 November 2026. Section 3: placeholder slides moved here in full; Multi-tier evals, Simulation and Metrics belong to that section, while Offline evals, Online evals, Data, Observability, Agent registries and gateways, and Examples from SEEK (platform) are not placed in the new structure (question for Terrence, since the program lists the evaluation lifecycle under Part 1). Turn these into slides or drop them. -->
+<!-- TODO: working notes for all of Part 1, one subheading per section. Section 1: placeholder slides moved here in full, plus what the seven-slide section 1 cut. Section 2 (old sections 2 and 3, merged on 24 November 2026): placeholder slides moved here in full, and the "Evals vs training" slide, removed from the talk on 10 November 2026; Multi-tier evals, Simulation, Metrics and Evals vs training belong to that section, while Offline evals, Online evals, Data, Observability, Agent registries and gateways, and Examples from SEEK (platform) are not placed in the new structure (question for Terrence, since the program lists the evaluation lifecycle under Part 1). Turn these into slides or drop them. -->
 
 ::: {.fu-grid}
 
@@ -1561,7 +1427,7 @@ End the chat if risk ≥ 0.8.</pre>
 ::: {.fu-item}
 [AI agent risks]{.fu-title}
 
-<!-- Mostly covered now by the risk side of "Agents can create value, but introduce risk" and the headline collage after it; the full risk slide and the real-case slides are in [Part 1.G: Graveyard](../01g-graveyard/). "Financial risks (spend)" maps to operational risk. Kept until Terrence confirms nothing here is lost. -->
+<!-- Mostly covered now by the risk side of "Agents can create value, but introduce risk" and the headline collage after it; the full risk slide and the real-case slides are in the unpublished Part 1.G graveyard deck. "Financial risks (spend)" maps to operational risk. Kept until Terrence confirms nothing here is lost. -->
 
 - Security risks
 - Financial risks (spend)
@@ -1594,16 +1460,16 @@ End the chat if risk ≥ 0.8.</pre>
 ```
 
 - Woolworths’ Olive: a Reddit post in r/woolworths (Feb 2026) and an X post that quotes it (25 Feb 2026). Supplied by Terrence.
-- DPD’s haiku, Lego’s Sophia reply and the gym agent’s apology were cut too. Each is on its case slide in [Part 1.G: Graveyard](../01g-graveyard/).
+- DPD’s haiku, Lego’s Sophia reply and the gym agent’s apology were cut too. Each is on its case slide in the unpublished Part 1.G graveyard deck.
 :::
 
 ::: {.fu-item}
 [Slides moved to the graveyard]{.fu-title}
 
-In full, with their notes, in the separate [Part 1.G: Graveyard](../01g-graveyard/) deck:
+In full, with their notes, in the separate Part 1.G: Graveyard deck, which is kept in the repository but not published:
 
 - The eight news-story case slides
-- The title slide, “Part 1 — WIP”, the agenda and the section 1 header
+- The old title slide and status notice, the agenda and the section 1 header
 - Why organisations adopt AI agents
 - The public’s view of AI is mixed
 - Using AI to evaluate AI
@@ -1612,24 +1478,7 @@ In full, with their notes, in the separate [Part 1.G: Graveyard](../01g-graveyar
 :::
 
 ::: {.fu-lead}
-[2. Technical foundations]{.fu-section}
-
-::: {.fu-item}
-[Evals vs training]{.fu-title}
-
-<!-- Moved here on 10 November 2026 from the section 2 slide “Evals vs training”, which was removed at Terrence’s request. It sets the tutorial’s scope: no training. -->
-
-- Separate, but not 100% disjoint
-- An agent can improve its eval scores without retraining
-- LLMs are trained on things that look very similar to evals (RLHF, RLVR, [RLAIF](../../bibliography/bai-2022-constitutional-ai/))
-- **We are ignoring training in this tutorial**
-:::
-:::
-
-
-
-::: {.fu-lead}
-[3. Why agents need LLM judges]{.fu-section}
+[2. Why agents need LLM judges]{.fu-section}
 
 ::: {.fu-item}
 [Multi-tier evals]{.fu-title}
@@ -1655,6 +1504,17 @@ In full, with their notes, in the separate [Part 1.G: Graveyard](../01g-graveyar
 - Deterministic vs non-deterministic (LLM-as-a-judge; [Zheng et al. 2023](../../bibliography/zheng-2023-mt-bench/))
 - Verifiable tasks vs unverifiable tasks
 - Samples and significance
+:::
+
+::: {.fu-item}
+[Evals vs training]{.fu-title}
+
+<!-- Moved here on 10 November 2026 from the section 2 slide “Evals vs training”, which was removed at Terrence’s request. It sets the tutorial’s scope: no training. -->
+
+- Separate, but not 100% disjoint
+- An agent can improve its eval scores without retraining
+- LLMs are trained on things that look very similar to evals (RLHF, RLVR, [RLAIF](../../bibliography/bai-2022-constitutional-ai/))
+- **We are ignoring training in this tutorial**
 :::
 
 ::: {.fu-item}
@@ -1716,15 +1576,15 @@ In full, with their notes, in the separate [Part 1.G: Graveyard](../01g-graveyar
 :::
 
 ::: {.notes}
-**About this slide:** Working notes for all of Part 1, not a finished slide. Every box from the old section 1 and section 3 follow-up slides is here, under a subheading for its section, with the content of the section 2 slide “Evals vs training”.
+**About this slide:** Working notes for all of Part 1, not a finished slide. Every box from the old section 1 and section 3 follow-up slides is here, under a subheading for its section, with the content of the old section 2 slide “Evals vs training”. Sections 2 and 3 were merged into one section 2 on 24 November 2026.
 
-Section 1 holds planned material, kept here in full until it becomes finished slides: how we got here, how organisations use agents, examples from SEEK, and the kinds of risk agents carry. It also keeps what the seven-slide version of section 1 cut: the two Woolworths’ Olive social-media posts from the headline collage, which have no other copy in the deck, and a list of the slides moved to [Part 1.G: Graveyard](../01g-graveyard/).
+Section 1 holds planned material, kept here in full until it becomes finished slides: how we got here, how organisations use agents, examples from SEEK, and the kinds of risk agents carry. It also keeps what the seven-slide version of section 1 cut: the two Woolworths’ Olive social-media posts from the headline collage, which have no other copy in the deck, and a list of the slides moved to the unpublished Part 1.G graveyard deck.
 
-The two Olive screenshots: the Reddit post “Olive AI started telling me about its mother on the phone?” in r/woolworths by u/Immediate_Novel5946 (February 2026), and the X post by @verynormalman of 25 February 2026 that quotes it. Both were supplied by Terrence; the case is reported by the Sydney Morning Herald ([Yun 2026](../../bibliography/yun-2026-woolworths-olive/)). DPD’s haiku, Lego’s Sophia reply and the gym agent’s apology were also cut from the collage; each is on its case slide in [Part 1.G: Graveyard](../01g-graveyard/).
+The two Olive screenshots: the Reddit post “Olive AI started telling me about its mother on the phone?” in r/woolworths by u/Immediate_Novel5946 (February 2026), and the X post by @verynormalman of 25 February 2026 that quotes it. Both were supplied by Terrence; the case is reported by the Sydney Morning Herald ([Yun 2026](../../bibliography/yun-2026-woolworths-olive/)). DPD’s haiku, Lego’s Sophia reply and the gym agent’s apology were also cut from the collage; each is on its case slide in the unpublished Part 1.G graveyard deck.
 
 Section 2 holds the old “Evals vs training” slide: how evaluation relates to training. They are separate but overlap: an agent can raise its evaluation scores without retraining, and LLMs are trained with methods that resemble evaluation, such as RLHF, RLVR and [RLAIF](../../bibliography/bai-2022-constitutional-ai/). This tutorial covers evaluation only, not training.
 
-Section 3: the first three boxes (multi-tier evals, simulation, metrics) are planned material for that section. The rest describe the evaluation lifecycle (offline and online evals, data, observability, agent registries and gateways, and SEEK’s agent platform), which has no place in the current Part 1 structure yet. All are kept here in full until they become finished slides.
+Section 2 also holds three boxes of planned material (multi-tier evals, simulation, metrics), from the old section 3. The rest describe the evaluation lifecycle (offline and online evals, data, observability, agent registries and gateways, and SEEK’s agent platform), which has no place in the current Part 1 structure yet. All are kept here in full until they become finished slides.
 :::
 
 ---
@@ -1748,6 +1608,4 @@ Section 3: the first three boxes (multi-tier evals, simulation, metrics) are pla
 **Presenter notes:**
 
 - Going forward from this slide (right arrow, space, page down, or the top bar’s next button) opens Part 2, as does the link at the bottom.
-
-Outline source in the repo: organisation/outlines/part-01.md
 :::

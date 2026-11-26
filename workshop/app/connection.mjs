@@ -1,4 +1,4 @@
-// Keep credentials separate from judge drafts, preferences, workflow and reports.
+// Keep credentials separate from saved judges, preferences, workflow and reports.
 export const CONNECTION_KEY = "alta2026-hands-on-connection-v1";
 export const LEGACY_KEY = "alta2026-hands-on-v1";
 export const DEFAULT_BASE = "https://openrouter.ai/api/v1";

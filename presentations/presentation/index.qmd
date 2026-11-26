@@ -1,63 +1,59 @@
 ---
 title: "Presentation"
-subtitle: "An intro and four parts, each its own deck"
-format: html
+subtitle: "Slides media for all four sections of the tutorial."
+format:
+  html:
+    css:
+      - ../_shared/site-fonts.css
+      - ../_shared/section-divider.css
 ---
 
-Each part is its own slide deck and its own URL, so contributors can edit one section without rewriting the others. Decks inherit the same Reveal.js chrome from `presentations/_quarto.yml`. A part can override that in its own YAML when it needs a different theme or layout.
+Here you can find the presentation content for all four sections of the afternoon tutorial. The presentations have been developed as HTML content using AI coding agents and open-source frameworks including [Quarto](https://quarto.org/) and [reveal.js](https://revealjs.com/).
 
-Inside a deck: open the slide list from the menu at the top left, move with the arrows or the left and right keys, and search the text of that deck. Escape returns to this site’s home page. The edge arrows fade when the pointer is still.
+All content has been reviewed by the tutorial organisers, who are fully responsible for the accuracy and validity of the material.
 
 ::: {.part-list}
 
 ::: {#intro .part-card}
-<span class="index">Intro · Before Part 1</span>
+<span class="index">Intro</span>
 
 [Welcome and introductions](00-intro/){.card-title}
 
-The afternoon's plan and the four presenters, before Part 1.
+The afternoon's timeline and the four presenters, before Part 1.
 :::
 
 ::: {#part-1 .part-card}
-<span class="index">Part 1 · Session 1</span>
+<span class="index">Session 1, Part 1</span>
 
 [AI Agents and Evaluation Challenges](01-agents-and-eval-challenges/){.card-title}
 
-Agents, tool use, and why scoring only the final answer falls short.
-:::
-
-::: {#part-1g .part-card}
-<span class="index">Part 1.G · Not in the talk</span>
-
-[Graveyard](01g-graveyard/){.card-title}
-
-Slides cut from Part 1, kept in full for organisers. To be deleted before the tutorial.
+Presented by Terrence Szymanski. Why agents create value and risk, two LLM-judge examples, technical foundations (LLMs, generative AI and agents), and why agents need LLM judges.
 :::
 
 ::: {#part-2 .part-card}
-<span class="index">Part 2 · Session 1</span>
+<span class="index">Session 1, Part 2</span>
 
 [LLM-as-a-Judge Methods](02-llm-as-judge-methods/){.card-title}
 
-Deterministic checks, judge prompts, rubrics, and the cost of model-based evaluation.
+Presented by Parvin Zarei Eskikand. Deterministic evaluation; LLM as a judge and its failure modes; rubrics, scales and prompt patterns; domain-specific criteria and human review.
 :::
 
 ::: {#part-3 .part-card}
-<span class="index">Part 3 · Session 2</span>
+<span class="index">Session 2, Part 3</span>
 
 [Hands-on Agent Evaluation Exercise](03-hands-on-exercise/){.card-title}
 
-The exercise briefing. The app itself opens from [Hands-on](../hands-on/index.qmd).
+Presented by Yelaman Abdullin. The exercise briefing: three rounds with one career assistant and five steps in every round. The app itself opens from [Hands-on](../hands-on/index.qmd).
 :::
 
 ::: {#part-4 .part-card}
-<span class="index">Part 4 · Session 2</span>
+<span class="index">Session 2, Part 4</span>
 
 [Reliability, Limitations, and Future Directions](04-reliability-and-future/){.card-title}
 
-Consistency, robustness, cost, and what is still unsettled.
+Presented by Sara Mirabi. Reliability of the judge, what a judge score cannot tell you, and good practice and future directions.
 :::
 
 :::
 
-<p class="note">Decks are drafts. Citations on the slides link to the <a href="../bibliography/">bibliography</a> pages for those sources.</p>
+<p class="note">Citations on the slides link to the <a href="../bibliography/">bibliography</a> pages for those sources.</p>

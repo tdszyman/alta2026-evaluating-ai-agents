@@ -422,11 +422,10 @@ ALTA 2026 Tutorial 2 — Afternoon · WIP
 
 **AI Agents and Evaluation Challenges**
 
-Source outline: `organisation/outlines/part-01.md`  
 Placeholder slides only — not final narrative. Do not treat examples as complete case studies.
 
 ::: {.notes}
-**About this slide:** A status notice. This deck is still being written from the Part 1 outline (`organisation/outlines/part-01.md` in the tutorial repository). The examples in it are illustrative, not complete case studies.
+**About this slide:** A status notice. This deck is still being written. The examples in it are illustrative, not complete case studies.
 :::
 
 ---
@@ -837,10 +836,10 @@ Framework: [Complex versus complicated](../../bibliography/finegood-complex-vers
 
 # Graveyard: Google Trends chart {.graveyard-slide}
 
-The first version of “2026 is the year of the AI Agent”, a live Google Trends chart. Part 1 now makes the point with stats and quotes instead.
+The first version of “2026 is the year of the AI Agent”, a live Google Trends chart. Part 1 now makes the point with one Deloitte adoption figure on “Agents can create value, but introduce risk”.
 
 ::: {.notes}
-**About this slide:** The fifth group in this deck. Part 1’s “2026 is the year of the AI Agent” showed a live Google Trends chart of search interest. On 9 November 2026 it was replaced by a slide of stats and quotes about AI agent hype and investment, in Australia, New Zealand and around the world. The chart slide is kept here with its notes.
+**About this slide:** The fifth group in this deck. Part 1’s “2026 is the year of the AI Agent” showed a live Google Trends chart of search interest. On 9 November 2026 it was replaced by a slide of stats and quotes about AI agent hype and investment, in Australia, New Zealand and around the world. On 24 November 2026 that slide was removed too, and its 69% adoption figure moved onto “Agents can create value, but introduce risk”. The chart slide is kept here with its notes.
 :::
 
 ---

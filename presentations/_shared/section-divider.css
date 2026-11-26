@@ -13,7 +13,7 @@
 
 :root {
   /* Canva: stops sampled from the gradient cards on canva.com/en_au. White text throughout. Each slide's text sits on its darker stops; the lighter
-     stops that fall under 4.5:1 with white (teal, sky, coral, lavender) are corner glows. */
+     stops that fall under 4.5:1 with white (sky, coral, pink, amber, lavender) are corner glows. */
   /* .sd-1 violet to magenta: the Video and Magic Layers cards. */
   --sd-1-bg: radial-gradient(circle at 92% 12%, rgb(234 57 255 / 0.55), transparent 34%),
              linear-gradient(125deg, #902cff 0%, #902cff 40%, #cd04c7 100%);
@@ -22,71 +22,33 @@
   --sd-2-bg: radial-gradient(circle at 100% 100%, rgb(255 115 71 / 0.9), transparent 34%),
              linear-gradient(150deg, #cd04c7 0%, #cd04c7 25%, #eb2139 100%);
   --sd-2-ink: #ffffff;
-  /* .sd-3 violet to blue, aqua corner: the Visual Suite card. */
+  /* .sd-3 blue, aqua corner: the Visual Suite card's blues, without its violet start, so
+     no title slide shares a hue family. Its sampled #2585c7 end is 4.0:1 with white, so the
+     text sits on #1f4fc4 to #3868d9 and the gradient ends on the deeper #1d6fb0. */
   --sd-3-bg: radial-gradient(circle at 100% 100%, rgb(169 233 248 / 0.75), transparent 30%),
-             linear-gradient(160deg, #902cff 0%, #3868d9 62%, #2585c7 100%);
+             linear-gradient(160deg, #1f4fc4 0%, #3868d9 60%, #1d6fb0 100%);
   --sd-3-ink: #ffffff;
   /* .sd-4 green: the "Try Canva with your favourite apps" card. */
   --sd-4-bg: radial-gradient(circle at 100% 100%, rgb(26 150 42 / 0.9), transparent 30%),
              linear-gradient(160deg, #008636 0%, #008636 100%);
   --sd-4-ink: #ffffff;
-  /* .sd-5 indigo to lavender: the Canva Enterprise card. */
-  --sd-5-bg: radial-gradient(circle at 100% 100%, rgb(177 181 253 / 0.8), transparent 32%),
-             linear-gradient(160deg, #362ab9 0%, #474cef 85%);
+  /* .sd-5 rose to pink, pale pink corner. Not sampled from one card: chosen so the five
+     title slides are five hue families (purple, blue, green, pink, orange). */
+  --sd-5-bg: radial-gradient(circle at 100% 100%, rgb(255 138 196 / 0.85), transparent 32%),
+             linear-gradient(160deg, #be185d 0%, #d6197f 85%);
   --sd-5-ink: #ffffff;
-  /* .sd-6 teal to aqua: the Barbie card. Its #009bb1 teal is 3.3:1 with white, so the
-     text sits on the same teal deepened to #007285, and the sampled teal and aqua glow. */
-  --sd-6-bg: radial-gradient(circle at 100% 100%, rgb(92 203 220 / 0.9), transparent 24%),
-             radial-gradient(circle at 100% 100%, rgb(0 155 177 / 0.95), transparent 34%),
-             linear-gradient(160deg, #007285 0%, #007285 100%);
+  /* .sd-6 burnt orange, amber corner. Not sampled either; the text stops stay at 4.7:1 or
+     more with white, so the light amber is only a corner glow. */
+  --sd-6-bg: radial-gradient(circle at 100% 100%, rgb(255 178 62 / 0.9), transparent 30%),
+             linear-gradient(160deg, #b83a00 0%, #c24e00 100%);
   --sd-6-ink: #ffffff;
-  /* .sd-7 violet to indigo to teal: the "Start designing with Canva" banner, mirrored
-     so the text sits on violet and indigo and the banner's teal end glows bottom right. */
-  --sd-7-bg: radial-gradient(ellipse 46% 60% at 100% 100%, rgb(1 194 205 / 0.95), transparent 100%),
-             radial-gradient(ellipse 40% 55% at 100% 70%, rgb(51 113 230 / 0.7), transparent 100%),
-             linear-gradient(100deg, #7b2ae9 0%, #5c31f9 60%, #5c31f9 100%);
+  /* .sd-7 deep violet to Canva violet, lavender and magenta glows bottom right: the
+     "Start designing with Canva" banner's violet end, kept purple (no teal) so it does not
+     read as blue beside .sd-3. */
+  --sd-7-bg: radial-gradient(ellipse 46% 60% at 100% 100%, rgb(234 57 255 / 0.7), transparent 100%),
+             radial-gradient(ellipse 40% 55% at 100% 70%, rgb(177 120 255 / 0.6), transparent 100%),
+             linear-gradient(100deg, #6a1fd1 0%, #7b2ae9 55%, #902cff 100%);
   --sd-7-ink: #ffffff;
-}
-
-html[data-deck-theme="nyfw-ss26"] {
-  /* NYFW SS26: alexandrite to marina, deep marina to amaranth, deep marina, pale alexandrite,
-     lava falls, amaranth, plum ink to amaranth. Muskmelon, tea rose and acacia are too light
-     for white text, so they only glow in a corner. */
-  --sd-1-bg: linear-gradient(125deg, #00646c 0%, #00646c 35%, #4f85c3 100%);
-  --sd-1-ink: #ffffff;
-  --sd-2-bg: radial-gradient(circle at 100% 100%, rgb(222 113 118 / 0.85), transparent 30%),
-             linear-gradient(125deg, #2d5a8f 0%, #6e3c55 100%);
-  --sd-2-ink: #ffffff;
-  --sd-3-bg: linear-gradient(125deg, #2d5a8f 0%, #3f70aa 100%);
-  --sd-3-ink: #ffffff;
-  --sd-4-bg: linear-gradient(125deg, #b3d0d3 0%, #e0ecee 100%);
-  --sd-4-ink: #371e2a;
-  --sd-5-bg: linear-gradient(125deg, #9a2b31 0%, #b84a50 100%);
-  --sd-5-ink: #ffffff;
-  --sd-6-bg: linear-gradient(125deg, #6e3c55 0%, #8f5a6c 100%);
-  --sd-6-ink: #ffffff;
-  --sd-7-bg: radial-gradient(ellipse 42% 55% at 100% 100%, rgb(218 205 101 / 0.8), transparent 100%),
-             radial-gradient(ellipse 36% 50% at 100% 70%, rgb(238 147 92 / 0.6), transparent 100%),
-             linear-gradient(110deg, #371e2a 0%, #6e3c55 100%);
-  --sd-7-ink: #ffffff;
-}
-
-html[data-deck-theme="original"] {
-  /* Original: its blues and greys only, dark and pale in turn. */
-  --sd-1-bg: linear-gradient(125deg, #1b467f 0%, #245ba6 100%);
-  --sd-1-ink: #ffffff;
-  --sd-2-bg: linear-gradient(125deg, #d6e4f5 0%, #e3ecf8 55%, #eff3f5 100%);
-  --sd-2-ink: #14283b;
-  --sd-3-bg: linear-gradient(125deg, #14283b 0%, #1b467f 100%);
-  --sd-3-ink: #ffffff;
-  --sd-4-bg: linear-gradient(125deg, #eff3f5 0%, #b8c8d1 100%);
-  --sd-4-ink: #14283b;
-  --sd-5-bg: linear-gradient(125deg, #3d4f61 0%, #526476 100%);
-  --sd-5-ink: #ffffff;
-  --sd-6-bg: linear-gradient(125deg, #0b1622 0%, #14283b 100%);
-  --sd-6-ink: #ffffff;
-  --sd-7-bg: linear-gradient(125deg, #ffffff 0%, #d6e4f5 100%);
-  --sd-7-ink: #1b467f;
 }
 
 html:has(.reveal .slides section.present.section-divider) {

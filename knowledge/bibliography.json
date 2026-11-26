@@ -1081,7 +1081,7 @@
       "title": "When AIs Judge AIs: The Rise of Agent-as-a-Judge Evaluation for LLMs",
       "venue": "",
       "note": "The reading checklist gives no authors and no URL. Do not treat this record as verified until a canonical source is added.",
-      "summary": "Checklist item on agent-as-a-judge. Included so the reading list is complete. No abstract or link was verified for this draft, so the summary is only the title’s topic: using agents to evaluate other models.",
+      "summary": "Checklist item on agent-as-a-judge. Included so the reading list is complete. No abstract or link was verified for this summary, so the summary is only the title’s topic: using agents to evaluate other models.",
       "mentions": [],
       "featured_rank": null,
       "links": [],
@@ -2739,7 +2739,7 @@
       ],
       "title": "AgentJudgeBench: A Multi-Difficulty Benchmark for Evaluating LLM Judges on Agentic Tool-Calling",
       "authors": [],
-      "note": "The reading checklist credits Verma et al. (2026). Given names, a URL, and an abstract were not verified for this draft.",
+      "note": "The reading checklist credits Verma et al. (2026). Given names, a URL, and an abstract were not verified for this summary.",
       "summary": "Checklist item on judging tool calls at more than one difficulty. Relevant to Part 3, where tool choice and arguments are part of the grade. Confirm the citation before relying on it.",
       "mentions": [],
       "featured_rank": null,
@@ -3663,7 +3663,7 @@
           "href": "https://deepeval.com/"
         }
       ],
-      "summary": "An open-source library for writing LLM and agent evaluations in tests. Listed under platforms in the organiser notes. This draft does not describe features beyond that.",
+      "summary": "An open-source library for writing LLM and agent evaluations in tests. Listed under platforms in the organiser notes. This summary does not describe features beyond that.",
       "mentions": [],
       "note": null,
       "featured_rank": null,
@@ -3688,7 +3688,7 @@
           "href": "https://langfuse.com/docs/evaluation/overview"
         }
       ],
-      "summary": "Tracing and evaluation for LLM applications, including judging production traces. Listed under platforms in the organiser notes. This draft does not describe features beyond that.",
+      "summary": "Tracing and evaluation for LLM applications, including judging production traces. Listed under platforms in the organiser notes. This summary does not describe features beyond that.",
       "mentions": [],
       "note": null,
       "featured_rank": null,
@@ -3713,7 +3713,7 @@
           "href": "https://arize.com/"
         }
       ],
-      "summary": "Observability and evaluation product. The primary-list posts by Voss and Winston are on this site. Listed under platforms in the organiser notes. This draft does not describe features beyond that.",
+      "summary": "Observability and evaluation product. The primary-list posts by Voss and Winston are on this site. Listed under platforms in the organiser notes. This summary does not describe features beyond that.",
       "mentions": [],
       "note": null,
       "featured_rank": null,
@@ -3796,7 +3796,7 @@
           "href": "https://www.ragas.io/"
         }
       ],
-      "summary": "A library of metrics for RAG and, increasingly, agent pipelines. Listed under platforms in the organiser notes. This draft does not describe features beyond that.",
+      "summary": "A library of metrics for RAG and, increasingly, agent pipelines. Listed under platforms in the organiser notes. This summary does not describe features beyond that.",
       "mentions": [],
       "note": null,
       "featured_rank": null,
@@ -3821,7 +3821,7 @@
           "href": "https://mlflow.org/docs/latest/genai/eval-monitor/"
         }
       ],
-      "summary": "Experiment tracking with a genAI evaluation and monitoring section. Listed under platforms in the organiser notes. This draft does not describe features beyond that.",
+      "summary": "Experiment tracking with a genAI evaluation and monitoring section. Listed under platforms in the organiser notes. This summary does not describe features beyond that.",
       "mentions": [],
       "note": null,
       "featured_rank": null,
@@ -3846,7 +3846,7 @@
           "href": "https://docs.cloud.google.com/gemini-enterprise-agent-platform/optimize/evaluation/agent-evaluation"
         }
       ],
-      "summary": "Google’s documentation for evaluating agents on their platform. Listed under platforms in the organiser notes. This draft does not describe features beyond that.",
+      "summary": "Google’s documentation for evaluating agents on their platform. Listed under platforms in the organiser notes. This summary does not describe features beyond that.",
       "mentions": [],
       "note": null,
       "featured_rank": null,
@@ -3948,7 +3948,7 @@
           "href": "https://aws.amazon.com/bedrock/evaluations/"
         }
       ],
-      "summary": "Amazon’s product page for model and agent evaluation on Bedrock. Listed under platforms in the organiser notes. This draft does not describe features beyond that.",
+      "summary": "Amazon’s product page for model and agent evaluation on Bedrock. Listed under platforms in the organiser notes. This summary does not describe features beyond that.",
       "mentions": [],
       "note": null,
       "featured_rank": null,
@@ -3973,7 +3973,7 @@
           "href": "https://veris.ai/"
         }
       ],
-      "summary": "The organiser note describes this as simulation-based agent evaluation. Listed under platforms in the organiser notes. This draft does not describe features beyond that.",
+      "summary": "The organiser note describes this as simulation-based agent evaluation. Listed under platforms in the organiser notes. This summary does not describe features beyond that.",
       "mentions": [],
       "note": null,
       "featured_rank": null,
@@ -3998,7 +3998,7 @@
           "href": "https://artificialanalysis.ai/evaluations"
         }
       ],
-      "summary": "A public site that compares LLM evaluations. Listed under platforms in the organiser notes. This draft does not describe features beyond that.",
+      "summary": "A public site that compares LLM evaluations. Listed under platforms in the organiser notes. This summary does not describe features beyond that.",
       "mentions": [],
       "note": null,
       "featured_rank": null,
@@ -4023,7 +4023,7 @@
           "href": "https://roark.ai/"
         }
       ],
-      "summary": "The organiser note groups this with voice-agent evaluation tools. Listed under platforms in the organiser notes. This draft does not describe features beyond that.",
+      "summary": "The organiser note groups this with voice-agent evaluation tools. Listed under platforms in the organiser notes. This summary does not describe features beyond that.",
       "mentions": [],
       "note": null,
       "featured_rank": null,
@@ -4048,7 +4048,7 @@
           "href": "https://www.coval.ai/"
         }
       ],
-      "summary": "The organiser note groups this with voice-agent evaluation tools. Listed under platforms in the organiser notes. This draft does not describe features beyond that.",
+      "summary": "The organiser note groups this with voice-agent evaluation tools. Listed under platforms in the organiser notes. This summary does not describe features beyond that.",
       "mentions": [],
       "note": null,
       "featured_rank": null,
@@ -4073,7 +4073,7 @@
           "href": "https://www.cekura.ai/"
         }
       ],
-      "summary": "The organiser note groups this with voice-agent evaluation tools. Listed under platforms in the organiser notes. This draft does not describe features beyond that.",
+      "summary": "The organiser note groups this with voice-agent evaluation tools. Listed under platforms in the organiser notes. This summary does not describe features beyond that.",
       "mentions": [],
       "note": null,
       "featured_rank": null,

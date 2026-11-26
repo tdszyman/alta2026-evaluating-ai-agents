@@ -1,0 +1,598 @@
+/* Part 3 intro deck. Pipeline diagrams, a trace mock-up, round progression
+   cards, target pins, and the five-step app workflow. Uses only shared
+   template tokens (--deck-*, --chat-*, --verdict-*); no hardcoded colours. */
+
+.reveal .slides section.h3-slide {
+  font-family: var(--deck-font-sans);
+  color: var(--deck-ink);
+}
+
+.reveal .slides section.h3-slide h2 {
+  margin: 0 0 0.35em;
+  font-size: 44px;
+  line-height: 1.15;
+  color: var(--deck-heading);
+}
+
+.reveal .slides section.h3-slide p {
+  margin: 0;
+}
+
+.reveal .slides section.h3-slide a {
+  white-space: normal;
+}
+
+.reveal .slides section.h3-slide .h3-lead {
+  margin-bottom: 18px;
+  font-size: 21px;
+  line-height: 1.38;
+  color: var(--deck-soft);
+}
+
+.reveal .slides section.h3-slide .h3-colhead {
+  margin-bottom: 10px;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--deck-soft);
+}
+
+/* Pipeline flow (Slide 2) */
+
+.reveal .slides section.h3-slide .h3-flow {
+  display: flex;
+  align-items: stretch;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.reveal .slides section.h3-slide .h3-node {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 13px 15px;
+  font-size: 15px;
+  line-height: 1.35;
+  color: var(--deck-soft);
+  background: var(--deck-paper);
+  border: 1px solid var(--deck-line);
+  border-top: 4px solid var(--deck-line);
+  border-radius: 2px;
+}
+
+.reveal .slides section.h3-slide .h3-node b {
+  font-size: 21px;
+  line-height: 1.2;
+  color: var(--deck-ink);
+}
+
+.reveal .slides section.h3-slide .h3-node-k {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--deck-soft);
+}
+
+.reveal .slides section.h3-slide .h3-node-judge {
+  background: var(--chat-judge-tint);
+  border-color: var(--chat-judge-box-edge);
+  border-top-color: var(--chat-judge-edge);
+}
+
+.reveal .slides section.h3-slide .h3-node-judge .h3-node-k,
+.reveal .slides section.h3-slide .h3-node-judge b {
+  color: var(--chat-judge-label);
+}
+
+.reveal .slides section.h3-slide .h3-node-out {
+  border-top-color: var(--deck-accent);
+}
+
+.reveal .slides section.h3-slide .h3-op {
+  align-self: center;
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--deck-soft);
+}
+
+/* Grids and cards */
+
+.reveal .slides section.h3-slide .h3-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  align-items: stretch;
+}
+
+.reveal .slides section.h3-slide .h3-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+  align-items: stretch;
+}
+
+.reveal .slides section.h3-slide .h3-split {
+  display: grid;
+  grid-template-columns: 1.12fr 1fr;
+  gap: 26px;
+  align-items: start;
+}
+
+.reveal .slides section.h3-slide .h3-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px 18px;
+  background: var(--deck-paper);
+  border: 1px solid var(--deck-line);
+  border-top: 4px solid var(--deck-accent);
+  border-radius: 2px;
+}
+
+.reveal .slides section.h3-slide .h3-card-judge {
+  background: var(--chat-judge-tint);
+  border-color: var(--chat-judge-box-edge);
+  border-top: 4px solid var(--chat-judge-edge);
+}
+
+.reveal .slides section.h3-slide .h3-kicker {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--deck-accent);
+}
+
+.reveal .slides section.h3-slide .h3-card-judge .h3-kicker {
+  color: var(--chat-judge-label);
+}
+
+.reveal .slides section.h3-slide .h3-badge {
+  padding: 2px 7px;
+  font-family: var(--deck-font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--deck-ink);
+  background: var(--deck-surface);
+  border: 1px solid var(--deck-line);
+  border-radius: 2px;
+}
+
+.reveal .slides section.h3-slide .h3-badge-tool {
+  background: var(--chat-action-bg);
+  border-color: var(--chat-action-edge);
+}
+
+.reveal .slides section.h3-slide .h3-card h3 {
+  margin: 0;
+  font-size: 22px;
+  line-height: 1.22;
+  color: var(--deck-ink);
+}
+
+.reveal .slides section.h3-slide .h3-card p {
+  font-size: 16.5px;
+  line-height: 1.42;
+  color: var(--deck-soft);
+}
+
+.reveal .slides section.h3-slide .h3-card code,
+.reveal .slides section.h3-slide .h3-eval-box code {
+  font-family: var(--deck-font-mono);
+  font-size: 0.9em;
+  color: var(--deck-ink);
+}
+
+.reveal .slides section.h3-slide .h3-meta {
+  margin-top: auto;
+  padding-top: 10px;
+  border-top: 1px solid var(--deck-line);
+  font-size: 14.5px;
+  line-height: 1.35;
+  color: var(--deck-ink);
+}
+
+/* Trace mock-up (Slides 3 & 5) */
+
+.reveal .slides section.h3-slide .h3-trace {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 13px;
+  font-size: 16.5px;
+  line-height: 1.35;
+  background: var(--deck-paper);
+  border: 1px solid var(--deck-line);
+  border-radius: 2px;
+}
+
+.reveal .slides section.h3-slide .h3-trace-compact {
+  gap: 6px;
+  padding: 11px 13px;
+  font-size: 15.5px;
+}
+
+.reveal .slides section.h3-slide .h3-trace code {
+  font-family: var(--deck-font-mono);
+  font-size: 14.5px;
+  color: var(--deck-ink);
+  background: none;
+}
+
+.reveal .slides section.h3-slide .h3-msg,
+.reveal .slides section.h3-slide .h3-step {
+  padding: 7px 11px;
+  border-radius: 2px;
+}
+
+.reveal .slides section.h3-slide .h3-user {
+  align-self: flex-end;
+  width: 92%;
+  box-sizing: border-box;
+  background: var(--chat-user-bg);
+  box-shadow: inset calc(-1 * var(--chat-edge-width)) 0 0 var(--chat-user-edge);
+}
+
+.reveal .slides section.h3-slide .h3-asst {
+  align-self: flex-start;
+  width: 96%;
+  box-sizing: border-box;
+  background: var(--chat-agent-bg);
+  box-shadow: inset var(--chat-edge-width) 0 0 var(--chat-agent-edge);
+}
+
+.reveal .slides section.h3-slide .h3-step {
+  margin-left: 20px;
+  background: var(--chat-action-bg);
+  box-shadow: inset var(--chat-edge-width) 0 0 var(--chat-action-edge);
+}
+
+.reveal .slides section.h3-slide .h3-step.h3-obs {
+  background: var(--chat-observation-bg);
+  box-shadow: inset var(--chat-edge-width) 0 0 var(--chat-observation-edge);
+  border: 1px solid var(--chat-observation-edge);
+}
+
+.reveal .slides section.h3-slide .h3-flag {
+  background: var(--verdict-fail-tint);
+  box-shadow: 0 0 0 2px var(--verdict-fail);
+}
+
+.reveal .slides section.h3-slide .h3-step-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 2px;
+}
+
+.reveal .slides section.h3-slide .h3-role,
+.reveal .slides section.h3-slide .h3-kind {
+  display: block;
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--deck-soft);
+}
+
+.reveal .slides section.h3-slide .h3-user .h3-role {
+  color: var(--chat-user-label);
+}
+
+.reveal .slides section.h3-slide .h3-asst .h3-role {
+  color: var(--chat-agent-label);
+}
+
+.reveal .slides section.h3-slide .h3-err-tag {
+  padding: 1px 6px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--verdict-on);
+  background: var(--verdict-fail);
+  border-radius: 2px;
+}
+
+/* Evaluator comparison column (Slide 3) */
+
+.reveal .slides section.h3-slide .h3-checks-col {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.reveal .slides section.h3-slide .h3-eval-box {
+  padding: 11px 14px;
+  background: var(--deck-paper);
+  border: 1px solid var(--deck-line);
+  border-radius: 2px;
+}
+
+.reveal .slides section.h3-slide .h3-eval-fail {
+  background: var(--verdict-fail-tint);
+  border-color: var(--verdict-fail);
+}
+
+.reveal .slides section.h3-slide .h3-eval-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 5px;
+}
+
+.reveal .slides section.h3-slide .h3-eval-top b {
+  font-size: 17.5px;
+  color: var(--deck-ink);
+}
+
+.reveal .slides section.h3-slide .h3-eval-box p {
+  font-size: 15.5px;
+  line-height: 1.38;
+  color: var(--deck-soft);
+}
+
+.reveal .slides section.h3-slide .h3-verdict-pill {
+  flex: none;
+  padding: 2px 8px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--verdict-on);
+  border-radius: 2px;
+}
+
+.reveal .slides section.h3-slide .h3-pill-pass {
+  background: var(--verdict-pass);
+}
+
+.reveal .slides section.h3-slide .h3-pill-fail {
+  background: var(--verdict-fail);
+}
+
+.reveal .slides section.h3-slide .h3-eval-list {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin: 0;
+  padding-left: 18px;
+  font-size: 15.5px;
+  line-height: 1.35;
+  color: var(--deck-ink);
+}
+
+.reveal .slides section.h3-slide .h3-eval-list li {
+  margin: 0;
+}
+
+/* Round mini-trace chips and lists (Slide 4 & Slide 6) */
+
+.reveal .slides section.h3-slide .h3-trace-mini {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 5px;
+  padding: 7px 9px;
+  font-size: 13px;
+  color: var(--deck-soft);
+  background: var(--deck-surface);
+  border: 1px solid var(--deck-line);
+  border-radius: 2px;
+}
+
+.reveal .slides section.h3-slide .h3-chip {
+  padding: 2px 7px;
+  font-size: 12px;
+  font-weight: 700;
+  border-radius: 2px;
+}
+
+.reveal .slides section.h3-slide .h3-chip-user {
+  color: var(--chat-user-label);
+  background: var(--chat-user-bg);
+  border: 1px solid var(--chat-user-edge);
+}
+
+.reveal .slides section.h3-slide .h3-chip-tool {
+  font-family: var(--deck-font-mono);
+  font-weight: 600;
+  color: var(--deck-ink);
+  background: var(--chat-action-bg);
+  border: 1px solid var(--chat-action-edge);
+}
+
+.reveal .slides section.h3-slide .h3-chip-asst {
+  color: var(--chat-agent-label);
+  background: var(--chat-agent-bg);
+  border: 1px solid var(--chat-agent-edge);
+}
+
+.reveal .slides section.h3-slide .h3-round-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 2px 0 0;
+  padding-left: 18px;
+  font-size: 15.5px;
+  line-height: 1.38;
+  color: var(--deck-soft);
+}
+
+.reveal .slides section.h3-slide .h3-round-list li {
+  margin: 0;
+}
+
+.reveal .slides section.h3-slide .h3-round-list b {
+  color: var(--deck-ink);
+}
+
+/* Target pins and cards (Slide 5) */
+
+.reveal .slides section.h3-slide .h3-pin {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 22px;
+  height: 22px;
+  margin-left: 4px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--deck-on-accent);
+  background: var(--chat-judge-edge);
+  border-radius: 50%;
+}
+
+.reveal .slides section.h3-slide .h3-whole {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 2px;
+  padding-top: 6px;
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--deck-soft);
+  border-top: 1px dashed var(--deck-line);
+}
+
+.reveal .slides section.h3-slide .h3-targets {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.reveal .slides section.h3-slide .h3-tcard {
+  display: grid;
+  grid-template-columns: 30px 1fr;
+  gap: 10px;
+  align-items: start;
+  padding: 9px 12px;
+  background: var(--chat-judge-tint);
+  border: 1px solid var(--chat-judge-box-edge);
+  border-left: 4px solid var(--chat-judge-edge);
+  border-radius: 2px;
+}
+
+.reveal .slides section.h3-slide .h3-tcard .h3-pin {
+  width: 26px;
+  height: 26px;
+  margin: 2px 0 0;
+  font-size: 14px;
+}
+
+.reveal .slides section.h3-slide .h3-thead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 3px;
+}
+
+.reveal .slides section.h3-slide .h3-thead b {
+  font-size: 18px;
+  color: var(--chat-judge-label);
+}
+
+.reveal .slides section.h3-slide .h3-tcard p {
+  font-size: 15px;
+  line-height: 1.35;
+  color: var(--deck-ink);
+}
+
+/* Five-step app workflow bar (Slide 6) */
+
+.reveal .slides section.h3-slide .h3-steps {
+  display: flex;
+  align-items: stretch;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.reveal .slides section.h3-slide .h3-step-card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 12px 13px;
+  background: var(--deck-paper);
+  border: 1px solid var(--deck-line);
+  border-top: 4px solid var(--deck-accent);
+  border-radius: 2px;
+}
+
+.reveal .slides section.h3-slide .h3-step-card-out {
+  background: var(--chat-judge-tint);
+  border-color: var(--chat-judge-box-edge);
+  border-top-color: var(--chat-judge-edge);
+}
+
+.reveal .slides section.h3-slide .h3-step-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--deck-on-accent);
+  background: var(--deck-accent);
+  border-radius: 50%;
+}
+
+.reveal .slides section.h3-slide .h3-step-card-out .h3-step-num {
+  background: var(--chat-judge-edge);
+}
+
+.reveal .slides section.h3-slide .h3-step-card b {
+  font-size: 18px;
+  line-height: 1.2;
+  color: var(--deck-ink);
+}
+
+.reveal .slides section.h3-slide .h3-step-card span:not(.h3-step-num) {
+  font-size: 14px;
+  line-height: 1.32;
+  color: var(--deck-soft);
+}
+
+.reveal .slides section.h3-slide .h3-step-arrow {
+  align-self: center;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--deck-soft);
+}
+
+/* Bottom callout bar and launch link */
+
+.reveal .slides section.h3-slide .h3-note {
+  margin-top: 16px;
+  padding: 11px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  font-size: 17.5px;
+  line-height: 1.35;
+  background: var(--deck-surface);
+  border-left: 4px solid var(--deck-accent);
+  border-radius: 2px;
+}
+
+.reveal .slides section.h3-slide .h3-launch {
+  flex: none;
+  font-weight: 700;
+  white-space: nowrap;
+}

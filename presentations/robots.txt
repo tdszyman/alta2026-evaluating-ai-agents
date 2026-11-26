@@ -1,3 +1,2 @@
 User-agent: *
-Disallow: /organisation/
-Disallow: /alta2026-evaluating-ai-agents/organisation/
+Disallow:

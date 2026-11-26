@@ -22,8 +22,8 @@
   white-space: nowrap;
 }
 
-/* A draft time or length that is not confirmed yet: a dotted underline, so
-   it reads as provisional without drawing the eye. Remove the span once the
+/* A time or length that is not confirmed yet: a dotted underline, so
+   it reads as unconfirmed without drawing the eye. Remove the span once the
    item is confirmed. */
 .reveal .tbc {
   text-decoration-line: underline;
@@ -102,19 +102,15 @@
 }
 
 /* Timeline: one row per block of the afternoon, times in a fixed column so
-   gaps line up, and the hands-on callout beside it. */
+   gaps line up. The right margin leaves a gutter for the Part 3 note. */
 
 .reveal .timeline-slide .tl-grid {
-  display: grid;
-  grid-template-columns: 1fr 350px;
-  gap: 30px;
   margin-top: 14px;
-  align-items: start;
 }
 
 .reveal .timeline-slide .tl-rows {
   list-style: none;
-  margin: 0;
+  margin: 0 236px 0 0;
   padding: 0;
   border-top: 1px solid var(--deck-line);
 }
@@ -190,50 +186,31 @@
   background: var(--deck-accent-tint);
 }
 
-.reveal .timeline-slide .tl-tag {
-  display: inline-block;
-  margin-left: 8px;
-  padding: 1px 8px;
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  vertical-align: 3px;
-  color: var(--deck-on-accent);
-  background: var(--deck-accent-fill);
-  border-radius: 2px;
-  font-style: normal;
+/* Sits in the gutter to the right of the Part 3 row, matching its height. */
+.reveal .timeline-slide .tl-hands {
+  position: relative;
 }
 
-.reveal .timeline-slide .tl-callout {
-  padding: 24px 24px;
-  background: var(--deck-surface);
-  border-left: 6px solid var(--deck-accent);
-  border-radius: 2px;
-}
-
-.reveal .timeline-slide .tl-callout .tl-kicker {
+.reveal .timeline-slide .tl-note {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: calc(100% + 20px);
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 0 0 14px;
+  border-left: 4px solid var(--deck-accent);
   font-size: 18px;
+  line-height: 1.3;
+  color: var(--deck-ink);
+}
+
+.reveal .timeline-slide .tl-note b {
+  display: block;
   font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
   color: var(--deck-accent-strong);
-}
-
-.reveal .timeline-slide .tl-callout .tl-big {
-  margin: 8px 0 14px;
-  font-size: 40px;
-  white-space: nowrap;
-  font-weight: 700;
-  line-height: 1.1;
-  color: var(--deck-ink);
-}
-
-.reveal .timeline-slide .tl-callout p {
-  margin-top: 12px;
-  font-size: 22px;
-  line-height: 1.35;
-  color: var(--deck-ink);
 }
 
 .reveal .timeline-slide .tl-src {
@@ -243,9 +220,7 @@
   color: var(--deck-soft);
 }
 
-/* Presenters: one card per person, each a click, so each can stand up in
-   turn. Hidden cards keep their space, so nothing moves. The current card
-   takes the accent tint; earlier ones stay at full strength. */
+/* Presenters: one card per person, all shown together. */
 
 .reveal .presenters-slide .pc-grid {
   display: grid;
@@ -265,11 +240,6 @@
   border-radius: 2px;
 }
 
-.reveal .presenters-slide .pc-card.current-fragment {
-  background: var(--deck-accent-tint);
-  border-top-color: var(--deck-accent);
-}
-
 .reveal .presenters-slide .pc-photo {
   display: flex;
   flex-direction: column;
@@ -285,6 +255,17 @@
   font-weight: 700;
   line-height: 1;
   color: var(--deck-soft);
+}
+
+.reveal .presenters-slide img.pc-photo {
+  display: block;
+  max-width: none;
+  max-height: none;
+  margin: 0 0 14px;
+  padding: 0;
+  object-fit: cover;
+  border: 0;
+  box-shadow: none;
 }
 
 .reveal .presenters-slide .pc-photo .todo {
@@ -314,11 +295,33 @@
   border-top: 1px solid var(--deck-line);
 }
 
-.reveal .presenters-slide .pc-bio li {
+.reveal .presenters-slide .pc-bio li,
+.reveal .presenters-slide .pc-bio p {
   margin: 0 0 10px;
   font-size: 19px;
   line-height: 1.3;
   color: var(--deck-ink);
+}
+
+/* A bio link is a quiet accent tint with no underline, so the card reads as
+   text; the underline comes on hover and focus. */
+.reveal .presenters-slide .pc-bio a {
+  color: color-mix(in srgb, var(--deck-accent), var(--deck-ink) 25%);
+  text-decoration: none;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 0.16em;
+}
+
+.reveal .presenters-slide .pc-bio a:hover,
+.reveal .presenters-slide .pc-bio a:focus-visible {
+  color: var(--deck-accent);
+  text-decoration: underline;
+}
+
+.reveal .presenters-slide .pc-bio a:focus-visible {
+  outline: 2px solid var(--deck-accent);
+  outline-offset: 2px;
+  border-radius: 2px;
 }
 
 .reveal .presenters-slide .pc-part {

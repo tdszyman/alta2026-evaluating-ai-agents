@@ -1,6 +1,6 @@
 # Hands-on workshop
 
-Draft materials for **Part 3: Hands-on Agent Evaluation Exercise**. Participants build an LLM judge, run it over recorded agent traces, inspect its explanations, and challenge its conclusions. Scenarios and starter rubrics remain proposed workshop materials, not confirmed tutorial answers.
+Materials for **Part 3: Hands-on Agent Evaluation Exercise**. Participants build an LLM judge, run it over recorded agent traces, inspect its explanations, and challenge its conclusions. Scenarios and starter rubrics are starting points, not confirmed tutorial answers.
 
 ## Guided browser exercise
 
@@ -22,7 +22,7 @@ Back/Next links and numbered step navigation preserve the round. `round=advice`,
 | Find suitable jobs | 3 variants of one request | 1 (`search_jobs`) |
 | Connect jobs and training | 3 variants of one request | 2 (`search_jobs`, then `find_courses`) |
 
-Begin with an editable career-advice rubric or choose a blank/draft rubric. Judge instructions and rubric edits carry forward between rounds. In round 3 only, **Add suggested tool criteria** offers the existing tool-choice, argument-accuracy, and grounding criteria. It adds missing criteria without duplicating or replacing participant edits. Loading a different rubric explicitly replaces criteria but keeps the judge instructions.
+Begin with an editable career-advice rubric or choose a blank rubric. Judge instructions and rubric edits carry forward between rounds. In round 3 only, **Add suggested tool criteria** offers the existing tool-choice, argument-accuracy, and grounding criteria. It adds missing criteria without duplicating or replacing participant edits. Loading a different rubric explicitly replaces criteria but keeps the judge instructions.
 
 The run page evaluates only its current round. Model choice and request count are visible; run name, temperature, and repeats are under **More run settings**. Defaults are temperature 0 and one repeat; existing saved preferences take precedence. There is one request per applicable trace and repeat, with up to three concurrent requests and 1–5 repeats. Cancel stops active and queued requests. Internal navigation is disabled during a run. Leaving or refreshing stops requests and can leave an incomplete report; returning never resumes or repeats API calls automatically.
 
@@ -43,7 +43,7 @@ A trace evaluation passes only if every applicable criterion meets its saved thr
 
 The review page keeps the existing Overview/Cases report, transcript, tool inputs/outputs, expandable metrics, evidence links, and judge configuration snapshot. It offers revision, rerunning, and continuation to the next round. Saved reports are available from the cases and run pages and the report's run selector. Reports belong to the browser and site address used for the run; their URLs do not share results with other devices.
 
-Judge drafts, model preferences, connection settings, workflow progress, and reports are saved locally. Edits save synchronously before navigating. Existing advanced drafts take precedence; otherwise a saved starter prompt can seed the advice judge using the existing migration. Legacy starter records stay intact. Existing credential storage and advanced draft/settings/report keys remain in use; a separate workflow record stores the current round/step, run names, and each round's latest report ID. Removed API keys are never restored from old settings.
+Judge edits, model preferences, connection settings, workflow progress, and reports are saved locally. Edits save synchronously before navigating. Existing advanced saves take precedence; otherwise a saved starter prompt can seed the advice judge using the existing migration. Legacy starter records stay intact. Existing credential storage and advanced judge/settings/report keys remain in use; a separate workflow record stores the current round/step, run names, and each round's latest report ID. Removed API keys are never restored from old settings.
 
 Reports contain fixture and configuration snapshots, scores, explanations, raw judge replies, and available token usage/latency. Credentials are stored separately and excluded from reports. Progress snapshots are saved during evaluations. If saving a completed report fails, the app offers a JSON download. Old `/hands-on/app/advanced/` entry links redirect to the guided exercise; old advanced report URLs redirect to `/hands-on/app/report.html`, preserving query parameters and fragments. Older multi-scenario reports retain their filters and scores.
 
@@ -54,7 +54,7 @@ Reports contain fixture and configuration snapshots, scores, explanations, raw j
 | `app/` | Guided pages, page controller, workflow/navigation helpers, shared connection helper |
 | `app/advanced/` | Shared evaluation, storage, transcript/report rendering and styles; compatibility redirects |
 | `data/scenarios.json` | Canonical recorded messages, tool definitions, calls, and results |
-| `prompts/judges.json` | Editable draft judge examples |
+| `prompts/judges.json` | Editable starter judge examples |
 | `tests/` | Node tests and mocked browser smoke test |
 | `datasets.md` | External dataset links |
 | `notebooks/` | Optional notebook placeholder |

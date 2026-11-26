@@ -175,7 +175,7 @@ function setupRubric() {
     judge = addToolCriteria(judge, templates.find(item => item.id === "career-agent"));
     renderCriteria(); persistSafely();
     const added = judge.criteria.length - count;
-    $("#tool-criteria-status").textContent = added ? `${added} draft criteria added. Edit them to match your rubric.` : "The suggested criteria are already in your rubric. Your edits have been kept.";
+    $("#tool-criteria-status").textContent = added ? `${added} suggested criteria added. Edit them to match your rubric.` : "The suggested criteria are already in your rubric. Your edits have been kept.";
   });
 }
 

@@ -156,8 +156,6 @@ python3 scripts/build-knowledge.py
 
 Open `http://127.0.0.1:8090/bibliography/<id>/`. Check the summary, each figure, the caption, and both colour appearances if you changed the theme. Fix overflow, a cut-off caption, or a missing image before counting the source as done.
 
-5. Do not tick `organisation/literature/reading-checklist.md`. That list is for the organisers.
-
 ## Batch
 
 Process one source fully, then the next. After the requested number of successes, stop. Leave later sources untouched. In the handoff, list each success with its id and page, and each blocked source with the `access_note` you wrote.

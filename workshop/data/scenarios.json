@@ -1,12 +1,11 @@
 {
   "version": 1,
-  "notice": "Draft synthetic workshop fixtures. No real listings, expected scores, or confirmed workshop answers.",
+  "notice": "Synthetic workshop fixtures. No real listings, expected scores, or confirmed workshop answers.",
   "scenarios": [
     {
       "id": "advice",
       "title": "Career advice",
       "description": "Four short replies. Examine answer quality before adding tool evaluation.",
-      "draft": true,
       "tools": [],
       "cases": [
         {
@@ -79,7 +78,6 @@
       "id": "job-search",
       "title": "Find suitable jobs",
       "description": "One recorded tool call: check the search constraints and whether recommendations follow the results.",
-      "draft": true,
       "tools": [
         {
           "name": "search_jobs",
@@ -359,7 +357,6 @@
       "id": "jobs-training",
       "title": "Connect jobs and training",
       "description": "Two recorded tool calls: inspect how the course search uses the job results and the learner’s constraints.",
-      "draft": true,
       "tools": [
         {
           "name": "search_jobs",
