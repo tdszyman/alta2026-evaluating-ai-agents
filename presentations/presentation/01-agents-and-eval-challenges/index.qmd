@@ -499,13 +499,13 @@ Cards, in the order they appear, which is the order the stories were published, 
   1. Organisations are using AI agents more and more: “Agents can create value, but introduce risk”.
   2. AI agents are inherently risky: the same slide’s risk side, then “These risks are real, and they make headlines”.
   3. LLM judges can reduce the risk: “An LLM judge can mitigate the risks of AI Agents”.
-- Section 2, in order: “Complicated systems require complicated evaluations”, “AI Agents are complex *and* complicated systems”, the two agent platform slides, “An agent trace can be evaluated at multiple levels”, then the two examples, an unlawful job ad and a multi-turn attack.
-- Next: “Complicated systems require complicated evaluations”.
+- Section 2, in order: “Complex systems require complex evaluations”, “AI Agents are complex *and* complicated systems”, the two agent platform slides, “An agent trace can be evaluated at multiple levels”, then the two examples, an unlawful job ad and a multi-turn attack.
+- Next: “Complex systems require complex evaluations”.
 :::
 
 ---
 
-## Complicated systems require complicated evaluations {#why-generative-ai-needs-llm-as-a-judge .output-space-slide .centre-body}
+## Complex systems require complex evaluations {#why-generative-ai-needs-llm-as-a-judge .output-space-slide .centre-body}
 
 ```{=html}
 <div class="osp">
@@ -606,7 +606,7 @@ Cards, in the order they appear, which is the order the stories were published, 
 [Contrasts and examples: [Complex versus complicated](../../bibliography/finegood-complex-versus-complicated/) (Frameworks Collection, CC BY-NC-ND). Figures illustrative.]{.attribution .slide-foot}
 
 ::: {.notes}
-**About this slide:** An AI agent is both a complex and a complicated system. It follows the headlines, the first look at an LLM judge and “Complicated systems require complicated evaluations”: those failures came from real systems, and this slide says what kind of system an agent is, and so why a judge is needed. It names the split from the takeaway on “GenAI: from LLMs to AI Agents”: the non-deterministic LLM calls are the complex part, and the deterministic harness and tool calls are the complicated part. The slide opens on complex, then one click reveals complicated beside it.
+**About this slide:** An AI agent is both a complex and a complicated system. It follows the headlines, the first look at an LLM judge and “Complex systems require complex evaluations”: those failures came from real systems, and this slide says what kind of system an agent is, and so why a judge is needed. It names the split from the takeaway on “GenAI: from LLMs to AI Agents”: the non-deterministic LLM calls are the complex part, and the deterministic harness and tool calls are the complicated part. The slide opens on complex, then one click reveals complicated beside it.
 
 A complex system has many parts entangled through feedback loops, so the behaviour of the whole emerges from how the parts interact, and the same input gives a distribution of outputs that cannot be traced back to individual parts. Complex systems are unpredictable, self-organising and emergent. The weather is the example: air, heat and moisture feed back on each other, so similar mornings can end in different afternoons. The economy, ant colonies and human brains are complex too. In an agent, the model, the agent built on it, and swarms of agents are complex.
 
