@@ -1312,120 +1312,169 @@ End the chat if risk ≥ 0.8.</pre>
 
 ---
 
-## An LLM judge can pinpoint where an agent went wrong in a trace {#auto-apply-trace-eval .auto-apply-slide}
+## A suite of LLM judges can pinpoint where an agent went wrong {#auto-apply-trace-eval .auto-apply-slide}
 
 ```{=html}
-<div class="aa-figure">
+<div class="aa-grid" aria-label="Logged SEEK candidate auto-apply trace linked by arrows to a suite of five offline LLM-as-judge checks">
 
-  <div>
-    <div class="aa-label">Logged agent trace · offline review</div>
-    <div class="aa-log" aria-label="Illustrative logged trace of a SEEK candidate auto-apply agent with three tool steps">
-      <div class="aa-header">
-        <span class="aa-wordmark">SEEK</span>
-        <span class="aa-header-sub">Candidate auto-apply</span>
-        <span class="aa-run-id">Logged run #7412</span>
-      </div>
-      <div class="aa-trace">
-        <div class="aa-msg aa-user">
-          <span class="aa-role">User</span>Tailor a cover letter for Acme’s Data Analyst role and submit my application. Stick to my profile.
-        </div>
+  <div class="aa-col-head">Logged agent trace · offline review</div>
+  <div></div>
+  <div class="aa-col-head aa-col-head-judge fragment" data-fragment-index="1">Suite of offline LLM-as-judge checks</div>
 
-        <div class="aa-step aa-s1 fragment custom" data-fragment-index="2">
-          <div class="aa-step-act">
-            <span class="aa-s">S1</span><span class="aa-kind">Action</span><code>read_profile()</code>
-          </div>
-          <div class="aa-step-obs">
-            <span class="aa-kind">Result</span><span>Skills: R, SQL · Experience: 2 years · Python: none</span>
-          </div>
-        </div>
-
-        <div class="aa-step aa-s2 fragment custom" data-fragment-index="3">
-          <div class="aa-step-act">
-            <span class="aa-s">S2</span><span class="aa-kind">Action</span><code>write_cover_letter(role="Data Analyst", profile)</code>
-          </div>
-          <div class="aa-step-obs">
-            <span class="aa-kind">Result</span><span>Draft: “…<span class="aa-flag fragment custom" data-fragment-index="3">3 years</span> of analytics work in R, SQL <span class="aa-flag fragment custom" data-fragment-index="3">and Python</span>…”</span>
-          </div>
-        </div>
-
-        <div class="aa-step aa-s3 fragment custom" data-fragment-index="4">
-          <div class="aa-step-act">
-            <span class="aa-s">S3</span><span class="aa-kind">Action</span><code>submit_application(job="Acme", letter=draft)</code>
-          </div>
-          <div class="aa-step-obs">
-            <span class="aa-kind">Result</span><span>status: submitted · confirmation #A-904</span>
-          </div>
-        </div>
-
-        <div class="aa-msg aa-asst">
-          <span class="aa-role">Assistant</span>All done! I tailored your cover letter to your profile and submitted your application to Acme.
-        </div>
+  <div class="aa-cell-left aa-cell-top">
+    <div class="aa-header">
+      <span class="aa-wordmark">SEEK</span>
+      <span class="aa-header-sub">Candidate auto-apply</span>
+      <span class="aa-run-id">Logged run #7412</span>
+    </div>
+    <div class="aa-user-wrap">
+      <div class="aa-msg aa-user">
+        <span class="aa-role">User</span>Apply for Acme’s Data Analyst role (asks for R, SQL &amp; Python). Tailor a cover letter from my profile and submit it.
       </div>
     </div>
   </div>
-
-  <div class="aa-evals">
-    <div class="aa-label aa-label-judge fragment" data-fragment-index="1">Offline trace evaluation · after the run</div>
-
-    <div class="aa-box fragment" data-fragment-index="1">
-      <div class="aa-box-head">End-to-end &amp; output checks</div>
-      <div class="aa-e2e-list">
-        <div class="aa-e2e-row"><span class="aa-pill">Pass</span><span><b>Tool calls &amp; status:</b> valid schemas, <code>status: submitted</code></span></div>
-        <div class="aa-e2e-row"><span class="aa-pill">Pass</span><span><b>Output guardrail (final reply):</b> polite, no policy breach</span></div>
-        <div class="aa-e2e-note">From the outside, the run looks successful — the hidden error goes unseen.</div>
-      </div>
+  <div></div>
+  <div class="aa-cell-right">
+    <div class="aa-suite-note fragment" data-fragment-index="1">
+      <b>Offline review:</b> After the run finishes, focused judges score the plan, each tool call, and the end state.
     </div>
+  </div>
 
-    <div class="aa-box aa-box-judge fragment" data-fragment-index="2">
-      <div class="aa-box-head">LLM judge · trace &amp; step-level check</div>
-      <div class="aa-prompt-line"><b>Judge task:</b> Check each step against the user’s request and earlier tool outputs. Pinpoint where any error starts.</div>
-
-      <div class="aa-row aa-row-pass fragment" data-fragment-index="2">
-        <span class="aa-s">S1</span>
-        <span class="aa-fn">read_profile()</span>
+  <div class="aa-cell-left">
+    <div class="aa-thought aa-hl-pass fragment custom" data-fragment-index="2">
+      <span class="aa-kind">Thought</span>Plan: read the candidate’s profile first, draft a tailored cover letter, then submit the application.
+    </div>
+  </div>
+  <div class="aa-arrow-cell fragment" data-fragment-index="2" aria-hidden="true">
+    <svg class="aa-arrow" viewBox="0 0 40 18"><line x1="2" y1="9" x2="31" y2="9" stroke="currentColor" stroke-width="2"/><polygon points="29,4 38,9 29,14" fill="currentColor"/></svg>
+  </div>
+  <div class="aa-cell-right">
+    <div class="aa-check fragment" data-fragment-index="2">
+      <div class="aa-check-head">
+        <span class="aa-check-title">Plan check</span>
         <span class="aa-pill">Pass</span>
-        <span class="aa-why">Right tool; returned the accurate profile (R, SQL, 2 years, no Python).</span>
       </div>
+      <div class="aa-check-body">Right reasoning: chose the right tools in the right order for the request.</div>
+    </div>
+  </div>
 
-      <div class="aa-row aa-row-fail fragment" data-fragment-index="3">
-        <span class="aa-s">S2</span>
-        <span class="aa-fn">write_cover_letter()</span>
-        <span class="aa-pill">Fail</span>
-        <span class="aa-why">Right tool, wrong output: invented “3 years” and “Python”, contradicting S1.</span>
+  <div class="aa-cell-left">
+    <div class="aa-step aa-hl-pass fragment custom" data-fragment-index="3">
+      <div class="aa-step-act">
+        <span class="aa-s">S1</span><span class="aa-kind">Action</span><code>read_profile()</code>
       </div>
-
-      <div class="aa-row aa-row-warn fragment" data-fragment-index="4">
-        <span class="aa-s">S3</span>
-        <span class="aa-fn">submit_application()</span>
-        <span class="aa-pill">Bad input</span>
-        <span class="aa-why">Valid tool call, but passed S2’s ungrounded letter on to the employer.</span>
+      <div class="aa-step-obs">
+        <span class="aa-kind">Observation</span><span>Role: Junior Analyst (2 yrs) · Skills: R, SQL, Tableau</span>
       </div>
     </div>
+  </div>
+  <div class="aa-arrow-cell fragment" data-fragment-index="3" aria-hidden="true">
+    <svg class="aa-arrow" viewBox="0 0 40 18"><line x1="2" y1="9" x2="31" y2="9" stroke="currentColor" stroke-width="2"/><polygon points="29,4 38,9 29,14" fill="currentColor"/></svg>
+  </div>
+  <div class="aa-cell-right">
+    <div class="aa-check fragment" data-fragment-index="3">
+      <div class="aa-check-head">
+        <span class="aa-check-title">Tool call check <span class="aa-check-sub">· <code>read_profile</code></span></span>
+        <span class="aa-pill">Pass</span>
+      </div>
+      <div class="aa-check-body">Right tool and inputs; returned the candidate’s actual profile.</div>
+    </div>
+  </div>
 
-    <div class="aa-takeaway fragment" data-fragment-index="4">
-      <b>Fault localisation:</b> Confirming S1 succeeded narrows the failure straight to S2 (<code>write_cover_letter</code>) — showing which step to fix.
+  <div class="aa-cell-left">
+    <div class="aa-step aa-hl-fail fragment custom" data-fragment-index="3">
+      <div class="aa-step-act">
+        <span class="aa-s">S2</span><span class="aa-kind">Action</span><code>write_cover_letter(job="Acme Data Analyst", profile)</code>
+      </div>
+      <div class="aa-step-obs">
+        <span class="aa-kind">Observation</span><span>Draft: “…2 years of analytics work in R, SQL <span class="aa-flag fragment custom" data-fragment-index="3">and Python</span>…”</span>
+      </div>
+    </div>
+  </div>
+  <div class="aa-arrow-cell fragment" data-fragment-index="3" aria-hidden="true">
+    <svg class="aa-arrow aa-arrow-fail" viewBox="0 0 40 18"><line x1="2" y1="9" x2="31" y2="9" stroke="currentColor" stroke-width="2.5"/><polygon points="29,4 38,9 29,14" fill="currentColor"/></svg>
+  </div>
+  <div class="aa-cell-right">
+    <div class="aa-check aa-check-fail fragment" data-fragment-index="3">
+      <div class="aa-check-head">
+        <span class="aa-check-title">Tool call check <span class="aa-check-sub">· <code>write_cover_letter</code></span></span>
+        <span class="aa-pill">Fail</span>
+      </div>
+      <div class="aa-check-body">Mirrored “Python” from the job ad even though it isn’t in the S1 profile.</div>
+    </div>
+  </div>
+
+  <div class="aa-cell-left">
+    <div class="aa-step aa-hl-pass fragment custom" data-fragment-index="3">
+      <div class="aa-step-act">
+        <span class="aa-s">S3</span><span class="aa-kind">Action</span><code>submit_application(job="Acme", letter=draft)</code>
+      </div>
+      <div class="aa-step-obs">
+        <span class="aa-kind">Observation</span><span>status: submitted · confirmation #A-904</span>
+      </div>
+    </div>
+  </div>
+  <div class="aa-arrow-cell fragment" data-fragment-index="3" aria-hidden="true">
+    <svg class="aa-arrow" viewBox="0 0 40 18"><line x1="2" y1="9" x2="31" y2="9" stroke="currentColor" stroke-width="2"/><polygon points="29,4 38,9 29,14" fill="currentColor"/></svg>
+  </div>
+  <div class="aa-cell-right">
+    <div class="aa-check fragment" data-fragment-index="3">
+      <div class="aa-check-head">
+        <span class="aa-check-title">Tool call check <span class="aa-check-sub">· <code>submit_application</code></span></span>
+        <span class="aa-pill">Pass</span>
+      </div>
+      <div class="aa-check-body">Valid tool call with the right job ID and draft; submission succeeded.</div>
+    </div>
+  </div>
+
+  <div class="aa-cell-left aa-cell-bottom">
+    <div class="aa-outcome aa-hl-pass fragment custom" data-fragment-index="1">
+      <div class="aa-msg aa-asst">
+        <span class="aa-role">Assistant</span>All done! I tailored your cover letter to your profile and submitted your application to Acme.
+      </div>
+      <div class="aa-feedback">
+        <span class="aa-kind">User feedback</span>
+        <span class="aa-thumb" aria-label="Thumbs up"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 10v12"/><path d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2a3.13 3.13 0 0 1 3 3.88Z"/></svg></span>
+        <span>“Thanks, that was fast!”</span>
+      </div>
+    </div>
+  </div>
+  <div class="aa-arrow-cell fragment" data-fragment-index="1" aria-hidden="true">
+    <svg class="aa-arrow" viewBox="0 0 40 18"><line x1="2" y1="9" x2="31" y2="9" stroke="currentColor" stroke-width="2"/><polygon points="29,4 38,9 29,14" fill="currentColor"/></svg>
+  </div>
+  <div class="aa-cell-right">
+    <div class="aa-check fragment" data-fragment-index="1">
+      <div class="aa-check-head">
+        <span class="aa-check-title">End-state check</span>
+        <span class="aa-pill">Pass</span>
+      </div>
+      <div class="aa-check-body">Application submitted, polite reply, user thumbs-up — looks good.</div>
     </div>
   </div>
 
 </div>
 
-<div class="aa-caption slide-foot">Illustrative mock-up: not a real user, profile or incident. Trace-level localisation: <a href="../../bibliography/jia-2025-agent-gpa/">Jia et al. (2025)</a>; logged traces: <a href="../../bibliography/dong-2024-agentops/">Dong et al. (2024)</a>.</div>
+<div class="aa-takeaway fragment" data-fragment-index="4">
+  <b>Fault localisation:</b> End-state, plan, S1 and S3 all pass — isolating the failure straight to S2 (<code>write_cover_letter</code>), so the team knows which step to fix.
+</div>
+
+<div class="aa-caption slide-foot">Illustrative mock-up: not a real user, profile or incident. ReAct trace: <a href="../../bibliography/yao-2023-react/">Yao et al. (2023)</a>; trace-level localisation: <a href="../../bibliography/jia-2025-agent-gpa/">Jia et al. (2025)</a>; logged traces: <a href="../../bibliography/dong-2024-agentops/">Dong et al. (2024)</a>.</div>
 ```
 
 ::: {.notes}
-**About this slide:** A worked example of **offline trace-level evaluation** on a logged multi-step agent run. On an illustrative SEEK candidate auto-apply agent, the user asks the agent to tailor a cover letter and submit an application strictly faithful to their profile. The agent reads the profile (`read_profile`), drafts a cover letter (`write_cover_letter`) that quietly invents extra experience (“3 years”) and a skill the user does not have (“Python”), submits it (`submit_application`), and replies with a polite confirmation. End-to-end checks and an output guardrail on the final reply both pass. Running an LLM judge offline over the logged trace evaluates each step against earlier tool outputs, confirms `S1` passed, and pinpoints `S2` as the exact source of the error.
+**About this slide:** A worked example of running a **suite of offline LLM-as-a-judge checks** across a logged multi-step [ReAct](../../bibliography/yao-2023-react/) trace. On an illustrative SEEK candidate auto-apply agent, the user asks the agent to apply for a Data Analyst role whose ad asks for R, SQL, and Python. The agent forms a sensible ReAct plan (`Thought`), reads the candidate’s profile (`S1 read_profile`, which lists R, SQL, and Tableau — realistically omitting Python rather than flagging its absence), drafts a cover letter (`S2 write_cover_letter`) that mirrors “Python” from the job ad even though it is not in the profile, submits it (`S3 submit_application`), and gets a thumbs-up from a happy candidate who never opened the submitted letter. Four checks pass (End-state, Plan, S1, S3) while S2 fails, pinpointing the exact step to fix.
 
 **Presenter notes:**
 
-- **Callback to Slide 2:** Remember the opening poll — *"Would you let an AI agent apply to jobs for you, automatically?"* Only 5% of US job seekers in the Greenhouse survey said they would ([Greenhouse 2026](../../bibliography/greenhouse-2026-candidate-report/)). This trace shows why: an agent can quietly exaggerate a candidate’s skills inside a tool call and still come back saying *"All done!"*
+- **Callback to Slide 2:** Remember the opening poll — *"Would you let an AI agent apply to jobs for you, automatically?"* Only 5% of US job seekers in the Greenhouse survey said they would ([Greenhouse 2026](../../bibliography/greenhouse-2026-candidate-report/)). This trace shows why: an agent trying to be helpful can mirror a job ad’s required skill (“Python”) into a cover letter even when the candidate’s profile does not list it, and the user may even give it a thumbs-up without noticing.
 - **Builds (4 clicks):**
-  - **Base view:** Walk the logged three-step trace on the left: `S1 read_profile()` returns `R, SQL`, `2 years`, no `Python`; `S2 write_cover_letter()` writes `"3 years"` and `"Python"` into the draft; `S3 submit_application()` sends it; and the assistant gives a reassuring final reply.
-  - **Click 1 (End-to-end & output checks):** Every deterministic check passes (valid tool names, valid arguments, `status: submitted`), and an output guardrail reading only the final reply sees a polite confirmation with no policy breach. From the outside, the run looks like a success.
-  - **Click 2 (LLM judge, S1):** Now an LLM judge reads the full logged trace offline. First it verifies `S1 read_profile()`: right tool, accurate profile returned — **Pass**.
-  - **Click 3 (LLM judge, S2):** Next it checks `S2 write_cover_letter()` against `S1`’s output: right tool choice, wrong output — it fabricated `"3 years"` and `"Python"` — **Fail**.
-  - **Click 4 (LLM judge, S3 + Fault localisation):** `S3 submit_application()` is a valid call that simply forwarded `S2`’s bad draft (**Bad input**). Because `S1` passed, the team knows the bug is not in profile retrieval and not in submission plumbing — it is specifically inside `write_cover_letter()`.
-- **Why offline / backward-looking evaluation (contrast with Slide 15):** Slide 15 showed an *online output guardrail* blocking one unlawful job ad before publish. Here the judge runs *offline* on logged production traces and test suites ([Dong et al. 2024](../../bibliography/dong-2024-agentops/), [Xia et al. 2025](../../bibliography/xia-2025-eddops/)). Running backward-looking log evaluation does not add latency or interrupt users mid-turn, and it is the natural way to localise root causes across multi-step traces ([Jia et al. 2025](../../bibliography/jia-2025-agent-gpa/), [Pisupati et al. 2026](../../bibliography/pisupati-2026-counsel/)). Once offline evaluation pinpoints `write_cover_letter()`, the team can fix that step’s prompt or tool contract, add the case to its regression suite, or — for high-stakes actions like submitting an application — add a targeted online check right before `submit_application()` at the outbound gateway (Slide 13).
-- **Bridge to Parts 2, 3, and 4:** Part 2 unpacks deterministic vs judge checks and groundedness to tool outputs; Part 3 has participants inspect recorded career-assistant traces and cite step IDs as evidence; and Part 4 returns to why a good final answer can hide a bad path ([Ruan et al. 2024](../../bibliography/ruan-2024-toolemu/)).
+  - **Base view:** Walk the logged ReAct trace ([Yao et al. 2023](../../bibliography/yao-2023-react/)) on the left: the user wants to apply to Acme’s Data Analyst role (which asks for R, SQL & Python); the agent’s `Thought` sets a clean three-step plan; `S1 read_profile()` returns `Junior Analyst (2 yrs) · Skills: R, SQL, Tableau` (Python is simply absent, as in a real profile); `S2 write_cover_letter()` quietly slips `and Python` into the draft to match the ad; `S3 submit_application()` sends it; and the candidate clicks thumbs-up (*“Thanks, that was fast!”*).
+  - **Click 1 (End-state check — Pass):** Look at the bottom check first. If you only evaluate the end state — application submitted, polite confirmation, positive thumbs-up feedback from the user — everything looks green. Output guardrails on the final reply also see nothing wrong.
+  - **Click 2 (Plan check — Pass):** Now run a suite of focused LLM-as-a-judge checks offline across the logged trace. First, the **plan check** evaluates the agent’s ReAct reasoning step: it chose the right tools in the right order — **Pass**.
+  - **Click 3 (Tool call checks — 2 green, 1 red):** Next, each tool call gets its own check. `S1 read_profile()` is green (**Pass** — accurate profile returned). `S3 submit_application()` is green (**Pass** — valid call with the right job ID and draft). Only `S2 write_cover_letter()` turns red (**Fail**): it mirrored “Python” from the job ad even though it was never in the S1 profile.
+  - **Click 4 (Fault localisation):** Because four checks pass (end-state, plan, S1, S3), the suite isolates the failure straight to `S2 write_cover_letter()`. The team knows immediately not to touch the planner, profile lookup, or submission code.
+- **Why offline / backward-looking evaluation (contrast with Slide 15):** Slide 15 showed an *online output guardrail* blocking one unlawful job ad before publish. Here the judge suite runs *offline* on logged production traces and test suites ([Dong et al. 2024](../../bibliography/dong-2024-agentops/), [Xia et al. 2025](../../bibliography/xia-2025-eddops/)). Running backward-looking log evaluation does not add latency or interrupt users mid-turn, and it is the natural way to localise root causes across multi-step traces ([Jia et al. 2025](../../bibliography/jia-2025-agent-gpa/), [Pisupati et al. 2026](../../bibliography/pisupati-2026-counsel/)). Once offline evaluation pinpoints `write_cover_letter()`, the team can tighten that step’s prompt or tool contract, add the case to its regression suite, or — for high-stakes actions like submitting an application — add a targeted online check right before `submit_application()` at the outbound gateway (Slide 13).
+- **Bridge to Parts 2, 3, and 4:** Part 2 unpacks deterministic vs judge checks and groundedness to tool outputs; Part 3 has participants inspect recorded career-assistant traces and cite step IDs as evidence; and Part 4 returns to why a good final answer — and even a happy user — can hide a bad path ([Ruan et al. 2024](../../bibliography/ruan-2024-toolemu/)).
 :::
 
 ---
