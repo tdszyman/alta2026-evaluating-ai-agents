@@ -140,7 +140,7 @@ format:
 
 ---
 
-## From LLMs to agents {#from-llms-to-agents .overview-slide}
+## GenAI: from LLMs to AI Agents {#from-llms-to-agents .overview-slide}
 
 <!-- TODO (Terrence): this overview is meant to replace the background slides in section 2 (“Terms this section defines”, “LLM text generation”, “Conversations: messages and turns”, “What is an agent?”, “Agent traces: think, act, observe”). They are kept, unchanged, until you decide how far to cut them. -->
 
@@ -459,9 +459,9 @@ Cards, in the order they appear, which is the order the stories were published, 
 
 - Builds: the slide opens on the definition, the subtitle and the agent; click 1 adds the agent trace; click 2 adds the judge, with its system prompt, user prompt and LLM; click 3 adds the judge’s output.
 - The subtitle names complex and complicated; the next slide explains what those words mean. The point here: the risk can be reduced and watched, not removed.
-- The agent: the parts that make it up. Only the LLM is non-deterministic; the rest is code and configuration that behaves the same way each time (tools usually, not always). This is the split from the takeaway on “From LLMs to agents”.
-- The trace: not the agent’s code, but its behaviour on one run. The same barista run as on “From LLMs to agents”: the user’s question, the thought, the `get_location()` call and its result, and the answer. The judge reads this, so it can see that “Fitzroy” came from the tool.
-- The judge is a chat completion, like column 2 of “From LLMs to agents”. Its system prompt holds the instructions and the rubric; its user prompt holds the context, here the agent trace; its output is the determination, here a pass and a reason. The same kind of model as the one inside the agent, given a different job: it does not do the task, it checks it.
+- The agent: the parts that make it up. Only the LLM is non-deterministic; the rest is code and configuration that behaves the same way each time (tools usually, not always). This is the split from the takeaway on “GenAI: from LLMs to AI Agents”.
+- The trace: not the agent’s code, but its behaviour on one run. The same barista run as on “GenAI: from LLMs to AI Agents”: the user’s question, the thought, the `get_location()` call and its result, and the answer. The judge reads this, so it can see that “Fitzroy” came from the tool.
+- The judge is a chat completion, like column 2 of “GenAI: from LLMs to AI Agents”. Its system prompt holds the instructions and the rubric; its user prompt holds the context, here the agent trace; its output is the determination, here a pass and a reason. The same kind of model as the one inside the agent, given a different job: it does not do the task, it checks it.
 - The criteria are written by people. The two here are made up for this example. The judge checks only what its criteria ask: it did not check whether $34 an hour is right, and that figure is illustrative, not wage data.
 - A judge can also read only the output, or a single step. “LLM-as-judge: evaluating the trace”, in section 2, shows the places a judge can check. The output here is a pass or fail with a reason; judges can also give scores. Part 2 covers rubrics, scales and prompt patterns.
 - Using an LLM to check an LLM can sound circular. Keep that question open; the rest of Part 1 explains why it is still the best approach available today.
@@ -508,7 +508,7 @@ Cards, in the order they appear, which is the order the stories were published, 
 [Contrasts and examples: [Complex versus complicated](../../bibliography/finegood-complex-versus-complicated/) (Frameworks Collection, CC BY-NC-ND). Figures illustrative.]{.attribution .slide-foot}
 
 ::: {.notes}
-**About this slide:** An AI agent is both a complex and a complicated system. It follows the headlines and the first look at an LLM judge: those failures came from real systems, and this slide says what kind of system an agent is, and so why a judge is needed. It names the split from the takeaway on “From LLMs to agents”: the non-deterministic LLM calls are the complex part, and the deterministic harness and tool calls are the complicated part. The slide opens on complex, then one click reveals complicated beside it.
+**About this slide:** An AI agent is both a complex and a complicated system. It follows the headlines and the first look at an LLM judge: those failures came from real systems, and this slide says what kind of system an agent is, and so why a judge is needed. It names the split from the takeaway on “GenAI: from LLMs to AI Agents”: the non-deterministic LLM calls are the complex part, and the deterministic harness and tool calls are the complicated part. The slide opens on complex, then one click reveals complicated beside it.
 
 A complex system has many parts entangled through feedback loops, so the behaviour of the whole emerges from how the parts interact, and the same input gives a distribution of outputs that cannot be traced back to individual parts. Complex systems are unpredictable, self-organising and emergent. The weather is the example: air, heat and moisture feed back on each other, so similar mornings can end in different afternoons. The economy, ant colonies and human brains are complex too. In an agent, the model, the agent built on it, and swarms of agents are complex.
 
@@ -523,7 +523,7 @@ A complicated system also has many parts, but every connection is designed and c
 - The keywords and the examples are from the framework [Complex versus complicated](../../bibliography/finegood-complex-versus-complicated/), the same contrasts and examples as the AIPS Showcase slide. From the same framework: foundation models, agents and agent swarms sit with the weather and the economy, not with jet engines.
 - History, if asked, in one breath. Warren Weaver’s 1948 essay “Science and Complexity” separated problems of simplicity, problems of “disorganized complexity” (many variables, handled by statistics) and problems of “organized complexity”: problems “which involve dealing simultaneously with a sizable number of factors which are interrelated into an organic whole” ([Weaver 1948](../../bibliography/weaver-1948-science-complexity/)). Complexity science is now studied across the natural and social sciences, but, as a review puts it, “there is no concise definition of a complex system, let alone a definition on which all scientists agree” ([Ladyman et al. 2013](../../bibliography/ladyman-2013-complex-system/)). The point is that “complex” has a meaning beyond “hard”.
 - Point at the two figures together: the complicated one is the agent’s plumbing, the complex one is its behaviour.
-- Link back to “From LLMs to agents”: the harness and most tool calls are the complicated part; the LLM calls, and anything that behaves like them, are the complex part.
+- Link back to “GenAI: from LLMs to AI Agents”: the harness and most tool calls are the complicated part; the LLM calls, and anything that behaves like them, are the complex part.
 - Next: the agent platforms, which protect both parts: deterministic checks for the complicated part, non-deterministic checks such as LLM-as-a-judge for the complex part. What complex and complicated means for evaluation opens section 2, on “How to evaluate complex and complicated systems”.
 :::
 
@@ -1509,7 +1509,7 @@ End the chat if risk ≥ 0.8.</pre>
 - What is an agent? “Agent” and “agentic” have theoretical definitions and practical ones. In practice, this tutorial’s working definition is an LLM plus tools, run in a ReAct loop ([Yao et al. 2023](../../bibliography/yao-2023-react/)).
 - The LLM is the model from idea 1; the tools are the functions in the next slide’s system message (get_profile, search_jobs, apply); the next slide unpacks the loop.
 - “Agent” means the whole system. “Assistant” stays the name of the message role.
-- Link back to column 3 of “From LLMs to agents” near the start of this part: an LLM wrapped in a harness with tools, running the [ReAct](../../bibliography/yao-2023-react/) loop.
+- Link back to column 3 of “GenAI: from LLMs to AI Agents” near the start of this part: an LLM wrapped in a harness with tools, running the [ReAct](../../bibliography/yao-2023-react/) loop.
 - TODO (Terrence): what “agentic” means, with a source. No sourced definition yet.
 :::
 

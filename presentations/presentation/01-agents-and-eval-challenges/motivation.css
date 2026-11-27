@@ -1347,7 +1347,7 @@
 .reveal .harness-slide .wa-det-ink { font-weight: 700; }
 .reveal .harness-slide .wa-sto-ink { font-weight: 700; color: var(--series-b-ink); }
 
-/* "From LLMs to agents": three columns, each a quiet-surface panel like the
+/* "GenAI: from LLMs to AI Agents": three columns, each a quiet-surface panel like the
    harness frame, with a small figure over a key-terms list. The LLM box is
    the harness slide's Model (series b); messages, thought, action and
    observation take the chat tokens the trace slides use; the ReAct loop

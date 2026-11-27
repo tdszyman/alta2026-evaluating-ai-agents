@@ -883,7 +883,7 @@ The first version of “2026 is the year of the AI Agent”, a live Google Trend
 “What are AI Agents?”, the harness picture, cut from Part 1 section 1 (26 November 2026), kept unchanged.
 
 ::: {.notes}
-**About this slide:** The sixth group in this deck. “What are AI Agents?” sat between “From LLMs to agents” and “AI Agents are complex *and* complicated systems”. It drew an agent as a model inside a loop, with memory and tools, all wrapped in a harness, and tagged each part deterministic or stochastic. Part 1 now makes that split with the takeaway on “From LLMs to agents”. The slide is kept with its builds and notes, and its styles come from Part 1’s `motivation.css` (classes prefixed `wa-`), so it can go back into Part 1 unchanged. Its notes’ “the next slide” is “AI Agents are complex *and* complicated systems”.
+**About this slide:** The sixth group in this deck. “What are AI Agents?” sat between “From LLMs to agents” and “AI Agents are complex *and* complicated systems”. It drew an agent as a model inside a loop, with memory and tools, all wrapped in a harness, and tagged each part deterministic or stochastic. Part 1 now makes that split with the takeaway on “GenAI: from LLMs to AI Agents” (then titled “From LLMs to agents”). The slide is kept with its builds and notes, and its styles come from Part 1’s `motivation.css` (classes prefixed `wa-`), so it can go back into Part 1 unchanged. Its notes’ “the next slide” is “AI Agents are complex *and* complicated systems”.
 :::
 
 ---
