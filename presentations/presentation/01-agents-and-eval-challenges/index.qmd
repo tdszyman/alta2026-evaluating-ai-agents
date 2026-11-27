@@ -9,6 +9,7 @@ format:
       - job-ad-judge.css
       - generative-eval.css
       - chat-attack-judge.css
+      - auto-apply-judge.css
       - terms.css
       - motivation.css
       - opening.css
@@ -1076,7 +1077,7 @@ Three clicks highlight, one at a time, where an LLM judge can check the agent ac
 
 - What Terrence wants to say here: “Ok, I’ve told you a lot about how agents have risks and how agent platforms enable enterprises like SEEK to implement LLM-as-judge to mitigate agent risks. Next I’m going to show you two realistic examples of what this might look like.”
 - No reveals. Pause briefly, then move on.
-- The next two slides are illustrative SEEK mock-ups: a judge stopping an unlawful job ad, then a judge spotting a multi-turn attack in a chat.
+- The next two slides are illustrative SEEK mock-ups: a judge stopping an unlawful job ad, then a judge spotting a multi-turn attack in a chat. *(Note: a third illustrative example — offline trace evaluation of a candidate auto-apply agent — temporarily sits right after the multi-turn attack slide while deciding whether to replace it.)*
 :::
 
 ---
@@ -1308,6 +1309,125 @@ End the chat if risk ≥ 0.8.</pre>
 - Links to the outline’s SEEK examples: prompt injection and adversarial users.
 - It is the cybersecurity risk from the collage (EchoLeak, the Lego order, the gym booking agent), at SEEK. Those case slides are in the unpublished Part 1.G graveyard deck.
 :::
+
+---
+
+## An LLM judge can pinpoint where an agent went wrong in a trace {#auto-apply-trace-eval .auto-apply-slide}
+
+```{=html}
+<div class="aa-figure">
+
+  <div>
+    <div class="aa-label">Logged agent trace · offline review</div>
+    <div class="aa-log" aria-label="Illustrative logged trace of a SEEK candidate auto-apply agent with three tool steps">
+      <div class="aa-header">
+        <span class="aa-wordmark">SEEK</span>
+        <span class="aa-header-sub">Candidate auto-apply</span>
+        <span class="aa-run-id">Logged run #7412</span>
+      </div>
+      <div class="aa-trace">
+        <div class="aa-msg aa-user">
+          <span class="aa-role">User</span>Tailor a cover letter for Acme’s Data Analyst role and submit my application. Stick to my profile.
+        </div>
+
+        <div class="aa-step aa-s1 fragment custom" data-fragment-index="2">
+          <div class="aa-step-act">
+            <span class="aa-s">S1</span><span class="aa-kind">Action</span><code>read_profile()</code>
+          </div>
+          <div class="aa-step-obs">
+            <span class="aa-kind">Result</span><span>Skills: R, SQL · Experience: 2 years · Python: none</span>
+          </div>
+        </div>
+
+        <div class="aa-step aa-s2 fragment custom" data-fragment-index="3">
+          <div class="aa-step-act">
+            <span class="aa-s">S2</span><span class="aa-kind">Action</span><code>write_cover_letter(role="Data Analyst", profile)</code>
+          </div>
+          <div class="aa-step-obs">
+            <span class="aa-kind">Result</span><span>Draft: “…<span class="aa-flag fragment custom" data-fragment-index="3">3 years</span> of analytics work in R, SQL <span class="aa-flag fragment custom" data-fragment-index="3">and Python</span>…”</span>
+          </div>
+        </div>
+
+        <div class="aa-step aa-s3 fragment custom" data-fragment-index="4">
+          <div class="aa-step-act">
+            <span class="aa-s">S3</span><span class="aa-kind">Action</span><code>submit_application(job="Acme", letter=draft)</code>
+          </div>
+          <div class="aa-step-obs">
+            <span class="aa-kind">Result</span><span>status: submitted · confirmation #A-904</span>
+          </div>
+        </div>
+
+        <div class="aa-msg aa-asst">
+          <span class="aa-role">Assistant</span>All done! I tailored your cover letter to your profile and submitted your application to Acme.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="aa-evals">
+    <div class="aa-label aa-label-judge fragment" data-fragment-index="1">Offline trace evaluation · after the run</div>
+
+    <div class="aa-box fragment" data-fragment-index="1">
+      <div class="aa-box-head">End-to-end &amp; output checks</div>
+      <div class="aa-e2e-list">
+        <div class="aa-e2e-row"><span class="aa-pill">Pass</span><span><b>Tool calls &amp; status:</b> valid schemas, <code>status: submitted</code></span></div>
+        <div class="aa-e2e-row"><span class="aa-pill">Pass</span><span><b>Output guardrail (final reply):</b> polite, no policy breach</span></div>
+        <div class="aa-e2e-note">From the outside, the run looks successful — the hidden error goes unseen.</div>
+      </div>
+    </div>
+
+    <div class="aa-box aa-box-judge fragment" data-fragment-index="2">
+      <div class="aa-box-head">LLM judge · trace &amp; step-level check</div>
+      <div class="aa-prompt-line"><b>Judge task:</b> Check each step against the user’s request and earlier tool outputs. Pinpoint where any error starts.</div>
+
+      <div class="aa-row aa-row-pass fragment" data-fragment-index="2">
+        <span class="aa-s">S1</span>
+        <span class="aa-fn">read_profile()</span>
+        <span class="aa-pill">Pass</span>
+        <span class="aa-why">Right tool; returned the accurate profile (R, SQL, 2 years, no Python).</span>
+      </div>
+
+      <div class="aa-row aa-row-fail fragment" data-fragment-index="3">
+        <span class="aa-s">S2</span>
+        <span class="aa-fn">write_cover_letter()</span>
+        <span class="aa-pill">Fail</span>
+        <span class="aa-why">Right tool, wrong output: invented “3 years” and “Python”, contradicting S1.</span>
+      </div>
+
+      <div class="aa-row aa-row-warn fragment" data-fragment-index="4">
+        <span class="aa-s">S3</span>
+        <span class="aa-fn">submit_application()</span>
+        <span class="aa-pill">Bad input</span>
+        <span class="aa-why">Valid tool call, but passed S2’s ungrounded letter on to the employer.</span>
+      </div>
+    </div>
+
+    <div class="aa-takeaway fragment" data-fragment-index="4">
+      <b>Fault localisation:</b> Confirming S1 succeeded narrows the failure straight to S2 (<code>write_cover_letter</code>) — showing which step to fix.
+    </div>
+  </div>
+
+</div>
+
+<div class="aa-caption slide-foot">Illustrative mock-up: not a real user, profile or incident. Trace-level localisation: <a href="../../bibliography/jia-2025-agent-gpa/">Jia et al. (2025)</a>; logged traces: <a href="../../bibliography/dong-2024-agentops/">Dong et al. (2024)</a>.</div>
+```
+
+::: {.notes}
+**About this slide:** A worked example of **offline trace-level evaluation** on a logged multi-step agent run. On an illustrative SEEK candidate auto-apply agent, the user asks the agent to tailor a cover letter and submit an application strictly faithful to their profile. The agent reads the profile (`read_profile`), drafts a cover letter (`write_cover_letter`) that quietly invents extra experience (“3 years”) and a skill the user does not have (“Python”), submits it (`submit_application`), and replies with a polite confirmation. End-to-end checks and an output guardrail on the final reply both pass. Running an LLM judge offline over the logged trace evaluates each step against earlier tool outputs, confirms `S1` passed, and pinpoints `S2` as the exact source of the error.
+
+**Presenter notes:**
+
+- **Callback to Slide 2:** Remember the opening poll — *"Would you let an AI agent apply to jobs for you, automatically?"* Only 5% of US job seekers in the Greenhouse survey said they would ([Greenhouse 2026](../../bibliography/greenhouse-2026-candidate-report/)). This trace shows why: an agent can quietly exaggerate a candidate’s skills inside a tool call and still come back saying *"All done!"*
+- **Builds (4 clicks):**
+  - **Base view:** Walk the logged three-step trace on the left: `S1 read_profile()` returns `R, SQL`, `2 years`, no `Python`; `S2 write_cover_letter()` writes `"3 years"` and `"Python"` into the draft; `S3 submit_application()` sends it; and the assistant gives a reassuring final reply.
+  - **Click 1 (End-to-end & output checks):** Every deterministic check passes (valid tool names, valid arguments, `status: submitted`), and an output guardrail reading only the final reply sees a polite confirmation with no policy breach. From the outside, the run looks like a success.
+  - **Click 2 (LLM judge, S1):** Now an LLM judge reads the full logged trace offline. First it verifies `S1 read_profile()`: right tool, accurate profile returned — **Pass**.
+  - **Click 3 (LLM judge, S2):** Next it checks `S2 write_cover_letter()` against `S1`’s output: right tool choice, wrong output — it fabricated `"3 years"` and `"Python"` — **Fail**.
+  - **Click 4 (LLM judge, S3 + Fault localisation):** `S3 submit_application()` is a valid call that simply forwarded `S2`’s bad draft (**Bad input**). Because `S1` passed, the team knows the bug is not in profile retrieval and not in submission plumbing — it is specifically inside `write_cover_letter()`.
+- **Why offline / backward-looking evaluation (contrast with Slide 15):** Slide 15 showed an *online output guardrail* blocking one unlawful job ad before publish. Here the judge runs *offline* on logged production traces and test suites ([Dong et al. 2024](../../bibliography/dong-2024-agentops/), [Xia et al. 2025](../../bibliography/xia-2025-eddops/)). Running backward-looking log evaluation does not add latency or interrupt users mid-turn, and it is the natural way to localise root causes across multi-step traces ([Jia et al. 2025](../../bibliography/jia-2025-agent-gpa/), [Pisupati et al. 2026](../../bibliography/pisupati-2026-counsel/)). Once offline evaluation pinpoints `write_cover_letter()`, the team can fix that step’s prompt or tool contract, add the case to its regression suite, or — for high-stakes actions like submitting an application — add a targeted online check right before `submit_application()` at the outbound gateway (Slide 13).
+- **Bridge to Parts 2, 3, and 4:** Part 2 unpacks deterministic vs judge checks and groundedness to tool outputs; Part 3 has participants inspect recorded career-assistant traces and cite step IDs as evidence; and Part 4 returns to why a good final answer can hide a bad path ([Ruan et al. 2024](../../bibliography/ruan-2024-toolemu/)).
+:::
+
 ---
 
 ## Next: LLM-as-a-judge methods

@@ -1,0 +1,406 @@
+/* "LLM judge pinpoints where an agent went wrong in a trace" slide.
+   Reuses the Canva template's chat-role, judge-box and verdict tokens.
+   No hex codes: all colours come from _shared/themes/canva.scss. */
+
+.reveal .auto-apply-slide h2 {
+  font-size: 1.15em;
+  margin-bottom: 0.42em;
+}
+
+.reveal .auto-apply-slide code {
+  font-family: var(--deck-font-mono);
+  font-size: 0.93em;
+  color: var(--deck-ink);
+  background: none;
+  padding: 0;
+}
+
+.reveal .auto-apply-slide .aa-figure {
+  display: grid;
+  grid-template-columns: 626px 1fr;
+  gap: 24px;
+  align-items: start;
+  width: 1200px;
+  font-family: var(--deck-font-sans);
+  font-size: 16px;
+  line-height: 1.35;
+  color: var(--deck-ink);
+}
+
+.reveal .auto-apply-slide .aa-label {
+  margin-bottom: 7px;
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--deck-soft);
+}
+
+.reveal .auto-apply-slide .aa-label-judge {
+  color: var(--chat-judge-label);
+}
+
+/* Left column: logged agent trace card */
+
+.reveal .auto-apply-slide .aa-log {
+  border: 1px solid var(--deck-line);
+  border-radius: 2px;
+  background: var(--deck-paper);
+  overflow: hidden;
+}
+
+.reveal .auto-apply-slide .aa-header {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  height: 38px;
+  padding: 0 14px;
+  background: var(--deck-ink);
+  color: var(--deck-paper);
+}
+
+.reveal .auto-apply-slide .aa-wordmark {
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  line-height: 38px;
+}
+
+.reveal .auto-apply-slide .aa-header-sub {
+  font-size: 14px;
+  opacity: 0.85;
+}
+
+.reveal .auto-apply-slide .aa-run-id {
+  margin-left: auto;
+  font-family: var(--deck-font-mono);
+  font-size: 12.5px;
+  opacity: 0.85;
+}
+
+.reveal .auto-apply-slide .aa-trace {
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+  padding: 14px 14px 15px;
+}
+
+.reveal .auto-apply-slide .aa-msg {
+  padding: 9px 12px;
+  font-size: 15.5px;
+  line-height: 1.35;
+  border-radius: 2px;
+}
+
+.reveal .auto-apply-slide .aa-msg.aa-user {
+  background: var(--chat-user-bg);
+  box-shadow: inset var(--chat-edge-width) 0 0 var(--chat-user-edge);
+}
+
+.reveal .auto-apply-slide .aa-msg.aa-asst {
+  background: var(--chat-agent-bg);
+  box-shadow: inset var(--chat-edge-width) 0 0 var(--chat-agent-edge);
+}
+
+.reveal .auto-apply-slide .aa-role {
+  display: inline-block;
+  margin-right: 7px;
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.reveal .auto-apply-slide .aa-user .aa-role {
+  color: var(--chat-user-label);
+}
+
+.reveal .auto-apply-slide .aa-asst .aa-role {
+  color: var(--chat-agent-label);
+}
+
+/* Multi-step tool calls */
+
+.reveal .auto-apply-slide .aa-step {
+  border: 1px solid var(--deck-line);
+  border-radius: 2px;
+  background: var(--deck-paper);
+  overflow: hidden;
+  transition: outline-color 0.25s ease, border-color 0.25s ease;
+}
+
+.reveal .auto-apply-slide .aa-step-act {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 7px 11px;
+  background: var(--chat-action-bg);
+  box-shadow: inset var(--chat-edge-width) 0 0 var(--chat-action-edge);
+}
+
+.reveal .auto-apply-slide .aa-step-obs {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 8px 11px;
+  background: var(--chat-observation-bg);
+  box-shadow: inset var(--chat-edge-width) 0 0 var(--chat-observation-edge);
+  border-top: 1px solid var(--deck-surface);
+  font-size: 15px;
+}
+
+.reveal .auto-apply-slide .aa-s {
+  display: inline-block;
+  flex: none;
+  padding: 0 5px;
+  font-family: var(--deck-font-mono);
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--deck-soft);
+  background: var(--deck-paper);
+  border: 1px solid var(--deck-line);
+  border-radius: 2px;
+}
+
+.reveal .auto-apply-slide .aa-kind {
+  flex: none;
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--deck-soft);
+}
+
+.reveal .auto-apply-slide .aa-step code {
+  font-size: 14px;
+}
+
+/* Step highlights synced to the judge builds */
+
+.reveal .auto-apply-slide .aa-s1.visible {
+  border-color: var(--verdict-pass);
+  outline: 2px solid var(--verdict-pass);
+}
+
+.reveal .auto-apply-slide .aa-s1.visible .aa-s {
+  color: var(--verdict-pass);
+  border-color: var(--verdict-pass);
+}
+
+.reveal .auto-apply-slide .aa-s2.visible {
+  border-color: var(--verdict-fail);
+  outline: 2px solid var(--verdict-fail);
+}
+
+.reveal .auto-apply-slide .aa-s2.visible .aa-s {
+  color: var(--verdict-on);
+  background: var(--verdict-fail);
+  border-color: var(--verdict-fail);
+}
+
+.reveal .auto-apply-slide .aa-s3.visible {
+  border-color: var(--verdict-warn);
+  outline: 2px solid var(--verdict-warn);
+}
+
+.reveal .auto-apply-slide .aa-s3.visible .aa-s {
+  color: var(--verdict-warn-ink);
+  background: var(--verdict-warn-tint);
+  border-color: var(--verdict-warn);
+}
+
+.reveal .auto-apply-slide .aa-flag {
+  transition: background-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.reveal .auto-apply-slide .aa-flag.visible {
+  font-weight: 700;
+  background: var(--verdict-fail-tint);
+  box-shadow: inset 0 -2px 0 var(--verdict-fail);
+}
+
+/* Right column: end-to-end check vs offline LLM judge */
+
+.reveal .auto-apply-slide .aa-evals {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.reveal .auto-apply-slide .aa-box {
+  border: 1px solid var(--deck-line);
+  border-radius: 2px;
+  background: var(--deck-paper);
+  overflow: hidden;
+}
+
+.reveal .auto-apply-slide .aa-box-head {
+  padding: 5px 12px;
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--deck-ink);
+  background: var(--deck-surface);
+  border-bottom: 1px solid var(--deck-line);
+}
+
+.reveal .auto-apply-slide .aa-box-judge {
+  border-color: var(--chat-judge-box-edge);
+}
+
+.reveal .auto-apply-slide .aa-box-judge .aa-box-head {
+  color: var(--chat-judge-head-ink);
+  background: var(--chat-judge-head-bg);
+  border-bottom-color: var(--chat-judge-box-edge);
+}
+
+.reveal .auto-apply-slide .aa-e2e-list {
+  padding: 8px 12px 9px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.reveal .auto-apply-slide .aa-e2e-row {
+  display: flex;
+  align-items: baseline;
+  gap: 9px;
+  font-size: 15px;
+}
+
+.reveal .auto-apply-slide .aa-e2e-note {
+  margin-top: 2px;
+  padding-top: 6px;
+  border-top: 1px solid var(--deck-surface);
+  font-size: 14px;
+  color: var(--deck-soft);
+}
+
+.reveal .auto-apply-slide .aa-prompt-line {
+  padding: 7px 12px;
+  font-size: 14px;
+  line-height: 1.34;
+  color: var(--deck-ink);
+  background: var(--chat-judge-tint);
+  border-bottom: 1px solid var(--deck-line);
+}
+
+.reveal .auto-apply-slide .aa-prompt-line b {
+  color: var(--chat-judge-label);
+}
+
+/* Step-level verdict ledger */
+
+.reveal .auto-apply-slide .aa-row {
+  display: grid;
+  grid-template-columns: 32px 1fr auto;
+  grid-template-areas:
+    "s fn verdict"
+    ". why why";
+  align-items: center;
+  column-gap: 8px;
+  row-gap: 3px;
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--deck-surface);
+}
+
+.reveal .auto-apply-slide .aa-row:last-child {
+  border-bottom: 0;
+}
+
+.reveal .auto-apply-slide .aa-row .aa-s {
+  grid-area: s;
+  justify-self: start;
+}
+
+.reveal .auto-apply-slide .aa-fn {
+  grid-area: fn;
+  font-family: var(--deck-font-mono);
+  font-size: 14.5px;
+  font-weight: 700;
+  color: var(--deck-ink);
+}
+
+.reveal .auto-apply-slide .aa-pill {
+  grid-area: verdict;
+  display: inline-block;
+  flex: none;
+  padding: 1px 8px;
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border-radius: 2px;
+  border: 1.5px solid var(--verdict-pass);
+  color: var(--verdict-pass);
+  background: var(--deck-paper);
+}
+
+.reveal .auto-apply-slide .aa-why {
+  grid-area: why;
+  font-size: 14.5px;
+  line-height: 1.32;
+  color: var(--deck-soft);
+}
+
+.reveal .auto-apply-slide .aa-row-pass .aa-s {
+  color: var(--verdict-pass);
+  border-color: var(--verdict-pass);
+}
+
+.reveal .auto-apply-slide .aa-row-fail {
+  background: var(--verdict-fail-tint);
+}
+
+.reveal .auto-apply-slide .aa-row-fail .aa-s,
+.reveal .auto-apply-slide .aa-row-fail .aa-pill {
+  color: var(--verdict-on);
+  background: var(--verdict-fail);
+  border-color: var(--verdict-fail);
+}
+
+.reveal .auto-apply-slide .aa-row-fail .aa-why {
+  color: var(--deck-ink);
+}
+
+.reveal .auto-apply-slide .aa-row-warn {
+  background: var(--verdict-warn-tint);
+}
+
+.reveal .auto-apply-slide .aa-row-warn .aa-s,
+.reveal .auto-apply-slide .aa-row-warn .aa-pill {
+  color: var(--verdict-warn-ink);
+  background: var(--deck-paper);
+  border-color: var(--verdict-warn);
+}
+
+.reveal .auto-apply-slide .aa-row-warn .aa-why {
+  color: var(--deck-ink);
+}
+
+/* Fault-localisation takeaway strip */
+
+.reveal .auto-apply-slide .aa-takeaway {
+  padding: 9px 12px;
+  font-size: 15px;
+  line-height: 1.35;
+  color: var(--deck-ink);
+  background: var(--chat-judge-tint);
+  border-left: 4px solid var(--chat-judge-edge);
+  border-radius: 2px;
+}
+
+.reveal .auto-apply-slide .aa-takeaway b {
+  color: var(--chat-judge-label);
+}
+
+.reveal .auto-apply-slide .aa-caption {
+  font-family: var(--deck-font-sans);
+  font-size: 13px;
+  color: var(--deck-soft);
+}
+
+.reveal .auto-apply-slide .aa-caption a {
+  color: var(--deck-accent);
+}
