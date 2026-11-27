@@ -108,9 +108,10 @@
 
 .reveal .complexity-slide .attribution {
   margin-top: 1.6em;
-  font-size: 0.4em;
-  color: var(--figure-muted);
-  text-align: center;
+  font-size: 14px;
+  line-height: 1.35;
+  color: var(--deck-soft);
+  text-align: left;
 }
 
 /* Parts vs whole */
