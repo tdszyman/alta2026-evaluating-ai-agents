@@ -1691,8 +1691,8 @@
 .reveal .overview-slide .ov-det-ink { font-weight: 700; }
 .reveal .overview-slide .ov-sto-ink { font-weight: 700; color: var(--series-b-ink); }
 
-/* "An LLM judge can mitigate the risks of AI Agents": the definition and a
-   subtitle, then three panels. The slide also carries .overview-slide, so the
+/* "An LLM judge can mitigate the risks of AI Agents": the definition, then
+   three panels. The slide also carries .overview-slide, so the
    bubbles, loop and LLM box are the overview's own components. The agent panel
    is the quiet surface; the trace panel is paper with an ink edge, so it reads
    as a record rather than a part of the agent; the judge panel takes the judge
@@ -1709,14 +1709,6 @@
 }
 
 .reveal .judge-concept-slide .jc-def b { color: var(--chat-judge-label); }
-
-.reveal .judge-concept-slide p.jc-sub {
-  width: 1180px;
-  margin: 4px auto 0;
-  font-size: 20px;
-  line-height: 1.35;
-  color: var(--deck-soft);
-}
 
 .reveal .judge-concept-slide .jc-grid {
   display: grid;
