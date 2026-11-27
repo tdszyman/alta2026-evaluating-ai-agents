@@ -259,14 +259,14 @@ format:
 ```
 
 ::: {.vr-card .vr-productivity .fragment}
-[Productivity]{.vr-name}
+[Internal operations]{.vr-name}
 [Do the same work faster and cheaper]{.vr-sub}
 
 Deliver outcomes with less effort, greater speed or better consistency.
 :::
 
 ::: {.vr-card .vr-products .fragment}
-[Products]{.vr-name}
+[Commercial products]{.vr-name}
 [New and better things for customers]{.vr-sub}
 
 Create better customer experiences, new offerings or additional revenue.
@@ -288,7 +288,7 @@ Create better customer experiences, new offerings or additional revenue.
 ::::
 
 ::: {.notes}
-**About this slide:** Why organisations want AI agents, and what they risk by using them. The value side opens on adoption, which is high: 2026 is the year of the AI agent. In Deloitte’s survey, 69% of Australian organisations are now using agentic AI, alongside three-quarters of global respondents ([Deloitte 2026](../../bibliography/deloitte-2026-australian-ai-survey/)). Then come the two reasons: **productivity** means doing the same work faster and cheaper: delivering outcomes with less effort, greater speed or better consistency. **Products** means new and better things for customers: better customer experiences, new offerings or additional revenue. It is more than product features. Nearly every organisation, whether a company, a university or a research lab, has internal work where an agent could help, so productivity applies widely. Products applies to fewer: only some organisations sell agents or put them in front of customers, and these tend to be startups working out how to build new products on them.
+**About this slide:** Why organisations want AI agents, and what they risk by using them. The value side opens on adoption, which is high: 2026 is the year of the AI agent. In Deloitte’s survey, 69% of Australian organisations are now using agentic AI, alongside three-quarters of global respondents ([Deloitte 2026](../../bibliography/deloitte-2026-australian-ai-survey/)). Then come the two reasons: **internal operations** means doing the same work faster and cheaper: delivering outcomes with less effort, greater speed or better consistency. **Commercial products** means new and better things for customers: better customer experiences, new offerings or additional revenue. It is more than product features. Nearly every organisation, whether a company, a university or a research lab, has internal work where an agent could help, so internal operations applies widely. Commercial products applies to fewer: only some organisations sell agents or put them in front of customers, and these tend to be startups working out how to build new products on them.
 
 On the risk side are six ways an AI agent can create risk for a company like SEEK, an online employment marketplace that connects hirers and candidates. The examples are hypothetical:
 
@@ -303,12 +303,12 @@ The first four are about a single failure: a bad decision, a bad comment, an ill
 
 **Presenter notes:**
 
-- The slide opens on the Value heading, then builds in four clicks, left to right and top to bottom: the adoption figure, Productivity, Products, then the whole Risk column at once, its heading and all six risks.
+- The slide opens on the Value heading, then builds in four clicks, left to right and top to bottom: the adoption figure, Internal operations, Commercial products, then the whole Risk column at once, its heading and all six risks.
 - The adoption figure. Deloitte: “Autonomous AI agents are racing into the enterprise, transforming AI from a source of information and insights into a system that can do real work”. Deloitte also found that “only 22% of Australian companies report having a highly advanced model for agent governance”, which can come back when the Risk side appears.
 - If asked about the 69%: Deloitte surveyed “over 3,000 director to C-suite-level leaders … who have direct involvement in their companies’ AI initiatives”, which skews towards adopters; its 69% is of organisations surveyed, not of all Australian businesses.
 - The Risk side is labelled “Illustrative, not definitive”: the six are a way to organise the risks, not a complete or standard list.
-- Terrence’s framing. Productivity: deliver business outcomes with less effort, greater speed or better consistency. Products: create better customer experiences, new offerings or additional revenue.
-- Nearly all organisations can benefit from some element of productivity, by adopting AI agents for some type of internal business operations.
+- Terrence’s framing. Internal operations: deliver business outcomes with less effort, greater speed or better consistency. Commercial products: create better customer experiences, new offerings or additional revenue.
+- Nearly all organisations can benefit from using AI agents in some part of their internal operations.
 - Some, but not all, businesses can also “sell” AI agents in some way, or use them in the customer experience. This does not apply to all businesses, and may skew towards startups figuring out how to create new products and value out of AI agents.
 - For the students and researchers in the room: both motives raise the same question this tutorial is about, which is how you know the agent is doing the job well.
 - Talk down the risks: for each one, what could go wrong at a company like SEEK.
