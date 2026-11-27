@@ -110,8 +110,8 @@
 
 /* "Agents can create value, but introduce risk": the two value cards and
    the adoption figure on the left, the six risks as numbered rows on the
-   right. Each pillar name is a pill in its series colour: Productivity blue,
-   Products violet. */
+   right. Each pillar name is a pill in its series colour: Internal operations
+   blue, Commercial products violet. */
 
 .reveal .value-risk-slide .vr-grid {
   display: grid;
@@ -192,6 +192,7 @@
 /* Adoption: a small kicker over the 69% headline, in the accent, so it
    reads apart from the two series-coloured pillars above it. */
 .reveal .value-risk-slide .vr-adopt {
+  margin: 0 0 14px;
   padding: 12px 22px 10px;
   background: var(--deck-accent-tint);
   border-left: 4px solid var(--deck-accent);
@@ -279,19 +280,15 @@
   font-weight: 600;
 }
 
-/* "Agent platforms layer protections": two bands, the four
-   platforms and then the protections. Fragments reveal the protections
-   band with its first chain, complicated to deterministic, and then the
-   second, complex to non-deterministic to judge.
-   Chain columns are shared so the two check cards stack. */
+/* "Agent platforms provide the framework": combines the compact four-platform
+   strip across the top (.platforms-slide) with Google's agent architecture
+   figure (.governed-slide) below. Boxes sit at inline positions over one SVG
+   of connectors and gateway diamonds. Neutral colours, except the runtime in
+   the accent and the judge points in the judge colour. */
 
 .reveal .platforms-slide {
-  --pf-radius: 16px;
-  --pf-gap: 14px;
-}
-
-.reveal .platforms-slide h2 {
-  font-size: 44px;
+  --pf-radius: 14px;
+  --pf-gap: 12px;
 }
 
 .reveal .platforms-slide p {
@@ -299,29 +296,25 @@
 }
 
 .reveal .platforms-slide .pf-band {
-  padding: 18px 22px 22px;
+  width: auto;
+  box-sizing: border-box;
+  margin: 8px 0 0;
+  padding: 8px 14px 10px;
   border-radius: var(--pf-radius);
 }
 
-.reveal .platforms-slide .pf-band + .pf-band {
-  margin-top: 22px;
-}
-
 .reveal .platforms-slide .pf-band-platforms {
-  margin-top: 18px;
   background: var(--series-a-tint);
 }
 
-.reveal .platforms-slide .pf-band-checks {
-  background: var(--series-b-tint);
-}
-
 .reveal .platforms-slide .pf-lead {
-  margin-bottom: 12px;
-  font-size: 21px;
-  font-weight: 600;
-  line-height: 1.3;
-  color: var(--deck-ink);
+  margin-bottom: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  line-height: 1.2;
+  color: var(--series-a-ink);
 }
 
 .reveal .platforms-slide .pf-cards {
@@ -336,34 +329,34 @@
 .reveal .platforms-slide .pf-cards li {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 2px;
   margin: 0;
-  padding: 12px 16px;
-  font-size: 19px;
+  padding: 7px 11px;
+  font-size: 14.5px;
   line-height: 1.2;
   background: var(--deck-paper);
-  border-radius: calc(var(--pf-radius) * 0.75);
+  border-radius: calc(var(--pf-radius) * 0.7);
 }
 
 .reveal .platforms-slide .pf-logo {
   display: flex;
   align-items: center;
-  height: 40px;
-  margin-bottom: 6px;
+  height: 24px;
+  margin-bottom: 2px;
 }
 
 .reveal .platforms-slide .pf-logo img {
   display: block;
   width: auto;
   max-width: 100%;
-  height: 28px;
+  height: 19px;
   margin: 0;
   border: 0;
   box-shadow: none;
 }
 
 .reveal .platforms-slide .pf-logo img.pf-logo-aws {
-  height: 40px;
+  height: 25px;
 }
 
 .reveal .platforms-slide .pf-cards b {
@@ -373,139 +366,27 @@
 
 .reveal .platforms-slide .pf-cite {
   margin-top: auto;
-  font-size: 14px;
+  font-size: 12.5px;
   color: var(--deck-soft);
 }
 
-.reveal .platforms-slide .pf-flow {
-  display: grid;
-  gap: 16px;
-}
-
-.reveal .platforms-slide .pf-chain {
-  display: grid;
-  grid-template-columns: 262px 48px 292px 48px minmax(0, 1fr);
-  align-items: stretch;
-}
-
-.reveal .platforms-slide .pf-node {
-  padding: 10px 14px;
-  font-size: 17px;
-  line-height: 1.3;
-  color: var(--deck-ink);
-  background: var(--deck-paper);
-  border-radius: calc(var(--pf-radius) * 0.75);
-}
-
-.reveal .platforms-slide .pf-node > b {
-  display: block;
-  margin-bottom: 3px;
-  font-size: 20px;
-  font-weight: 700;
-  line-height: 1.2;
-}
-
-.reveal .platforms-slide .pf-chain-rules .pf-node {
-  box-shadow: inset 4px 0 0 var(--series-a);
-}
-
-.reveal .platforms-slide .pf-chain-rules .pf-node > b {
-  color: var(--series-a-ink);
-}
-
-.reveal .platforms-slide .pf-chain-judge .pf-node {
-  box-shadow: inset 4px 0 0 var(--series-b);
-}
-
-.reveal .platforms-slide .pf-chain-judge .pf-node > b {
-  color: var(--series-b-ink);
-}
-
-.reveal .platforms-slide .pf-arrow {
-  position: relative;
-  align-self: center;
-  justify-self: start;
-  width: 26px;
-  height: 4px;
-  margin-left: 6px;
-  font-size: 0;
-  background: currentColor;
-  border-radius: 2px;
-}
-
-.reveal .platforms-slide .pf-arrow::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 22px;
-  transform: translateY(-50%);
-  border-top: 9px solid transparent;
-  border-bottom: 9px solid transparent;
-  border-left: 13px solid currentColor;
-}
-
-.reveal .platforms-slide .pf-chain-rules .pf-arrow {
-  color: var(--series-a-ink);
-}
-
-.reveal .platforms-slide .pf-chain-judge .pf-arrow {
-  color: var(--series-b-ink);
-}
-
-.reveal .platforms-slide .pf-chain-judge .pf-node.pf-judge {
-  padding: 0;
-  overflow: hidden;
-  box-shadow: inset 0 0 0 2px var(--chat-judge-box-edge);
-}
-
-.reveal .platforms-slide .pf-judge-head {
-  display: flex;
-  align-items: baseline;
-  gap: 10px;
-  padding: 7px 14px;
-  font-size: 15px;
-  color: var(--chat-judge-head-ink);
-  background: var(--chat-judge-head-bg);
-}
-
-.reveal .platforms-slide .pf-judge-head b {
-  font-size: 20px;
-  font-weight: 700;
-}
-
-.reveal .platforms-slide .pf-def {
-  padding: 8px 14px 10px;
-  font-size: 17px;
-  line-height: 1.35;
-  color: var(--deck-ink);
-}
-
-/* "AI agents in production need multi-layer protection": Google's agent
-   architecture figure, redrawn on a fixed 1100 x 420 board. Boxes sit at
-   inline positions over one SVG of connectors and gateway diamonds. Neutral
-   colours, except the runtime in the accent and the judge point in the
-   judge colour. */
-
 .reveal .governed-slide .gv-sub {
   display: block;
-  width: 1100px;
-  margin: 0 auto;
-  font-size: 24px;
+  width: auto;
+  margin: 0;
+  font-size: 21px;
   font-weight: 500;
   line-height: 1.3;
   color: var(--deck-ink);
-}
-
-.reveal .governed-slide .gv-term {
-  font-weight: 700;
-  color: var(--chat-judge-label);
 }
 
 .reveal .governed-slide .gv-fig {
   position: relative;
   width: 1100px;
   height: 420px;
-  margin: 10px auto 0;
+  margin: 12px auto -28px;
+  transform: scale(0.93);
+  transform-origin: top center;
   font-size: 17px;
   line-height: 1.2;
   color: var(--deck-ink);
@@ -720,9 +601,9 @@
 
 .reveal .governed-slide .gv-legend {
   display: block;
-  width: 1100px;
-  margin: 14px auto 0;
-  font-size: 17px;
+  width: auto;
+  margin: 6px 0 0;
+  font-size: 15px;
   color: var(--deck-soft);
 }
 
@@ -1012,14 +893,29 @@
 /* "These risks are real, and they make headlines": cards dropped one case
    per click into a loose, overlapping stack. Each card sets its position,
    width and tilt inline; later cards sit on top. Flat cards with a hairline
-   border, no shadows, per the style brief. */
+   border, no shadows, per the style brief. The board is scaled down as a
+   whole, and its negative bottom margin gives back the space the scale
+   frees, to leave room for the takeaway line under it. */
 
 .reveal .headlines-slide .hc-board {
   position: relative;
   width: 1140px;
   height: 575px;
-  margin: 4px auto 0;
+  margin: 4px auto -29px;
+  transform: scale(0.95);
+  transform-origin: top center;
 }
+
+.reveal .headlines-slide .hc-takeaway {
+  width: 1240px;
+  margin: 8px auto 0;
+  font-size: 24px;
+  font-weight: 500;
+  text-align: center;
+  color: var(--deck-ink);
+}
+
+.reveal .headlines-slide .hc-takeaway b { font-weight: 700; }
 
 .reveal .headlines-slide .hc-card {
   position: absolute;
@@ -1088,4 +984,922 @@
   margin-top: 6px;
   font-size: 12px;
   color: var(--deck-ink);
+}
+
+/* "What are AI Agents?": the harness figure. The model sits inside the
+   loop, and the loop and capabilities sit inside the harness, on a fixed
+   1100 x 520 board, so each build lands in place. Each part keeps its own
+   hue from the existing tokens (loop = agent, model = series b, memory =
+   series a, tools = action); the deterministic / stochastic split is said
+   in text tags, never by hue alone. */
+
+.reveal .harness-slide .wa-board {
+  position: relative;
+  width: 1100px;
+  height: 520px;
+  margin: 8px auto 0;
+}
+
+.reveal .harness-slide .wa-board p { margin: 0; }
+
+.reveal .harness-slide .wa-harness {
+  position: absolute;
+  inset: 0;
+  background: var(--deck-surface);
+  border: 2px solid var(--deck-soft);
+  border-radius: 20px;
+}
+
+.reveal .harness-slide .wa-harness-name {
+  position: absolute;
+  left: 26px;
+  top: 14px;
+  font-size: 19px;
+  line-height: 1.2;
+  color: var(--deck-soft);
+}
+
+.reveal .harness-slide .wa-harness-name b {
+  margin-right: 10px;
+  font-size: 24px;
+  color: var(--deck-ink);
+}
+
+.reveal .harness-slide .wa-part {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  box-sizing: border-box;
+  padding: 0 22px;
+  border: 2px solid;
+  border-radius: 14px;
+}
+
+.reveal .harness-slide .wa-loop {
+  left: 24px;
+  top: 56px;
+  width: 1052px;
+  height: 262px;
+  align-items: flex-start;
+  padding-top: 20px;
+  background: var(--chat-agent-bg);
+  border-color: var(--chat-agent-edge);
+  --wa-ink: var(--chat-agent-label);
+  --wa-edge: var(--chat-agent-edge);
+}
+
+.reveal .harness-slide .wa-model {
+  left: 64px;
+  top: 162px;
+  width: 972px;
+  height: 136px;
+  background: var(--series-b-tint);
+  border-color: var(--series-b);
+  --wa-ink: var(--series-b-ink);
+  --wa-edge: var(--series-b);
+}
+
+.reveal .harness-slide .wa-memory,
+.reveal .harness-slide .wa-tools {
+  top: 368px;
+  width: 514px;
+  height: 130px;
+}
+
+.reveal .harness-slide .wa-memory {
+  left: 24px;
+  background: var(--series-a-tint);
+  border-color: var(--series-a);
+  --wa-ink: var(--series-a-ink);
+  --wa-edge: var(--series-a);
+}
+
+.reveal .harness-slide .wa-tools {
+  left: 562px;
+  background: var(--chat-action-bg);
+  border-color: var(--chat-action-edge);
+  --wa-ink: color-mix(in srgb, var(--chat-action-edge), var(--deck-ink) 45%);
+  --wa-edge: var(--chat-action-edge);
+}
+
+.reveal .harness-slide .wa-icon {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 60px;
+  height: 60px;
+  color: var(--wa-ink);
+  background: var(--deck-paper);
+  border: 2px solid var(--wa-edge);
+  border-radius: 12px;
+}
+
+.reveal .harness-slide .wa-icon svg {
+  width: 34px;
+  height: 34px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.reveal .harness-slide .wa-icon .wa-next { stroke-dasharray: 2 1.6; }
+
+.reveal .harness-slide .wa-fn {
+  font-family: var(--deck-font-mono);
+  font-size: 19px;
+  font-weight: 700;
+}
+
+.reveal .harness-slide .wa-text { flex: 1; min-width: 0; }
+
+.reveal .harness-slide .wa-name {
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--wa-ink);
+}
+
+.reveal .harness-slide .wa-sub {
+  margin-top: 6px;
+  font-size: 20px;
+  line-height: 1.3;
+  color: var(--deck-ink);
+}
+
+.reveal .harness-slide .wa-memory .wa-name,
+.reveal .harness-slide .wa-tools .wa-name { font-size: 28px; }
+
+.reveal .harness-slide .wa-memory .wa-sub,
+.reveal .harness-slide .wa-tools .wa-sub { font-size: 18px; }
+
+.reveal .harness-slide .wa-steps {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: 18px;
+  font-size: 18px;
+  font-weight: 600;
+  vertical-align: 4px;
+  color: var(--wa-ink);
+}
+
+.reveal .harness-slide .wa-steps span {
+  padding: 2px 12px;
+  color: var(--deck-ink);
+  background: var(--deck-paper);
+  border: 1.5px solid var(--wa-edge);
+  border-radius: 999px;
+}
+
+.reveal .harness-slide .wa-steps .wa-again {
+  padding: 0;
+  font-size: 26px;
+  line-height: 1;
+  color: var(--wa-ink);
+  background: none;
+  border: 0;
+}
+
+.reveal .harness-slide .wa-caps {
+  position: absolute;
+  left: 28px;
+  top: 336px;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--deck-soft);
+}
+
+/* Deterministic / stochastic tags: solid ink, solid series b, or an ink
+   outline for "usually deterministic". */
+.reveal .harness-slide .wa-tag {
+  flex: none;
+  align-self: center;
+  padding: 5px 14px;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.2;
+  white-space: nowrap;
+  border: 2px solid;
+  border-radius: 999px;
+}
+
+.reveal .harness-slide .wa-loop .wa-tag { align-self: flex-start; margin-top: 6px; }
+
+.reveal .harness-slide .wa-name .wa-tag {
+  margin-left: 12px;
+  vertical-align: 5px;
+}
+
+.reveal .harness-slide .wa-det {
+  color: var(--deck-paper);
+  background: var(--deck-ink);
+  border-color: var(--deck-ink);
+}
+
+.reveal .harness-slide .wa-sto {
+  color: var(--deck-paper);
+  background: var(--series-b-ink);
+  border-color: var(--series-b-ink);
+}
+
+.reveal .harness-slide .wa-mostly {
+  color: var(--deck-ink);
+  background: var(--deck-paper);
+  border-color: var(--deck-ink);
+  border-style: dashed;
+}
+
+.reveal .harness-slide .wa-takeaway {
+  width: 1100px;
+  margin: 18px auto 0;
+  font-size: 26px;
+  font-weight: 500;
+  text-align: center;
+  color: var(--deck-ink);
+}
+
+.reveal .harness-slide .wa-det-ink { font-weight: 700; }
+.reveal .harness-slide .wa-sto-ink { font-weight: 700; color: var(--series-b-ink); }
+
+/* "GenAI: from LLMs to AI Agents": three columns, each a quiet-surface panel like the
+   harness frame, with a small figure over a key-terms list. The LLM box is
+   the harness slide's Model (series b); messages, thought, action and
+   observation take the chat tokens the trace slides use; the ReAct loop
+   takes the agent colours, like the harness Loop, and holds a small LLM box
+   beside the tool call. Figures share one fixed height, so the term lists
+   start level. The takeaway sits in a second grid row under column 3 and
+   arrives with it. */
+
+.reveal .overview-slide .ov-grid {
+  display: grid;
+  grid-template-columns: 1fr 28px 1fr 28px 1fr;
+  align-items: stretch;
+  width: 1160px;
+  margin: 6px auto 0;
+}
+
+.reveal .overview-slide .ov-grid p { margin: 0; }
+
+.reveal .overview-slide .ov-col {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: 12px 18px 8px;
+  background: var(--deck-surface);
+  border: 2px solid var(--deck-line);
+  border-radius: 20px;
+}
+
+.reveal .overview-slide .ov-arrow {
+  align-self: center;
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+  color: var(--deck-soft);
+}
+
+.reveal .overview-slide .ov-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--deck-ink);
+}
+
+.reveal .overview-slide .ov-num {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  font-size: 17px;
+  color: var(--deck-paper);
+  background: var(--deck-ink);
+  border-radius: 999px;
+}
+
+.reveal .overview-slide .ov-gloss {
+  min-height: 2.6em;
+  margin-top: 6px;
+  font-size: 16px;
+  line-height: 1.3;
+  color: var(--deck-soft);
+}
+
+.reveal .overview-slide .ov-fig {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+  gap: 3px;
+  height: 228px;
+  margin: 6px 0;
+}
+
+.reveal .overview-slide .ov-down {
+  align-self: center;
+  font-size: 16px;
+  line-height: 1;
+  color: var(--deck-soft);
+}
+
+.reveal .overview-slide .ov-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.reveal .overview-slide .ov-toks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  max-width: 250px;
+}
+
+.reveal .overview-slide .ov-io {
+  width: 34px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--deck-soft);
+}
+
+.reveal .overview-slide .ov-tok {
+  padding: 3px 9px;
+  font-size: 17px;
+  line-height: 1.3;
+  color: var(--deck-ink);
+  background: var(--deck-paper);
+  border: 1.5px solid var(--deck-line);
+  border-radius: 6px;
+}
+
+.reveal .overview-slide .ov-out {
+  background: var(--series-b-tint);
+  border-color: var(--series-b);
+}
+
+
+.reveal .overview-slide .ov-llm {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  height: 50px;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--series-b-ink);
+  background: var(--series-b-tint);
+  border: 2px solid var(--series-b);
+  border-radius: 12px;
+}
+
+.reveal .overview-slide .ov-llm-icon {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  background: var(--deck-paper);
+  border: 2px solid var(--series-b);
+  border-radius: 9px;
+}
+
+.reveal .overview-slide .ov-llm-icon svg {
+  width: 24px;
+  height: 24px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.reveal .overview-slide .ov-llm-icon .ov-next { stroke-dasharray: 2 1.6; }
+
+.reveal .overview-slide .ov-loop-row {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.reveal .overview-slide .ov-llm-mini {
+  flex: none;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: flex-start;
+  gap: 2px 6px;
+  width: 104px;
+  height: auto;
+  padding: 5px 6px;
+  font-size: 16px;
+  border-radius: 9px;
+}
+
+.reveal .overview-slide .ov-llm-mini .ov-llm-icon {
+  width: 26px;
+  height: 26px;
+  border-radius: 7px;
+}
+
+.reveal .overview-slide .ov-llm-mini .ov-llm-icon svg { width: 18px; height: 18px; }
+
+.reveal .overview-slide .ov-llm-thought {
+  flex-basis: 100%;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.2;
+  font-style: var(--chat-thought-style);
+  color: var(--chat-thought-ink);
+}
+
+.reveal .overview-slide .ov-sides {
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  gap: 14px;
+  font-size: 16px;
+  line-height: 1;
+  color: var(--deck-soft);
+}
+
+.reveal .overview-slide .ov-steps {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.reveal .overview-slide .ov-steps .ov-step { padding: 2px 6px 2px 9px; line-height: 1.25; }
+
+.reveal .overview-slide .ov-steps .ov-step b { display: block; margin: 0; font-size: 11px; }
+
+.reveal .overview-slide .ov-steps code { font-size: 13px; }
+
+.reveal .overview-slide .ov-msg,
+.reveal .overview-slide .ov-step {
+  padding: 5px 10px 5px 12px;
+  font-size: 16px;
+  line-height: 1.3;
+  color: var(--deck-ink);
+  border-radius: 6px;
+}
+
+.reveal .overview-slide .ov-msg b,
+.reveal .overview-slide .ov-step b {
+  display: inline-block;
+  margin-right: 8px;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.reveal .overview-slide .ov-sys {
+  color: var(--deck-soft);
+  background: var(--chat-system-bg);
+  border: 1px dashed var(--chat-system-edge);
+}
+
+.reveal .overview-slide .ov-user {
+  background: var(--chat-user-bg);
+  box-shadow: inset calc(-1 * var(--chat-edge-width)) 0 0 var(--chat-user-edge);
+}
+
+.reveal .overview-slide .ov-user b { color: var(--chat-user-label); }
+
+.reveal .overview-slide .ov-asst {
+  background: var(--chat-agent-bg);
+  box-shadow: inset var(--chat-edge-width) 0 0 var(--chat-agent-edge);
+}
+
+.reveal .overview-slide .ov-asst b { color: var(--chat-agent-label); }
+
+.reveal .overview-slide .ov-loop {
+  position: relative;
+  margin-top: 3px;
+  padding: 10px 8px 6px;
+  background: var(--chat-agent-bg);
+  border: 2px solid var(--chat-agent-edge);
+  border-radius: 12px;
+}
+
+.reveal .overview-slide .ov-loop-name {
+  position: absolute;
+  top: -11px;
+  left: 10px;
+  padding: 0 6px;
+  line-height: 20px;
+  background: var(--chat-agent-bg);
+  border: 2px solid var(--chat-agent-edge);
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--chat-agent-label);
+}
+
+.reveal .overview-slide .ov-loop-name a { color: inherit; font-weight: inherit; }
+
+.reveal .overview-slide .ov-again { font-size: 16px; }
+
+.reveal .overview-slide .ov-step { padding: 3px 10px; font-size: 15px; }
+
+.reveal .overview-slide .ov-action {
+  background: var(--chat-action-bg);
+  box-shadow: inset var(--chat-edge-width) 0 0 var(--chat-action-edge);
+}
+
+.reveal .overview-slide .ov-obs {
+  background: var(--chat-observation-bg);
+  box-shadow: inset var(--chat-edge-width) 0 0 var(--chat-observation-edge);
+}
+
+.reveal .overview-slide .ov-step code {
+  font-family: var(--deck-font-mono);
+  font-size: 14px;
+  color: var(--deck-ink);
+  background: none;
+}
+
+.reveal .overview-slide .ov-terms-label {
+  padding-top: 7px;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--deck-soft);
+  border-top: 1px solid var(--deck-line);
+}
+
+.reveal .overview-slide .ov-terms {
+  margin: 6px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.reveal .overview-slide .ov-terms li {
+  padding: 2px 0;
+  font-size: 19px;
+  line-height: 1.25;
+  color: var(--deck-ink);
+  border-bottom: 1px solid var(--deck-line);
+}
+
+.reveal .overview-slide .ov-terms li:last-child { border-bottom: 0; }
+
+.reveal .overview-slide .ov-takeaway {
+  grid-column: 5;
+  grid-row: 2;
+  margin: 6px 4px 0;
+  font-size: 20px;
+  line-height: 1.25;
+  font-weight: 500;
+  text-align: center;
+  color: var(--deck-ink);
+}
+
+.reveal .overview-slide .ov-det-ink { font-weight: 700; }
+.reveal .overview-slide .ov-sto-ink { font-weight: 700; color: var(--series-b-ink); }
+
+/* "An LLM judge can mitigate the risks of AI Agents": the definition, then
+   three panels. The slide also carries .overview-slide, so the
+   bubbles, loop and LLM box are the overview's own components. The agent panel
+   is the quiet surface; the trace panel is paper with an ink edge, so it reads
+   as a record rather than a part of the agent; the judge panel takes the judge
+   tint and edge from "LLM-as-judge: evaluating the trace", and its output box
+   the judge edge, since a score is not a pass or a fail. */
+
+.reveal .judge-concept-slide p.jc-def {
+  width: 1180px;
+  margin: 4px auto 0;
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 1.3;
+  color: var(--deck-ink);
+}
+
+.reveal .judge-concept-slide .jc-def b { color: var(--chat-judge-label); }
+
+.reveal .judge-concept-slide .jc-grid {
+  display: grid;
+  grid-template-columns: 1fr 34px 1fr 34px 1fr;
+  align-items: stretch;
+  width: 1180px;
+  margin: 14px auto 0;
+}
+
+.reveal .judge-concept-slide .jc-grid p { margin: 0; }
+
+.reveal .judge-concept-slide .ov-col { padding: 12px 16px 12px; }
+
+.reveal .judge-concept-slide .ov-head { font-size: 26px; }
+
+.reveal .judge-concept-slide .ov-msg,
+.reveal .judge-concept-slide .ov-step { font-size: 17px; }
+
+.reveal .judge-concept-slide .ov-gloss {
+  min-height: 2.6em;
+  margin-top: 4px;
+}
+
+.reveal .judge-concept-slide .jc-link {
+  align-self: center;
+  padding: 0 2px;
+}
+
+.reveal .judge-concept-slide .jc-link svg {
+  display: block;
+  width: 100%;
+  height: 20px;
+  overflow: visible;
+}
+
+.reveal .judge-concept-slide .jc-link line {
+  stroke: var(--deck-soft);
+  stroke-width: 3;
+}
+
+.reveal .judge-concept-slide .jc-link path { fill: var(--deck-soft); }
+
+/* Agent */
+
+.reveal .judge-concept-slide .jc-harness {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.reveal .judge-concept-slide .jc-parts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.reveal .judge-concept-slide .jc-part {
+  padding: 10px 6px;
+  font-size: 17px;
+  font-weight: 600;
+  text-align: center;
+  color: var(--deck-ink);
+  background: var(--deck-paper);
+  border: 1.5px solid var(--deck-ink);
+  border-radius: 8px;
+}
+
+.reveal .judge-concept-slide .jc-loop {
+  position: relative;
+  margin-top: 8px;
+  padding: 18px 14px 12px;
+}
+
+.reveal .judge-concept-slide .jc-legend {
+  display: grid;
+  grid-template-columns: 14px 1fr;
+  align-items: center;
+  gap: 3px 8px;
+  margin-top: 12px !important;
+  font-size: 14px;
+  line-height: 1.3;
+  color: var(--deck-soft);
+}
+
+.reveal .judge-concept-slide .jc-legend b { color: var(--deck-ink); }
+
+.reveal .judge-concept-slide .jc-legend .ov-sto-ink { color: var(--series-b-ink); }
+
+.reveal .judge-concept-slide .jc-key {
+  width: 14px;
+  height: 14px;
+  border-radius: 4px;
+}
+
+.reveal .judge-concept-slide .jc-key-sto {
+  background: var(--series-b-tint);
+  border: 2px solid var(--series-b);
+}
+
+.reveal .judge-concept-slide .jc-key-det {
+  background: var(--deck-paper);
+  border: 1.5px solid var(--deck-ink);
+}
+
+/* Trace */
+
+.reveal .judge-concept-slide .jc-trace {
+  background: var(--deck-paper);
+  border-color: var(--deck-ink);
+}
+
+.reveal .judge-concept-slide .jc-steps {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 10px;
+  counter-reset: jc-step;
+}
+
+.reveal .judge-concept-slide .jc-steps > div {
+  position: relative;
+  margin-left: 26px;
+  counter-increment: jc-step;
+}
+
+.reveal .judge-concept-slide .jc-steps > div::before {
+  content: counter(jc-step);
+  position: absolute;
+  left: -26px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 18px;
+  font-family: var(--deck-font-mono);
+  font-size: 13px;
+  font-weight: 700;
+  text-align: center;
+  color: var(--deck-soft);
+}
+
+.reveal .judge-concept-slide .jc-thought {
+  font-style: var(--chat-thought-style);
+  color: var(--chat-thought-ink);
+  background: var(--chat-thought-bg);
+  box-shadow: inset var(--chat-edge-width) 0 0 var(--chat-thought-edge);
+}
+
+.reveal .judge-concept-slide .jc-thought b { font-style: normal; }
+
+/* Judge */
+
+.reveal .judge-concept-slide .jc-judge {
+  background: var(--chat-judge-tint);
+  border-color: var(--chat-judge-box-edge);
+}
+
+.reveal .judge-concept-slide .jc-judge .ov-head { color: var(--chat-judge-label); }
+
+.reveal .judge-concept-slide .jc-fig {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+  margin-top: 8px;
+}
+
+.reveal .judge-concept-slide .jc-prompt > b { display: block; margin-bottom: 1px; }
+
+/* The user prompt's context is the middle panel's trace drawn at half size, on
+   paper with an ink edge like the trace panel, so it reads as a copy of it. The
+   steps keep the trace panel's width, so they wrap the same way. */
+.reveal .judge-concept-slide .jc-context {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.reveal .judge-concept-slide .jc-mini {
+  flex: none;
+  margin-top: 2px;
+  padding: 4px 6px;
+  background: var(--deck-paper);
+  border: 1px solid var(--deck-ink);
+  border-radius: 6px;
+}
+
+.reveal .judge-concept-slide .jc-mini .jc-steps {
+  width: 335px;
+  margin: 0;
+  zoom: 0.5;
+}
+
+.reveal .judge-concept-slide .jc-judge .ov-llm { height: 42px; }
+
+.reveal .judge-concept-slide .jc-verdict {
+  padding: 6px 12px 8px;
+  background: var(--deck-paper);
+  border: 2px solid var(--chat-judge-box-edge);
+  border-radius: 6px;
+}
+
+.reveal .judge-concept-slide .jc-verdict-head {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--deck-soft);
+}
+
+.reveal .judge-concept-slide .jc-score {
+  margin-top: 2px !important;
+  font-size: 20px;
+  line-height: 1.3;
+  color: var(--deck-ink);
+}
+
+.reveal .judge-concept-slide .jc-score b { color: var(--chat-judge-label); }
+
+/* Section 2 recap divider: the shared section-divider card (.sd-1) with a recap of
+   section 1 and what section 2 covers. White text on the card's gradient. The kicker
+   is positioned above the heading, which stays first in the source for the top bar,
+   search and the slide's anchor. */
+.reveal .slides section.recap-divider {
+  color: var(--sd-on-ink);
+}
+
+.reveal .recap-divider p {
+  margin: 0;
+}
+
+.reveal .recap-divider .rd-kicker {
+  position: absolute;
+  top: 18px;
+  left: 0;
+  padding: 4px 18px;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  line-height: 1.2;
+  text-transform: uppercase;
+  border: 2px solid currentColor;
+  border-radius: 999px;
+}
+
+.reveal .slides section.recap-divider h1 {
+  max-width: 1160px;
+  margin-top: 76px;
+  font-size: 68px;
+  line-height: 1.08;
+}
+
+.reveal .recap-divider .rd-body {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 48px;
+  max-width: 1120px;
+  margin-top: 44px;
+}
+
+.reveal .recap-divider .rd-label {
+  margin-bottom: 14px;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.reveal .recap-divider .rd-list {
+  display: grid;
+  gap: 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: rd;
+}
+
+.reveal .recap-divider .rd-list li {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 0;
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 1.25;
+  counter-increment: rd;
+}
+
+.reveal .recap-divider .rd-list li::before {
+  content: counter(rd);
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  font-size: 22px;
+  font-weight: 700;
+  border: 2px solid currentColor;
+  border-radius: 50%;
+}
+
+.reveal .recap-divider .rd-next {
+  padding-left: 40px;
+  border-left: 2px solid rgb(255 255 255 / 0.55);
+}
+
+.reveal .recap-divider .rd-next-line {
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 1.3;
 }

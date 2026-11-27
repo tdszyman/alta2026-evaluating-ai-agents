@@ -192,6 +192,13 @@
   stroke-linecap: round;
 }
 
+.reveal .about-slide .ab-tl-rail .ab-tl-future {
+  stroke-width: 3.5px;
+  stroke-opacity: 0.55;
+  stroke-dasharray: 0.1 9;
+  stroke-dashoffset: -5;
+}
+
 .reveal .about-slide .ab-stops {
   position: relative;
   list-style: none;

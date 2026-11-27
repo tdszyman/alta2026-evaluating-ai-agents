@@ -702,3 +702,69 @@ html.print-pdf .reveal .terms-slide .tm-conn { opacity: 1; }
   font-weight: 700;
   color: var(--deck-accent);
 }
+
+/* "An agent trace can be evaluated at multiple levels": the judge slide's example with name-only
+   labels, so the names can be larger than on the term slides. */
+
+.reveal .trace-parts-slide .tm-term b { font-size: 18px; }
+
+/* Room for the stepped brackets on the right: the chat moves left, and the
+   labels on both sides are only as wide as their names. */
+.reveal .trace-parts-slide .tm-chat { left: 300px; }
+.reveal .trace-parts-slide .tm-term[data-side="left"] { left: 74px; width: 190px; }
+.reveal .trace-parts-slide .tm-term[data-side="right"] {
+  width: auto;
+  padding: 4px 6px;
+  white-space: nowrap;
+}
+
+/* It sits in section 1, so its title matches the slides around it. */
+.reveal .trace-parts-slide.terms-slide h2 { font-size: var(--r-heading2-size); }
+
+/* Quiet strip across the bottom of the trace-anatomy slide naming the
+   LLM-as-a-judge evaluation levels discussed in the speaker notes. */
+.reveal .trace-parts-slide .tp-levels {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 12px;
+  padding: 8px 16px;
+  background: var(--chat-judge-tint);
+  box-shadow: inset 4px 0 0 var(--chat-judge-edge);
+  border-radius: 6px;
+  font-family: var(--deck-font-sans);
+}
+
+.reveal .trace-parts-slide .tp-levels-label {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--chat-judge-label);
+  white-space: nowrap;
+}
+
+.reveal .trace-parts-slide .tp-levels-list {
+  display: flex;
+  flex: 1;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.reveal .trace-parts-slide .tp-levels-list li {
+  margin: 0;
+  padding: 3px 12px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--deck-ink);
+  background: var(--deck-paper);
+  border: 1px solid var(--chat-judge-box-edge);
+  border-radius: 999px;
+  white-space: nowrap;
+}

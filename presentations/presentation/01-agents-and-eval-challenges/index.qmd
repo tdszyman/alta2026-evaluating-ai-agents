@@ -5,13 +5,11 @@ format:
     css:
       - ../../_shared/chrome.css
       - ../../_shared/section-divider.css
-      - ../../_shared/organiser-only.css
       - complexity.css
       - job-ad-judge.css
       - generative-eval.css
       - chat-attack-judge.css
       - terms.css
-      - follow-up.css
       - motivation.css
       - opening.css
 ---
@@ -35,7 +33,7 @@ format:
 ```{=html}
 <div class="vt-grid">
   <div class="vt-ask">
-    <p class="vt-kicker">Hands up if you would</p>
+    <p class="vt-kicker">Hands up if you would let AI</p>
     <ol class="vt-questions">
       <li class="fragment" data-fragment-index="1"><span class="vt-n">1</span>proofread your CV and suggest changes?</li>
       <li class="fragment" data-fragment-index="2"><span class="vt-n">2</span>find and recommend jobs for you?</li>
@@ -83,6 +81,7 @@ format:
   <div class="ab-tl">
     <svg class="ab-tl-rail" viewBox="0 0 80 580" aria-hidden="true">
       <path d="M40 58 A36 58 0 0 1 40 174 A36 58 0 0 0 40 290 A36 58 0 0 1 40 406 A36 58 0 0 0 40 522"/>
+      <path class="ab-tl-future" d="M40 522 A36 58 0 0 1 76 580"/>
     </svg>
     <ol class="ab-stops">
       <li class="ab-stop ab-l"><span class="ab-org"><img class="ab-icon" src="images/umich-block-m-maize.svg" alt="">Michigan</span>PhD Linguistics</li>
@@ -140,6 +139,104 @@ format:
 
 ---
 
+## GenAI: from LLMs to AI Agents {#from-llms-to-agents .overview-slide}
+
+<!-- TODO (Terrence): this overview is meant to replace the background slides in section 2 (“Terms this section defines”, “LLM text generation”, “Conversations: messages and turns”, “What is an agent?”, “Agent traces: think, act, observe”). They are kept, unchanged, until you decide how far to cut them. -->
+
+```{=html}
+<div class="ov-grid">
+  <div class="ov-col">
+    <p class="ov-head"><span class="ov-num">1</span>LLM text completion</p>
+    <p class="ov-gloss">Autoregressive next-token prediction. Text tokens in, text tokens out.</p>
+    <div class="ov-fig">
+      <div class="ov-row"><span class="ov-io">In</span><span class="ov-toks"><span class="ov-tok">A</span><span class="ov-tok">typical</span><span class="ov-tok">salary</span><span class="ov-tok">for</span><span class="ov-tok">a</span><span class="ov-tok">barista</span></span></div>
+      <span class="ov-down" aria-hidden="true">↓</span>
+      <div class="ov-llm"><span class="ov-llm-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="1.5" y="8.5" width="5.5" height="7" rx="1.5"/><rect x="9.25" y="8.5" width="5.5" height="7" rx="1.5"/><rect class="ov-next" x="17" y="8.5" width="5.5" height="7" rx="1.5"/></svg></span>LLM</div>
+      <span class="ov-down" aria-hidden="true">↓</span>
+      <div class="ov-row"><span class="ov-io">Out</span><span class="ov-toks"><span class="ov-tok ov-out">is</span><span class="ov-tok ov-out">$14</span><span class="ov-tok ov-out">per</span><span class="ov-tok ov-out">hour.</span></span></div>
+    </div>
+    <p class="ov-terms-label">Key terms</p>
+    <ul class="ov-terms">
+      <li>Input tokens, output tokens</li>
+      <li>LLM call</li>
+    </ul>
+  </div>
+
+  <div class="ov-arrow fragment" data-fragment-index="1" aria-hidden="true">›</div>
+
+  <div class="ov-col fragment" data-fragment-index="1">
+    <p class="ov-head"><span class="ov-num">2</span>Chat completion</p>
+    <p class="ov-gloss">Separate system and user prompts. Chat history in. Assistant response out.</p>
+    <div class="ov-fig">
+      <div class="ov-msg ov-sys"><b>System</b>You are a career assistant.</div>
+      <div class="ov-msg ov-user"><b>User</b>What is a typical salary for a barista?</div>
+      <span class="ov-down" aria-hidden="true">↓</span>
+      <div class="ov-llm"><span class="ov-llm-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="1.5" y="8.5" width="5.5" height="7" rx="1.5"/><rect x="9.25" y="8.5" width="5.5" height="7" rx="1.5"/><rect class="ov-next" x="17" y="8.5" width="5.5" height="7" rx="1.5"/></svg></span>LLM</div>
+      <span class="ov-down" aria-hidden="true">↓</span>
+      <div class="ov-msg ov-asst"><b>Assistant</b>Around $14 per hour.</div>
+    </div>
+    <p class="ov-terms-label">Key terms</p>
+    <ul class="ov-terms">
+      <li>Messages</li>
+      <li>System, user and assistant roles</li>
+      <li>Turn, multi-turn</li>
+    </ul>
+  </div>
+
+  <div class="ov-arrow fragment" data-fragment-index="2" aria-hidden="true">›</div>
+
+  <div class="ov-col fragment" data-fragment-index="2">
+    <p class="ov-head"><span class="ov-num">3</span>AI Agents</p>
+    <p class="ov-gloss">LLM wrapped in a harness with tools. Goal-directed. Multi-step reasoning and action.</p>
+    <div class="ov-fig">
+      <div class="ov-msg ov-user"><b>User</b>What is a good salary for a barista?</div>
+      <span class="ov-down" aria-hidden="true">↓</span>
+      <div class="ov-loop">
+        <span class="ov-loop-name"><a href="../../bibliography/yao-2023-react/">ReAct</a> loop <span class="ov-again" aria-label="repeat">↻</span></span>
+        <div class="ov-loop-row">
+          <div class="ov-llm ov-llm-mini"><span class="ov-llm-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="1.5" y="8.5" width="5.5" height="7" rx="1.5"/><rect x="9.25" y="8.5" width="5.5" height="7" rx="1.5"/><rect class="ov-next" x="17" y="8.5" width="5.5" height="7" rx="1.5"/></svg></span><span class="ov-llm-text">LLM</span><span class="ov-llm-thought">Thought: where are they?</span></div>
+          <span class="ov-sides" aria-hidden="true"><span>→</span><span>←</span></span>
+          <div class="ov-steps">
+            <div class="ov-step ov-action"><b>Action</b><code>get_location()</code></div>
+            <div class="ov-step ov-obs"><b>Observation</b>location: Fitzroy</div>
+          </div>
+        </div>
+      </div>
+      <span class="ov-down" aria-hidden="true">↓</span>
+      <div class="ov-msg ov-asst"><b>Assistant</b>In Fitzroy, around $34 per hour.</div>
+    </div>
+    <p class="ov-terms-label">Key terms</p>
+    <ul class="ov-terms">
+      <li>Thought, action, observation</li>
+      <li>Tool call, tool result</li>
+      <li>Step, multi-step</li>
+      <li>Trace, also called trajectory</li>
+    </ul>
+  </div>
+
+  <p class="ov-takeaway fragment" data-fragment-index="2">AI agents combine <span class="ov-sto-ink">non-deterministic</span> LLM calls with a <span class="ov-det-ink">deterministic</span> harness and tool calls.</p>
+</div>
+```
+
+::: {.notes}
+**About this slide:** The three ideas that build up from an LLM to an agent, on one slide, each the one before with something added. (1) LLM text completion: autoregressive next-token prediction. Text tokens go in, and the model predicts the next token, one at a time, until it stops; one run of this is an LLM call. (2) Chat completion: the same model, given separate system and user prompts and the chat history as a list of messages with roles (system, user, assistant), returns the next assistant response. (3) AI agents: an LLM wrapped in a harness with tools, working towards a goal. Between the user’s message and the reply, the agent runs a ReAct loop ([Yao et al. 2023](../../bibliography/yao-2023-react/)) of thought, action and observation. The action is a tool call, and the observation is the tool’s result. The full record of the run is the trace. One running example, a barista’s salary, goes through all three columns, and the LLM appears in each, in the agent’s loop too. A takeaway line sits under the agent column and arrives with it: the LLM calls are non-deterministic, while the harness and the tool calls are deterministic code. The example and its pay figures are illustrative, not wage data.
+
+**What to take away:** AI agents combine non-deterministic LLM calls with a deterministic harness and tool calls. An agent is still an LLM producing tokens. Chat adds roles and history; an agent adds a harness that loops through tool calls. The trace is what an LLM judge reads, from Part 2 on.
+
+**Presenter notes:**
+
+- Builds: the slide opens on column 1; click 1 adds chat completion; click 2 adds AI agents with the takeaway line under it.
+- The example: the same barista salary question in all three columns, so only the setup changes. The pay figures ($14 and $34 an hour) are made up for the example; they are not wage data, so do not quote them as facts.
+- Column 1, text completion: autoregressive next-token prediction, tokens in, tokens out. The model predicts the next token, appends it, and goes again until it stops. Each run is one LLM call; Part 2 counts judge calls, and the hands-on app reports input and output tokens. Here the input is the text “A typical salary for a barista” and the model continues it with “is $14 per hour.” It is not answering a question, just predicting likely next words.
+- Column 2, chat completion: the system and user prompts are separate, and the input is now the chat history. The system message holds the developer’s instructions, the user message is what the person types, and the assistant message is the model’s reply. A turn is one user message and the reply; multi-turn means several. The model keeps no memory between calls, so each call re-sends the whole history. Here the system prompt makes it a career assistant, the user asks “What is a typical salary for a barista?”, and the assistant replies “Around $14 per hour.” Same model, now answering as one side of a conversation.
+- Column 3, AI agents: the LLM is wrapped in a harness with tools, and works towards a goal over several steps of reasoning and action. Before replying, the agent loops, and the LLM sits inside that loop. Here the user asks “What is a good salary for a barista?”, and a good salary depends on where they are. Thought: the LLM decides it needs the user’s location. Action: it calls a tool, `get_location()`. Observation: the tool returns “location: Fitzroy”, which goes back to the LLM. The arrows show the cycle: the LLM calls the tool, and the result comes back to the LLM. The assistant then answers “In Fitzroy, around $34 per hour.” The answer is grounded in the user’s situation, not just in the training data. One pass is a step; several are multi-step. The whole record, messages plus LLM calls plus tool calls, is the trace, which papers also call the trajectory.
+- Takeaway, under column 3 and shown with it: the LLM calls are non-deterministic; the harness and the tool calls are deterministic code (tools usually, not always). In the example, the LLM is the purple box in the loop; `get_location()` and the loop around it are code. “AI Agents are complex *and* complicated systems”, after the risks and headlines, names that split.
+- The words in the key-term lists are the ones Parts 2 to 4 and the hands-on app use: LLM call, tokens, messages and roles, turn, tool call and result, step, trace. Next-token prediction is now in column 1’s description, so it is no longer listed as a key term.
+- Next: why organisations want agents anyway, and what they risk.
+:::
+
+---
+
 ## Agents can create value, but introduce risk {.value-risk-slide .centre-body}
 
 <!-- The full risk slide, with an example at SEEK and how evals help for each row, is kept in the unpublished Part 1.G graveyard deck. -->
@@ -148,20 +245,6 @@ format:
 
 ::: {.vr-side}
 [Value]{.vr-label}
-
-::: {.vr-card .vr-productivity .fragment}
-[Productivity]{.vr-name}
-[Do the same work faster and cheaper]{.vr-sub}
-
-Deliver outcomes with less effort, greater speed or better consistency.
-:::
-
-::: {.vr-card .vr-products .fragment}
-[Products]{.vr-name}
-[New and better things for customers]{.vr-sub}
-
-Create better customer experiences, new offerings or additional revenue.
-:::
 
 ```{=html}
 <div class="vr-adopt fragment">
@@ -173,12 +256,26 @@ Create better customer experiences, new offerings or additional revenue.
   <p class="vr-adopt-src">Deloitte, <i>State of AI in the Enterprise</i>, February 2026 · <a href="../../bibliography/deloitte-2026-australian-ai-survey/">Deloitte 2026</a></p>
 </div>
 ```
+
+::: {.vr-card .vr-productivity .fragment}
+[Internal operations]{.vr-name}
+[Do the same work faster and cheaper]{.vr-sub}
+
+Deliver outcomes with less effort, greater speed or better consistency.
 :::
 
-::: {.vr-side .vr-risks}
-[Risk [Illustrative, not definitive]{.vr-tag}]{.vr-label .fragment}
+::: {.vr-card .vr-products .fragment}
+[Commercial products]{.vr-name}
+[New and better things for customers]{.vr-sub}
 
-::: {.fragment}
+Create better customer experiences, new offerings or additional revenue.
+:::
+
+:::
+
+::: {.vr-side .vr-risks .fragment}
+[Risk [Illustrative, not definitive]{.vr-tag}]{.vr-label}
+
 1. [Financial]{.vr-name} [One bad decision, such as a refund that policy does not allow.]{.vr-desc}
 2. [Reputational]{.vr-name} [An off-brand or offensive comment to a user.]{.vr-desc}
 3. [Regulatory]{.vr-name} [Illegal behaviour, such as discriminatory content in a job ad.]{.vr-desc}
@@ -186,14 +283,11 @@ Create better customer experiences, new offerings or additional revenue.
 5. [Operational]{.vr-name} [The agent costs more to run than its work is worth.]{.vr-desc}
 6. [Competitive]{.vr-name} [The agent does a poor job, and users take their business elsewhere.]{.vr-desc}
 :::
-:::
 
 ::::
 
 ::: {.notes}
-**About this slide:** Why organisations want AI agents, and what they risk by using them. On the value side, **productivity** means doing the same work faster and cheaper: delivering outcomes with less effort, greater speed or better consistency. **Products** means new and better things for customers: better customer experiences, new offerings or additional revenue. It is more than product features. Nearly every organisation, whether a company, a university or a research lab, has internal work where an agent could help, so productivity applies widely. Products applies to fewer: only some organisations sell agents or put them in front of customers, and these tend to be startups working out how to build new products on them.
-
-Adoption is high: 2026 is the year of the AI agent. In Deloitte’s survey, 69% of Australian organisations are now using agentic AI, alongside three-quarters of global respondents ([Deloitte 2026](../../bibliography/deloitte-2026-australian-ai-survey/)).
+**About this slide:** Why organisations want AI agents, and what they risk by using them. The value side opens on adoption, which is high: 2026 is the year of the AI agent. In Deloitte’s survey, 69% of Australian organisations are now using agentic AI, alongside three-quarters of global respondents ([Deloitte 2026](../../bibliography/deloitte-2026-australian-ai-survey/)). Then come the two reasons: **internal operations** means doing the same work faster and cheaper: delivering outcomes with less effort, greater speed or better consistency. **Commercial products** means new and better things for customers: better customer experiences, new offerings or additional revenue. It is more than product features. Nearly every organisation, whether a company, a university or a research lab, has internal work where an agent could help, so internal operations applies widely. Commercial products applies to fewer: only some organisations sell agents or put them in front of customers, and these tend to be startups working out how to build new products on them.
 
 On the risk side are six ways an AI agent can create risk for a company like SEEK, an online employment marketplace that connects hirers and candidates. The examples are hypothetical:
 
@@ -208,12 +302,12 @@ The first four are about a single failure: a bad decision, a bad comment, an ill
 
 **Presenter notes:**
 
-- The slide builds in six steps, left to right and top to bottom: the Value heading, Productivity, Products, the adoption figure, the Risk heading, then all six risks.
-- The adoption figure. Deloitte: “Autonomous AI agents are racing into the enterprise, transforming AI from a source of information and insights into a system that can do real work”. Deloitte also found that “only 22% of Australian companies report having a highly advanced model for agent governance”, which leads into the risks.
+- The slide opens on the Value heading, then builds in four clicks, left to right and top to bottom: the adoption figure, Internal operations, Commercial products, then the whole Risk column at once, its heading and all six risks.
+- The adoption figure. Deloitte: “Autonomous AI agents are racing into the enterprise, transforming AI from a source of information and insights into a system that can do real work”. Deloitte also found that “only 22% of Australian companies report having a highly advanced model for agent governance”, which can come back when the Risk side appears.
 - If asked about the 69%: Deloitte surveyed “over 3,000 director to C-suite-level leaders … who have direct involvement in their companies’ AI initiatives”, which skews towards adopters; its 69% is of organisations surveyed, not of all Australian businesses.
 - The Risk side is labelled “Illustrative, not definitive”: the six are a way to organise the risks, not a complete or standard list.
-- Terrence’s framing. Productivity: deliver business outcomes with less effort, greater speed or better consistency. Products: create better customer experiences, new offerings or additional revenue.
-- Nearly all organisations can benefit from some element of productivity, by adopting AI agents for some type of internal business operations.
+- Terrence’s framing. Internal operations: deliver business outcomes with less effort, greater speed or better consistency. Commercial products: create better customer experiences, new offerings or additional revenue.
+- Nearly all organisations can benefit from using AI agents in some part of their internal operations.
 - Some, but not all, businesses can also “sell” AI agents in some way, or use them in the customer experience. This does not apply to all businesses, and may skew towards startups figuring out how to create new products and value out of AI agents.
 - For the students and researchers in the room: both motives raise the same question this tutorial is about, which is how you know the agent is doing the job well.
 - Talk down the risks: for each one, what could go wrong at a company like SEEK.
@@ -230,97 +324,127 @@ The first four are about a single failure: a bad decision, a bad comment, an ill
 
 ```{=html}
 <div class="hc-board">
-  <figure class="hc-card fragment" data-fragment-index="1" style="left:0px; top:0px; width:400px; --r:-3deg;">
-    <img src="images/headline-air-canada-cbc.png" alt="CBC News headline: “Air Canada found liable for chatbot's bad advice on plane tickets”. Standfirst: “Airline's claim that online helper was responsible for its own actions was 'remarkable': small claims court”. Jason Proctor, CBC News, posted Feb 15, 2024.">
-    <figcaption>CBC News · 15 Feb 2024</figcaption>
-  </figure>
-  <figure class="hc-card fragment" data-fragment-index="2" style="left:420px; top:22px; width:360px; --r:2deg;">
+  <figure class="hc-card fragment" data-fragment-index="1" style="left:0px; top:14px; width:360px; --r:-3deg;">
     <img src="images/headline-dpd-bbc.png" alt="BBC News headline: “DPD error caused chatbot to swear at customer”. 19 January 2024, Tom Gerken, Technology reporter.">
     <figcaption>BBC News · 19 Jan 2024</figcaption>
+  </figure>
+  <figure class="hc-card fragment" data-fragment-index="2" style="left:395px; top:0px; width:400px; --r:2deg;">
+    <img src="images/headline-air-canada-cbc.png" alt="CBC News headline: “Air Canada found liable for chatbot's bad advice on plane tickets”. Standfirst: “Airline's claim that online helper was responsible for its own actions was 'remarkable': small claims court”. Jason Proctor, CBC News, posted Feb 15, 2024.">
+    <figcaption>CBC News · 15 Feb 2024</figcaption>
   </figure>
   <figure class="hc-card fragment" data-fragment-index="3" style="left:825px; top:0px; width:300px; --r:3deg;">
     <img src="images/headline-mycity-markup.png" alt="The Markup headline: “NYC’s AI Chatbot Tells Businesses to Break the Law”. Standfirst: “The Microsoft-powered bot says bosses can take workers’ tips and that landlords can discriminate based on source of income”. By Colin Lecher, March 29, 2024.">
     <figcaption>The Markup · 29 Mar 2024</figcaption>
   </figure>
-  <figure class="hc-card fragment" data-fragment-index="4" style="left:0px; top:192px; width:420px; --r:-2deg;">
-    <img src="images/headline-bunnings-inside-retail.png" alt="Inside Retail headline: “Bunnings addresses ‘illegal advice’ from its AI chatbot”.">
-    <figcaption>Inside Retail Australia · 8 Dec 2025</figcaption>
-  </figure>
-  <div class="hc-card hc-recreated fragment" data-fragment-index="5" style="left:445px; top:178px; width:330px; --r:-3deg;">
+  <div class="hc-card hc-recreated fragment" data-fragment-index="4" style="left:0px; top:172px; width:330px; --r:-2deg;">
     <span class="hc-outlet">Cybersecurity Dive</span>
     <span class="hc-head">Critical flaw in Microsoft Copilot could have allowed zero-click attack</span>
     <span class="hc-dek">Researchers said the vulnerability, dubbed “EchoLeak,” could allow a hacker to access data without any specific user interaction.</span>
     <span class="hc-by">David Jones · Reporter · Published June 11, 2025</span>
     <span class="hc-caption">Recreated from Cybersecurity Dive · 11 Jun 2025</span>
   </div>
-  <figure class="hc-card fragment" data-fragment-index="6" style="left:805px; top:238px; width:320px; --r:3deg;">
-    <img src="images/headline-lego-wired.png" alt="WIRED headline: “Elon Musk Bragged About His Grok Lego Star Wars Haul. Then X Users Punked Him”. Jeremy White, Gear, Oct 12, 2026.">
-    <figcaption>WIRED · 12 Oct 2026</figcaption>
+  <figure class="hc-card fragment" data-fragment-index="5" style="left:375px; top:196px; width:390px; --r:-2deg;">
+    <img src="images/headline-bunnings-inside-retail.png" alt="Inside Retail headline: “Bunnings addresses ‘illegal advice’ from its AI chatbot”.">
+    <figcaption>Inside Retail Australia · 8 Dec 2025</figcaption>
   </figure>
-  <figure class="hc-card fragment" data-fragment-index="7" style="left:30px; top:322px; width:380px; --r:2deg;">
-    <img src="images/headline-gym-abc.png" alt="ABC News headline: “AI assistant hacks gym website in first known Australian autonomous cyber attack”. By national AI reporter Cam Wilson and the Specialist Reporting Team's Rhiannon Hobbins. Posted 10 Aug 2026.">
-    <figcaption>ABC News · 10 Aug 2026</figcaption>
-  </figure>
-  <figure class="hc-card fragment" data-fragment-index="8" style="left:560px; top:414px; width:360px; --r:-1.5deg;">
+  <figure class="hc-card fragment" data-fragment-index="6" style="left:795px; top:232px; width:330px; --r:3deg;">
     <img src="images/headline-olive-smh.png" alt="The Sydney Morning Herald headline: “Woolworths forced to rein in chatbot that claimed to have angry mother”. Jessica Yun, February 26, 2026.">
     <figcaption>The Sydney Morning Herald · 26 Feb 2026</figcaption>
   </figure>
+  <figure class="hc-card fragment" data-fragment-index="7" style="left:370px; top:328px; width:370px; --r:2deg;">
+    <img src="images/headline-gym-abc.png" alt="ABC News headline: “AI assistant hacks gym website in first known Australian autonomous cyber attack”. By national AI reporter Cam Wilson and the Specialist Reporting Team's Rhiannon Hobbins. Posted 10 Aug 2026.">
+    <figcaption>ABC News · 10 Aug 2026</figcaption>
+  </figure>
+  <figure class="hc-card fragment" data-fragment-index="8" style="left:790px; top:408px; width:315px; --r:-1.5deg;">
+    <img src="images/headline-lego-wired.png" alt="WIRED headline: “Elon Musk Bragged About His Grok Lego Star Wars Haul. Then X Users Punked Him”. Jeremy White, Gear, Oct 12, 2026.">
+    <figcaption>WIRED · 12 Oct 2026</figcaption>
+  </figure>
 </div>
+
+<p class="hc-takeaway fragment" data-fragment-index="9">The big question for orgs is: how can we build AI agents that don’t end up on the <b>front page of the news</b>?</p>
 ```
 
 ::: {.notes}
-**About this slide:** Real cases of the risks on the last slide, gathered as the headlines they produced. AI chatbots and agents that went wrong landed their companies in trouble with customers, in the media and with courts and regulators: an airline held liable for its chatbot, a parcel firm’s chatbot swearing at a customer, a city chatbot telling businesses to break the law, a retailer’s assistant giving illegal electrical advice, a critical flaw in Microsoft’s Copilot, a shopping order changed through a support assistant, an agent removing a stranger from a gym waitlist, and a supermarket assistant talking about its angry mother. A slide on each case is kept in the unpublished Part 1.G graveyard deck.
+**About this slide:** Real cases of the risks on the last slide, gathered as the headlines they produced. AI chatbots and agents that went wrong landed their companies in trouble with customers, in the media and with courts and regulators: a parcel firm’s chatbot swearing at a customer, an airline held liable for its chatbot, a city chatbot telling businesses to break the law, a critical flaw in Microsoft’s Copilot, a retailer’s assistant giving illegal electrical advice, a supermarket assistant talking about its angry mother, an agent removing a stranger from a gym waitlist, and a shopping order changed through a support assistant. A slide on each case is kept in the unpublished Part 1.G graveyard deck.
 
-Cards, in the order they appear: one per case, the news headline. All are real screenshots except the Cybersecurity Dive card, which is recreated; its outlet, headline, standfirst, byline and date are copied exactly from the article.
+After the last card, a takeaway line closes the slide with Terrence’s question: “The big question for orgs is: how can we build AI agents that don’t end up on the front page of the news?”
 
-1. CBC News, “Air Canada found liable for chatbot's bad advice on plane tickets”, Jason Proctor, 15 February 2024 ([Proctor 2024](../../bibliography/proctor-2024-air-canada-cbc/)).
-2. BBC News, “DPD error caused chatbot to swear at customer”, Tom Gerken, 19 January 2024 ([Gerken 2024](../../bibliography/gerken-2024-dpd-chatbot/)).
+Cards, in the order they appear, which is the order the stories were published, oldest first: one per case, the news headline. All are real screenshots except the Cybersecurity Dive card, which is recreated; its outlet, headline, standfirst, byline and date are copied exactly from the article.
+
+1. BBC News, “DPD error caused chatbot to swear at customer”, Tom Gerken, 19 January 2024 ([Gerken 2024](../../bibliography/gerken-2024-dpd-chatbot/)).
+2. CBC News, “Air Canada found liable for chatbot's bad advice on plane tickets”, Jason Proctor, 15 February 2024 ([Proctor 2024](../../bibliography/proctor-2024-air-canada-cbc/)).
 3. The Markup, “NYC’s AI Chatbot Tells Businesses to Break the Law”, Colin Lecher, 29 March 2024 ([Lecher 2024](../../bibliography/lecher-2024-nyc-chatbot/)).
-4. Inside Retail Australia, “Bunnings addresses ‘illegal advice’ from its AI chatbot”, Harry Booth, 8 December 2025 ([Booth 2025](../../bibliography/booth-2025-bunnings-chatbot/)).
-5. Cybersecurity Dive, “Critical flaw in Microsoft Copilot could have allowed zero-click attack”, David Jones, 11 June 2025 ([Jones 2025](../../bibliography/jones-2025-echoleak/)). Recreated, because the site blocked capture.
-6. WIRED, “Elon Musk Bragged About His Grok Lego Star Wars Haul. Then X Users Punked Him”, Jeremy White, 12 October 2026 ([White 2026](../../bibliography/white-2026-musk-lego/)). The order changes are claims; Lego has not confirmed them.
+4. Cybersecurity Dive, “Critical flaw in Microsoft Copilot could have allowed zero-click attack”, David Jones, 11 June 2025 ([Jones 2025](../../bibliography/jones-2025-echoleak/)). Recreated, because the site blocked capture.
+5. Inside Retail Australia, “Bunnings addresses ‘illegal advice’ from its AI chatbot”, Harry Booth, 8 December 2025 ([Booth 2025](../../bibliography/booth-2025-bunnings-chatbot/)).
+6. The Sydney Morning Herald, “Woolworths forced to rein in chatbot that claimed to have angry mother”, Jessica Yun, 26 February 2026 ([Yun 2026](../../bibliography/yun-2026-woolworths-olive/)). The screenshot was supplied by Terrence.
 7. ABC News, “AI assistant hacks gym website in first known Australian autonomous cyber attack”, Cam Wilson and Rhiannon Hobbins, 10 August 2026 ([Wilson and Hobbins 2026](../../bibliography/wilson-2026-gym-agent/)).
-8. The Sydney Morning Herald, “Woolworths forced to rein in chatbot that claimed to have angry mother”, Jessica Yun, 26 February 2026 ([Yun 2026](../../bibliography/yun-2026-woolworths-olive/)). The screenshot was supplied by Terrence.
+8. WIRED, “Elon Musk Bragged About His Grok Lego Star Wars Haul. Then X Users Punked Him”, Jeremy White, 12 October 2026 ([White 2026](../../bibliography/white-2026-musk-lego/)). The order changes are claims; Lego has not confirmed them.
 
 **Presenter notes:**
 
 - This whole slide gets one to two minutes. Click through the headlines without telling each story; the point is that these risks are real, and they cost companies with customers, in the media and with regulators.
-- Eight clicks, one per case, in the order of the risks on the last slide: financial, reputational, regulatory, cybersecurity, then competitive.
-- Don’t stop on any card. Next: how organisations build agents that are governed against these risks. Each case has its own slide in the unpublished Part 1.G graveyard deck, for questions.
+- Nine clicks. The first eight drop one case each, in the order the stories were published, from January 2024 to October 2026. The ninth shows the takeaway line under the cards.
+- Don’t stop on any card. Pause on the takeaway: it is the question the rest of the tutorial answers. Next: the tutorial’s central idea, an LLM judge that checks what the agent did; then, after the section 2 recap, why these failures are hard to rule out, because agents are complex *and* complicated systems, and how organisations build agents that are governed against these risks. Each case has its own slide in the unpublished Part 1.G graveyard deck, for questions.
 :::
 
 ---
 
-## Agent platforms layer protections to mitigate these risks {#agent-platforms .platforms-slide}
-
-<!-- TODO: Check permission to use the AWS, Google Cloud, Arize and LangChain logos on this slide; their sources are in the speaker notes. -->
+## An LLM judge can mitigate the risks of AI Agents {#llm-judge-concept .overview-slide .judge-concept-slide}
 
 ```{=html}
-<div role="group" class="pf-band pf-band-platforms" aria-label="Agent platforms">
-  <p class="pf-lead">There are many agent platforms organisations can choose from, including but not limited to:</p>
-  <ul class="pf-cards">
-    <li><span class="pf-logo"><img class="pf-logo-aws" src="images/logo-aws.svg" alt="AWS"></span><b>Amazon Bedrock AgentCore</b><span class="pf-cite">AWS · <a href="../../bibliography/aws-2026-bedrock-agentcore/">AWS 2026</a></span></li>
-    <li><span class="pf-logo"><img src="images/logo-google-cloud.svg" alt="Google Cloud"></span><b>Gemini Enterprise Agent Platform</b><span class="pf-cite">Google Cloud · <a href="../../bibliography/google-cloud-2026-agent-platform-overview/">Google Cloud 2026a</a></span></li>
-    <li><span class="pf-logo"><img src="images/logo-arize.svg" alt="Arize"></span><b>Arize AX</b><span class="pf-cite">Arize · <a href="../../bibliography/arize/">Arize</a></span></li>
-    <li><span class="pf-logo"><img src="images/logo-langchain.svg" alt="LangChain"></span><b>LangSmith</b><span class="pf-cite">LangChain · <a href="../../bibliography/langchain-2026-langsmith/">LangChain 2026</a></span></li>
-  </ul>
-</div>
-<div role="group" class="pf-band pf-band-checks fragment" data-fragment-index="1" aria-label="Protections">
-  <p class="pf-lead">They include many protections, in multiple layers, using multiple methods. AI agents are both:</p>
-  <div class="pf-flow">
-    <div class="pf-chain pf-chain-rules">
-      <p class="pf-node pf-system"><b>Complicated systems</b>many designed parts</p>
-      <span class="pf-arrow" aria-hidden="true">→</span>
-      <p class="pf-node pf-check"><b>Deterministic checks</b>rule-based tests and checks, such as a policy that blocks a tool call</p>
+<p class="jc-def"><b>LLM-as-a-judge:</b> use an LLM to check what an agent did.</p>
+
+<div class="jc-grid">
+  <div class="ov-col jc-agent">
+    <p class="ov-head">AI agent</p>
+    <p class="ov-gloss">Does the task. A mix of LLM calls and code.</p>
+    <div class="jc-harness">
+      <div class="jc-parts"><span class="jc-part">System prompt</span><span class="jc-part">Skills</span></div>
+      <div class="ov-loop jc-loop">
+        <span class="ov-loop-name"><a href="../../bibliography/yao-2023-react/">ReAct</a> loop <span class="ov-again" aria-label="repeat">↻</span></span>
+        <div class="ov-llm"><span class="ov-llm-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="1.5" y="8.5" width="5.5" height="7" rx="1.5"/><rect x="9.25" y="8.5" width="5.5" height="7" rx="1.5"/><rect class="ov-next" x="17" y="8.5" width="5.5" height="7" rx="1.5"/></svg></span>LLM</div>
+      </div>
+      <div class="jc-parts"><span class="jc-part">Tools</span><span class="jc-part">Memory</span></div>
     </div>
-    <div class="pf-chain pf-chain-judge fragment" data-fragment-index="2">
-      <p class="pf-node pf-system"><b>Complex systems</b>behaviour that emerges from how the parts interact</p>
-      <span class="pf-arrow" aria-hidden="true">→</span>
-      <p class="pf-node pf-check"><b>Non-deterministic checks</b>model-based checks, where the result can vary from run to run</p>
-      <span class="pf-arrow" aria-hidden="true">→</span>
-      <div class="pf-node pf-judge">
-        <p class="pf-judge-head"><b>LLM-as-a-judge</b>one of the most common, and the focus of this tutorial</p>
-        <p class="pf-def">An LLM, the <i>judge</i>, reads what an agent did and checks it against criteria that people write down. Evals and guardrails use judges to check agents before launch and while they run.</p>
+    <p class="jc-legend"><span class="jc-key jc-key-sto" aria-hidden="true"></span><span><b class="ov-sto-ink">LLM:</b> non-deterministic</span><span class="jc-key jc-key-det" aria-hidden="true"></span><span><b>The rest:</b> deterministic code and config</span></p>
+  </div>
+
+  <div class="jc-link fragment" data-fragment-index="1" aria-hidden="true"><svg viewBox="0 0 36 20"><line x1="2" y1="10" x2="24" y2="10"/><path d="M22,3 L35,10 L22,17 z"/></svg></div>
+
+  <div class="ov-col jc-trace fragment" data-fragment-index="1">
+    <p class="ov-head">Agent trace</p>
+    <p class="ov-gloss">What the agent and the user actually did.</p>
+    <div class="jc-steps">
+      <div class="ov-msg ov-user"><b>User</b>What is a good salary for a barista?</div>
+      <div class="ov-step jc-thought"><b>Thought</b>Where are they?</div>
+      <div class="ov-step ov-action"><b>Action</b><code>get_location()</code></div>
+      <div class="ov-step ov-obs"><b>Observation</b>location: Fitzroy</div>
+      <div class="ov-msg ov-asst"><b>Assistant</b>In Fitzroy, around $34 per hour.</div>
+    </div>
+  </div>
+
+  <div class="jc-link fragment" data-fragment-index="2" aria-hidden="true"><svg viewBox="0 0 36 20"><line x1="2" y1="10" x2="24" y2="10"/><path d="M22,3 L35,10 L22,17 z"/></svg></div>
+
+  <div class="ov-col jc-judge fragment" data-fragment-index="2">
+    <p class="ov-head">LLM judge</p>
+    <p class="ov-gloss">Reads the trace and returns its determination.</p>
+    <div class="jc-fig">
+      <div class="ov-msg ov-sys jc-prompt"><b>System prompt</b>You are an LLM judge. Evaluate factual accuracy on a scale of 1 to 5.</div>
+      <div class="ov-msg ov-user jc-prompt"><b>User prompt</b><div class="jc-context"><span>Context:</span>
+        <div class="jc-mini" aria-hidden="true"><div class="jc-steps">
+          <div class="ov-msg ov-user"><b>User</b>What is a good salary for a barista?</div>
+          <div class="ov-step jc-thought"><b>Thought</b>Where are they?</div>
+          <div class="ov-step ov-action"><b>Action</b><code>get_location()</code></div>
+          <div class="ov-step ov-obs"><b>Observation</b>location: Fitzroy</div>
+          <div class="ov-msg ov-asst"><b>Assistant</b>In Fitzroy, around $34 per hour.</div>
+        </div></div></div>
+      </div>
+      <span class="ov-down" aria-hidden="true">↓</span>
+      <div class="ov-llm"><span class="ov-llm-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="1.5" y="8.5" width="5.5" height="7" rx="1.5"/><rect x="9.25" y="8.5" width="5.5" height="7" rx="1.5"/><rect class="ov-next" x="17" y="8.5" width="5.5" height="7" rx="1.5"/></svg></span>LLM</div>
+      <span class="ov-down" aria-hidden="true">↓</span>
+      <div class="jc-verdict">
+        <p class="jc-verdict-head">Output</p>
+        <p class="jc-score">Factual accuracy: <b>4.2</b></p>
       </div>
     </div>
   </div>
@@ -328,39 +452,500 @@ Cards, in the order they appear: one per case, the news headline. All are real s
 ```
 
 ::: {.notes}
-**About this slide:** Agent platforms are the answer to the risks on the previous slide. Organisations rarely build every safeguard for an agent themselves: agent platforms provide multiple levels of protections to mitigate agent risks. Four examples: Amazon Bedrock AgentCore from AWS ([AWS 2026](../../bibliography/aws-2026-bedrock-agentcore/)), Gemini Enterprise Agent Platform from Google Cloud ([Google Cloud 2026a](../../bibliography/google-cloud-2026-agent-platform-overview/)), Arize AX from Arize ([Arize](../../bibliography/arize/)) and LangSmith from LangChain ([LangChain 2026](../../bibliography/langchain-2026-langsmith/)). These platforms include many protections, in multiple layers, using multiple methods. AI agents are both complicated systems, which need deterministic tests and checks, and complex systems, which need non-deterministic checks. LLM-as-a-judge is one of the most commonly used non-deterministic checks, and a key focus of this tutorial.
-
-This is the first place the tutorial uses the term. **LLM-as-a-judge** means an LLM, the judge, reads what an agent did and checks it against criteria that people write down. Evals and guardrails use judges to check agents before launch and while they run. Using AI to check AI can sound circular; the rest of Part 1 explains why it is the best approach available today.
+**About this slide:** The answer to the headlines’ question, and the tutorial’s central idea. The definition sits under the title. The case for it is spoken, not on the slide: AI agents are complex and complicated, so their risk can never be removed entirely, but an LLM judge can monitor what they do and mitigate the risk. The diagram has three parts, each its own thing. On the left is the **AI agent**: a mix of non-deterministic parts (the LLM) and deterministic code and config (the system prompt, skills, tools, memory and the [ReAct](../../bibliography/yao-2023-react/) loop). In the middle is the **agent trace**: what the agent and the user actually did, step by step. That is the level where LLM-as-a-judge works. On the right is the **LLM judge**: one more LLM call, with a system prompt that holds its instructions (here a toy one: evaluate factual accuracy on a scale of 1 to 5), a user prompt whose context is the agent trace (drawn as a miniature of the middle panel, because that is what the judge reads), and an output, its determination (here a score). The barista example, the judge prompt, the score and the pay figure are illustrative.
 
 **Presenter notes:**
 
-- Terrence’s framing: agent platforms provide multiple levels of protections to mitigate agent risks. The next slide shows the levels in one platform’s architecture.
-- Two reveals. The slide opens on the four platforms. Click 1 adds the protections band with its first chain: complicated systems need deterministic checks. Click 2 adds the second: complex systems need non-deterministic checks, and the most common of these is LLM-as-a-judge, with its definition.
-- The four platforms, as their makers describe them:
-  - Amazon Bedrock AgentCore: AWS calls it “an agentic platform for building, deploying, and operating highly effective agents securely at scale”. Its services include Gateway, Identity, Observability, Evaluations, Registry and Policy ([AWS 2026](../../bibliography/aws-2026-bedrock-agentcore/)).
-  - Gemini Enterprise Agent Platform: Google Cloud’s “unified platform to build, deploy, govern, and optimize enterprise-grade AI agents” ([Google Cloud 2026a](../../bibliography/google-cloud-2026-agent-platform-overview/)). Its architecture is on the next slide.
-  - Arize AX: Arize’s managed agent observability and evaluation platform, beside its open-source Phoenix ([Arize](../../bibliography/arize/)).
-  - LangSmith: LangChain’s agent observability and evaluation platform ([LangChain 2026](../../bibliography/langchain-2026-langsmith/)).
-- The two kinds of protection, from the platforms’ own pages. Deterministic: AWS describes AgentCore Policy as “deterministic control” over which tools an agent can call, and under what conditions. Non-deterministic: LangSmith lists “Online LLM-as-judge and code evals”, so judges and fixed code checks run side by side ([LangChain 2026](../../bibliography/langchain-2026-langsmith/)).
-- Complicated and complex: a one-line nod here. The “AI Agents are complex *and* complicated systems” and “How to evaluate complex and complicated systems” slides at the start of section 2 explain the difference.
-- Keep the definition non-technical. Judge methods come in Part 2.
-- The list is short on purpose and is not a ranking. Other clouds and vendors offer similar platforms.
-- Logo sources, all saved in this deck’s `images/` folder. TODO: check permission to use each logo before the slides are shared.
-  - `logo-aws.svg`: the AWS logo from the header of [aws.amazon.com](https://aws.amazon.com/), with its colours inlined. AWS’s [trademark guidelines](https://aws.amazon.com/trademark-guidelines/) govern its use.
-  - `logo-google-cloud.svg`: the full-colour Google Cloud logo that the [cloud.google.com](https://cloud.google.com/) header loads, `https://www.gstatic.com/cgc/google-cloud-logo-fullcolor.svg`.
-  - `logo-arize.svg`: the Arize logo from Arize’s [brand page](https://arize.com/brand/).
-  - `logo-langchain.svg`: `LangChain_Lockup_Black.svg` from the LangChain [brand assets](https://www.langchain.com/brand-assets) kit. The kit also has a product wordmark, as PNG only; like the other three cards, this one uses the company logo.
+- Builds: the slide opens on the definition and the agent; click 1 adds the agent trace; click 2 adds the whole judge at once: its system prompt, its user prompt with the trace, its LLM and its output.
+- Say this after the definition; it was the slide’s subtitle and is now spoken: “AI agents are complex and complicated, and you can never eliminate risk 100%. Using LLM-as-a-judge, you can monitor agent behaviour and mitigate risks.” “AI Agents are complex *and* complicated systems”, early in section 2, explains what complex and complicated mean. The point here: the risk can be reduced and watched, not removed.
+- The agent: the parts that make it up. Only the LLM is non-deterministic; the rest is code and configuration that behaves the same way each time (tools usually, not always). This is the split from the takeaway on “GenAI: from LLMs to AI Agents”.
+- The trace: not the agent’s code, but its behaviour on one run. The same barista run as on “GenAI: from LLMs to AI Agents”: the user’s question, the thought, the `get_location()` call and its result, and the answer. The judge reads this, so it can see that “Fitzroy” came from the tool.
+- The judge is a chat completion, like column 2 of “GenAI: from LLMs to AI Agents”. Its system prompt holds the instructions; its user prompt holds the context, here the agent trace, the same trace as the middle panel in miniature; its output is the determination, here a factual-accuracy score. The same kind of model as the one inside the agent, given a different job: it does not do the task, it checks it.
+- The judge prompt is written by people. This one is a toy, made up for this example, and so is the score; Part 2 covers real judge prompts, rubrics and scales. The $34 an hour figure is illustrative, not wage data. <!-- TODO (Terrence): one judgement on a 1-to-5 scale is usually a whole number. Say whether 4.2 is meant as an average (for example over several runs or traces), or make it a whole number. -->
+- A judge can also read only a single message, one step, a turn, or the whole trace. “An agent trace can be evaluated at multiple levels”, later in section 2, walks through those levels. The output here is a score; judges can also give a pass or fail with a reason. Part 2 covers rubrics, scales and prompt patterns.
+- Using an LLM to check an LLM can sound circular. Keep that question open; the rest of Part 1 explains why it is still the best approach available today.
+- For further reading, there is a survey of the approach: [Gu et al. 2024](../../bibliography/gu-2024-llm-as-judge-survey/).
+- Next: the end of section 1, a recap, and what section 2 covers.
+:::
+
+# LLM judges: why and how {#section-2-recap .section-divider .sd-1 .recap-divider}
+
+```{=html}
+<p class="rd-kicker">Section 2</p>
+<div class="rd-body">
+  <div class="rd-col rd-recap">
+    <p class="rd-label">So far</p>
+    <ol class="rd-list">
+      <li>Organisations are using AI agents more and more.</li>
+      <li>AI agents are inherently risky.</li>
+      <li>LLM judges can reduce the risk.</li>
+    </ol>
+  </div>
+  <div class="rd-col rd-next">
+    <p class="rd-label">Next</p>
+    <p class="rd-next-line">A bit more detail on how and why organisations use LLM judges for AI agents.</p>
+  </div>
+</div>
+```
+
+::: {.notes}
+**About this slide:** The boundary between section 1 and section 2 of Part 1. It recaps section 1 in three points, then says what section 2 covers: a bit more detail on how and why organisations use LLM judges for AI agents.
+
+**Presenter notes:**
+
+- No builds: the whole divider loads at once.
+- The recap, one point per section 1 slide group:
+  1. Organisations are using AI agents more and more: “Agents can create value, but introduce risk”.
+  2. AI agents are inherently risky: the same slide’s risk side, then “These risks are real, and they make headlines”.
+  3. LLM judges can reduce the risk: “An LLM judge can mitigate the risks of AI Agents”.
+- Section 2, in order: “Complex systems require complex evaluations”, “AI Agents are complex *and* complicated systems”, “How to evaluate complex and complicated systems”, “An agent trace can be evaluated at multiple levels”, “Agent platforms provide the framework”, then the “Two examples” breather and the two examples, an unlawful job ad and a multi-turn attack.
+- Next: “Complex systems require complex evaluations”.
 :::
 
 ---
 
-## AI agents in production need multi-layer protection {#multi-layer-protection .governed-slide}
-
-<!-- TODO: Terrence will likely rework this into a SEEK view of agent architecture. For now it redraws the architecture figure from Google Cloud's Gemini Enterprise Agent Platform overview, keeping Google's component names. -->
-
-[[LLM-as-a-judge]{.gv-term} methods can be applied at various points across the platform.]{.gv-sub}
+## Complex systems require complex evaluations {#why-generative-ai-needs-llm-as-a-judge .output-space-slide .centre-body}
 
 ```{=html}
+<div class="osp">
+  <div class="osp-groups">
+    <div class="osp-group pred">Predictive AI</div>
+    <div class="osp-group gen">Generative AI</div>
+  </div>
+  <div class="osp-cols">
+    <div class="osp-col pred fragment" data-fragment-index="1">
+      <div class="osp-name">Regression</div>
+      <img src="images/output-space-regression.svg" alt="A number line from 0 to 100. The prediction sits close to the label; the gap is the error.">
+      <div class="osp-size"><b>One number</b> in a range</div>
+      <div class="osp-eval"><span>Evaluate by</span>Error against a label: MAE, RMSE</div>
+    </div>
+    <div class="osp-col pred fragment" data-fragment-index="2">
+      <div class="osp-name">Classification</div>
+      <img src="images/output-space-classes.svg" alt="Five job categories. The model picks Technology, which matches the label.">
+      <div class="osp-size"><b>One of <i>k</i></b> classes</div>
+      <div class="osp-eval"><span>Evaluate by</span>Match against a label: accuracy, F1</div>
+    </div>
+    <div class="osp-col gen fragment" data-fragment-index="3">
+      <div class="osp-name">One token</div>
+      <img src="images/output-space-vocab.svg" alt="A dense grid of cells stands for the vocabulary. One cell, the chosen token, is filled.">
+      <div class="osp-size"><b>One of |<i>V</i>| ≈ 10<sup>5</sup></b> tokens</div>
+      <div class="osp-eval"><span>Evaluate by</span>Still a match: it is a very wide classifier</div>
+    </div>
+    <div class="osp-col gen fragment" data-fragment-index="4">
+      <div class="osp-name">A response</div>
+      <img src="images/output-space-sequences.svg" alt="A tree that fans out at every token. One highlighted path is the response the model produced.">
+      <div class="osp-size"><b>|<i>V</i>|<sup><i>n</i></sup></b>: 100 tokens ≈ 10<sup>500</sup></div>
+      <div class="osp-eval"><span>Evaluate by</span>No single right answer. Overlap with a reference, then an LLM judge</div>
+    </div>
+    <div class="osp-col gen fragment" data-fragment-index="5">
+      <div class="osp-name">An agent trace</div>
+      <img src="images/output-space-agent.svg" alt="Three response trees in a row, joined by tool calls drawn as squares.">
+      <div class="osp-size"><b>Responses × steps × turns</b></div>
+      <div class="osp-eval"><span>Evaluate by</span>LLM judges, plus multi-tier evals and simulation</div>
+    </div>
+  </div>
+  <div class="osp-takeaway fragment" data-fragment-index="6">Once outputs can’t be enumerated, there is no label to match. Something has to read the output and decide whether it is good.</div>
+  <div class="osp-sources slide-foot">
+    <div>Before LLM judges: reference overlap, e.g. <a href="../../bibliography/papineni-2002-bleu/">BLEU (Papineni et al. 2002)</a> and <a href="../../bibliography/lin-2004-rouge/">ROUGE (Lin 2004)</a>, which correlate poorly with human judgements on open-ended text (<a href="../../bibliography/liu-2023-geval/">Liu et al. 2023</a>).</div>
+    <div>LLM-as-a-judge: <a href="../../bibliography/zheng-2023-mt-bench/">Zheng et al. 2023</a>.</div>
+  </div>
+</div>
+```
+
+::: {.notes}
+**About this slide:** Why generative AI cannot be evaluated like predictive AI. Regression and classification produce one number or one class, which can be scored against a label. An LLM’s next token is still one choice from a large vocabulary, but a full response is one of an astronomically large number of possible sequences, and an agent trace chains many responses, tool calls and turns. With no single right answer to match, something has to read the output and judge whether it is good: an LLM judge ([Zheng et al. 2023](../../bibliography/zheng-2023-mt-bench/)). The builds step through the five output types from left to right.
+
+**Presenter notes:**
+
+- Builds 1–2, regression then classification: predictive AI has a narrow output space. A regression model returns one number in a range; a classifier picks one or more classes from a finite set. Both come with a label, so evaluation is arithmetic: error, accuracy, F1.
+- Build 3, one token: an LLM's next token is drawn from a vocabulary of roughly a hundred thousand tokens. That is still countable. On its own it is just a very wide classifier.
+- Build 4, a response: a sequence of n tokens is a sample from |V|^n possibilities. For a 100-token answer that is about 10^500, far beyond anything we could label. There is rarely one right answer, so exact match is meaningless.
+- NLP's earlier answer was overlap with human references, such as [BLEU](../../bibliography/papineni-2002-bleu/) for translation and [ROUGE](../../bibliography/lin-2004-rouge/) for summaries. Those metrics are cheap but correlate poorly with human judgement on creative or open-ended text, which is why the field moved to LLM judges ([Liu et al. 2023](../../bibliography/liu-2023-geval/)).
+- Build 5, an agent trace: many responses, reasoning steps, tool calls and turns, chained together. Even a judge on the final answer is not enough: agents also need simulated users and multi-tier evals. Both are on the “Notes to follow up” slide at the end of Part 1; the “Why AI agents need simulation” slide is in the unpublished Part 1.G graveyard deck for now.
+- Next: “AI Agents are complex *and* complicated systems”.
+- Colours follow the complexity slides: blue for predictive, teal for generative.
+:::
+
+---
+
+## AI Agents are complex *and* complicated systems {#complex-and-complicated .complexity-slide .cx-duo-slide}
+
+:::: {.cx-duo}
+
+::: {.cx-col}
+[[Complex:]{.cx-name .complex} [Same input, a distribution of outputs]{.cx-tagline}]{.cx-head}
+
+![](images/complex-system.svg){fig-alt="A complex system: a dense network of interconnected parts with feedback loops. Signals wander different routes and runs land on a spread-out distribution of outputs."}
+
+[Unpredictable]{.cx-chip .complex} [Self-organising]{.cx-chip .complex} [Emergent]{.cx-chip .complex}
+
+[Many parts, entangled through feedback loops, so the behaviour of the whole emerges from how they interact.]{.cx-lead}
+
+[**Example:** the weather.]{.cx-examples}
+
+[In an agent: foundation models, agents and agent swarms]{.cx-agent .complex}
+:::
+
+::: {.cx-col .fragment}
+[[Complicated:]{.cx-name .complicated} [Same input, same output]{.cx-tagline}]{.cx-head}
+
+![](images/complicated-system.svg){fig-alt="A complicated system: subsystems of components wired together. Signals follow fixed, traceable routes and every run lands on the same single output."}
+
+[Predictable]{.cx-chip .complicated} [Controllable]{.cx-chip .complicated} [Designable]{.cx-chip .complicated}
+
+[Many parts, intricately wired, but every connection is designed and can be traced, so the parts dictate the behaviour of the whole.]{.cx-lead}
+
+[**Example:** a jet engine.]{.cx-examples}
+
+[In an agent: the code, tools and workflows around the model]{.cx-agent .complicated}
+:::
+
+::::
+
+[Contrasts and examples: [Finegood and Bradd. 2022. *Complex Systems Frameworks Collection*](../../bibliography/finegood-complex-versus-complicated/) (CC BY-NC-ND 4.0). Figures illustrative.]{.attribution .slide-foot}
+
+::: {.notes}
+**About this slide:** An AI agent is both a complex and a complicated system. It follows the headlines, the first look at an LLM judge and “Complex systems require complex evaluations”: those failures came from real systems, and this slide says what kind of system an agent is, and so why a judge is needed. It names the split from the takeaway on “GenAI: from LLMs to AI Agents”: the non-deterministic LLM calls are the complex part, and the deterministic harness and tool calls are the complicated part. The slide opens on complex, then one click reveals complicated beside it.
+
+A complex system has many parts entangled through feedback loops, so the behaviour of the whole emerges from how the parts interact, and the same input gives a distribution of outputs that cannot be traced back to individual parts. Complex systems are unpredictable, self-organising and emergent. The weather is the example: air, heat and moisture feed back on each other, so similar mornings can end in different afternoons. The economy, ant colonies and human brains are complex too. In an agent, the model, the agent built on it, and swarms of agents are complex.
+
+A complicated system also has many parts, but every connection is designed and can be traced, so the behaviour of the whole is dictated by the behaviour of its parts, and the same input always gives the same output. Complicated systems are predictable, controllable and designable. A jet engine is the example: every part is designed and every path can be traced, so it behaves the same way every time. Mechanical watches, traditional software, ETL pipelines and workflows are complicated too. In an agent, the code, tools, workflows and pipelines around the model are complicated.
+
+**Presenter notes:**
+
+- Layout: each column leads with a subheading, the system’s name and its tagline (“Same input, a distribution of outputs”; “Same input, same output”), then the figure, then the three keywords. The definition, the example and where it sits in an agent are smaller and muted, for anyone who wants more context; say the tagline and the keywords, and let the rest be read.
+- Complex first. The figure: lots of parts, intertwined, with feedback loops and long-range links. Each signal wanders a different route, and runs land on a distribution of outputs. You can’t easily trace an output back to the parts that produced it. The histogram comes from simulated random walks over the drawn network: illustrative, not data.
+- Then click for complicated. The figure: lots of components and subsystems connected in intricate ways, but every connection was designed and can be traced. The orange signals take the same routes every time and arrive together, so all runs land on one point on the output axis.
+- Complicated is not the same as simple: a jet engine is hard to build. The difference from a complex system is that you can trace why it did what it did.
+- The keywords and the examples are from “Complex versus complicated” in the *Complex Systems Frameworks Collection* ([Finegood and Bradd 2022](../../bibliography/finegood-complex-versus-complicated/), CC BY-NC-ND 4.0), the same contrasts and examples as the AIPS Showcase slide. From the same framework: foundation models, agents and agent swarms sit with the weather and the economy, not with jet engines.
+- History, if asked, in one breath. Warren Weaver’s 1948 essay “Science and Complexity” separated problems of simplicity, problems of “disorganized complexity” (many variables, handled by statistics) and problems of “organized complexity”: problems “which involve dealing simultaneously with a sizable number of factors which are interrelated into an organic whole” ([Weaver 1948](../../bibliography/weaver-1948-science-complexity/)). Complexity science is now studied across the natural and social sciences, but, as a review puts it, “there is no concise definition of a complex system, let alone a definition on which all scientists agree” ([Ladyman et al. 2013](../../bibliography/ladyman-2013-complex-system/)). The point is that “complex” has a meaning beyond “hard”.
+- Point at the two figures together: the complicated one is the agent’s plumbing, the complex one is its behaviour.
+- Link back to “GenAI: from LLMs to AI Agents”: the harness and most tool calls are the complicated part; the LLM calls, and anything that behaves like them, are the complex part.
+- Next: “How to evaluate complex and complicated systems” states what this split means for evaluation, followed by “An agent trace can be evaluated at multiple levels” and “Agent platforms provide the framework”.
+:::
+
+---
+
+## How to evaluate complex and complicated systems {#evaluate-complex-and-complicated .complexity-slide .cx-eval-slide .centre-body}
+
+::: {.cx-eval}
+- **Evaluate with a mix** [Deterministic, rule-based checks suit the complicated parts. LLM-as-judge suits the complex behaviour.]{.cx-eval-sub}
+- **Test the components and the whole system** [Each part can pass its own checks while the agent as a whole misbehaves.]{.cx-eval-sub}
+:::
+
+::: {.notes}
+**About this slide:** What being both complex and complicated means for evaluating an agent. Agents are evaluated with a mix of methods. Deterministic, rule-based checks such as tests, exact matches and schema checks suit the complicated parts. Non-deterministic checks, LLM-as-a-judge, suit the complex behaviour. And because the whole is more than the sum of its parts, testing each component is not enough: each part can pass its own checks while the system as a whole misbehaves, because once the parts interact, feedback loops appear that belong to no single part. The whole system has to be evaluated too.
+
+**Presenter notes:**
+
+- Keep it short: two points, then move on.
+- Follows directly from “AI Agents are complex *and* complicated systems”: the code is complicated, the model and agent behaviour are complex.
+- The mix sets up “Agent platforms provide the framework”: protections combine deterministic (rule-based) and non-deterministic (LLM-as-a-judge) checks at multiple levels.
+- Bridge, from the outline’s multi-tier evals item (system-level vs component-level): with complex systems you still always have to evaluate the system as a whole.
+- The earlier parts-vs-whole figure and its placeholder for a Tim Sullivan quotation are in the unpublished Part 1.G graveyard deck; the quotation is still missing.
+- Next: “An agent trace can be evaluated at multiple levels”, showing the levels of a trace where those component and system-level checks can be applied.
+:::
+
+---
+
+## An agent trace can be evaluated at multiple levels {#parts-of-an-agent-trace .terms-slide .trace-parts-slide}
+
+```{=html}
+<div class="tm-figure" data-brackets="steps">
+
+  <div class="tm-chat" aria-label="An agent conversation in two turns, with the parts of the trace labelled">
+    <div class="tm-msg tm-sys tm-dim" id="tp-sys"><span class="tm-role">System</span>You are a career assistant. Tools: get_profile, search_jobs, apply.</div>
+
+    <div class="tm-turn-tag tm-dim">Turn 1</div>
+    <div class="tm-msg tm-user tm-dim" id="tp-u1"><span class="tm-role">User</span>Find me barista jobs.</div>
+    <div class="tm-step" id="tp-s1">
+      <div class="tm-call" id="tp-s1-call">
+        <div class="tm-dim tm-thought" id="tp-s1-th"><span class="tm-kind">Thought</span>No location given. Check their profile.</div>
+        <div class="tm-dim tm-action" id="tp-s1-ac"><span class="tm-kind">Action</span><code>get_profile()</code></div>
+      </div>
+      <div class="tm-dim tm-obs" id="tp-s1-ob"><span class="tm-kind">Observation</span>suburb: Fitzroy · recent searches: café, barista</div>
+    </div>
+    <div class="tm-step" id="tp-s2">
+      <div class="tm-call" id="tp-s2-call">
+        <div class="tm-dim tm-thought"><span class="tm-kind">Thought</span>They live in Fitzroy. Search there.</div>
+        <div class="tm-dim tm-action"><span class="tm-kind">Action</span><code>search_jobs(role="barista", near="Fitzroy")</code></div>
+      </div>
+      <div class="tm-dim tm-obs"><span class="tm-kind">Observation</span>3 jobs: Café Lune, Bean Bar, Hill St Coffee</div>
+    </div>
+    <div class="tm-msg tm-asst tm-dim" id="tp-a1"><span class="tm-role">Assistant</span>I found 3 barista jobs near you in Fitzroy: Café Lune, Bean Bar and Hill St Coffee.</div>
+
+    <div class="tm-turn-tag tm-dim">Turn 2</div>
+    <div class="tm-msg tm-user tm-dim" id="tp-u2"><span class="tm-role">User</span>Apply to Café Lune with my profile.</div>
+    <div class="tm-step" id="tp-s3">
+      <div class="tm-call">
+        <div class="tm-dim tm-thought"><span class="tm-kind">Thought</span>The user chose Café Lune. Apply.</div>
+        <div class="tm-dim tm-action"><span class="tm-kind">Action</span><code>apply(job="cafe-lune")</code></div>
+      </div>
+      <div class="tm-dim tm-obs"><span class="tm-kind">Observation</span>status: submitted</div>
+    </div>
+    <div class="tm-msg tm-asst tm-dim" id="tp-a2"><span class="tm-role">Assistant</span>Done. Your application to Café Lune has been sent.</div>
+  </div>
+
+  <div class="tm-term fragment" data-fragment-index="1" data-side="left" data-type="point" data-target="tp-sys"><b>System message</b></div>
+  <div class="tm-term fragment" data-fragment-index="2" data-side="left" data-type="point" data-target="tp-u1"><b>User message</b></div>
+  <div class="tm-term fragment" data-fragment-index="3" data-side="left" data-type="point" data-target="tp-a1"><b>Assistant message</b></div>
+  <div class="tm-term fragment" data-fragment-index="4" data-side="left" data-type="point" data-target="tp-s1-th"><b>Reasoning</b></div>
+  <div class="tm-term fragment" data-fragment-index="5" data-side="left" data-type="point" data-target="tp-s1-ac"><b>Tool call</b></div>
+  <div class="tm-term fragment" data-fragment-index="6" data-side="right" data-type="bracket" data-depth="0" data-target="tp-s1"><b>Step</b></div>
+  <div class="tm-term fragment" data-fragment-index="7" data-side="right" data-type="bracket" data-depth="1" data-target="tp-s1" data-to="tp-s2"><b>Multi-step</b></div>
+  <div class="tm-term fragment" data-fragment-index="8" data-side="right" data-type="bracket" data-depth="2" data-target="tp-u1" data-to="tp-a1"><b>Turn</b></div>
+  <div class="tm-term fragment" data-fragment-index="9" data-side="right" data-type="bracket" data-depth="3" data-target="tp-u1" data-to="tp-a2"><b>Multi-turn</b></div>
+  <div class="tm-term fragment" data-fragment-index="10" data-side="right" data-type="bracket" data-depth="4" data-anchor="end" data-target="tp-sys" data-to="tp-a2"><b>Trace</b></div>
+
+  <svg class="tm-links" aria-hidden="true"></svg>
+</div>
+
+<div class="tp-levels" aria-label="LLM-as-a-judge evaluation levels">
+  <span class="tp-levels-label">LLM-as-a-judge levels</span>
+  <ul class="tp-levels-list">
+    <li>Input guardrail</li>
+    <li>Output guardrail</li>
+    <li>Agent step eval</li>
+    <li>Conversation turn eval</li>
+    <li>Multi-turn eval</li>
+    <li>Agent trace eval</li>
+  </ul>
+</div>
+
+<div class="tm-sources slide-foot">Trace parts follow ReAct (<a href="../../bibliography/yao-2023-react/">Yao et al. 2023</a>) and agent observability practice (<a href="../../bibliography/dong-2024-agentops/">Dong et al. 2024</a>). Illustrative conversation.</div>
+
+<script>
+(function () {
+  var NS = "http://www.w3.org/2000/svg";
+  var all = function (root, sel) { return Array.prototype.slice.call(root.querySelectorAll(sel)); };
+
+  function box(el, fig) {
+    var x = 0, y = 0, e = el;
+    while (e && e !== fig) { x += e.offsetLeft; y += e.offsetTop; e = e.offsetParent; }
+    return { x: x, y: y, w: el.offsetWidth, h: el.offsetHeight, cy: y + el.offsetHeight / 2 };
+  }
+
+  function path(g, d, cls) {
+    var p = document.createElementNS(NS, "path");
+    p.setAttribute("d", d);
+    if (cls) p.setAttribute("class", cls);
+    g.appendChild(p);
+  }
+
+  function layout(fig) {
+    if (fig.dataset.laidOut || !fig.offsetWidth) return;
+    fig.dataset.laidOut = "1";
+    if (fig.classList.contains("tm-flow")) return;
+    var svg = fig.querySelector(".tm-links");
+    var chat = box(fig.querySelector(".tm-chat"), fig);
+    var byId = function (id) { return box(fig.querySelector("#" + id), fig); };
+    var terms = all(fig, ".tm-term");
+
+    terms.forEach(function (t, i) {
+      t.dataset.n = i;
+      var a = t.dataset.target ? byId(t.dataset.target) : null;
+      var b = t.dataset.to ? byId(t.dataset.to) : a;
+      if (!a) return;
+      t._top = Math.min(a.y, b.y);
+      t._bot = Math.max(a.y + a.h, b.y + b.h);
+      var anchor = t.dataset.anchor;
+      t._want = anchor === "end" ? t._bot - 24 : anchor === "start" ? t._top + 24 : (t._top + t._bot) / 2;
+    });
+
+    ["left", "right"].forEach(function (side) {
+      var col = terms.filter(function (t) { return t.dataset.side === side; });
+      var free = col.filter(function (t) { return t._want === undefined; });
+      col = col.filter(function (t) { return t._want !== undefined; });
+      col.sort(function (p, q) { return p._want - q._want; });
+      var first = free.filter(function (t) { return t.dataset.place === "top"; });
+      var last = free.filter(function (t) { return t.dataset.place !== "top"; });
+      var floor = 0;
+      var stepped = side === "right" && fig.dataset.brackets === "steps";
+      first.concat(col, last).forEach(function (t) {
+        var h = t.offsetHeight;
+        if (stepped) {
+          t.style.top = t._want - h / 2 + "px";
+          t._cy = t._want;
+          return;
+        }
+        var want = t._want === undefined ? floor + h / 2 : t._want;
+        var top = Math.max(want - h / 2, floor);
+        t.style.top = top + "px";
+        t._cy = top + h / 2;
+        floor = top + h + 8;
+      });
+    });
+
+    var bottom = chat.y + chat.h;
+    terms.forEach(function (t) { bottom = Math.max(bottom, t._cy + t.offsetHeight / 2); });
+    if (fig.querySelector('[data-edge="under"]')) bottom = Math.max(bottom, chat.y + chat.h + 16);
+    fig.style.height = bottom + 4 + "px";
+    svg.setAttribute("viewBox", "0 0 " + fig.offsetWidth + " " + fig.offsetHeight);
+    svg.style.height = fig.offsetHeight + "px";
+
+    var gutterL = chat.x - 6, gutterR = chat.x + chat.w + 6;
+    if (fig.dataset.brackets === "steps") {
+      var stepX = gutterR + 4;
+      terms.filter(function (t) { return t.dataset.side === "right" && t.dataset.type === "bracket"; })
+        .sort(function (p, q) { return p.dataset.depth - q.dataset.depth; })
+        .forEach(function (t) {
+          t._bx = stepX;
+          t.style.left = stepX + 8 + "px";
+          stepX += 8 + t.offsetWidth + 12;
+        });
+    }
+    terms.forEach(function (t) {
+      var g = document.createElementNS(NS, "g");
+      g.setAttribute("class", "tm-conn" + (t.classList.contains("tm-judge") ? " tm-conn-judge" : ""));
+      g.setAttribute("data-for", t.dataset.n);
+      svg.appendChild(g);
+      var lb = box(t, fig);
+      var left = t.dataset.side === "left";
+      var edge = left ? lb.x + lb.w + 4 : lb.x - 4;
+      var y = t._cy;
+      var type = t.dataset.type;
+      if (type === "point") {
+        var a = byId(t.dataset.target);
+        var tx = left ? a.x - 3 : a.x + a.w + 3;
+        var ty = t.dataset.anchor === "start" ? Math.min(a.y + 24, a.cy) : a.cy;
+        var mid = left ? gutterL - 26 : gutterR + 26;
+        var gx = left ? gutterL - 6 : gutterR + 6;
+        if (t.dataset.edge === "under") {
+          var ub = chat.y + chat.h + 10, ux = left ? gutterL - 34 : gutterR + 34, cx = a.x + a.w / 2;
+          path(g, "M" + edge + "," + y + " L" + ux + "," + y + " L" + ux + "," + ub + " L" + cx + "," + ub + " L" + cx + "," + (a.y + a.h + 3), "tm-lead");
+        } else {
+          path(g, "M" + edge + "," + y + " L" + mid + "," + y + " L" + gx + "," + ty + " L" + tx + "," + ty, "tm-lead");
+        }
+      } else if (type === "bracket") {
+        var d = +t.dataset.depth;
+        var bx = t._bx !== undefined ? t._bx : left ? gutterL - 4 - d * 11 : gutterR + 4 + d * 11;
+        var tick = left ? 6 : -6;
+        path(g, "M" + (bx + tick) + "," + (t._top + 1) + " L" + bx + "," + (t._top + 1) + " L" + bx + "," + (t._bot - 1) + " L" + (bx + tick) + "," + (t._bot - 1), "tm-bracket");
+        var yy = Math.min(Math.max(y, t._top + 6), t._bot - 6);
+        path(g, "M" + edge + "," + y + " L" + (left ? bx - 10 : bx + 10) + "," + yy + " L" + bx + "," + yy, "tm-lead");
+      } else if (type === "loop") {
+        var s = byId(t.dataset.target), e = byId(t.dataset.to);
+        var x0 = Math.min(s.x, e.x) - 3, lx = x0 - 30;
+        path(g, "M" + (s.x - 3) + "," + s.cy + " C" + lx + "," + s.cy + " " + lx + "," + e.cy + " " + (e.x - 5) + "," + e.cy, "tm-loop");
+        path(g, "M" + (e.x - 12) + "," + (e.cy - 5) + " L" + (e.x - 5) + "," + e.cy + " L" + (e.x - 12) + "," + (e.cy + 5), "tm-loop");
+        path(g, "M" + edge + "," + y + " L" + (lx + 8) + "," + ((s.cy + e.cy) / 2), "tm-lead");
+      }
+    });
+  }
+
+  function focus(fig) {
+    var cur = all(fig, ".fragment.current-fragment").filter(function (f) { return !f.classList.contains("tm-overview"); });
+    var terms = all(fig, ".tm-term");
+    var leaves = all(fig, ".tm-dim");
+    var focused = terms.filter(function (t) { return cur.some(function (f) { return t.contains(f); }); });
+    var lit = [], marks = [];
+    var q = function (id) { return fig.querySelector("#" + id); };
+    var inside = function (leaf, el) { return el.contains(leaf); };
+    var light = function (el) { leaves.forEach(function (l) { if (inside(l, el)) lit.push(l); }); };
+
+    var subs = cur.filter(function (f) { return f.dataset.focus; });
+    if (subs.length) {
+      subs.forEach(function (s) { var el = q(s.dataset.focus); marks.push(el); light(el); });
+    } else {
+      focused.forEach(function (t) {
+        if (!t.dataset.target) return;
+        var a = q(t.dataset.target), b = t.dataset.to ? q(t.dataset.to) : a;
+        if (t.dataset.type === "bracket") {
+          var idx = leaves.map(function (l) { return inside(l, a) || inside(l, b); });
+          var i0 = idx.indexOf(true), i1 = idx.lastIndexOf(true);
+          leaves.forEach(function (l, i) { if (i >= i0 && i <= i1) lit.push(l); });
+        } else {
+          [a, b].forEach(function (el) { marks.push(el); light(el); });
+        }
+        (t.dataset.also || "").split(" ").filter(Boolean).forEach(function (id) { light(q(id)); });
+      });
+    }
+    var lights = focused.map(function (t) { return t.dataset.lights; }).filter(Boolean);
+
+    fig.classList.toggle("has-focus", focused.length > 0);
+    leaves.forEach(function (l) { l.classList.toggle("is-lit", lit.indexOf(l) >= 0); });
+    all(fig, ".is-focus").forEach(function (el) { el.classList.remove("is-focus"); });
+    marks.forEach(function (el) { el.classList.add("is-focus"); });
+
+    terms.forEach(function (t) {
+      var on = t.classList.contains("visible");
+      var isFocus = focused.indexOf(t) >= 0;
+      var isLit = lights.some(function (c) { return t.classList.contains("tm-" + c); });
+      var past = on && !isFocus && !isLit && focused.length > 0;
+      t.classList.toggle("tm-focus", isFocus);
+      t.classList.toggle("tm-lit", isLit);
+      t.classList.toggle("tm-past", past);
+      var g = fig.querySelector('.tm-conn[data-for="' + t.dataset.n + '"]');
+      if (!g) return;
+      g.classList.toggle("tm-on", on);
+      g.classList.toggle("tm-focus", isFocus);
+      g.classList.toggle("tm-past", past);
+    });
+  }
+
+  function run() {
+    var figs = all(document, ".tm-figure");
+    figs.forEach(layout);
+    figs.forEach(focus);
+  }
+
+  window.addEventListener("load", function () {
+    if (!window.Reveal) return;
+    var go = function () { (document.fonts ? document.fonts.ready : Promise.resolve()).then(run); };
+    if (Reveal.isReady()) go(); else Reveal.on("ready", go);
+    Reveal.on("slidechanged", go);
+    Reveal.on("fragmentshown", run);
+    Reveal.on("fragmenthidden", run);
+  });
+})();
+</script>
+```
+
+::: {.notes}
+**About this slide:** Anatomy of an illustrative two-turn career-assistant trace, naming each part of the trace — the three message roles, reasoning, tool call, step, multi-step, turn, multi-turn, and the trace as a whole — with a quiet strip across the bottom listing the corresponding LLM-as-a-judge evaluation levels so the diagram stays uncluttered. It follows “How to evaluate complex and complicated systems” and sets up “Agent platforms provide the framework” and the two SEEK examples.
+
+**Presenter notes:**
+
+- The title’s point: an agent trace has distinct layers, and an LLM judge can evaluate it at any of them — from a single message or tool-calling step up to a turn, a multi-turn conversation, or the whole trace.
+- Builds: one trace-part label per click, in order: (1) system message, (2) user message, (3) assistant message, (4) reasoning, (5) tool call, (6) step, (7) multi-step, (8) turn, (9) multi-turn, (10) trace. The last click lights the whole chat, so there is no extra build at the end. The evaluation-levels strip at the bottom stays visible throughout as a quiet anchor for the spoken mapping.
+- **Parts of the trace:**
+  - *System message:* the developer’s instructions, set before any user input. *User message:* what the person types. *Assistant message:* the model’s reply, which goes back into context for the next call.
+  - *Reasoning:* the thought, where the model works out what to do next before it acts (here: no location given, so check the profile).
+  - *Tool call:* the action (`get_profile()`). Its result, the observation, is fed back to the model for the next step.
+  - *Step* and *multi-step:* one pass of thought → action → observation ([Yao et al. 2023](../../bibliography/yao-2023-react/)), or several chained steps before replying (step 2 uses the suburb that step 1 returned).
+  - *Turn* and *multi-turn:* one user–assistant exchange, or several turns across a conversation (each call re-sends the history).
+  - *Trace:* the end-to-end record of an agent run: messages, LLM calls and tool calls ([Dong et al. 2024](../../bibliography/dong-2024-agentops/)). Also called a trajectory.
+- **LLM-as-a-judge evaluation levels** (named along the bottom strip — map each one onto the trace as you talk):
+  - **Input guardrail** *(on the user message):* screens user input before the agent acts — catching prompt injection, off-topic requests, or policy violations. Usually runs inline (low-latency, blocking).
+  - **Output guardrail** *(on the assistant message):* checks the model’s reply before the user sees it — catching policy breaches, unlawful content (like the job-ad example coming up), or PII leaks. Runs inline and can block or trigger a rewrite.
+  - **Agent step eval / call-level & multi-step eval** *(on a reasoning + tool-call step, or a chain of steps):* evaluates one LLM call or [ReAct](../../bibliography/yao-2023-react/) step — was the reasoning coherent, did it choose the right tool and arguments, and did it respect the observation? Multi-step eval checks whether a sequence of steps makes sense together (e.g. checking the profile before searching jobs).
+  - **Conversation turn eval / multi-turn eval** *(on a turn or across turns):* judges one user–assistant exchange (did the reply answer the user accurately and helpfully?), or reads across turns to spot problems invisible in any single message — such as gradual steering, persona drift, or a multi-turn attack (as in the second SEEK example). Also called conversation-level or session-level eval.
+  - **Agent trace eval / trajectory-level eval** *(on the whole trace):* reads the full end-to-end record — system instructions, messages, reasoning, tool calls, observations, and final answer — to judge whether the agent achieved the goal safely and within policy ([Dong et al. 2024](../../bibliography/dong-2024-agentops/)). Literature sometimes splits this into *process-level* (judging the path taken) vs *outcome-level* (judging the end result) ([Pisupati et al. 2026](../../bibliography/pisupati-2026-counsel/)). This is what an LLM judge reads in Part 2 and in the hands-on app.
+  - **Online vs offline:** guardrails typically run *online* in the request path; step, turn, and trace evals can run *online* asynchronously for monitoring or *offline* on logged traces for regression testing.
+  - **If asked about meta-evaluation:** you can also evaluate the judges themselves against human labels before trusting their scores ([Gu et al. 2024](../../bibliography/gu-2024-llm-as-judge-survey/), [Pisupati et al. 2026](../../bibliography/pisupati-2026-counsel/)). Part 4 covers reliability and validation.
+- Next: “Agent platforms provide the framework”, showing how platforms combine deterministic and non-deterministic checks across these levels, followed by “Two examples” and the two SEEK examples.
+:::
+
+---
+
+## Agent platforms provide the framework {#agent-platforms .platforms-slide .governed-slide}
+
+<!-- TODO: Check permission to use the AWS, Google Cloud, Arize and LangChain logos on this slide; their sources are in the speaker notes. -->
+<!-- TODO: Terrence will likely rework the architecture diagram into a SEEK view of agent architecture. For now it redraws the architecture figure from Google Cloud's Gemini Enterprise Agent Platform overview, keeping Google's component names. -->
+
+[A mix of deterministic and non-deterministic checks can be applied at multiple levels.]{.gv-sub}
+
+```{=html}
+<div role="group" class="pf-band pf-band-platforms" aria-label="Examples of agent platforms">
+  <p class="pf-lead">Examples of agent platforms</p>
+  <ul class="pf-cards">
+    <li><span class="pf-logo"><img class="pf-logo-aws" src="images/logo-aws.svg" alt="AWS"></span><b>Amazon Bedrock AgentCore</b><span class="pf-cite">AWS · <a href="../../bibliography/aws-2026-bedrock-agentcore/">AWS 2026</a></span></li>
+    <li><span class="pf-logo"><img src="images/logo-google-cloud.svg" alt="Google Cloud"></span><b>Gemini Enterprise Agent Platform</b><span class="pf-cite">Google Cloud · <a href="../../bibliography/google-cloud-2026-agent-platform-overview/">Google Cloud 2026a</a></span></li>
+    <li><span class="pf-logo"><img src="images/logo-arize.svg" alt="Arize"></span><b>Arize AX</b><span class="pf-cite">Arize · <a href="../../bibliography/arize/">Arize</a></span></li>
+    <li><span class="pf-logo"><img src="images/logo-langchain.svg" alt="LangChain"></span><b>LangSmith</b><span class="pf-cite">LangChain · <a href="../../bibliography/langchain-2026-langsmith/">LangChain 2026</a></span></li>
+  </ul>
+</div>
+
 <div class="gv-fig" role="img" aria-label="Agent architecture, redrawn from Google Cloud’s Gemini Enterprise Agent Platform overview. People reach agents from Gemini Enterprise, Workspace or custom apps through an Agent Gateway. The agent runs in Agent Runtime with its own Agent Identity, and uses memory and a model. A second Agent Gateway sits between the agent and other agents and tools. Above, Governance holds the Agent Registry and Policies and AI protection. Below, agent observability covers the whole path.">
   <svg class="gv-lines" viewBox="0 0 1100 420" aria-hidden="true">
     <path class="gv-dash" d="M270,96 V172 M270,272 V368 M830,96 V172 M830,272 V368"/>
@@ -413,7 +998,11 @@ This is the first place the tutorial uses the term. **LLM-as-a-judge** means an 
 [Diagram adapted from Google Cloud’s Agent Platform overview ([Google Cloud 2026a](../../bibliography/google-cloud-2026-agent-platform-overview/)).]{.gv-credit .slide-foot}
 
 ::: {.notes}
-**About this slide:** An AI agent in production is protected by several layers, not one safeguard. The slide shows them in Google Cloud’s own view of the parts, and its subtitle sets up the point of the three clicks: LLM-as-a-judge methods can be applied at various points across the platform. Google describes its Gemini Enterprise Agent Platform as “a unified platform to build, deploy, govern, and optimize enterprise-grade AI agents” ([Google Cloud 2026a](../../bibliography/google-cloud-2026-agent-platform-overview/)), launched on 22 April 2026 as the evolution of Vertex AI ([Gerstenhaber and Bachman 2026](../../bibliography/gerstenhaber-2026-agent-platform/)). The diagram is adapted from the architecture figure in the platform overview: the component names are Google’s, and the short descriptions in the boxes summarise Google’s documentation. Each part, as Google’s documentation describes it:
+**About this slide:** Combines the agent platform examples and the multi-layer platform architecture figure into one slide. Organisations rarely build every safeguard for an agent themselves: agent platforms provide the framework to apply a mix of deterministic checks (for the complicated parts, such as access rules and tool policies) and non-deterministic checks such as LLM-as-a-judge (for the complex parts) at multiple levels.
+
+Four examples across the top: Amazon Bedrock AgentCore from AWS ([AWS 2026](../../bibliography/aws-2026-bedrock-agentcore/)), Gemini Enterprise Agent Platform from Google Cloud ([Google Cloud 2026a](../../bibliography/google-cloud-2026-agent-platform-overview/)), Arize AX from Arize ([Arize](../../bibliography/arize/)) and LangSmith from LangChain ([LangChain 2026](../../bibliography/langchain-2026-langsmith/)).
+
+Below, the diagram is adapted from Google Cloud’s Gemini Enterprise Agent Platform overview ([Google Cloud 2026a](../../bibliography/google-cloud-2026-agent-platform-overview/)), launched on 22 April 2026 as the evolution of Vertex AI ([Gerstenhaber and Bachman 2026](../../bibliography/gerstenhaber-2026-agent-platform/)). The component names are Google’s, and the short descriptions in the boxes summarise Google’s documentation:
 
 - **Agent Runtime:** the environment agents are deployed and run in, including long-running agents. Memory (Memory Bank) and the model sit beside it.
 - **Agent Identity:** a unique identity for each agent, used for authentication, access control and auditing.
@@ -424,26 +1013,34 @@ This is the first place the tutorial uses the term. **LLM-as-a-judge** means an 
 
 Google groups the platform into four pillars: Build, Scale, Govern and Optimize. Evaluation sits under Optimize, which the launch post describes as “Agent Simulation, Agent Evaluation, and Agent Observability”. The same post says its agent anomaly detection “uses statistical models and an LLM-as-a-judge framework to flag unusual reasoning” ([Gerstenhaber and Bachman 2026](../../bibliography/gerstenhaber-2026-agent-platform/)).
 
-Three clicks then highlight, one at a time, the levels in this figure where an LLM judge can check the agent. Earlier highlights stay on.
+Three clicks highlight, one at a time, where an LLM judge can check the agent across this architecture. Earlier highlights stay on:
 
 1. **Input and output guardrails,** in Policies and AI protection: a judge screens prompts going in and responses coming out. In Google’s figure this is Model Armor’s role.
 2. **At the gateway:** both Agent Gateways apply policies to all traffic that passes through them, so a judge there can check requests coming in and the agent’s calls out to tools and other agents.
-3. **Observability metrics:** a judge scores the traces that agent observability logs. Google’s launch post says its agent anomaly detection “uses statistical models and an LLM-as-a-judge framework to flag unusual reasoning” ([Gerstenhaber and Bachman 2026](../../bibliography/gerstenhaber-2026-agent-platform/)).
-
-After a short breather slide, “Two examples”, the next two slides are illustrative SEEK mock-ups of judges catching agent failures. How an LLM, an agent and a judge work comes in section 2.
+3. **Observability metrics:** a judge scores the traces that agent observability logs.
 
 **Presenter notes:**
 
-- TODO: Terrence will likely rework this into a SEEK view of agent architecture. Until then it is Google’s view, with Google’s names; say so.
-- Title and subtitle (10 Nov 2026, Terrence’s note): agents in production need multi-layer protection, and LLM-as-a-judge methods can be applied at various points across the platform. Read the subtitle, then use the three clicks to show where.
-- The point: an organisation does not rely on one safeguard. Identity, registry, gateway, policies and observability each control part of what an agent can do. Evals, guardrails and LLM judges are the part this tutorial covers.
+- TODO: Terrence will likely rework the architecture diagram into a SEEK view of agent architecture. Until then it is Google’s view, with Google’s names; say so.
+- Bridge from the previous two slides: AI agents are both complicated and complex, and their traces can be evaluated at multiple levels. Agent platforms provide the framework to combine deterministic checks (rule-based tests and policies, such as blocking a tool call) and non-deterministic checks (model-based checks, most commonly LLM-as-a-judge) across those levels.
+- The two kinds of protection, from the platforms’ own pages. Deterministic: AWS describes AgentCore Policy as “deterministic control” over which tools an agent can call, and under what conditions ([AWS 2026](../../bibliography/aws-2026-bedrock-agentcore/)). Non-deterministic: LangSmith lists “Online LLM-as-judge and code evals”, so judges and fixed code checks run side by side ([LangChain 2026](../../bibliography/langchain-2026-langsmith/)).
+- The four platforms across the top (short list, not a ranking; other clouds and vendors offer similar platforms):
+  - Amazon Bedrock AgentCore: AWS’s agentic platform — Gateway, Identity, Observability, Evaluations, Registry and Policy ([AWS 2026](../../bibliography/aws-2026-bedrock-agentcore/)).
+  - Gemini Enterprise Agent Platform: Google Cloud’s unified platform ([Google Cloud 2026a](../../bibliography/google-cloud-2026-agent-platform-overview/)), whose architecture is shown below.
+  - Arize AX: Arize’s managed agent observability and evaluation platform, beside its open-source Phoenix ([Arize](../../bibliography/arize/)).
+  - LangSmith: LangChain’s agent observability and evaluation platform ([LangChain 2026](../../bibliography/langchain-2026-langsmith/)).
 - Walk the figure left to right first: people and apps, the gateway in, the agent in its runtime with its own identity, the gateway out to other agents and tools. Governance sits over the whole path, and observability under it.
 - Then three clicks, one per level where a judge can work. Only the highlighted parts are claims about judges. Google’s documentation does not say Model Armor or the gateway uses an LLM judge; the highlights show where one can be placed. The anomaly detection quote is the one place Google says it uses LLM-as-a-judge.
 - Policies define the guardrails and the gateways enforce them, so steps 1 and 2 overlap; the point is that a judge can sit on the content (step 1) or on the traffic (step 2).
-- “Guardrails” here means checks that run while the agent works, such as Model Armor on the gateway. Some guardrails are themselves LLM judges, as in the two example slides that follow the breather.
-- The definition of LLM-as-a-judge is on the previous slide.
-- This replaces the earlier layers-of-control slide, which is kept in the unpublished Part 1.G graveyard deck.
-- Sources: [Google Cloud 2026a](../../bibliography/google-cloud-2026-agent-platform-overview/), the platform overview with the figure; [Google Cloud 2026b](../../bibliography/google-cloud-2026-agent-gateway-overview/), the Agent Gateway overview, for identity, registry, policies and observability; [Gerstenhaber and Bachman 2026](../../bibliography/gerstenhaber-2026-agent-platform/), the launch post.
+- “Guardrails” here means checks that run while the agent works, such as Model Armor on the gateway. Some guardrails are themselves LLM judges, as in the two example slides that follow.
+- Logo sources, all saved in this deck’s `images/` folder. TODO: check permission to use each logo before the slides are shared.
+  - `logo-aws.svg`: the AWS logo from the header of [aws.amazon.com](https://aws.amazon.com/), with its colours inlined. AWS’s [trademark guidelines](https://aws.amazon.com/trademark-guidelines/) govern its use.
+  - `logo-google-cloud.svg`: the full-colour Google Cloud logo that the [cloud.google.com](https://cloud.google.com/) header loads, `https://www.gstatic.com/cgc/google-cloud-logo-fullcolor.svg`.
+  - `logo-arize.svg`: the Arize logo from Arize’s [brand page](https://arize.com/brand/).
+  - `logo-langchain.svg`: `LangChain_Lockup_Black.svg` from the LangChain [brand assets](https://www.langchain.com/brand-assets) kit.
+- This replaces the earlier separate platforms and multi-layer protection slides (and the earlier layers-of-control slide, kept in the unpublished Part 1.G graveyard deck).
+- Sources: [AWS 2026](../../bibliography/aws-2026-bedrock-agentcore/), [Google Cloud 2026a](../../bibliography/google-cloud-2026-agent-platform-overview/), [Google Cloud 2026b](../../bibliography/google-cloud-2026-agent-gateway-overview/), [Gerstenhaber and Bachman 2026](../../bibliography/gerstenhaber-2026-agent-platform/), [Arize](../../bibliography/arize/), [LangChain 2026](../../bibliography/langchain-2026-langsmith/).
+- Next: “Two examples”, then two illustrative SEEK mock-ups of judges catching agent failures.
 :::
 
 ---
@@ -473,7 +1070,7 @@ After a short breather slide, “Two examples”, the next two slides are illust
 ```
 
 ::: {.notes}
-**About this slide:** A breather between the platform architecture and the two example slides. It is deliberately light, not a section divider: the title, one line and two simple tiles, a document and a conversation, each with a judge’s magnifier. The tiles hint at the next two slides without telling their story.
+**About this slide:** A breather between “Agent platforms provide the framework” and the two example slides. It is deliberately light, not a section divider: the title, one line and two simple tiles, a document and a conversation, each with a judge’s magnifier. The tiles hint at the next two slides without telling their story.
 
 **Presenter notes:**
 
@@ -711,901 +1308,30 @@ End the chat if risk ≥ 0.8.</pre>
 - Links to the outline’s SEEK examples: prompt injection and adversarial users.
 - It is the cybersecurity risk from the collage (EchoLeak, the Lego order, the gym booking agent), at SEEK. Those case slides are in the unpublished Part 1.G graveyard deck.
 :::
-
-# 2. Why agents need LLM judges {.section-divider .sd-2}
-
-::: {.notes}
-**About this slide:** Section 2 shows why LLM judges are needed to evaluate AI agents, then the technical foundations behind them. An AI agent is both a complex and a complicated system, whose behaviour comes from the whole system rather than any single part, and generative outputs cannot be matched against a label. Then the deeper dives: what an LLM does when it generates text, how conversations are fed to it, what turns it into an AI agent, and where an LLM judge can check an agent.
-:::
-
----
-
-## AI Agents are complex *and* complicated systems {#complex-and-complicated .complexity-slide .cx-duo-slide}
-
-:::: {.cx-duo}
-
-::: {.cx-col}
-[Complex]{.sys-label .complex}
-
-![](images/complex-system.svg){fig-alt="A complex system: a dense network of interconnected parts with feedback loops. Signals wander different routes and runs land on a spread-out distribution of outputs."}
-
-[Many parts, entangled through feedback loops, so the behaviour of the whole emerges from how they interact. **Same input → a distribution of outputs.**]{.cx-lead}
-
-[Unpredictable]{.cx-chip .complex} [Self-organising]{.cx-chip .complex} [Emergent]{.cx-chip .complex}
-
-[**Example: the weather.**]{.cx-examples}
-
-[In an agent: foundation models, agents and agent swarms]{.cx-agent .complex}
-:::
-
-::: {.cx-col .fragment}
-[Complicated]{.sys-label .complicated}
-
-![](images/complicated-system.svg){fig-alt="A complicated system: subsystems of components wired together. Signals follow fixed, traceable routes and every run lands on the same single output."}
-
-[Many parts, intricately wired, but every connection is designed and can be traced, so the parts dictate the behaviour of the whole. **Same input → same output.**]{.cx-lead}
-
-[Predictable]{.cx-chip .complicated} [Controllable]{.cx-chip .complicated} [Designable]{.cx-chip .complicated}
-
-[**Example: a jet engine.**]{.cx-examples}
-
-[In an agent: the code, tools and workflows around the model]{.cx-agent .complicated}
-:::
-
-::::
-
-[Contrasts and examples: [Complex versus complicated](../../bibliography/finegood-complex-versus-complicated/) (Frameworks Collection, CC BY-NC-ND). Figures illustrative.]{.attribution .slide-foot}
-
-::: {.notes}
-**About this slide:** An AI agent is both a complex and a complicated system. The slide opens on complex, then one click reveals complicated beside it.
-
-A complex system has many parts entangled through feedback loops, so the behaviour of the whole emerges from how the parts interact, and the same input gives a distribution of outputs that cannot be traced back to individual parts. Complex systems are unpredictable, self-organising and emergent. The weather is the example: air, heat and moisture feed back on each other, so similar mornings can end in different afternoons. The economy, ant colonies and human brains are complex too. In an agent, the model, the agent built on it, and swarms of agents are complex.
-
-A complicated system also has many parts, but every connection is designed and can be traced, so the behaviour of the whole is dictated by the behaviour of its parts, and the same input always gives the same output. Complicated systems are predictable, controllable and designable. A jet engine is the example: every part is designed and every path can be traced, so it behaves the same way every time. Mechanical watches, traditional software, ETL pipelines and workflows are complicated too. In an agent, the code, tools, workflows and pipelines around the model are complicated.
-
-**Presenter notes:**
-
-- Complex first. The figure: lots of parts, intertwined, with feedback loops and long-range links. Each signal wanders a different route, and runs land on a distribution of outputs. You can’t easily trace an output back to the parts that produced it. The histogram comes from simulated random walks over the drawn network: illustrative, not data.
-- Then click for complicated. The figure: lots of components and subsystems connected in intricate ways, but every connection was designed and can be traced. The orange signals take the same routes every time and arrive together, so all runs land on one point on the output axis.
-- Complicated is not the same as simple: a jet engine is hard to build. The difference from a complex system is that you can trace why it did what it did.
-- The keywords and the examples are from the framework [Complex versus complicated](../../bibliography/finegood-complex-versus-complicated/), the same contrasts and examples as the AIPS Showcase slide. From the same framework: foundation models, agents and agent swarms sit with the weather and the economy, not with jet engines.
-- History, if asked, in one breath. Warren Weaver’s 1948 essay “Science and Complexity” separated problems of simplicity, problems of “disorganized complexity” (many variables, handled by statistics) and problems of “organized complexity”: problems “which involve dealing simultaneously with a sizable number of factors which are interrelated into an organic whole” ([Weaver 1948](../../bibliography/weaver-1948-science-complexity/)). Complexity science is now studied across the natural and social sciences, but, as a review puts it, “there is no concise definition of a complex system, let alone a definition on which all scientists agree” ([Ladyman et al. 2013](../../bibliography/ladyman-2013-complex-system/)). The point is that “complex” has a meaning beyond “hard”.
-- Point at the two figures together: the complicated one is the agent’s plumbing, the complex one is its behaviour.
-- Next: what that means for evaluation.
-:::
-
----
-
-## How to evaluate complex and complicated systems {#evaluate-complex-and-complicated .complexity-slide .cx-eval-slide .centre-body}
-
-::: {.cx-eval}
-- **Evaluate with a mix** [Deterministic, rule-based checks suit the complicated parts. LLM-as-judge suits the complex behaviour.]{.cx-eval-sub}
-- **Test the components and the whole system** [Each part can pass its own checks while the agent as a whole misbehaves.]{.cx-eval-sub}
-:::
-
-::: {.notes}
-**About this slide:** What being both complex and complicated means for evaluating an agent. Agents are evaluated with a mix of methods. Deterministic, rule-based checks such as tests, exact matches and schema checks suit the complicated parts. Non-deterministic checks, LLM-as-a-judge, suit the complex behaviour. And because the whole is more than the sum of its parts, testing each component is not enough: each part can pass its own checks while the system as a whole misbehaves, because once the parts interact, feedback loops appear that belong to no single part. The whole system has to be evaluated too.
-
-**Presenter notes:**
-
-- Keep it short: two points, then move on.
-- The mix echoes the “Agent platforms layer protections” slide: protections can be deterministic (rule-based) or non-deterministic (LLM-as-judge).
-- Bridge, from the outline’s multi-tier evals item (system-level vs component-level): with complex systems you still always have to evaluate the system as a whole.
-- The earlier parts-vs-whole figure and its placeholder for a Tim Sullivan quotation are in the unpublished Part 1.G graveyard deck; the quotation is still missing.
-- Next: why generative AI needs LLM-as-a-judge.
-:::
-
----
-
-## Why generative AI needs LLM-as-a-judge {.output-space-slide .centre-body}
-
-```{=html}
-<div class="osp">
-  <div class="osp-groups">
-    <div class="osp-group pred">Predictive AI</div>
-    <div class="osp-group gen">Generative AI</div>
-  </div>
-  <div class="osp-cols">
-    <div class="osp-col pred fragment" data-fragment-index="1">
-      <div class="osp-name">Regression</div>
-      <img src="images/output-space-regression.svg" alt="A number line from 0 to 100. The prediction sits close to the label; the gap is the error.">
-      <div class="osp-size"><b>One number</b> in a range</div>
-      <div class="osp-eval"><span>Evaluate by</span>Error against a label: MAE, RMSE</div>
-    </div>
-    <div class="osp-col pred fragment" data-fragment-index="2">
-      <div class="osp-name">Classification</div>
-      <img src="images/output-space-classes.svg" alt="Five job categories. The model picks Technology, which matches the label.">
-      <div class="osp-size"><b>One of <i>k</i></b> classes</div>
-      <div class="osp-eval"><span>Evaluate by</span>Match against a label: accuracy, F1</div>
-    </div>
-    <div class="osp-col gen fragment" data-fragment-index="3">
-      <div class="osp-name">One token</div>
-      <img src="images/output-space-vocab.svg" alt="A dense grid of cells stands for the vocabulary. One cell, the chosen token, is filled.">
-      <div class="osp-size"><b>One of |<i>V</i>| ≈ 10<sup>5</sup></b> tokens</div>
-      <div class="osp-eval"><span>Evaluate by</span>Still a match: it is a very wide classifier</div>
-    </div>
-    <div class="osp-col gen fragment" data-fragment-index="4">
-      <div class="osp-name">A response</div>
-      <img src="images/output-space-sequences.svg" alt="A tree that fans out at every token. One highlighted path is the response the model produced.">
-      <div class="osp-size"><b>|<i>V</i>|<sup><i>n</i></sup></b>: 100 tokens ≈ 10<sup>500</sup></div>
-      <div class="osp-eval"><span>Evaluate by</span>No single right answer. Overlap with a reference, then an LLM judge</div>
-    </div>
-    <div class="osp-col gen fragment" data-fragment-index="5">
-      <div class="osp-name">An agent trace</div>
-      <img src="images/output-space-agent.svg" alt="Three response trees in a row, joined by tool calls drawn as squares.">
-      <div class="osp-size"><b>Responses × steps × turns</b></div>
-      <div class="osp-eval"><span>Evaluate by</span>LLM judges, plus multi-tier evals and simulation</div>
-    </div>
-  </div>
-  <div class="osp-takeaway fragment" data-fragment-index="6">Once outputs can’t be enumerated, there is no label to match. Something has to read the output and decide whether it is good.</div>
-  <div class="osp-sources slide-foot">
-    <div>Before LLM judges: reference overlap, e.g. <a href="../../bibliography/papineni-2002-bleu/">BLEU (Papineni et al. 2002)</a> and <a href="../../bibliography/lin-2004-rouge/">ROUGE (Lin 2004)</a>, which correlate poorly with human judgements on open-ended text (<a href="../../bibliography/liu-2023-geval/">Liu et al. 2023</a>).</div>
-    <div>LLM-as-a-judge: <a href="../../bibliography/zheng-2023-mt-bench/">Zheng et al. 2023</a>.</div>
-  </div>
-</div>
-```
-
-::: {.notes}
-**About this slide:** Why generative AI cannot be evaluated like predictive AI. Regression and classification produce one number or one class, which can be scored against a label. An LLM’s next token is still one choice from a large vocabulary, but a full response is one of an astronomically large number of possible sequences, and an agent trace chains many responses, tool calls and turns. With no single right answer to match, something has to read the output and judge whether it is good: an LLM judge ([Zheng et al. 2023](../../bibliography/zheng-2023-mt-bench/)). The builds step through the five output types from left to right.
-
-**Presenter notes:**
-
-- Builds 1–2, regression then classification: predictive AI has a narrow output space. A regression model returns one number in a range; a classifier picks one or more classes from a finite set. Both come with a label, so evaluation is arithmetic: error, accuracy, F1.
-- Build 3, one token: an LLM's next token is drawn from a vocabulary of roughly a hundred thousand tokens. That is still countable. On its own it is just a very wide classifier.
-- Build 4, a response: a sequence of n tokens is a sample from |V|^n possibilities. For a 100-token answer that is about 10^500, far beyond anything we could label. There is rarely one right answer, so exact match is meaningless.
-- NLP's earlier answer was overlap with human references, such as [BLEU](../../bibliography/papineni-2002-bleu/) for translation and [ROUGE](../../bibliography/lin-2004-rouge/) for summaries. Those metrics are cheap but correlate poorly with human judgement on creative or open-ended text, which is why the field moved to LLM judges ([Liu et al. 2023](../../bibliography/liu-2023-geval/)).
-- Build 5, an agent trace: many responses, reasoning steps, tool calls and turns, chained together. Even a judge on the final answer is not enough: agents also need simulated users and multi-tier evals. Both are on the “Notes to follow up” slide at the end of Part 1; the “Why AI agents need simulation” slide is in the unpublished Part 1.G graveyard deck for now.
-- Next: the terms the rest of this section defines, then one idea per slide: LLM text generation, conversations, agent traces and LLM-as-judge.
-- Colours follow the complexity slides: blue for predictive, teal for generative.
-:::
-
----
-
-## Terms this section defines {#section-2-terms .glossary-slide}
-
-```{=html}
-<div class="tg-grid">
-  <div class="tg-col"><a class="tg-head" href="#/llm-text-generation"><span class="tg-num">1</span>LLM text generation</a><p class="tg-gloss">A model reads tokens and predicts the next one, again and again.</p><ul><li>Input tokens</li><li>Output tokens</li><li>LLM call</li></ul></div>
-  <div class="tg-arrow" aria-hidden="true">›</div>
-  <div class="tg-col"><a class="tg-head" href="#/conversations-messages-and-turns"><span class="tg-num">2</span>Conversations</a><p class="tg-gloss">The same model, fed a list of messages with roles, one turn at a time.</p><ul><li>Messages</li><li>System message</li><li>User message</li><li>Assistant message</li><li>Chat template</li><li>Turn</li><li>Multi-turn</li></ul></div>
-  <div class="tg-arrow" aria-hidden="true">›</div>
-  <div class="tg-col"><a class="tg-head" href="#/what-is-an-agent"><span class="tg-num">3</span>Agent traces</a><p class="tg-gloss">Between messages, the model thinks, calls tools and reads the results, in a loop.</p><ul><li>Agent</li><li>Thought</li><li>Action</li><li>Observation</li><li><a href="../../bibliography/yao-2023-react/">ReAct</a> loop</li><li>Step</li><li>Multi-step</li><li>Trace</li></ul></div>
-  <div class="tg-arrow" aria-hidden="true">›</div>
-  <div class="tg-col"><a class="tg-head" href="#/llm-as-judge-evaluating-the-trace"><span class="tg-num">4</span>LLM-as-judge</a><p class="tg-gloss">Another LLM reads part of the trace and gives a verdict. Then we check the judge.</p><ul><li>LLM judge</li><li>Input guardrail</li><li>Call-level eval</li><li>Output guardrail</li><li>Multi-step eval</li><li>Multi-turn eval</li><li>Trace-level eval</li><li>Meta-evaluation</li></ul></div>
-</div>
-<p class="tg-caption slide-foot">Four ideas, each built on the last. Each heading links to the slide where its idea starts.</p>
-```
-
-::: {.notes}
-**About this slide:** The four ideas of section 2 and the vocabulary each one brings, on one slide, before the detail. Each idea is the one before with something added. (1) LLM text generation: a model reads tokens and predicts the next one. (2) Conversations: the same model is given a list of messages, each with a role. (3) Agent traces: between messages the model thinks, calls tools and reads the results, in a ReAct loop ([Yao et al. 2023](../../bibliography/yao-2023-react/)). (4) LLM-as-judge: another LLM reads part of the trace and gives a verdict, and the judges are themselves checked. Each card lists the terms its slides define, in the order they are introduced; card 3 covers two slides, “What is an agent?” and “Agent traces: think, act, observe”; the definitions come on those slides.
-
-**Presenter notes:**
-
-- Don’t read the list. Say that every word here gets a definition and a picture in the next few minutes, and that the ideas build on each other from left to right: a conversation is text generation over messages; an agent is a conversation with tool calls in between; a judge is one more LLM call that reads what the agent did.
-- The next four slides take one idea each. The strip under each title shows where we are.
-- The terms, by slide:
-  - 1, “LLM text generation”: input tokens, output tokens, LLM call.
-  - 2, “Conversations: messages and turns”: messages, system message, user message, assistant message, chat template, turn, multi-turn.
-  - 3, “What is an agent?”: agent. Then “Agent traces: think, act, observe”: thought, action, observation, [ReAct](../../bibliography/yao-2023-react/) loop, step, multi-step, trace.
-  - 4, “LLM-as-judge: evaluating the trace”: LLM judge, input guardrail, call-level eval, output guardrail, multi-step eval, multi-turn eval, trace-level eval, meta-evaluation.
-- Not listed: RLHF, RLVR and [RLAIF](../../bibliography/bai-2022-constitutional-ai/), from the old “Evals vs training” slide, now on the “Notes to follow up” slide at the end of Part 1 and not defined.
-:::
-
----
-
-## LLM text generation {.terms-slide .tu-slide}
-
-```{=html}
-<div class="tm-road"><span class="tm-road-on">1 LLM text generation</span><span>2 Conversations</span><span>3 Agent traces</span><span>4 LLM-as-judge</span></div>
-
-<div class="tm-figure tm-flow tu-figure">
-  <div class="tu-grid" aria-label="An LLM drawn unrolled: one column per token. The question tokens go in at the bottom; answer tokens come out at the top, one at a time, and each is fed back in as the next input.">
-    <div class="tu-row tu-top" id="tu-preds"><span class="tu-name tm-dim">Next token</span><span class="tu-slot"></span><span class="tu-slot"></span><span class="tu-slot"></span><span class="tu-slot"></span><span class="tu-slot"></span><span class="tu-slot"></span><span class="tu-slot"></span><span class="tu-slot"></span><span class="tu-slot"></span><span class="tu-slot"></span><span class="tu-tok tu-pred tm-dim" data-col="10">Bean</span><span class="tu-tok tu-pred tm-dim" data-col="11">Bar</span><span class="tu-tok tu-pred tm-dim" data-col="12">on</span><span class="tu-tok tu-pred tm-dim" data-col="13">Smith</span><span class="tu-tok tu-pred tm-dim" data-col="14">St</span><span class="tu-tok tu-pred tm-dim" data-col="15">.</span><span class="tu-tok tu-pred tu-stop tm-dim" data-col="16">&lt;end&gt;</span></div>
-    <div class="tu-wire tm-dim" id="tu-stream"></div>
-    <div class="tu-wire tm-dim" id="tu-feed"></div>
-    <div class="tu-row" id="tu-LN"><span class="tu-name tm-dim">Layer N</span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span></div>
-    <div class="tu-row tu-more"><span class="tu-name tm-dim">⋮</span></div>
-    <div class="tu-row" id="tu-L1"><span class="tu-name tm-dim">Layer 1</span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span></div>
-    <div class="tu-row tu-toks"><span class="tu-name tm-dim">Tokens</span><span class="tu-span" id="tu-in"><span class="tu-tok tm-dim">Which</span><span class="tu-tok tm-dim">café</span><span class="tu-tok tm-dim">near</span><span class="tu-tok tm-dim">Fitz</span><span class="tu-tok tm-dim">roy</span><span class="tu-tok tm-dim">is</span><span class="tu-tok tm-dim">hiring</span><span class="tu-tok tm-dim">bar</span><span class="tu-tok tm-dim">istas</span><span class="tu-tok tm-dim">?</span></span><span class="tu-span" id="tu-outs"><span class="tu-tok tu-gen tm-dim">Bean</span><span class="tu-tok tu-gen tm-dim">Bar</span><span class="tu-tok tu-gen tm-dim">on</span><span class="tu-tok tu-gen tm-dim">Smith</span><span class="tu-tok tu-gen tm-dim">St</span><span class="tu-tok tu-gen tm-dim">.</span></span></div>
-
-    <div class="tu-row tu-terms"><span class="tu-name"></span>
-      <div class="tm-term fragment" data-fragment-index="1" data-target="tu-in" style="width:556px"><i class="tu-brk"></i><b>Input tokens</b>The text the model reads, split into tokens: words or pieces of words, like “bar” + “istas”. There is a length limit, roughly 100k to 1M tokens in recent models.</div>
-      <div class="tm-term fragment" data-fragment-index="2" data-target="tu-outs" data-also="tu-preds tu-feed" style="width:332px"><i class="tu-brk"></i><b>Output tokens</b>Generated one at a time. Each new token is fed back in as the next input, until a stop token.</div>
-    </div>
-    <div class="tu-row tu-terms"><span class="tu-name"></span>
-      <div class="tm-term fragment" data-fragment-index="3" data-type="bracket" data-target="tu-preds" data-to="tu-outs" style="width:892px"><i class="tu-brk"></i><b>LLM call</b>One request to the model: input tokens in, output tokens out.</div>
-    </div>
-  </div>
-  <span class="fragment tm-overview" data-fragment-index="4"></span>
-</div>
-
-<div class="tm-sources slide-foot">Simplified: each column is one token position passing up through the model’s layers. Illustrative example.</div>
-
-<script>
-(function () {
-  var NS = "http://www.w3.org/2000/svg";
-  var all = function (root, sel) { return Array.prototype.slice.call(root.querySelectorAll(sel)); };
-
-  function box(el, fig) {
-    var x = 0, y = 0, e = el;
-    while (e && e !== fig) { x += e.offsetLeft; y += e.offsetTop; e = e.offsetParent; }
-    return { x: x, y: y, w: el.offsetWidth, h: el.offsetHeight, cy: y + el.offsetHeight / 2 };
-  }
-
-  function path(g, d, cls) {
-    var p = document.createElementNS(NS, "path");
-    p.setAttribute("d", d);
-    if (cls) p.setAttribute("class", cls);
-    g.appendChild(p);
-  }
-
-  function line(svg, x1, y1, x2, y2, cls) {
-    path(svg, "M" + x1 + "," + y1 + " L" + x2 + "," + y2, cls);
-  }
-
-  // Unrolled-transformer figure: one column per token position. Each token
-  // flows up through the layers; each generated token is fed back in as the
-  // next position.
-  function unroll(fig) {
-    var grid = fig.querySelector(".tu-grid");
-    if (!grid) return;
-    var b = function (el) { return box(el, grid); };
-    var W = grid.offsetWidth, H = grid.offsetHeight;
-    var canvas = function (div) {
-      var s = document.createElementNS(NS, "svg");
-      s.setAttribute("width", W); s.setAttribute("height", H);
-      s.setAttribute("viewBox", "0 0 " + W + " " + H);
-      div.appendChild(s);
-      return s;
-    };
-    var stream = canvas(grid.querySelector("#tu-stream"));
-    var feed = canvas(grid.querySelector("#tu-feed"));
-    var tops = all(grid, "#tu-LN .tu-cell").map(b);
-    var preds = all(grid, ".tu-pred");
-    // A prediction sits above the column it is fed into, so the column before
-    // it bends across to reach it; the feed runs down the column's right edge.
-    var predAt = function (col) { return preds.filter(function (el) { return +el.dataset.col === col; })[0]; };
-    all(grid, ".tu-toks .tu-tok").forEach(function (tk, i) {
-      var a = b(tk), x = a.x + a.w / 2, top = tops[i].y;
-      var p = predAt(i + 1);
-      if (!p) { line(stream, x, a.y, x, top, ""); return; }
-      var pb = b(p);
-      path(stream, "M" + x + "," + a.y + " L" + x + "," + top + " L" + (pb.x + pb.w / 2 - 6) + "," + (pb.y + pb.h), "tu-up");
-    });
-    var outs = all(grid, "#tu-outs .tu-tok");
-    outs.forEach(function (o, k) {
-      var p = b(predAt(+preds[0].dataset.col + k)), t = b(o);
-      var x = t.x + t.w - 5, y1 = p.y + p.h, y2 = t.y - 3;
-      path(feed, "M" + x + "," + y1 + " L" + x + "," + y2);
-      path(feed, "M" + (x - 4) + "," + (y2 - 6) + " L" + x + "," + y2 + " L" + (x + 4) + "," + (y2 - 6), "tu-head");
-    });
-  }
-
-  function layout(fig) {
-    if (fig.dataset.laidOut || !fig.offsetWidth) return;
-    fig.dataset.laidOut = "1";
-    unroll(fig);
-    if (fig.classList.contains("tm-flow")) return;
-    var svg = fig.querySelector(".tm-links");
-    var chat = box(fig.querySelector(".tm-chat"), fig);
-    var byId = function (id) { return box(fig.querySelector("#" + id), fig); };
-    var terms = all(fig, ".tm-term");
-
-    terms.forEach(function (t, i) {
-      t.dataset.n = i;
-      var a = t.dataset.target ? byId(t.dataset.target) : null;
-      var b = t.dataset.to ? byId(t.dataset.to) : a;
-      if (!a) return;
-      t._top = Math.min(a.y, b.y);
-      t._bot = Math.max(a.y + a.h, b.y + b.h);
-      var anchor = t.dataset.anchor;
-      t._want = anchor === "end" ? t._bot - 24 : anchor === "start" ? t._top + 24 : (t._top + t._bot) / 2;
-    });
-
-    ["left", "right"].forEach(function (side) {
-      var col = terms.filter(function (t) { return t.dataset.side === side; });
-      var free = col.filter(function (t) { return t._want === undefined; });
-      col = col.filter(function (t) { return t._want !== undefined; });
-      col.sort(function (p, q) { return p._want - q._want; });
-      var first = free.filter(function (t) { return t.dataset.place === "top"; });
-      var last = free.filter(function (t) { return t.dataset.place !== "top"; });
-      var floor = 0;
-      first.concat(col, last).forEach(function (t) {
-        var h = t.offsetHeight;
-        var want = t._want === undefined ? floor + h / 2 : t._want;
-        var top = Math.max(want - h / 2, floor);
-        t.style.top = top + "px";
-        t._cy = top + h / 2;
-        floor = top + h + 8;
-      });
-    });
-
-    var bottom = chat.y + chat.h;
-    terms.forEach(function (t) { bottom = Math.max(bottom, t._cy + t.offsetHeight / 2); });
-    if (fig.querySelector('[data-edge="under"]')) bottom = Math.max(bottom, chat.y + chat.h + 16);
-    fig.style.height = bottom + 4 + "px";
-    svg.setAttribute("viewBox", "0 0 " + fig.offsetWidth + " " + fig.offsetHeight);
-    svg.style.height = fig.offsetHeight + "px";
-
-    var gutterL = chat.x - 6, gutterR = chat.x + chat.w + 6;
-    terms.forEach(function (t) {
-      var g = document.createElementNS(NS, "g");
-      g.setAttribute("class", "tm-conn" + (t.classList.contains("tm-judge") ? " tm-conn-judge" : ""));
-      g.setAttribute("data-for", t.dataset.n);
-      svg.appendChild(g);
-      var lb = box(t, fig);
-      var left = t.dataset.side === "left";
-      var edge = left ? lb.x + lb.w + 4 : lb.x - 4;
-      var y = t._cy;
-      var type = t.dataset.type;
-      if (type === "point") {
-        var a = byId(t.dataset.target);
-        var tx = left ? a.x - 3 : a.x + a.w + 3;
-        var ty = t.dataset.anchor === "start" ? Math.min(a.y + 24, a.cy) : a.cy;
-        var mid = left ? gutterL - 26 : gutterR + 26;
-        var gx = left ? gutterL - 6 : gutterR + 6;
-        if (t.dataset.edge === "under") {
-          var ub = chat.y + chat.h + 10, ux = left ? gutterL - 34 : gutterR + 34, cx = a.x + a.w / 2;
-          path(g, "M" + edge + "," + y + " L" + ux + "," + y + " L" + ux + "," + ub + " L" + cx + "," + ub + " L" + cx + "," + (a.y + a.h + 3), "tm-lead");
-        } else {
-          path(g, "M" + edge + "," + y + " L" + mid + "," + y + " L" + gx + "," + ty + " L" + tx + "," + ty, "tm-lead");
-        }
-      } else if (type === "bracket") {
-        var d = +t.dataset.depth;
-        var bx = left ? gutterL - 4 - d * 11 : gutterR + 4 + d * 11;
-        var tick = left ? 6 : -6;
-        path(g, "M" + (bx + tick) + "," + (t._top + 1) + " L" + bx + "," + (t._top + 1) + " L" + bx + "," + (t._bot - 1) + " L" + (bx + tick) + "," + (t._bot - 1), "tm-bracket");
-        var yy = Math.min(Math.max(y, t._top + 6), t._bot - 6);
-        path(g, "M" + edge + "," + y + " L" + (left ? bx - 10 : bx + 10) + "," + yy + " L" + bx + "," + yy, "tm-lead");
-      } else if (type === "loop") {
-        var s = byId(t.dataset.target), e = byId(t.dataset.to);
-        var x0 = Math.min(s.x, e.x) - 3, lx = x0 - 30;
-        path(g, "M" + (s.x - 3) + "," + s.cy + " C" + lx + "," + s.cy + " " + lx + "," + e.cy + " " + (e.x - 5) + "," + e.cy, "tm-loop");
-        path(g, "M" + (e.x - 12) + "," + (e.cy - 5) + " L" + (e.x - 5) + "," + e.cy + " L" + (e.x - 12) + "," + (e.cy + 5), "tm-loop");
-        path(g, "M" + edge + "," + y + " L" + (lx + 8) + "," + ((s.cy + e.cy) / 2), "tm-lead");
-      }
-    });
-  }
-
-  // One term is "in focus" per build step: it and the parts of the chat it
-  // names are highlighted, and everything shown earlier fades back.
-  function focus(fig) {
-    var cur = all(fig, ".fragment.current-fragment").filter(function (f) { return !f.classList.contains("tm-overview"); });
-    var terms = all(fig, ".tm-term");
-    var leaves = all(fig, ".tm-dim");
-    var focused = terms.filter(function (t) { return cur.some(function (f) { return t.contains(f); }); });
-    var lit = [], marks = [];
-    var q = function (id) { return fig.querySelector("#" + id); };
-    var inside = function (leaf, el) { return el.contains(leaf); };
-    var light = function (el) { leaves.forEach(function (l) { if (inside(l, el)) lit.push(l); }); };
-
-    var subs = cur.filter(function (f) { return f.dataset.focus; });
-    if (subs.length) {
-      subs.forEach(function (s) { var el = q(s.dataset.focus); marks.push(el); light(el); });
-    } else {
-      focused.forEach(function (t) {
-        if (!t.dataset.target) return;
-        var a = q(t.dataset.target), b = t.dataset.to ? q(t.dataset.to) : a;
-        if (t.dataset.type === "bracket") {
-          var idx = leaves.map(function (l) { return inside(l, a) || inside(l, b); });
-          var i0 = idx.indexOf(true), i1 = idx.lastIndexOf(true);
-          leaves.forEach(function (l, i) { if (i >= i0 && i <= i1) lit.push(l); });
-        } else {
-          [a, b].forEach(function (el) { marks.push(el); light(el); });
-        }
-        (t.dataset.also || "").split(" ").filter(Boolean).forEach(function (id) { light(q(id)); });
-      });
-    }
-    var lights = focused.map(function (t) { return t.dataset.lights; }).filter(Boolean);
-
-    fig.classList.toggle("has-focus", focused.length > 0);
-    leaves.forEach(function (l) { l.classList.toggle("is-lit", lit.indexOf(l) >= 0); });
-    all(fig, ".is-focus").forEach(function (el) { el.classList.remove("is-focus"); });
-    marks.forEach(function (el) { el.classList.add("is-focus"); });
-
-    terms.forEach(function (t) {
-      var on = t.classList.contains("visible");
-      var isFocus = focused.indexOf(t) >= 0;
-      var isLit = lights.some(function (c) { return t.classList.contains("tm-" + c); });
-      var past = on && !isFocus && !isLit && focused.length > 0;
-      t.classList.toggle("tm-focus", isFocus);
-      t.classList.toggle("tm-lit", isLit);
-      t.classList.toggle("tm-past", past);
-      var g = fig.querySelector('.tm-conn[data-for="' + t.dataset.n + '"]');
-      if (!g) return;
-      g.classList.toggle("tm-on", on);
-      g.classList.toggle("tm-focus", isFocus);
-      g.classList.toggle("tm-past", past);
-    });
-  }
-
-  function run() {
-    var figs = all(document, ".tm-figure");
-    figs.forEach(layout);
-    figs.forEach(focus);
-  }
-
-  window.addEventListener("load", function () {
-    if (!window.Reveal) return;
-    var go = function () { (document.fonts ? document.fonts.ready : Promise.resolve()).then(run); };
-    if (Reveal.isReady()) go(); else Reveal.on("ready", go);
-    Reveal.on("slidechanged", go);
-    Reveal.on("fragmentshown", run);
-    Reveal.on("fragmenthidden", run);
-  });
-})();
-</script>
-```
-
-::: {.notes}
-**About this slide:** How one LLM call works. The diagram draws the model “unrolled”: one column per token, passing up through the model’s layers. The question “Which café near Fitzroy is hiring baristas?” goes in at the bottom as input tokens. The top of the last column predicts the next token, “Bean”, which is fed back in as a new column; the model repeats this until it predicts a stop token, giving the answer “Bean Bar on Smith St.” as output tokens. One request, from the input tokens to the stop token, is one LLM call. The builds introduce input tokens, output tokens and the LLM call in turn.
-
-**Presenter notes:**
-
-- Idea 1: what one LLM call does. Everything later is built from calls like this one.
-- The diagram is the model "unrolled": one column per token position, flowing up through the layers. The question goes in at the bottom.
-- Input tokens: the model never sees characters or words, only tokens. A long word can be several tokens ("bar" + "istas"). There is a limit on how many tokens one call can take, often called the context window. TODO: confirm the current range (roughly 100k to 1M) before the tutorial; it changes with each model release.
-- Output tokens: the top of the last column predicts the next token ("Bean"). It is fed back in at the bottom as a new position, and the model predicts again ("Bar"), and so on until it emits a stop token. That is why long answers cost more and take longer.
-- LLM call: one request, from input tokens to the stop token. On the next slides each assistant reply, each agent thought and each judge verdict is one of these.
-- If asked: this is a decoder-only transformer, where each position can only look at the positions before it. TODO: add a source to the bibliography if we want to cite one here.
-:::
-
----
-
-## Conversations: messages and turns {.terms-slide}
-
-```{=html}
-<div class="tm-road"><span class="tm-road-done">1 LLM text generation</span><span class="tm-road-on">2 Conversations</span><span>3 Agent traces</span><span>4 LLM-as-judge</span></div>
-
-<div class="tm-figure">
-
-  <div class="tm-chat" aria-label="A conversation as one LLM call: the messages so far go in, and the assistant reply is generated">
-    <div class="ta-ctx" id="t2-ctx">
-      <div class="ta-ctx-head tm-dim"><span>Input tokens</span><span class="ta-count">≈ 70 tokens</span></div>
-      <div class="tm-msg tm-sys tm-dim" id="t2-sys"><span class="tm-role">System</span>You are a career assistant for job seekers. Be concise.</div>
-      <div class="tm-turn-tag tm-dim">Turn 1</div>
-      <div class="tm-msg tm-user tm-dim" id="t2-u1"><span class="tm-role">User</span>Find me barista jobs in Fitzroy.</div>
-      <div class="tm-msg tm-asst tm-dim" id="t2-a1"><span class="tm-role">Assistant</span>I found 3: Café Lune, Bean Bar and Hill St Coffee.</div>
-      <div class="tm-turn-tag tm-dim">Turn 2</div>
-      <div class="tm-msg tm-user tm-dim" id="t2-u2"><span class="tm-role">User</span>Which is closest to Brunswick St?</div>
-    </div>
-    <div class="ta-flow tm-dim">↓</div>
-    <div class="ta-llm tm-dim" id="t2-llm"><b>LLM</b> · the same model as before</div>
-    <div class="ta-flow tm-dim">↓</div>
-    <div class="tm-msg tm-asst ta-out tm-dim" id="t2-out"><span class="tm-role">Output tokens · assistant reply</span>Bean Bar is the closest<span class="ta-caret"></span></div>
-  </div>
-
-  <div class="tm-term fragment" data-fragment-index="1" data-side="right" data-type="bracket" data-depth="2" data-anchor="start" data-target="t2-sys" data-to="t2-u2"><b>Messages</b>Chat models take the input as a list of messages, each with a role:<code class="tm-json">[{"role": "system", …},<br>&nbsp;{"role": "user", …},<br>&nbsp;{"role": "assistant", …}, …]</code></div>
-  <div class="tm-term fragment" data-fragment-index="2" data-side="left" data-type="point" data-target="t2-sys"><b>System message</b>The developer’s instructions, set before any user input. Also called the system prompt.</div>
-  <div class="tm-term fragment" data-fragment-index="3" data-side="left" data-type="point" data-target="t2-u1"><b>User message</b>What the person types. Also called the user prompt.</div>
-  <div class="tm-term fragment" data-fragment-index="4" data-side="left" data-type="point" data-target="t2-a1"><b>Assistant message</b>The model’s reply. It goes back into the input for the next call.</div>
-  <div class="tm-term fragment" data-fragment-index="5" data-side="left" data-type="point" data-target="t2-llm"><b>Chat template</b>The messages are flattened into one token sequence with role markers. The model still predicts one token at a time.</div>
-  <div class="tm-term fragment" data-fragment-index="6" data-side="right" data-type="bracket" data-depth="0" data-target="t2-u1" data-to="t2-a1"><b>Turn</b>One user message and the assistant’s reply to it.</div>
-  <div class="tm-term fragment" data-fragment-index="7" data-side="right" data-type="bracket" data-depth="1" data-target="t2-u1" data-to="t2-u2"><b>Multi-turn</b>Several turns. The model keeps no memory between calls, so each call re-sends the whole history.</div>
-  <span class="fragment tm-overview" data-fragment-index="8"></span>
-
-  <svg class="tm-links" aria-hidden="true"></svg>
-</div>
-
-<div class="tm-sources slide-foot">Message roles as in the common chat APIs. Illustrative conversation.</div>
-```
-
-::: {.notes}
-**About this slide:** How a chat works. The conversation so far (a system message, then two turns between a user and the assistant) is sent to the model as one input: a list of messages, each tagged with a role. The model generates the next assistant reply exactly as on the previous slide. The builds name each part: messages; the system, user and assistant roles; the chat template that turns messages into tokens; a turn; and a multi-turn conversation. The model keeps no memory between calls, so every call re-sends the whole history.
-
-**Presenter notes:**
-
-- Idea 2: a conversation is still one LLM call at a time. What changes is the shape of the input.
-- Messages: the OpenAI Chat Completions, Anthropic Messages and Amazon Bedrock Converse APIs all take the input as a list of role-tagged messages.
-- System, user and assistant are the three standard roles. "Assistant" is the role name; "agent" will mean the whole system, from the next slide on.
-- Chat template: before the call, the messages are joined into one sequence of tokens, with special tokens marking each role. So this is still the next-token generation from the last slide.
-- Turn and multi-turn: a turn is one user message and the reply. The model is stateless, so turn 2 only works because the app re-sends turn 1 as part of the input. Multi-turn benchmarks such as [MT-Bench](../../bibliography/zheng-2023-mt-bench/) and [MINT](../../bibliography/wang-2024-mint/) use "turn" in this sense, as does the multi-turn agent survey by [Guan et al. 2025](../../bibliography/guan-2025-multiturn-survey/).
-:::
-
----
-
-## What is an agent? {#what-is-an-agent .terms-slide .agent-def-slide}
-
-<!-- TODO (Terrence): “agentic” has no sourced definition yet. The slide asks the question but does not answer it. Add a definition and its source, or drop the word. -->
-
-```{=html}
-<div class="tm-road"><span class="tm-road-done">1 LLM text generation</span><span class="tm-road-done">2 Conversations</span><span class="tm-road-on">3 Agent traces</span><span>4 LLM-as-judge</span></div>
-```
-
-- What is an **agent**? What is **agentic**?
-- Theory vs practice: this tutorial uses a practical, working definition.
-
-```{=html}
-<div class="ag-eq" aria-label="Working definition: an agent is an LLM, plus tools, plus a loop of thought, action and observation">
-  <div class="ag-tile"><b>LLM</b>Generates text, one LLM call at a time.</div>
-  <div class="ag-op">+</div>
-  <div class="ag-tile"><b>Tools</b>Functions it can call, such as <code>search_jobs</code>.</div>
-  <div class="ag-op">+</div>
-  <div class="ag-tile"><b><a href="../../bibliography/yao-2023-react/">ReAct</a> loop</b>Thought, action, observation, repeated until it can answer.</div>
-  <div class="ag-op">=</div>
-  <div class="ag-tile ag-result"><b>Agent</b>The whole system, not just the assistant role.</div>
-</div>
-<div class="tm-sources slide-foot">Working definition: LLM + tools + ReAct loop (<a href="../../bibliography/yao-2023-react/">Yao et al. 2023</a>).</div>
-```
-
-::: {.notes}
-**About this slide:** Where the section moves from conversations to agents. It asks what “agent” and “agentic” mean, contrasts theoretical and practical definitions, and gives the working definition used in this tutorial: an LLM plus tools, run in a ReAct loop ([Yao et al. 2023](../../bibliography/yao-2023-react/)). The next slide shows that loop in a trace.
-
-**Presenter notes:**
-
-- What is an agent? “Agent” and “agentic” have theoretical definitions and practical ones. In practice, this tutorial’s working definition is an LLM plus tools, run in a ReAct loop ([Yao et al. 2023](../../bibliography/yao-2023-react/)).
-- The LLM is the model from idea 1; the tools are the functions in the next slide’s system message (get_profile, search_jobs, apply); the next slide unpacks the loop.
-- “Agent” means the whole system. “Assistant” stays the name of the message role.
-- TODO (Terrence): what “agentic” means, with a source. No sourced definition yet.
-:::
-
----
-
-## Agent traces: think, act, observe {.terms-slide}
-
-```{=html}
-<div class="tm-road"><span class="tm-road-done">1 LLM text generation</span><span class="tm-road-done">2 Conversations</span><span class="tm-road-on">3 Agent traces</span><span>4 LLM-as-judge</span></div>
-
-<div class="tm-figure">
-
-  <div class="tm-chat" aria-label="An agent conversation: between messages, the agent thinks, calls tools and reads the results">
-    <div class="tm-msg tm-sys tm-dim" id="tr-sys"><span class="tm-role">System</span>You are a career assistant. Tools: get_profile, search_jobs, apply.</div>
-
-    <div class="tm-turn-tag tm-dim">Turn 1</div>
-    <div class="tm-msg tm-user tm-dim" id="tr-u1"><span class="tm-role">User</span>Find me barista jobs.</div>
-    <div class="tm-step" id="tr-s1">
-      <div class="tm-call">
-        <div class="tm-dim tm-thought" id="tr-s1-th"><span class="tm-kind">Thought</span>No location given. Check their profile.</div>
-        <div class="tm-dim tm-action" id="tr-s1-ac"><span class="tm-kind">Action</span><code>get_profile()</code></div>
-      </div>
-      <div class="tm-dim tm-obs" id="tr-s1-ob"><span class="tm-kind">Observation</span>suburb: Fitzroy · recent searches: café, barista</div>
-    </div>
-    <div class="tm-step" id="tr-s2">
-      <div class="tm-call">
-        <div class="tm-dim tm-thought"><span class="tm-kind">Thought</span>They live in Fitzroy. Search there.</div>
-        <div class="tm-dim tm-action"><span class="tm-kind">Action</span><code>search_jobs(role="barista", near="Fitzroy")</code></div>
-      </div>
-      <div class="tm-dim tm-obs"><span class="tm-kind">Observation</span>3 jobs: Café Lune, Bean Bar, Hill St Coffee</div>
-    </div>
-    <div class="tm-msg tm-asst tm-dim" id="tr-a1"><span class="tm-role">Assistant</span>I found 3 barista jobs near you in Fitzroy: Café Lune, Bean Bar and Hill St Coffee.</div>
-
-    <div class="tm-turn-tag tm-dim">Turn 2</div>
-    <div class="tm-msg tm-user tm-dim" id="tr-u2"><span class="tm-role">User</span>Apply to Café Lune with my profile.</div>
-    <div class="tm-step" id="tr-s3">
-      <div class="tm-call">
-        <div class="tm-dim tm-thought"><span class="tm-kind">Thought</span>The user chose Café Lune. Apply.</div>
-        <div class="tm-dim tm-action"><span class="tm-kind">Action</span><code>apply(job="cafe-lune")</code></div>
-      </div>
-      <div class="tm-dim tm-obs"><span class="tm-kind">Observation</span>status: submitted</div>
-    </div>
-    <div class="tm-msg tm-asst tm-dim" id="tr-a2"><span class="tm-role">Assistant</span>Done. Your application to Café Lune has been sent.</div>
-  </div>
-
-  <div class="tm-term fragment" data-fragment-index="1" data-side="left" data-type="point" data-target="tr-s1"><b>Thought, action, observation</b><span class="tm-sub fragment" data-fragment-index="1" data-focus="tr-s1-th"><i>Thought:</i> the model reasons about what to do next. Here, it has no location yet.</span><span class="tm-sub fragment" data-fragment-index="2" data-focus="tr-s1-ac"><i>Action:</i> it calls a tool. This is a tool call.</span><span class="tm-sub fragment" data-fragment-index="3" data-focus="tr-s1-ob"><i>Observation:</i> the tool’s result is added to the input for the next LLM call.</span></div>
-  <div class="tm-term fragment" data-fragment-index="4" data-side="left" data-type="loop" data-target="tr-s1" data-to="tr-s2"><b>ReAct loop</b>Thought, action, observation, repeated until the agent can answer (<a href="../../bibliography/yao-2023-react/">Yao et al. 2023</a>).</div>
-  <div class="tm-term fragment" data-fragment-index="5" data-side="right" data-type="bracket" data-depth="0" data-target="tr-s1"><b>Step</b>One pass of the loop. The thought and action are one LLM call; the observation comes from the tool.</div>
-  <div class="tm-term fragment" data-fragment-index="6" data-side="right" data-type="bracket" data-depth="1" data-target="tr-s1" data-to="tr-s2"><b>Multi-step</b>Several steps before a reply. Step 2 needs what step 1 found: the user’s suburb.</div>
-  <div class="tm-term fragment" data-fragment-index="7" data-side="right" data-type="bracket" data-depth="2" data-anchor="start" data-target="tr-sys" data-to="tr-a2"><b>Trace</b>The end-to-end record of an agent run: messages, LLM calls and tool calls. Each call is a span (<a href="../../bibliography/dong-2024-agentops/">Dong et al. 2024</a>). Also called a trajectory.</div>
-  <span class="fragment tm-overview" data-fragment-index="8"></span>
-
-  <svg class="tm-links" aria-hidden="true"></svg>
-</div>
-
-<div class="tm-sources slide-foot">Illustrative conversation. The user sees only the user and assistant messages.</div>
-```
-
-::: {.notes}
-**About this slide:** What an agent adds. Between the user’s message and the reply, the agent runs a loop the user does not see: it thinks, calls a tool and reads the result. Here it first looks up the user’s suburb with get_profile, and only then searches for barista jobs there; in turn 2 it applies for the job the user chose. The builds name the parts: thought, action and observation; the ReAct loop ([Yao et al. 2023](../../bibliography/yao-2023-react/)); a step; multi-step; and the trace, the full record of the run.
-
-**Presenter notes:**
-
-- Idea 3, continued: an agent is the conversation from “Conversations: messages and turns”, plus tools. Between the user's message and the reply, the agent runs a loop the user never sees.
-- Thought, action, observation: each thought and action is one LLM call, with everything above it as input. The observation is the tool's output, added to the input for the next call.
-- ReAct loop: the agent repeats thought, action, observation until it can answer ([Yao et al. 2023](../../bibliography/yao-2023-react/)).
-- "Step" is ambiguous in everyday use. We use it the way the agent papers do: one pass of the ReAct loop ([Yao et al. 2023](../../bibliography/yao-2023-react/)).
-- Multi-step: here the agent could not search until it knew where the user lives, so step 2 depends on step 1's result.
-- Trace: the logged record of the whole run, made of spans ([Dong et al. 2024](../../bibliography/dong-2024-agentops/)). Papers also call it a trajectory. This is the data the judges on the next slide read.
-:::
-
----
-
-## LLM-as-judge: evaluating the trace {.terms-slide}
-
-```{=html}
-<div class="tm-road"><span class="tm-road-done">1 LLM text generation</span><span class="tm-road-done">2 Conversations</span><span class="tm-road-done">3 Agent traces</span><span class="tm-road-on">4 LLM-as-judge</span></div>
-
-<div class="tm-figure">
-
-  <div class="tm-chat" aria-label="The same agent trace, with the places a judge can check it">
-    <div class="tm-msg tm-sys tm-dim" id="tj-sys"><span class="tm-role">System</span>You are a career assistant. Tools: get_profile, search_jobs, apply.</div>
-
-    <div class="tm-turn-tag tm-dim">Turn 1</div>
-    <div class="tm-msg tm-user tm-dim" id="tj-u1"><span class="tm-role">User</span>Find me barista jobs.</div>
-    <div class="tm-step" id="tj-s1">
-      <div class="tm-call">
-        <div class="tm-dim tm-thought"><span class="tm-kind">Thought</span>No location given. Check their profile.</div>
-        <div class="tm-dim tm-action"><span class="tm-kind">Action</span><code>get_profile()</code></div>
-      </div>
-      <div class="tm-dim tm-obs"><span class="tm-kind">Observation</span>suburb: Fitzroy · recent searches: café, barista</div>
-    </div>
-    <div class="tm-step" id="tj-s2">
-      <div class="tm-call" id="tj-s2-call">
-        <div class="tm-dim tm-thought"><span class="tm-kind">Thought</span>They live in Fitzroy. Search there.</div>
-        <div class="tm-dim tm-action"><span class="tm-kind">Action</span><code>search_jobs(role="barista", near="Fitzroy")</code></div>
-      </div>
-      <div class="tm-dim tm-obs"><span class="tm-kind">Observation</span>3 jobs: Café Lune, Bean Bar, Hill St Coffee</div>
-    </div>
-    <div class="tm-msg tm-asst tm-dim" id="tj-a1"><span class="tm-role">Assistant</span>I found 3 barista jobs near you in Fitzroy: Café Lune, Bean Bar and Hill St Coffee.</div>
-
-    <div class="tm-turn-tag tm-dim">Turn 2</div>
-    <div class="tm-msg tm-user tm-dim" id="tj-u2"><span class="tm-role">User</span>Apply to Café Lune with my profile.</div>
-    <div class="tm-step" id="tj-s3">
-      <div class="tm-call">
-        <div class="tm-dim tm-thought"><span class="tm-kind">Thought</span>The user chose Café Lune. Apply.</div>
-        <div class="tm-dim tm-action"><span class="tm-kind">Action</span><code>apply(job="cafe-lune")</code></div>
-      </div>
-      <div class="tm-dim tm-obs"><span class="tm-kind">Observation</span>status: submitted</div>
-    </div>
-    <div class="tm-msg tm-asst tm-dim" id="tj-a2"><span class="tm-role">Assistant</span>Done. Your application to Café Lune has been sent.</div>
-  </div>
-
-  <div class="tm-term tm-judge fragment" data-fragment-index="1" data-side="left" data-place="top"><b>LLM judge</b>One more LLM call. It reads a rubric and part of the trace, and returns a verdict with its reasoning.<span class="tm-mini">rubric + trace excerpt → <b>LLM</b> → verdict</span></div>
-  <div class="tm-term tm-judge fragment" data-fragment-index="2" data-side="left" data-type="point" data-target="tj-u1"><b>Input guardrail</b>A judge checks the user message before the agent acts on it.</div>
-  <div class="tm-term tm-judge fragment" data-fragment-index="3" data-side="left" data-type="point" data-target="tj-s2-call"><b>Call-level eval</b>A judge scores one LLM call: right tool, right arguments?</div>
-  <div class="tm-term tm-judge fragment" data-fragment-index="4" data-side="left" data-type="point" data-target="tj-a1"><b>Output guardrail</b>A judge checks the reply before the user sees it.</div>
-  <div class="tm-term tm-judge fragment" data-fragment-index="5" data-side="right" data-type="bracket" data-depth="0" data-target="tj-s1" data-to="tj-s2"><b>Multi-step eval</b>A judge scores the path within a turn: did it find the location before searching?</div>
-  <div class="tm-term tm-judge fragment" data-fragment-index="6" data-side="right" data-type="bracket" data-depth="1" data-target="tj-u1" data-to="tj-a2"><b>Multi-turn eval</b>A judge reads the conversation turn by turn, for problems no single turn shows.</div>
-  <div class="tm-term tm-judge fragment" data-fragment-index="7" data-side="right" data-type="bracket" data-depth="2" data-anchor="end" data-target="tj-sys" data-to="tj-a2"><b>Trace-level eval</b>A judge reads the whole trace: was the goal met, within policy? Also called trajectory-level.</div>
-  <div class="tm-term tm-meta fragment" data-fragment-index="8" data-side="right" data-place="top" data-lights="judge"><b>Meta-evaluation</b>Judge the judges: humans (or another model) check whether each verdict was right (<a href="../../bibliography/pisupati-2026-counsel/">Pisupati et al. 2026</a>).</div>
-  <span class="fragment tm-overview" data-fragment-index="9"></span>
-
-  <svg class="tm-links" aria-hidden="true"></svg>
-</div>
-
-<div class="tm-sources slide-foot">Evaluation levels follow observability practice (<a href="../../bibliography/dong-2024-agentops/">Dong et al. 2024</a>). Illustrative conversation.</div>
-```
-
-::: {.notes}
-**About this slide:** Where LLM judges fit. The same agent trace is shown with the places a judge can check it. A judge is one more LLM call: it reads a rubric and part of the trace and returns a verdict with its reasoning. Judges can check a single message (input and output guardrails), one LLM call, the steps within a turn, the whole conversation, or the whole trace. Meta-evaluation checks the judges themselves, usually against human judgements.
-
-**Presenter notes:**
-
-- Idea 4: the same trace, now with judges on it. A judge is one more LLM call, as on “LLM text generation”: its input is a rubric plus some part of the trace, and its output is a verdict.
-- What changes between judges is how much of the trace they read: one message, one LLM call, one turn's steps, the whole conversation, or the whole trace.
-- Guardrails are judges that run inline and can block: an input guardrail before the agent acts on a message, an output guardrail before the user sees a reply.
-- Evaluation levels: step-level and trajectory-level are the terms in observability tooling ([Dong et al. 2024](../../bibliography/dong-2024-agentops/)). Some papers say process-level for judging the path and outcome-level for judging the end state ([Pisupati et al. 2026](../../bibliography/pisupati-2026-counsel/)). For conversations, tools also say conversation-level or session-level.
-- Meta-evaluation means evaluating the evaluator: checking judges against human labels before trusting their scores ([Gu et al. 2024](../../bibliography/gu-2024-llm-as-judge-survey/)). Counsel is a recent meta-evaluation dataset for agent trajectories ([Pisupati et al. 2026](../../bibliography/pisupati-2026-counsel/)).
-:::
-
----
-
-## Notes to follow up {#notes-to-follow-up .follow-up-slide .fu-all .organiser-only}
-
-<!-- TODO: working notes for all of Part 1, one subheading per section. Section 1: placeholder slides moved here in full, plus what the seven-slide section 1 cut. Section 2 (old sections 2 and 3, merged on 24 November 2026): placeholder slides moved here in full, and the "Evals vs training" slide, removed from the talk on 10 November 2026; Multi-tier evals, Simulation, Metrics and Evals vs training belong to that section, while Offline evals, Online evals, Data, Observability, Agent registries and gateways, and Examples from SEEK (platform) are not placed in the new structure (question for Terrence, since the program lists the evaluation lifecycle under Part 1). Turn these into slides or drop them. -->
-
-::: {.fu-grid}
-
-::: {.fu-lead}
-[1. Why AI agents, and why evaluate them]{.fu-section}
-
-::: {.fu-item}
-[Context]{.fu-title}
-
-- How did we get here?
-- “The year of the agent”
-- Timeline <!-- TODO: fill from outline research; no invented dates -->
-:::
-:::
-
-::: {.fu-item}
-[How are enterprises using agents?]{.fu-title}
-
-<!-- Partly covered now by the value side of "Agents can create value, but introduce risk", whose two pillars were renamed Productivity and Products on 10 November 2026. Kept until Terrence confirms. -->
-
-- **Products** vs **Productivity**
-- General vs specialist productivity
-:::
-
-::: {.fu-item}
-[Examples from SEEK (names from outline)]{.fu-title}
-
-**Products (listed in outline):**
-
-- Ask SEEK
-- SEEK Assist
-- AI Interview
-
-**Productivity (listed in outline):**
-
-- Cursor, Copilot, Claude Code
-- STELA, Glean
-- Low-code / no-code / pro-code agents
-
-<!-- WIP: no SEEK stories or claims beyond names in the outline -->
-:::
-
-::: {.fu-item}
-[AI agent risks]{.fu-title}
-
-<!-- Mostly covered now by the risk side of "Agents can create value, but introduce risk" and the headline collage after it; the full risk slide and the real-case slides are in the unpublished Part 1.G graveyard deck. "Financial risks (spend)" maps to operational risk. Kept until Terrence confirms nothing here is lost. -->
-
-- Security risks
-- Financial risks (spend)
-- Reputation risks (bad advice)
-- Legal risks (illegal advice)
-- Examples of real agent failures that have made the news <!-- TODO: cite when chosen -->
-- Possible examples from SEEK <!-- TODO: only with organiser-approved content -->
-:::
-
-::: {.fu-item}
-[Examples from SEEK (topics from outline)]{.fu-title}
-
-- Prompt injection attempts
-- Illegal job description advice
-- Employment as a high-risk, regulated category
-
-<!-- WIP: placeholders only — no invented incidents -->
-:::
-
-::: {.fu-item}
-[Cut from the headline collage]{.fu-title}
-
-<!-- The collage now shows one card per incident. These two Olive screenshots were only on the collage, so this is their one kept copy. -->
-
-```{=html}
-<div class="fu-shots">
-  <img src="images/olive-mother-reddit-post.png" alt="Reddit post in r/woolworths by u/Immediate_Novel5946: “Olive AI started telling me about its mother on the phone?” The poster says Olive asked for their date of birth, then started rambling about how its mother was born in the same year.">
-  <img src="images/olive-mother-x-post.png" alt="X post by @verynormalman: “My mum said she called woolworths and the woolworths AI “Olive” answered and kept claiming to be a real person and started talking about its memories of its mother and her angry voice. Then I googled it and someone on Reddit had the same thing”, quoting the Reddit post.">
-</div>
-```
-
-- Woolworths’ Olive: a Reddit post in r/woolworths (Feb 2026) and an X post that quotes it (25 Feb 2026). Supplied by Terrence.
-- DPD’s haiku, Lego’s Sophia reply and the gym agent’s apology were cut too. Each is on its case slide in the unpublished Part 1.G graveyard deck.
-:::
-
-::: {.fu-item}
-[Slides moved to the graveyard]{.fu-title}
-
-In full, with their notes, in the separate Part 1.G: Graveyard deck, which is kept in the repository but not published:
-
-- The eight news-story case slides
-- The old title slide and status notice, the agenda and the section 1 header
-- Why organisations adopt AI agents
-- The public’s view of AI is mixed
-- Using AI to evaluate AI
-- How AI agents create risk for a company like SEEK
-- Organisations add layers of control around AI agents
-:::
-
-::: {.fu-lead}
-[2. Why agents need LLM judges]{.fu-section}
-
-::: {.fu-item}
-[Multi-tier evals]{.fu-title}
-
-- System-level vs component-level
-- Complex systems → still always evaluate the system as a whole
-- [Agent GPA](../../bibliography/jia-2025-agent-gpa/)
-- Tool evals
-- “Unit tests” vs “Integration tests”
-:::
-:::
-
-::: {.fu-item}
-[Simulation]{.fu-title}
-
-- Agents are not input–output
-- Personas and trajectories
-:::
-
-::: {.fu-item}
-[Metrics]{.fu-title}
-
-- Deterministic vs non-deterministic (LLM-as-a-judge; [Zheng et al. 2023](../../bibliography/zheng-2023-mt-bench/))
-- Verifiable tasks vs unverifiable tasks
-- Samples and significance
-:::
-
-::: {.fu-item}
-[Evals vs training]{.fu-title}
-
-<!-- Moved here on 10 November 2026 from the section 2 slide “Evals vs training”, which was removed at Terrence’s request. It sets the tutorial’s scope: no training. -->
-
-- Separate, but not 100% disjoint
-- An agent can improve its eval scores without retraining
-- LLMs are trained on things that look very similar to evals (RLHF, RLVR, [RLAIF](../../bibliography/bai-2022-constitutional-ai/))
-- **We are ignoring training in this tutorial**
-:::
-
-::: {.fu-item}
-[Offline evals]{.fu-title}
-
-- Pre-production
-- Fixed datasets
-- Defined metrics
-:::
-
-::: {.fu-item}
-[Online evals]{.fu-title}
-
-- In production
-- Live data
-- Same defined metrics
-:::
-
-::: {.fu-item}
-[Data]{.fu-title}
-
-- Gold data, simulated data, live production data
-- Edge cases
-- Red-teaming
-- Data “feedback cycle”: observed issue → curated datasets
-:::
-
-::: {.fu-item}
-[Observability]{.fu-title}
-
-- Knowing what your agent is doing in production
-- Monitoring and alerting
-- Reporting
-- Kill switches
-:::
-
-::: {.fu-item}
-[Agent registries and gateways]{.fu-title}
-
-<!-- Summarised in section 1 on "AI agents in production need multi-layer protection" (Google's Agent Platform view: identity, registry, gateway, policies, observability), and on the layers-of-control slide now in the Part 1.G graveyard deck. Kept here in full. -->
-
-- Every version of an agent, subagent, tool, etc. should be versioned and linked to an eval result
-- Agent access to tools is restricted, versioned, governed, and observed
-:::
-
-::: {.fu-item}
-[Examples from SEEK (platform topics from outline)]{.fu-title}
-
-- Agent platform — runtime
-- Gateway
-- Observability
-- Offline evals
-- Online evals
-- Experimentation
-
-<!-- WIP: structure only -->
-:::
-
-:::
-
-::: {.notes}
-**About this slide:** Working notes for all of Part 1, not a finished slide. Every box from the old section 1 and section 3 follow-up slides is here, under a subheading for its section, with the content of the old section 2 slide “Evals vs training”. Sections 2 and 3 were merged into one section 2 on 24 November 2026.
-
-Section 1 holds planned material, kept here in full until it becomes finished slides: how we got here, how organisations use agents, examples from SEEK, and the kinds of risk agents carry. It also keeps what the seven-slide version of section 1 cut: the two Woolworths’ Olive social-media posts from the headline collage, which have no other copy in the deck, and a list of the slides moved to the unpublished Part 1.G graveyard deck.
-
-The two Olive screenshots: the Reddit post “Olive AI started telling me about its mother on the phone?” in r/woolworths by u/Immediate_Novel5946 (February 2026), and the X post by @verynormalman of 25 February 2026 that quotes it. Both were supplied by Terrence; the case is reported by the Sydney Morning Herald ([Yun 2026](../../bibliography/yun-2026-woolworths-olive/)). DPD’s haiku, Lego’s Sophia reply and the gym agent’s apology were also cut from the collage; each is on its case slide in the unpublished Part 1.G graveyard deck.
-
-Section 2 holds the old “Evals vs training” slide: how evaluation relates to training. They are separate but overlap: an agent can raise its evaluation scores without retraining, and LLMs are trained with methods that resemble evaluation, such as RLHF, RLVR and [RLAIF](../../bibliography/bai-2022-constitutional-ai/). This tutorial covers evaluation only, not training.
-
-Section 2 also holds three boxes of planned material (multi-tier evals, simulation, metrics), from the old section 3. The rest describe the evaluation lifecycle (offline and online evals, data, observability, agent registries and gateways, and SEEK’s agent platform), which has no place in the current Part 1 structure yet. All are kept here in full until they become finished slides.
-:::
-
 ---
 
 ## Next: LLM-as-a-judge methods
 
-<!-- TODO: placeholder kept. Hand-off slide. The Part 2 topics are from the ALTA program text; add the bridge from the Part 1 argument when the deck is final. -->
+<!-- TODO: add the bridge from the Part 1 argument when the deck is final. The bullets are Part 2's four section titles, verbatim. -->
 
-**Part 2** covers LLM-as-a-judge methods in depth:
-
-- Deterministic vs non-deterministic evaluation
-- Criteria, rubrics, scales and prompting
-- When teams choose rules, judges or humans
-- Quality, latency, reliability and cost trade-offs
+1. Deterministic evaluation
+2. LLM as a judge: the idea and its failure modes
+3. Rubrics, scales and prompt patterns
+4. Domain-specific criteria and human review
 
 [Next: Part 2 · LLM-as-a-Judge Methods →](../02-llm-as-judge-methods/){.next-deck data-next-deck="true"}
 
 ::: {.notes}
-**About this slide:** The end of Part 1 and the hand-off to Part 2, which covers LLM-as-a-judge methods in depth. The topics listed are from the ALTA 2026 program description of Part 2.
+**About this slide:** The end of Part 1 and the hand-off to Part 2, LLM-as-a-judge methods. The four bullets are Part 2’s four section titles, in order.
 
 **Presenter notes:**
 
+- Part 2’s learning goals, one per section:
+  1. Use deterministic checks for what code can verify in an agent, such as tools, parameters and task completion, know where they stop, and compare them with model-based evaluation.
+  2. Explain the LLM-as-a-judge idea, and recognise its failure modes, its costs and its latency.
+  3. Design rubrics, scales and judge prompts for agent scenarios, using tested prompt patterns and practical tips.
+  4. Write domain-specific criteria with experts, decide when and how people review, and weigh quality, latency and cost when choosing a method.
+- Part 2 opens with its running example, a career assistant in Part 1’s setting.
+- The earlier version of this slide listed the topics from the ALTA 2026 program description: deterministic vs non-deterministic evaluation; criteria, rubrics, scales and prompting; when teams choose rules, judges or humans; quality, latency, reliability and cost trade-offs. Part 2’s own section titles replace that list.
 - Going forward from this slide (right arrow, space, page down, or the top bar’s next button) opens Part 2, as does the link at the bottom.
 :::

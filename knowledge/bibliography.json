@@ -3561,24 +3561,32 @@
     {
       "id": "finegood-complex-versus-complicated",
       "type": "website",
-      "year": "n.d.",
+      "year": "2022",
       "groups": [
         "agents"
       ],
-      "authors": [],
+      "authors": [
+        "Diane Finegood",
+        "Sam Bradd"
+      ],
       "title": "Complex versus complicated",
-      "venue": "Frameworks Collection.",
+      "venue": "Complex Systems Frameworks Collection (CC BY-NC-ND 4.0).",
       "url": "https://www.complexsystemsframeworks.ca/framework/complex-versus-complicated/",
       "links": [
         {
           "label": "Website",
           "href": "https://www.complexsystemsframeworks.ca/framework/complex-versus-complicated/"
+        },
+        {
+          "label": "Rights and licensing",
+          "href": "https://www.complexsystemsframeworks.ca/about/rights-and-licensing/"
         }
       ],
       "mentions": [
-        "Complex versus complicated"
+        "Complex versus complicated",
+        "Complex Systems Frameworks Collection"
       ],
-      "note": "The Part 1 slide credits finegood@sfu.ca, Frameworks Collection, CC BY-NC-ND. A personal byline was not copied beyond that credit.",
+      "note": "Site footer: “Frameworks Collection © 2022 by Diane Finegood; Illustrations © 2022–2026 by Sam Bradd, Drawing Change. Content licensed under CC BY-NC-ND 4.0.”",
       "summary": "The framework behind the Part 1 “Complex system” and “Complicated system” slides: the keywords (predictable, controllable, designable versus unpredictable, self-organising, emergent) and the examples. The tutorial uses it to say why an agent is not evaluated like a pipeline: the same input can lead to a spread of outputs, so you still have to evaluate the whole system.",
       "featured_rank": null,
       "abstract": null
