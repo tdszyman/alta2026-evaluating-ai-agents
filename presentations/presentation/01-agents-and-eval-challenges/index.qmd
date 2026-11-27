@@ -35,7 +35,7 @@ format:
 ```{=html}
 <div class="vt-grid">
   <div class="vt-ask">
-    <p class="vt-kicker">Hands up if you would</p>
+    <p class="vt-kicker">Hands up if you would let AI</p>
     <ol class="vt-questions">
       <li class="fragment" data-fragment-index="1"><span class="vt-n">1</span>proofread your CV and suggest changes?</li>
       <li class="fragment" data-fragment-index="2"><span class="vt-n">2</span>find and recommend jobs for you?</li>
