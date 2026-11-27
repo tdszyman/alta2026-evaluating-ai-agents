@@ -852,7 +852,43 @@ Next, “An agent trace can be evaluated at multiple levels” names the parts o
 - Step: one pass of the loop, thought, action, observation ([Yao et al. 2023](../../bibliography/yao-2023-react/)). Multi-step: several steps before a reply. Step 2 needs what step 1 found, the user’s suburb.
 - Turn: one user message and the assistant’s reply to it. Multi-turn: several turns. The model keeps no memory between calls, so each call re-sends the whole history.
 - Trace: the end-to-end record of an agent run: messages, LLM calls and tool calls ([Dong et al. 2024](../../bibliography/dong-2024-agentops/)). Also called a trajectory. This is what an LLM judge reads, in Part 2 and in the hands-on app.
-- Next: two SEEK examples of judges reading these parts: a job ad checked after the agent’s steps, and a conversation judged after every turn.
+- Next: the “Two examples” breather, then two SEEK examples of judges reading these parts: a job ad checked after the agent’s steps, and a conversation judged after every turn.
+:::
+
+---
+
+## Two examples {#two-examples .examples-break-slide .centre-body}
+
+[What this looks like in practice]{.xb-line}
+
+```{=html}
+<div class="xb-art" aria-hidden="true">
+  <svg class="xb-tile xb-tile-a" viewBox="0 0 240 180">
+    <rect class="xb-bg" x="0" y="0" width="240" height="180"/>
+    <rect class="xb-sheet" x="74" y="28" width="92" height="124" rx="6"/>
+    <path class="xb-ink" d="M90,52 H150 M90,70 H150 M90,88 H138 M90,106 H150 M90,124 H126"/>
+    <circle class="xb-judge" cx="166" cy="140" r="24"/>
+    <circle class="xb-lens" cx="163" cy="137" r="9"/><path class="xb-tick" d="M170,144 l8,8"/>
+  </svg>
+  <svg class="xb-tile xb-tile-b" viewBox="0 0 240 180">
+    <rect class="xb-bg" x="0" y="0" width="240" height="180"/>
+    <path class="xb-sheet" d="M52,34 h92 a8,8 0 0 1 8,8 v34 a8,8 0 0 1 -8,8 h-70 l-14,14 v-14 h-8 a8,8 0 0 1 -8,-8 v-34 a8,8 0 0 1 8,-8 z"/>
+    <path class="xb-sheet" d="M96,96 h84 a8,8 0 0 1 8,8 v30 a8,8 0 0 1 -8,8 h-8 v14 l-14,-14 h-62 a8,8 0 0 1 -8,-8 v-30 a8,8 0 0 1 8,-8 z"/>
+    <path class="xb-ink" d="M62,52 H134 M62,66 H112 M106,114 H170 M106,128 H150"/>
+    <circle class="xb-judge" cx="188" cy="140" r="24"/>
+    <circle class="xb-lens" cx="185" cy="137" r="9"/><path class="xb-tick" d="M192,144 l8,8"/>
+  </svg>
+</div>
+```
+
+::: {.notes}
+**About this slide:** A breather between “An agent trace can be evaluated at multiple levels” and the two example slides. It is deliberately light, not a section divider: the title, one line and two simple tiles, a document and a conversation, each with a judge’s magnifier. The tiles hint at the next two slides without telling their story.
+
+**Presenter notes:**
+
+- What Terrence wants to say here: “Ok, I’ve told you a lot about how agents have risks and how agent platforms enable enterprises like SEEK to implement LLM-as-judge to mitigate agent risks. Next I’m going to show you two realistic examples of what this might look like.”
+- No reveals. Pause briefly, then move on.
+- The next two slides are illustrative SEEK mock-ups: a judge stopping an unlawful job ad, then a judge spotting a multi-turn attack in a chat.
 :::
 
 ---
@@ -1083,42 +1119,6 @@ End the chat if risk ≥ 0.8.</pre>
 - This pattern is a multi-turn jailbreak, such as [Crescendo](../../bibliography/russinovich-2024-crescendo/): start harmless, then escalate by building on the model’s own replies. A filter that checks one message at a time misses it; a judge with the whole conversation in view can catch it.
 - Links to the outline’s SEEK examples: prompt injection and adversarial users.
 - It is the cybersecurity risk from the collage (EchoLeak, the Lego order, the gym booking agent), at SEEK. Those case slides are in the unpublished Part 1.G graveyard deck.
-:::
-
----
-
-## Two examples {#two-examples .examples-break-slide .centre-body .organiser-only}
-
-[What this looks like in practice]{.xb-line}
-
-```{=html}
-<div class="xb-art" aria-hidden="true">
-  <svg class="xb-tile xb-tile-a" viewBox="0 0 240 180">
-    <rect class="xb-bg" x="0" y="0" width="240" height="180"/>
-    <rect class="xb-sheet" x="74" y="28" width="92" height="124" rx="6"/>
-    <path class="xb-ink" d="M90,52 H150 M90,70 H150 M90,88 H138 M90,106 H150 M90,124 H126"/>
-    <circle class="xb-judge" cx="166" cy="140" r="24"/>
-    <circle class="xb-lens" cx="163" cy="137" r="9"/><path class="xb-tick" d="M170,144 l8,8"/>
-  </svg>
-  <svg class="xb-tile xb-tile-b" viewBox="0 0 240 180">
-    <rect class="xb-bg" x="0" y="0" width="240" height="180"/>
-    <path class="xb-sheet" d="M52,34 h92 a8,8 0 0 1 8,8 v34 a8,8 0 0 1 -8,8 h-70 l-14,14 v-14 h-8 a8,8 0 0 1 -8,-8 v-34 a8,8 0 0 1 8,-8 z"/>
-    <path class="xb-sheet" d="M96,96 h84 a8,8 0 0 1 8,8 v30 a8,8 0 0 1 -8,8 h-8 v14 l-14,-14 h-62 a8,8 0 0 1 -8,-8 v-30 a8,8 0 0 1 8,-8 z"/>
-    <path class="xb-ink" d="M62,52 H134 M62,66 H112 M106,114 H170 M106,128 H150"/>
-    <circle class="xb-judge" cx="188" cy="140" r="24"/>
-    <circle class="xb-lens" cx="185" cy="137" r="9"/><path class="xb-tick" d="M192,144 l8,8"/>
-  </svg>
-</div>
-```
-
-::: {.notes}
-**About this slide:** A breather between “An agent trace can be evaluated at multiple levels” and the two example slides. It is deliberately light, not a section divider: the title, one line and two simple tiles, a document and a conversation, each with a judge’s magnifier. The tiles hint at the next two slides without telling their story.
-
-**Presenter notes:**
-
-- What Terrence wants to say here: “Ok, I’ve told you a lot about how agents have risks and how agent platforms enable enterprises like SEEK to implement LLM-as-judge to mitigate agent risks. Next I’m going to show you two realistic examples of what this might look like.”
-- No reveals. Pause briefly, then move on.
-- The next two slides are illustrative SEEK mock-ups: a judge stopping an unlawful job ad, then a judge spotting a multi-turn attack in a chat.
 :::
 
 # 2. Why agents need LLM judges {.section-divider .sd-2 .organiser-only}
