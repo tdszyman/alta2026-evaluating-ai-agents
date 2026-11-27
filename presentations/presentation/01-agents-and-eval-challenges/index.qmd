@@ -499,7 +499,7 @@ Cards, in the order they appear, which is the order the stories were published, 
   1. Organisations are using AI agents more and more: “Agents can create value, but introduce risk”.
   2. AI agents are inherently risky: the same slide’s risk side, then “These risks are real, and they make headlines”.
   3. LLM judges can reduce the risk: “An LLM judge can mitigate the risks of AI Agents”.
-- Section 2, in order: “Complex systems require complex evaluations”, “AI Agents are complex *and* complicated systems”, the two agent platform slides, “An agent trace can be evaluated at multiple levels”, then the two examples, an unlawful job ad and a multi-turn attack.
+- Section 2, in order: “Complex systems require complex evaluations”, “AI Agents are complex *and* complicated systems”, “An agent trace can be evaluated at multiple levels”, “Agent platforms provide the framework”, then the “Two examples” breather and the two examples, an unlawful job ad and a multi-turn attack.
 - Next: “Complex systems require complex evaluations”.
 :::
 
@@ -622,164 +622,7 @@ A complicated system also has many parts, but every connection is designed and c
 - History, if asked, in one breath. Warren Weaver’s 1948 essay “Science and Complexity” separated problems of simplicity, problems of “disorganized complexity” (many variables, handled by statistics) and problems of “organized complexity”: problems “which involve dealing simultaneously with a sizable number of factors which are interrelated into an organic whole” ([Weaver 1948](../../bibliography/weaver-1948-science-complexity/)). Complexity science is now studied across the natural and social sciences, but, as a review puts it, “there is no concise definition of a complex system, let alone a definition on which all scientists agree” ([Ladyman et al. 2013](../../bibliography/ladyman-2013-complex-system/)). The point is that “complex” has a meaning beyond “hard”.
 - Point at the two figures together: the complicated one is the agent’s plumbing, the complex one is its behaviour.
 - Link back to “GenAI: from LLMs to AI Agents”: the harness and most tool calls are the complicated part; the LLM calls, and anything that behaves like them, are the complex part.
-- Next: the agent platforms, which protect both parts: deterministic checks for the complicated part, non-deterministic checks such as LLM-as-a-judge for the complex part. “How to evaluate complex and complicated systems”, now marked for removal, comes back to what this means for evaluation.
-:::
-
----
-
-## Agent platforms provide the framework for deterministic and non-deterministic controls {#agent-platforms .platforms-slide}
-
-<!-- TODO: Check permission to use the AWS, Google Cloud, Arize and LangChain logos on this slide; their sources are in the speaker notes. -->
-
-```{=html}
-<div role="group" class="pf-band pf-band-checks" aria-label="Protections">
-  <p class="pf-lead">Protections come in multiple layers, using multiple methods, because AI agents are both:</p>
-  <div class="pf-flow">
-    <div class="pf-chain pf-chain-rules">
-      <p class="pf-node pf-system"><b>Complicated systems</b>many designed parts</p>
-      <span class="pf-arrow" aria-hidden="true">→</span>
-      <p class="pf-node pf-check"><b>Deterministic checks</b>rule-based tests and checks, such as a policy that blocks a tool call</p>
-    </div>
-    <div class="pf-chain pf-chain-judge fragment" data-fragment-index="1">
-      <p class="pf-node pf-system"><b>Complex systems</b>behaviour that emerges from how the parts interact</p>
-      <span class="pf-arrow" aria-hidden="true">→</span>
-      <p class="pf-node pf-check"><b>Non-deterministic checks</b>model-based checks, where the result can vary from run to run</p>
-      <span class="pf-arrow" aria-hidden="true">→</span>
-      <div class="pf-node pf-judge">
-        <p class="pf-judge-head"><b>LLM-as-a-judge</b>one of the most common, and the focus of this tutorial</p>
-        <p class="pf-def">An LLM, the <i>judge</i>, reads what an agent did and checks it against criteria that people write down. Evals and guardrails use judges to check agents before launch and while they run.</p>
-      </div>
-    </div>
-  </div>
-</div>
-<div role="group" class="pf-band pf-band-platforms fragment" data-fragment-index="2" aria-label="Agent platforms">
-  <p class="pf-lead">Agent platforms provide these protections. Many are available, including but not limited to:</p>
-  <ul class="pf-cards">
-    <li><span class="pf-logo"><img class="pf-logo-aws" src="images/logo-aws.svg" alt="AWS"></span><b>Amazon Bedrock AgentCore</b><span class="pf-cite">AWS · <a href="../../bibliography/aws-2026-bedrock-agentcore/">AWS 2026</a></span></li>
-    <li><span class="pf-logo"><img src="images/logo-google-cloud.svg" alt="Google Cloud"></span><b>Gemini Enterprise Agent Platform</b><span class="pf-cite">Google Cloud · <a href="../../bibliography/google-cloud-2026-agent-platform-overview/">Google Cloud 2026a</a></span></li>
-    <li><span class="pf-logo"><img src="images/logo-arize.svg" alt="Arize"></span><b>Arize AX</b><span class="pf-cite">Arize · <a href="../../bibliography/arize/">Arize</a></span></li>
-    <li><span class="pf-logo"><img src="images/logo-langchain.svg" alt="LangChain"></span><b>LangSmith</b><span class="pf-cite">LangChain · <a href="../../bibliography/langchain-2026-langsmith/">LangChain 2026</a></span></li>
-  </ul>
-</div>
-```
-
-::: {.notes}
-**About this slide:** How organisations protect against the risks in the headlines, in section 1. The top of the slide follows on from the previous slide: protections come in multiple layers, using multiple methods, because AI agents are both complicated systems, which need deterministic tests and checks, and complex systems, which need non-deterministic checks. LLM-as-a-judge is one of the most commonly used non-deterministic checks, and a key focus of this tutorial. The bottom of the slide says who provides these protections. Organisations rarely build every safeguard for an agent themselves: agent platforms provide multiple levels of protections to mitigate agent risks. Four examples: Amazon Bedrock AgentCore from AWS ([AWS 2026](../../bibliography/aws-2026-bedrock-agentcore/)), Gemini Enterprise Agent Platform from Google Cloud ([Google Cloud 2026a](../../bibliography/google-cloud-2026-agent-platform-overview/)), Arize AX from Arize ([Arize](../../bibliography/arize/)) and LangSmith from LangChain ([LangChain 2026](../../bibliography/langchain-2026-langsmith/)).
-
-“An LLM judge can mitigate the risks of AI Agents”, at the end of section 1, introduced the idea; this slide gives the definition and puts it among the other protections. **LLM-as-a-judge** means an LLM, the judge, reads what an agent did and checks it against criteria that people write down. Evals and guardrails use judges to check agents before launch and while they run. Using AI to check AI can sound circular; the rest of Part 1 explains why it is the best approach available today.
-
-**Presenter notes:**
-
-- Terrence’s framing: agent platforms provide multiple levels of protections to mitigate agent risks. The next slide shows the levels in one platform’s architecture.
-- Two reveals, top to bottom. The slide opens on the protections band with its first chain: complicated systems need deterministic checks. Click 1 adds the second: complex systems need non-deterministic checks, and the most common of these is LLM-as-a-judge, with its definition. Click 2 adds the four platforms at the bottom, which provide these protections.
-- The four platforms, as their makers describe them:
-  - Amazon Bedrock AgentCore: AWS calls it “an agentic platform for building, deploying, and operating highly effective agents securely at scale”. Its services include Gateway, Identity, Observability, Evaluations, Registry and Policy ([AWS 2026](../../bibliography/aws-2026-bedrock-agentcore/)).
-  - Gemini Enterprise Agent Platform: Google Cloud’s “unified platform to build, deploy, govern, and optimize enterprise-grade AI agents” ([Google Cloud 2026a](../../bibliography/google-cloud-2026-agent-platform-overview/)). Its architecture is on the next slide.
-  - Arize AX: Arize’s managed agent observability and evaluation platform, beside its open-source Phoenix ([Arize](../../bibliography/arize/)).
-  - LangSmith: LangChain’s agent observability and evaluation platform ([LangChain 2026](../../bibliography/langchain-2026-langsmith/)).
-- The two kinds of protection, from the platforms’ own pages. Deterministic: AWS describes AgentCore Policy as “deterministic control” over which tools an agent can call, and under what conditions. Non-deterministic: LangSmith lists “Online LLM-as-judge and code evals”, so judges and fixed code checks run side by side ([LangChain 2026](../../bibliography/langchain-2026-langsmith/)).
-- Complicated and complex: a one-line nod here. “AI Agents are complex *and* complicated systems”, the previous slide, explained the difference; “How to evaluate complex and complicated systems”, now marked for removal, comes back to it.
-- Keep the definition non-technical. Judge methods come in Part 2.
-- The list is short on purpose and is not a ranking. Other clouds and vendors offer similar platforms.
-- Logo sources, all saved in this deck’s `images/` folder. TODO: check permission to use each logo before the slides are shared.
-  - `logo-aws.svg`: the AWS logo from the header of [aws.amazon.com](https://aws.amazon.com/), with its colours inlined. AWS’s [trademark guidelines](https://aws.amazon.com/trademark-guidelines/) govern its use.
-  - `logo-google-cloud.svg`: the full-colour Google Cloud logo that the [cloud.google.com](https://cloud.google.com/) header loads, `https://www.gstatic.com/cgc/google-cloud-logo-fullcolor.svg`.
-  - `logo-arize.svg`: the Arize logo from Arize’s [brand page](https://arize.com/brand/).
-  - `logo-langchain.svg`: `LangChain_Lockup_Black.svg` from the LangChain [brand assets](https://www.langchain.com/brand-assets) kit. The kit also has a product wordmark, as PNG only; like the other three cards, this one uses the company logo.
-:::
-
----
-
-## AI agents in production need multi-layer protection {#multi-layer-protection .governed-slide}
-
-<!-- TODO: Terrence will likely rework this into a SEEK view of agent architecture. For now it redraws the architecture figure from Google Cloud's Gemini Enterprise Agent Platform overview, keeping Google's component names. -->
-
-[[LLM-as-a-judge]{.gv-term} methods can be applied at various points across the platform.]{.gv-sub}
-
-```{=html}
-<div class="gv-fig" role="img" aria-label="Agent architecture, redrawn from Google Cloud’s Gemini Enterprise Agent Platform overview. People reach agents from Gemini Enterprise, Workspace or custom apps through an Agent Gateway. The agent runs in Agent Runtime with its own Agent Identity, and uses memory and a model. A second Agent Gateway sits between the agent and other agents and tools. Above, Governance holds the Agent Registry and Policies and AI protection. Below, agent observability covers the whole path.">
-  <svg class="gv-lines" viewBox="0 0 1100 420" aria-hidden="true">
-    <path class="gv-dash" d="M270,96 V172 M270,272 V368 M830,96 V172 M830,272 V368"/>
-    <path d="M172,222 H195 M345,222 H372 M728,222 H755 M905,222 H926 M926,194 V250 M926,194 H946 M926,250 H946"/>
-    <polygon class="gv-diamond fragment custom gv-hl" data-fragment-index="2" points="270,172 345,222 270,272 195,222"/>
-    <polygon class="gv-diamond fragment custom gv-hl" data-fragment-index="2" points="830,172 905,222 830,272 755,222"/>
-  </svg>
-
-  <div class="gv-group gv-gov" style="left:230px; top:0px; width:640px; height:96px;">
-    <span class="gv-group-title">Governance</span>
-    <div class="gv-row">
-      <div class="gv-box gv-gov-item"><b>Agent Registry</b><small>approved agents, tools and MCP servers</small></div>
-      <div class="gv-box gv-gov-item fragment custom gv-hl" data-fragment-index="1"><b>Policies &amp; AI protection</b><small>access rules; Model Armor guardrails</small></div>
-    </div>
-  </div>
-
-  <div class="gv-group gv-users" style="left:0px; top:132px; width:172px; height:180px;">
-    <div class="gv-box">Gemini Enterprise</div>
-    <div class="gv-box">Workspace</div>
-    <div class="gv-box">Custom apps</div>
-  </div>
-
-  <div class="gv-gw" style="left:195px; top:172px;">Agent<br>Gateway</div>
-  <div class="gv-gw" style="left:755px; top:172px;">Agent<br>Gateway</div>
-
-  <div class="gv-group gv-runtime" style="left:372px; top:140px; width:356px; height:156px;">
-    <span class="gv-group-title">Agent Runtime</span>
-    <div class="gv-agent">
-      <span>Agent</span>
-      <div class="gv-box"><b>Agent Identity</b><small>a unique ID for each agent</small></div>
-    </div>
-  </div>
-
-  <div class="gv-box gv-solo" style="left:372px; top:310px; width:168px; height:44px;">Memory</div>
-  <div class="gv-box gv-solo" style="left:560px; top:310px; width:168px; height:44px;">Model</div>
-
-  <div class="gv-box gv-solo gv-dest" style="left:946px; top:172px; width:154px; height:44px;">Other agents</div>
-  <div class="gv-box gv-solo gv-dest" style="left:946px; top:228px; width:154px; height:44px;">Tools</div>
-
-  <div class="gv-box gv-solo gv-obs fragment custom gv-hl" data-fragment-index="3" style="left:230px; top:368px; width:640px; height:52px;"><b>Agent observability</b><small>monitoring, logging and tracing of what agents do</small></div>
-
-  <div class="gv-tag fragment" data-fragment-index="1" style="left:884px; top:8px; width:216px;"><span class="gv-n">1</span><b>Input and output guardrails</b><small>a judge screens prompts and responses</small></div>
-  <div class="gv-tag fragment" data-fragment-index="2" style="left:176px; top:104px; width:196px;"><span class="gv-n">2</span><b>At the gateway</b><small>a judge checks traffic in and out</small></div>
-  <div class="gv-tag fragment" data-fragment-index="3" style="left:0px; top:334px; width:214px;"><span class="gv-n">3</span><b>Observability metrics</b><small>a judge scores logged traces</small></div>
-</div>
-```
-
-[Where an LLM judge can check the agent in this architecture]{.gv-legend}
-
-[Diagram adapted from Google Cloud’s Agent Platform overview ([Google Cloud 2026a](../../bibliography/google-cloud-2026-agent-platform-overview/)).]{.gv-credit .slide-foot}
-
-::: {.notes}
-**About this slide:** An AI agent in production is protected by several layers, not one safeguard. The slide shows them in Google Cloud’s own view of the parts, and its subtitle sets up the point of the three clicks: LLM-as-a-judge methods can be applied at various points across the platform. Google describes its Gemini Enterprise Agent Platform as “a unified platform to build, deploy, govern, and optimize enterprise-grade AI agents” ([Google Cloud 2026a](../../bibliography/google-cloud-2026-agent-platform-overview/)), launched on 22 April 2026 as the evolution of Vertex AI ([Gerstenhaber and Bachman 2026](../../bibliography/gerstenhaber-2026-agent-platform/)). The diagram is adapted from the architecture figure in the platform overview: the component names are Google’s, and the short descriptions in the boxes summarise Google’s documentation. Each part, as Google’s documentation describes it:
-
-- **Agent Runtime:** the environment agents are deployed and run in, including long-running agents. Memory (Memory Bank) and the model sit beside it.
-- **Agent Identity:** a unique identity for each agent, used for authentication, access control and auditing.
-- **Agent Registry:** a central catalogue of all approved agents, tools, MCP servers and endpoints in the organisation.
-- **Agent Gateway:** the entry and exit point for traffic between clients and agents, and between agents and everything else (other agents and tools). It applies security and governance policies to all traffic that passes through it ([Google Cloud 2026b](../../bibliography/google-cloud-2026-agent-gateway-overview/)).
-- **Policies and AI protection:** access rules that link an agent’s identity to approved tools, plus Model Armor, which scans prompts and tool responses to block prompt injection, sensitive data leaks and harmful content. The Agent Gateway documentation calls these “AI security guardrails”.
-- **Agent observability:** monitoring, logging and tracing of what agents do, including their reasoning.
-
-Google groups the platform into four pillars: Build, Scale, Govern and Optimize. Evaluation sits under Optimize, which the launch post describes as “Agent Simulation, Agent Evaluation, and Agent Observability”. The same post says its agent anomaly detection “uses statistical models and an LLM-as-a-judge framework to flag unusual reasoning” ([Gerstenhaber and Bachman 2026](../../bibliography/gerstenhaber-2026-agent-platform/)).
-
-Three clicks then highlight, one at a time, the levels in this figure where an LLM judge can check the agent. Earlier highlights stay on.
-
-1. **Input and output guardrails,** in Policies and AI protection: a judge screens prompts going in and responses coming out. In Google’s figure this is Model Armor’s role.
-2. **At the gateway:** both Agent Gateways apply policies to all traffic that passes through them, so a judge there can check requests coming in and the agent’s calls out to tools and other agents.
-3. **Observability metrics:** a judge scores the traces that agent observability logs. Google’s launch post says its agent anomaly detection “uses statistical models and an LLM-as-a-judge framework to flag unusual reasoning” ([Gerstenhaber and Bachman 2026](../../bibliography/gerstenhaber-2026-agent-platform/)).
-
-Next, “An agent trace can be evaluated at multiple levels” names the parts of a trace a judge reads. The two slides after it are illustrative SEEK mock-ups of judges catching agent failures.
-
-**Presenter notes:**
-
-- TODO: Terrence will likely rework this into a SEEK view of agent architecture. Until then it is Google’s view, with Google’s names; say so.
-- Title and subtitle (10 Nov 2026, Terrence’s note): agents in production need multi-layer protection, and LLM-as-a-judge methods can be applied at various points across the platform. Read the subtitle, then use the three clicks to show where.
-- The point: an organisation does not rely on one safeguard. Identity, registry, gateway, policies and observability each control part of what an agent can do. Evals, guardrails and LLM judges are the part this tutorial covers.
-- Walk the figure left to right first: people and apps, the gateway in, the agent in its runtime with its own identity, the gateway out to other agents and tools. Governance sits over the whole path, and observability under it.
-- Then three clicks, one per level where a judge can work. Only the highlighted parts are claims about judges. Google’s documentation does not say Model Armor or the gateway uses an LLM judge; the highlights show where one can be placed. The anomaly detection quote is the one place Google says it uses LLM-as-a-judge.
-- Policies define the guardrails and the gateways enforce them, so steps 1 and 2 overlap; the point is that a judge can sit on the content (step 1) or on the traffic (step 2).
-- “Guardrails” here means checks that run while the agent works, such as Model Armor on the gateway. Some guardrails are themselves LLM judges, as in the two example slides that follow.
-- The definition of LLM-as-a-judge is on the previous slide.
-- This replaces the earlier layers-of-control slide, which is kept in the unpublished Part 1.G graveyard deck.
-- Sources: [Google Cloud 2026a](../../bibliography/google-cloud-2026-agent-platform-overview/), the platform overview with the figure; [Google Cloud 2026b](../../bibliography/google-cloud-2026-agent-gateway-overview/), the Agent Gateway overview, for identity, registry, policies and observability; [Gerstenhaber and Bachman 2026](../../bibliography/gerstenhaber-2026-agent-platform/), the launch post.
+- Next: “An agent trace can be evaluated at multiple levels” names the parts of a trace a judge can inspect, followed by “Agent platforms provide the framework”, which shows how platforms combine deterministic and non-deterministic checks across those levels. “How to evaluate complex and complicated systems”, now marked for removal, comes back to what this means for evaluation.
 :::
 
 ---
@@ -840,11 +683,11 @@ Next, “An agent trace can be evaluated at multiple levels” names the parts o
 ```
 
 ::: {.notes}
-**About this slide:** The same example agent conversation as on “LLM-as-judge: evaluating the trace”, with the parts of a trace named on it and no judges yet. It comes just before the two SEEK examples, so the room has the words for them: the job-ad agent’s steps and reasoning, and the turns of the multi-turn attack. It names the three kinds of message, the agent’s reasoning and a tool call, a step and multi-step, a turn and multi-turn, and the trace as a whole. The conversation is illustrative.
+**About this slide:** The same example agent conversation as on “LLM-as-judge: evaluating the trace”, with the parts of a trace named on it and no judges yet. It follows “AI Agents are complex *and* complicated systems” and sets up “Agent platforms provide the framework” and the two SEEK examples, so the room has the words for them: the job-ad agent’s steps and reasoning, and the turns of the multi-turn attack. It names the three kinds of message, the agent’s reasoning and a tool call, a step and multi-step, a turn and multi-turn, and the trace as a whole. The conversation is illustrative.
 
 **Presenter notes:**
 
-- The title’s point: a judge can check a trace at any of these levels, from one message or step to a turn, a whole conversation or the whole trace. The two examples that follow judge at two of them.
+- The title’s point: a judge can check a trace at any of these levels, from one message or step to a turn, a whole conversation or the whole trace.
 - Builds: one label per click, in this order: (1) system message, (2) user message, (3) assistant message, (4) reasoning, (5) tool call, (6) step, (7) multi-step, (8) turn, (9) multi-turn, (10) trace. The last click lights the whole chat, so there is no extra build at the end.
 - System message: the developer’s instructions, set before any user input. User message: what the person types. Assistant message: the model’s reply, which goes back into the input for the next call.
 - Reasoning: the thought, where the model works out what to do next before it acts. Here: no location given, so check the profile.
@@ -852,7 +695,124 @@ Next, “An agent trace can be evaluated at multiple levels” names the parts o
 - Step: one pass of the loop, thought, action, observation ([Yao et al. 2023](../../bibliography/yao-2023-react/)). Multi-step: several steps before a reply. Step 2 needs what step 1 found, the user’s suburb.
 - Turn: one user message and the assistant’s reply to it. Multi-turn: several turns. The model keeps no memory between calls, so each call re-sends the whole history.
 - Trace: the end-to-end record of an agent run: messages, LLM calls and tool calls ([Dong et al. 2024](../../bibliography/dong-2024-agentops/)). Also called a trajectory. This is what an LLM judge reads, in Part 2 and in the hands-on app.
-- Next: the “Two examples” breather, then two SEEK examples of judges reading these parts: a job ad checked after the agent’s steps, and a conversation judged after every turn.
+- Next: “Agent platforms provide the framework”, showing how platforms combine deterministic and non-deterministic checks across these levels, followed by “Two examples” and the two SEEK examples.
+:::
+
+---
+
+## Agent platforms provide the framework {#agent-platforms .platforms-slide .governed-slide}
+
+<!-- TODO: Check permission to use the AWS, Google Cloud, Arize and LangChain logos on this slide; their sources are in the speaker notes. -->
+<!-- TODO: Terrence will likely rework the architecture diagram into a SEEK view of agent architecture. For now it redraws the architecture figure from Google Cloud's Gemini Enterprise Agent Platform overview, keeping Google's component names. -->
+
+[A mix of deterministic and non-deterministic checks can be applied at multiple levels.]{.gv-sub}
+
+```{=html}
+<div role="group" class="pf-band pf-band-platforms" aria-label="Examples of agent platforms">
+  <p class="pf-lead">Examples of agent platforms</p>
+  <ul class="pf-cards">
+    <li><span class="pf-logo"><img class="pf-logo-aws" src="images/logo-aws.svg" alt="AWS"></span><b>Amazon Bedrock AgentCore</b><span class="pf-cite">AWS · <a href="../../bibliography/aws-2026-bedrock-agentcore/">AWS 2026</a></span></li>
+    <li><span class="pf-logo"><img src="images/logo-google-cloud.svg" alt="Google Cloud"></span><b>Gemini Enterprise Agent Platform</b><span class="pf-cite">Google Cloud · <a href="../../bibliography/google-cloud-2026-agent-platform-overview/">Google Cloud 2026a</a></span></li>
+    <li><span class="pf-logo"><img src="images/logo-arize.svg" alt="Arize"></span><b>Arize AX</b><span class="pf-cite">Arize · <a href="../../bibliography/arize/">Arize</a></span></li>
+    <li><span class="pf-logo"><img src="images/logo-langchain.svg" alt="LangChain"></span><b>LangSmith</b><span class="pf-cite">LangChain · <a href="../../bibliography/langchain-2026-langsmith/">LangChain 2026</a></span></li>
+  </ul>
+</div>
+
+<div class="gv-fig" role="img" aria-label="Agent architecture, redrawn from Google Cloud’s Gemini Enterprise Agent Platform overview. People reach agents from Gemini Enterprise, Workspace or custom apps through an Agent Gateway. The agent runs in Agent Runtime with its own Agent Identity, and uses memory and a model. A second Agent Gateway sits between the agent and other agents and tools. Above, Governance holds the Agent Registry and Policies and AI protection. Below, agent observability covers the whole path.">
+  <svg class="gv-lines" viewBox="0 0 1100 420" aria-hidden="true">
+    <path class="gv-dash" d="M270,96 V172 M270,272 V368 M830,96 V172 M830,272 V368"/>
+    <path d="M172,222 H195 M345,222 H372 M728,222 H755 M905,222 H926 M926,194 V250 M926,194 H946 M926,250 H946"/>
+    <polygon class="gv-diamond fragment custom gv-hl" data-fragment-index="2" points="270,172 345,222 270,272 195,222"/>
+    <polygon class="gv-diamond fragment custom gv-hl" data-fragment-index="2" points="830,172 905,222 830,272 755,222"/>
+  </svg>
+
+  <div class="gv-group gv-gov" style="left:230px; top:0px; width:640px; height:96px;">
+    <span class="gv-group-title">Governance</span>
+    <div class="gv-row">
+      <div class="gv-box gv-gov-item"><b>Agent Registry</b><small>approved agents, tools and MCP servers</small></div>
+      <div class="gv-box gv-gov-item fragment custom gv-hl" data-fragment-index="1"><b>Policies &amp; AI protection</b><small>access rules; Model Armor guardrails</small></div>
+    </div>
+  </div>
+
+  <div class="gv-group gv-users" style="left:0px; top:132px; width:172px; height:180px;">
+    <div class="gv-box">Gemini Enterprise</div>
+    <div class="gv-box">Workspace</div>
+    <div class="gv-box">Custom apps</div>
+  </div>
+
+  <div class="gv-gw" style="left:195px; top:172px;">Agent<br>Gateway</div>
+  <div class="gv-gw" style="left:755px; top:172px;">Agent<br>Gateway</div>
+
+  <div class="gv-group gv-runtime" style="left:372px; top:140px; width:356px; height:156px;">
+    <span class="gv-group-title">Agent Runtime</span>
+    <div class="gv-agent">
+      <span>Agent</span>
+      <div class="gv-box"><b>Agent Identity</b><small>a unique ID for each agent</small></div>
+    </div>
+  </div>
+
+  <div class="gv-box gv-solo" style="left:372px; top:310px; width:168px; height:44px;">Memory</div>
+  <div class="gv-box gv-solo" style="left:560px; top:310px; width:168px; height:44px;">Model</div>
+
+  <div class="gv-box gv-solo gv-dest" style="left:946px; top:172px; width:154px; height:44px;">Other agents</div>
+  <div class="gv-box gv-solo gv-dest" style="left:946px; top:228px; width:154px; height:44px;">Tools</div>
+
+  <div class="gv-box gv-solo gv-obs fragment custom gv-hl" data-fragment-index="3" style="left:230px; top:368px; width:640px; height:52px;"><b>Agent observability</b><small>monitoring, logging and tracing of what agents do</small></div>
+
+  <div class="gv-tag fragment" data-fragment-index="1" style="left:884px; top:8px; width:216px;"><span class="gv-n">1</span><b>Input and output guardrails</b><small>a judge screens prompts and responses</small></div>
+  <div class="gv-tag fragment" data-fragment-index="2" style="left:176px; top:104px; width:196px;"><span class="gv-n">2</span><b>At the gateway</b><small>a judge checks traffic in and out</small></div>
+  <div class="gv-tag fragment" data-fragment-index="3" style="left:0px; top:334px; width:214px;"><span class="gv-n">3</span><b>Observability metrics</b><small>a judge scores logged traces</small></div>
+</div>
+```
+
+[Where an LLM judge can check the agent in this architecture]{.gv-legend}
+
+[Diagram adapted from Google Cloud’s Agent Platform overview ([Google Cloud 2026a](../../bibliography/google-cloud-2026-agent-platform-overview/)).]{.gv-credit .slide-foot}
+
+::: {.notes}
+**About this slide:** Combines the agent platform examples and the multi-layer platform architecture figure into one slide. Organisations rarely build every safeguard for an agent themselves: agent platforms provide the framework to apply a mix of deterministic checks (for the complicated parts, such as access rules and tool policies) and non-deterministic checks such as LLM-as-a-judge (for the complex parts) at multiple levels.
+
+Four examples across the top: Amazon Bedrock AgentCore from AWS ([AWS 2026](../../bibliography/aws-2026-bedrock-agentcore/)), Gemini Enterprise Agent Platform from Google Cloud ([Google Cloud 2026a](../../bibliography/google-cloud-2026-agent-platform-overview/)), Arize AX from Arize ([Arize](../../bibliography/arize/)) and LangSmith from LangChain ([LangChain 2026](../../bibliography/langchain-2026-langsmith/)).
+
+Below, the diagram is adapted from Google Cloud’s Gemini Enterprise Agent Platform overview ([Google Cloud 2026a](../../bibliography/google-cloud-2026-agent-platform-overview/)), launched on 22 April 2026 as the evolution of Vertex AI ([Gerstenhaber and Bachman 2026](../../bibliography/gerstenhaber-2026-agent-platform/)). The component names are Google’s, and the short descriptions in the boxes summarise Google’s documentation:
+
+- **Agent Runtime:** the environment agents are deployed and run in, including long-running agents. Memory (Memory Bank) and the model sit beside it.
+- **Agent Identity:** a unique identity for each agent, used for authentication, access control and auditing.
+- **Agent Registry:** a central catalogue of all approved agents, tools, MCP servers and endpoints in the organisation.
+- **Agent Gateway:** the entry and exit point for traffic between clients and agents, and between agents and everything else (other agents and tools). It applies security and governance policies to all traffic that passes through it ([Google Cloud 2026b](../../bibliography/google-cloud-2026-agent-gateway-overview/)).
+- **Policies and AI protection:** access rules that link an agent’s identity to approved tools, plus Model Armor, which scans prompts and tool responses to block prompt injection, sensitive data leaks and harmful content. The Agent Gateway documentation calls these “AI security guardrails”.
+- **Agent observability:** monitoring, logging and tracing of what agents do, including their reasoning.
+
+Google groups the platform into four pillars: Build, Scale, Govern and Optimize. Evaluation sits under Optimize, which the launch post describes as “Agent Simulation, Agent Evaluation, and Agent Observability”. The same post says its agent anomaly detection “uses statistical models and an LLM-as-a-judge framework to flag unusual reasoning” ([Gerstenhaber and Bachman 2026](../../bibliography/gerstenhaber-2026-agent-platform/)).
+
+Three clicks highlight, one at a time, where an LLM judge can check the agent across this architecture. Earlier highlights stay on:
+
+1. **Input and output guardrails,** in Policies and AI protection: a judge screens prompts going in and responses coming out. In Google’s figure this is Model Armor’s role.
+2. **At the gateway:** both Agent Gateways apply policies to all traffic that passes through them, so a judge there can check requests coming in and the agent’s calls out to tools and other agents.
+3. **Observability metrics:** a judge scores the traces that agent observability logs.
+
+**Presenter notes:**
+
+- TODO: Terrence will likely rework the architecture diagram into a SEEK view of agent architecture. Until then it is Google’s view, with Google’s names; say so.
+- Bridge from the previous two slides: AI agents are both complicated and complex, and their traces can be evaluated at multiple levels. Agent platforms provide the framework to combine deterministic checks (rule-based tests and policies, such as blocking a tool call) and non-deterministic checks (model-based checks, most commonly LLM-as-a-judge) across those levels.
+- The two kinds of protection, from the platforms’ own pages. Deterministic: AWS describes AgentCore Policy as “deterministic control” over which tools an agent can call, and under what conditions ([AWS 2026](../../bibliography/aws-2026-bedrock-agentcore/)). Non-deterministic: LangSmith lists “Online LLM-as-judge and code evals”, so judges and fixed code checks run side by side ([LangChain 2026](../../bibliography/langchain-2026-langsmith/)).
+- The four platforms across the top (short list, not a ranking; other clouds and vendors offer similar platforms):
+  - Amazon Bedrock AgentCore: AWS’s agentic platform — Gateway, Identity, Observability, Evaluations, Registry and Policy ([AWS 2026](../../bibliography/aws-2026-bedrock-agentcore/)).
+  - Gemini Enterprise Agent Platform: Google Cloud’s unified platform ([Google Cloud 2026a](../../bibliography/google-cloud-2026-agent-platform-overview/)), whose architecture is shown below.
+  - Arize AX: Arize’s managed agent observability and evaluation platform, beside its open-source Phoenix ([Arize](../../bibliography/arize/)).
+  - LangSmith: LangChain’s agent observability and evaluation platform ([LangChain 2026](../../bibliography/langchain-2026-langsmith/)).
+- Walk the figure left to right first: people and apps, the gateway in, the agent in its runtime with its own identity, the gateway out to other agents and tools. Governance sits over the whole path, and observability under it.
+- Then three clicks, one per level where a judge can work. Only the highlighted parts are claims about judges. Google’s documentation does not say Model Armor or the gateway uses an LLM judge; the highlights show where one can be placed. The anomaly detection quote is the one place Google says it uses LLM-as-a-judge.
+- Policies define the guardrails and the gateways enforce them, so steps 1 and 2 overlap; the point is that a judge can sit on the content (step 1) or on the traffic (step 2).
+- “Guardrails” here means checks that run while the agent works, such as Model Armor on the gateway. Some guardrails are themselves LLM judges, as in the two example slides that follow.
+- Logo sources, all saved in this deck’s `images/` folder. TODO: check permission to use each logo before the slides are shared.
+  - `logo-aws.svg`: the AWS logo from the header of [aws.amazon.com](https://aws.amazon.com/), with its colours inlined. AWS’s [trademark guidelines](https://aws.amazon.com/trademark-guidelines/) govern its use.
+  - `logo-google-cloud.svg`: the full-colour Google Cloud logo that the [cloud.google.com](https://cloud.google.com/) header loads, `https://www.gstatic.com/cgc/google-cloud-logo-fullcolor.svg`.
+  - `logo-arize.svg`: the Arize logo from Arize’s [brand page](https://arize.com/brand/).
+  - `logo-langchain.svg`: `LangChain_Lockup_Black.svg` from the LangChain [brand assets](https://www.langchain.com/brand-assets) kit.
+- This replaces the earlier separate platforms and multi-layer protection slides (and the earlier layers-of-control slide, kept in the unpublished Part 1.G graveyard deck).
+- Sources: [AWS 2026](../../bibliography/aws-2026-bedrock-agentcore/), [Google Cloud 2026a](../../bibliography/google-cloud-2026-agent-platform-overview/), [Google Cloud 2026b](../../bibliography/google-cloud-2026-agent-gateway-overview/), [Gerstenhaber and Bachman 2026](../../bibliography/gerstenhaber-2026-agent-platform/), [Arize](../../bibliography/arize/), [LangChain 2026](../../bibliography/langchain-2026-langsmith/).
+- Next: “Two examples”, then two illustrative SEEK mock-ups of judges catching agent failures.
 :::
 
 ---
@@ -882,7 +842,7 @@ Next, “An agent trace can be evaluated at multiple levels” names the parts o
 ```
 
 ::: {.notes}
-**About this slide:** A breather between “An agent trace can be evaluated at multiple levels” and the two example slides. It is deliberately light, not a section divider: the title, one line and two simple tiles, a document and a conversation, each with a judge’s magnifier. The tiles hint at the next two slides without telling their story.
+**About this slide:** A breather between “Agent platforms provide the framework” and the two example slides. It is deliberately light, not a section divider: the title, one line and two simple tiles, a document and a conversation, each with a judge’s magnifier. The tiles hint at the next two slides without telling their story.
 
 **Presenter notes:**
 
@@ -1863,7 +1823,7 @@ In full, with their notes, in the separate Part 1.G: Graveyard deck, which is ke
 ::: {.fu-item}
 [Agent registries and gateways]{.fu-title}
 
-<!-- Summarised in section 1 on "AI agents in production need multi-layer protection" (Google's Agent Platform view: identity, registry, gateway, policies, observability), and on the layers-of-control slide now in the Part 1.G graveyard deck. Kept here in full. -->
+<!-- Summarised in section 2 on "Agent platforms provide the framework" (Google's Agent Platform view: identity, registry, gateway, policies, observability), and on the layers-of-control slide now in the Part 1.G graveyard deck. Kept here in full. -->
 
 - Every version of an agent, subagent, tool, etc. should be versioned and linked to an eval result
 - Agent access to tools is restricted, versioned, governed, and observed
