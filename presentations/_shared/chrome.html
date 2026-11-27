@@ -75,7 +75,21 @@
     var footerNum = document.createElement("div");
     footerNum.className = "deck-footer-num";
 
-    document.body.append(bar, backdrop, drawer, footerNum);
+    var clock = document.createElement("time");
+    clock.className = "deck-clock";
+    clock.setAttribute("aria-label", "Current time");
+
+    document.body.append(bar, backdrop, drawer, footerNum, clock);
+
+    function tickClock() {
+      var now = new Date();
+      var hh = String(now.getHours()).padStart(2, "0");
+      var mm = String(now.getMinutes()).padStart(2, "0");
+      clock.textContent = hh + ":" + mm;
+      clock.dateTime = hh + ":" + mm;
+      setTimeout(tickClock, 60000 - now.getSeconds() * 1000 - now.getMilliseconds() + 50);
+    }
+    tickClock();
 
     var crumbs = bar.querySelector(".deck-crumbs");
     var countEl = bar.querySelector("[data-deck-count]");

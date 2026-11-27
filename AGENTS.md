@@ -63,6 +63,7 @@ Default slide chrome:
 - Top bar: slide-list button (opens a left drawer of every slide), breadcrumbs `Home / Part n / slide number / slide title` (and `k/n` when a fragment is showing), previous/next with `13 / 45`, and search over that deck. Decks always use the Canva slide template; there is no theme picker.
 - Keyboard: Left and Right move slides. Escape closes the drawer or search first, then goes to the site home.
 - Page number at the bottom, same `n / total` count.
+- Clock in the bottom-right corner: the current local time as `HH:MM`, for the speakers.
 - Edge previous/next controls that fade after the pointer is still.
 - Every page needs a next action, even when there is no next slide. A deck’s last slide ends on a `.next-deck` link with `data-next-deck`: the next deck, or, at the end of the talk or outside it, a page of the site (use a relative link so the site's base path holds). A website page ends on a link to where the reader goes next.
 - Deck chain: if a deck’s last slide has a link with `data-next-deck`, going forward from the end (right arrow, space, page down, or the top bar’s next button) opens it. Going back from a deck’s first slide opens the deck named by `prev` in the `PARTS` map in `chrome.html`, at its last slide with every build shown (`?at=end`). The talk runs Intro → Part 1 → Part 2 → Part 3 → Part 4. Part 4's last slide links back to the site home (`../../`). The speaker view (S) follows each hop and can drive it. The fading edge arrows stop at a deck’s ends.

@@ -252,6 +252,19 @@
   letter-spacing: 0.04em;
 }
 
+.deck-clock {
+  position: fixed;
+  z-index: 35;
+  right: 18px;
+  bottom: 14px;
+  pointer-events: none;
+  color: var(--deck-soft);
+  font-family: var(--deck-font-sans);
+  font-size: 14px;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.04em;
+}
+
 .reveal .controls {
   position: fixed;
   inset: 0;
@@ -316,6 +329,7 @@ html.deck-idle .reveal .controls .navigate-right:focus {
   .deck-drawer,
   .deck-backdrop,
   .deck-footer-num,
+  .deck-clock,
   .reveal .controls { display: none !important; }
 }
 
