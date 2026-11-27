@@ -413,7 +413,7 @@ Cards, in the order they appear, which is the order the stories were published, 
 
   <div class="ov-col jc-trace fragment" data-fragment-index="1">
     <p class="ov-head">Agent trace</p>
-    <p class="ov-gloss">What the agent and the user actually did. LLM-as-a-judge works at this level.</p>
+    <p class="ov-gloss">What the agent and the user actually did.</p>
     <div class="jc-steps">
       <div class="ov-msg ov-user"><b>User</b>What is a good salary for a barista?</div>
       <div class="ov-step jc-thought"><b>Thought</b>Where are they?</div>
