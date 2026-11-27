@@ -469,7 +469,7 @@ Cards, in the order they appear, which is the order the stories were published, 
 - Next: the end of section 1, a recap, and what section 2 covers.
 :::
 
-# A bit more detail on how and why organisations use LLM judges for AI Agents {#section-2-recap .section-divider .sd-1 .recap-divider}
+# LLM judges: why and how {#section-2-recap .section-divider .sd-1 .recap-divider}
 
 ```{=html}
 <p class="rd-kicker">Section 2</p>
@@ -482,9 +482,9 @@ Cards, in the order they appear, which is the order the stories were published, 
       <li>LLM judges can reduce the risk.</li>
     </ol>
   </div>
-  <div class="rd-col rd-next fragment" data-fragment-index="1">
+  <div class="rd-col rd-next">
     <p class="rd-label">Next</p>
-    <p class="rd-next-line">A bit more detail about how and why organisations use LLM judges.</p>
+    <p class="rd-next-line">A bit more detail on how and why organisations use LLM judges for AI agents.</p>
   </div>
 </div>
 ```
@@ -494,7 +494,7 @@ Cards, in the order they appear, which is the order the stories were published, 
 
 **Presenter notes:**
 
-- Builds: the slide opens on the title and the recap; click 1 adds what comes next.
+- No builds: the whole divider loads at once.
 - The recap, one point per section 1 slide group:
   1. Organisations are using AI agents more and more: “Agents can create value, but introduce risk”.
   2. AI agents are inherently risky: the same slide’s risk side, then “These risks are real, and they make headlines”.
