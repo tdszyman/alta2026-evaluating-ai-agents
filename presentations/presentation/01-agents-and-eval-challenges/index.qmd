@@ -500,7 +500,7 @@ Cards, in the order they appear, which is the order the stories were published, 
   1. Organisations are using AI agents more and more: “Agents can create value, but introduce risk”.
   2. AI agents are inherently risky: the same slide’s risk side, then “These risks are real, and they make headlines”.
   3. LLM judges can reduce the risk: “An LLM judge can mitigate the risks of AI Agents”.
-- Section 2, in order: “Complicated systems require complicated evaluations”, “AI Agents are complex *and* complicated systems”, the two agent platform slides, “The parts of an agent trace”, then the two examples, an unlawful job ad and a multi-turn attack.
+- Section 2, in order: “Complicated systems require complicated evaluations”, “AI Agents are complex *and* complicated systems”, the two agent platform slides, “An agent trace can be evaluated at multiple levels”, then the two examples, an unlawful job ad and a multi-turn attack.
 - Next: “Complicated systems require complicated evaluations”.
 :::
 
@@ -767,7 +767,7 @@ Three clicks then highlight, one at a time, the levels in this figure where an L
 2. **At the gateway:** both Agent Gateways apply policies to all traffic that passes through them, so a judge there can check requests coming in and the agent’s calls out to tools and other agents.
 3. **Observability metrics:** a judge scores the traces that agent observability logs. Google’s launch post says its agent anomaly detection “uses statistical models and an LLM-as-a-judge framework to flag unusual reasoning” ([Gerstenhaber and Bachman 2026](../../bibliography/gerstenhaber-2026-agent-platform/)).
 
-Next, “The parts of an agent trace” names the parts of a trace a judge reads. The two slides after it are illustrative SEEK mock-ups of judges catching agent failures.
+Next, “An agent trace can be evaluated at multiple levels” names the parts of a trace a judge reads. The two slides after it are illustrative SEEK mock-ups of judges catching agent failures.
 
 **Presenter notes:**
 
@@ -785,7 +785,7 @@ Next, “The parts of an agent trace” names the parts of a trace a judge reads
 
 ---
 
-## The parts of an agent trace {#parts-of-an-agent-trace .terms-slide .trace-parts-slide}
+## An agent trace can be evaluated at multiple levels {#parts-of-an-agent-trace .terms-slide .trace-parts-slide}
 
 ```{=html}
 <div class="tm-figure" data-brackets="steps">
@@ -845,6 +845,7 @@ Next, “The parts of an agent trace” names the parts of a trace a judge reads
 
 **Presenter notes:**
 
+- The title’s point: a judge can check a trace at any of these levels, from one message or step to a turn, a whole conversation or the whole trace. The two examples that follow judge at two of them.
 - Builds: one label per click, in this order: (1) system message, (2) user message, (3) assistant message, (4) reasoning, (5) tool call, (6) step, (7) multi-step, (8) turn, (9) multi-turn, (10) trace. The last click lights the whole chat, so there is no extra build at the end.
 - System message: the developer’s instructions, set before any user input. User message: what the person types. Assistant message: the model’s reply, which goes back into the input for the next call.
 - Reasoning: the thought, where the model works out what to do next before it acts. Here: no location given, so check the profile.
@@ -1112,7 +1113,7 @@ End the chat if risk ≥ 0.8.</pre>
 ```
 
 ::: {.notes}
-**About this slide:** A breather between “The parts of an agent trace” and the two example slides. It is deliberately light, not a section divider: the title, one line and two simple tiles, a document and a conversation, each with a judge’s magnifier. The tiles hint at the next two slides without telling their story.
+**About this slide:** A breather between “An agent trace can be evaluated at multiple levels” and the two example slides. It is deliberately light, not a section divider: the title, one line and two simple tiles, a document and a conversation, each with a judge’s magnifier. The tiles hint at the next two slides without telling their story.
 
 **Presenter notes:**
 
