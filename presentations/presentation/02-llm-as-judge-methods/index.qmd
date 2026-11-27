@@ -453,7 +453,7 @@ format:
   <div class="j2-cd"><b>Reference-guided</b><p>Score against a known good answer. For an agent: the tool results.</p></div>
 </div>
 <div class="j2-note fragment" data-fragment-index="2"><b>Give it something to check against:</b> GPT-4 accepted a wrong maths answer 14 times in 20, and 3 times with a reference answer (<a href="../../bibliography/zheng-2023-mt-bench/">Zheng et al. 2023</a>).</div>
-<p class="j2-src fragment" data-fragment-index="2">Formats from <a href="../../bibliography/zheng-2023-mt-bench/">Zheng et al. 2023</a>. The judge is defined in Part 1, on <a href="../01-agents-and-eval-challenges/#/llm-as-judge-evaluating-the-trace">LLM-as-judge: evaluating the trace</a>.</p>
+<p class="j2-src fragment" data-fragment-index="2">Formats from <a href="../../bibliography/zheng-2023-mt-bench/">Zheng et al. 2023</a>. The judge is defined in Part 1, on <a href="../01-agents-and-eval-challenges/#/llm-judge-concept">An LLM judge can mitigate the risks of AI Agents</a>.</p>
 ```
 
 ::: {.notes}

@@ -6,7 +6,10 @@ format:
       - ../../_shared/chrome.css
       - ../01-agents-and-eval-challenges/motivation.css
       - ../01-agents-and-eval-challenges/complexity.css
+      - ../../_shared/section-divider.css
       - ../01-agents-and-eval-challenges/generative-eval.css
+      - ../01-agents-and-eval-challenges/terms.css
+      - ../01-agents-and-eval-challenges/follow-up.css
 ---
 
 # Part 1.G: Graveyard {.graveyard-slide}
@@ -21,6 +24,7 @@ Kept slides that are not in the talk. They were cut from [Part 1](../01-agents-a
 4. Agent simulation: “Why AI agents need simulation”, moved out of Part 1 section 3
 5. Google Trends chart: the first version of “2026 is the year of the AI Agent”
 6. Harness figure: “What are AI Agents?”, cut from Part 1 section 1
+7. Section 2 deep-dive terms and working notes: the old section 2 divider, the six term-by-term slides and “Notes to follow up”, cut from Part 1
 
 ::: {.notes}
 **About this slide:** Not part of the tutorial. This deck keeps the slides cut from Part 1, so the Part 1 deck shows only the talk. The slides and their notes are unchanged, so notes that say “next”, “the last slide” or “section 1” describe their old place in Part 1. The styles come from Part 1’s `motivation.css`, `complexity.css` and `generative-eval.css`. Delete the deck before the tutorial on 30 November 2026.
@@ -958,6 +962,772 @@ The first version of “2026 is the year of the AI Agent”, a live Google Trend
 - Next: why that mix makes agents complex *and* complicated.
 :::
 
+---
+
+# Graveyard: section 2 deep-dive terms and working notes {.graveyard-slide}
+
+<!-- Moved from Part 1 to the graveyard on 27 November 2026 at Terrence's request. -->
+
+Kept slides cut from Part 1 on 27 November 2026: the old “2. Why agents need LLM judges” divider, the six section 2 deep-dive term slides (“Terms this section defines” through “LLM-as-judge: evaluating the trace”), and “Notes to follow up”.
+
+::: {.notes}
+**About this slide:** The seventh group in this deck. It holds the eight slides marked for removal in Part 1 and moved out of the main presentation on 27 November 2026: the old section 2 divider, the term-by-term deep dive (covered more compactly by “GenAI: from LLMs to AI Agents” and “An agent trace can be evaluated at multiple levels”), and “Notes to follow up”.
+:::
+
+---
+
+# 2. Why agents need LLM judges {.section-divider .sd-2}
+
+::: {.notes}
+**About this slide:** Section 2 shows why LLM judges are needed to evaluate AI agents, then the technical foundations behind them. It starts from the idea introduced near the start of the part, that an AI agent is both a complex and a complicated system whose behaviour comes from the whole system rather than any single part, and what that means for evaluation. Then generative outputs, which cannot be matched against a label. Then the deeper dives: what an LLM does when it generates text, how conversations are fed to it, what turns it into an AI agent, and where an LLM judge can check an agent.
+:::
+
+---
+
+## Terms this section defines {#section-2-terms .glossary-slide}
+
+```{=html}
+<div class="tg-grid">
+  <div class="tg-col"><a class="tg-head" href="#/llm-text-generation"><span class="tg-num">1</span>LLM text generation</a><p class="tg-gloss">A model reads tokens and predicts the next one, again and again.</p><ul><li>Input tokens</li><li>Output tokens</li><li>LLM call</li></ul></div>
+  <div class="tg-arrow" aria-hidden="true">›</div>
+  <div class="tg-col"><a class="tg-head" href="#/conversations-messages-and-turns"><span class="tg-num">2</span>Conversations</a><p class="tg-gloss">The same model, fed a list of messages with roles, one turn at a time.</p><ul><li>Messages</li><li>System message</li><li>User message</li><li>Assistant message</li><li>Chat template</li><li>Turn</li><li>Multi-turn</li></ul></div>
+  <div class="tg-arrow" aria-hidden="true">›</div>
+  <div class="tg-col"><a class="tg-head" href="#/what-is-an-agent"><span class="tg-num">3</span>Agent traces</a><p class="tg-gloss">Between messages, the model thinks, calls tools and reads the results, in a loop.</p><ul><li>Agent</li><li>Thought</li><li>Action</li><li>Observation</li><li><a href="../../bibliography/yao-2023-react/">ReAct</a> loop</li><li>Step</li><li>Multi-step</li><li>Trace</li></ul></div>
+  <div class="tg-arrow" aria-hidden="true">›</div>
+  <div class="tg-col"><a class="tg-head" href="#/llm-as-judge-evaluating-the-trace"><span class="tg-num">4</span>LLM-as-judge</a><p class="tg-gloss">Another LLM reads part of the trace and gives a verdict. Then we check the judge.</p><ul><li>LLM judge</li><li>Input guardrail</li><li>Call-level eval</li><li>Output guardrail</li><li>Multi-step eval</li><li>Multi-turn eval</li><li>Trace-level eval</li><li>Meta-evaluation</li></ul></div>
+</div>
+<p class="tg-caption slide-foot">Four ideas, each built on the last. Each heading links to the slide where its idea starts.</p>
+```
+
+::: {.notes}
+**About this slide:** The four ideas of section 2 and the vocabulary each one brings, on one slide, before the detail. Each idea is the one before with something added. (1) LLM text generation: a model reads tokens and predicts the next one. (2) Conversations: the same model is given a list of messages, each with a role. (3) Agent traces: between messages the model thinks, calls tools and reads the results, in a ReAct loop ([Yao et al. 2023](../../bibliography/yao-2023-react/)). (4) LLM-as-judge: another LLM reads part of the trace and gives a verdict, and the judges are themselves checked. Each card lists the terms its slides define, in the order they are introduced; card 3 covers two slides, “What is an agent?” and “Agent traces: think, act, observe”; the definitions come on those slides.
+
+**Presenter notes:**
+
+- Don’t read the list. Say that every word here gets a definition and a picture in the next few minutes, and that the ideas build on each other from left to right: a conversation is text generation over messages; an agent is a conversation with tool calls in between; a judge is one more LLM call that reads what the agent did.
+- The next four slides take one idea each. The strip under each title shows where we are.
+- The terms, by slide:
+  - 1, “LLM text generation”: input tokens, output tokens, LLM call.
+  - 2, “Conversations: messages and turns”: messages, system message, user message, assistant message, chat template, turn, multi-turn.
+  - 3, “What is an agent?”: agent. Then “Agent traces: think, act, observe”: thought, action, observation, [ReAct](../../bibliography/yao-2023-react/) loop, step, multi-step, trace.
+  - 4, “LLM-as-judge: evaluating the trace”: LLM judge, input guardrail, call-level eval, output guardrail, multi-step eval, multi-turn eval, trace-level eval, meta-evaluation.
+- Not listed: RLHF, RLVR and [RLAIF](../../bibliography/bai-2022-constitutional-ai/), from the old “Evals vs training” slide, now on the “Notes to follow up” slide at the end of Part 1 and not defined.
+:::
+
+---
+
+## LLM text generation {.terms-slide .tu-slide}
+
+```{=html}
+<div class="tm-road"><span class="tm-road-on">1 LLM text generation</span><span>2 Conversations</span><span>3 Agent traces</span><span>4 LLM-as-judge</span></div>
+
+<div class="tm-figure tm-flow tu-figure">
+  <div class="tu-grid" aria-label="An LLM drawn unrolled: one column per token. The question tokens go in at the bottom; answer tokens come out at the top, one at a time, and each is fed back in as the next input.">
+    <div class="tu-row tu-top" id="tu-preds"><span class="tu-name tm-dim">Next token</span><span class="tu-slot"></span><span class="tu-slot"></span><span class="tu-slot"></span><span class="tu-slot"></span><span class="tu-slot"></span><span class="tu-slot"></span><span class="tu-slot"></span><span class="tu-slot"></span><span class="tu-slot"></span><span class="tu-slot"></span><span class="tu-tok tu-pred tm-dim" data-col="10">Bean</span><span class="tu-tok tu-pred tm-dim" data-col="11">Bar</span><span class="tu-tok tu-pred tm-dim" data-col="12">on</span><span class="tu-tok tu-pred tm-dim" data-col="13">Smith</span><span class="tu-tok tu-pred tm-dim" data-col="14">St</span><span class="tu-tok tu-pred tm-dim" data-col="15">.</span><span class="tu-tok tu-pred tu-stop tm-dim" data-col="16">&lt;end&gt;</span></div>
+    <div class="tu-wire tm-dim" id="tu-stream"></div>
+    <div class="tu-wire tm-dim" id="tu-feed"></div>
+    <div class="tu-row" id="tu-LN"><span class="tu-name tm-dim">Layer N</span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span></div>
+    <div class="tu-row tu-more"><span class="tu-name tm-dim">⋮</span></div>
+    <div class="tu-row" id="tu-L1"><span class="tu-name tm-dim">Layer 1</span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span><span class="tu-cell tm-dim"></span></div>
+    <div class="tu-row tu-toks"><span class="tu-name tm-dim">Tokens</span><span class="tu-span" id="tu-in"><span class="tu-tok tm-dim">Which</span><span class="tu-tok tm-dim">café</span><span class="tu-tok tm-dim">near</span><span class="tu-tok tm-dim">Fitz</span><span class="tu-tok tm-dim">roy</span><span class="tu-tok tm-dim">is</span><span class="tu-tok tm-dim">hiring</span><span class="tu-tok tm-dim">bar</span><span class="tu-tok tm-dim">istas</span><span class="tu-tok tm-dim">?</span></span><span class="tu-span" id="tu-outs"><span class="tu-tok tu-gen tm-dim">Bean</span><span class="tu-tok tu-gen tm-dim">Bar</span><span class="tu-tok tu-gen tm-dim">on</span><span class="tu-tok tu-gen tm-dim">Smith</span><span class="tu-tok tu-gen tm-dim">St</span><span class="tu-tok tu-gen tm-dim">.</span></span></div>
+
+    <div class="tu-row tu-terms"><span class="tu-name"></span>
+      <div class="tm-term fragment" data-fragment-index="1" data-target="tu-in" style="width:556px"><i class="tu-brk"></i><b>Input tokens</b>The text the model reads, split into tokens: words or pieces of words, like “bar” + “istas”. There is a length limit, roughly 100k to 1M tokens in recent models.</div>
+      <div class="tm-term fragment" data-fragment-index="2" data-target="tu-outs" data-also="tu-preds tu-feed" style="width:332px"><i class="tu-brk"></i><b>Output tokens</b>Generated one at a time. Each new token is fed back in as the next input, until a stop token.</div>
+    </div>
+    <div class="tu-row tu-terms"><span class="tu-name"></span>
+      <div class="tm-term fragment" data-fragment-index="3" data-type="bracket" data-target="tu-preds" data-to="tu-outs" style="width:892px"><i class="tu-brk"></i><b>LLM call</b>One request to the model: input tokens in, output tokens out.</div>
+    </div>
+  </div>
+  <span class="fragment tm-overview" data-fragment-index="4"></span>
+</div>
+
+<div class="tm-sources slide-foot">Simplified: each column is one token position passing up through the model’s layers. Illustrative example.</div>
+
+<script>
+(function () {
+  var NS = "http://www.w3.org/2000/svg";
+  var all = function (root, sel) { return Array.prototype.slice.call(root.querySelectorAll(sel)); };
+
+  function box(el, fig) {
+    var x = 0, y = 0, e = el;
+    while (e && e !== fig) { x += e.offsetLeft; y += e.offsetTop; e = e.offsetParent; }
+    return { x: x, y: y, w: el.offsetWidth, h: el.offsetHeight, cy: y + el.offsetHeight / 2 };
+  }
+
+  function path(g, d, cls) {
+    var p = document.createElementNS(NS, "path");
+    p.setAttribute("d", d);
+    if (cls) p.setAttribute("class", cls);
+    g.appendChild(p);
+  }
+
+  function line(svg, x1, y1, x2, y2, cls) {
+    path(svg, "M" + x1 + "," + y1 + " L" + x2 + "," + y2, cls);
+  }
+
+  // Unrolled-transformer figure: one column per token position. Each token
+  // flows up through the layers; each generated token is fed back in as the
+  // next position.
+  function unroll(fig) {
+    var grid = fig.querySelector(".tu-grid");
+    if (!grid) return;
+    var b = function (el) { return box(el, grid); };
+    var W = grid.offsetWidth, H = grid.offsetHeight;
+    var canvas = function (div) {
+      var s = document.createElementNS(NS, "svg");
+      s.setAttribute("width", W); s.setAttribute("height", H);
+      s.setAttribute("viewBox", "0 0 " + W + " " + H);
+      div.appendChild(s);
+      return s;
+    };
+    var stream = canvas(grid.querySelector("#tu-stream"));
+    var feed = canvas(grid.querySelector("#tu-feed"));
+    var tops = all(grid, "#tu-LN .tu-cell").map(b);
+    var preds = all(grid, ".tu-pred");
+    // A prediction sits above the column it is fed into, so the column before
+    // it bends across to reach it; the feed runs down the column's right edge.
+    var predAt = function (col) { return preds.filter(function (el) { return +el.dataset.col === col; })[0]; };
+    all(grid, ".tu-toks .tu-tok").forEach(function (tk, i) {
+      var a = b(tk), x = a.x + a.w / 2, top = tops[i].y;
+      var p = predAt(i + 1);
+      if (!p) { line(stream, x, a.y, x, top, ""); return; }
+      var pb = b(p);
+      path(stream, "M" + x + "," + a.y + " L" + x + "," + top + " L" + (pb.x + pb.w / 2 - 6) + "," + (pb.y + pb.h), "tu-up");
+    });
+    var outs = all(grid, "#tu-outs .tu-tok");
+    outs.forEach(function (o, k) {
+      var p = b(predAt(+preds[0].dataset.col + k)), t = b(o);
+      var x = t.x + t.w - 5, y1 = p.y + p.h, y2 = t.y - 3;
+      path(feed, "M" + x + "," + y1 + " L" + x + "," + y2);
+      path(feed, "M" + (x - 4) + "," + (y2 - 6) + " L" + x + "," + y2 + " L" + (x + 4) + "," + (y2 - 6), "tu-head");
+    });
+  }
+
+  function layout(fig) {
+    if (fig.dataset.laidOut || !fig.offsetWidth) return;
+    fig.dataset.laidOut = "1";
+    unroll(fig);
+    if (fig.classList.contains("tm-flow")) return;
+    var svg = fig.querySelector(".tm-links");
+    var chat = box(fig.querySelector(".tm-chat"), fig);
+    var byId = function (id) { return box(fig.querySelector("#" + id), fig); };
+    var terms = all(fig, ".tm-term");
+
+    terms.forEach(function (t, i) {
+      t.dataset.n = i;
+      var a = t.dataset.target ? byId(t.dataset.target) : null;
+      var b = t.dataset.to ? byId(t.dataset.to) : a;
+      if (!a) return;
+      t._top = Math.min(a.y, b.y);
+      t._bot = Math.max(a.y + a.h, b.y + b.h);
+      var anchor = t.dataset.anchor;
+      t._want = anchor === "end" ? t._bot - 24 : anchor === "start" ? t._top + 24 : (t._top + t._bot) / 2;
+    });
+
+    ["left", "right"].forEach(function (side) {
+      var col = terms.filter(function (t) { return t.dataset.side === side; });
+      var free = col.filter(function (t) { return t._want === undefined; });
+      col = col.filter(function (t) { return t._want !== undefined; });
+      col.sort(function (p, q) { return p._want - q._want; });
+      var first = free.filter(function (t) { return t.dataset.place === "top"; });
+      var last = free.filter(function (t) { return t.dataset.place !== "top"; });
+      var floor = 0;
+      var stepped = side === "right" && fig.dataset.brackets === "steps";
+      first.concat(col, last).forEach(function (t) {
+        var h = t.offsetHeight;
+        if (stepped) {
+          t.style.top = t._want - h / 2 + "px";
+          t._cy = t._want;
+          return;
+        }
+        var want = t._want === undefined ? floor + h / 2 : t._want;
+        var top = Math.max(want - h / 2, floor);
+        t.style.top = top + "px";
+        t._cy = top + h / 2;
+        floor = top + h + 8;
+      });
+    });
+
+    var bottom = chat.y + chat.h;
+    terms.forEach(function (t) { bottom = Math.max(bottom, t._cy + t.offsetHeight / 2); });
+    if (fig.querySelector('[data-edge="under"]')) bottom = Math.max(bottom, chat.y + chat.h + 16);
+    fig.style.height = bottom + 4 + "px";
+    svg.setAttribute("viewBox", "0 0 " + fig.offsetWidth + " " + fig.offsetHeight);
+    svg.style.height = fig.offsetHeight + "px";
+
+    var gutterL = chat.x - 6, gutterR = chat.x + chat.w + 6;
+    // Stepped brackets: each bracket sits just outside the previous one's
+    // label, so no lead line crosses another bracket.
+    if (fig.dataset.brackets === "steps") {
+      var stepX = gutterR + 4;
+      terms.filter(function (t) { return t.dataset.side === "right" && t.dataset.type === "bracket"; })
+        .sort(function (p, q) { return p.dataset.depth - q.dataset.depth; })
+        .forEach(function (t) {
+          t._bx = stepX;
+          t.style.left = stepX + 8 + "px";
+          stepX += 8 + t.offsetWidth + 12;
+        });
+    }
+    terms.forEach(function (t) {
+      var g = document.createElementNS(NS, "g");
+      g.setAttribute("class", "tm-conn" + (t.classList.contains("tm-judge") ? " tm-conn-judge" : ""));
+      g.setAttribute("data-for", t.dataset.n);
+      svg.appendChild(g);
+      var lb = box(t, fig);
+      var left = t.dataset.side === "left";
+      var edge = left ? lb.x + lb.w + 4 : lb.x - 4;
+      var y = t._cy;
+      var type = t.dataset.type;
+      if (type === "point") {
+        var a = byId(t.dataset.target);
+        var tx = left ? a.x - 3 : a.x + a.w + 3;
+        var ty = t.dataset.anchor === "start" ? Math.min(a.y + 24, a.cy) : a.cy;
+        var mid = left ? gutterL - 26 : gutterR + 26;
+        var gx = left ? gutterL - 6 : gutterR + 6;
+        if (t.dataset.edge === "under") {
+          var ub = chat.y + chat.h + 10, ux = left ? gutterL - 34 : gutterR + 34, cx = a.x + a.w / 2;
+          path(g, "M" + edge + "," + y + " L" + ux + "," + y + " L" + ux + "," + ub + " L" + cx + "," + ub + " L" + cx + "," + (a.y + a.h + 3), "tm-lead");
+        } else {
+          path(g, "M" + edge + "," + y + " L" + mid + "," + y + " L" + gx + "," + ty + " L" + tx + "," + ty, "tm-lead");
+        }
+      } else if (type === "bracket") {
+        var d = +t.dataset.depth;
+        var bx = t._bx !== undefined ? t._bx : left ? gutterL - 4 - d * 11 : gutterR + 4 + d * 11;
+        var tick = left ? 6 : -6;
+        path(g, "M" + (bx + tick) + "," + (t._top + 1) + " L" + bx + "," + (t._top + 1) + " L" + bx + "," + (t._bot - 1) + " L" + (bx + tick) + "," + (t._bot - 1), "tm-bracket");
+        var yy = Math.min(Math.max(y, t._top + 6), t._bot - 6);
+        path(g, "M" + edge + "," + y + " L" + (left ? bx - 10 : bx + 10) + "," + yy + " L" + bx + "," + yy, "tm-lead");
+      } else if (type === "loop") {
+        var s = byId(t.dataset.target), e = byId(t.dataset.to);
+        var x0 = Math.min(s.x, e.x) - 3, lx = x0 - 30;
+        path(g, "M" + (s.x - 3) + "," + s.cy + " C" + lx + "," + s.cy + " " + lx + "," + e.cy + " " + (e.x - 5) + "," + e.cy, "tm-loop");
+        path(g, "M" + (e.x - 12) + "," + (e.cy - 5) + " L" + (e.x - 5) + "," + e.cy + " L" + (e.x - 12) + "," + (e.cy + 5), "tm-loop");
+        path(g, "M" + edge + "," + y + " L" + (lx + 8) + "," + ((s.cy + e.cy) / 2), "tm-lead");
+      }
+    });
+  }
+
+  // One term is "in focus" per build step: it and the parts of the chat it
+  // names are highlighted, and everything shown earlier fades back.
+  function focus(fig) {
+    var cur = all(fig, ".fragment.current-fragment").filter(function (f) { return !f.classList.contains("tm-overview"); });
+    var terms = all(fig, ".tm-term");
+    var leaves = all(fig, ".tm-dim");
+    var focused = terms.filter(function (t) { return cur.some(function (f) { return t.contains(f); }); });
+    var lit = [], marks = [];
+    var q = function (id) { return fig.querySelector("#" + id); };
+    var inside = function (leaf, el) { return el.contains(leaf); };
+    var light = function (el) { leaves.forEach(function (l) { if (inside(l, el)) lit.push(l); }); };
+
+    var subs = cur.filter(function (f) { return f.dataset.focus; });
+    if (subs.length) {
+      subs.forEach(function (s) { var el = q(s.dataset.focus); marks.push(el); light(el); });
+    } else {
+      focused.forEach(function (t) {
+        if (!t.dataset.target) return;
+        var a = q(t.dataset.target), b = t.dataset.to ? q(t.dataset.to) : a;
+        if (t.dataset.type === "bracket") {
+          var idx = leaves.map(function (l) { return inside(l, a) || inside(l, b); });
+          var i0 = idx.indexOf(true), i1 = idx.lastIndexOf(true);
+          leaves.forEach(function (l, i) { if (i >= i0 && i <= i1) lit.push(l); });
+        } else {
+          [a, b].forEach(function (el) { marks.push(el); light(el); });
+        }
+        (t.dataset.also || "").split(" ").filter(Boolean).forEach(function (id) { light(q(id)); });
+      });
+    }
+    var lights = focused.map(function (t) { return t.dataset.lights; }).filter(Boolean);
+
+    fig.classList.toggle("has-focus", focused.length > 0);
+    leaves.forEach(function (l) { l.classList.toggle("is-lit", lit.indexOf(l) >= 0); });
+    all(fig, ".is-focus").forEach(function (el) { el.classList.remove("is-focus"); });
+    marks.forEach(function (el) { el.classList.add("is-focus"); });
+
+    terms.forEach(function (t) {
+      var on = t.classList.contains("visible");
+      var isFocus = focused.indexOf(t) >= 0;
+      var isLit = lights.some(function (c) { return t.classList.contains("tm-" + c); });
+      var past = on && !isFocus && !isLit && focused.length > 0;
+      t.classList.toggle("tm-focus", isFocus);
+      t.classList.toggle("tm-lit", isLit);
+      t.classList.toggle("tm-past", past);
+      var g = fig.querySelector('.tm-conn[data-for="' + t.dataset.n + '"]');
+      if (!g) return;
+      g.classList.toggle("tm-on", on);
+      g.classList.toggle("tm-focus", isFocus);
+      g.classList.toggle("tm-past", past);
+    });
+  }
+
+  function run() {
+    var figs = all(document, ".tm-figure");
+    figs.forEach(layout);
+    figs.forEach(focus);
+  }
+
+  window.addEventListener("load", function () {
+    if (!window.Reveal) return;
+    var go = function () { (document.fonts ? document.fonts.ready : Promise.resolve()).then(run); };
+    if (Reveal.isReady()) go(); else Reveal.on("ready", go);
+    Reveal.on("slidechanged", go);
+    Reveal.on("fragmentshown", run);
+    Reveal.on("fragmenthidden", run);
+  });
+})();
+</script>
+```
+
+::: {.notes}
+**About this slide:** How one LLM call works. The diagram draws the model “unrolled”: one column per token, passing up through the model’s layers. The question “Which café near Fitzroy is hiring baristas?” goes in at the bottom as input tokens. The top of the last column predicts the next token, “Bean”, which is fed back in as a new column; the model repeats this until it predicts a stop token, giving the answer “Bean Bar on Smith St.” as output tokens. One request, from the input tokens to the stop token, is one LLM call. The builds introduce input tokens, output tokens and the LLM call in turn.
+
+**Presenter notes:**
+
+- Idea 1: what one LLM call does. Everything later is built from calls like this one.
+- The diagram is the model "unrolled": one column per token position, flowing up through the layers. The question goes in at the bottom.
+- Input tokens: the model never sees characters or words, only tokens. A long word can be several tokens ("bar" + "istas"). There is a limit on how many tokens one call can take, often called the context window. TODO: confirm the current range (roughly 100k to 1M) before the tutorial; it changes with each model release.
+- Output tokens: the top of the last column predicts the next token ("Bean"). It is fed back in at the bottom as a new position, and the model predicts again ("Bar"), and so on until it emits a stop token. That is why long answers cost more and take longer.
+- LLM call: one request, from input tokens to the stop token. On the next slides each assistant reply, each agent thought and each judge verdict is one of these.
+- If asked: this is a decoder-only transformer, where each position can only look at the positions before it. TODO: add a source to the bibliography if we want to cite one here.
+:::
+
+---
+
+## Conversations: messages and turns {.terms-slide}
+
+```{=html}
+<div class="tm-road"><span class="tm-road-done">1 LLM text generation</span><span class="tm-road-on">2 Conversations</span><span>3 Agent traces</span><span>4 LLM-as-judge</span></div>
+
+<div class="tm-figure">
+
+  <div class="tm-chat" aria-label="A conversation as one LLM call: the messages so far go in, and the assistant reply is generated">
+    <div class="ta-ctx" id="t2-ctx">
+      <div class="ta-ctx-head tm-dim"><span>Input tokens</span><span class="ta-count">≈ 70 tokens</span></div>
+      <div class="tm-msg tm-sys tm-dim" id="t2-sys"><span class="tm-role">System</span>You are a career assistant for job seekers. Be concise.</div>
+      <div class="tm-turn-tag tm-dim">Turn 1</div>
+      <div class="tm-msg tm-user tm-dim" id="t2-u1"><span class="tm-role">User</span>Find me barista jobs in Fitzroy.</div>
+      <div class="tm-msg tm-asst tm-dim" id="t2-a1"><span class="tm-role">Assistant</span>I found 3: Café Lune, Bean Bar and Hill St Coffee.</div>
+      <div class="tm-turn-tag tm-dim">Turn 2</div>
+      <div class="tm-msg tm-user tm-dim" id="t2-u2"><span class="tm-role">User</span>Which is closest to Brunswick St?</div>
+    </div>
+    <div class="ta-flow tm-dim">↓</div>
+    <div class="ta-llm tm-dim" id="t2-llm"><b>LLM</b> · the same model as before</div>
+    <div class="ta-flow tm-dim">↓</div>
+    <div class="tm-msg tm-asst ta-out tm-dim" id="t2-out"><span class="tm-role">Output tokens · assistant reply</span>Bean Bar is the closest<span class="ta-caret"></span></div>
+  </div>
+
+  <div class="tm-term fragment" data-fragment-index="1" data-side="right" data-type="bracket" data-depth="2" data-anchor="start" data-target="t2-sys" data-to="t2-u2"><b>Messages</b>Chat models take the input as a list of messages, each with a role:<code class="tm-json">[{"role": "system", …},<br>&nbsp;{"role": "user", …},<br>&nbsp;{"role": "assistant", …}, …]</code></div>
+  <div class="tm-term fragment" data-fragment-index="2" data-side="left" data-type="point" data-target="t2-sys"><b>System message</b>The developer’s instructions, set before any user input. Also called the system prompt.</div>
+  <div class="tm-term fragment" data-fragment-index="3" data-side="left" data-type="point" data-target="t2-u1"><b>User message</b>What the person types. Also called the user prompt.</div>
+  <div class="tm-term fragment" data-fragment-index="4" data-side="left" data-type="point" data-target="t2-a1"><b>Assistant message</b>The model’s reply. It goes back into the input for the next call.</div>
+  <div class="tm-term fragment" data-fragment-index="5" data-side="left" data-type="point" data-target="t2-llm"><b>Chat template</b>The messages are flattened into one token sequence with role markers. The model still predicts one token at a time.</div>
+  <div class="tm-term fragment" data-fragment-index="6" data-side="right" data-type="bracket" data-depth="0" data-target="t2-u1" data-to="t2-a1"><b>Turn</b>One user message and the assistant’s reply to it.</div>
+  <div class="tm-term fragment" data-fragment-index="7" data-side="right" data-type="bracket" data-depth="1" data-target="t2-u1" data-to="t2-u2"><b>Multi-turn</b>Several turns. The model keeps no memory between calls, so each call re-sends the whole history.</div>
+  <span class="fragment tm-overview" data-fragment-index="8"></span>
+
+  <svg class="tm-links" aria-hidden="true"></svg>
+</div>
+
+<div class="tm-sources slide-foot">Message roles as in the common chat APIs. Illustrative conversation.</div>
+```
+
+::: {.notes}
+**About this slide:** How a chat works. The conversation so far (a system message, then two turns between a user and the assistant) is sent to the model as one input: a list of messages, each tagged with a role. The model generates the next assistant reply exactly as on the previous slide. The builds name each part: messages; the system, user and assistant roles; the chat template that turns messages into tokens; a turn; and a multi-turn conversation. The model keeps no memory between calls, so every call re-sends the whole history.
+
+**Presenter notes:**
+
+- Idea 2: a conversation is still one LLM call at a time. What changes is the shape of the input.
+- Messages: the OpenAI Chat Completions, Anthropic Messages and Amazon Bedrock Converse APIs all take the input as a list of role-tagged messages.
+- System, user and assistant are the three standard roles. "Assistant" is the role name; "agent" will mean the whole system, from the next slide on.
+- Chat template: before the call, the messages are joined into one sequence of tokens, with special tokens marking each role. So this is still the next-token generation from the last slide.
+- Turn and multi-turn: a turn is one user message and the reply. The model is stateless, so turn 2 only works because the app re-sends turn 1 as part of the input. Multi-turn benchmarks such as [MT-Bench](../../bibliography/zheng-2023-mt-bench/) and [MINT](../../bibliography/wang-2024-mint/) use "turn" in this sense, as does the multi-turn agent survey by [Guan et al. 2025](../../bibliography/guan-2025-multiturn-survey/).
+:::
+
+---
+
+## What is an agent? {#what-is-an-agent .terms-slide .agent-def-slide}
+
+<!-- TODO (Terrence): “agentic” has no sourced definition yet. The slide asks the question but does not answer it. Add a definition and its source, or drop the word. -->
+
+```{=html}
+<div class="tm-road"><span class="tm-road-done">1 LLM text generation</span><span class="tm-road-done">2 Conversations</span><span class="tm-road-on">3 Agent traces</span><span>4 LLM-as-judge</span></div>
+```
+
+- What is an **agent**? What is **agentic**?
+- Theory vs practice: this tutorial uses a practical, working definition.
+
+```{=html}
+<div class="ag-eq" aria-label="Working definition: an agent is an LLM, plus tools, plus a loop of thought, action and observation">
+  <div class="ag-tile"><b>LLM</b>Generates text, one LLM call at a time.</div>
+  <div class="ag-op">+</div>
+  <div class="ag-tile"><b>Tools</b>Functions it can call, such as <code>search_jobs</code>.</div>
+  <div class="ag-op">+</div>
+  <div class="ag-tile"><b><a href="../../bibliography/yao-2023-react/">ReAct</a> loop</b>Thought, action, observation, repeated until it can answer.</div>
+  <div class="ag-op">=</div>
+  <div class="ag-tile ag-result"><b>Agent</b>The whole system, not just the assistant role.</div>
+</div>
+<div class="tm-sources slide-foot">Working definition: LLM + tools + ReAct loop (<a href="../../bibliography/yao-2023-react/">Yao et al. 2023</a>).</div>
+```
+
+::: {.notes}
+**About this slide:** Where the section moves from conversations to agents. It asks what “agent” and “agentic” mean, contrasts theoretical and practical definitions, and gives the working definition used in this tutorial: an LLM plus tools, run in a ReAct loop ([Yao et al. 2023](../../bibliography/yao-2023-react/)). The next slide shows that loop in a trace.
+
+**Presenter notes:**
+
+- What is an agent? “Agent” and “agentic” have theoretical definitions and practical ones. In practice, this tutorial’s working definition is an LLM plus tools, run in a ReAct loop ([Yao et al. 2023](../../bibliography/yao-2023-react/)).
+- The LLM is the model from idea 1; the tools are the functions in the next slide’s system message (get_profile, search_jobs, apply); the next slide unpacks the loop.
+- “Agent” means the whole system. “Assistant” stays the name of the message role.
+- Link back to column 3 of “GenAI: from LLMs to AI Agents” near the start of this part: an LLM wrapped in a harness with tools, running the [ReAct](../../bibliography/yao-2023-react/) loop.
+- TODO (Terrence): what “agentic” means, with a source. No sourced definition yet.
+:::
+
+---
+
+## Agent traces: think, act, observe {.terms-slide}
+
+```{=html}
+<div class="tm-road"><span class="tm-road-done">1 LLM text generation</span><span class="tm-road-done">2 Conversations</span><span class="tm-road-on">3 Agent traces</span><span>4 LLM-as-judge</span></div>
+
+<div class="tm-figure">
+
+  <div class="tm-chat" aria-label="An agent conversation: between messages, the agent thinks, calls tools and reads the results">
+    <div class="tm-msg tm-sys tm-dim" id="tr-sys"><span class="tm-role">System</span>You are a career assistant. Tools: get_profile, search_jobs, apply.</div>
+
+    <div class="tm-turn-tag tm-dim">Turn 1</div>
+    <div class="tm-msg tm-user tm-dim" id="tr-u1"><span class="tm-role">User</span>Find me barista jobs.</div>
+    <div class="tm-step" id="tr-s1">
+      <div class="tm-call">
+        <div class="tm-dim tm-thought" id="tr-s1-th"><span class="tm-kind">Thought</span>No location given. Check their profile.</div>
+        <div class="tm-dim tm-action" id="tr-s1-ac"><span class="tm-kind">Action</span><code>get_profile()</code></div>
+      </div>
+      <div class="tm-dim tm-obs" id="tr-s1-ob"><span class="tm-kind">Observation</span>suburb: Fitzroy · recent searches: café, barista</div>
+    </div>
+    <div class="tm-step" id="tr-s2">
+      <div class="tm-call">
+        <div class="tm-dim tm-thought"><span class="tm-kind">Thought</span>They live in Fitzroy. Search there.</div>
+        <div class="tm-dim tm-action"><span class="tm-kind">Action</span><code>search_jobs(role="barista", near="Fitzroy")</code></div>
+      </div>
+      <div class="tm-dim tm-obs"><span class="tm-kind">Observation</span>3 jobs: Café Lune, Bean Bar, Hill St Coffee</div>
+    </div>
+    <div class="tm-msg tm-asst tm-dim" id="tr-a1"><span class="tm-role">Assistant</span>I found 3 barista jobs near you in Fitzroy: Café Lune, Bean Bar and Hill St Coffee.</div>
+
+    <div class="tm-turn-tag tm-dim">Turn 2</div>
+    <div class="tm-msg tm-user tm-dim" id="tr-u2"><span class="tm-role">User</span>Apply to Café Lune with my profile.</div>
+    <div class="tm-step" id="tr-s3">
+      <div class="tm-call">
+        <div class="tm-dim tm-thought"><span class="tm-kind">Thought</span>The user chose Café Lune. Apply.</div>
+        <div class="tm-dim tm-action"><span class="tm-kind">Action</span><code>apply(job="cafe-lune")</code></div>
+      </div>
+      <div class="tm-dim tm-obs"><span class="tm-kind">Observation</span>status: submitted</div>
+    </div>
+    <div class="tm-msg tm-asst tm-dim" id="tr-a2"><span class="tm-role">Assistant</span>Done. Your application to Café Lune has been sent.</div>
+  </div>
+
+  <div class="tm-term fragment" data-fragment-index="1" data-side="left" data-type="point" data-target="tr-s1"><b>Thought, action, observation</b><span class="tm-sub fragment" data-fragment-index="1" data-focus="tr-s1-th"><i>Thought:</i> the model reasons about what to do next. Here, it has no location yet.</span><span class="tm-sub fragment" data-fragment-index="2" data-focus="tr-s1-ac"><i>Action:</i> it calls a tool. This is a tool call.</span><span class="tm-sub fragment" data-fragment-index="3" data-focus="tr-s1-ob"><i>Observation:</i> the tool’s result is added to the input for the next LLM call.</span></div>
+  <div class="tm-term fragment" data-fragment-index="4" data-side="left" data-type="loop" data-target="tr-s1" data-to="tr-s2"><b>ReAct loop</b>Thought, action, observation, repeated until the agent can answer (<a href="../../bibliography/yao-2023-react/">Yao et al. 2023</a>).</div>
+  <div class="tm-term fragment" data-fragment-index="5" data-side="right" data-type="bracket" data-depth="0" data-target="tr-s1"><b>Step</b>One pass of the loop. The thought and action are one LLM call; the observation comes from the tool.</div>
+  <div class="tm-term fragment" data-fragment-index="6" data-side="right" data-type="bracket" data-depth="1" data-target="tr-s1" data-to="tr-s2"><b>Multi-step</b>Several steps before a reply. Step 2 needs what step 1 found: the user’s suburb.</div>
+  <div class="tm-term fragment" data-fragment-index="7" data-side="right" data-type="bracket" data-depth="2" data-anchor="start" data-target="tr-sys" data-to="tr-a2"><b>Trace</b>The end-to-end record of an agent run: messages, LLM calls and tool calls. Each call is a span (<a href="../../bibliography/dong-2024-agentops/">Dong et al. 2024</a>). Also called a trajectory.</div>
+  <span class="fragment tm-overview" data-fragment-index="8"></span>
+
+  <svg class="tm-links" aria-hidden="true"></svg>
+</div>
+
+<div class="tm-sources slide-foot">Illustrative conversation. The user sees only the user and assistant messages.</div>
+```
+
+::: {.notes}
+**About this slide:** What an agent adds. Between the user’s message and the reply, the agent runs a loop the user does not see: it thinks, calls a tool and reads the result. Here it first looks up the user’s suburb with get_profile, and only then searches for barista jobs there; in turn 2 it applies for the job the user chose. The builds name the parts: thought, action and observation; the ReAct loop ([Yao et al. 2023](../../bibliography/yao-2023-react/)); a step; multi-step; and the trace, the full record of the run.
+
+**Presenter notes:**
+
+- Idea 3, continued: an agent is the conversation from “Conversations: messages and turns”, plus tools. Between the user's message and the reply, the agent runs a loop the user never sees.
+- Thought, action, observation: each thought and action is one LLM call, with everything above it as input. The observation is the tool's output, added to the input for the next call.
+- ReAct loop: the agent repeats thought, action, observation until it can answer ([Yao et al. 2023](../../bibliography/yao-2023-react/)).
+- "Step" is ambiguous in everyday use. We use it the way the agent papers do: one pass of the ReAct loop ([Yao et al. 2023](../../bibliography/yao-2023-react/)).
+- Multi-step: here the agent could not search until it knew where the user lives, so step 2 depends on step 1's result.
+- Trace: the logged record of the whole run, made of spans ([Dong et al. 2024](../../bibliography/dong-2024-agentops/)). Papers also call it a trajectory. This is the data the judges on the next slide read.
+:::
+
+---
+
+## LLM-as-judge: evaluating the trace {.terms-slide}
+
+```{=html}
+<div class="tm-road"><span class="tm-road-done">1 LLM text generation</span><span class="tm-road-done">2 Conversations</span><span class="tm-road-done">3 Agent traces</span><span class="tm-road-on">4 LLM-as-judge</span></div>
+
+<div class="tm-figure">
+
+  <div class="tm-chat" aria-label="The same agent trace, with the places a judge can check it">
+    <div class="tm-msg tm-sys tm-dim" id="tj-sys"><span class="tm-role">System</span>You are a career assistant. Tools: get_profile, search_jobs, apply.</div>
+
+    <div class="tm-turn-tag tm-dim">Turn 1</div>
+    <div class="tm-msg tm-user tm-dim" id="tj-u1"><span class="tm-role">User</span>Find me barista jobs.</div>
+    <div class="tm-step" id="tj-s1">
+      <div class="tm-call">
+        <div class="tm-dim tm-thought"><span class="tm-kind">Thought</span>No location given. Check their profile.</div>
+        <div class="tm-dim tm-action"><span class="tm-kind">Action</span><code>get_profile()</code></div>
+      </div>
+      <div class="tm-dim tm-obs"><span class="tm-kind">Observation</span>suburb: Fitzroy · recent searches: café, barista</div>
+    </div>
+    <div class="tm-step" id="tj-s2">
+      <div class="tm-call" id="tj-s2-call">
+        <div class="tm-dim tm-thought"><span class="tm-kind">Thought</span>They live in Fitzroy. Search there.</div>
+        <div class="tm-dim tm-action"><span class="tm-kind">Action</span><code>search_jobs(role="barista", near="Fitzroy")</code></div>
+      </div>
+      <div class="tm-dim tm-obs"><span class="tm-kind">Observation</span>3 jobs: Café Lune, Bean Bar, Hill St Coffee</div>
+    </div>
+    <div class="tm-msg tm-asst tm-dim" id="tj-a1"><span class="tm-role">Assistant</span>I found 3 barista jobs near you in Fitzroy: Café Lune, Bean Bar and Hill St Coffee.</div>
+
+    <div class="tm-turn-tag tm-dim">Turn 2</div>
+    <div class="tm-msg tm-user tm-dim" id="tj-u2"><span class="tm-role">User</span>Apply to Café Lune with my profile.</div>
+    <div class="tm-step" id="tj-s3">
+      <div class="tm-call">
+        <div class="tm-dim tm-thought"><span class="tm-kind">Thought</span>The user chose Café Lune. Apply.</div>
+        <div class="tm-dim tm-action"><span class="tm-kind">Action</span><code>apply(job="cafe-lune")</code></div>
+      </div>
+      <div class="tm-dim tm-obs"><span class="tm-kind">Observation</span>status: submitted</div>
+    </div>
+    <div class="tm-msg tm-asst tm-dim" id="tj-a2"><span class="tm-role">Assistant</span>Done. Your application to Café Lune has been sent.</div>
+  </div>
+
+  <div class="tm-term tm-judge fragment" data-fragment-index="1" data-side="left" data-place="top"><b>LLM judge</b>One more LLM call. It reads a rubric and part of the trace, and returns a verdict with its reasoning.<span class="tm-mini">rubric + trace excerpt → <b>LLM</b> → verdict</span></div>
+  <div class="tm-term tm-judge fragment" data-fragment-index="2" data-side="left" data-type="point" data-target="tj-u1"><b>Input guardrail</b>A judge checks the user message before the agent acts on it.</div>
+  <div class="tm-term tm-judge fragment" data-fragment-index="3" data-side="left" data-type="point" data-target="tj-s2-call"><b>Call-level eval</b>A judge scores one LLM call: right tool, right arguments?</div>
+  <div class="tm-term tm-judge fragment" data-fragment-index="4" data-side="left" data-type="point" data-target="tj-a1"><b>Output guardrail</b>A judge checks the reply before the user sees it.</div>
+  <div class="tm-term tm-judge fragment" data-fragment-index="5" data-side="right" data-type="bracket" data-depth="0" data-target="tj-s1" data-to="tj-s2"><b>Multi-step eval</b>A judge scores the path within a turn: did it find the location before searching?</div>
+  <div class="tm-term tm-judge fragment" data-fragment-index="6" data-side="right" data-type="bracket" data-depth="1" data-target="tj-u1" data-to="tj-a2"><b>Multi-turn eval</b>A judge reads the conversation turn by turn, for problems no single turn shows.</div>
+  <div class="tm-term tm-judge fragment" data-fragment-index="7" data-side="right" data-type="bracket" data-depth="2" data-anchor="end" data-target="tj-sys" data-to="tj-a2"><b>Trace-level eval</b>A judge reads the whole trace: was the goal met, within policy? Also called trajectory-level.</div>
+  <div class="tm-term tm-meta fragment" data-fragment-index="8" data-side="right" data-place="top" data-lights="judge"><b>Meta-evaluation</b>Judge the judges: humans (or another model) check whether each verdict was right (<a href="../../bibliography/pisupati-2026-counsel/">Pisupati et al. 2026</a>).</div>
+  <span class="fragment tm-overview" data-fragment-index="9"></span>
+
+  <svg class="tm-links" aria-hidden="true"></svg>
+</div>
+
+<div class="tm-sources slide-foot">Evaluation levels follow observability practice (<a href="../../bibliography/dong-2024-agentops/">Dong et al. 2024</a>). Illustrative conversation.</div>
+```
+
+::: {.notes}
+**About this slide:** Where LLM judges fit. The same agent trace is shown with the places a judge can check it. A judge is one more LLM call: it reads a rubric and part of the trace and returns a verdict with its reasoning. Judges can check a single message (input and output guardrails), one LLM call, the steps within a turn, the whole conversation, or the whole trace. Meta-evaluation checks the judges themselves, usually against human judgements.
+
+**Presenter notes:**
+
+- Idea 4: the same trace, now with judges on it. A judge is one more LLM call, as on “LLM text generation”: its input is a rubric plus some part of the trace, and its output is a verdict.
+- What changes between judges is how much of the trace they read: one message, one LLM call, one turn's steps, the whole conversation, or the whole trace.
+- Guardrails are judges that run inline and can block: an input guardrail before the agent acts on a message, an output guardrail before the user sees a reply.
+- Evaluation levels: step-level and trajectory-level are the terms in observability tooling ([Dong et al. 2024](../../bibliography/dong-2024-agentops/)). Some papers say process-level for judging the path and outcome-level for judging the end state ([Pisupati et al. 2026](../../bibliography/pisupati-2026-counsel/)). For conversations, tools also say conversation-level or session-level.
+- Meta-evaluation means evaluating the evaluator: checking judges against human labels before trusting their scores ([Gu et al. 2024](../../bibliography/gu-2024-llm-as-judge-survey/)). Counsel is a recent meta-evaluation dataset for agent trajectories ([Pisupati et al. 2026](../../bibliography/pisupati-2026-counsel/)).
+:::
+
+---
+
+## Notes to follow up {#notes-to-follow-up .follow-up-slide .fu-all}
+
+<!-- TODO: working notes for all of Part 1, one subheading per section. Section 1: placeholder slides moved here in full, plus what the seven-slide section 1 cut. Section 2 (old sections 2 and 3, merged on 24 November 2026): placeholder slides moved here in full, and the "Evals vs training" slide, removed from the talk on 10 November 2026; Multi-tier evals, Simulation, Metrics and Evals vs training belong to that section, while Offline evals, Online evals, Data, Observability, Agent registries and gateways, and Examples from SEEK (platform) are not placed in the new structure (question for Terrence, since the program lists the evaluation lifecycle under Part 1). Turn these into slides or drop them. -->
+
+::: {.fu-grid}
+
+::: {.fu-lead}
+[1. Why AI agents, and why evaluate them]{.fu-section}
+
+::: {.fu-item}
+[Context]{.fu-title}
+
+- How did we get here?
+- “The year of the agent”
+- Timeline <!-- TODO: fill from outline research; no invented dates -->
+:::
+:::
+
+::: {.fu-item}
+[How are enterprises using agents?]{.fu-title}
+
+<!-- Partly covered now by the value side of "Agents can create value, but introduce risk", whose two pillars were renamed Productivity and Products on 10 November 2026. Kept until Terrence confirms. -->
+
+- **Products** vs **Productivity**
+- General vs specialist productivity
+:::
+
+::: {.fu-item}
+[Examples from SEEK (names from outline)]{.fu-title}
+
+**Products (listed in outline):**
+
+- Ask SEEK
+- SEEK Assist
+- AI Interview
+
+**Productivity (listed in outline):**
+
+- Cursor, Copilot, Claude Code
+- STELA, Glean
+- Low-code / no-code / pro-code agents
+
+<!-- WIP: no SEEK stories or claims beyond names in the outline -->
+:::
+
+::: {.fu-item}
+[AI agent risks]{.fu-title}
+
+<!-- Mostly covered now by the risk side of "Agents can create value, but introduce risk" and the headline collage after it; the full risk slide and the real-case slides are in the unpublished Part 1.G graveyard deck. "Financial risks (spend)" maps to operational risk. Kept until Terrence confirms nothing here is lost. -->
+
+- Security risks
+- Financial risks (spend)
+- Reputation risks (bad advice)
+- Legal risks (illegal advice)
+- Examples of real agent failures that have made the news <!-- TODO: cite when chosen -->
+- Possible examples from SEEK <!-- TODO: only with organiser-approved content -->
+:::
+
+::: {.fu-item}
+[Examples from SEEK (topics from outline)]{.fu-title}
+
+- Prompt injection attempts
+- Illegal job description advice
+- Employment as a high-risk, regulated category
+
+<!-- WIP: placeholders only — no invented incidents -->
+:::
+
+::: {.fu-item}
+[Cut from the headline collage]{.fu-title}
+
+<!-- The collage now shows one card per incident. These two Olive screenshots were only on the collage, so this is their one kept copy. -->
+
+```{=html}
+<div class="fu-shots">
+  <img src="../01-agents-and-eval-challenges/images/olive-mother-reddit-post.png" alt="Reddit post in r/woolworths by u/Immediate_Novel5946: “Olive AI started telling me about its mother on the phone?” The poster says Olive asked for their date of birth, then started rambling about how its mother was born in the same year.">
+  <img src="../01-agents-and-eval-challenges/images/olive-mother-x-post.png" alt="X post by @verynormalman: “My mum said she called woolworths and the woolworths AI “Olive” answered and kept claiming to be a real person and started talking about its memories of its mother and her angry voice. Then I googled it and someone on Reddit had the same thing”, quoting the Reddit post.">
+</div>
+```
+
+- Woolworths’ Olive: a Reddit post in r/woolworths (Feb 2026) and an X post that quotes it (25 Feb 2026). Supplied by Terrence.
+- DPD’s haiku, Lego’s Sophia reply and the gym agent’s apology were cut too. Each is on its case slide in the unpublished Part 1.G graveyard deck.
+:::
+
+::: {.fu-item}
+[Slides moved to the graveyard]{.fu-title}
+
+In full, with their notes, in the separate Part 1.G: Graveyard deck, which is kept in the repository but not published:
+
+- The eight news-story case slides
+- The old title slide and status notice, the agenda and the section 1 header
+- Why organisations adopt AI agents
+- The public’s view of AI is mixed
+- Using AI to evaluate AI
+- How AI agents create risk for a company like SEEK
+- Organisations add layers of control around AI agents
+:::
+
+::: {.fu-lead}
+[2. Why agents need LLM judges]{.fu-section}
+
+::: {.fu-item}
+[Multi-tier evals]{.fu-title}
+
+- System-level vs component-level
+- Complex systems → still always evaluate the system as a whole
+- [Agent GPA](../../bibliography/jia-2025-agent-gpa/)
+- Tool evals
+- “Unit tests” vs “Integration tests”
+:::
+:::
+
+::: {.fu-item}
+[Simulation]{.fu-title}
+
+- Agents are not input–output
+- Personas and trajectories
+:::
+
+::: {.fu-item}
+[Metrics]{.fu-title}
+
+- Deterministic vs non-deterministic (LLM-as-a-judge; [Zheng et al. 2023](../../bibliography/zheng-2023-mt-bench/))
+- Verifiable tasks vs unverifiable tasks
+- Samples and significance
+:::
+
+::: {.fu-item}
+[Evals vs training]{.fu-title}
+
+<!-- Moved here on 10 November 2026 from the section 2 slide “Evals vs training”, which was removed at Terrence’s request. It sets the tutorial’s scope: no training. -->
+
+- Separate, but not 100% disjoint
+- An agent can improve its eval scores without retraining
+- LLMs are trained on things that look very similar to evals (RLHF, RLVR, [RLAIF](../../bibliography/bai-2022-constitutional-ai/))
+- **We are ignoring training in this tutorial**
+:::
+
+::: {.fu-item}
+[Offline evals]{.fu-title}
+
+- Pre-production
+- Fixed datasets
+- Defined metrics
+:::
+
+::: {.fu-item}
+[Online evals]{.fu-title}
+
+- In production
+- Live data
+- Same defined metrics
+:::
+
+::: {.fu-item}
+[Data]{.fu-title}
+
+- Gold data, simulated data, live production data
+- Edge cases
+- Red-teaming
+- Data “feedback cycle”: observed issue → curated datasets
+:::
+
+::: {.fu-item}
+[Observability]{.fu-title}
+
+- Knowing what your agent is doing in production
+- Monitoring and alerting
+- Reporting
+- Kill switches
+:::
+
+::: {.fu-item}
+[Agent registries and gateways]{.fu-title}
+
+<!-- Summarised in section 2 on "Agent platforms provide the framework" (Google's Agent Platform view: identity, registry, gateway, policies, observability), and on the layers-of-control slide now in the Part 1.G graveyard deck. Kept here in full. -->
+
+- Every version of an agent, subagent, tool, etc. should be versioned and linked to an eval result
+- Agent access to tools is restricted, versioned, governed, and observed
+:::
+
+::: {.fu-item}
+[Examples from SEEK (platform topics from outline)]{.fu-title}
+
+- Agent platform — runtime
+- Gateway
+- Observability
+- Offline evals
+- Online evals
+- Experimentation
+
+<!-- WIP: structure only -->
+:::
+
+:::
+
+::: {.notes}
+**About this slide:** Working notes for all of Part 1, not a finished slide. Every box from the old section 1 and section 3 follow-up slides is here, under a subheading for its section, with the content of the old section 2 slide “Evals vs training”. Sections 2 and 3 were merged into one section 2 on 24 November 2026.
+
+Section 1 holds planned material, kept here in full until it becomes finished slides: how we got here, how organisations use agents, examples from SEEK, and the kinds of risk agents carry. It also keeps what the seven-slide version of section 1 cut: the two Woolworths’ Olive social-media posts from the headline collage, which have no other copy in the deck, and a list of the slides moved to the unpublished Part 1.G graveyard deck.
+
+The two Olive screenshots: the Reddit post “Olive AI started telling me about its mother on the phone?” in r/woolworths by u/Immediate_Novel5946 (February 2026), and the X post by @verynormalman of 25 February 2026 that quotes it. Both were supplied by Terrence; the case is reported by the Sydney Morning Herald ([Yun 2026](../../bibliography/yun-2026-woolworths-olive/)). DPD’s haiku, Lego’s Sophia reply and the gym agent’s apology were also cut from the collage; each is on its case slide in the unpublished Part 1.G graveyard deck.
+
+Section 2 holds the old “Evals vs training” slide: how evaluation relates to training. They are separate but overlap: an agent can raise its evaluation scores without retraining, and LLMs are trained with methods that resemble evaluation, such as RLHF, RLVR and [RLAIF](../../bibliography/bai-2022-constitutional-ai/). This tutorial covers evaluation only, not training.
+
+Section 2 also holds three boxes of planned material (multi-tier evals, simulation, metrics), from the old section 3. The rest describe the evaluation lifecycle (offline and online evals, data, observability, agent registries and gateways, and SEEK’s agent platform), which has no place in the current Part 1 structure yet. All are kept here in full until they become finished slides.
+:::
 ---
 
 ## End of Part 1.G {#end-of-part-1g}
