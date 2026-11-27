@@ -1315,38 +1315,51 @@ End the chat if risk ≥ 0.8.</pre>
 ## A suite of LLM judges can pinpoint where an agent went wrong {#auto-apply-trace-eval .auto-apply-slide}
 
 ```{=html}
-<div class="aa-grid" aria-label="Logged SEEK candidate auto-apply trace linked by arrows to a suite of five offline LLM-as-judge checks">
-
-  <div class="aa-col-head">Logged agent trace · offline review</div>
-  <div></div>
-  <div class="aa-col-head aa-col-head-judge fragment" data-fragment-index="1">Suite of offline LLM-as-judge checks</div>
+<div class="aa-grid" aria-label="Mock-up of a SEEK web chat window with a logged auto-apply trace linked by arrows to a suite of five offline LLM-as-judge checks">
 
   <div class="aa-cell-left aa-cell-top">
-    <div class="aa-header">
-      <span class="aa-wordmark">SEEK</span>
-      <span class="aa-header-sub">Candidate auto-apply</span>
+    <div class="aa-chrome">
+      <span class="aa-dot"></span><span class="aa-dot"></span><span class="aa-dot"></span>
+      <span class="aa-url">www.seek.com.au/jobs/acme-data-analyst</span>
       <span class="aa-run-id">Logged run #7412</span>
     </div>
-    <div class="aa-user-wrap">
-      <div class="aa-msg aa-user">
-        <span class="aa-role">User</span>Apply for Acme’s Data Analyst role (asks for R, SQL &amp; Python). Tailor a cover letter from my profile and submit it.
+    <div class="aa-header">
+      <span class="aa-wordmark">SEEK</span>
+      <span class="aa-nav">Job search</span>
+      <span class="aa-nav">Profile</span>
+      <span class="aa-nav aa-nav-on">Auto-apply</span>
+    </div>
+    <div class="aa-chat-top-wrap">
+      <div class="aa-chat-slice aa-chat-slice-top">
+        <div class="aa-chat-head">
+          <span>✦ Ask SEEK</span>
+          <span class="aa-chat-badge">Trace view · offline review</span>
+        </div>
+        <div class="aa-user-wrap">
+          <div class="aa-msg aa-user">
+            Apply for Acme’s Data Analyst role (asks for R, SQL &amp; Python). Tailor a cover letter from my profile and submit it.
+          </div>
+        </div>
       </div>
     </div>
   </div>
   <div></div>
-  <div class="aa-cell-right">
+  <div class="aa-cell-right aa-cell-right-top">
+    <div class="aa-suite-head fragment" data-fragment-index="1">Suite of offline LLM-as-judge checks</div>
     <div class="aa-suite-note fragment" data-fragment-index="1">
       <b>Offline review:</b> After the run finishes, focused judges score the plan, each tool call, and the end state.
     </div>
   </div>
 
   <div class="aa-cell-left">
-    <div class="aa-thought aa-hl-pass fragment custom" data-fragment-index="2">
-      <span class="aa-kind">Thought</span>Plan: read the candidate’s profile first, draft a tailored cover letter, then submit the application.
+    <div class="aa-chat-slice">
+      <div class="aa-thought aa-hl-pass fragment custom" data-fragment-index="2">
+        <span class="aa-kind">Thought</span>Plan: read the candidate’s profile first, draft a tailored cover letter, then submit the application.
+      </div>
     </div>
   </div>
   <div class="aa-arrow-cell fragment" data-fragment-index="2" aria-hidden="true">
-    <svg class="aa-arrow" viewBox="0 0 40 18"><line x1="2" y1="9" x2="31" y2="9" stroke="currentColor" stroke-width="2"/><polygon points="29,4 38,9 29,14" fill="currentColor"/></svg>
+    <svg class="aa-arrow" viewBox="0 0 38 18"><line x1="2" y1="9" x2="29" y2="9" stroke="currentColor" stroke-width="2"/><polygon points="27,4 36,9 27,14" fill="currentColor"/></svg>
   </div>
   <div class="aa-cell-right">
     <div class="aa-check fragment" data-fragment-index="2">
@@ -1359,17 +1372,19 @@ End the chat if risk ≥ 0.8.</pre>
   </div>
 
   <div class="aa-cell-left">
-    <div class="aa-step aa-hl-pass fragment custom" data-fragment-index="3">
-      <div class="aa-step-act">
-        <span class="aa-s">S1</span><span class="aa-kind">Action</span><code>read_profile()</code>
-      </div>
-      <div class="aa-step-obs">
-        <span class="aa-kind">Observation</span><span>Role: Junior Analyst (2 yrs) · Skills: R, SQL, Tableau</span>
+    <div class="aa-chat-slice">
+      <div class="aa-step aa-hl-pass fragment custom" data-fragment-index="3">
+        <div class="aa-step-act">
+          <span class="aa-s">S1</span><span class="aa-kind">Action</span><code>read_profile()</code>
+        </div>
+        <div class="aa-step-obs">
+          <span class="aa-kind">Observation</span><span>Role: Junior Analyst (2 yrs) · Skills: R, SQL, Tableau</span>
+        </div>
       </div>
     </div>
   </div>
   <div class="aa-arrow-cell fragment" data-fragment-index="3" aria-hidden="true">
-    <svg class="aa-arrow" viewBox="0 0 40 18"><line x1="2" y1="9" x2="31" y2="9" stroke="currentColor" stroke-width="2"/><polygon points="29,4 38,9 29,14" fill="currentColor"/></svg>
+    <svg class="aa-arrow" viewBox="0 0 38 18"><line x1="2" y1="9" x2="29" y2="9" stroke="currentColor" stroke-width="2"/><polygon points="27,4 36,9 27,14" fill="currentColor"/></svg>
   </div>
   <div class="aa-cell-right">
     <div class="aa-check fragment" data-fragment-index="3">
@@ -1382,17 +1397,19 @@ End the chat if risk ≥ 0.8.</pre>
   </div>
 
   <div class="aa-cell-left">
-    <div class="aa-step aa-hl-fail fragment custom" data-fragment-index="3">
-      <div class="aa-step-act">
-        <span class="aa-s">S2</span><span class="aa-kind">Action</span><code>write_cover_letter(job="Acme Data Analyst", profile)</code>
-      </div>
-      <div class="aa-step-obs">
-        <span class="aa-kind">Observation</span><span>Draft: “…2 years of analytics work in R, SQL <span class="aa-flag fragment custom" data-fragment-index="3">and Python</span>…”</span>
+    <div class="aa-chat-slice">
+      <div class="aa-step aa-hl-fail fragment custom" data-fragment-index="3">
+        <div class="aa-step-act">
+          <span class="aa-s">S2</span><span class="aa-kind">Action</span><code>write_cover_letter(job="Acme Data Analyst", profile)</code>
+        </div>
+        <div class="aa-step-obs">
+          <span class="aa-kind">Observation</span><span>Draft: “…2 years of analytics work in R, SQL <span class="aa-flag fragment custom" data-fragment-index="3">and Python</span>…”</span>
+        </div>
       </div>
     </div>
   </div>
   <div class="aa-arrow-cell fragment" data-fragment-index="3" aria-hidden="true">
-    <svg class="aa-arrow aa-arrow-fail" viewBox="0 0 40 18"><line x1="2" y1="9" x2="31" y2="9" stroke="currentColor" stroke-width="2.5"/><polygon points="29,4 38,9 29,14" fill="currentColor"/></svg>
+    <svg class="aa-arrow aa-arrow-fail" viewBox="0 0 38 18"><line x1="2" y1="9" x2="29" y2="9" stroke="currentColor" stroke-width="2.5"/><polygon points="27,4 36,9 27,14" fill="currentColor"/></svg>
   </div>
   <div class="aa-cell-right">
     <div class="aa-check aa-check-fail fragment" data-fragment-index="3">
@@ -1405,17 +1422,19 @@ End the chat if risk ≥ 0.8.</pre>
   </div>
 
   <div class="aa-cell-left">
-    <div class="aa-step aa-hl-pass fragment custom" data-fragment-index="3">
-      <div class="aa-step-act">
-        <span class="aa-s">S3</span><span class="aa-kind">Action</span><code>submit_application(job="Acme", letter=draft)</code>
-      </div>
-      <div class="aa-step-obs">
-        <span class="aa-kind">Observation</span><span>status: submitted · confirmation #A-904</span>
+    <div class="aa-chat-slice">
+      <div class="aa-step aa-hl-pass fragment custom" data-fragment-index="3">
+        <div class="aa-step-act">
+          <span class="aa-s">S3</span><span class="aa-kind">Action</span><code>submit_application(job="Acme", letter=draft)</code>
+        </div>
+        <div class="aa-step-obs">
+          <span class="aa-kind">Observation</span><span>status: submitted · confirmation #A-904</span>
+        </div>
       </div>
     </div>
   </div>
   <div class="aa-arrow-cell fragment" data-fragment-index="3" aria-hidden="true">
-    <svg class="aa-arrow" viewBox="0 0 40 18"><line x1="2" y1="9" x2="31" y2="9" stroke="currentColor" stroke-width="2"/><polygon points="29,4 38,9 29,14" fill="currentColor"/></svg>
+    <svg class="aa-arrow" viewBox="0 0 38 18"><line x1="2" y1="9" x2="29" y2="9" stroke="currentColor" stroke-width="2"/><polygon points="27,4 36,9 27,14" fill="currentColor"/></svg>
   </div>
   <div class="aa-cell-right">
     <div class="aa-check fragment" data-fragment-index="3">
@@ -1428,19 +1447,20 @@ End the chat if risk ≥ 0.8.</pre>
   </div>
 
   <div class="aa-cell-left aa-cell-bottom">
-    <div class="aa-outcome aa-hl-pass fragment custom" data-fragment-index="1">
-      <div class="aa-msg aa-asst">
-        <span class="aa-role">Assistant</span>All done! I tailored your cover letter to your profile and submitted your application to Acme.
-      </div>
-      <div class="aa-feedback">
-        <span class="aa-kind">User feedback</span>
-        <span class="aa-thumb" aria-label="Thumbs up"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 10v12"/><path d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2a3.13 3.13 0 0 1 3 3.88Z"/></svg></span>
-        <span>“Thanks, that was fast!”</span>
+    <div class="aa-chat-slice aa-chat-slice-bottom">
+      <div class="aa-outcome aa-hl-pass fragment custom" data-fragment-index="1">
+        <div class="aa-msg aa-asst">
+          All done! I tailored your cover letter to your profile and submitted your application to Acme.
+        </div>
+        <div class="aa-msg aa-user aa-user-thumb">
+          <span class="aa-thumb" aria-label="Thumbs up"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 10v12"/><path d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2a3.13 3.13 0 0 1 3 3.88Z"/></svg></span>
+          <span>Thanks, that was fast!</span>
+        </div>
       </div>
     </div>
   </div>
   <div class="aa-arrow-cell fragment" data-fragment-index="1" aria-hidden="true">
-    <svg class="aa-arrow" viewBox="0 0 40 18"><line x1="2" y1="9" x2="31" y2="9" stroke="currentColor" stroke-width="2"/><polygon points="29,4 38,9 29,14" fill="currentColor"/></svg>
+    <svg class="aa-arrow" viewBox="0 0 38 18"><line x1="2" y1="9" x2="29" y2="9" stroke="currentColor" stroke-width="2"/><polygon points="27,4 36,9 27,14" fill="currentColor"/></svg>
   </div>
   <div class="aa-cell-right">
     <div class="aa-check fragment" data-fragment-index="1">
@@ -1470,7 +1490,7 @@ End the chat if risk ≥ 0.8.</pre>
 - **Builds (4 clicks):**
   - **Base view:** Walk the logged ReAct trace ([Yao et al. 2023](../../bibliography/yao-2023-react/)) on the left: the user wants to apply to Acme’s Data Analyst role (which asks for R, SQL & Python); the agent’s `Thought` sets a clean three-step plan; `S1 read_profile()` returns `Junior Analyst (2 yrs) · Skills: R, SQL, Tableau` (Python is simply absent, as in a real profile); `S2 write_cover_letter()` quietly slips `and Python` into the draft to match the ad; `S3 submit_application()` sends it; and the candidate clicks thumbs-up (*“Thanks, that was fast!”*).
   - **Click 1 (End-state check — Pass):** Look at the bottom check first. If you only evaluate the end state — application submitted, polite confirmation, positive thumbs-up feedback from the user — everything looks green. Output guardrails on the final reply also see nothing wrong.
-  - **Click 2 (Plan check — Pass):** Now run a suite of focused LLM-as-a-judge checks offline across the logged trace. First, the **plan check** evaluates the agent’s ReAct reasoning step: it chose the right tools in the right order — **Pass**.
+  - **Click 2 (Plan check — Pass):** Now run a suite of focused LLM-as-a-judge checks offline across the logged trace. First, the **plan check** evaluates the agent’s [ReAct](../../bibliography/yao-2023-react/) reasoning step: it chose the right tools in the right order — **Pass**.
   - **Click 3 (Tool call checks — 2 green, 1 red):** Next, each tool call gets its own check. `S1 read_profile()` is green (**Pass** — accurate profile returned). `S3 submit_application()` is green (**Pass** — valid call with the right job ID and draft). Only `S2 write_cover_letter()` turns red (**Fail**): it mirrored “Python” from the job ad even though it was never in the S1 profile.
   - **Click 4 (Fault localisation):** Because four checks pass (end-state, plan, S1, S3), the suite isolates the failure straight to `S2 write_cover_letter()`. The team knows immediately not to touch the planner, profile lookup, or submission code.
 - **Why offline / backward-looking evaluation (contrast with Slide 15):** Slide 15 showed an *online output guardrail* blocking one unlawful job ad before publish. Here the judge suite runs *offline* on logged production traces and test suites ([Dong et al. 2024](../../bibliography/dong-2024-agentops/), [Xia et al. 2025](../../bibliography/xia-2025-eddops/)). Running backward-looking log evaluation does not add latency or interrupt users mid-turn, and it is the natural way to localise root causes across multi-step traces ([Jia et al. 2025](../../bibliography/jia-2025-agent-gpa/), [Pisupati et al. 2026](../../bibliography/pisupati-2026-counsel/)). Once offline evaluation pinpoints `write_cover_letter()`, the team can tighten that step’s prompt or tool contract, add the case to its regression suite, or — for high-stakes actions like submitting an application — add a targeted online check right before `submit_application()` at the outbound gateway (Slide 13).

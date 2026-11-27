@@ -1,11 +1,12 @@
 /* "A suite of LLM judges can pinpoint where an agent went wrong" slide.
-   Row-aligned 3-column grid: left SEEK logged ReAct trace, middle SVG arrows,
-   right suite of smaller offline LLM-as-judge check cards.
+   Matches Slide 16's mock SEEK browser + chat window (right-aligned user
+   messages, left-aligned agent messages and ReAct steps) in a row-aligned
+   3-column grid linked by horizontal arrows to five offline judge check cards.
    No hex codes: all colours come from _shared/themes/canva.scss. */
 
 .reveal .auto-apply-slide h2 {
   font-size: 1.15em;
-  margin-bottom: 0.32em;
+  margin-bottom: 0.34em;
 }
 
 .reveal .auto-apply-slide code {
@@ -18,45 +19,29 @@
 
 .reveal .auto-apply-slide .aa-grid {
   display: grid;
-  grid-template-columns: 604px 44px 552px;
+  grid-template-columns: 620px 42px 538px;
   column-gap: 0;
   row-gap: 0;
   width: 1200px;
   font-family: var(--deck-font-sans);
-  font-size: 14.5px;
-  line-height: 1.32;
+  font-size: 14px;
+  line-height: 1.3;
   color: var(--deck-ink);
 }
 
-/* Column headings (row 1) */
-
-.reveal .auto-apply-slide .aa-col-head {
-  padding-bottom: 6px;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--deck-soft);
-}
-
-.reveal .auto-apply-slide .aa-col-head-judge {
-  color: var(--chat-judge-label);
-}
-
-/* Left column: continuous SEEK logged trace frame across aligned rows */
+/* Left column: mock browser + SEEK header + continuous inner chat card */
 
 .reveal .auto-apply-slide .aa-cell-left {
   background: var(--deck-paper);
   border-left: 1px solid var(--deck-line);
   border-right: 1px solid var(--deck-line);
-  padding: 4px 12px;
+  padding: 0 11px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
 }
 
 .reveal .auto-apply-slide .aa-cell-top {
-  padding: 0 0 5px;
+  padding: 0;
   border-top: 1px solid var(--deck-line);
   border-radius: 2px 2px 0 0;
   overflow: hidden;
@@ -68,10 +53,48 @@
   border-radius: 0 0 2px 2px;
 }
 
+/* Browser chrome & SEEK nav bar (same visual grammar as Slide 16) */
+
+.reveal .auto-apply-slide .aa-chrome {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 22px;
+  padding: 0 10px;
+  background: var(--deck-surface);
+  border-bottom: 1px solid var(--deck-line);
+}
+
+.reveal .auto-apply-slide .aa-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--deck-line);
+}
+
+.reveal .auto-apply-slide .aa-url {
+  margin-left: 10px;
+  padding: 0 9px;
+  font-family: var(--deck-font-mono);
+  font-size: 10.5px;
+  line-height: 16px;
+  color: var(--deck-soft);
+  background: var(--deck-paper);
+  border: 1px solid var(--deck-line);
+  border-radius: 2px;
+}
+
+.reveal .auto-apply-slide .aa-run-id {
+  margin-left: auto;
+  font-family: var(--deck-font-mono);
+  font-size: 10.5px;
+  color: var(--deck-soft);
+}
+
 .reveal .auto-apply-slide .aa-header {
   display: flex;
   align-items: baseline;
-  gap: 10px;
+  gap: 16px;
   height: 32px;
   padding: 0 12px;
   background: var(--deck-ink);
@@ -79,68 +102,110 @@
 }
 
 .reveal .auto-apply-slide .aa-wordmark {
+  margin-right: 6px;
   font-size: 18px;
   font-weight: 800;
   letter-spacing: 0.02em;
   line-height: 32px;
 }
 
-.reveal .auto-apply-slide .aa-header-sub {
-  font-size: 13px;
-  opacity: 0.85;
+.reveal .auto-apply-slide .aa-nav {
+  font-size: 12.5px;
+  opacity: 0.75;
 }
 
-.reveal .auto-apply-slide .aa-run-id {
-  margin-left: auto;
-  font-family: var(--deck-font-mono);
-  font-size: 12px;
-  opacity: 0.85;
+.reveal .auto-apply-slide .aa-nav-on {
+  opacity: 1;
+  font-weight: 600;
+  box-shadow: inset 0 -2px 0 var(--deck-paper);
+}
+
+/* Inner chat window slices stacked seamlessly across rows */
+
+.reveal .auto-apply-slide .aa-chat-top-wrap {
+  padding: 8px 11px 0;
+}
+
+.reveal .auto-apply-slide .aa-chat-slice {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-left: 1px solid var(--deck-line);
+  border-right: 1px solid var(--deck-line);
+  padding: 3.5px 10px;
+}
+
+.reveal .auto-apply-slide .aa-chat-slice-top {
+  padding: 0;
+  border-top: 1px solid var(--deck-line);
+  border-radius: 2px 2px 0 0;
+  overflow: hidden;
+}
+
+.reveal .auto-apply-slide .aa-chat-slice-bottom {
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--deck-line);
+  border-radius: 0 0 2px 2px;
+}
+
+.reveal .auto-apply-slide .aa-chat-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 10px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--deck-accent);
+  border-bottom: 1px solid var(--deck-line);
+}
+
+.reveal .auto-apply-slide .aa-chat-badge {
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--deck-soft);
 }
 
 .reveal .auto-apply-slide .aa-user-wrap {
-  padding: 8px 12px 2px;
+  display: flex;
+  flex-direction: column;
+  padding: 7px 10px 3.5px;
 }
 
+/* Chat bubbles: user right-aligned, agent left-aligned (matches Slide 16) */
+
 .reveal .auto-apply-slide .aa-msg {
-  padding: 7px 10px;
-  font-size: 14px;
-  line-height: 1.32;
+  padding: 6px 10px;
+  font-size: 13.5px;
+  line-height: 1.3;
   border-radius: 2px;
 }
 
 .reveal .auto-apply-slide .aa-msg.aa-user {
+  align-self: flex-end;
+  max-width: 84%;
   background: var(--chat-user-bg);
-  box-shadow: inset var(--chat-edge-width) 0 0 var(--chat-user-edge);
+  box-shadow: inset calc(-1 * var(--chat-edge-width)) 0 0 var(--chat-user-edge);
 }
 
 .reveal .auto-apply-slide .aa-msg.aa-asst {
+  align-self: flex-start;
+  max-width: 86%;
   background: var(--chat-agent-bg);
   box-shadow: inset var(--chat-edge-width) 0 0 var(--chat-agent-edge);
 }
 
-.reveal .auto-apply-slide .aa-role {
-  display: inline-block;
-  margin-right: 7px;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
-
-.reveal .auto-apply-slide .aa-user .aa-role {
-  color: var(--chat-user-label);
-}
-
-.reveal .auto-apply-slide .aa-asst .aa-role {
-  color: var(--chat-agent-label);
-}
-
-/* ReAct Thought / Plan row (matches Part 1's --chat-thought-* tokens) */
+/* Left-aligned ReAct Thought / Plan step */
 
 .reveal .auto-apply-slide .aa-thought {
-  padding: 7px 10px;
-  font-size: 13.5px;
-  line-height: 1.3;
+  align-self: flex-start;
+  width: 90%;
+  box-sizing: border-box;
+  padding: 6px 9px;
+  font-size: 13px;
+  line-height: 1.28;
   color: var(--chat-thought-ink);
   font-style: var(--chat-thought-style);
   background: var(--chat-thought-bg);
@@ -155,9 +220,12 @@
   margin-right: 7px;
 }
 
-/* ReAct Action + Observation tool steps */
+/* Left-aligned ReAct Action + Observation tool steps */
 
 .reveal .auto-apply-slide .aa-step {
+  align-self: flex-start;
+  width: 90%;
+  box-sizing: border-box;
   border: 1px solid var(--deck-line);
   border-radius: 2px;
   background: var(--deck-paper);
@@ -168,8 +236,8 @@
 .reveal .auto-apply-slide .aa-step-act {
   display: flex;
   align-items: baseline;
-  gap: 7px;
-  padding: 5px 10px;
+  gap: 6px;
+  padding: 4.5px 9px;
   background: var(--chat-action-bg);
   box-shadow: inset var(--chat-edge-width) 0 0 var(--chat-action-edge);
 }
@@ -177,12 +245,12 @@
 .reveal .auto-apply-slide .aa-step-obs {
   display: flex;
   align-items: baseline;
-  gap: 7px;
-  padding: 6px 10px;
+  gap: 6px;
+  padding: 5px 9px;
   background: var(--chat-observation-bg);
   box-shadow: inset var(--chat-edge-width) 0 0 var(--chat-observation-edge);
   border-top: 1px solid var(--deck-surface);
-  font-size: 13.5px;
+  font-size: 13px;
 }
 
 .reveal .auto-apply-slide .aa-s {
@@ -190,7 +258,7 @@
   flex: none;
   padding: 0 5px;
   font-family: var(--deck-font-mono);
-  font-size: 11px;
+  font-size: 10.5px;
   font-weight: 700;
   color: var(--deck-soft);
   background: var(--deck-paper);
@@ -200,7 +268,7 @@
 
 .reveal .auto-apply-slide .aa-kind {
   flex: none;
-  font-size: 10.5px;
+  font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -208,37 +276,32 @@
 }
 
 .reveal .auto-apply-slide .aa-step code {
-  font-size: 13px;
+  font-size: 12.5px;
 }
 
-/* Assistant outcome + user thumbs-up feedback */
+/* Assistant confirmation (left) + user thumbs-up reply (right) */
 
 .reveal .auto-apply-slide .aa-outcome {
   border-radius: 2px;
   display: flex;
   flex-direction: column;
   gap: 5px;
+  padding: 2px;
   transition: outline-color 0.25s ease;
 }
 
-.reveal .auto-apply-slide .aa-feedback {
-  display: flex;
+.reveal .auto-apply-slide .aa-msg.aa-user-thumb {
+  display: inline-flex;
   align-items: center;
-  gap: 7px;
-  padding: 5px 10px;
+  gap: 6px;
+  padding: 4.5px 10px;
   font-size: 13px;
-  background: var(--deck-surface);
-  border-radius: 2px;
-  color: var(--deck-ink);
 }
 
 .reveal .auto-apply-slide .aa-thumb {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 20px;
-  height: 20px;
-  border-radius: 2px;
   color: var(--verdict-pass);
   flex: none;
 }
@@ -247,17 +310,6 @@
   width: 15px;
   height: 15px;
   display: block;
-}
-
-.reveal .auto-apply-slide .aa-thumb-inline {
-  display: inline-flex;
-  vertical-align: -2px;
-  color: var(--verdict-pass);
-}
-
-.reveal .auto-apply-slide .aa-thumb-inline svg {
-  width: 14px;
-  height: 14px;
 }
 
 /* Trace highlights synced to the judge check reveals */
@@ -299,11 +351,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 4px 0;
+  padding: 3.5px 0;
 }
 
 .reveal .auto-apply-slide .aa-arrow {
-  width: 40px;
+  width: 38px;
   height: 18px;
   display: block;
   color: var(--verdict-pass);
@@ -316,15 +368,29 @@
 /* Right column: suite of compact offline LLM-as-judge check cards */
 
 .reveal .auto-apply-slide .aa-cell-right {
-  padding: 4px 0;
+  padding: 3.5px 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
+.reveal .auto-apply-slide .aa-cell-right-top {
+  justify-content: flex-start;
+  padding-top: 0;
+}
+
+.reveal .auto-apply-slide .aa-suite-head {
+  margin-bottom: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--chat-judge-label);
+}
+
 .reveal .auto-apply-slide .aa-suite-note {
   padding: 7px 11px;
-  font-size: 13.5px;
+  font-size: 13px;
   line-height: 1.32;
   color: var(--deck-soft);
   background: var(--chat-judge-tint);
@@ -337,7 +403,7 @@
 }
 
 .reveal .auto-apply-slide .aa-check {
-  padding: 7px 11px 8px;
+  padding: 6.5px 11px 7px;
   border: 1px solid var(--deck-line);
   border-left: 4px solid var(--verdict-pass);
   border-radius: 2px;
@@ -355,11 +421,11 @@
   align-items: center;
   justify-content: space-between;
   gap: 8px;
-  margin-bottom: 3px;
+  margin-bottom: 2px;
 }
 
 .reveal .auto-apply-slide .aa-check-title {
-  font-size: 14px;
+  font-size: 13.5px;
   font-weight: 700;
   color: var(--deck-ink);
 }
@@ -373,8 +439,8 @@
 .reveal .auto-apply-slide .aa-pill {
   display: inline-block;
   flex: none;
-  padding: 1px 8px;
-  font-size: 11px;
+  padding: 1px 7px;
+  font-size: 10.5px;
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -391,8 +457,8 @@
 }
 
 .reveal .auto-apply-slide .aa-check-body {
-  font-size: 13.5px;
-  line-height: 1.3;
+  font-size: 13px;
+  line-height: 1.28;
   color: var(--deck-soft);
 }
 
@@ -403,12 +469,12 @@
 /* Fault-localisation takeaway strip under the grid */
 
 .reveal .auto-apply-slide .aa-takeaway {
-  margin-top: 10px;
+  margin-top: 9px;
   width: 1200px;
   box-sizing: border-box;
-  padding: 8px 13px;
-  font-size: 14.5px;
-  line-height: 1.32;
+  padding: 7px 12px;
+  font-size: 14px;
+  line-height: 1.3;
   color: var(--deck-ink);
   background: var(--chat-judge-tint);
   border-left: 4px solid var(--chat-judge-edge);
@@ -421,7 +487,7 @@
 
 .reveal .auto-apply-slide .aa-caption {
   font-family: var(--deck-font-sans);
-  font-size: 13px;
+  font-size: 12.5px;
   color: var(--deck-soft);
 }
 
