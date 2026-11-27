@@ -274,17 +274,15 @@ Create better customer experiences, new offerings or additional revenue.
 
 :::
 
-::: {.vr-side .vr-risks}
-[Risk [Illustrative, not definitive]{.vr-tag}]{.vr-label .fragment}
+::: {.vr-side .vr-risks .fragment}
+[Risk [Illustrative, not definitive]{.vr-tag}]{.vr-label}
 
-::: {.fragment}
 1. [Financial]{.vr-name} [One bad decision, such as a refund that policy does not allow.]{.vr-desc}
 2. [Reputational]{.vr-name} [An off-brand or offensive comment to a user.]{.vr-desc}
 3. [Regulatory]{.vr-name} [Illegal behaviour, such as discriminatory content in a job ad.]{.vr-desc}
 4. [Cybersecurity]{.vr-name} [Attackers use the agent to access data or systems they should not.]{.vr-desc}
 5. [Operational]{.vr-name} [The agent costs more to run than its work is worth.]{.vr-desc}
 6. [Competitive]{.vr-name} [The agent does a poor job, and users take their business elsewhere.]{.vr-desc}
-:::
 :::
 
 ::::
@@ -305,7 +303,7 @@ The first four are about a single failure: a bad decision, a bad comment, an ill
 
 **Presenter notes:**
 
-- The slide builds in six steps, left to right and top to bottom: the Value heading, the adoption figure, Productivity, Products, the Risk heading, then all six risks.
+- The slide opens on the Value heading, then builds in four clicks, left to right and top to bottom: the adoption figure, Productivity, Products, then the whole Risk column at once, its heading and all six risks.
 - The adoption figure. Deloitte: “Autonomous AI agents are racing into the enterprise, transforming AI from a source of information and insights into a system that can do real work”. Deloitte also found that “only 22% of Australian companies report having a highly advanced model for agent governance”, which can come back when the Risk side appears.
 - If asked about the 69%: Deloitte surveyed “over 3,000 director to C-suite-level leaders … who have direct involvement in their companies’ AI initiatives”, which skews towards adopters; its 69% is of organisations surveyed, not of all Australian businesses.
 - The Risk side is labelled “Illustrative, not definitive”: the six are a way to organise the risks, not a complete or standard list.
