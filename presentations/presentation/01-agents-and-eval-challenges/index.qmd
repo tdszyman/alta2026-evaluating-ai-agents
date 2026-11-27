@@ -1336,8 +1336,11 @@ End the chat if risk ≥ 0.8.</pre>
           <span class="aa-chat-badge">Trace view · offline review</span>
         </div>
         <div class="aa-user-wrap">
+          <div class="aa-msg aa-asst">
+            I found Acme’s Data Analyst role (asks for R, SQL &amp; Python). What do you think — would you like to apply?
+          </div>
           <div class="aa-msg aa-user">
-            Apply for Acme’s Data Analyst role (asks for R, SQL &amp; Python). Tailor a cover letter from my profile and submit it.
+            Yes, please apply for me.
           </div>
         </div>
       </div>
@@ -1482,13 +1485,13 @@ End the chat if risk ≥ 0.8.</pre>
 ```
 
 ::: {.notes}
-**About this slide:** A worked example of running a **suite of offline LLM-as-a-judge checks** across a logged multi-step [ReAct](../../bibliography/yao-2023-react/) trace. On an illustrative SEEK candidate auto-apply agent, the user asks the agent to apply for a Data Analyst role whose ad asks for R, SQL, and Python. The agent forms a sensible ReAct plan (`Thought`), reads the candidate’s profile (`S1 read_profile`, which lists R, SQL, and Tableau — realistically omitting Python rather than flagging its absence), drafts a cover letter (`S2 write_cover_letter`) that mirrors “Python” from the job ad even though it is not in the profile, submits it (`S3 submit_application`), and gets a thumbs-up from a happy candidate who never opened the submitted letter. Four checks pass (End-state, Plan, S1, S3) while S2 fails, pinpointing the exact step to fix.
+**About this slide:** A worked example of running a **suite of offline LLM-as-a-judge checks** across a logged multi-step [ReAct](../../bibliography/yao-2023-react/) trace. Inside an illustrative SEEK web chat window, Ask SEEK surfaces Acme’s Data Analyst role (which asks for R, SQL, and Python) and asks whether the candidate would like to apply; the candidate replies *“Yes, please apply for me.”* The agent forms a sensible ReAct plan (`Thought`), reads the candidate’s profile (`S1 read_profile`, which lists R, SQL, and Tableau — realistically omitting Python rather than flagging its absence), drafts a cover letter (`S2 write_cover_letter`) that mirrors “Python” from the job ad even though it is not in the profile, submits it (`S3 submit_application`), and gets a thumbs-up reply from a happy candidate who never opened the submitted letter. Four checks pass (End-state, Plan, S1, S3) while S2 fails, pinpointing the exact step to fix.
 
 **Presenter notes:**
 
 - **Callback to Slide 2:** Remember the opening poll — *"Would you let an AI agent apply to jobs for you, automatically?"* Only 5% of US job seekers in the Greenhouse survey said they would ([Greenhouse 2026](../../bibliography/greenhouse-2026-candidate-report/)). This trace shows why: an agent trying to be helpful can mirror a job ad’s required skill (“Python”) into a cover letter even when the candidate’s profile does not list it, and the user may even give it a thumbs-up without noticing.
 - **Builds (4 clicks):**
-  - **Base view:** Walk the logged ReAct trace ([Yao et al. 2023](../../bibliography/yao-2023-react/)) on the left: the user wants to apply to Acme’s Data Analyst role (which asks for R, SQL & Python); the agent’s `Thought` sets a clean three-step plan; `S1 read_profile()` returns `Junior Analyst (2 yrs) · Skills: R, SQL, Tableau` (Python is simply absent, as in a real profile); `S2 write_cover_letter()` quietly slips `and Python` into the draft to match the ad; `S3 submit_application()` sends it; and the candidate clicks thumbs-up (*“Thanks, that was fast!”*).
+  - **Base view:** Walk the logged ReAct trace ([Yao et al. 2023](../../bibliography/yao-2023-react/)) inside the SEEK chat window on the left: the agent recommends Acme’s Data Analyst role (which asks for R, SQL & Python) and asks if the candidate wants to apply; the user says *“Yes, please apply for me.”* The agent’s `Thought` sets a clean three-step plan; `S1 read_profile()` returns `Junior Analyst (2 yrs) · Skills: R, SQL, Tableau` (Python is simply absent, as in a real profile); `S2 write_cover_letter()` quietly slips `and Python` into the draft to match the ad; `S3 submit_application()` sends it; and the candidate replies with a thumbs-up (*“Thanks, that was fast!”*).
   - **Click 1 (End-state check — Pass):** Look at the bottom check first. If you only evaluate the end state — application submitted, polite confirmation, positive thumbs-up feedback from the user — everything looks green. Output guardrails on the final reply also see nothing wrong.
   - **Click 2 (Plan check — Pass):** Now run a suite of focused LLM-as-a-judge checks offline across the logged trace. First, the **plan check** evaluates the agent’s [ReAct](../../bibliography/yao-2023-react/) reasoning step: it chose the right tools in the right order — **Pass**.
   - **Click 3 (Tool call checks — 2 green, 1 red):** Next, each tool call gets its own check. `S1 read_profile()` is green (**Pass** — accurate profile returned). `S3 submit_application()` is green (**Pass** — valid call with the right job ID and draft). Only `S2 write_cover_letter()` turns red (**Fail**): it mirrored “Python” from the job ad even though it was never in the S1 profile.

@@ -171,7 +171,8 @@
 .reveal .auto-apply-slide .aa-user-wrap {
   display: flex;
   flex-direction: column;
-  padding: 7px 10px 3.5px;
+  gap: 5px;
+  padding: 6px 10px 3.5px;
 }
 
 /* Chat bubbles: user right-aligned, agent left-aligned (matches Slide 16) */
