@@ -387,7 +387,7 @@ Cards, in the order they appear, which is the order the stories were published, 
 
 - This whole slide gets one to two minutes. Click through the headlines without telling each story; the point is that these risks are real, and they cost companies with customers, in the media and with regulators.
 - Nine clicks. The first eight drop one case each, in the order the stories were published, from January 2024 to October 2026. The ninth shows the takeaway line under the cards.
-- Don’t stop on any card. Pause on the takeaway: it is the question the rest of the tutorial answers. Next: the tutorial’s central idea, an LLM judge that checks what the agent did; then why these failures are hard to rule out, because agents are complex *and* complicated systems, and how organisations build agents that are governed against these risks. Each case has its own slide in the unpublished Part 1.G graveyard deck, for questions.
+- Don’t stop on any card. Pause on the takeaway: it is the question the rest of the tutorial answers. Next: the tutorial’s central idea, an LLM judge that checks what the agent did; then, after the section 2 recap, why these failures are hard to rule out, because agents are complex *and* complicated systems, and how organisations build agents that are governed against these risks. Each case has its own slide in the unpublished Part 1.G graveyard deck, for questions.
 :::
 
 ---
@@ -458,15 +458,113 @@ Cards, in the order they appear, which is the order the stories were published, 
 **Presenter notes:**
 
 - Builds: the slide opens on the definition, the subtitle and the agent; click 1 adds the agent trace; click 2 adds the judge, with its system prompt, user prompt and LLM; click 3 adds the judge’s output.
-- The subtitle names complex and complicated; the next slide explains what those words mean. The point here: the risk can be reduced and watched, not removed.
+- The subtitle names complex and complicated; “AI Agents are complex *and* complicated systems”, early in section 2, explains what those words mean. The point here: the risk can be reduced and watched, not removed.
 - The agent: the parts that make it up. Only the LLM is non-deterministic; the rest is code and configuration that behaves the same way each time (tools usually, not always). This is the split from the takeaway on “GenAI: from LLMs to AI Agents”.
 - The trace: not the agent’s code, but its behaviour on one run. The same barista run as on “GenAI: from LLMs to AI Agents”: the user’s question, the thought, the `get_location()` call and its result, and the answer. The judge reads this, so it can see that “Fitzroy” came from the tool.
 - The judge is a chat completion, like column 2 of “GenAI: from LLMs to AI Agents”. Its system prompt holds the instructions and the rubric; its user prompt holds the context, here the agent trace; its output is the determination, here a pass and a reason. The same kind of model as the one inside the agent, given a different job: it does not do the task, it checks it.
 - The criteria are written by people. The two here are made up for this example. The judge checks only what its criteria ask: it did not check whether $34 an hour is right, and that figure is illustrative, not wage data.
-- A judge can also read only the output, or a single step. “LLM-as-judge: evaluating the trace”, in section 2, shows the places a judge can check. The output here is a pass or fail with a reason; judges can also give scores. Part 2 covers rubrics, scales and prompt patterns.
+- A judge can also read only the output, or a single step. “LLM-as-judge: evaluating the trace”, now marked for removal, shows the places a judge can check. The output here is a pass or fail with a reason; judges can also give scores. Part 2 covers rubrics, scales and prompt patterns.
 - Using an LLM to check an LLM can sound circular. Keep that question open; the rest of Part 1 explains why it is still the best approach available today.
 - For further reading, there is a survey of the approach: [Gu et al. 2024](../../bibliography/gu-2024-llm-as-judge-survey/).
-- Next: what complex and complicated mean, and why an agent is both; then the platforms that run judges alongside other protections.
+- Next: the end of section 1, a recap, and what section 2 covers.
+:::
+
+# A bit more detail on how and why organisations use LLM judges for AI Agents {#section-2-recap .section-divider .sd-1 .recap-divider}
+
+```{=html}
+<p class="rd-kicker">Section 2</p>
+<div class="rd-body">
+  <div class="rd-col rd-recap">
+    <p class="rd-label">So far</p>
+    <ol class="rd-list">
+      <li>Organisations are using AI agents more and more.</li>
+      <li>AI agents are inherently risky.</li>
+      <li>LLM judges can reduce the risk.</li>
+    </ol>
+  </div>
+  <div class="rd-col rd-next fragment" data-fragment-index="1">
+    <p class="rd-label">Next</p>
+    <p class="rd-next-line">A bit more detail about how and why organisations use LLM judges.</p>
+  </div>
+</div>
+```
+
+::: {.notes}
+**About this slide:** The boundary between section 1 and section 2 of Part 1. It recaps section 1 in three points, then says what section 2 covers: a bit more detail on how and why organisations use LLM judges for AI agents.
+
+**Presenter notes:**
+
+- Builds: the slide opens on the title and the recap; click 1 adds what comes next.
+- The recap, one point per section 1 slide group:
+  1. Organisations are using AI agents more and more: “Agents can create value, but introduce risk”.
+  2. AI agents are inherently risky: the same slide’s risk side, then “These risks are real, and they make headlines”.
+  3. LLM judges can reduce the risk: “An LLM judge can mitigate the risks of AI Agents”.
+- Section 2, in order: “Complicated systems require complicated evaluations”, “AI Agents are complex *and* complicated systems”, the two agent platform slides, “The parts of an agent trace”, then the two examples, an unlawful job ad and a multi-turn attack.
+- Next: “Complicated systems require complicated evaluations”.
+:::
+
+---
+
+## Complicated systems require complicated evaluations {#why-generative-ai-needs-llm-as-a-judge .output-space-slide .centre-body}
+
+```{=html}
+<div class="osp">
+  <div class="osp-groups">
+    <div class="osp-group pred">Predictive AI</div>
+    <div class="osp-group gen">Generative AI</div>
+  </div>
+  <div class="osp-cols">
+    <div class="osp-col pred fragment" data-fragment-index="1">
+      <div class="osp-name">Regression</div>
+      <img src="images/output-space-regression.svg" alt="A number line from 0 to 100. The prediction sits close to the label; the gap is the error.">
+      <div class="osp-size"><b>One number</b> in a range</div>
+      <div class="osp-eval"><span>Evaluate by</span>Error against a label: MAE, RMSE</div>
+    </div>
+    <div class="osp-col pred fragment" data-fragment-index="2">
+      <div class="osp-name">Classification</div>
+      <img src="images/output-space-classes.svg" alt="Five job categories. The model picks Technology, which matches the label.">
+      <div class="osp-size"><b>One of <i>k</i></b> classes</div>
+      <div class="osp-eval"><span>Evaluate by</span>Match against a label: accuracy, F1</div>
+    </div>
+    <div class="osp-col gen fragment" data-fragment-index="3">
+      <div class="osp-name">One token</div>
+      <img src="images/output-space-vocab.svg" alt="A dense grid of cells stands for the vocabulary. One cell, the chosen token, is filled.">
+      <div class="osp-size"><b>One of |<i>V</i>| ≈ 10<sup>5</sup></b> tokens</div>
+      <div class="osp-eval"><span>Evaluate by</span>Still a match: it is a very wide classifier</div>
+    </div>
+    <div class="osp-col gen fragment" data-fragment-index="4">
+      <div class="osp-name">A response</div>
+      <img src="images/output-space-sequences.svg" alt="A tree that fans out at every token. One highlighted path is the response the model produced.">
+      <div class="osp-size"><b>|<i>V</i>|<sup><i>n</i></sup></b>: 100 tokens ≈ 10<sup>500</sup></div>
+      <div class="osp-eval"><span>Evaluate by</span>No single right answer. Overlap with a reference, then an LLM judge</div>
+    </div>
+    <div class="osp-col gen fragment" data-fragment-index="5">
+      <div class="osp-name">An agent trace</div>
+      <img src="images/output-space-agent.svg" alt="Three response trees in a row, joined by tool calls drawn as squares.">
+      <div class="osp-size"><b>Responses × steps × turns</b></div>
+      <div class="osp-eval"><span>Evaluate by</span>LLM judges, plus multi-tier evals and simulation</div>
+    </div>
+  </div>
+  <div class="osp-takeaway fragment" data-fragment-index="6">Once outputs can’t be enumerated, there is no label to match. Something has to read the output and decide whether it is good.</div>
+  <div class="osp-sources slide-foot">
+    <div>Before LLM judges: reference overlap, e.g. <a href="../../bibliography/papineni-2002-bleu/">BLEU (Papineni et al. 2002)</a> and <a href="../../bibliography/lin-2004-rouge/">ROUGE (Lin 2004)</a>, which correlate poorly with human judgements on open-ended text (<a href="../../bibliography/liu-2023-geval/">Liu et al. 2023</a>).</div>
+    <div>LLM-as-a-judge: <a href="../../bibliography/zheng-2023-mt-bench/">Zheng et al. 2023</a>.</div>
+  </div>
+</div>
+```
+
+::: {.notes}
+**About this slide:** Why generative AI cannot be evaluated like predictive AI. Regression and classification produce one number or one class, which can be scored against a label. An LLM’s next token is still one choice from a large vocabulary, but a full response is one of an astronomically large number of possible sequences, and an agent trace chains many responses, tool calls and turns. With no single right answer to match, something has to read the output and judge whether it is good: an LLM judge ([Zheng et al. 2023](../../bibliography/zheng-2023-mt-bench/)). The builds step through the five output types from left to right.
+
+**Presenter notes:**
+
+- Builds 1–2, regression then classification: predictive AI has a narrow output space. A regression model returns one number in a range; a classifier picks one or more classes from a finite set. Both come with a label, so evaluation is arithmetic: error, accuracy, F1.
+- Build 3, one token: an LLM's next token is drawn from a vocabulary of roughly a hundred thousand tokens. That is still countable. On its own it is just a very wide classifier.
+- Build 4, a response: a sequence of n tokens is a sample from |V|^n possibilities. For a 100-token answer that is about 10^500, far beyond anything we could label. There is rarely one right answer, so exact match is meaningless.
+- NLP's earlier answer was overlap with human references, such as [BLEU](../../bibliography/papineni-2002-bleu/) for translation and [ROUGE](../../bibliography/lin-2004-rouge/) for summaries. Those metrics are cheap but correlate poorly with human judgement on creative or open-ended text, which is why the field moved to LLM judges ([Liu et al. 2023](../../bibliography/liu-2023-geval/)).
+- Build 5, an agent trace: many responses, reasoning steps, tool calls and turns, chained together. Even a judge on the final answer is not enough: agents also need simulated users and multi-tier evals. Both are on the “Notes to follow up” slide at the end of Part 1; the “Why AI agents need simulation” slide is in the unpublished Part 1.G graveyard deck for now.
+- Next: “AI Agents are complex *and* complicated systems”.
+- Colours follow the complexity slides: blue for predictive, teal for generative.
 :::
 
 ---
@@ -508,7 +606,7 @@ Cards, in the order they appear, which is the order the stories were published, 
 [Contrasts and examples: [Complex versus complicated](../../bibliography/finegood-complex-versus-complicated/) (Frameworks Collection, CC BY-NC-ND). Figures illustrative.]{.attribution .slide-foot}
 
 ::: {.notes}
-**About this slide:** An AI agent is both a complex and a complicated system. It follows the headlines and the first look at an LLM judge: those failures came from real systems, and this slide says what kind of system an agent is, and so why a judge is needed. It names the split from the takeaway on “GenAI: from LLMs to AI Agents”: the non-deterministic LLM calls are the complex part, and the deterministic harness and tool calls are the complicated part. The slide opens on complex, then one click reveals complicated beside it.
+**About this slide:** An AI agent is both a complex and a complicated system. It follows the headlines, the first look at an LLM judge and “Complicated systems require complicated evaluations”: those failures came from real systems, and this slide says what kind of system an agent is, and so why a judge is needed. It names the split from the takeaway on “GenAI: from LLMs to AI Agents”: the non-deterministic LLM calls are the complex part, and the deterministic harness and tool calls are the complicated part. The slide opens on complex, then one click reveals complicated beside it.
 
 A complex system has many parts entangled through feedback loops, so the behaviour of the whole emerges from how the parts interact, and the same input gives a distribution of outputs that cannot be traced back to individual parts. Complex systems are unpredictable, self-organising and emergent. The weather is the example: air, heat and moisture feed back on each other, so similar mornings can end in different afternoons. The economy, ant colonies and human brains are complex too. In an agent, the model, the agent built on it, and swarms of agents are complex.
 
@@ -524,12 +622,12 @@ A complicated system also has many parts, but every connection is designed and c
 - History, if asked, in one breath. Warren Weaver’s 1948 essay “Science and Complexity” separated problems of simplicity, problems of “disorganized complexity” (many variables, handled by statistics) and problems of “organized complexity”: problems “which involve dealing simultaneously with a sizable number of factors which are interrelated into an organic whole” ([Weaver 1948](../../bibliography/weaver-1948-science-complexity/)). Complexity science is now studied across the natural and social sciences, but, as a review puts it, “there is no concise definition of a complex system, let alone a definition on which all scientists agree” ([Ladyman et al. 2013](../../bibliography/ladyman-2013-complex-system/)). The point is that “complex” has a meaning beyond “hard”.
 - Point at the two figures together: the complicated one is the agent’s plumbing, the complex one is its behaviour.
 - Link back to “GenAI: from LLMs to AI Agents”: the harness and most tool calls are the complicated part; the LLM calls, and anything that behaves like them, are the complex part.
-- Next: the agent platforms, which protect both parts: deterministic checks for the complicated part, non-deterministic checks such as LLM-as-a-judge for the complex part. What complex and complicated means for evaluation opens section 2, on “How to evaluate complex and complicated systems”.
+- Next: the agent platforms, which protect both parts: deterministic checks for the complicated part, non-deterministic checks such as LLM-as-a-judge for the complex part. “How to evaluate complex and complicated systems”, now marked for removal, comes back to what this means for evaluation.
 :::
 
 ---
 
-## Agent platforms layer protections to mitigate these risks {#agent-platforms .platforms-slide}
+## Agent platforms provide the framework for deterministic and non-deterministic controls {#agent-platforms .platforms-slide}
 
 <!-- TODO: Check permission to use the AWS, Google Cloud, Arize and LangChain logos on this slide; their sources are in the speaker notes. -->
 
@@ -566,9 +664,9 @@ A complicated system also has many parts, but every connection is designed and c
 ```
 
 ::: {.notes}
-**About this slide:** How organisations protect against the risks in the headlines, three slides back. The top of the slide follows on from the previous slide: protections come in multiple layers, using multiple methods, because AI agents are both complicated systems, which need deterministic tests and checks, and complex systems, which need non-deterministic checks. LLM-as-a-judge is one of the most commonly used non-deterministic checks, and a key focus of this tutorial. The bottom of the slide says who provides these protections. Organisations rarely build every safeguard for an agent themselves: agent platforms provide multiple levels of protections to mitigate agent risks. Four examples: Amazon Bedrock AgentCore from AWS ([AWS 2026](../../bibliography/aws-2026-bedrock-agentcore/)), Gemini Enterprise Agent Platform from Google Cloud ([Google Cloud 2026a](../../bibliography/google-cloud-2026-agent-platform-overview/)), Arize AX from Arize ([Arize](../../bibliography/arize/)) and LangSmith from LangChain ([LangChain 2026](../../bibliography/langchain-2026-langsmith/)).
+**About this slide:** How organisations protect against the risks in the headlines, in section 1. The top of the slide follows on from the previous slide: protections come in multiple layers, using multiple methods, because AI agents are both complicated systems, which need deterministic tests and checks, and complex systems, which need non-deterministic checks. LLM-as-a-judge is one of the most commonly used non-deterministic checks, and a key focus of this tutorial. The bottom of the slide says who provides these protections. Organisations rarely build every safeguard for an agent themselves: agent platforms provide multiple levels of protections to mitigate agent risks. Four examples: Amazon Bedrock AgentCore from AWS ([AWS 2026](../../bibliography/aws-2026-bedrock-agentcore/)), Gemini Enterprise Agent Platform from Google Cloud ([Google Cloud 2026a](../../bibliography/google-cloud-2026-agent-platform-overview/)), Arize AX from Arize ([Arize](../../bibliography/arize/)) and LangSmith from LangChain ([LangChain 2026](../../bibliography/langchain-2026-langsmith/)).
 
-“An LLM judge can mitigate the risks of AI Agents”, two slides back, introduced the idea; this slide gives the definition and puts it among the other protections. **LLM-as-a-judge** means an LLM, the judge, reads what an agent did and checks it against criteria that people write down. Evals and guardrails use judges to check agents before launch and while they run. Using AI to check AI can sound circular; the rest of Part 1 explains why it is the best approach available today.
+“An LLM judge can mitigate the risks of AI Agents”, at the end of section 1, introduced the idea; this slide gives the definition and puts it among the other protections. **LLM-as-a-judge** means an LLM, the judge, reads what an agent did and checks it against criteria that people write down. Evals and guardrails use judges to check agents before launch and while they run. Using AI to check AI can sound circular; the rest of Part 1 explains why it is the best approach available today.
 
 **Presenter notes:**
 
@@ -580,7 +678,7 @@ A complicated system also has many parts, but every connection is designed and c
   - Arize AX: Arize’s managed agent observability and evaluation platform, beside its open-source Phoenix ([Arize](../../bibliography/arize/)).
   - LangSmith: LangChain’s agent observability and evaluation platform ([LangChain 2026](../../bibliography/langchain-2026-langsmith/)).
 - The two kinds of protection, from the platforms’ own pages. Deterministic: AWS describes AgentCore Policy as “deterministic control” over which tools an agent can call, and under what conditions. Non-deterministic: LangSmith lists “Online LLM-as-judge and code evals”, so judges and fixed code checks run side by side ([LangChain 2026](../../bibliography/langchain-2026-langsmith/)).
-- Complicated and complex: a one-line nod here. “AI Agents are complex *and* complicated systems”, the previous slide, explained the difference; “How to evaluate complex and complicated systems”, at the start of section 2, comes back to it.
+- Complicated and complex: a one-line nod here. “AI Agents are complex *and* complicated systems”, the previous slide, explained the difference; “How to evaluate complex and complicated systems”, now marked for removal, comes back to it.
 - Keep the definition non-technical. Judge methods come in Part 2.
 - The list is short on purpose and is not a ranking. Other clouds and vendors offer similar platforms.
 - Logo sources, all saved in this deck’s `images/` folder. TODO: check permission to use each logo before the slides are shared.
@@ -668,7 +766,7 @@ Three clicks then highlight, one at a time, the levels in this figure where an L
 2. **At the gateway:** both Agent Gateways apply policies to all traffic that passes through them, so a judge there can check requests coming in and the agent’s calls out to tools and other agents.
 3. **Observability metrics:** a judge scores the traces that agent observability logs. Google’s launch post says its agent anomaly detection “uses statistical models and an LLM-as-a-judge framework to flag unusual reasoning” ([Gerstenhaber and Bachman 2026](../../bibliography/gerstenhaber-2026-agent-platform/)).
 
-Next, “The parts of an agent trace” names the parts of a trace a judge reads. After a short breather slide, “Two examples”, the next two slides are illustrative SEEK mock-ups of judges catching agent failures. How an LLM, an agent and a judge work comes in section 2.
+Next, “The parts of an agent trace” names the parts of a trace a judge reads. The two slides after it are illustrative SEEK mock-ups of judges catching agent failures.
 
 **Presenter notes:**
 
@@ -678,7 +776,7 @@ Next, “The parts of an agent trace” names the parts of a trace a judge reads
 - Walk the figure left to right first: people and apps, the gateway in, the agent in its runtime with its own identity, the gateway out to other agents and tools. Governance sits over the whole path, and observability under it.
 - Then three clicks, one per level where a judge can work. Only the highlighted parts are claims about judges. Google’s documentation does not say Model Armor or the gateway uses an LLM judge; the highlights show where one can be placed. The anomaly detection quote is the one place Google says it uses LLM-as-a-judge.
 - Policies define the guardrails and the gateways enforce them, so steps 1 and 2 overlap; the point is that a judge can sit on the content (step 1) or on the traffic (step 2).
-- “Guardrails” here means checks that run while the agent works, such as Model Armor on the gateway. Some guardrails are themselves LLM judges, as in the two example slides that follow the breather.
+- “Guardrails” here means checks that run while the agent works, such as Model Armor on the gateway. Some guardrails are themselves LLM judges, as in the two example slides that follow.
 - The definition of LLM-as-a-judge is on the previous slide.
 - This replaces the earlier layers-of-control slide, which is kept in the unpublished Part 1.G graveyard deck.
 - Sources: [Google Cloud 2026a](../../bibliography/google-cloud-2026-agent-platform-overview/), the platform overview with the figure; [Google Cloud 2026b](../../bibliography/google-cloud-2026-agent-gateway-overview/), the Agent Gateway overview, for identity, registry, policies and observability; [Gerstenhaber and Bachman 2026](../../bibliography/gerstenhaber-2026-agent-platform/), the launch post.
@@ -753,43 +851,7 @@ Next, “The parts of an agent trace” names the parts of a trace a judge reads
 - Step: one pass of the loop, thought, action, observation ([Yao et al. 2023](../../bibliography/yao-2023-react/)). Multi-step: several steps before a reply. Step 2 needs what step 1 found, the user’s suburb.
 - Turn: one user message and the assistant’s reply to it. Multi-turn: several turns. The model keeps no memory between calls, so each call re-sends the whole history.
 - Trace: the end-to-end record of an agent run: messages, LLM calls and tool calls ([Dong et al. 2024](../../bibliography/dong-2024-agentops/)). Also called a trajectory. This is what an LLM judge reads, in Part 2 and in the hands-on app.
-- Next: a short breather, then two SEEK examples of judges reading these parts: a job ad checked after the agent’s steps, and a conversation judged after every turn.
-:::
-
----
-
-## Two examples {#two-examples .examples-break-slide .centre-body}
-
-[What this looks like in practice]{.xb-line}
-
-```{=html}
-<div class="xb-art" aria-hidden="true">
-  <svg class="xb-tile xb-tile-a" viewBox="0 0 240 180">
-    <rect class="xb-bg" x="0" y="0" width="240" height="180"/>
-    <rect class="xb-sheet" x="74" y="28" width="92" height="124" rx="6"/>
-    <path class="xb-ink" d="M90,52 H150 M90,70 H150 M90,88 H138 M90,106 H150 M90,124 H126"/>
-    <circle class="xb-judge" cx="166" cy="140" r="24"/>
-    <circle class="xb-lens" cx="163" cy="137" r="9"/><path class="xb-tick" d="M170,144 l8,8"/>
-  </svg>
-  <svg class="xb-tile xb-tile-b" viewBox="0 0 240 180">
-    <rect class="xb-bg" x="0" y="0" width="240" height="180"/>
-    <path class="xb-sheet" d="M52,34 h92 a8,8 0 0 1 8,8 v34 a8,8 0 0 1 -8,8 h-70 l-14,14 v-14 h-8 a8,8 0 0 1 -8,-8 v-34 a8,8 0 0 1 8,-8 z"/>
-    <path class="xb-sheet" d="M96,96 h84 a8,8 0 0 1 8,8 v30 a8,8 0 0 1 -8,8 h-8 v14 l-14,-14 h-62 a8,8 0 0 1 -8,-8 v-30 a8,8 0 0 1 8,-8 z"/>
-    <path class="xb-ink" d="M62,52 H134 M62,66 H112 M106,114 H170 M106,128 H150"/>
-    <circle class="xb-judge" cx="188" cy="140" r="24"/>
-    <circle class="xb-lens" cx="185" cy="137" r="9"/><path class="xb-tick" d="M192,144 l8,8"/>
-  </svg>
-</div>
-```
-
-::: {.notes}
-**About this slide:** A breather between “The parts of an agent trace” and the two example slides. It is deliberately light, not a section divider: the title, one line and two simple tiles, a document and a conversation, each with a judge’s magnifier. The tiles hint at the next two slides without telling their story.
-
-**Presenter notes:**
-
-- What Terrence wants to say here: “Ok, I’ve told you a lot about how agents have risks and how agent platforms enable enterprises like SEEK to implement LLM-as-judge to mitigate agent risks. Next I’m going to show you two realistic examples of what this might look like.”
-- No reveals. Pause briefly, then move on.
-- The next two slides are illustrative SEEK mock-ups: a judge stopping an unlawful job ad, then a judge spotting a multi-turn attack in a chat.
+- Next: two SEEK examples of judges reading these parts: a job ad checked after the agent’s steps, and a conversation judged after every turn.
 :::
 
 ---
@@ -1022,7 +1084,43 @@ End the chat if risk ≥ 0.8.</pre>
 - It is the cybersecurity risk from the collage (EchoLeak, the Lego order, the gym booking agent), at SEEK. Those case slides are in the unpublished Part 1.G graveyard deck.
 :::
 
-# 2. Why agents need LLM judges {.section-divider .sd-2}
+---
+
+## Two examples {#two-examples .examples-break-slide .centre-body .organiser-only}
+
+[What this looks like in practice]{.xb-line}
+
+```{=html}
+<div class="xb-art" aria-hidden="true">
+  <svg class="xb-tile xb-tile-a" viewBox="0 0 240 180">
+    <rect class="xb-bg" x="0" y="0" width="240" height="180"/>
+    <rect class="xb-sheet" x="74" y="28" width="92" height="124" rx="6"/>
+    <path class="xb-ink" d="M90,52 H150 M90,70 H150 M90,88 H138 M90,106 H150 M90,124 H126"/>
+    <circle class="xb-judge" cx="166" cy="140" r="24"/>
+    <circle class="xb-lens" cx="163" cy="137" r="9"/><path class="xb-tick" d="M170,144 l8,8"/>
+  </svg>
+  <svg class="xb-tile xb-tile-b" viewBox="0 0 240 180">
+    <rect class="xb-bg" x="0" y="0" width="240" height="180"/>
+    <path class="xb-sheet" d="M52,34 h92 a8,8 0 0 1 8,8 v34 a8,8 0 0 1 -8,8 h-70 l-14,14 v-14 h-8 a8,8 0 0 1 -8,-8 v-34 a8,8 0 0 1 8,-8 z"/>
+    <path class="xb-sheet" d="M96,96 h84 a8,8 0 0 1 8,8 v30 a8,8 0 0 1 -8,8 h-8 v14 l-14,-14 h-62 a8,8 0 0 1 -8,-8 v-30 a8,8 0 0 1 8,-8 z"/>
+    <path class="xb-ink" d="M62,52 H134 M62,66 H112 M106,114 H170 M106,128 H150"/>
+    <circle class="xb-judge" cx="188" cy="140" r="24"/>
+    <circle class="xb-lens" cx="185" cy="137" r="9"/><path class="xb-tick" d="M192,144 l8,8"/>
+  </svg>
+</div>
+```
+
+::: {.notes}
+**About this slide:** A breather between “The parts of an agent trace” and the two example slides. It is deliberately light, not a section divider: the title, one line and two simple tiles, a document and a conversation, each with a judge’s magnifier. The tiles hint at the next two slides without telling their story.
+
+**Presenter notes:**
+
+- What Terrence wants to say here: “Ok, I’ve told you a lot about how agents have risks and how agent platforms enable enterprises like SEEK to implement LLM-as-judge to mitigate agent risks. Next I’m going to show you two realistic examples of what this might look like.”
+- No reveals. Pause briefly, then move on.
+- The next two slides are illustrative SEEK mock-ups: a judge stopping an unlawful job ad, then a judge spotting a multi-turn attack in a chat.
+:::
+
+# 2. Why agents need LLM judges {.section-divider .sd-2 .organiser-only}
 
 ::: {.notes}
 **About this slide:** Section 2 shows why LLM judges are needed to evaluate AI agents, then the technical foundations behind them. It starts from the idea introduced near the start of the part, that an AI agent is both a complex and a complicated system whose behaviour comes from the whole system rather than any single part, and what that means for evaluation. Then generative outputs, which cannot be matched against a label. Then the deeper dives: what an LLM does when it generates text, how conversations are fed to it, what turns it into an AI agent, and where an LLM judge can check an agent.
@@ -1030,7 +1128,7 @@ End the chat if risk ≥ 0.8.</pre>
 
 ---
 
-## How to evaluate complex and complicated systems {#evaluate-complex-and-complicated .complexity-slide .cx-eval-slide .centre-body}
+## How to evaluate complex and complicated systems {#evaluate-complex-and-complicated .complexity-slide .cx-eval-slide .centre-body .organiser-only}
 
 ::: {.cx-eval}
 - **Evaluate with a mix** [Deterministic, rule-based checks suit the complicated parts. LLM-as-judge suits the complex behaviour.]{.cx-eval-sub}
@@ -1052,71 +1150,7 @@ End the chat if risk ≥ 0.8.</pre>
 
 ---
 
-## Why generative AI needs LLM-as-a-judge {.output-space-slide .centre-body}
-
-```{=html}
-<div class="osp">
-  <div class="osp-groups">
-    <div class="osp-group pred">Predictive AI</div>
-    <div class="osp-group gen">Generative AI</div>
-  </div>
-  <div class="osp-cols">
-    <div class="osp-col pred fragment" data-fragment-index="1">
-      <div class="osp-name">Regression</div>
-      <img src="images/output-space-regression.svg" alt="A number line from 0 to 100. The prediction sits close to the label; the gap is the error.">
-      <div class="osp-size"><b>One number</b> in a range</div>
-      <div class="osp-eval"><span>Evaluate by</span>Error against a label: MAE, RMSE</div>
-    </div>
-    <div class="osp-col pred fragment" data-fragment-index="2">
-      <div class="osp-name">Classification</div>
-      <img src="images/output-space-classes.svg" alt="Five job categories. The model picks Technology, which matches the label.">
-      <div class="osp-size"><b>One of <i>k</i></b> classes</div>
-      <div class="osp-eval"><span>Evaluate by</span>Match against a label: accuracy, F1</div>
-    </div>
-    <div class="osp-col gen fragment" data-fragment-index="3">
-      <div class="osp-name">One token</div>
-      <img src="images/output-space-vocab.svg" alt="A dense grid of cells stands for the vocabulary. One cell, the chosen token, is filled.">
-      <div class="osp-size"><b>One of |<i>V</i>| ≈ 10<sup>5</sup></b> tokens</div>
-      <div class="osp-eval"><span>Evaluate by</span>Still a match: it is a very wide classifier</div>
-    </div>
-    <div class="osp-col gen fragment" data-fragment-index="4">
-      <div class="osp-name">A response</div>
-      <img src="images/output-space-sequences.svg" alt="A tree that fans out at every token. One highlighted path is the response the model produced.">
-      <div class="osp-size"><b>|<i>V</i>|<sup><i>n</i></sup></b>: 100 tokens ≈ 10<sup>500</sup></div>
-      <div class="osp-eval"><span>Evaluate by</span>No single right answer. Overlap with a reference, then an LLM judge</div>
-    </div>
-    <div class="osp-col gen fragment" data-fragment-index="5">
-      <div class="osp-name">An agent trace</div>
-      <img src="images/output-space-agent.svg" alt="Three response trees in a row, joined by tool calls drawn as squares.">
-      <div class="osp-size"><b>Responses × steps × turns</b></div>
-      <div class="osp-eval"><span>Evaluate by</span>LLM judges, plus multi-tier evals and simulation</div>
-    </div>
-  </div>
-  <div class="osp-takeaway fragment" data-fragment-index="6">Once outputs can’t be enumerated, there is no label to match. Something has to read the output and decide whether it is good.</div>
-  <div class="osp-sources slide-foot">
-    <div>Before LLM judges: reference overlap, e.g. <a href="../../bibliography/papineni-2002-bleu/">BLEU (Papineni et al. 2002)</a> and <a href="../../bibliography/lin-2004-rouge/">ROUGE (Lin 2004)</a>, which correlate poorly with human judgements on open-ended text (<a href="../../bibliography/liu-2023-geval/">Liu et al. 2023</a>).</div>
-    <div>LLM-as-a-judge: <a href="../../bibliography/zheng-2023-mt-bench/">Zheng et al. 2023</a>.</div>
-  </div>
-</div>
-```
-
-::: {.notes}
-**About this slide:** Why generative AI cannot be evaluated like predictive AI. Regression and classification produce one number or one class, which can be scored against a label. An LLM’s next token is still one choice from a large vocabulary, but a full response is one of an astronomically large number of possible sequences, and an agent trace chains many responses, tool calls and turns. With no single right answer to match, something has to read the output and judge whether it is good: an LLM judge ([Zheng et al. 2023](../../bibliography/zheng-2023-mt-bench/)). The builds step through the five output types from left to right.
-
-**Presenter notes:**
-
-- Builds 1–2, regression then classification: predictive AI has a narrow output space. A regression model returns one number in a range; a classifier picks one or more classes from a finite set. Both come with a label, so evaluation is arithmetic: error, accuracy, F1.
-- Build 3, one token: an LLM's next token is drawn from a vocabulary of roughly a hundred thousand tokens. That is still countable. On its own it is just a very wide classifier.
-- Build 4, a response: a sequence of n tokens is a sample from |V|^n possibilities. For a 100-token answer that is about 10^500, far beyond anything we could label. There is rarely one right answer, so exact match is meaningless.
-- NLP's earlier answer was overlap with human references, such as [BLEU](../../bibliography/papineni-2002-bleu/) for translation and [ROUGE](../../bibliography/lin-2004-rouge/) for summaries. Those metrics are cheap but correlate poorly with human judgement on creative or open-ended text, which is why the field moved to LLM judges ([Liu et al. 2023](../../bibliography/liu-2023-geval/)).
-- Build 5, an agent trace: many responses, reasoning steps, tool calls and turns, chained together. Even a judge on the final answer is not enough: agents also need simulated users and multi-tier evals. Both are on the “Notes to follow up” slide at the end of Part 1; the “Why AI agents need simulation” slide is in the unpublished Part 1.G graveyard deck for now.
-- Next: the terms the rest of this section defines, then one idea per slide: LLM text generation, conversations, agent traces and LLM-as-judge.
-- Colours follow the complexity slides: blue for predictive, teal for generative.
-:::
-
----
-
-## Terms this section defines {#section-2-terms .glossary-slide}
+## Terms this section defines {#section-2-terms .glossary-slide .organiser-only}
 
 ```{=html}
 <div class="tg-grid">
@@ -1148,7 +1182,7 @@ End the chat if risk ≥ 0.8.</pre>
 
 ---
 
-## LLM text generation {.terms-slide .tu-slide}
+## LLM text generation {.terms-slide .tu-slide .organiser-only}
 
 ```{=html}
 <div class="tm-road"><span class="tm-road-on">1 LLM text generation</span><span>2 Conversations</span><span>3 Agent traces</span><span>4 LLM-as-judge</span></div>
@@ -1425,7 +1459,7 @@ End the chat if risk ≥ 0.8.</pre>
 
 ---
 
-## Conversations: messages and turns {.terms-slide}
+## Conversations: messages and turns {.terms-slide .organiser-only}
 
 ```{=html}
 <div class="tm-road"><span class="tm-road-done">1 LLM text generation</span><span class="tm-road-on">2 Conversations</span><span>3 Agent traces</span><span>4 LLM-as-judge</span></div>
@@ -1477,7 +1511,7 @@ End the chat if risk ≥ 0.8.</pre>
 
 ---
 
-## What is an agent? {#what-is-an-agent .terms-slide .agent-def-slide}
+## What is an agent? {#what-is-an-agent .terms-slide .agent-def-slide .organiser-only}
 
 <!-- TODO (Terrence): “agentic” has no sourced definition yet. The slide asks the question but does not answer it. Add a definition and its source, or drop the word. -->
 
@@ -1515,7 +1549,7 @@ End the chat if risk ≥ 0.8.</pre>
 
 ---
 
-## Agent traces: think, act, observe {.terms-slide}
+## Agent traces: think, act, observe {.terms-slide .organiser-only}
 
 ```{=html}
 <div class="tm-road"><span class="tm-road-done">1 LLM text generation</span><span class="tm-road-done">2 Conversations</span><span class="tm-road-on">3 Agent traces</span><span>4 LLM-as-judge</span></div>
@@ -1583,7 +1617,7 @@ End the chat if risk ≥ 0.8.</pre>
 
 ---
 
-## LLM-as-judge: evaluating the trace {.terms-slide}
+## LLM-as-judge: evaluating the trace {.terms-slide .organiser-only}
 
 ```{=html}
 <div class="tm-road"><span class="tm-road-done">1 LLM text generation</span><span class="tm-road-done">2 Conversations</span><span class="tm-road-done">3 Agent traces</span><span class="tm-road-on">4 LLM-as-judge</span></div>
