@@ -1691,32 +1691,186 @@
 .reveal .overview-slide .ov-det-ink { font-weight: 700; }
 .reveal .overview-slide .ov-sto-ink { font-weight: 700; color: var(--series-b-ink); }
 
-/* "An LLM judge checks the agent": the agent column from "From LLMs to agents"
-   beside a judge panel. The slide also carries .overview-slide, so the bubbles,
-   loop and LLM box are the overview's own components. The judge panel takes the
-   judge tint and edge from "LLM-as-judge: evaluating the trace", its criteria
-   box the judge header gradient, and the verdict the pass colour. The grid is
-   zoomed so the reused overview components read at this slide's larger scale. */
+/* "Solution: an LLM judge that checks the agent": the definition and a
+   subtitle, then three panels. The slide also carries .overview-slide, so the
+   bubbles, loop and LLM box are the overview's own components. The agent panel
+   is the quiet surface; the trace panel is paper with an ink edge, so it reads
+   as a record rather than a part of the agent; the judge panel takes the judge
+   tint and edge from "LLM-as-judge: evaluating the trace", and the output the
+   pass colour. */
+
+.reveal .judge-concept-slide p.jc-def {
+  width: 1180px;
+  margin: 4px auto 0;
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 1.3;
+  color: var(--deck-ink);
+}
+
+.reveal .judge-concept-slide .jc-def b { color: var(--chat-judge-label); }
+
+.reveal .judge-concept-slide p.jc-sub {
+  width: 1180px;
+  margin: 4px auto 0;
+  font-size: 20px;
+  line-height: 1.35;
+  color: var(--deck-soft);
+}
 
 .reveal .judge-concept-slide .jc-grid {
   display: grid;
-  grid-template-columns: 1fr 104px 1fr;
+  grid-template-columns: 1fr 34px 1fr 34px 1fr;
   align-items: stretch;
-  width: 990px;
-  margin: 8px auto 0;
-  zoom: 1.17;
+  width: 1180px;
+  margin: 14px auto 0;
 }
 
 .reveal .judge-concept-slide .jc-grid p { margin: 0; }
 
-.reveal .judge-concept-slide .ov-col { padding: 14px 22px 16px; }
+.reveal .judge-concept-slide .ov-col { padding: 12px 16px 12px; }
 
 .reveal .judge-concept-slide .ov-head { font-size: 26px; }
 
+.reveal .judge-concept-slide .ov-msg,
+.reveal .judge-concept-slide .ov-step { font-size: 17px; }
+
 .reveal .judge-concept-slide .ov-gloss {
-  min-height: 0;
-  font-size: 17px;
+  min-height: 2.6em;
+  margin-top: 4px;
 }
+
+.reveal .judge-concept-slide .jc-link {
+  align-self: center;
+  padding: 0 2px;
+}
+
+.reveal .judge-concept-slide .jc-link svg {
+  display: block;
+  width: 100%;
+  height: 20px;
+  overflow: visible;
+}
+
+.reveal .judge-concept-slide .jc-link line {
+  stroke: var(--deck-soft);
+  stroke-width: 3;
+}
+
+.reveal .judge-concept-slide .jc-link path { fill: var(--deck-soft); }
+
+/* Agent */
+
+.reveal .judge-concept-slide .jc-harness {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.reveal .judge-concept-slide .jc-parts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.reveal .judge-concept-slide .jc-part {
+  padding: 10px 6px;
+  font-size: 17px;
+  font-weight: 600;
+  text-align: center;
+  color: var(--deck-ink);
+  background: var(--deck-paper);
+  border: 1.5px solid var(--deck-ink);
+  border-radius: 8px;
+}
+
+.reveal .judge-concept-slide .jc-loop {
+  position: relative;
+  margin-top: 8px;
+  padding: 18px 14px 12px;
+}
+
+.reveal .judge-concept-slide .jc-legend {
+  display: grid;
+  grid-template-columns: 14px 1fr;
+  align-items: center;
+  gap: 3px 8px;
+  margin-top: 12px !important;
+  font-size: 14px;
+  line-height: 1.3;
+  color: var(--deck-soft);
+}
+
+.reveal .judge-concept-slide .jc-legend b { color: var(--deck-ink); }
+
+.reveal .judge-concept-slide .jc-legend .ov-sto-ink { color: var(--series-b-ink); }
+
+.reveal .judge-concept-slide .jc-key {
+  width: 14px;
+  height: 14px;
+  border-radius: 4px;
+}
+
+.reveal .judge-concept-slide .jc-key-sto {
+  background: var(--series-b-tint);
+  border: 2px solid var(--series-b);
+}
+
+.reveal .judge-concept-slide .jc-key-det {
+  background: var(--deck-paper);
+  border: 1.5px solid var(--deck-ink);
+}
+
+/* Trace */
+
+.reveal .judge-concept-slide .jc-trace {
+  background: var(--deck-paper);
+  border-color: var(--deck-ink);
+}
+
+.reveal .judge-concept-slide .jc-steps {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 10px;
+  counter-reset: jc-step;
+}
+
+.reveal .judge-concept-slide .jc-steps > div {
+  position: relative;
+  margin-left: 26px;
+  counter-increment: jc-step;
+}
+
+.reveal .judge-concept-slide .jc-steps > div::before {
+  content: counter(jc-step);
+  position: absolute;
+  left: -26px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 18px;
+  font-family: var(--deck-font-mono);
+  font-size: 13px;
+  font-weight: 700;
+  text-align: center;
+  color: var(--deck-soft);
+}
+
+.reveal .judge-concept-slide .jc-thought {
+  font-style: var(--chat-thought-style);
+  color: var(--chat-thought-ink);
+  background: var(--chat-thought-bg);
+  box-shadow: inset var(--chat-edge-width) 0 0 var(--chat-thought-edge);
+}
+
+.reveal .judge-concept-slide .jc-thought b { font-style: normal; }
+
+/* Judge */
 
 .reveal .judge-concept-slide .jc-judge {
   background: var(--chat-judge-tint);
@@ -1730,71 +1884,32 @@
   flex: 1;
   flex-direction: column;
   justify-content: center;
-  gap: 5px;
-  margin-top: 12px;
-}
-
-.reveal .judge-concept-slide .ov-msg { font-size: 18px; }
-
-.reveal .judge-concept-slide .jc-link {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  align-self: center;
   gap: 4px;
+  margin-top: 8px;
+}
+
+.reveal .judge-concept-slide .jc-prompt b { display: block; margin-bottom: 1px; }
+
+.reveal .judge-concept-slide .jc-prompt ul {
+  margin: 2px 0 0;
+  padding-left: 20px;
+}
+
+.reveal .judge-concept-slide .jc-prompt li { margin: 0; }
+
+.reveal .judge-concept-slide .jc-trace-chip {
+  display: inline-block;
   padding: 0 8px;
-}
-
-.reveal .judge-concept-slide .jc-link-label {
-  font-size: 14px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--chat-judge-label);
-}
-
-.reveal .judge-concept-slide .jc-link svg {
-  width: 100%;
-  height: 20px;
-  overflow: visible;
-}
-
-.reveal .judge-concept-slide .jc-link line {
-  stroke: var(--chat-judge-edge);
-  stroke-width: 3;
-}
-
-.reveal .judge-concept-slide .jc-link path { fill: var(--chat-judge-edge); }
-
-.reveal .judge-concept-slide .jc-box {
-  overflow: hidden;
+  font-weight: 600;
   background: var(--deck-paper);
-  border: 1px solid var(--chat-judge-box-edge);
+  border: 1.5px solid var(--deck-ink);
   border-radius: 6px;
 }
 
-.reveal .judge-concept-slide .jc-box-head {
-  padding: 4px 12px;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--chat-judge-head-ink);
-  background: var(--chat-judge-head-bg);
-}
-
-.reveal .judge-concept-slide .jc-box ul {
-  margin: 0;
-  padding: 8px 14px 8px 32px;
-  font-size: 18px;
-  line-height: 1.35;
-  color: var(--deck-ink);
-}
-
-.reveal .judge-concept-slide .jc-box li { margin: 0; }
+.reveal .judge-concept-slide .jc-judge .ov-llm { height: 42px; }
 
 .reveal .judge-concept-slide .jc-verdict {
-  padding: 8px 14px 10px;
+  padding: 6px 12px 8px;
   background: var(--deck-paper);
   border: 2px solid var(--verdict-pass);
   border-radius: 6px;
@@ -1812,8 +1927,8 @@
 }
 
 .reveal .judge-concept-slide .jc-pass {
-  padding: 2px 12px;
-  font-size: 15px;
+  padding: 1px 12px;
+  font-size: 14px;
   letter-spacing: 0.08em;
   color: var(--verdict-on);
   background: var(--verdict-pass);
@@ -1821,27 +1936,15 @@
 }
 
 .reveal .judge-concept-slide .jc-reason {
-  margin-top: 6px !important;
-  font-size: 18px;
-  line-height: 1.35;
+  margin-top: 4px !important;
+  font-size: 17px;
+  line-height: 1.3;
   color: var(--deck-ink);
 }
 
 .reveal .judge-concept-slide .jc-reason code {
   font-family: var(--deck-font-mono);
-  font-size: 16px;
+  font-size: 14px;
   color: var(--deck-ink);
   background: none;
 }
-
-.reveal .judge-concept-slide .jc-takeaway {
-  width: 1160px;
-  margin: 16px auto 0;
-  font-size: 24px;
-  font-weight: 500;
-  line-height: 1.3;
-  text-align: center;
-  color: var(--deck-ink);
-}
-
-.reveal .judge-concept-slide .jc-takeaway b { color: var(--chat-judge-label); }
