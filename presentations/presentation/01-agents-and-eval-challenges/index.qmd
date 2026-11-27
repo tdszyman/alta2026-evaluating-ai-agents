@@ -433,19 +433,22 @@ Cards, in the order they appear, which is the order the stories were published, 
     <p class="ov-head">LLM judge</p>
     <p class="ov-gloss">Reads the trace and returns its determination.</p>
     <div class="jc-fig">
-      <div class="ov-msg ov-sys jc-prompt"><b>System prompt</b>Instructions and rubric:
-        <ul>
-          <li>Answers the question the user asked</li>
-          <li>Uses the location the tool returned</li>
-        </ul>
+      <div class="ov-msg ov-sys jc-prompt"><b>System prompt</b>You are an LLM judge. Evaluate factual accuracy on a scale of 1 to 5.</div>
+      <div class="ov-msg ov-user jc-prompt"><b>User prompt</b><div class="jc-context"><span>Context:</span>
+        <div class="jc-mini" aria-hidden="true"><div class="jc-steps">
+          <div class="ov-msg ov-user"><b>User</b>What is a good salary for a barista?</div>
+          <div class="ov-step jc-thought"><b>Thought</b>Where are they?</div>
+          <div class="ov-step ov-action"><b>Action</b><code>get_location()</code></div>
+          <div class="ov-step ov-obs"><b>Observation</b>location: Fitzroy</div>
+          <div class="ov-msg ov-asst"><b>Assistant</b>In Fitzroy, around $34 per hour.</div>
+        </div></div></div>
       </div>
-      <div class="ov-msg ov-user jc-prompt"><b>User prompt</b>Context: <span class="jc-trace-chip">the agent trace</span></div>
       <span class="ov-down" aria-hidden="true">↓</span>
       <div class="ov-llm"><span class="ov-llm-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="1.5" y="8.5" width="5.5" height="7" rx="1.5"/><rect x="9.25" y="8.5" width="5.5" height="7" rx="1.5"/><rect class="ov-next" x="17" y="8.5" width="5.5" height="7" rx="1.5"/></svg></span>LLM</div>
-      <span class="ov-down fragment" data-fragment-index="3" aria-hidden="true">↓</span>
-      <div class="jc-verdict fragment" data-fragment-index="3">
-        <p class="jc-verdict-head">Output <span class="jc-pass">Pass</span></p>
-        <p class="jc-reason">Answers the salary question, using the location that <code>get_location()</code> returned.</p>
+      <span class="ov-down" aria-hidden="true">↓</span>
+      <div class="jc-verdict">
+        <p class="jc-verdict-head">Output</p>
+        <p class="jc-score">Factual accuracy: <b>4.2</b></p>
       </div>
     </div>
   </div>
@@ -453,17 +456,17 @@ Cards, in the order they appear, which is the order the stories were published, 
 ```
 
 ::: {.notes}
-**About this slide:** The answer to the headlines’ question, and the tutorial’s central idea. The definition and a one-sentence case sit under the title: AI agents are complex and complicated, so their risk can never be removed entirely, but an LLM judge can monitor what they do and mitigate the risk. The diagram has three parts, each its own thing. On the left is the **AI agent**: a mix of non-deterministic parts (the LLM) and deterministic code and config (the system prompt, skills, tools, memory and the [ReAct](../../bibliography/yao-2023-react/) loop). In the middle is the **agent trace**: what the agent and the user actually did, step by step. That is the level where LLM-as-a-judge works. On the right is the **LLM judge**: one more LLM call, with a system prompt that holds its instructions and rubric, a user prompt whose context is the agent trace, and an output, its determination. The barista example, its criteria and its pay figure are illustrative.
+**About this slide:** The answer to the headlines’ question, and the tutorial’s central idea. The definition and a one-sentence case sit under the title: AI agents are complex and complicated, so their risk can never be removed entirely, but an LLM judge can monitor what they do and mitigate the risk. The diagram has three parts, each its own thing. On the left is the **AI agent**: a mix of non-deterministic parts (the LLM) and deterministic code and config (the system prompt, skills, tools, memory and the [ReAct](../../bibliography/yao-2023-react/) loop). In the middle is the **agent trace**: what the agent and the user actually did, step by step. That is the level where LLM-as-a-judge works. On the right is the **LLM judge**: one more LLM call, with a system prompt that holds its instructions (here a toy one: evaluate factual accuracy on a scale of 1 to 5), a user prompt whose context is the agent trace (drawn as a miniature of the middle panel, because that is what the judge reads), and an output, its determination (here a score). The barista example, the judge prompt, the score and the pay figure are illustrative.
 
 **Presenter notes:**
 
-- Builds: the slide opens on the definition, the subtitle and the agent; click 1 adds the agent trace; click 2 adds the judge, with its system prompt, user prompt and LLM; click 3 adds the judge’s output.
+- Builds: the slide opens on the definition, the subtitle and the agent; click 1 adds the agent trace; click 2 adds the whole judge at once: its system prompt, its user prompt with the trace, its LLM and its output.
 - The subtitle names complex and complicated; “AI Agents are complex *and* complicated systems”, early in section 2, explains what those words mean. The point here: the risk can be reduced and watched, not removed.
 - The agent: the parts that make it up. Only the LLM is non-deterministic; the rest is code and configuration that behaves the same way each time (tools usually, not always). This is the split from the takeaway on “GenAI: from LLMs to AI Agents”.
 - The trace: not the agent’s code, but its behaviour on one run. The same barista run as on “GenAI: from LLMs to AI Agents”: the user’s question, the thought, the `get_location()` call and its result, and the answer. The judge reads this, so it can see that “Fitzroy” came from the tool.
-- The judge is a chat completion, like column 2 of “GenAI: from LLMs to AI Agents”. Its system prompt holds the instructions and the rubric; its user prompt holds the context, here the agent trace; its output is the determination, here a pass and a reason. The same kind of model as the one inside the agent, given a different job: it does not do the task, it checks it.
-- The criteria are written by people. The two here are made up for this example. The judge checks only what its criteria ask: it did not check whether $34 an hour is right, and that figure is illustrative, not wage data.
-- A judge can also read only the output, or a single step. “LLM-as-judge: evaluating the trace”, now marked for removal, shows the places a judge can check. The output here is a pass or fail with a reason; judges can also give scores. Part 2 covers rubrics, scales and prompt patterns.
+- The judge is a chat completion, like column 2 of “GenAI: from LLMs to AI Agents”. Its system prompt holds the instructions; its user prompt holds the context, here the agent trace, the same trace as the middle panel in miniature; its output is the determination, here a factual-accuracy score. The same kind of model as the one inside the agent, given a different job: it does not do the task, it checks it.
+- The judge prompt is written by people. This one is a toy, made up for this example, and so is the score; Part 2 covers real judge prompts, rubrics and scales. The $34 an hour figure is illustrative, not wage data. <!-- TODO (Terrence): one judgement on a 1-to-5 scale is usually a whole number. Say whether 4.2 is meant as an average (for example over several runs or traces), or make it a whole number. -->
+- A judge can also read only the output, or a single step. “LLM-as-judge: evaluating the trace”, now marked for removal, shows the places a judge can check. The output here is a score; judges can also give a pass or fail with a reason. Part 2 covers rubrics, scales and prompt patterns.
 - Using an LLM to check an LLM can sound circular. Keep that question open; the rest of Part 1 explains why it is still the best approach available today.
 - For further reading, there is a survey of the approach: [Gu et al. 2024](../../bibliography/gu-2024-llm-as-judge-survey/).
 - Next: the end of section 1, a recap, and what section 2 covers.

@@ -1696,8 +1696,8 @@
    bubbles, loop and LLM box are the overview's own components. The agent panel
    is the quiet surface; the trace panel is paper with an ink edge, so it reads
    as a record rather than a part of the agent; the judge panel takes the judge
-   tint and edge from "LLM-as-judge: evaluating the trace", and the output the
-   pass colour. */
+   tint and edge from "LLM-as-judge: evaluating the trace", and its output box
+   the judge edge, since a score is not a pass or a fail. */
 
 .reveal .judge-concept-slide p.jc-def {
   width: 1180px;
@@ -1888,22 +1888,30 @@
   margin-top: 8px;
 }
 
-.reveal .judge-concept-slide .jc-prompt b { display: block; margin-bottom: 1px; }
+.reveal .judge-concept-slide .jc-prompt > b { display: block; margin-bottom: 1px; }
 
-.reveal .judge-concept-slide .jc-prompt ul {
-  margin: 2px 0 0;
-  padding-left: 20px;
+/* The user prompt's context is the middle panel's trace drawn at half size, on
+   paper with an ink edge like the trace panel, so it reads as a copy of it. The
+   steps keep the trace panel's width, so they wrap the same way. */
+.reveal .judge-concept-slide .jc-context {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
 }
 
-.reveal .judge-concept-slide .jc-prompt li { margin: 0; }
-
-.reveal .judge-concept-slide .jc-trace-chip {
-  display: inline-block;
-  padding: 0 8px;
-  font-weight: 600;
+.reveal .judge-concept-slide .jc-mini {
+  flex: none;
+  margin-top: 2px;
+  padding: 4px 6px;
   background: var(--deck-paper);
-  border: 1.5px solid var(--deck-ink);
+  border: 1px solid var(--deck-ink);
   border-radius: 6px;
+}
+
+.reveal .judge-concept-slide .jc-mini .jc-steps {
+  width: 335px;
+  margin: 0;
+  zoom: 0.5;
 }
 
 .reveal .judge-concept-slide .jc-judge .ov-llm { height: 42px; }
@@ -1911,14 +1919,11 @@
 .reveal .judge-concept-slide .jc-verdict {
   padding: 6px 12px 8px;
   background: var(--deck-paper);
-  border: 2px solid var(--verdict-pass);
+  border: 2px solid var(--chat-judge-box-edge);
   border-radius: 6px;
 }
 
 .reveal .judge-concept-slide .jc-verdict-head {
-  display: flex;
-  align-items: center;
-  gap: 10px;
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.06em;
@@ -1926,28 +1931,14 @@
   color: var(--deck-soft);
 }
 
-.reveal .judge-concept-slide .jc-pass {
-  padding: 1px 12px;
-  font-size: 14px;
-  letter-spacing: 0.08em;
-  color: var(--verdict-on);
-  background: var(--verdict-pass);
-  border-radius: 999px;
-}
-
-.reveal .judge-concept-slide .jc-reason {
-  margin-top: 4px !important;
-  font-size: 17px;
+.reveal .judge-concept-slide .jc-score {
+  margin-top: 2px !important;
+  font-size: 20px;
   line-height: 1.3;
   color: var(--deck-ink);
 }
 
-.reveal .judge-concept-slide .jc-reason code {
-  font-family: var(--deck-font-mono);
-  font-size: 14px;
-  color: var(--deck-ink);
-  background: none;
-}
+.reveal .judge-concept-slide .jc-score b { color: var(--chat-judge-label); }
 
 /* Section 2 recap divider: the shared section-divider card (.sd-1) with a recap of
    section 1 and what section 2 covers. White text on the card's gradient. The kicker
