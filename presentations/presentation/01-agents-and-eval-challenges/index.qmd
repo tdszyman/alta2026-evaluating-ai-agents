@@ -499,7 +499,7 @@ Cards, in the order they appear, which is the order the stories were published, 
   1. Organisations are using AI agents more and more: “Agents can create value, but introduce risk”.
   2. AI agents are inherently risky: the same slide’s risk side, then “These risks are real, and they make headlines”.
   3. LLM judges can reduce the risk: “An LLM judge can mitigate the risks of AI Agents”.
-- Section 2, in order: “Complex systems require complex evaluations”, “AI Agents are complex *and* complicated systems”, “An agent trace can be evaluated at multiple levels”, “Agent platforms provide the framework”, then the “Two examples” breather and the two examples, an unlawful job ad and a multi-turn attack.
+- Section 2, in order: “Complex systems require complex evaluations”, “AI Agents are complex *and* complicated systems”, “How to evaluate complex and complicated systems”, “An agent trace can be evaluated at multiple levels”, “Agent platforms provide the framework”, then the “Two examples” breather and the two examples, an unlawful job ad and a multi-turn attack.
 - Next: “Complex systems require complex evaluations”.
 :::
 
@@ -622,7 +622,29 @@ A complicated system also has many parts, but every connection is designed and c
 - History, if asked, in one breath. Warren Weaver’s 1948 essay “Science and Complexity” separated problems of simplicity, problems of “disorganized complexity” (many variables, handled by statistics) and problems of “organized complexity”: problems “which involve dealing simultaneously with a sizable number of factors which are interrelated into an organic whole” ([Weaver 1948](../../bibliography/weaver-1948-science-complexity/)). Complexity science is now studied across the natural and social sciences, but, as a review puts it, “there is no concise definition of a complex system, let alone a definition on which all scientists agree” ([Ladyman et al. 2013](../../bibliography/ladyman-2013-complex-system/)). The point is that “complex” has a meaning beyond “hard”.
 - Point at the two figures together: the complicated one is the agent’s plumbing, the complex one is its behaviour.
 - Link back to “GenAI: from LLMs to AI Agents”: the harness and most tool calls are the complicated part; the LLM calls, and anything that behaves like them, are the complex part.
-- Next: “An agent trace can be evaluated at multiple levels” names the parts of a trace a judge can inspect, followed by “Agent platforms provide the framework”, which shows how platforms combine deterministic and non-deterministic checks across those levels. “How to evaluate complex and complicated systems”, now marked for removal, comes back to what this means for evaluation.
+- Next: “How to evaluate complex and complicated systems” states what this split means for evaluation, followed by “An agent trace can be evaluated at multiple levels” and “Agent platforms provide the framework”.
+:::
+
+---
+
+## How to evaluate complex and complicated systems {#evaluate-complex-and-complicated .complexity-slide .cx-eval-slide .centre-body}
+
+::: {.cx-eval}
+- **Evaluate with a mix** [Deterministic, rule-based checks suit the complicated parts. LLM-as-judge suits the complex behaviour.]{.cx-eval-sub}
+- **Test the components and the whole system** [Each part can pass its own checks while the agent as a whole misbehaves.]{.cx-eval-sub}
+:::
+
+::: {.notes}
+**About this slide:** What being both complex and complicated means for evaluating an agent. Agents are evaluated with a mix of methods. Deterministic, rule-based checks such as tests, exact matches and schema checks suit the complicated parts. Non-deterministic checks, LLM-as-a-judge, suit the complex behaviour. And because the whole is more than the sum of its parts, testing each component is not enough: each part can pass its own checks while the system as a whole misbehaves, because once the parts interact, feedback loops appear that belong to no single part. The whole system has to be evaluated too.
+
+**Presenter notes:**
+
+- Keep it short: two points, then move on.
+- Follows directly from “AI Agents are complex *and* complicated systems”: the code is complicated, the model and agent behaviour are complex.
+- The mix sets up “Agent platforms provide the framework”: protections combine deterministic (rule-based) and non-deterministic (LLM-as-a-judge) checks at multiple levels.
+- Bridge, from the outline’s multi-tier evals item (system-level vs component-level): with complex systems you still always have to evaluate the system as a whole.
+- The earlier parts-vs-whole figure and its placeholder for a Tim Sullivan quotation are in the unpublished Part 1.G graveyard deck; the quotation is still missing.
+- Next: “An agent trace can be evaluated at multiple levels”, showing the levels of a trace where those component and system-level checks can be applied.
 :::
 
 ---
@@ -683,7 +705,7 @@ A complicated system also has many parts, but every connection is designed and c
 ```
 
 ::: {.notes}
-**About this slide:** The same example agent conversation as on “LLM-as-judge: evaluating the trace”, with the parts of a trace named on it and no judges yet. It follows “AI Agents are complex *and* complicated systems” and sets up “Agent platforms provide the framework” and the two SEEK examples, so the room has the words for them: the job-ad agent’s steps and reasoning, and the turns of the multi-turn attack. It names the three kinds of message, the agent’s reasoning and a tool call, a step and multi-step, a turn and multi-turn, and the trace as a whole. The conversation is illustrative.
+**About this slide:** The same example agent conversation as on “LLM-as-judge: evaluating the trace”, with the parts of a trace named on it and no judges yet. It follows “How to evaluate complex and complicated systems” and sets up “Agent platforms provide the framework” and the two SEEK examples, so the room has the words for them: the job-ad agent’s steps and reasoning, and the turns of the multi-turn attack. It names the three kinds of message, the agent’s reasoning and a tool call, a step and multi-step, a turn and multi-turn, and the trace as a whole. The conversation is illustrative.
 
 **Presenter notes:**
 
@@ -1085,28 +1107,6 @@ End the chat if risk ≥ 0.8.</pre>
 
 ::: {.notes}
 **About this slide:** Section 2 shows why LLM judges are needed to evaluate AI agents, then the technical foundations behind them. It starts from the idea introduced near the start of the part, that an AI agent is both a complex and a complicated system whose behaviour comes from the whole system rather than any single part, and what that means for evaluation. Then generative outputs, which cannot be matched against a label. Then the deeper dives: what an LLM does when it generates text, how conversations are fed to it, what turns it into an AI agent, and where an LLM judge can check an agent.
-:::
-
----
-
-## How to evaluate complex and complicated systems {#evaluate-complex-and-complicated .complexity-slide .cx-eval-slide .centre-body .organiser-only}
-
-::: {.cx-eval}
-- **Evaluate with a mix** [Deterministic, rule-based checks suit the complicated parts. LLM-as-judge suits the complex behaviour.]{.cx-eval-sub}
-- **Test the components and the whole system** [Each part can pass its own checks while the agent as a whole misbehaves.]{.cx-eval-sub}
-:::
-
-::: {.notes}
-**About this slide:** What being both complex and complicated means for evaluating an agent. Agents are evaluated with a mix of methods. Deterministic, rule-based checks such as tests, exact matches and schema checks suit the complicated parts. Non-deterministic checks, LLM-as-a-judge, suit the complex behaviour. And because the whole is more than the sum of its parts, testing each component is not enough: each part can pass its own checks while the system as a whole misbehaves, because once the parts interact, feedback loops appear that belong to no single part. The whole system has to be evaluated too.
-
-**Presenter notes:**
-
-- Keep it short: two points, then move on.
-- Recap first, in a sentence: “AI Agents are complex *and* complicated systems” came in section 1, after the headlines. The code is complicated; the model is complex.
-- The mix echoes the “Agent platforms layer protections” slide: protections can be deterministic (rule-based) or non-deterministic (LLM-as-judge).
-- Bridge, from the outline’s multi-tier evals item (system-level vs component-level): with complex systems you still always have to evaluate the system as a whole.
-- The earlier parts-vs-whole figure and its placeholder for a Tim Sullivan quotation are in the unpublished Part 1.G graveyard deck; the quotation is still missing.
-- Next: why generative AI needs LLM-as-a-judge.
 :::
 
 ---
