@@ -1691,7 +1691,7 @@
 .reveal .overview-slide .ov-det-ink { font-weight: 700; }
 .reveal .overview-slide .ov-sto-ink { font-weight: 700; color: var(--series-b-ink); }
 
-/* "Solution: an LLM judge that checks the agent": the definition and a
+/* "An LLM judge can mitigate the risks of AI Agents": the definition and a
    subtitle, then three panels. The slide also carries .overview-slide, so the
    bubbles, loop and LLM box are the overview's own components. The agent panel
    is the quiet surface; the trace panel is paper with an ink edge, so it reads

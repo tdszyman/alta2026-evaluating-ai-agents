@@ -392,7 +392,7 @@ Cards, in the order they appear, which is the order the stories were published, 
 
 ---
 
-## Solution: an LLM judge that checks the agent {#llm-judge-concept .overview-slide .judge-concept-slide}
+## An LLM judge can mitigate the risks of AI Agents {#llm-judge-concept .overview-slide .judge-concept-slide}
 
 ```{=html}
 <p class="jc-def"><b>LLM-as-a-judge:</b> use an LLM to check what an agent did.</p>
@@ -568,7 +568,7 @@ A complicated system also has many parts, but every connection is designed and c
 ::: {.notes}
 **About this slide:** How organisations protect against the risks in the headlines, three slides back. The top of the slide follows on from the previous slide: protections come in multiple layers, using multiple methods, because AI agents are both complicated systems, which need deterministic tests and checks, and complex systems, which need non-deterministic checks. LLM-as-a-judge is one of the most commonly used non-deterministic checks, and a key focus of this tutorial. The bottom of the slide says who provides these protections. Organisations rarely build every safeguard for an agent themselves: agent platforms provide multiple levels of protections to mitigate agent risks. Four examples: Amazon Bedrock AgentCore from AWS ([AWS 2026](../../bibliography/aws-2026-bedrock-agentcore/)), Gemini Enterprise Agent Platform from Google Cloud ([Google Cloud 2026a](../../bibliography/google-cloud-2026-agent-platform-overview/)), Arize AX from Arize ([Arize](../../bibliography/arize/)) and LangSmith from LangChain ([LangChain 2026](../../bibliography/langchain-2026-langsmith/)).
 
-“Solution: an LLM judge that checks the agent”, two slides back, introduced the idea; this slide gives the definition and puts it among the other protections. **LLM-as-a-judge** means an LLM, the judge, reads what an agent did and checks it against criteria that people write down. Evals and guardrails use judges to check agents before launch and while they run. Using AI to check AI can sound circular; the rest of Part 1 explains why it is the best approach available today.
+“An LLM judge can mitigate the risks of AI Agents”, two slides back, introduced the idea; this slide gives the definition and puts it among the other protections. **LLM-as-a-judge** means an LLM, the judge, reads what an agent did and checks it against criteria that people write down. Evals and guardrails use judges to check agents before launch and while they run. Using AI to check AI can sound circular; the rest of Part 1 explains why it is the best approach available today.
 
 **Presenter notes:**
 
